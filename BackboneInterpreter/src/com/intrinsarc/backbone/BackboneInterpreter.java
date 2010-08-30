@@ -39,7 +39,10 @@ public class BackboneInterpreter
 		String stratum = args[1 + offset];
 		String component = args[2 + offset];
 		// port may be null
-		String port = args.length > 3 + offset ? args[3 + offset] : null;
+		String port = args[3 + offset];
+		if (port.equals("-none-"))
+			port = null;
+		args = truncateInterpreterArgs(args, offset);
 		
 		String tab = ARROW + "  ";
 		System.out.println(tab + "loading system from " + loadListFile);
@@ -180,6 +183,15 @@ public class BackboneInterpreter
 		}
 	}
 	
+	private static String[] truncateInterpreterArgs(String[] args, int offset)
+	{
+		int displace = 4 /* loadlist, stratum, component, port */ + offset /* possible nocheck */;
+		String[] newArgs = new String[args.length - displace];
+		for (int lp = displace; lp < args.length; lp++)
+			newArgs[lp - displace] = args[lp];
+		return newArgs;
+	}
+
 	public static List<BBStratum> loadSystem(File loadListFile, String tab) throws BBNodeNotFoundException, BBVariableNotFoundException, StratumLoadingException
 	{
 		LoadListReader reader = new LoadListReader(loadListFile);			

@@ -692,6 +692,11 @@ public final class FeatureNodeGem implements Gem
   {
     // determine the fill paint and the pen paint
     Color fillPaint = Color.white;
+    if (paintBackground && featureType == 2)
+    {
+    	fillPaint = Color.CYAN;
+    }
+    else
     if (paintBackground && featureType != 2)
     {
       if (accessType.equals(VisibilityKind.PUBLIC_LITERAL))

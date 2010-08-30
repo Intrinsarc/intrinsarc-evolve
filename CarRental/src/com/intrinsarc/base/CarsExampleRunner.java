@@ -20,6 +20,7 @@ public class CarsExampleRunner
 	public int run(String[] args)
 	{
 		System.out.println();
+
 		for (IRentalCarDetails car : cars)
 			System.out.println(
 					"Car: model = " + car.getModel() +

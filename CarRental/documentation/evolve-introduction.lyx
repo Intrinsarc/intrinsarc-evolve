@@ -1,0 +1,678 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass amsbook
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\tip}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Title
+\begin_inset Graphics
+	filename C:/work/workspace/repository/Resources/logos/originals/evolve_final.jpg
+	rotateOrigin leftTop
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+An Introduction to Component Modeling in Evolve
+\end_layout
+
+\begin_layout Author
+Andrew McVeigh
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Standard
+An extensible application is one which allows functionality to be added,
+ replaced or even removed without requiring modification or access to its
+ source code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krishnamurthi1998"
+
+\end_inset
+
+.
+ The benefit of architecting a system in this style is that it allows developers
+ to create an extension, which adds features to a base application and customise
+s it, without further involvement from the original creators of the application.
+ The extensible system forms a platform on which a family of applications
+ can be built, servicing a much larger market than would otherwise be possible.
+\end_layout
+
+\begin_layout Section
+What is a Component?
+\end_layout
+
+\begin_layout Standard
+The delegation examples so far delegate to a single, thread-safe state variable.
+ We can also delegate thread safety!!!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+highlight[0.2]{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The delegation examples so far delegate to a single, thread-safe state variable.
+ We can also delegate thread safety!!!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The delegation examples so far delegate to a single, thread-safe state variable.
+ We can also delegate thread safety!!!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+warning[0.7]{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The delegation examples so far delegate to a single, thread-safe state variable.
+ We can also delegate thread safety!!!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The delegation examples so far delegate to a single, thread-safe state variable.
+ We can also delegate thread safety!!!
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+tip[0.5]{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ pos.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001,Object2005"
+
+\end_inset
+
+, Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007,Firefoxplugins2008"
+
+\end_inset
+
+, Emacs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+ and Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+ are prominent examples of this approach.
+ These applications support extensibility via (sometimes subtly) different
+ mechanisms, but the basic concept is the same.
+ They allow third party developers to add to (and sometimes remove from)
+ a base application in order to extend it, and each has spawned a significant
+ set of extensions.
+ The extension concept has shown itself to be of significant value: the
+ original application creators can service a broadened market, extension
+ developers gain a mature base to build on, and end users get increased
+ choice in order to meet their needs.
+ Interestingly, even though the implementation source code is freely available
+ for three out of the four example applications mentioned at the start of
+ the paragraph, this does not diminish the need for, or effectiveness of,
+ an extensibility approach.
+ Extending a substantial application is usually simpler, and incurs less
+ maintenance overhead, than directly altering the source code of the system.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ possible future extension requirements.
+ Predicting these points in advance can never cover all eventualities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+, and building excess points into the application 
+\begin_inset Quotes eld
+\end_inset
+
+just in case
+\begin_inset Quotes erd
+\end_inset
+
+ pollutes the architecture and reduces clarity and manageability.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to the application creators and extension developers alike.
+\end_layout
+
+\begin_layout Standard
+Developers building on an extensible base application may also wish to remove
+ or replace existing functionality in order to simplify and streamline the
+ system and improve performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Parnas1978"
+
+\end_inset
+
+, even as they add other features.
+ Current approaches either forbid this or only support this implicitly via
+ hiding the presence of features or by allowing end users to perform deletion
+ of previously installed parts of the application.
+\end_layout
+
+\begin_layout Standard
+An extensible application is one which allows functionality to be added,
+ replaced or even removed without requiring modification or access to its
+ source code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krishnamurthi1998"
+
+\end_inset
+
+.
+ The benefit of architecting a system in this style is that it allows developers
+ to create an extension, which adds features to a base application and customise
+s it, without further involvement from the original creators of the application.
+ The extensible system forms a platform on which a family of applications
+ can be built, servicing a much larger market than would otherwise be possible.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001,Object2005"
+
+\end_inset
+
+, Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007,Firefoxplugins2008"
+
+\end_inset
+
+, Emacs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+ and Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+ are prominent examples of this approach.
+ These applications support extensibility via (sometimes subtly) different
+ mechanisms, but the basic concept is the same.
+ They allow third party developers to add to (and sometimes remove from)
+ a base application in order to extend it, and each has spawned a significant
+ set of extensions.
+ The extension concept has shown itself to be of significant value: the
+ original application creators can service a broadened market, extension
+ developers gain a mature base to build on, and end users get increased
+ choice in order to meet their needs.
+ Interestingly, even though the implementation source code is freely available
+ for three out of the four example applications mentioned at the start of
+ the paragraph, this does not diminish the need for, or effectiveness of,
+ an extensibility approach.
+ Extending a substantial application is usually simpler, and incurs less
+ maintenance overhead, than directly altering the source code of the system.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ possible future extension requirements.
+ Predicting these points in advance can never cover all eventualities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+, and building excess points into the application 
+\begin_inset Quotes eld
+\end_inset
+
+just in case
+\begin_inset Quotes erd
+\end_inset
+
+ pollutes the architecture and reduces clarity and manageability.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to the application creators and extension developers alike.
+\end_layout
+
+\begin_layout Standard
+Developers building on an extensible base application may also wish to remove
+ or replace existing functionality in order to simplify and streamline the
+ system and improve performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Parnas1978"
+
+\end_inset
+
+, even as they add other features.
+ Current approaches either forbid this or only support this implicitly via
+ hiding the presence of features or by allowing end users to perform deletion
+ of previously installed parts of the application.
+\end_layout
+
+\begin_layout Standard
+An extensible application is one which allows functionality to be added,
+ replaced or even removed without requiring modification or access to its
+ source code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krishnamurthi1998"
+
+\end_inset
+
+.
+ The benefit of architecting a system in this style is that it allows developers
+ to create an extension, which adds features to a base application and customise
+s it, without further involvement from the original creators of the application.
+ The extensible system forms a platform on which a family of applications
+ can be built, servicing a much larger market than would otherwise be possible.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001,Object2005"
+
+\end_inset
+
+, Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007,Firefoxplugins2008"
+
+\end_inset
+
+, Emacs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+ and Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+ are prominent examples of this approach.
+ These applications support extensibility via (sometimes subtly) different
+ mechanisms, but the basic concept is the same.
+ They allow third party developers to add to (and sometimes remove from)
+ a base application in order to extend it, and each has spawned a significant
+ set of extensions.
+ The extension concept has shown itself to be of significant value: the
+ original application creators can service a broadened market, extension
+ developers gain a mature base to build on, and end users get increased
+ choice in order to meet their needs.
+ Interestingly, even though the implementation source code is freely available
+ for three out of the four example applications mentioned at the start of
+ the paragraph, this does not diminish the need for, or effectiveness of,
+ an extensibility approach.
+ Extending a substantial application is usually simpler, and incurs less
+ maintenance overhead, than directly altering the source code of the system.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ possible future extension requirements.
+ Predicting these points in advance can never cover all eventualities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+, and building excess points into the application 
+\begin_inset Quotes eld
+\end_inset
+
+just in case
+\begin_inset Quotes erd
+\end_inset
+
+ pollutes the architecture and reduces clarity and manageability.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to the application creators and extension developers alike.
+\end_layout
+
+\begin_layout Standard
+Developers building on an extensible base application may also wish to remove
+ or replace existing functionality in order to simplify and streamline the
+ system and improve performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Parnas1978"
+
+\end_inset
+
+, even as they add other features.
+ Current approaches either forbid this or only support this implicitly via
+ hiding the presence of features or by allowing end users to perform deletion
+ of previously installed parts of the application.
+\end_layout
+
+\begin_layout Standard
+An extensible application is one which allows functionality to be added,
+ replaced or even removed without requiring modification or access to its
+ source code 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Krishnamurthi1998"
+
+\end_inset
+
+.
+ The benefit of architecting a system in this style is that it allows developers
+ to create an extension, which adds features to a base application and customise
+s it, without further involvement from the original creators of the application.
+ The extensible system forms a platform on which a family of applications
+ can be built, servicing a much larger market than would otherwise be possible.
+\end_layout
+
+\begin_layout Standard
+Eclipse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Object2001,Object2005"
+
+\end_inset
+
+, Firefox 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fireextensions2007,Firefoxplugins2008"
+
+\end_inset
+
+, Emacs 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Blandy2009"
+
+\end_inset
+
+ and Excel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bullen2005"
+
+\end_inset
+
+ are prominent examples of this approach.
+ These applications support extensibility via (sometimes subtly) different
+ mechanisms, but the basic concept is the same.
+ They allow third party developers to add to (and sometimes remove from)
+ a base application in order to extend it, and each has spawned a significant
+ set of extensions.
+ The extension concept has shown itself to be of significant value: the
+ original application creators can service a broadened market, extension
+ developers gain a mature base to build on, and end users get increased
+ choice in order to meet their needs.
+ Interestingly, even though the implementation source code is freely available
+ for three out of the four example applications mentioned at the start of
+ the paragraph, this does not diminish the need for, or effectiveness of,
+ an extensibility approach.
+ Extending a substantial application is usually simpler, and incurs less
+ maintenance overhead, than directly altering the source code of the system.
+\end_layout
+
+\begin_layout Standard
+Unfortunately, however, existing extensibility approaches have limitations
+ and unwelcome side effects.
+ Most of the approaches assume that pre-planned hooks or extension points
+ will be built into the base application in order to accommodate for any
+ possible future extension requirements.
+ Predicting these points in advance can never cover all eventualities 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bennett2004"
+
+\end_inset
+
+, and building excess points into the application 
+\begin_inset Quotes eld
+\end_inset
+
+just in case
+\begin_inset Quotes erd
+\end_inset
+
+ pollutes the architecture and reduces clarity and manageability.
+ Other approaches construct an application as a fine-grained arrangement
+ of components, allowing arbitrary replacement of any part, but end up exposing
+ great complexity to the application creators and extension developers alike.
+\end_layout
+
+\begin_layout Standard
+Developers building on an extensible base application may also wish to remove
+ or replace existing functionality in order to simplify and streamline the
+ system and improve performance 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Parnas1978"
+
+\end_inset
+
+, even as they add other features.
+ Current approaches either forbid this or only support this implicitly via
+ hiding the presence of features or by allowing end users to perform deletion
+ of previously installed parts of the application.
+\end_layout
+
+\end_body
+\end_document

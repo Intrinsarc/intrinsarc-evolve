@@ -11,9 +11,12 @@ import javax.swing.*;
 
 import org.eclipse.uml2.*;
 
+import com.intrinsarc.backbone.generator.hardcoded.common.*;
+import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.easydock.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.repositorybase.*;
+import com.sun.org.apache.xerces.internal.impl.dtd.models.*;
 
 /**
  * this class needs work to make it obey the Swing EDT rules.  Seems to work nicely, but it's not conforming to
@@ -312,13 +315,34 @@ public class BackboneRunner
     exec.add(BACKBONE_INTERPRETER);
     exec.add("-nocheck");
     exec.add(translatedLoadList.toString());
+    
+    List<String> cmdLine = new ArrayList<String>();
+    String cmdLineString = "";
+    try
+		{
+			String cmdLineArgs = StereotypeUtilities.extractStringProperty(
+					(Element) choice.getSingleStratum().getRepositoryObject(),
+					CommonRepositoryFunctions.BACKBONE_CMD_LINE);
+			if (cmdLineArgs != null)
+			{
+				cmdLineString = cmdLineArgs;
+				cmdLine = WriterHelper.expandOutAsArguments(cmdLineArgs);
+			}
+		}
+    catch (BackboneGenerationException e)
+		{
+		}
+    
     for (int lp = 0; lp < 3; lp++)
     	exec.add(cmds[lp]);
+    for (String arg : cmdLine)
+    	exec.add(arg);
+    
     try
     {
       writer = new BufferedWriter(new FileWriter(runFile));
       writer.newLine();
-      writer.write(cmd);
+      writer.write(cmd + " " + cmdLineString);
       writer.newLine();
     }
     finally
@@ -330,7 +354,7 @@ public class BackboneRunner
     return exec;
   }
 
-  private synchronized void constructPanel(final JPanel insetPanel, boolean errors)
+	private synchronized void constructPanel(final JPanel insetPanel, boolean errors)
   {
   	// update whether we are showing errors or now to reflect the view
   	errorsShown = errors;

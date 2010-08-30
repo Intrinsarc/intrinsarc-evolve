@@ -36,7 +36,6 @@ public class CompositeHardcoder
   	String prefix = StereotypeUtilities.extractStringProperty(perspectivePkg, CommonRepositoryFunctions.COMPOSITE_PACKAGE);
   	if (prefix == null || prefix.trim().length() == 0)
   		throw new BackboneGenerationException("The " + CommonRepositoryFunctions.COMPOSITE_PACKAGE + " property must be set on the stratum to generate a hardcoded factory", null);
-  	System.out.println("$$ prefix = " + prefix);
   	File base = new File(javaBase, prefix.replace('.', '/'));
   	base.mkdirs();
   	

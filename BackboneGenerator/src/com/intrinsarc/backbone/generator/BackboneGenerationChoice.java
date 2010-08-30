@@ -109,6 +109,8 @@ public class BackboneGenerationChoice
     if (component == null || component.isEmpty())
       throw new BackboneGenerationException(CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT + " must be set to an existing component", null);
     String port = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_PORT);
+    if (port == null || port.length() == 0)
+    	port = "-none-";
     return new String[]{stratum, component, port};
   }
 

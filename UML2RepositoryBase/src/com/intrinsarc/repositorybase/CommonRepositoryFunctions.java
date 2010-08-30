@@ -94,6 +94,7 @@ public class CommonRepositoryFunctions
 	public static final String BACKBONE_RUN_STRATUM = "bb-run-stratum";
 	public static final String BACKBONE_RUN_COMPONENT = "bb-run-component";
 	public static final String BACKBONE_RUN_PORT = "bb-run-port";
+	public static final String BACKBONE_CMD_LINE = "bb-cmd-line-arguments";
 
 	// visual stereotypes
 	public static final String VISUAL_EFFECT = "visual-effect";
@@ -302,6 +303,7 @@ public class CommonRepositoryFunctions
     addAttribute(uuids, stratum, BACKBONE_RUN_STRATUM, stringType, "The stratum of the component to use for running");
     addAttribute(uuids, stratum, BACKBONE_RUN_COMPONENT, stringType, "The component to use for running");
     addAttribute(uuids, stratum, BACKBONE_RUN_PORT, stringType, "The component port to use for running");
+    addAttribute(uuids, stratum, BACKBONE_CMD_LINE, stringType, "The command line arguments that will be passed when running the Backbone program");
     addAttribute(uuids, stratum, BACKBONE_SOURCE_FOLDER, stringType, "The folder to generate Backbone source to");
     addAttribute(uuids, stratum, JAVA_SOURCE_FOLDER, stringType, "The folder to generate Java source to");
     addAttribute(uuids, stratum, COMPOSITE_PACKAGE, stringType, "The package to use for generating source code for composites into");

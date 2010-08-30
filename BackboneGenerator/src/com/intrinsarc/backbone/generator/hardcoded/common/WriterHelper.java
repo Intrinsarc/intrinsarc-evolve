@@ -98,6 +98,42 @@ public class WriterHelper
 		
 		return out.toString();
 	}
+	
+	public static List<String> expandOutAsArguments(String argLine)
+	{
+		List<String> args = new ArrayList<String>();
+		
+		if (argLine == null)
+			return args;
+		boolean inQuotes = false;
+		boolean justSeparated = true;
+
+		String current = "";
+		for (char ch : argLine.toCharArray())
+		{
+			if (ch == '"')
+			{
+				inQuotes = !inQuotes;
+				justSeparated = false;
+			}
+			
+			if (!inQuotes && ch == ' ')
+			{
+				justSeparated = true;
+				args.add(current);
+				current = "";
+			}
+			if (ch != ' ' || !justSeparated)
+			{
+				current += "" + ch;
+				justSeparated = false;
+			}
+		}
+		if (current.trim().length() > 0)
+			args.add(current);
+		
+		return args;
+	}
 
 	public static void write(File directory, String fileName, String str) throws BackboneGenerationException
 	{
