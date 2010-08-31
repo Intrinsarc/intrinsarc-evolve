@@ -721,7 +721,7 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public TagBackboneItem()
 		{
-			super("");
+			super("Tag current or selected stratum");
 			addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)

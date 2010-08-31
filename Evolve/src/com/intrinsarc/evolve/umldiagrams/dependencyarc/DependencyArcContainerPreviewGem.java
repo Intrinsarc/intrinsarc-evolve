@@ -61,8 +61,7 @@ public class DependencyArcContainerPreviewGem implements Gem
     public void newPointsHaveBeenSet(ActualArcPoints actualPoints, UPoint originalMiddle, boolean curved)
     {
       // need to expand this to handle more major points
-      UPoint newMiddle = getMiddlePoint();
-		  UDimension offset = newMiddle.subtract(originalMiddle);
+		  UDimension offset = originalMiddle == null ? UDimension.ZERO : getMiddlePoint().subtract(originalMiddle);
 		  // get any linked text entries
 		  ContainerFacet container = previewFacet.isPreviewFor().getContainerFacet();
 		  for (Iterator iter = container.getContents(); iter.hasNext();)

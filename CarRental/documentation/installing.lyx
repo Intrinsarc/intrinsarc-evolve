@@ -1,0 +1,1115 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Installing and Using Evolve
+\end_layout
+
+\begin_layout Section
+Installing Evolve
+\end_layout
+
+\begin_layout Standard
+Download Evolve from
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+http://www.instrinsarc.com/evolve/download
+\end_layout
+
+\begin_layout Standard
+Unzip the distribution into a directory and you should see the following
+ set of files.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/install-files.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The top level files in the Evolve distribution 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You must have Java1.5+ installed already.
+ Java1.6+ is preferred.
+\end_layout
+
+\begin_layout Standard
+There are several ways to run Evolve.
+ If you are using Windows, you can double-click evolve.exe or drag the shortcut
+ to the desktop and double click that.
+ If you are using Linux or MacOSX, then you may be able to double-click
+ the executable evolve.jar file.
+ If all else fails, or you wish to run it from the command line, change
+ to the install directory and type the following:
+\end_layout
+
+\begin_layout LyX-Code
+java -jar evolve.jar
+\end_layout
+
+\begin_layout Standard
+Upon running Evolve, you should see a screen like the following.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/startup.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+Evolve on startup
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Setting Up The Environment
+\end_layout
+
+\begin_layout Standard
+Before going further, we need to configure a small number of environment
+ variables from within Evolve.
+ Select the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File▶Preferences▶Edit Environment Preferences
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu item or press 
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{F4}
+\end_layout
+
+\end_inset
+
+ and choose the Variables tab.
+ You should see something like figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolve-environment-variables"
+
+\end_inset
+
+.
+ The EVOLVE variable should be set to the directory that you ran Evolve
+ from.
+ This is overwritten each time you run Evolve.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/start-variables.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolve-environment-variables"
+
+\end_inset
+
+Evolve environment variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We need to add a variable BB for the folder to write the Backbone files
+ to.
+ Type BB into the text box, and then press the 
+\begin_inset Quotes eld
+\end_inset
+
+Add
+\begin_inset Quotes erd
+\end_inset
+
+ button.
+ Then use the 
+\begin_inset Quotes eld
+\end_inset
+
+Folder...
+\begin_inset Quotes erd
+\end_inset
+
+ button next to the variable to point it to a folder you have write permission
+ for.
+ Then, set up the variable CARS and point it to the 
+\family typewriter
+tutorial
+\backslash
+carrental
+\family default
+ directory of the installation.
+ Set up the CARSGUI variable to point to the 
+\family typewriter
+tutorial
+\backslash
+carrentalgui
+\family default
+ directory.
+ Alternatively, you can configure CARS and CARSGUI using the EVOLVE variable.
+ I use the following settings, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Setting-up-the"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/bb-variable.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Setting-up-the"
+
+\end_inset
+
+Setting up the BB variable
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we need to ensure that Evolve has access to the Java executable.
+ Click on the Backbone tab, and verify that the 
+\begin_inset Quotes eld
+\end_inset
+
+Java command
+\begin_inset Quotes erd
+\end_inset
+
+ points to the curret Java.
+ If not, amend it to point to the correct binary.
+\end_layout
+
+\begin_layout Section
+Loading and Navigating Around the Tutorial Model
+\end_layout
+
+\begin_layout Standard
+We are now going to load the tutorial model that is used in the following
+ chapters.
+ Select the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File▶Open▶Existing XML Repository
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu item.
+ Navigate to the 
+\family typewriter
+tutorial
+\family default
+ directory of the installation, and select the car-rental.evolve model.
+ After a couple of seconds, it should load and you should see a screen like
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-tutorial-model"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/car-start.png
+	scale 30
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-tutorial-model"
+
+\end_inset
+
+The tutorial model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Navigating into Strata
+\end_layout
+
+\begin_layout Standard
+The folder/package like boxes named 
+\begin_inset Quotes eld
+\end_inset
+
+base
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+factory
+\begin_inset Quotes erd
+\end_inset
+
+ etc.
+ are known as strata.
+ To visit into a stratum, double-click it, or alternatively press the middle
+ mouse button or wheel button while over it.
+ To exit back to the parent, double-click or middle-click the white background.
+ To go backwards or forwards in the diagram history, select the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+View▶Open previous diagram
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+View▶Open next diagram
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu options.
+\end_layout
+
+\begin_layout Subsubsection*
+Tabs
+\end_layout
+
+\begin_layout Standard
+Evolve uses a tabbed graphical interface.
+ To open a new tab, select the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+View▶Open current in new tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ The tab can then be dragged into a different position as required.
+ To avoid a tab docking, hold the shift key while dragging its titlebar.
+\end_layout
+
+\begin_layout Subsubsection*
+The Tool Palette
+\end_layout
+
+\begin_layout Standard
+To the left of the screen is the tool palette.
+ It will be set to 
+\begin_inset Quotes eld
+\end_inset
+
+Component focus
+\begin_inset Quotes erd
+\end_inset
+
+ by default, allowing the user to define components.
+ To change the focus, use the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Focus
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu options.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+Feature focus
+\begin_inset Quotes erd
+\end_inset
+
+ allows for requirements feature modeling, and the 
+\begin_inset Quotes eld
+\end_inset
+
+State focus
+\begin_inset Quotes erd
+\end_inset
+
+ allows state machines to be defined.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+Profile focus
+\begin_inset Quotes erd
+\end_inset
+
+ allows stereotypes and UML2 profiles to be created.
+\end_layout
+
+\begin_layout Standard
+To use a tool from the palette, click on it and then click on the diagram.
+ For repeated application of the tool, simply hold down the shift key for
+ as long as required.
+\end_layout
+
+\begin_layout Standard
+An extremely useful alternative to using the tool palette directly is to
+ press the space bar over the diagram.
+ This will bring up a mini-palette with tools relevant for the current diagram
+ context.
+ This allows rapid entry of a design.
+ Note that to draw a connecting line between square shapes, you must hover
+ over the inside edge of the shape before pressing space.
+\end_layout
+
+\begin_layout Subsubsection*
+Keys
+\end_layout
+
+\begin_layout Standard
+The keyboard shortcuts can be redefined in the 
+\begin_inset Quotes eld
+\end_inset
+
+Keys
+\begin_inset Quotes erd
+\end_inset
+
+ tab of the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File▶Preferences▶Edit Environment Preferences
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ dialog.
+ By default the keys are set to sensible defaults for Windows and Linux.
+ MacOSX users may find several of them inconvenient however.
+ The labels above the keys are the same as the menu options that the key
+ will invoke.
+\end_layout
+
+\begin_layout Section
+Subjects and Views and the Repository Browser
+\end_layout
+
+\begin_layout Standard
+Evolve is a powerful and versatile CASE tool, and adopts common CASE tool
+ conventions.
+ A key convention is the the distinction between a subject, and the view
+ of that subject.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+A subject is the underlying data of a component or other model element,
+ as held in the repository.
+ A view is the graphical presentation of this shown on a diagram.
+ Deleting a view will not delete the subject.
+ Deleting a subject will delete all its views
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Consider if we create a component 
+\family typewriter
+Test
+\family default
+.
+ We can select the item, and copy it (
+\family typewriter
+ctrl-C
+\family default
+) and paste it (
+\family typewriter
+ctrl-V
+\family default
+) several times as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Multiple-views-of"
+
+\end_inset
+
+.
+ These are all different views of the same subject, the component 
+\family typewriter
+Test
+\family default
+.
+ We can then delete views by selecting them and pressing delete (
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit▶Delete
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ To remove the entire subject and all its views, however, we need to invoke
+ (
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit▶Delete subjects
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/multiple-views.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Multiple-views-of"
+
+\end_inset
+
+Multiple views of the same component subject
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Diagrams allows us to look at the views.
+ To look at the subjects directly, however, we instead use the subject browser.
+ To invoke this, select an item on the screen and select 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Object▶Browse element
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ This will bring up the browser on the subject of the element selected,
+ as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Looking-at-the"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/browser.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Looking-at-the"
+
+\end_inset
+
+Looking at the Test component subject in the browser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Selecting an Existing Element using the Tab Key
+\end_layout
+
+\begin_layout Standard
+Consider if we have an existing component SpellChecker, and an unnamed component.
+ If we want the unnammed component to be a further view of SpellChecker,
+ we start typing the name (
+\begin_inset Quotes eld
+\end_inset
+
+SpellCh...
+\begin_inset Quotes erd
+\end_inset
+
+) and then press tab as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Press-tab-while"
+
+\end_inset
+
+.
+ A list of possible matches will then appear, and we can then click on one.
+ This will result in the view being of the chosen component.
+\end_layout
+
+\begin_layout Standard
+If we do not press tab, and simply type in the whole 
+\begin_inset Quotes eld
+\end_inset
+
+SpellChecker
+\begin_inset Quotes erd
+\end_inset
+
+ name, then we will have created a different component with the same name.
+ Remember to press tab when referencing an existing element!
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/tabbing.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Press-tab-while"
+
+\end_inset
+
+Press tab while typing to reference another component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document

@@ -1,0 +1,1350 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Introduction
+\end_layout
+
+\begin_layout Section
+The Background of Evolve
+\end_layout
+
+\begin_layout Standard
+Several years ago as the technical lead for a large Java enterprise system,
+ I started wondering about components.
+ The system we constructed had a number of natural abstractions which could
+ loosely have been termed components but we struggled to separate these
+ out from each other.
+ This got me thinking, and after taking a year off to work on a UML2 CASE
+ tool
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Part of this is licensed to Gentleware AG as the basis of PoseidonUML version
+ 8
+\end_layout
+
+\end_inset
+
+, I 
+\begin_inset Quotes eld
+\end_inset
+
+invented
+\begin_inset Quotes erd
+\end_inset
+
+ a theory of hierarchical components which would allow me to break such
+ a system down neatly into a collection of connected components.
+ Or at least I thought I invented this approach...
+\end_layout
+
+\begin_layout Standard
+Of course I didn't really invent this paradigm at all - I simple rediscovered
+ it.
+ It turned out that hierarchical components had been discovered over 10
+ years before by two eminent professors
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Professors Jeff Magee and Jeff Kramer from Imperial College, London
+\end_layout
+
+\end_inset
+
+.
+ The influential system they created was called Darwin, and was a large
+ part of the inspiration for Microsoft's COM system.
+ Philips also used an embedded version called Koala for the controlling
+ software of some of their television sets.
+ After reading one of the professors' articles in a book, I contacted them
+ and they subsequently supervised my PhD, where I added evolution support
+ to the component language.
+ Evolve and Backbone are the result.
+\end_layout
+
+\begin_layout Standard
+In short, Evolve is a fusion of a UML2 graphical tool, with a Darwin-like
+ component language called Backbone.
+ Backbone programs are created in Evolve, using UML2 composite structure
+ diagrams, and then executed using the Backbone interpreter.
+ At all times, the link between the graphical view and the code is kept
+ intact.
+ Evolve components at the lowest level are simply JavaBeans, allowing you
+ to take advantage of your existing beans and create new ones easily.
+\end_layout
+
+\begin_layout Subsection
+A Quick Rundown of Evolve and Backbone
+\end_layout
+
+\begin_layout Standard
+The Evolve modeling tool features a lightweight but full-fledged graphical
+ environment, deeply integrated with the Backbone component model.
+ Some of the Evolve features:
+\end_layout
+
+\begin_layout Enumerate
+Components are defined using UML2 composite structure diagrams.
+ Evolve is a fully featured CASE tool
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Evolve does not support all of the UML2 diagrams, only those relevant to
+ component modeling.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Enumerate
+JavaBean code can be generated, and existing beans can be reverse-engineered
+ quickly into the environment.
+ JavaBeans are first-class components in Evolve.
+\end_layout
+
+\begin_layout Enumerate
+Full support for the reuse and evolution of components.
+\begin_inset Newline newline
+\end_inset
+
+Two constructs, resemblance and evolution, allow new components to be robustly
+ defined in terms of existing ones.
+\end_layout
+
+\begin_layout Enumerate
+Evolution can be used to augment components, much like aspect-oriented programmi
+ng.
+\begin_inset Newline newline
+\end_inset
+
+This does not suffer from the limitations of aspects such as the reliance
+ on method and field name conventions, the indirect application making it
+ difficult to see which aspects are applied, or difficulty composing aspects.
+\end_layout
+
+\begin_layout Enumerate
+Support for state-machines and their reuse and evolution.
+\end_layout
+
+\begin_layout Enumerate
+Port interface inference, where Evolve infers the interfaces provided and
+ required by a component.
+\end_layout
+
+\begin_layout Enumerate
+A single model can hold and execute many variants of a system, allowing
+ them all to be checked easily
+\end_layout
+
+\begin_layout Enumerate
+Error checking, where a model is fully checked to ensure all the connected
+ components match up correctly.
+\end_layout
+
+\begin_layout Enumerate
+Full support for renaming and restructuring parts of the model.
+\end_layout
+
+\begin_layout Enumerate
+Execution of Backbone programs from within the Evolve tool.
+\end_layout
+
+\begin_layout Enumerate
+Parts of a model can be exported and imported allowing for collaborative
+ development.
+\end_layout
+
+\begin_layout Standard
+Some of the features of the Backbone component language and runtime:
+\end_layout
+
+\begin_layout Enumerate
+A full hierarchical component model supporting the reuse and evolution approach.
+\end_layout
+
+\begin_layout Enumerate
+Two runtime options are available:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+The Backbone runtime library can be used.
+ This is <350kb, including the full parser.
+ It is fully open-source and has very little performance overhead.
+\end_layout
+
+\begin_layout Enumerate
+Alternatively, a Java program can be created directly from the model, removing
+ any runtime overhead.
+ In this mode, a library of 20kb consisting mainly of interfaces is used.
+\end_layout
+
+\end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+What is a Component?
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A component is a unit of software that can be instantiated, and uses interfaces
+ to describe which services it provides and requires.
+ It's that simple.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In other words, a component is separated from its environment by interfaces.
+ An instance can be connected up to other instances which offer compatible
+ interfaces.
+ 
+\end_layout
+
+\begin_layout Subsection
+A Leaf Component
+\end_layout
+
+\begin_layout Standard
+With a bit of effort, we can make a JavaBean fit into this definition.
+ It can certainly be instantiated, and we can use conventions for provided
+ and required interfaces.
+ We call this a leaf component
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The leaf terminology derives from looking at a compositional hierarchy as
+ branches of a tree, where the leaves are at the end of the branches.
+\end_layout
+
+\end_inset
+
+, as it cannot be further broken down into smaller parts.
+\end_layout
+
+\begin_layout Standard
+Look at the component in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-spellchecker-component"
+
+\end_inset
+
+, which uses UML2 component notation, and consider how we might map this
+ onto a JavaBean.
+ It is a component for performing a spellcheck of a document.
+ It provides the 
+\family typewriter
+ISpellCheck
+\family default
+ interface through the 
+\family typewriter
+check
+\family default
+ port, and requires the 
+\family typewriter
+IDocument
+\family default
+ interface through the document port.
+ It also provides the 
+\family typewriter
+ISuggest
+\family default
+ interface via the same port.
+ In other words, if you call the 
+\family typewriter
+check()
+\family default
+ method on the 
+\family typewriter
+ISpellCheck
+\family default
+ interface, it will extract the document by calling the 
+\family typewriter
+retrieveText()
+\family default
+ method on 
+\family typewriter
+IDocument
+\family default
+.
+ A client can call 
+\family typewriter
+suggestCorrection()
+\family default
+ on the 
+\family typewriter
+ISuggest
+\family default
+ interface, and the checker will look for a suitable correction.
+ Finally, the component has an attribute 
+\family typewriter
+dictionaryName
+\family default
+, which is the dictionary it uses.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/spellchecker.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-spellchecker-component"
+
+\end_inset
+
+A spellchecker leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To map this onto a bean, would could do something like the following:
+\end_layout
+
+\begin_layout LyX-Code
+public class SpellChecker implements ISpellCheck
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  // the attribute
+\end_layout
+
+\begin_layout LyX-Code
+  private String dictionaryName;
+\end_layout
+
+\begin_layout LyX-Code
+  public String getDictionaryName() { return dictionaryName; }
+\end_layout
+
+\begin_layout LyX-Code
+  public void setDictionaryName(String name) { dictionaryName = name; }
+\begin_inset Newline newline
+\end_inset
+
+  
+\end_layout
+
+\begin_layout LyX-Code
+  // the required port
+\end_layout
+
+\begin_layout LyX-Code
+  private IDocument document;
+\end_layout
+
+\begin_layout LyX-Code
+  public void setDocument(IDocument doc) { document = doc; }
+\begin_inset Newline newline
+\end_inset
+
+  
+\end_layout
+
+\begin_layout LyX-Code
+  // the provided port for document
+\end_layout
+
+\begin_layout LyX-Code
+  private ISuggest document_Provided = new ISuggest {
+\end_layout
+
+\begin_layout LyX-Code
+    //  methods for ISuggest implementation...
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+  public ISuggest getDocument_Provided() { return provided; }
+\begin_inset Newline newline
+\end_inset
+
+  
+\end_layout
+
+\begin_layout LyX-Code
+  // methods for ISpellCheck...
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+The attribute is mapped neatly enough onto a setter and getter.
+ The provided 
+\family typewriter
+check
+\family default
+ port is also mapped easily onto the 
+\family typewriter
+implements
+\family default
+ of the class.
+ The required interface 
+\family typewriter
+IDocument
+\family default
+ of the port document can be mapped onto the 
+\family typewriter
+document
+\family default
+ field, with a setter only.
+ This is an interface we want to have set, so we can call methods on it.
+\end_layout
+
+\begin_layout Standard
+The only really troublesome part is mapping the provided interface of 
+\family typewriter
+document
+\family default
+.
+ For this, we simply use an anonymous inner class, and provide a getter
+ for it.
+ We use the
+\family typewriter
+ _Provided
+\family default
+ suffix as a convention for these situations.
+\end_layout
+
+\begin_layout Standard
+A JavaBean is a leaf component, which cannot be further decomposed into
+ small components.
+ We have introduced the following terminology:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="6" columns="2">
+<features islongtable="true" firstHeadTopDL="true" firstHeadBottomDL="true">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="70text%">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Leaf
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A component which cannot be further decomposed into others.
+ An atomic unit, implemented by a JavaBean.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Provided interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A service provided by a component.
+ Mapped onto the implemented interfaces of the JavaBean or onto an instance
+ of an anonyous inner class.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Required interface
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A service required by a component.
+ Mapped onto a field of the JavaBean, with a setter only.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Port
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A named 
+\begin_inset Quotes eld
+\end_inset
+
+gate
+\begin_inset Quotes erd
+\end_inset
+
+ insulating the component from its environment.
+ All provided and required interfaces must be via ports.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Attribute
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A configurable field of the component.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+A Composite Component
+\end_layout
+
+\begin_layout Standard
+Now, suppose that we had a 
+\family typewriter
+Document
+\family default
+ leaf as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-document-component"
+
+\end_inset
+
+.
+ Note how the 
+\family typewriter
+check
+\family default
+ port of 
+\family typewriter
+Document
+\family default
+ is reciprocal to the interfaces provided and required by 
+\family typewriter
+document
+\family default
+ of the 
+\family typewriter
+SpellChecker
+\family default
+ leaf.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/document.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-document-component"
+
+\end_inset
+
+A 
+\family typewriter
+Document
+\family default
+ leaf component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These two components are just asking to be connected up together.
+ The SpellChecker provides a ISuggest implementation, and requires an IDocument
+ implementation.
+ The Document requires an ISuggest implementation and provides an IDocument
+ one.
+ We connect up an instance of each, joining them via a connector as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-wordprocessor-composite"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/wordprocessor.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-wordprocessor-composite"
+
+\end_inset
+
+A 
+\family typewriter
+WordProcessor
+\family default
+ composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We have connected up the two component instances, called parts, via connector
+ 
+\family typewriter
+conn
+\family default
+.
+ The concept of 
+\begin_inset Quotes eld
+\end_inset
+
+instances
+\begin_inset Quotes erd
+\end_inset
+
+ is critical here, and is often missed out in component models.
+ We have literally defined a new component by connecting together two instances
+ of other components.
+ Note that we did not need to specify the interfaces on the external ports
+ 
+\family typewriter
+checker
+\family default
+ and 
+\family typewriter
+doc
+\family default
+.
+ Evolve inferred them from the connections of the internal parts.
+\end_layout
+
+\begin_layout Standard
+Note also that we have effortlessly accomplished something that is often
+ very difficult in Dependency Injection approaches: we have connected two
+ instances (
+\family typewriter
+SpellChecker
+\family default
+ and 
+\family typewriter
+Document
+\family default
+) to both refer to each other.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Tabular
+<lyxtabular version="3" rows="4" columns="2">
+<features islongtable="true" firstHeadTopDL="true" firstHeadBottomDL="true">
+<column alignment="left" valignment="top" width="0">
+<column alignment="left" valignment="top" width="70text%">
+<row>
+<cell alignment="left" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Composite
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A component formed by connecting together instances of other components
+ with connectors, and selectively exposing ports.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Part
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Another name for a component instance.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Connector
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+A wire joining together two ports of component instances.
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+A Compositional Hierarchy
+\end_layout
+
+\begin_layout Standard
+Note that the form of the 
+\family typewriter
+WordProcessor
+\family default
+ composite, if we ignore the internal parts and connectors, is the same
+ form as that of leaves.
+ It has ports with provided an required interface, and can have attributes.
+ In other words, we can now treat the composite like any other and use instances
+ of it to define other components.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:An-office-suite,"
+
+\end_inset
+
+ shows how we might define an office suite composite, as being made up of
+ a 
+\family typewriter
+WordProcessor
+\family default
+ instance and a 
+\family typewriter
+SpreadSheet
+\family default
+ instance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/office-suite.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:An-office-suite,"
+
+\end_inset
+
+An 
+\family typewriter
+OfficeSuite
+\family default
+ composite, made up of a wordprocessor and spreadsheet instance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We are effectively building up a hierarchy of component instances, as shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-hierarchy"
+
+\end_inset
+
+.
+ In this case, the top level is 
+\family typewriter
+OfficeSuite
+\family default
+, and under that are instances of 
+\family typewriter
+WordProcessor
+\family default
+ and 
+\family typewriter
+Spreadsheet
+\family default
+.
+ 
+\family typewriter
+WordProcessor
+\family default
+ further decomposes into two other instances which are instances of leaf
+ components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/hierarchy.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-compositional-hierarchy"
+
+\end_inset
+
+The compositional hierarchy of 
+\family typewriter
+OfficeSuite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The ability to form a hierarchy in this way is very similar to how electronics
+ design is done.
+ If we consider that a composite is wiring together chips (parts) using
+ connectors, then the analogy is very close.
+ The key difference though is that once we've created a composite (circuit
+ board), we can then instantly reuse it as a part in another composite.
+ It is like being able to shrink an electronic circuit board into a chip
+ on the spot.
+ It a big advantage, on top of the advantages already proven by the approach
+ in controlling and managing the complexity of diginal electronics.
+\end_layout
+
+\begin_layout Standard
+The reuse and evolution constructs of Evolve work directly on the compositional
+ hierarchy.
+\end_layout
+
+\begin_layout Section
+The Backbone Component Language
+\end_layout
+
+\begin_layout Standard
+So where does Backbone fit into this? In fact, each component definition
+ turns directly into a compact Backbone textual definition.
+\end_layout
+
+\begin_layout Standard
+The Backbone definition for 
+\family typewriter
+WordProcessor
+\family default
+ is as follows.
+\end_layout
+
+\begin_layout LyX-Code
+    component WordProcessor
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+        ports:
+\end_layout
+
+\begin_layout LyX-Code
+            checker,
+\end_layout
+
+\begin_layout LyX-Code
+            doc;
+\end_layout
+
+\begin_layout LyX-Code
+        parts:
+\end_layout
+
+\begin_layout LyX-Code
+            s: SpellChecker
+\end_layout
+
+\begin_layout LyX-Code
+                slots:
+\end_layout
+
+\begin_layout LyX-Code
+                    dictionaryName = "US",
+\end_layout
+
+\begin_layout LyX-Code
+            d: Document;
+\end_layout
+
+\begin_layout LyX-Code
+        connectors:
+\end_layout
+
+\begin_layout LyX-Code
+            conn joins document@s to port@d,
+\end_layout
+
+\begin_layout LyX-Code
+            a joins check@s to checker,
+\end_layout
+
+\begin_layout LyX-Code
+            b joins document@d to doc;
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout Standard
+The textual form is fed into the Backbone interpreter to execute a component
+ structure as a program.
+ This also allows the programs to be run outside of Evolve.
+ It is, in fact, possible to program directly in the textual form of Backbone
+ although some of the advantages of the Evolve environment are lost.
+\end_layout
+
+\begin_layout Section
+A Quick Review
+\end_layout
+
+\begin_layout Standard
+That is really all there is to the underlying component approach.
+ We construct leaf components in Backbone, and generate the code for these
+ as JavaBeans.
+ We import existing JavaBeans into a model as leaves.
+ We then connect up parts, using connectors, into bigger, more complex component
+s which can then be further used as parts in other designs.
+ It's a powerful and scalable design approach that has served digital electronic
+s very well for the last 20 or so years.
+ Evolve allows the same approach for software.
+\end_layout
+
+\begin_layout Standard
+Luckily, however, we are not working with physical components unlike in
+ electronics.
+ There are several advantages to this - the first is that we can immediately
+ 
+\begin_inset Quotes eld
+\end_inset
+
+shrink
+\begin_inset Quotes erd
+\end_inset
+
+ down a composite and treat it like any other component.
+ Further, we can introduce constructs for manipulating the compositional
+ structure and connectors of a system that allow us to evolve and remake
+ it powerful and convenient ways.
+\end_layout
+
+\begin_layout Standard
+The following chapters will show you how to startup the Evolve environment,
+ and how to navigate quickly around a model.
+ Evolve has been designed expressly to make entering a design as fast as
+ possible.
+\end_layout
+
+\end_body
+\end_document

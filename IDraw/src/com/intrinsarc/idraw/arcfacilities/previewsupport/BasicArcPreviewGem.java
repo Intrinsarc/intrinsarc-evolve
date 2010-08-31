@@ -52,7 +52,7 @@ public final class BasicArcPreviewGem implements Gem
 	    
 	    actualPoints = newActualPoints;
 	    tellLinked();
-	    tellContainer();
+	    tellContainer(originalMiddle);
 	  }
 	
 	  public CalculatedArcPoints getCalculatedPoints()
@@ -206,15 +206,15 @@ public final class BasicArcPreviewGem implements Gem
 			return containerPreviewFacet;
 		}
 		
-		public Facet getDynamicFacet(Class facetClass)
+		public <T extends Facet> T getDynamicFacet(Class<T> facetClass)
 		{
 			Facet facet = dynamicFacets.get(facetClass);
 			if (facet == null)
 				throw new FacetNotFoundException("Cannot find facet corresponding to " + facetClass + " in " + this);
-			return facet;
+			return (T) facet;
 		}
 
-		public boolean hasDynamicFacet(Class facetClass)
+		public boolean hasDynamicFacet(Class<?> facetClass)
 		{
 			return dynamicFacets.containsKey(facetClass);
 		}
@@ -353,10 +353,12 @@ public final class BasicArcPreviewGem implements Gem
 	    if (!offsetPointsWhenMoving)
 	    {
 	      actualPoints.setVirtualPoint(actualPoints.calculateBetterVirtualPoint(actualPoints.getVirtualPoint(), linkableNode));
+	      tellContainer(originalMiddle);
 	    }
+	    else
+	    	tellContainer(null);
 	    
 	    tellLinked();
-      tellContainer();
 	  }
 
 		public PreviewFacet getPreviewFacet()
@@ -409,11 +411,11 @@ public final class BasicArcPreviewGem implements Gem
     }
   }
   
-  private void tellContainer()
+  private void tellContainer(UPoint middle)
   {
     // possibly need to tell the children also
     if (containerPreviewFacet != null)
-      containerPreviewFacet.newPointsHaveBeenSet(actualPoints, originalMiddle, curved);
+      containerPreviewFacet.newPointsHaveBeenSet(actualPoints, middle, curved);
     originalMiddle = anchorFacet.getMiddlePoint();
   }
 
