@@ -1,0 +1,2669 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Tutorial A: 
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Tutorial-A:-Creating"
+
+\end_inset
+
+Creating and Composing Components
+\end_layout
+
+\begin_layout Standard
+In this tutorial, we will create one component for representing rental cars
+ and another for representing their renters.
+ We will then connect instances of these into a composite component and
+ execute the model.
+\end_layout
+
+\begin_layout Standard
+Along the way we will cover:
+\end_layout
+
+\begin_layout Itemize
+How to create a leaf component and tie it to an implementation class.
+\end_layout
+
+\begin_layout Itemize
+How to generate Java code for a leaf component, and how to regenerate without
+ overwriting code added outside of Evolve.
+\end_layout
+
+\begin_layout Itemize
+How to use the Bean Importer to refresh a leaf if its implementation changes
+ outside of Evolve.
+\end_layout
+
+\begin_layout Itemize
+How to define a composite component.
+\end_layout
+
+\begin_layout Itemize
+Using slots to configure up parts.
+\end_layout
+
+\begin_layout Itemize
+Indexed ports and connector indices.
+\end_layout
+
+\begin_layout Itemize
+How to execute a Backbone program inside Evolve.
+\end_layout
+
+\begin_layout Itemize
+How to run a Backbone program independently from Evolve.
+\end_layout
+
+\begin_layout Itemize
+How to generate a program for a Backbone model, that doesn't require the
+ Backbone interpreter.
+\end_layout
+
+\begin_layout Standard
+It's a lot of functionality to get out of a few components.
+ Bear with me, however, and you'll soon be creating your own components
+ and composing with ease.
+\end_layout
+
+\begin_layout Standard
+This tutorial assumes you have loaded the example model (see section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Loading-and-Navigating"
+
+\end_inset
+
+) and have navigated into the 
+\family typewriter
+base
+\family default
+ stratum by middle-clicking on it.
+ You should see the model shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-base-model,"
+
+\end_inset
+
+ on your screen.
+ Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Running-A-Backbone"
+
+\end_inset
+
+ has already described how to run this model and you should see the output
+ as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Backbone-runner"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/base.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-base-model,"
+
+\end_inset
+
+The base model, defining rental car components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Defining the Leaves
+\end_layout
+
+\begin_layout Standard
+The three leaves in this model are 
+\family typewriter
+RentalCarDetails
+\family default
+ for holding the car details, 
+\family typewriter
+RenterDetails
+\family default
+ for holding information on the renter, and 
+\family typewriter
+CarsExampleRunner
+\family default
+ which contains a small amount of logic to print out some results when the
+ program is run.
+\end_layout
+
+\begin_layout Standard
+Let us examine 
+\family typewriter
+RentalCarDetails
+\family default
+, shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-RentalCarDetails-leaf"
+
+\end_inset
+
+, in more detail.
+ It has two attributes, 
+\family typewriter
+model
+\family default
+ and 
+\family typewriter
+purchased
+\family default
+, which hold the model of the car and the date it was purchased.
+ It has a port 
+\family typewriter
+details
+\family default
+ which provides the interface 
+\family typewriter
+IRentalCarDetails
+\family default
+, and a port renter which requires the port 
+\family typewriter
+IRenterDetails
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/rentalcardetails.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-RentalCarDetails-leaf"
+
+\end_inset
+
+The 
+\family typewriter
+RentalCarDetails
+\family default
+ leaf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can see that this component is a leaf because the icon in the top right
+ corner has filled-in legs.
+ A composite component has white legs.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Creating the RentalCarDetails Leaf
+\end_layout
+
+\begin_layout Standard
+The leaf component was created by choosing tools from the palette on the
+ left, and applying them to the diagram.
+ An alternative is to simply press the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key on the diagram, giving a choice of tools appropriate for the context.
+ The attributes were created by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ in the body of the component and selecting the attribute options.
+\end_layout
+
+\begin_layout Standard
+The ports were created by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ closer to the edge of the component.
+ The interfaces (both provided and required) were created by selecting the
+ interface option and creating the interfaces near the component.
+\end_layout
+
+\begin_layout Standard
+The provided port line was created by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ on the port.
+ The provided link was then dragged over to the interface.
+ The required port line was created in a similar fashion.
+\end_layout
+
+\begin_layout Subsubsection*
+Associating the Leaf with an Implementation Class
+\end_layout
+
+\begin_layout Standard
+As the leaf represents a JavaBean, we must tie it to an implementation class.
+ This will be the class that is generated for the leaf.
+ Select the RentalCarDetails component and press 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+F2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoke the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Object
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Browse element
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ option.
+ You should see a subject browser, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Looking-at-the"
+
+\end_inset
+
+.
+ Click on the stereotype
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In UML2 terminology, the implementation class of a leaf component is held
+ on the stereotype of the underlying class.
+\end_layout
+
+\end_inset
+
+ tab, and you should see a dialog like figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Entering-in-the"
+
+\end_inset
+
+ below.
+ Enter the class into the 
+\family typewriter
+implementation-class
+\family default
+ field.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/entering-implementation.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Entering-in-the"
+
+\end_inset
+
+Setting the implementation class for a leaf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The implementation class is always added to a component in this way.
+ Interfaces use the same approach to set the implementation interface.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Checking-the-Model"
+
+\end_inset
+
+Checking the Model
+\end_layout
+
+\begin_layout Standard
+Let's now assume that you have investigated the model and seen how leaves
+ and interfaces are created in Evolve.
+ Before we can generate any code, the model must be checked.
+ To do this for the current stratum, press 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+F8
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoke the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Checking
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Check current stratum
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ All the elements in the stratum will be checked for correctness according
+ to a large set of rules governing compatible interfaces etc.
+ If you get an error, such as forgetting to set the implementation class
+ of a leaf, the offending element will be flagged with a small red cross.
+ Hover over this, and you will see the error described in more detail, as
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Errors-are-shown"
+
+\end_inset
+
+.
+ If you bring up the repository browser on the element in error, you can
+ click on the 
+\begin_inset Quotes eld
+\end_inset
+
+Errors
+\begin_inset Quotes erd
+\end_inset
+
+ tab to see the location and error description.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/errors.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Errors-are-shown"
+
+\end_inset
+
+Errors are shown on the diagram
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The model must be free of errors before code can be generated from it.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The entire system can be checked by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+shift F8
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or by invoking the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Checking
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Check everthing
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ This is advanced usage which will be discussed in a later tutorial.
+ It checks all possible strata combinations for any errors.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Generating-JavaBean-and"
+
+\end_inset
+
+Generating Java and Backbone Code
+\end_layout
+
+\begin_layout Standard
+Assuming the model is error free, we can now generate code for all the leaves
+ in the stratum, as well as the Backbone definitions for all the components.
+ First, we must ensure that the stratum code generation parameters are correctly
+ set.
+ Click on the diagram background to deselect all objects, and bring up the
+ browser for the 
+\family typewriter
+base
+\family default
+ stratum itself.
+ Select the stereotype tab, and you should see something similar to figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-code-generation"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/base-stereotype.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-code-generation"
+
+\end_inset
+
+The code generation options for the 
+\family typewriter
+base
+\family default
+ stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The various fields control how the code generation and reverse engineering
+ for the stratum will proceed.
+ The relevant fields are as follows.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+bb-java-folder
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+Java code will be written into packages, starting with this as the source
+ folder.
+ Recall that back in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Setting-Up-The"
+
+\end_inset
+
+, we defined the variable CARS to point to the tutorial directory.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+bb-java-suppress
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+If this is ticked, no Java code will be generated for the stratum even if
+ the generation phase is invoked.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+bb-classpath
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This is the classpath used to find class files and jar files for reverse
+ engineering beans into Evolve.
+ Separate any items by a space, and use quotes for classpath entries with
+ spaces.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+bb-source-folder
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This specifies where to write out the Backbone definitions for the stratum.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+bb-source-suppress
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+If this is ticked, no Backbone code will be generated.
+\end_layout
+
+\begin_layout Standard
+As these fields are already configured in our example, we can generate the
+ code.
+ First, we must tag the stratum by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control T
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoking 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Checking
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Tag current stratum
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ This only needs to be done once.
+\end_layout
+
+\begin_layout Standard
+Next, we generate the JavaBean and Backbone code by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control G
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoking
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Checking
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Generate Backbone
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ Note that a generation always performs a current stratum check beforehand,
+ so you do not need to do this manually.
+\end_layout
+
+\begin_layout Subsection
+Inspecting the Backbone Code
+\end_layout
+
+\begin_layout Standard
+The Backbone code will be written to the 
+\family typewriter
+$BB/cars/base
+\family default
+ location, which will depend on the folder you have set the 
+\family typewriter
+BB
+\family default
+ variable to.
+ As an alternative to looking at the files directly, you can look at them
+ in Evolve.
+ Go back up to the top level in the model (middle-click the diagram background),
+ right-click on the 
+\family typewriter
+base
+\family default
+ stratum and select 
+\begin_inset Quotes eld
+\end_inset
+
+Show Backbone code
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The code will look like the following listing.
+\end_layout
+
+\begin_layout LyX-Code
+stratum base
+\end_layout
+
+\begin_layout LyX-Code
+    parent model 
+\end_layout
+
+\begin_layout LyX-Code
+    is-relaxed 
+\end_layout
+
+\begin_layout LyX-Code
+   depends-on backbone
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+    interface IRentalCarDetails implementation-class
+\end_layout
+
+\begin_layout LyX-Code
+                 com.intrinsarc.base.IRentalCarDetails     {     }
+\end_layout
+
+\begin_layout LyX-Code
+    interface IRenterDetails implementation-class
+\end_layout
+
+\begin_layout LyX-Code
+                 com.intrinsarc.base.IRenterDetails     {     }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+    component RentalCar
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+        attributes: 
+\end_layout
+
+\begin_layout LyX-Code
+            model: String,
+\end_layout
+
+\begin_layout LyX-Code
+            purchasedWhen: Date;
+\end_layout
+
+\begin_layout LyX-Code
+        ports:             car;
+\end_layout
+
+\begin_layout LyX-Code
+        parts:
+\end_layout
+
+\begin_layout LyX-Code
+            c6d4caa6-cff6-4bee-b245-ea03d785d2ae: RentalCarDetails
+\end_layout
+
+\begin_layout LyX-Code
+                slots:
+\end_layout
+
+\begin_layout LyX-Code
+                    purchased = purchasedWhen
+\end_layout
+
+\begin_layout LyX-Code
+                    model = model,
+\end_layout
+
+\begin_layout LyX-Code
+            11f33863-3b39-4b6b-88b4-6089e3930e2b: RenterDetails;
+\end_layout
+
+\begin_layout LyX-Code
+        connectors:
+\end_layout
+
+\begin_layout LyX-Code
+        ...
+ lots of extra lines
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout Standard
+The connection between the graphical component views and the generated Backbone
+ code should be fairly clear.
+ Note that in general Backbone identifies elements according to UUID, using
+ element names solely to help with human readability.
+ When listing Backbone code in Evolve, the names are put in where possible.
+ Where they are missing, the UUID is shown.
+ In the files generated to 
+\family typewriter
+$BB/cars
+\family default
+, the UUID will always be present.
+\end_layout
+
+\begin_layout Standard
+In other words, human-readable names are not used for identity in Backbone,
+ UUIDs are used instead.
+ If the name of a component changes, its UUID will remain constant, meaning
+ that renaming does not present a problem.
+ The only names that really matter are those that affect Java code such
+ as port and attribute names.
+\end_layout
+
+\begin_layout Subsection
+Inspecting the Java Code
+\end_layout
+
+\begin_layout Standard
+The Java source code for 
+\family typewriter
+RentalCarDetails
+\family default
+ will be written to 
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+$CARS/src/com/intrinsarc/base/RentalCarDetails.java
+\end_layout
+
+\begin_layout Standard
+Looking at this code gives insight into how Evolve forward-engineering works.
+\end_layout
+
+\begin_layout LyX-Code
+public class RentalCarDetails
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+// start generated code
+\end_layout
+
+\begin_layout LyX-Code
+	// main port
+\end_layout
+
+\begin_layout LyX-Code
+ implements com.intrinsarc.base.IRentalCarDetails {
+\end_layout
+
+\begin_layout LyX-Code
+	// attributes
+\end_layout
+
+\begin_layout LyX-Code
+	private java.util.Date purchased;
+\end_layout
+
+\begin_layout LyX-Code
+	private String model;
+\end_layout
+
+\begin_layout LyX-Code
+	// attribute setters and getters
+\end_layout
+
+\begin_layout LyX-Code
+	public java.util.Date getPurchased() { return purchased; }
+\end_layout
+
+\begin_layout LyX-Code
+	public void setPurchased(java.util.Date purchased)
+\end_layout
+
+\begin_layout LyX-Code
+        { this.purchased = purchased;}
+\end_layout
+
+\begin_layout LyX-Code
+	public String getModel() { return model; }
+\end_layout
+
+\begin_layout LyX-Code
+	public void setModel(String model) { this.model = model;}
+\end_layout
+
+\begin_layout LyX-Code
+	// required ports
+\end_layout
+
+\begin_layout LyX-Code
+	private com.intrinsarc.base.IRenterDetails renter;
+\end_layout
+
+\begin_layout LyX-Code
+	// port setters and getters
+\end_layout
+
+\begin_layout LyX-Code
+	public void setRenter(com.intrinsarc.base.IRenterDetails renter)
+\end_layout
+
+\begin_layout LyX-Code
+        { this.renter = renter; }
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+// end generated code 
+\end_layout
+
+\begin_layout LyX-Code
+    ...
+ code omitted
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+Evolve looks for the 
+\family typewriter
+// start generated code
+\family default
+ and 
+\family typewriter
+//end generated code
+\family default
+ markers and replaced anything in between with its generated code.
+ This way, you can regenerate the leaf code and keep any code you have added
+ safe.
+ If you wish to avoid generating any code for this class completely, simply
+ remove the markers.
+ If you wish to start generating code for a class, place the markers back
+ in.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The port used for the interfaces implemented directly by the bean is called
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+main
+\begin_inset Quotes erd
+\end_inset
+
+ port.
+ This must be a non-indexed port with at least one provided interface.
+ In the situation where more than one port qualifies, you must explicitly
+ force one main port by ticking the 
+\family typewriter
+force-bean-main
+\family default
+ stereotype attribute on a port.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that Java interfaces are generated with an almost identical marker-based
+ approach.
+\end_layout
+
+\begin_layout Section
+The RentalCar Composite
+\end_layout
+
+\begin_layout Standard
+We now create a 
+\family typewriter
+RentalCar
+\family default
+ composite that contains a 
+\family typewriter
+RentalCarDetails
+\family default
+ part (for holding details about the car) and a 
+\family typewriter
+RenterDetails
+\family default
+ part (for holding details about the renter).
+ We connect the two parts together, and add attributes to the composite
+ for the state we wish to set.
+ We then create slots in the 
+\family typewriter
+RentalCarDetails
+\family default
+ part which bind to the attributes.
+ In this way, we can propagate the state of the parts into the composite.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-RentalCar-composite"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/rentalcar.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-RentalCar-composite"
+
+\end_inset
+
+The RentalCar composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Configuring and Running
+\end_layout
+
+\begin_layout Standard
+To run this, we require the component equivalent of a 
+\family typewriter
+main()
+\family default
+ method.
+ This is provided by the 
+\family typewriter
+IRun
+\family default
+ interface, which has an 
+\family typewriter
+int run(String args[])
+\family default
+ method.
+ We create a small runner leaf as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-runner-component"
+
+\end_inset
+
+.
+ Note that this has an indexed port called 
+\family typewriter
+cars
+\family default
+ with a multiplicity of 
+\family typewriter
+[0..*]
+\family default
+.
+ This turns into 
+\family typewriter
+List<IRentalCarDetails>
+\family default
+ in the bean, with the appropriate 
+\family typewriter
+addCar(), setCar()
+\family default
+ and 
+\family typewriter
+getCars()
+\family default
+ methods.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/carsexamplerunner.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-runner-component"
+
+\end_inset
+
+The runner component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+We can now configure up the full program.
+ We create the CarsExample composite (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CarsExample-composite"
+
+\end_inset
+
+), which connects up a 
+\family typewriter
+CarsExampleRunner
+\family default
+ part, along with two rental cars: a sports car and a compact car.
+ We use slot values to set the attributes of the parts and these propagate
+ all the way down into the leaves.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/carsexample.eps
+	scale 70
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-CarsExample-composite"
+
+\end_inset
+
+The CarsExample composite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To run this example, we need to tell the Backbone interpreter which component
+ to instantiate and which port to run.
+ Bringing up the stereotype tab again on the stratum, as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-code-generation"
+
+\end_inset
+
+ we set 
+\family typewriter
+bb-run-component
+\family default
+ to 
+\family typewriter
+CarsExample
+\family default
+ and 
+\family typewriter
+bb-run-port
+\family default
+ to 
+\family typewriter
+run
+\family default
+.
+ We then tag the stratum (
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control T
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+, if we haven't done before) and run the component by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control R
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoking the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Run Backbone
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ Doing so should bring up the window of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-the-car"
+
+\end_inset
+
+, where the 
+\family typewriter
+CarsExampleRunner
+\family default
+ has iterated over the supplied cars and printed them out.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/runner.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Running-the-car"
+
+\end_inset
+
+Running the car example
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that running a Backbone program performs a check of the current stratum
+ (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Checking-the-Model"
+
+\end_inset
+
+) and a code generation (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Generating-JavaBean-and"
+
+\end_inset
+
+) before invoking the interpreter.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+highlight{
+\end_layout
+
+\end_inset
+
+The types of attributes are known as 
+\begin_inset Quotes eld
+\end_inset
+
+primitive types
+\begin_inset Quotes erd
+\end_inset
+
+.
+ These can be created using the 
+\begin_inset Quotes eld
+\end_inset
+
+Primitive type
+\begin_inset Quotes erd
+\end_inset
+
+ tool in the component focus.
+ When a slot, such as 
+\family typewriter
+model
+\family default
+ is set in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CarsExample-composite"
+
+\end_inset
+
+, the literal string will be assigned directly to the attribute.
+ In the case of a set of parameters, such as 
+\family typewriter
+(109, 5, 5)
+\family default
+ for the 
+\family typewriter
+purchased
+\family default
+ attribute, a suitable constructor will be found for the primitive type.
+ In this case, the 
+\family typewriter
+java.util.Date(int, int, int)
+\family default
+ constructor is called.
+ Other possible literals are 
+\family typewriter
+default
+\family default
+ (the default value for the type) or 
+\family typewriter
+null
+\family default
+.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Indexed Connectors
+\end_layout
+
+\begin_layout Standard
+In figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CarsExample-composite"
+
+\end_inset
+
+, the connectors used indices of 
+\family typewriter
+[a]
+\family default
+ and 
+\family typewriter
+[b]
+\family default
+ to connect to the 
+\family typewriter
+cars
+\family default
+ indexed port.
+ When connecting to such a port, these allow us to specify an ordering.
+ The indices can be alphabetical, in which case lexical ordering is used
+ (i.e.
+ a before b), or alternatively integers can be used.
+\end_layout
+
+\begin_layout Standard
+When using integers, the 
+\family typewriter
+set()
+\family default
+ method will be called with the actual index value - in other words, and
+ index of 
+\family typewriter
+[1]
+\family default
+ will literally connect up to element 
+\family typewriter
+1
+\family default
+ of the list.
+\end_layout
+
+\begin_layout Standard
+Alphabetical indices, in contrast, are just used to order the connections.
+ Alphabetical indices are preferred over integers, as this allows a resembling
+ or evolving definition to always insert an index in between existing indices
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Evolve and Backbone come from research into highly extensible systems, and
+ alphabetical indices play a large part in this approach.
+\end_layout
+
+\end_inset
+
+.
+ We will see this used in the next chapter.
+ In our example, an example of an index that comes between 
+\family typewriter
+[a]
+\family default
+ and 
+\family typewriter
+[b]
+\family default
+ is 
+\family typewriter
+[ab]
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If no index is provided, connections happen in any order.
+ It is possible to force the use of indices by marking a port as ordered
+ through the browser.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Lifecycle Callbacks
+\end_layout
+
+\begin_layout Standard
+To indicate that a leaf should be told that initialization has occurred,
+ and that destruction is about to occur, tick the 
+\family typewriter
+lifecycle-callbacks
+\family default
+ option in the stereotype properties of the leaf.
+ This will result in it implementing the 
+\family typewriter
+ILifecycle
+\family default
+ interface, which defines the 
+\family typewriter
+afterInit()
+\family default
+ and 
+\family typewriter
+beforeDelete()
+\family default
+ methods.
+ 
+\family typewriter
+afterInit()
+\family default
+ is called after all leaves have been instantiated and after all connections
+ have been made.
+ 
+\family typewriter
+beforeDelete()
+\family default
+ is called before any parts or connectors are destroyed.
+\end_layout
+
+\begin_layout Section
+Running Outside of Evolve
+\end_layout
+
+\begin_layout Standard
+When we ran the program, it wrote the following file.
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+$BB/cars/base/run-load-list.bat
+\family default
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Be careful not to confuse this with the 
+\family typewriter
+$BB/base
+\family default
+ directory.
+ This is where Backbone writes its own component definitions.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This can be directly executed from a command line, either as a batch file
+ under Windows, or renamed to a shell file under Unix-like systems.
+\end_layout
+
+\begin_layout Standard
+This uses the 
+\family typewriter
+system.loadlist
+\family default
+ file in the same directory, which specifies which strata to include.
+ Note that the loadlist has two sections: the first defines the variables
+ (from the Evolve model) and the second describes the strata included.
+ The first section can also refer to Unix or Windows environment variables.
+\end_layout
+
+\begin_layout Section
+Running Without The Backbone Interpreter
+\end_layout
+
+\begin_layout Standard
+The two previous sections used the Backbone interpreter to execute the Backbone
+ files.
+ This parses the component definitions, flattens out the composites, instantiate
+s the beans, connects them together and then calls the 
+\family typewriter
+IRun
+\family default
+ interface on the 
+\family typewriter
+CarsExampleRunner
+\family default
+ instance.
+ The Backbone interpreter jar file is around 350kb in size.
+\end_layout
+
+\begin_layout Standard
+An alternative is to generate a Java program from the model which achieves
+ the same effect.
+ To do this, set the 
+\family typewriter
+bb-composite-package
+\family default
+ stereotype property on the stratum (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-code-generation"
+
+\end_inset
+
+) to be the Java package of the factory that will be generated.
+ In this case we are using 
+\family typewriter
+com.intrinsarc.hardcoded
+\family default
+ package.
+ Press 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control shift G
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoke the
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Generate full implementation
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option and the 
+\family typewriter
+CarsExampleFactory.java
+\family default
+ file will be generated.
+ This has a 
+\family typewriter
+main()
+\family default
+ method on it which will run an identical program to that of the Backbone
+ interpreter.
+ The runtime overhead in this mode is virtually zero, as opposed to the
+ interpreter which has some startup time and a small cost associated with
+ factory instantiation.
+ Further, it only requires the tiny 
+\family typewriter
+backbone-base.jar
+\family default
+ library (~15kb) which contains mainly interfaces and some state machine
+ related classes.
+\end_layout
+
+\begin_layout Standard
+The ability to generate a program from an Evolve configuration allows it
+ to run in all sorts of non-traditional environments.
+ In chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tutorial-D:-The"
+
+\end_inset
+
+, we will use this to create a GWT program.
+ GWT will then translate the program to Javascript and run the Evolve components
+ directly in a web browser.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that all advanced features are available in this mode, including the
+ resemblance and evolution constructs, state machines, factories, hyperports
+ and others.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Importing Beans and Refreshing Leaves from Code
+\end_layout
+
+\begin_layout Standard
+Evolve contains a Bean Importer, which can process existing class files
+ and jar files and import them into Evolve as leaf components.
+ This can be used to import JavaBean libraries
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Many systems already have a collection of beans from using other Dependency
+ Injection approaches such as Spring and Guice.
+ The importer allows these to be used inside Evolve.
+\end_layout
+
+\end_inset
+
+ into Evolve, or it can be used to update leaf definitions to reflect changes
+ in code
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The importer is very fast, and can analyse approximately 3000 complex beans
+ per second on my machine.
+ It analyses the entire Java rt.jar in around 5 seconds.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+The importer uses the 
+\family typewriter
+bb-classpath
+\family default
+ setting on the stratum to know which files to process.
+ Let's start it up now and look at how it works.
+\end_layout
+
+\begin_layout Standard
+To start the importer, choose the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Import beans into current package
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ After expanding out the tree on the top left and selecting the 
+\family typewriter
+base
+\family default
+ package, you should see a window looking like figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Bean-Importer"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/bean-importer.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Bean-Importer"
+
+\end_inset
+
+The Bean Importer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The top right list shows the beans and interfaces found in the selected
+ package on the top left.
+ In this case, it has found our three beans and two interfaces and indicates
+ that the current Evolve definitions will be refreshed if the beans are
+ imported.
+ Selecting the beans and interfaces and clicking on 
+\begin_inset Quotes eld
+\end_inset
+
+Add to import list
+\begin_inset Quotes erd
+\end_inset
+
+ sees them appear in the 
+\begin_inset Quotes eld
+\end_inset
+
+Import list
+\begin_inset Quotes erd
+\end_inset
+
+ pane in the bottom left.
+ Clicking on an entry will then show on the bottom right pane what it will
+ look like as an Evolve leaf.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-importer-shows"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/bean-importer2.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-importer-shows"
+
+\end_inset
+
+The importer shows the Evolve representation of a bean
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+After importing the beans, the model is updated.
+ Note that if you import a bean library, then the definitions will go into
+ the model, but will not be visible on a diagram until they are added.
+ You must add a new component to a diagram and then use the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\family typewriter
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\family default
+ key to reference an imported one, as shown in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Subjects-and-Views"
+
+\end_inset
+
+.
+ It can then be expanded to show the ports and attributes required.
+ We explain this in more detail in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Importing-the-GWT"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Note that the importer works off class and jar files, and not source files.
+ If you make changes that you want to see in the importer, compile your
+ code before you import.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+We've covered a lot in this section, and if you have made it this far then
+ you can use Evolve to configure up leaves and composites and reuse existing
+ bean libraries.
+ In the next chapter, we will show how the reuse and evolution primitives
+ work, allowing us to quickly adjust and customize existing components quickly
+ without destroying their original definitions.
+ These are powerful, but simple constructs that have no counterparts in
+ other approaches, commercial or academic.
+\end_layout
+
+\end_body
+\end_document

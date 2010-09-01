@@ -1,0 +1,2110 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Tutorial B: Resemblance and Evolution
+\end_layout
+
+\begin_layout Standard
+Resemblance is structural inheritance between components.
+ It allows us to define a new component by inheriting and modify the structure
+ of one or more existing components.
+\end_layout
+
+\begin_layout Standard
+Evolution replaces an existing component definition with another throughout
+ a model.
+ Since it builds on resemblance, we can use it to inherit the structure
+ of, and incrementally adjust, an existing component.
+\end_layout
+
+\begin_layout Standard
+When we adjust inherited structure in this way, Evolve records deltas rather
+ than copying and directly modifying.
+ This means that any later changes to resembled components will flow through
+ to the resembling or evolving component.
+ This is crucial, because it allows us to combine strata and merge the results.
+ One application for this is to import and combine independently developed
+ strata, that both evolve the same components of a common base model, into
+ a unified model and to rectify any merge conflicts.
+\end_layout
+
+\begin_layout Standard
+If you are now thinking 
+\begin_inset Quotes eld
+\end_inset
+
+Evolve has moved some of the concepts of version control into a component
+ system
+\begin_inset Quotes erd
+\end_inset
+
+ then you have understood the concepts.
+ These facilities allow existing components to be extended in arbitrary
+ ways to meet new requirements, and let a single model hold multiple variants
+ of an application.
+\end_layout
+
+\begin_layout Standard
+Resemblance and evolution can also be used with interfaces.
+ In Evolve, resemblance completely replaces inheritance.
+\end_layout
+
+\begin_layout Section
+Component Resemblance
+\end_layout
+
+\begin_layout Standard
+Navigate into the 
+\family typewriter
+resembling
+\family default
+ stratum in the 
+\family typewriter
+car-rental.evolve
+\family default
+ model.
+ In this stratum, a new composite 
+\family typewriter
+ResemblingExample
+\family default
+ is defined using resemblance from 
+\family typewriter
+CarsExample
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Which part of the structure inherited from 
+\family typewriter
+CarsExample
+\family default
+ have we changed? Well, very little in this case - we've simply replaced
+ the connectors in order to switch around the connector indices.
+ Bear with me, I'll show more complex examples later.
+ Press the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+F6
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key or invoke the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+View
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Toggle delta view
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option to see the deltas.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Using-resemblance-to"
+
+\end_inset
+
+, and if you hover over the delta icons they will tell you which elements
+ have been replaced.
+ Even though Evolve records deltas, it will always show you the fully expanded
+ structure of each component.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/resembling-deltas.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Using-resemblance-to"
+
+\end_inset
+
+Using resemblance to define a new component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Resemblance is a powerful facility for reuse.
+ We can inherit from any number of components (multiple resemblance is supported
+) and adjust the structure to suit.
+ Note that if we have diamond inheritance (i.e.
+ A resembles B and C, B and C resemble D) then only a single copy of D's
+ inherited constituents will be present in A.
+ The UUIDs of the inherited elements identify them uniquely, saving us from
+ the perils of multiply inherited base constituents.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Why did we call this construct resemblance rather than inheritance? At a
+ theoretical level, resemblance is different as it allows for deletions
+ and non-compatible replacements (overrides).
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Creating Deltas
+\end_layout
+
+\begin_layout Standard
+Inherited parts, ports, connectors and attributes can be replaced or deleted.
+ To delete an inherited item, use the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete subjects
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ This creates a delete delta, shown on the diagram as a red delta icon against
+ the component.
+ To replace an inherited item, right click on the item and choose 
+\begin_inset Quotes eld
+\end_inset
+
+Replace
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This creates a replace delta with an orange icon.
+ Any added elements will result in a green delta icon.
+\end_layout
+
+\begin_layout Standard
+Running the example, simply lists the cars in the opposite order to figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-the-car"
+
+\end_inset
+
+, showing that we have in fact reversed the order of the connections.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Running-with-the"
+
+\end_inset
+
+.
+ Note that to run this, we have had to set the stratum's bb-run-component
+ to 
+\family typewriter
+ResemblingExample
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/resembling-runner.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Running-with-the"
+
+\end_inset
+
+Running with the connectors reversed
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Viewing and Manipulating Deltas
+\end_layout
+
+\begin_layout Standard
+We can use the subject browser to view the deltas directly.
+ Invoking the browser (
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+F2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+) on the ResemblingExample component, we see that it is empty apart from
+ two connector replacements as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Viewing-the-deltas"
+
+\end_inset
+
+.
+ The rest of the structure is inherited.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/resemblingexample-browser.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Viewing-the-deltas"
+
+\end_inset
+
+Viewing the deltas in the browser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although an add or replace delta can be removed from a model by invoking
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete subjects
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ on the diagram, a delete delta can only be removed via the browser.
+ Right-click on the delta in the bottom left pane, and choose 
+\begin_inset Quotes eld
+\end_inset
+
+Delete
+\begin_inset Quotes erd
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+If we right-click on the stratum and select 
+\begin_inset Quotes eld
+\end_inset
+
+Show Backbone code
+\begin_inset Quotes erd
+\end_inset
+
+ we will see that the textual representation records only the deltas also.
+\end_layout
+
+\begin_layout LyX-Code
+    component ResemblingExample
+\end_layout
+
+\begin_layout LyX-Code
+        resembles base::CarsExample
+\end_layout
+
+\begin_layout LyX-Code
+    {
+\end_layout
+
+\begin_layout LyX-Code
+        replace-connectors:
+\end_layout
+
+\begin_layout LyX-Code
+            8daadec4-6075-4d41-8211-03e24dfb9a27 becomes
+\end_layout
+
+\begin_layout LyX-Code
+                eae5ef56-6075-4f6e-b7e8-50316ff159fc
+\end_layout
+
+\begin_layout LyX-Code
+                  joins car@sportsCar to
+\end_layout
+
+\begin_layout LyX-Code
+                    cars[b]@9f2e80c4-4127-4e65-ac8e-6b99495fe2c3,
+\end_layout
+
+\begin_layout LyX-Code
+            1662d77f-35ff-4116-967e-fbc95309760f becomes
+\end_layout
+
+\begin_layout LyX-Code
+                6f81c572-30a1-489f-aea8-05b17b329866
+\end_layout
+
+\begin_layout LyX-Code
+                  joins car@compactCar to
+\end_layout
+
+\begin_layout LyX-Code
+                    cars[a]@9f2e80c4-4127-4e65-ac8e-6b99495fe2c3;
+\end_layout
+
+\begin_layout LyX-Code
+    }
+\end_layout
+
+\begin_layout Subsection
+Stereotypes and Resemblance
+\end_layout
+
+\begin_layout Standard
+Every newly created component in Backbone has a «component» stereotype.
+ This is where properties such as 
+\family typewriter
+implementation-class
+\family default
+ are held.
+\end_layout
+
+\begin_layout Standard
+When we use resemblance to define a new component, however, the stereotype
+ of the resembling class is deleted.
+ In other words, the resembler also inherits the stereotype of the component
+ being resembled.
+ If we use multiple resemblance, we must replace the multiple inherited
+ stereotypes with one of our own
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+It is an error for a component or interface to have more than one stereotype.
+ Constituents, however, may have any number.
+\end_layout
+
+\end_inset
+
+.
+ Do this by right-clicking the component in the bottom left pane of the
+ subject browser and choosing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Replace with «»
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+component
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Using Resemblance to Define a Leaf
+\end_layout
+
+\begin_layout Standard
+Leaves may also be defined using resemblance.
+ In that case, the resembled leaf will be used as the superclass when we
+ generate code for the resembling leaf.
+ This mapping onto implementation inheritance can be turned off via the
+ 
+\family typewriter
+no-inheritance
+\family default
+ stereotype property of the component.
+\end_layout
+
+\begin_layout Standard
+We must also remember to replace the stereotype of the resembling component
+ if we wish to alter the inherited 
+\family typewriter
+implementation-class
+\family default
+ property.
+\end_layout
+
+\begin_layout Standard
+With a bit of care, a leaf may be defined using resemblance from a composite
+ (if we delta delete all the parts and connectors) and a composite may be
+ defined via resemblance from a leaf (if we add parts and connectors, and
+ remove the inherited 
+\family typewriter
+implementation-class
+\family default
+ property).
+\end_layout
+
+\begin_layout Subsection
+Renaming Constituents
+\end_layout
+
+\begin_layout Standard
+When we replace an inherited constituent, we can safely rename it without
+ affecting its identity.
+ This is because Evolve and Backbone always use the UUID of an element for
+ identity.
+ In our small example, we could assign new names to the connectors.
+\end_layout
+
+\begin_layout Section
+Component Evolution
+\end_layout
+
+\begin_layout Standard
+Navigate into the evolving stratum and ensure that deltas are on (
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+View
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Toggle delta view
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+).
+ You should see a composite as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-the-CarsExample"
+
+\end_inset
+
+.
+ Look carefully at the prime (`) character at the end of the component name
+ and the text underneath the name.
+ This is an evolution of the 
+\family typewriter
+CarsExample
+\family default
+ composite from the 
+\family typewriter
+base
+\family default
+ stratum.
+ We have replaced one of the parts in order to change its slots values,
+ and added the 
+\family typewriter
+midSizeCar
+\family default
+ part.
+\end_layout
+
+\begin_layout Standard
+Note also that we have added the new connector at index 
+\family typewriter
+[ab]
+\family default
+, such that it is in between two existing parts.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolvingexample.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-the-CarsExample"
+
+\end_inset
+
+Evolving the 
+\family typewriter
+CarsExample
+\family default
+ composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Evolution a Component
+\end_layout
+
+\begin_layout Standard
+To create the evolution, we first placed an new component on the diagram.
+ We then typed in the first few characters of 
+\family typewriter
+CarsExample
+\family default
+ and pressed tab and selected 
+\family typewriter
+CarsExample
+\family default
+ from the list.
+ We now had a view of the existing 
+\family typewriter
+base
+\family default
+ component on the diagram.
+ Finally, we right-clicked on the component and chose 
+\begin_inset Quotes eld
+\end_inset
+
+Evolve
+\begin_inset Quotes erd
+\end_inset
+
+ from the menu, creating the evolution in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-the-CarsExample"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Running this small example gives us the output of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:An-evolution-of"
+
+\end_inset
+
+, which demonstrates that the new part has been connected in between the
+ existing ones, and that the replaced part details have taken effect.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolvingexample-runner.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:An-evolution-of"
+
+\end_inset
+
+An evolution of the 
+\family typewriter
+CarsExample
+\family default
+ composite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Evolution = Resemblance + Replace
+\end_layout
+
+\begin_layout Standard
+Evolution and resemblance at first glance seem very similar.
+ They both inherit the structure of one or more components, and allow this
+ to be adjusted via deltas.
+ What is different?
+\end_layout
+
+\begin_layout Standard
+In our resemblance example, we defined a 
+\emph on
+new
+\emph default
+ component.
+ In our evolution example, we adjusted the definition of an 
+\emph on
+existing
+\emph default
+ component.
+ Evolution is resemblance (from the component being evolved) and then a
+ replacement of the old definition with the new definition.
+\end_layout
+
+\begin_layout Standard
+In other words, resemblance reuses existing structure to make a new component.
+ Evolution adjusts the structure of an existing component.
+\end_layout
+
+\begin_layout Standard
+Both constructs are useful in different situations.
+ Consider, for instance, if we have a compositional hierarchy as shown in
+ figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Original-composition-hierarchy"
+
+\end_inset
+
+, from the perspective of stratum X.
+ At the top is component A, which is made up of two parts of B and C, and
+ each of those components in turn are made up of D and E.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/pre-hierarchy.png
+	lyxscale 20
+	scale 150
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Original-composition-hierarchy"
+
+\end_inset
+
+Original composition hierarchy of component A
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In another stratum Y, which depends on stratum X, we evolve D to be D' -
+ we turn D from a leaf into a composite of F and G parts.
+ If we look at the system from the perspective of stratum Y, the compositional
+ hierarchy will have been changed to that of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:After-evolving-D"
+
+\end_inset
+
+.
+ If we look from the perspective of stratum X, we still see the original
+ hierarchy in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Original-composition-hierarchy"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/post-hierarchy.png
+	lyxscale 20
+	scale 150
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:After-evolving-D"
+
+\end_inset
+
+After evolving D to D' composed of F and G
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In contrast, if we wanted to reuse the structure of D and adjust it without
+ affecting the hierarchy of A, we would simply define a new component using
+ resemblance.
+\end_layout
+
+\begin_layout Subsection
+Remaking the Compositional Hierarchy
+\end_layout
+
+\begin_layout Standard
+Evolution allows us to reach deep into the compositional hierarchy of a
+ system and globally change certain areas, possibly in multiple places.
+ We can expand out the hierarchy by evolving leaves into composites, and
+ compress the hierarchy by doing the reverse.
+ We can literally remake an existing system in any way we require, to customise
+ it for new requirements.
+\end_layout
+
+\begin_layout Standard
+These far reaching changes, however, will only be applied if we consider
+ the system from the perspective of new stratum with the evolution in it
+ (Y) as opposed to the original stratum (X).
+\end_layout
+
+\begin_layout Standard
+This allows us to keep multiple variants of a system in the same model.
+ Consider that in our example, we have the 
+\family typewriter
+base
+\family default
+ stratum, which defines 
+\family typewriter
+CarsExample
+\family default
+.
+ We also have an evolved variant of 
+\family typewriter
+CarsExample
+\family default
+ in the evolving stratum.
+ In practice, it is not uncommon for a single Evolve model to contain 10
+ or more variants of a system.
+\end_layout
+
+\begin_layout Subsection
+Renaming using Evolution
+\end_layout
+
+\begin_layout Standard
+When evolving a component or interface, the name is treated like any other
+ constituent and can be replaced by typing it as the name of the evolved
+ component.
+\end_layout
+
+\begin_layout Standard
+Recall that names do not confer identity in Evolve, and hence they can be
+ changed without affecting the system.
+ In effect a name change in Evolve always achieves the same effect as a
+ rename refactoring in a Java IDE.
+\end_layout
+
+\begin_layout Section
+Interface Resemblance and Evolution
+\end_layout
+
+\begin_layout Standard
+Interfaces can also be defined using resemblance and evolution.
+ If an interface resembles another, it will be generated in Java code to
+ 
+\begin_inset Quotes eld
+\end_inset
+
+extend
+\begin_inset Quotes erd
+\end_inset
+
+ that interface.
+ In other words, resemblance between two interfaces creates a sub/super-interfac
+e relationship.
+\end_layout
+
+\begin_layout Standard
+Evolution of an interface is interesting and somewhat constrained in practice.
+ This allows one interface to be substituted for another in an Evolve model.
+ This will only result in new definitions pointing to the new interface,
+ as it will not affect the code generation of leaves in lower-down strata.
+ As such, it is unwise to evolve an interface with a new implementation-class
+ except under very specialized circumstances.
+\end_layout
+
+\begin_layout Subsection
+Interface and Leaf Evolution Using the Same Implementation Class
+\end_layout
+
+\begin_layout Standard
+It is, however, possible to evolve both a leaf and an interface but keep
+ the same implementation class as before.
+\end_layout
+
+\begin_layout Standard
+Why would you want to do this? The answer lies in the fact that the implementati
+on of an evolution will always be placed before the original element in
+ the classpath when executing.
+ In other words, this uses the JVM trick of shadowing an older implementation
+ or interface with a different one, if we generate the new implementation
+ into the same package but in a different classpath.
+\end_layout
+
+\begin_layout Standard
+This particular technique will not work if using Backbone with OSGi or other
+ module systems which control the classpath more strictly than standard
+ Java.
+\end_layout
+
+\begin_layout Subsection
+Retirement
+\end_layout
+
+\begin_layout Standard
+An existing component or interface can be retired in a stratum.
+ Create a view of an existing component in a new stratum, select it, and
+ invoke 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete subjects
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ The element will appear with a large red cross over it, indicating it has
+ been retired, as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Retiring-a-component"
+
+\end_inset
+
+.
+ It is an error to refer to the retired element in strata that depend on
+ the stratum with the retirement.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/retirement.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Retiring-a-component"
+
+\end_inset
+
+Retiring a component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Behind the scenes, retirement is implemented using evolution.
+ The element is evolved, and the retirement flag is replaced and set to
+ true.
+\end_layout
+
+\begin_layout Section
+Strata
+\end_layout
+
+\begin_layout Standard
+Strata are folder-like containers that hold collections of components and
+ definitions.
+ They also act like modules in other systems - they can selective export
+ nested strata and import other strata.
+\end_layout
+
+\begin_layout Standard
+We have been working with strata for a while - this section explains them
+ in more detail along with the rationale for their existence.
+\end_layout
+
+\begin_layout Subsection
+Organizing a Model
+\end_layout
+
+\begin_layout Standard
+The first purpose of strata it to allow a model to be organized.
+ As in our example car rental model, we can partition a single problem space
+ into multiple areas, and express how they depend on one another.
+ We have already seen dependencies between strata - for instance, the 
+\family typewriter
+evolving
+\family default
+ stratum depends on the 
+\family typewriter
+base
+\family default
+ stratum.
+\end_layout
+
+\begin_layout Standard
+It is an error to have mutually dependent strata, or any cycles in the strata
+ dependency graph at all.
+ This forces a layering effect where we can analyze a system by looking
+ at each stratum from the base upwards.
+\end_layout
+
+\begin_layout Subsubsection
+Locating Elements
+\end_layout
+
+\begin_layout Standard
+Each component or interface is owned by a single stratum, called its home
+ stratum.
+ When we show a view of a component in a foreign stratum, it will show its
+ home stratum under the name.
+ Note that a component can only be evolved in a foreign stratum that can
+ see that component's home stratum.
+\end_layout
+
+\begin_layout Standard
+We can change the home stratum of a component or interface by locating it
+ in a different stratum.
+ To do this, click on the view of the element in the foreign stratum, and
+ press the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control L
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key or invoke the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Object
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Locate elements here
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ If you bring up the subject browser before doing this, you can watch the
+ element relocating into the foreign stratum.
+\end_layout
+
+\begin_layout Subsection
+Relaxed and Strict Strata
+\end_layout
+
+\begin_layout Standard
+Elements can only refer to other elements in strata that their home depends
+ upon.
+ A dependency is shown as a dotted line with an arrow to the stratum that
+ is depended on.
+\end_layout
+
+\begin_layout Standard
+When first created, a stratum is 
+\begin_inset Quotes eld
+\end_inset
+
+relaxed
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Any strata that depend on stratum X, will also have access to the strata
+ that X depends on.
+ However, it is possible to mark a stratum as 
+\begin_inset Quotes eld
+\end_inset
+
+strict
+\begin_inset Quotes erd
+\end_inset
+
+ by unticking the 
+\begin_inset Quotes eld
+\end_inset
+
+Relaxed
+\begin_inset Quotes erd
+\end_inset
+
+ menu item when right-clicking on the stratum in a diagram.
+ If X is strict, then any strata that depend on X will not automatically
+ have access to the strata underneath.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:X-is-a"
+
+\end_inset
+
+ shows this more clearly.
+ Stratum X is strict (note the different icon) and stratum Y is relaxed.
+ Both depend on Z.
+ A, which depends on X can only see definitions in X and will not be allowed
+ access to definitions in A.
+ B, which depends on Y, can see both Y and Z's definitions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/strict-vs-relaxed.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:X-is-a"
+
+\end_inset
+
+X is a strict stratum, preventing A from seeing Z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that would still be possible for A to access Z's definitions by adding
+ another dependency from A directly to Z.
+\end_layout
+
+\begin_layout Subsection
+Read only Strata
+\end_layout
+
+\begin_layout Standard
+A stratum can be marked as read only, by right-clicking on the stratum and
+ ticking the 
+\begin_inset Quotes eld
+\end_inset
+
+Read only
+\begin_inset Quotes erd
+\end_inset
+
+ option.
+ This will prevent any modifications to elements owned by that stratum.
+\end_layout
+
+\begin_layout Standard
+Read only strata can also speed up checking of a model when evolution is
+ used.
+ Chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tutorial-D:-The"
+
+\end_inset
+
+ describes how this can be used when a model becomes large and complex.
+\end_layout
+
+\begin_layout Subsection
+Strata Perspective
+\end_layout
+
+\begin_layout Standard
+As we look upwards in the strata dependency chain, starting in our example
+ with 
+\family typewriter
+base
+\family default
+, then moving onto 
+\family typewriter
+factory
+\family default
+ and 
+\family typewriter
+evolving
+\family default
+, and then onto 
+\family typewriter
+gwtservice
+\family default
+ and so on, we see that more and more components and interfaces are added
+ to the system.
+ In addition, if evolutions are present, then adding in strata can change
+ existing components and interfaces.
+\end_layout
+
+\begin_layout Standard
+We can view each stratum, going up this dependency chain, as a system in
+ its own right.
+ If we just consider the system from the perspective of base, we have the
+ components and interfaces in 
+\family typewriter
+base
+\family default
+.
+ If we look from the perspective of 
+\family typewriter
+evolving
+\family default
+, we have the definitions from base, with 
+\family typewriter
+CarsExample
+\family default
+ as evolved by base.
+ As we change perspective, we change how the system looks.
+\end_layout
+
+\begin_layout Standard
+Another way to view this is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-conceptual-view"
+
+\end_inset
+
+.
+ As we move upwards and add another stratum to the system, that stratum
+ can reuse existing definitions in lower strata using resemblance.
+ It can use evolution to replace definitions of existing elements in lower
+ strata.
+ It can also add definitions.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/conceptual-view.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-conceptual-view"
+
+\end_inset
+
+A conceptual view of stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Each perspective therefore produces a new system, and each stratum can represent
+ a different system variant.
+ To check all these variants and all possible permutations, invoke the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Checking
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Check everything
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu item.
+\end_layout
+
+\begin_layout Standard
+Evolutions combinatorily increase the amount of checking required for a
+ model.
+ In our example model, to check from the 
+\family typewriter
+resembling
+\family default
+ perspective, we can simply check 
+\family typewriter
+base
+\family default
+, and then check 
+\family typewriter
+resembling
+\family default
+.
+ To check, however, from the 
+\family typewriter
+evolving
+\family default
+ perspective, we must check 
+\family typewriter
+base
+\family default
+, then check 
+\family typewriter
+base
+\family default
+ with the evolutions from 
+\family typewriter
+evolving
+\family default
+, and then finally check 
+\family typewriter
+evolving
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+Evolve uses a number of graph-based techniques to prune the amount of checking
+ required down to a manageable level.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If we know that definitions in a given stratum will not be further evolved,
+ and the stratum contains a large number of complex components, checking
+ performance can be improved by marking the stratum as read only, and ticking
+ the 
+\family typewriter
+check-once-if-read-only
+\family default
+ stratum property.
+ This will prune the graph of combinations even further.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Destructive Strata
+\end_layout
+
+\begin_layout Standard
+A stratum containing evolutions is known as destructive
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The use of the word destructive is historical, it simply means that the
+ stratum has evolutions.
+\end_layout
+
+\end_inset
+
+, as applying the deltas can radically change an underlying model.
+ To give a visual indication to the modeler, destructive strata have a slightly
+ different icon with red in the upper half.
+\end_layout
+
+\begin_layout Standard
+To mark a stratum in this way, right-click on it and tick the 
+\begin_inset Quotes eld
+\end_inset
+
+Destructive
+\begin_inset Quotes erd
+\end_inset
+
+ option.
+ In the example model the 
+\family typewriter
+states
+\family default
+, 
+\family typewriter
+evolving
+\family default
+ and 
+\family typewriter
+hibernate
+\family default
+ strata are destructive.
+\end_layout
+
+\begin_layout Subsection
+Nested Strata and Packages
+\end_layout
+
+\begin_layout Standard
+Strata can be nested.
+ A nested stratum can see any strata that its parent depends on.
+ The visibility of nested packages can be controlled, allowing a stratum
+ to act like a module.
+ A full discussion of nested strata is beyond the scope of this document,
+ and will be covered in an advanced techniques manual.
+\end_layout
+
+\begin_layout Standard
+A package can also be nested within a stratum and used to further organize
+ a model.
+ A package is more lightweight than a stratum (particularly for error checking
+ purposes), and elements from a package are actually owned by the stratum
+ that owns the package.
+ An example of a stratum with nested packages is 
+\family typewriter
+gwtgui
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Strata as a Unit of Ownership
+\end_layout
+
+\begin_layout Standard
+A stratum is a unit of ownership, and is generally controlled by a single
+ developer or development team who are the only ones with write privileges
+ to it.
+\end_layout
+
+\begin_layout Standard
+In a collaborative situation, it is possible for multiple developers to
+ share a common base model, and then build on top of this using strata they
+ own.
+ The common base is treated as read only by most of the developers, and
+ they use evolution instead to make any alterations.
+ Strata can be exported using the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Export selected strata
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option, and imported using 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Inspect exported file
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Although beyond the scope of this document, this import/export facility
+ can function as a robust alternative to plugin architectures, ameliorating
+ many of their limitations and deficiencies.
+ This will be described in an advanced technique manual.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+You must be in a foreign stratum to evolve a component.
+ Evolving it in its home stratum doesn't make sense - if you own its home
+ stratum, you can simply directly modify the component rather than evolve
+ it.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Primitives
+\end_layout
+
+\begin_layout Standard
+As discussed earlier, a primitive is the type of a component attribute such
+ as 
+\family typewriter
+int
+\family default
+ (
+\family typewriter
+java.lang.Integer
+\family default
+) or 
+\family typewriter
+java.util.Date
+\family default
+.
+ To create a primitive, use the 
+\begin_inset Quotes eld
+\end_inset
+
+Primitive type
+\begin_inset Quotes erd
+\end_inset
+
+ tool in the component focus.
+ Set 
+\family typewriter
+implementation-class
+\family default
+ to the class of the primitive type.
+\end_layout
+
+\begin_layout Standard
+You may have guessed already - primitive types can be resembled and evolved.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+Resemblance is a form of structural inheritance, allowing a new component
+ to inherit and modify the structure of existing components.
+ This provides a fast and powerful way to reuse structure.
+ It completely subsumes inheritance in the Evolve approach.
+\end_layout
+
+\begin_layout Standard
+Evolution builds on inheritance to allow a stratum to make incremental alteratio
+ns to existing components (and interfaces) in lower down strata.
+ This allows a new stratum to completely remake the compositional hierarchy
+ of an existing system, and extend and customize it in arbitrary ways.
+\end_layout
+
+\begin_layout Standard
+Neither resemblance nor evolution directly modify existing components.
+ Instead they hold deltas and apply them to the structure of these components.
+ This adds many of the features of a version control system directly into
+ the component language, allowing strata to be used to handle branching
+ and subsequent merging and conflict resolution.
+ Conflicts are resolved using further strata to evolve and correct errors.
+ Strata can be exported and imported back into the environment, allowing
+ for decentralized development.
+\end_layout
+
+\end_body
+\end_document

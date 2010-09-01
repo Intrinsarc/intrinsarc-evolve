@@ -114,104 +114,24 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Advanced Backbone Modeling: A Taster
-\end_layout
+Tutorial D: 
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Tutorial-D:-The"
 
-\begin_layout Standard
-feature modeling
-\end_layout
-
-\begin_layout Standard
-sharing models
-\end_layout
-
-\begin_layout Standard
-visitor pattern?
-\end_layout
-
-\begin_layout Standard
-reverse engineering a legacy application
-\end_layout
-
-\begin_layout Standard
-evolve as a plugin architecture
-\end_layout
-
-\begin_layout Standard
-merging independent strata in a collaborative environment
-\end_layout
-
-\begin_layout Standard
-evolution instead of AOP
-\end_layout
-
-\begin_layout Standard
-product lines + variants
-\end_layout
-
-\begin_layout Standard
-handling conflicts from multiple resemblance
-\end_layout
-
-\begin_layout Standard
-chained and nested state machines
-\end_layout
-
-\begin_layout Standard
-integrating picture export into a publishing pipeline: copy/paste as EMF,
- export grouped images
-\end_layout
-
-\begin_layout Standard
-visual locking
-\end_layout
-
-\begin_layout Standard
-nested strata + export rules
-\begin_inset Newline newline
 \end_inset
 
-
+The GWT / Hibernate Car Rental System
 \end_layout
 
-\begin_layout Standard
-features to come:
-\end_layout
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Importing-the-GWT"
 
-\begin_layout Standard
-team edition
-\end_layout
-
-\begin_layout Standard
-applicability to frameworks and non-predicting
-\end_layout
-
-\begin_layout Standard
-concurrency primitives
-\end_layout
-
-\begin_layout Standard
-full documentation system
-\end_layout
-
-\begin_layout Standard
-protocol analysis
-\begin_inset Newline newline
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-what other systems get wrong:
-\end_layout
-
-\begin_layout Standard
-confusing instances and components, prototypes/singletons
-\end_layout
-
-\begin_layout Standard
-annotation at class level rather than instances
+Importing the GWT Widget Beans into Evolve
 \end_layout
 
 \end_body

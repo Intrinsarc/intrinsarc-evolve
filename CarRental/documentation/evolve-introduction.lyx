@@ -201,7 +201,11 @@ An Introduction to Component Modeling in Evolve
 \end_layout
 
 \begin_layout Date
-Version 0.9, 6th September 2010, Andrew McVeigh
+Version 0.9, 6
+\begin_inset Formula $^{\text{th}}$
+\end_inset
+
+ September 2010, Andrew McVeigh
 \end_layout
 
 \begin_layout Standard
@@ -281,18 +285,19 @@ What is Evolve?
 \end_layout
 
 \begin_layout Standard
-Evolve is a CASE tool for defining components (JavaBeans) and connecting
- them together to form new components.
- It also provides the Backbone runtime environment to execute these components.
- In other words, you use it to create and run applications.
+Evolve is a CASE tool for defining components and connecting them together
+ to form new components.
+ It also provides a runtime environment to execute these components.
+ In other words, you use it to create applications out of plain vanilla
+ objects, using an interface-centric approach.
 \end_layout
 
 \begin_layout Standard
-You may be wondering: how does this differ from Spring, Guice or any other
- run-of-the-mill Dependency Injection approach? The simple answer is that
- Evolve is based on a remarkable hierarchical component model derived from
- over 20 years of advanced research, that other approaches can only clumsily
- approximate.
+You may be wondering: how does this differ from Spring, Guice, Unity or
+ any other run-of-the-mill Dependency Injection approach? The simple answer
+ is that Evolve is based on a remarkable hierarchical component model derived
+ from over 20 years of advanced research, that other approaches can only
+ clumsily approximate.
  This is basically an 
 \begin_inset Quotes eld
 \end_inset
@@ -303,8 +308,8 @@ electronic circuit board and chip
 
  metaphor for software, where component instances are joined together using
  connectors to form larger components.
- The underlying foundation is expressive enough to model large, complex
- systems, but can seamlessly handle fine-grained components too.
+ The underlying foundation scales well to model large, complex systems,
+ but can seamlessly handle fine-grained components too.
  It provides powerful facilities for reuse and evolution, allowing multiple
  variants of an application to be built quickly and easily.
 \end_layout
@@ -348,7 +353,67 @@ filename "installing.lyx"
 \begin_layout Standard
 \begin_inset CommandInset include
 LatexCommand include
+filename "tutorial-overview.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "tutorial-A.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "tutorial-B.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "tutorial-C.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "tutorial-D.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
 filename "advanced-taster.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand include
+filename "conclusion.lyx"
 
 \end_inset
 

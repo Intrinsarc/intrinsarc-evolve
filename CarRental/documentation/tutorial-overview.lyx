@@ -1,0 +1,427 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Overview of the Tutorials
+\end_layout
+
+\begin_layout Standard
+This chapter looks at an overview of the tutorial examples, contained in
+ the car-rental.evolve model.
+ Load the model by following the instructions in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Loading-and-Navigating"
+
+\end_inset
+
+.
+ You should see the following strata.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/tutorial-strata.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The tutorial model
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The tutorials, in the rest of this document, use this model to work through
+ the creation of a system to track rental cars.
+ Each stratum adds features to finally build up to a car rental system with
+ a GWT
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Google Web Toolkit, http://code.google.com/webtoolkit/
+\end_layout
+
+\end_inset
+
+ front-end and a Hibernate
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The Hibernate object-relational mapper, See http://www.hibernate.org/
+\end_layout
+
+\end_inset
+
+ back-end, fully specified as components.
+\end_layout
+
+\begin_layout Standard
+The stratum used for Tutorial A is as follows.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+base
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This stratum defines the components for representing rental cars.
+ We demonstrate how to generate JavaBean code from leaf components and roundtrip
+ them.
+ We then show how to use the Bean Importer to update the leaves if the Java
+ classes are modified externally.
+ Finally, we show how to register for lifecycle callbacks, and various ways
+ to execute the model.
+\end_layout
+
+\begin_layout Standard
+The strata in Tutorial B cover using resemblance for reuse, and component
+ evolution.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+resembling
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This introduces resemblance, which is a form of structural inheritance between
+ components.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+evolving
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This introduces evolution, which builds on resemblance to allow an existing
+ component to be globally and incrementally altered, without destroying
+ the original definition.
+\end_layout
+
+\begin_layout Standard
+The strata in tutorial C build on the previous strata to demonstrate some
+ advanced techniques.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+states
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This shows how to define state machines.
+ These are another form of component, with the visual appearance and behaviour
+ of UML2 statecharts.
+ As they are components, state machines can be reused using resemblance
+ and evolved.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+factory
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This show how to dynamically instantiate components.
+ Basically, factories are just lazily instantiated components, where the
+ internal parts and connectors are created on demand.
+ This is a powerful approach that allows complex structures to be created
+ easily.
+ As they are components, factories can be resembled and evolved giving access
+ to the power of these constructs for dynamic structures.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+hyperports
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+Hyperports are ports which cut through the compositional hierarchy.
+ They allow a part, at a high level in the hierarchy, to connect to any
+ number of lower level parts.
+ This gives the convenience of singletons, without any of the disadvantages.
+\end_layout
+
+\begin_layout Standard
+At this point, we will have covered the basic techniques in full.
+ Tutorial D then applies these to build the GWT front-end and Hibernate
+ back-end, resulting in a complete (albeit basic) application for tracking
+ rental cars.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+gwt
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+We use the Bean Importer to import the GWT widget classes into Evolve as
+ leaves.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+service interfaces
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+The service interfaces between the client and server are defined.
+ These interfaces are implemented by the back-end and used by the front-end
+ to display information about the rental cars.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+gwtservice
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This builds the service as a set of Evolve components.
+ It keeps a list of the rental cars and who is renting them.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+gwtgui
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This builds the client as a set of GWT widgets, expressed as Evolve components.
+ It displays the rental cars, and allows new cars to be added, using AJAX
+ techniques.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+hibernate
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+This evolves the 
+\family typewriter
+gwtservice
+\family default
+ stratum to store the car rental information in a database.
+ We use the evolution construct to replace part of the service component
+ to make it transactional.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+highlight{
+\end_layout
+
+\end_inset
+
+Although we use Evolve to model every aspect of the example, including the
+ graphical client, it is sometimes sensible to write parts of the system
+ using Evolve and other parts using conventional object-oriented techniques.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The GWT and Hibernate integrations are simple because Evolve is basically
+ a JavaBean system and these technologies work well with beans.
+ The use of beans in the Java ecosystem is a lightweight and yet powerful
+ approach to components, and Evolve leverages this to provide simple integration.
+ It is often the case that integration with other technologies involves
+ little other than reverse-engineering a bean library into Evolve and then
+ working with the imported component definitions.
+\end_layout
+
+\end_body
+\end_document

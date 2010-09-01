@@ -183,12 +183,19 @@ You must have Java1.5+ installed already.
 
 \begin_layout Standard
 There are several ways to run Evolve.
- If you are using Windows, you can double-click evolve.exe or drag the shortcut
- to the desktop and double click that.
+ If you are using Windows, you can double-click 
+\family typewriter
+evolve.exe
+\family default
+ or drag the shortcut to the desktop and double-click that.
  If you are using Linux or MacOSX, then you may be able to double-click
- the executable evolve.jar file.
- If all else fails, or you wish to run it from the command line, change
- to the install directory and type the following:
+ the executable 
+\family typewriter
+evolve.jar
+\family default
+ file.
+ If all else fails, or you wish to run Evolve from the command line, change
+ to the install directory and type the following.
 \end_layout
 
 \begin_layout LyX-Code
@@ -236,6 +243,12 @@ Evolve on startup
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Setting-Up-The"
+
+\end_inset
+
 Setting Up The Environment
 \end_layout
 
@@ -255,7 +268,15 @@ menu{
 
 \end_inset
 
-File▶Preferences▶Edit Environment Preferences
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Preferences
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Edit Environment Preferences
 \begin_inset ERT
 status collapsed
 
@@ -288,8 +309,8 @@ reference "fig:Evolve-environment-variables"
 \end_inset
 
 .
- The EVOLVE variable should be set to the directory that you ran Evolve
- from.
+ The EVOLVE variable will already be automatically set to the directory
+ that you ran Evolve from.
  This is overwritten each time you run Evolve.
 \end_layout
 
@@ -340,9 +361,16 @@ Evolve environment variables
 \end_layout
 
 \begin_layout Standard
-We need to add a variable BB for the folder to write the Backbone files
- to.
- Type BB into the text box, and then press the 
+We need to add a variable 
+\family typewriter
+BB
+\family default
+ for the folder to write the Backbone files to.
+ Type 
+\family typewriter
+BB
+\family default
+ into the text box, and then press the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -361,21 +389,46 @@ Folder...
 
  button next to the variable to point it to a folder you have write permission
  for.
- Then, set up the variable CARS and point it to the 
+\end_layout
+
+\begin_layout Standard
+Finally, we need to set up some variables that are used for the tutorials
+ later in this document.
+ Add the variable 
+\family typewriter
+CARS
+\family default
+ and point it to the 
 \family typewriter
 tutorial
 \backslash
 carrental
 \family default
  directory of the installation.
- Set up the CARSGUI variable to point to the 
+ Add the variable 
+\family typewriter
+CARSGUI
+\family default
+ and point it to the 
 \family typewriter
 tutorial
 \backslash
 carrentalgui
 \family default
  directory.
- Alternatively, you can configure CARS and CARSGUI using the EVOLVE variable.
+ Alternatively, you can configure 
+\family typewriter
+CARS
+\family default
+ and 
+\family typewriter
+CARSGUI
+\family default
+ using the 
+\family typewriter
+EVOLVE
+\family default
+ variable.
  I use the following settings, as per figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -388,7 +441,7 @@ reference "fig:Setting-up-the"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -415,7 +468,7 @@ name "fig:Setting-up-the"
 
 \end_inset
 
-Setting up the BB variable
+Setting up the BB and other variables
 \end_layout
 
 \end_inset
@@ -442,12 +495,18 @@ Java command
 \begin_inset Quotes erd
 \end_inset
 
- points to the curret Java.
+ describes the command to run Java.
  If not, amend it to point to the correct binary.
 \end_layout
 
 \begin_layout Section
-Loading and Navigating Around the Tutorial Model
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Loading-and-Navigating"
+
+\end_inset
+
+Navigating Around the Tutorial Model
 \end_layout
 
 \begin_layout Standard
@@ -466,7 +525,15 @@ menu{
 
 \end_inset
 
-File▶Open▶Existing XML Repository
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Open
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Existing XML Repository
 \begin_inset ERT
 status collapsed
 
@@ -482,9 +549,13 @@ status collapsed
 \family typewriter
 tutorial
 \family default
- directory of the installation, and select the car-rental.evolve model.
- After a couple of seconds, it should load and you should see a screen like
- in figure 
+ directory of the installation, and select the 
+\family typewriter
+car-rental.evolve
+\family default
+ model.
+ After a couple of seconds of loading, you should see something like figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-tutorial-model"
@@ -541,26 +612,19 @@ Navigating into Strata
 \end_layout
 
 \begin_layout Standard
-The folder/package like boxes named 
-\begin_inset Quotes eld
-\end_inset
-
+The folder-like boxes named 
+\family typewriter
 base
-\begin_inset Quotes erd
-\end_inset
-
+\family default
 , 
-\begin_inset Quotes eld
-\end_inset
-
+\family typewriter
 factory
-\begin_inset Quotes erd
-\end_inset
-
+\family default
  etc.
  are known as strata.
- To visit into a stratum, double-click it, or alternatively press the middle
- mouse button or wheel button while over it.
+ These are very similar to UML2 packages.
+ To visit into a stratum, double-click it, or alternatively middle-click
+ it.
  To exit back to the parent, double-click or middle-click the white background.
  To go backwards or forwards in the diagram history, select the 
 \begin_inset ERT
@@ -575,7 +639,11 @@ menu{
 
 \end_inset
 
-View▶Open previous diagram
+View
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Open previous diagram
 \begin_inset ERT
 status collapsed
 
@@ -599,7 +667,11 @@ menu{
 
 \end_inset
 
-View▶Open next diagram
+View
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Open next diagram
 \begin_inset ERT
 status collapsed
 
@@ -619,7 +691,7 @@ Tabs
 
 \begin_layout Standard
 Evolve uses a tabbed graphical interface.
- To open a new tab, select the 
+ To open a new diagram tab, select the 
 \begin_inset ERT
 status collapsed
 
@@ -632,7 +704,11 @@ menu{
 
 \end_inset
 
-View▶Open current in new tab
+View
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Open current in new tab
 \begin_inset ERT
 status collapsed
 
@@ -645,7 +721,7 @@ status collapsed
 
  menu option.
  The tab can then be dragged into a different position as required.
- To avoid a tab docking, hold the shift key while dragging its titlebar.
+ To avoid the tab docking, hold the shift key while dragging its titlebar.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -662,7 +738,7 @@ Component focus
 \begin_inset Quotes erd
 \end_inset
 
- by default, allowing the user to define components.
+ by default, showing the tools used to define components.
  To change the focus, use the 
 \begin_inset ERT
 status collapsed
@@ -692,14 +768,6 @@ status collapsed
 \begin_inset Quotes eld
 \end_inset
 
-Feature focus
-\begin_inset Quotes erd
-\end_inset
-
- allows for requirements feature modeling, and the 
-\begin_inset Quotes eld
-\end_inset
-
 State focus
 \begin_inset Quotes erd
 \end_inset
@@ -709,11 +777,20 @@ State focus
 \begin_inset Quotes eld
 \end_inset
 
+Feature focus
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
 Profile focus
 \begin_inset Quotes erd
 \end_inset
 
- allows stereotypes and UML2 profiles to be created.
+ are advanced features, allowing for requirements feature modeling and the
+ creation of UML2 profiles respectively.
 \end_layout
 
 \begin_layout Standard
@@ -723,13 +800,122 @@ To use a tool from the palette, click on it and then click on the diagram.
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+idea{
+\end_layout
+
+\end_inset
+
+When pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ to bring up the mini-palette, you will only see tools relevant for the
+ current focus.
+ For instance, if we are in the 
+\begin_inset Quotes eld
+\end_inset
+
+State focus
+\begin_inset Quotes erd
+\end_inset
+
+ mode and we press space, we will not see the component creation tools.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 An extremely useful alternative to using the tool palette directly is to
- press the space bar over the diagram.
+ press the the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key over the diagram.
  This will bring up a mini-palette with tools relevant for the current diagram
  context.
  This allows rapid entry of a design.
- Note that to draw a connecting line between square shapes, you must hover
- over the inside edge of the shape before pressing space.
+ Note that to draw a connecting line between nodes, you must hover over
+ the inside edge of the shape before pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -758,7 +944,43 @@ menu{
 
 \end_inset
 
-File▶Preferences▶Edit Environment Preferences
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Preferences
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Edit Environment Preferences
 \begin_inset ERT
 status collapsed
 
@@ -771,13 +993,194 @@ status collapsed
 
  dialog.
  By default the keys are set to sensible defaults for Windows and Linux.
- MacOSX users may find several of them inconvenient however.
+ MacOSX users may find several of them inconvenient however and will want
+ to remap these.
  The labels above the keys are the same as the menu options that the key
  will invoke.
 \end_layout
 
+\begin_layout Subsubsection*
+Pasting into a Wordprocessor
+\end_layout
+
+\begin_layout Standard
+Elements on a diagram can be copied (
+\family typewriter
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control C
+\family default
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+) and pasted 
+\family typewriter
+
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control 
+\family default
+V
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ back onto the same, or another, diagram.
+ We can also paste into an external wordprocessor such as Word or OpenOffice
+ Writer.
+ For external programs, the underlying vectory graphics format used is the
+ Enhanced Windows Meta-file format (EMF).
+\end_layout
+
+\begin_layout Standard
+When pasting internally, the copy will be inserted at the position of the
+ mouse pointer.
+\end_layout
+
+\begin_layout Subsubsection*
+Full Screen Mode
+\end_layout
+
+\begin_layout Standard
+Evolve can be switched to full screen mode by pressing 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+F11
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or invoking the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Toggle full screen
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ In this mode, the top menus are hidden and can be revealed by moving the
+ mouse to the top of the screen.
+\end_layout
+
+\begin_layout Standard
+To further increase the diagram real estate, drag the titlebar of the tool
+ palette to the dock on the left hand side.
+ The palette will then be hidden and the screen will be almost completely
+ taken up by the diagram space.
+ You will then need to use the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key to invoke the mini-palette to create diagrams.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
-Subjects and Views and the Repository Browser
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Subjects-and-Views"
+
+\end_inset
+
+Subjects and Views and the Subject Browser
 \end_layout
 
 \begin_layout Standard
@@ -800,11 +1203,14 @@ fhighlight{
 
 \end_inset
 
-A subject is the underlying data of a component or other model element,
- as held in the repository.
+
+\end_layout
+
+\begin_layout Standard
+A subject is the underlying data of a component or other model element.
  A view is the graphical presentation of this shown on a diagram.
  Deleting a view will not delete the subject.
- Deleting a subject will delete all its views
+ Deleting a subject, however, will delete all its views
 \begin_inset ERT
 status collapsed
 
@@ -824,15 +1230,8 @@ Consider if we create a component
 Test
 \family default
 .
- We can select the item, and copy it (
-\family typewriter
-ctrl-C
-\family default
-) and paste it (
-\family typewriter
-ctrl-V
-\family default
-) several times as shown in figure 
+ We can select the item and copy and paste it several times as shown in
+ figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Multiple-views-of"
@@ -845,7 +1244,9 @@ reference "fig:Multiple-views-of"
 Test
 \family default
 .
- We can then delete views by selecting them and pressing delete (
+ We can then delete views by selecting them and pressing 
+\family typewriter
+
 \begin_inset ERT
 status collapsed
 
@@ -858,7 +1259,9 @@ menu{
 
 \end_inset
 
-Edit▶Delete
+delete
+\family default
+
 \begin_inset ERT
 status collapsed
 
@@ -869,8 +1272,6 @@ status collapsed
 
 \end_inset
 
-.
- To remove the entire subject and all its views, however, we need to invoke
  (
 \begin_inset ERT
 status collapsed
@@ -884,7 +1285,41 @@ menu{
 
 \end_inset
 
-Edit▶Delete subjects
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+).
+ To remove the entire subject and all its views, however, we need to invoke
+ 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete subjects
 \begin_inset ERT
 status collapsed
 
@@ -910,7 +1345,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/multiple-views.png
-	scale 45
+	scale 40
 
 \end_inset
 
@@ -960,7 +1395,11 @@ menu{
 
 \end_inset
 
-Object▶Browse element
+Object
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Browse element
 \begin_inset ERT
 status collapsed
 
@@ -981,11 +1420,14 @@ reference "fig:Looking-at-the"
 \end_inset
 
 .
+ The top left tree shows the strata of the model the bottom left tree shows
+ the elements in the currently selected strata, and the right hand pane
+ shows the details of the selected element.
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -995,7 +1437,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/browser.png
-	scale 60
+	scale 45
 
 \end_inset
 
@@ -1026,21 +1468,49 @@ Looking at the Test component subject in the browser
 \end_layout
 
 \begin_layout Subsubsection*
-Selecting an Existing Element using the Tab Key
+Creating a View of an Existing Element
 \end_layout
 
 \begin_layout Standard
-Consider if we have an existing component SpellChecker, and an unnamed component.
+Consider if we have an existing component 
+\family typewriter
+SpellChecker
+\family default
+, and an unnamed component.
  If we want the unnammed component to be a further view of SpellChecker,
  we start typing the name (
 \begin_inset Quotes eld
 \end_inset
 
-SpellCh...
+Spe...
 \begin_inset Quotes erd
 \end_inset
 
-) and then press tab as per figure 
+) and then press the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ key as in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Press-tab-while"
@@ -1048,12 +1518,36 @@ reference "fig:Press-tab-while"
 \end_inset
 
 .
- A list of possible matches will then appear, and we can then click on one.
+ A list of possible matches will then appear, and we can click on one.
  This will result in the view being of the chosen component.
 \end_layout
 
 \begin_layout Standard
-If we do not press tab, and simply type in the whole 
+If we do not press 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+, and simply type in the whole 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1062,12 +1556,36 @@ SpellChecker
 \end_inset
 
  name, then we will have created a different component with the same name.
- Remember to press tab when referencing an existing element!
+ Remember to press 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ when referencing an existing element!
 \end_layout
 
 \begin_layout Standard
 \begin_inset Float figure
-placement h
+placement H
 wide false
 sideways false
 status open
@@ -1077,7 +1595,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/tabbing.png
-	scale 45
+	scale 40
 
 \end_inset
 
@@ -1109,6 +1627,176 @@ Press tab while typing to reference another component
 \end_inset
 
 
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Running-A-Backbone"
+
+\end_inset
+
+Running A Backbone Program
+\end_layout
+
+\begin_layout Standard
+As a final check of the installation, we will execute a Backbone program.
+ This will check all of the setup including the environment variables we
+ set earlier.
+\end_layout
+
+\begin_layout Standard
+Load the 
+\family typewriter
+car-rental.evolve
+\family default
+ model as per section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Loading-and-Navigating"
+
+\end_inset
+
+.
+ Middle-click on the 
+\family typewriter
+base
+\family default
+ stratum to navigate into it.
+ First, 
+\begin_inset Quotes eld
+\end_inset
+
+tag
+\begin_inset Quotes erd
+\end_inset
+
+ the current stratum to indicate that we want to run it, using the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Tag current stratum
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ Then choose the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Run Backone
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ The components in the diagram are instantiated and a runner dialog should
+ show appear as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Backbone-runner"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/runner.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Backbone-runner"
+
+\end_inset
+
+The Backbone runner window
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If this all works, your installation is correct.
+ Congratulations, you have just run your first Backbone program! This particular
+ program will be described fully in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tutorial-A:-Creating"
+
+\end_inset
+
+.
 \end_layout
 
 \end_body
