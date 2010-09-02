@@ -4,7 +4,7 @@ import java.util.*;
 
 public abstract class DEPart extends DEConstituent
 {
-  private transient Map<DEStratum, Set<DeltaPair>> remappedPorts;
+  private Map<DEStratum, Set<DeltaPair>> remappedPorts;
   public abstract Set<DeltaPair> getPortRemaps();
   public abstract DEComponent getType();
   public abstract List<DESlot> getSlots();

@@ -6,6 +6,7 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
+import com.intrinsarc.evolve.umldiagrams.base.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repositorybase.*;
@@ -97,7 +98,8 @@ public class PortRemapper
         DEPart actual = GlobalDeltaEngine.engine.locateObject(replacedPart.getSubject()).asConstituent().asPart();
         Port next = match.getPort();
         // ouch...
-        Port orig = (Port) actual.unRemap(GlobalDeltaEngine.engine.locateObject(bestReplaced.getPort()).asConstituent().asPort()).getRepositoryObject();
+        Port best = (Port) ClassifierConstituentHelper.getOriginalSubject(bestReplaced.getPort());
+        Port orig = (Port) actual.unRemap(GlobalDeltaEngine.engine.locateObject(best).asConstituent().asPort()).getRepositoryObject();
         
         if (next != orig)
         {

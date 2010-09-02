@@ -238,7 +238,7 @@ public class ConnectorCreatorGem implements Gem
 		
 		// possibly connected to a part?
 		Element part = findVisualOwnerOfPort(figureFacet);
-		Element port = (Element) figureFacet.getSubject(); 
+		Element port = (Element) figureFacet.getSubject();
 		if (part instanceof Property)
 		{
 			Element actualPart = ClassifierConstituentHelper.getOriginalSubject(part);
@@ -246,7 +246,8 @@ public class ConnectorCreatorGem implements Gem
 			// must take possible port remap into account		
 			DEPart depart = GlobalDeltaEngine.engine.locateObject(part).asConstituent().asPart();
 			DEPort deport = GlobalDeltaEngine.engine.locateObject(port).asConstituent().asPort();
-			end.setRole((ConnectableElement) depart.unRemap(deport).getRepositoryObject());
+			Port unremapped = (Port) depart.unRemap(deport).getRepositoryObject();
+			end.setRole((Port) ClassifierConstituentHelper.getOriginalSubject(unremapped));
 		}
 		else
 			// just have a port
