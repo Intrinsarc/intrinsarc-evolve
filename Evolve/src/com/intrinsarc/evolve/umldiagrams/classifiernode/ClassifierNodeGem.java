@@ -1245,7 +1245,7 @@ public final class ClassifierNodeGem implements Gem
 		private JMenuItem getSuppressOwnerItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
 		{
 			// for adding operations
-			JCheckBoxMenuItem showVisibilityItem = new JCheckBoxMenuItem("Owner");
+			JCheckBoxMenuItem showVisibilityItem = new JCheckBoxMenuItem("Home stratum");
 			showVisibilityItem.setState(!forceSuppressOwningPackage);
 
 			showVisibilityItem.addActionListener(new ActionListener()

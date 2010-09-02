@@ -1614,7 +1614,7 @@ IRun
 \family default
  interface, which has an 
 \family typewriter
-int run(String args[])
+void run(String args[])
 \family default
  method.
  We create a small runner leaf as shown in figure 
@@ -2170,7 +2170,7 @@ Running Outside of Evolve
 \end_layout
 
 \begin_layout Standard
-When we ran the program, it wrote the following file.
+When we generated the code, it wrote the following file.
 \end_layout
 
 \begin_layout LyX-Code
@@ -2362,9 +2362,8 @@ fhighlight{
 \end_layout
 
 \begin_layout Standard
-Note that all advanced features are available in this mode, including the
- resemblance and evolution constructs, state machines, factories, hyperports
- and others.
+All features are available in this mode, including the resemblance and evolution
+ constructs, state machines, factories, hyperports and others.
 \begin_inset ERT
 status open
 
@@ -2661,8 +2660,7 @@ We've covered a lot in this section, and if you have made it this far then
  In the next chapter, we will show how the reuse and evolution primitives
  work, allowing us to quickly adjust and customize existing components quickly
  without destroying their original definitions.
- These are powerful, but simple constructs that have no counterparts in
- other approaches, commercial or academic.
+ These are powerful, but simple constructs with many uses.
 \end_layout
 
 \end_body

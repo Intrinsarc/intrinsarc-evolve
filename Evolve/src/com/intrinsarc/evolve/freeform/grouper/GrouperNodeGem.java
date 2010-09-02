@@ -14,6 +14,8 @@ import javax.swing.*;
 import org.eclipse.uml2.*;
 
 import com.intrinsarc.evolve.clipboardactions.*;
+import com.intrinsarc.evolve.deltaview.*;
+import com.intrinsarc.evolve.errorchecking.*;
 import com.intrinsarc.evolve.packageview.actions.*;
 import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.evolve.umldiagrams.basicnamespacenode.*;
@@ -535,27 +537,37 @@ public class GrouperNodeGem
         String startTag = "export ";
         if (name.startsWith(startTag) && (name.endsWith(".eps") || name.endsWith(".gif") || name.endsWith(".jpg") || name.endsWith(".png")))
         {
+        	name = name.substring(startTag.length());
+
+        	// is this a delta export?
+        	String deltas = "deltas ";
+        	boolean addDeltas = false;
+        	if (name.startsWith(deltas))
+        	{
+        		name = name.substring(deltas.length());
+        		addDeltas = true;
+        	}
+        	
           File directory = (File) parameters[0];
-          String fileName = name.substring(startTag.length());
   
-          DiagramViewFacet view = formDiagramViewOfInsides(coordinator);
+          DiagramViewFacet view = formDiagramViewOfInsides(coordinator, addDeltas);
 
           // copy to clipboard
           if (view != null)
           {
             if (name.endsWith(".eps"))
               ClipboardViewContextGem.saveAsEPS(
-                  new File(directory, fileName),
+                  new File(directory, name),
                   view.getCanvas(),
                   view.getDrawnBounds());
             else
             {
-              int length = fileName.length();
+              int length = name.length();
               ClipboardViewContextGem.saveAsImage(
-                  new File(directory, fileName),
+                  new File(directory, name),
                   view.getCanvas(),
                   view.getDrawnBounds(),
-                  fileName.substring(length - 3, length));
+                  name.substring(length - 3, length));
             }
           }
         }
@@ -565,7 +577,7 @@ public class GrouperNodeGem
     private void exportImage(String type, Object[] parameters, ToolCoordinatorFacet coordinator)
     {
       // the first parameter is the file path to save the image into
-      DiagramViewFacet view = formDiagramViewOfInsides(coordinator);
+      DiagramViewFacet view = formDiagramViewOfInsides(coordinator, false);
       view.getCanvas().getDrawingSurface().setRenderQuality(ZDrawingSurface.RENDER_QUALITY_MEDIUM);
       File directory = (File) parameters[0];
       String fileName = (String) parameters[1];
@@ -577,7 +589,7 @@ public class GrouperNodeGem
           type);
     }
 
-    private DiagramViewFacet formDiagramViewOfInsides(ToolCoordinatorFacet coordinator)
+    private DiagramViewFacet formDiagramViewOfInsides(ToolCoordinatorFacet coordinator, boolean addDeltas)
     {
       // get the figures to include
       Collection<String> includedFigureIds = new ArrayList<String>();
@@ -619,13 +631,22 @@ public class GrouperNodeGem
   
       // diagram view -- we only need the canvas here
       canvas.setOpaque(false);
+      List<DiagramFigureAdornerFacet> adorners = new ArrayList<DiagramFigureAdornerFacet>();
+      if (addDeltas)
+      {
+      	DeltaAdornerFacet adorner = new DeltaAdornerGem(coordinator).getDeltaAdornerFacet();
+      	adorner.setEnabled(true);
+				adorners.add(adorner);
+      }
       DiagramViewFacet view = new BasicDiagramViewGem(
           clipboard,
-          null,
+          adorners,
           canvas,
           new UDimension(1, 1),
           new Color(0, 0, 0, 0),
           false).getDiagramViewFacet();
+      
+      
       return view;
     }
 

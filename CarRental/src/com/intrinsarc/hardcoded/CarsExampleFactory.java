@@ -29,6 +29,13 @@ public class CarsExampleFactory implements IHardcodedFactory
   private com.intrinsarc.base.RenterDetails x2 = new com.intrinsarc.base.RenterDetails();
   public com.intrinsarc.backbone.runtime.api.IRun getRun_Provided() { return x; }
 
+  public static void main(String args[])
+  {
+    CarsExampleFactory factory = new CarsExampleFactory();
+    factory.initialize(null, null).getRun_Provided().run(args);
+    factory.destroy(); // destroy the factory once the run method has completed
+  }
+
   public CarsExampleFactory() {}
 
   public CarsExampleFactory initialize(IHardcodedFactory parent, java.util.Map<String, Object> values)

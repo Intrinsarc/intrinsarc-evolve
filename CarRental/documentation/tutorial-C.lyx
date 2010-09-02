@@ -114,7 +114,2999 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Tutorial C: States, Factories and Hyperports
+Tutorial C: Factories, Hyperports and States
+\end_layout
+
+\begin_layout Standard
+This chapter looks in depth at the 
+\family typewriter
+factory
+\family default
+, 
+\family typewriter
+hyperports
+\family default
+ and 
+\family typewriter
+states
+\family default
+ strata.
+\end_layout
+
+\begin_layout Standard
+Factories are a way to dynamically instantiate components.
+ They are components whose 
+\begin_inset Quotes eld
+\end_inset
+
+insides
+\begin_inset Quotes erd
+\end_inset
+
+ are created on demand.
+ The insides can be instantiated as many times as required, and can be later
+ destroyed on demand.
+\end_layout
+
+\begin_layout Standard
+Hyperports offer a convenient way to cut through the compositional hierarchy.
+ Consider if we wanted to connect directly from A down to both parts of
+ type G in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:After-evolving-D"
+
+\end_inset
+
+.
+ Hyperports offer a simple way to do this without the need for lots of connector
+s.
+ In electronics terms, this is almost the equivalent of jumper wires between
+ circuit boards.
+ Interestingly, hyperports give all of the advantages of the singleton design
+ pattern, without any of its disadvantages
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+I deeply dislike the singleton 
+\begin_inset Quotes eld
+\end_inset
+
+anti-pattern
+\begin_inset Quotes erd
+\end_inset
+
+ introduced by the Gang-of-Four Design Patterns book, although I agree it
+ is sometimes necessary.
+ I'll have more to say on this later.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Finally, we describe how Evolve supports state machines.
+ State machines are an incredibly useful way to describe how a system changes
+ state, and our approach allows them to be implemented as easily as other
+ components.
+ In fact, Evolve state machines are components with the visual look for
+ UML2 state machines, and can be resembled and evolved.
+ They also support nesting and chaining.
+\end_layout
+
+\begin_layout Standard
+So, without further ado, we present these useful features.
+ They are built on top of the component foundations discussed in earlier
+ tutorials, and we will be making use of resemblance and evolution in our
+ examples.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Factories"
+
+\end_inset
+
+Factories
+\end_layout
+
+\begin_layout Standard
+A factory is a way to dynamically instantiate the insides (parts, connectors,
+ attributes) of a component.
+ In contrast, the previous component structures we have looked at have all
+ been created fully at startup.
+\end_layout
+
+\begin_layout Standard
+Let's create a rental car using this approach.
+ Look inside the factory stratum, and you will see a 
+\family typewriter
+CarFactory
+\family default
+ composite as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-CarFactory-composite"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/carfactory.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-CarFactory-composite"
+
+\end_inset
+
+The CarFactory composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This was created using the 
+\begin_inset Quotes eld
+\end_inset
+
+Factory
+\begin_inset Quotes erd
+\end_inset
+
+ tool in the tool palette.
+\end_layout
+
+\begin_layout Standard
+A factory is a composite component, with a 
+\family typewriter
+create
+\family default
+ port
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+When a factory component is created, it is set to resemble the 
+\family typewriter
+FactoryBase
+\family default
+ component.
+ This is where the 
+\family typewriter
+create
+\family default
+ port is inherited from.
+\end_layout
+
+\end_inset
+
+.
+ The create port provides the 
+\family typewriter
+ICreate
+\family default
+ interface with the following methods, which allow the insides to be created
+ or destroyed.
+\end_layout
+
+\begin_layout LyX-Code
+public interface ICreate
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  public Object create(Map<String, Object> suppliedParameters);
+\end_layout
+
+\begin_layout LyX-Code
+  public void destroy(Object memento);
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+create()
+\family default
+ method instantiates the insides, returning a memento object which can then
+ be passed into the 
+\family typewriter
+destroy()
+\family default
+ method to reverse the process.
+ 
+\family typewriter
+create()
+\family default
+ also accepts a set of parameters which, if provided, will override the
+ slot settings.
+ For instance, we could put a 
+\family typewriter
+(
+\begin_inset Quotes eld
+\end_inset
+
+model
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+Ferrari
+\begin_inset Quotes erd
+\end_inset
+
+)
+\family default
+ pair into the map and pass it in.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Using-the-Create"
+
+\end_inset
+
+Using the Create Port
+\end_layout
+
+\begin_layout Standard
+To use this, we must connect the 
+\family typewriter
+create
+\family default
+ port to another component - in this case we make a small runner component
+ called 
+\family typewriter
+FactoryExampleRunner
+\family default
+.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-runner-component"
+
+\end_inset
+
+.
+ We can then connect everything up into the 
+\family typewriter
+FactoryExample
+\family default
+ composite of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-FactoryExample-composite"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/factoryexamplerunner.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-runner-component"
+
+\end_inset
+
+A runner component which can use the create factory port
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/factoryexample.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-FactoryExample-composite"
+
+\end_inset
+
+The 
+\family typewriter
+FactoryExample
+\family default
+ composite component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To execute the example, tag and run the stratum and the output should look
+ as below.
+ Our runner component added a Volkswagen, then a Saab, then destroyed the
+ first car and then the second.
+\end_layout
+
+\begin_layout LyX-Code
+After making first car:
+\end_layout
+
+\begin_layout LyX-Code
+  Volkswagen, purchased = Mon Nov 10 00:00:00 GMT 2008
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After making second car:
+\end_layout
+
+\begin_layout LyX-Code
+  Volkswagen, purchased = Mon Nov 10 00:00:00 GMT 2008
+\end_layout
+
+\begin_layout LyX-Code
+  Saab, purchased = Fri Jun 05 00:00:00 BST 2009
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After deleting first car:
+\end_layout
+
+\begin_layout LyX-Code
+  Saab, purchased = Fri Jun 05 00:00:00 BST 2009
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After deleting second car:
+\end_layout
+
+\begin_layout Standard
+The Java code in FactoryExampleRunner.java to accomplish this looks as follows.
+\end_layout
+
+\begin_layout LyX-Code
+		Map<String, Object> params;	
+\end_layout
+
+\begin_layout LyX-Code
+		params = new HashMap<String, Object>();
+\end_layout
+
+\begin_layout LyX-Code
+		params.put("model", "Volkswagen");
+\end_layout
+
+\begin_layout LyX-Code
+		params.put("purchased", new Date(108, 10, 10));
+\end_layout
+
+\begin_layout LyX-Code
+		Object memento1 = creator.create(params);
+\end_layout
+
+\begin_layout LyX-Code
+		printCars("After making first car:");
+\end_layout
+
+\begin_layout LyX-Code
+		params = new HashMap<String, Object>();
+\end_layout
+
+\begin_layout LyX-Code
+		params.put("model", "Saab");
+\end_layout
+
+\begin_layout LyX-Code
+		params.put("purchased", new Date(109, 5, 5));
+\end_layout
+
+\begin_layout LyX-Code
+		Object memento2 = creator.create(params);
+\end_layout
+
+\begin_layout LyX-Code
+		printCars("After making second car:"); 	
+\end_layout
+
+\begin_layout LyX-Code
+		creator.destroy(memento1);
+\end_layout
+
+\begin_layout LyX-Code
+		printCars("After deleting first car:");
+\end_layout
+
+\begin_layout LyX-Code
+		creator.destroy(memento2);
+\end_layout
+
+\begin_layout LyX-Code
+		printCars("After deleting second car:");
+\end_layout
+
+\begin_layout Subsection
+Factories Are Isomorphic
+\end_layout
+
+\begin_layout Standard
+The technical term for this approach is actually 
+\begin_inset Quotes eld
+\end_inset
+
+Isomorphic Factories
+\begin_inset Quotes erd
+\end_inset
+
+
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The Darwin language introduced the concept, but did not allow direct programmati
+c, or multiple, instantiation.
+\end_layout
+
+\end_inset
+
+.
+ In other words, a factory component has the 
+\begin_inset Quotes eld
+\end_inset
+
+same shape
+\begin_inset Quotes erd
+\end_inset
+
+ as a normal component, and the connectors are connected up in the same
+ way.
+ Factories have all the advantages of composite components.
+\end_layout
+
+\begin_layout Standard
+Isomorphic factories makes working with dynamic structures easy, but crucially
+ also allow a designer to see the full connections that can be made at runtime
+ by looking at static diagrams of the model.
+ Architecture Description Languages have this as a primary concern - the
+ ability to fully describe all of the possible connections between dynamically
+ create components from a static description.
+ Although this removes some of the flexibility of being able to create object
+ structures in an ad-hoc fashion, we gain a large advantage in that we can
+ now analyze the entire system and know all of the runtime possibilities.
+\end_layout
+
+\begin_layout Subsection
+Factories Can Instantiate Complex Structures
+\end_layout
+
+\begin_layout Standard
+Our factory is instantiating an instance of 
+\family typewriter
+RentalCar
+\family default
+.
+ However, we could have put a much more complex set of parts inside our
+ factory, with a lot more connectors and ports.
+ Also consider that 
+\family typewriter
+RentalCar
+\family default
+ is actually made up of two leaf instances which are connected.
+ Factories can handle this type of complexity neatly
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Compare and contrast this with how you dynamically instantiate complex structure
+s in Spring.
+ If you want to dynamically create multiple instances, a bean must be marked
+ as prototype.
+ However, this limits complex connections between bean instances, forcing
+ you to mark them all as singletons.
+ Ouch.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Note that we have used a single factory to make multiple instances, and
+ that the 
+\family typewriter
+cars [0..*]
+\family default
+ port will get another connection each time an instance is made.
+\end_layout
+
+\begin_layout Subsection
+Factories Can Be Nested
+\end_layout
+
+\begin_layout Standard
+A factory can contain instances of other factories.
+ There is no limit to this nesting, use it as needed.
+\end_layout
+
+\begin_layout Standard
+To see the connections that will result from nesting, right-click on the
+ 
+\family typewriter
+FactoryExample
+\family default
+ composite and choose the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show flattened structure
+\family typewriter
+
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\family default
+ menu option.
+ This will show something like figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flattened-form"
+
+\end_inset
+
+.
+ This is the flattened structure of the components.
+ We first touched on this in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:A-Composite-Component"
+
+\end_inset
+
+ - flattening is the way that Evolve removes composites in order to make
+ connections directly between the leaf instances.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/flattened-factory.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-flattened-form"
+
+\end_inset
+
+The flattened form of FactoryExample
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If you look carefully, you will see the first surprise -- the 
+\family typewriter
+FactoryExampleRunner
+\family default
+ part is also in a factory (id=0).
+ Evolve must instantiate the parts to run the example, and it uses a factory
+ to do this also!
+\end_layout
+
+\begin_layout Standard
+The second factory (id=1) is the flattened 
+\family typewriter
+RentalCar
+\family default
+ component that will be created when we instantiate 
+\family typewriter
+CarFactory
+\family default
+ programmatically.
+ If you expand out the connectors of this, you can see how it will be joined
+ to the parts in the first factory.
+\end_layout
+
+\begin_layout Standard
+If we added a factory part inside 
+\family typewriter
+CarFactory
+\family default
+, it would turn into a factory (id=2) at the same level as the others.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:How-Do-Factories"
+
+\end_inset
+
+How Do Factories Work?
+\end_layout
+
+\begin_layout Standard
+Look carefully at figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-flattened-form"
+
+\end_inset
+
+ and you will see that the first factory (id=0) contains a part of 
+\family typewriter
+Creator
+\family default
+ type.
+ This is automatically inserted by the Backbone component expansion process,
+ based on knowing that the component is a factory.
+ This part contains the logic to instantiate the insides of the factory.
+\end_layout
+
+\begin_layout Standard
+This part is also connected up to the create port of the factory, before
+ being 
+\begin_inset Quotes eld
+\end_inset
+
+pushed up
+\begin_inset Quotes erd
+\end_inset
+
+ into the parent factory.
+ This is why the 
+\family typewriter
+create
+\family default
+ port automatically provides the 
+\family typewriter
+ICreate
+\family default
+ interface.
+\end_layout
+
+\begin_layout Section
+Hyperports
+\end_layout
+
+\begin_layout Standard
+A hyperport is a port that cuts through the compositional hierarchy.
+ A hyperport of a part automatically connects to any compatible, but unconnected
+ ports underneath it in the hierarchy.
+\end_layout
+
+\begin_layout Standard
+This provides a principled and far more flexible approach to the Singleton
+ design pattern from the original Design Patterns book
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+I hate the OO form of the Singleton pattern.
+ I guiltily admit though to sometimes using it in conventional Java programs.
+ There is no excuse in a component system though.
+\end_layout
+
+\end_inset
+
+.
+ The original pattern is inflexible, prevents unit testing and ties a programmer
+ into a single instance unnecessarily.
+ Let's now look at how hyperports remove these limitations.
+\end_layout
+
+\begin_layout Standard
+For this section, navigate into the 
+\family typewriter
+hyperport
+\family default
+ stratum of the example model.
+\end_layout
+
+\begin_layout Subsection
+Connecting Through a Hierarchy
+\end_layout
+
+\begin_layout Standard
+Suppose that we wanted to amend our factory example, so that we printed
+ out a warning to a printer every time the purchased field of 
+\family typewriter
+RentalCarDetails
+\family default
+ was accessed, along with details of the previous access.
+ We want all cars to use the same printer.
+ How can we do this?
+\end_layout
+
+\begin_layout Standard
+We will want to first create the printer component.
+ We define a very basic leaf, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-logger-component"
+
+\end_inset
+
+.
+ Look carefully at the icon on the port - it is a hyperport, created using
+ the 
+\begin_inset Quotes eld
+\end_inset
+
+Hyper port
+\begin_inset Quotes erd
+\end_inset
+
+ tool.
+ The 
+\family typewriter
+IPrinter
+\family default
+ interface contains a single 
+\family typewriter
+print(String warning)
+\family default
+ method, and prints any received warnings to the console.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/logger.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-logger-component"
+
+\end_inset
+
+A printer component with a hyperport
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can now place an instance of this inside an evolution of 
+\family typewriter
+FactoryExample
+\family default
+ (from the previous section).
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-FactoryExample-to"
+
+\end_inset
+
+ shows this.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/loggingfactoryexample.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-FactoryExample-to"
+
+\end_inset
+
+Evolving FactoryExample to add a printer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We also need to adjust 
+\family typewriter
+RentalCarDetails
+\family default
+ to take advantage of the printer.
+ We evolve it and add the printer port, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-evolved-RentalCarDetail"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/loggingrentalcardetails.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-evolved-RentalCarDetail"
+
+\end_inset
+
+The evolved RentalCarDetail component uses the printer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+When evolving this leaf, we changed the implementation class name to 
+\family typewriter
+PrintingRentalCarDetails
+\family default
+ which generated a class which inherits from the original 
+\family typewriter
+RentalCarDetails
+\family default
+.
+ If you examine 
+\family typewriter
+PrintingRentalCarDetails.java
+\family default
+, you will see that it inherits all of the fields and ports from 
+\family typewriter
+RentalCarDetails
+\family default
+, and then overrides the 
+\family typewriter
+getPurchased()
+\family default
+ method to the following logic:
+\end_layout
+
+\begin_layout LyX-Code
+	private Date lastAccess = null;
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+	@Override
+\end_layout
+
+\begin_layout LyX-Code
+	public Date getPurchased()
+\end_layout
+
+\begin_layout LyX-Code
+	{
+\end_layout
+
+\begin_layout LyX-Code
+	  if (printer != null)
+\end_layout
+
+\begin_layout LyX-Code
+	  {
+\end_layout
+
+\begin_layout LyX-Code
+	    String access = ">> purchased field accessed for car "
+\end_layout
+
+\begin_layout LyX-Code
+                                 + getModel();
+\end_layout
+
+\begin_layout LyX-Code
+        if (lastAccess == null)
+\end_layout
+
+\begin_layout LyX-Code
+          access += ", not previously accessed";
+\end_layout
+
+\begin_layout LyX-Code
+            else
+\end_layout
+
+\begin_layout LyX-Code
+          access += ", previous access was " + lastAccess;
+\end_layout
+
+\begin_layout LyX-Code
+        printer.print(access);
+\end_layout
+
+\begin_layout LyX-Code
+        lastAccess = new Date();
+\end_layout
+
+\begin_layout LyX-Code
+      }
+\end_layout
+
+\begin_layout LyX-Code
+      return super.getPurchased();
+\end_layout
+
+\begin_layout LyX-Code
+    } 
+\end_layout
+
+\begin_layout Standard
+Running the model in this stratum produces the following output.
+ Compare and contrast this with the output from section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Using-the-Create"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout LyX-Code
+After making first car:
+\end_layout
+
+\begin_layout LyX-Code
+Printer: >> purchased field accessed for car Volkswagen,
+\end_layout
+
+\begin_layout LyX-Code
+               not previously accessed
+\end_layout
+
+\begin_layout LyX-Code
+  Volkswagen, purchased = Mon Nov 10 00:00:00 GMT 2008
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After making second car:
+\end_layout
+
+\begin_layout LyX-Code
+Printer: >> purchased field accessed for car Volkswagen,
+\end_layout
+
+\begin_layout LyX-Code
+               previous access was Thu Sep 02 17:16:04 BST 2010
+\end_layout
+
+\begin_layout LyX-Code
+  Volkswagen, purchased = Mon Nov 10 00:00:00 GMT 2008
+\end_layout
+
+\begin_layout LyX-Code
+Printer: >> purchased field accessed for car Saab,
+\end_layout
+
+\begin_layout LyX-Code
+               not previously accessed
+\end_layout
+
+\begin_layout LyX-Code
+  Saab, purchased = Fri Jun 05 00:00:00 BST 2009
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After deleting first car:
+\end_layout
+
+\begin_layout LyX-Code
+Printer: >> purchased field accessed for car Saab,
+\end_layout
+
+\begin_layout LyX-Code
+              previous access was Thu Sep 02 17:16:04 BST 2010
+\end_layout
+
+\begin_layout LyX-Code
+  Saab, purchased = Fri Jun 05 00:00:00 BST 2009
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+After deleting second car:
+\end_layout
+
+\begin_layout Subsection
+Hyperports Instead of Singletons
+\end_layout
+
+\begin_layout Standard
+Consider the compositional hierarchy changes that the evolutions have introduced
+, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Before-and-after"
+
+\end_inset
+
+.
+ The top shows the hierarchy from the perspective of the 
+\family typewriter
+factory
+\family default
+ stratum.
+ Applying the evolutions from the 
+\family typewriter
+hyperport
+\family default
+ stratum results in the hierarchy below this.
+ The single 
+\family typewriter
+Printer
+\family default
+ instance is also connected across two levels of the hierarchy and will
+ be used by each (dynamically allocated) instance of 
+\family typewriter
+RentalCarDetails
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/factoryexample-hierarchy.png
+	lyxscale 60
+	scale 120
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Before-and-after"
+
+\end_inset
+
+Before and after the evolution to add the printer
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a form of singleton, whose scope is constrained by the hierarchy.
+ However, this arrangement is flexible.
+ If we were to evolve 
+\family typewriter
+RentalCar
+\family default
+ to include its own printer, that would be used in preference and we would
+ have a 
+\family typewriter
+Printer
+\family default
+ instance per car.
+ For unit testing, we can evolve to replace the real printer part with a
+ mocked out version.
+\end_layout
+
+\begin_layout Standard
+Also, a hyperport will only connect to an unconnected port.
+ If we evolve 
+\family typewriter
+RentalCarDetails
+\family default
+ to connect to a local printer, then the hyperport above it will not be
+ used.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A hyperport must allow many connections.
+ A port with just provided interfaces is suitable, as is an indexed hyperport
+ with some required interfaces.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Evolution as a Form of Aspect-Oriented Programming (AOP)
+\end_layout
+
+\begin_layout Standard
+Aspects were invented to allow cross-cutting behavior to be added to a program
+ and encapsulated in a single place.
+ As powerful as they are, they suffer from the use of lexical pattern matching
+ which is fragile, no ability for one aspect to directly refer to another,
+ ordering issues, and a trade-off between the amount of context available
+ to an aspect and its level of reuse/applicability.
+ Aspects also are defined separately to the objects they act on, making
+ it difficult to see which ones will be applied at runtime.
+\end_layout
+
+\begin_layout Standard
+Evolution can achieve many of the same effects of aspects without the disadvanta
+ges.
+ By using evolution instead we find that:
+\end_layout
+
+\begin_layout Itemize
+The change is recorded as deltas using UUIDs for identity.
+\begin_inset Newline newline
+\end_inset
+
+This is not lexically fragile and can be combined and merged with other
+ evolutions.
+\end_layout
+
+\begin_layout Itemize
+We can build on this evolution, and directly refer to the changed elements.
+\begin_inset Newline newline
+\end_inset
+
+A further stratum, building on 
+\family typewriter
+hyperport
+\family default
+, can refer to the evolved components and add its own changes.
+\end_layout
+
+\begin_layout Itemize
+We can see at a glance which changes are applied.
+\begin_inset Newline newline
+\end_inset
+
+Viewing the composition hierarchy of the components from the perspective
+ of 
+\family typewriter
+hyperport
+\family default
+ will show us the full structure, without us needing to work out in our
+ heads which aspects will be applied at runtime.
+\end_layout
+
+\begin_layout Itemize
+Evolution has no conflict between a primary and secondary axis.
+\begin_inset Newline newline
+\end_inset
+
+Aspects are often criticised for being the (weaker) secondary axis to the
+ primary axis of the programming language.
+ Although systems like Hyper-J have partially dealt with this, AOP systems
+ in industrial usage suffer from this limitation.
+\end_layout
+
+\begin_layout Standard
+Evolution can also be used to add in parts between existing connections,
+ much like an explicit form of the Spring proxy-based AOP approach.
+ Consider figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Using-evolution-to"
+
+\end_inset
+
+ which shows an evolution of 
+\family typewriter
+RentalCar
+\family default
+ that places a proxy part in between the two existing parts.
+ To accomplish this, the evolution simply added the proxy part and connector,
+ and re-routed an existing connector.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolution-proxy.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Using-evolution-to"
+
+\end_inset
+
+Using evolution to add a proxy
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The quantification side of aspects (e.g.
+ 
+\family typewriter
+set*
+\family default
+) can be partially achieved by evolving a base component in a resemblance
+ tree.
+\end_layout
+
+\begin_layout Standard
+These comments may be upsetting to AOP advocates.
+ It is true that the above discussion is only cursory, and that the printer
+ example could have also been achieved easily also using AOP.
+ However, the advantages of the evolution approach start to accrue when
+ the examples become more involved than this short tutorial will allow.
+ I will address this topic in the manual on advanced techniques.
+\end_layout
+
+\begin_layout Standard
+For the readers who would like to dig deeper, I would suggest the following
+ literature.
+\end_layout
+
+\begin_layout Enumerate
+The book 
+\begin_inset Quotes eld
+\end_inset
+
+Aspect-Oriented Programming With the e Verification Language
+\begin_inset Quotes erd
+\end_inset
+
+ by David Robinson.
+\begin_inset Newline newline
+\end_inset
+
+The 
+\emph on
+e
+\emph default
+ language uses a form of evolution to model several aspect-like situations,
+ and shows how the approach can offer advantages over aspects.
+\end_layout
+
+\begin_layout Enumerate
+The academic paper 
+\begin_inset Quotes eld
+\end_inset
+
+Aspect-Oriented Programming is Quantification and Obliviousness
+\begin_inset Quotes erd
+\end_inset
+
+ by Robert Filman and Dan Friedman.
+\begin_inset Newline newline
+\end_inset
+
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.28.287
+\begin_inset Newline newline
+\end_inset
+
+This paper shows that there is a tension in aspects between the quantification
+ side and making aspects know too much about the context of the underlying
+ code they will apply to.
+ Have you ever wondered why most (all?) AOP examples add logging and transaction
+s to a system? Read this paper for insight as to why aspects tend not to
+ address the business logic of a system.
+\end_layout
+
+\begin_layout Section
+State Machines
+\end_layout
+
+\begin_layout Standard
+State machines are a technique for describing how a system's state undergoes
+ transitions in response to events.
+ They are useful precisely because they force the programmer to be explicit
+ about what events are handled and what these will do to the system.
+\end_layout
+
+\begin_layout Standard
+Evolve makes the creation, reuse and evolution of state machines as simple
+ as using components.
+ In fact, Evolve state machines are really just components 
+\begin_inset Quotes eld
+\end_inset
+
+under the covers
+\begin_inset Quotes erd
+\end_inset
+
+, with the visual appearance of UML2 statecharts.
+ They can be combined with ordinary components in powerful ways.
+ Further, unlike UML2 statecharts diagrams, Evolve state machines are executable.
+\end_layout
+
+\begin_layout Standard
+If you have yet to experience the power of states, now is the time! Navigate
+ into the 
+\family typewriter
+states
+\family default
+ stratum for this tutorial.
+\end_layout
+
+\begin_layout Subsection
+The States
+\end_layout
+
+\begin_layout Standard
+Our example is going to replace the 
+\family typewriter
+RenterDetails
+\family default
+ part with a state machine, in the 
+\family typewriter
+CarRental
+\family default
+ definition shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-RentalCar-composite"
+
+\end_inset
+
+.
+ The state machine will feature two states: available and rented.
+ When someone rents the car, we will send in a 
+\family typewriter
+rent()
+\family default
+ event and move to the rented state.
+ When the renter returns the car we will send in a returnRental() event
+ and move back to the available state.
+\end_layout
+
+\begin_layout Standard
+We are going to describe this in a top down fashion.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-state-machine-1"
+
+\end_inset
+
+ shows the full state machine, with the transitions between the states.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/state-machine.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-state-machine"
+
+\end_inset
+
+The state machine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the state machine is really just a composite component, it has only a
+ Backbone representation and no associated Java code.
+ The transitions, shown with arrows, are just connectors wiring from the
+ 
+\family typewriter
+out
+\family default
+ port of one state to 
+\family typewriter
+in
+\family default
+ ports of other states.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+Start
+\family default
+ part was inherited when we created the composite, as were the 
+\family typewriter
+in
+\family default
+ and 
+\family typewriter
+event
+\family default
+ ports (along with an 
+\family typewriter
+out
+\family default
+ port and 
+\family typewriter
+End
+\family default
+ part which were delta deleted).
+ All composite states are automatically created resembling the 
+\family typewriter
+CompositeState
+\family default
+ component, from which they inherit these constituents.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+Available
+\family default
+ and 
+\family typewriter
+Rented
+\family default
+ states are shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Available-and"
+
+\end_inset
+
+.
+ They are both really just leaf components, and hence must be associated
+ with a Java implementation class each: 
+\family typewriter
+Available.java
+\family default
+ and 
+\family typewriter
+Rented.java
+\family default
+.
+ Note that we have added an attribute to the 
+\family typewriter
+Rented
+\family default
+ state for holding the renter's name.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/available-rented.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Available-and"
+
+\end_inset
+
+The 
+\family typewriter
+Available
+\family default
+ and 
+\family typewriter
+Rented
+\family default
+ states
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We also need to define an event interface, in order to trigger the transitions.
+ This interface must resemble 
+\family typewriter
+IEvent
+\family default
+.
+ We further make it resemble 
+\family typewriter
+IRenterDetails
+\family default
+ from the 
+\family typewriter
+base
+\family default
+ stratum, in order to allow it to be connected up to 
+\family typewriter
+RentalCarDetails
+\family default
+ easily.
+ The interface is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-event-interface"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/event-interface.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-event-interface"
+
+\end_inset
+
+The event interface for our state machine
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally we evolve 
+\family typewriter
+RentalCar
+\family default
+ in order to replace the 
+\family typewriter
+RenterDetails
+\family default
+ part.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-RentalCar-to"
+
+\end_inset
+
+.
+ Note that we have also chosen to export the 
+\family typewriter
+state
+\family default
+ port, so that we can drive the state machine externally.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/state-rentalcar.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-RentalCar-to"
+
+\end_inset
+
+Evolving RentalCar to add in the state part
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Finally, we create a simple runner and a composite to bring it all together.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-runnable-configuration"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/statesexample.eps
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-runnable-configuration"
+
+\end_inset
+
+The runnable configuration
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The compositional hierarchy of the 
+\family typewriter
+StatesExample
+\family default
+ component is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-compositional-hierarchy-1"
+
+\end_inset
+
+.
+ It shows that the evolutions have successfully replaced the 
+\family typewriter
+RenterDetails
+\family default
+ part with a state machine consisting of 
+\family typewriter
+Start
+\family default
+, 
+\family typewriter
+Available
+\family default
+ and 
+\family typewriter
+Rented
+\family default
+ states.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/states-compositional-hierarchy.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-compositional-hierarchy-1"
+
+\end_inset
+
+The compositional hierarchy of 
+\family typewriter
+StatesExample
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Running the Machine
+\end_layout
+
+\begin_layout Standard
+Let's run the example.
+ Tag the stratum, and the following output should appear.
+\end_layout
+
+\begin_layout LyX-Code
+Car: model = Volvo, purchased = Mon Nov 10 00:00:00 GMT 2008,
+\end_layout
+
+\begin_layout LyX-Code
+    is rented = false
+\end_layout
+
+\begin_layout LyX-Code
+  : State dispatcher: current state = available
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+--> Sending event: rent
+\end_layout
+
+\begin_layout LyX-Code
+  : State dispatcher: current state = rented
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+--> setting the renter now
+\end_layout
+
+\begin_layout LyX-Code
+Car: model = Volvo, purchased = Mon Nov 10 00:00:00 GMT 2008,
+\end_layout
+
+\begin_layout LyX-Code
+    is rented = true
+\end_layout
+
+\begin_layout LyX-Code
+  : State dispatcher: current state = rented
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+--> Sending event: return rental
+\end_layout
+
+\begin_layout LyX-Code
+Car: model = Volvo, purchased = Mon Nov 10 00:00:00 GMT 2008,
+\end_layout
+
+\begin_layout LyX-Code
+    is rented = false
+\end_layout
+
+\begin_layout LyX-Code
+  : State dispatcher: current state = available
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+Examine the code in the 
+\family typewriter
+StatesExampleRunner.java
+\family default
+ class to look at the events sent to the machine.
+\end_layout
+
+\begin_layout LyX-Code
+state.rent();
+\end_layout
+
+\begin_layout LyX-Code
+...
+\end_layout
+
+\begin_layout LyX-Code
+state.setRenterName("Andrew");
+\end_layout
+
+\begin_layout LyX-Code
+...
+\end_layout
+
+\begin_layout LyX-Code
+state.returnRental();
+\end_layout
+
+\begin_layout Standard
+The state machine will automatically transition from the 
+\family typewriter
+Start
+\family default
+ state into the 
+\family typewriter
+Available
+\family default
+ state upon instantiation.
+ The 
+\family typewriter
+state.rent()
+\family default
+ event then pushes it into the 
+\family typewriter
+Rented
+\family default
+ state where setting the renter name will store the details in the 
+\family typewriter
+renterName
+\family default
+ attribute.
+ Finally, sending in the 
+\family typewriter
+state.returnRental()
+\family default
+ event causes a transition back to 
+\family typewriter
+Available
+\family default
+.
+\end_layout
+
+\begin_layout Subsection
+Creating the State Machine and Leaf States
+\end_layout
+
+\begin_layout Standard
+We created each of the leaf state machines by changing to the 
+\begin_inset Quotes eld
+\end_inset
+
+State focus
+\begin_inset Quotes erd
+\end_inset
+
+ by invoking the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Focus
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+State focus
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ We then used the 
+\begin_inset Quotes eld
+\end_inset
+
+State
+\begin_inset Quotes erd
+\end_inset
+
+ tool from the palette.
+ Creating a leaf state in this way produces the component shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:An-empty-leaf"
+
+\end_inset
+
+.
+ It automatically inherits the 
+\family typewriter
+events
+\family default
+, 
+\family typewriter
+in
+\family default
+ and 
+\family typewriter
+out
+\family default
+ ports from the 
+\family typewriter
+State
+\family default
+ component it resembles.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/empty-leaf.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:An-empty-leaf"
+
+\end_inset
+
+An empty leaf state
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We next performed a bit of surgery on this to create the 
+\family typewriter
+Rented
+\family default
+ state.
+ We added the 
+\family typewriter
+renterName
+\family default
+ attribute.
+ We also replaced the 
+\family typewriter
+events
+\family default
+ port to make it provide 
+\family typewriter
+IRentalEvent
+\family default
+ which is the event interface we are using.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Rented-state"
+
+\end_inset
+
+.
+ 
+\family typewriter
+Available
+\family default
+ was created in a similar way.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/rented.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Rented-state"
+
+\end_inset
+
+The 
+\family typewriter
+Rented
+\family default
+ state with delta marks on
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We next created the composite state machine via the 
+\begin_inset Quotes eld
+\end_inset
+
+Composite state
+\begin_inset Quotes erd
+\end_inset
+
+ tool.
+ Upon creating an empty composite, it inherits the three ports and start
+ and end parts from 
+\family typewriter
+CompositeState
+\family default
+.
+ We delta deleted the end state, as our example state machine never terminates,
+ and we replaced the 
+\family typewriter
+events
+\family default
+ port so that it provides our event interface.
+ Finally, we added the state parts (using the 
+\begin_inset Quotes eld
+\end_inset
+
+State part
+\begin_inset Quotes erd
+\end_inset
+
+ tool) and wired them up using the 
+\begin_inset Quotes eld
+\end_inset
+
+Transition
+\begin_inset Quotes erd
+\end_inset
+
+ tool.
+ We now have our state machine, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-state-machine-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/delta-state-machine.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-state-machine-1"
+
+\end_inset
+
+The state machine with delta marks on
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Implementing the Leaf States
+\end_layout
+
+\begin_layout Standard
+The Java implementation of each leaf state must follow a protocol to work
+ correctly.
+ The class itself must implement the IEvent method isCurrent(), and the
+ ITransition method enter().
+ Look at Available.java for a guide.
+ The relevant methods from this class are below:
+\end_layout
+
+\begin_layout LyX-Code
+private boolean current;
+\end_layout
+
+\begin_layout LyX-Code
+public boolean isCurrent() { return current; }
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout LyX-Code
+private class ITransitionInImpl implements ITransition {
+\end_layout
+
+\begin_layout LyX-Code
+  public boolean enter() { current = true; return current; }
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+When a state wants to transition to another, it calls the 
+\family typewriter
+enter()
+\family default
+ method on the next state and tests the return value to decide if the transition
+ has been successful.
+ To automatically accept the transition, set 
+\family typewriter
+current
+\family default
+ to true as per the listing above.
+ When the machine starts, the start state will call 
+\family typewriter
+enter()
+\family default
+ on our 
+\family typewriter
+Available
+\family default
+ part which will make that the current state.
+ 
+\family typewriter
+isCurrent()
+\family default
+ should just return whether or not the state is current.
+\end_layout
+
+\begin_layout Standard
+If we want to transition to another state, we use the 
+\family typewriter
+enter()
+\family default
+ method on the out port, as per below.
+ This is the implementation of the 
+\family typewriter
+rent()
+\family default
+ event for 
+\family typewriter
+Available
+\family default
+.
+\end_layout
+
+\begin_layout LyX-Code
+	public void rent()
+\end_layout
+
+\begin_layout LyX-Code
+	{
+\end_layout
+
+\begin_layout LyX-Code
+	  current = !out.enter();
+\end_layout
+
+\begin_layout LyX-Code
+	}
+\end_layout
+
+\begin_layout Standard
+If the next state (
+\family typewriter
+Rented
+\family default
+) accepts the transition, the 
+\family typewriter
+Available
+\family default
+ state will then cease to be current.
+\end_layout
+
+\begin_layout Subsection
+Nested State Machines
+\end_layout
+
+\begin_layout Standard
+State machines can be treated as state parts in another machine, in an analogous
+ way to how composite components can be treated as parts in another component.
+ This allows us to use the powerful approach of nested state machines, first
+ explained by David Harel in his groundbreaking work on statecharts
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+If you can get hold of it, I thoroughly recomment the book 
+\begin_inset Quotes eld
+\end_inset
+
+Modeling Reactive Systems with Statcharts
+\begin_inset Quotes erd
+\end_inset
+
+ by David Harel and Michal Politi.
+ This describes the STATEMATE tool, but most of the techniques can also
+ be used in Evolve.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Multiple Out Ports
+\end_layout
+
+\begin_layout Standard
+It is possible to create multiple 
+\family typewriter
+out
+\family default
+ ports for a state to allow different transitions outwards on different
+ conditions.
+ There is no special handling for the existing 
+\family typewriter
+out
+\family default
+ port - it is just provided as a convenience.
+\end_layout
+
+\begin_layout Standard
+In a similar way, a single state machine may instantiate many end terminals.
+ Only one start terminal is allowed, however.
+\end_layout
+
+\begin_layout Subsection
+Combining States and Components
+\end_layout
+
+\begin_layout Standard
+Combining state machines and components is simple - just include the state
+ parts in the component, or the component parts in the state machine.
+ We have already done the former in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-RentalCar-to"
+
+\end_inset
+
+.
+ The latter is useful for making component services available to individual
+ states.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Combining-state-and"
+
+\end_inset
+
+ shows how we might enhance the 
+\family typewriter
+Rented
+\family default
+ state to directly propagate a service to the exterior of the composite,
+ and how it might make use of an embedded 
+\family typewriter
+AddressBook
+\family default
+ part.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/combined-rentalstate.eps
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Combining-state-and"
+
+\end_inset
+
+Combining state and component parts
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+How Do State Machines Work?
+\end_layout
+
+\begin_layout Standard
+We've already discussed how state machines are simply composite components
+ with a different visual presentation.
+ However, there is something else clearly going on.
+ For instance, what is behind the 
+\family typewriter
+stateEvents
+\family default
+ port of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-state-machine-1"
+
+\end_inset
+
+? Something must be handling the events!
+\end_layout
+
+\begin_layout Standard
+The same expansion mechanism used for factories (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:How-Do-Factories"
+
+\end_inset
+
+) is also used for state charts.
+ In this case, a 
+\family typewriter
+StateDispatcher
+\family default
+ part is automatically inserted which is connected up to the 
+\family typewriter
+startEvents
+\family default
+ port and all the states.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-real-state"
+
+\end_inset
+
+ shows what the expanded state machine really looks like after removing
+ all the visual niceties.
+ The complexity of this expanded model is the reason why we decided to use
+ a different visual presentation.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/expanded-rentalstate.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-real-state"
+
+\end_inset
+
+The real state machine, as components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The dispatcher acts as a switch.
+ When a method is called on the event interface, the dispatcher routes it
+ to the current state.
+ If a state wishes to transition to another state, it calls via one of its
+ 
+\family typewriter
+out
+\family default
+ transition connectors and passes the notion of 
+\begin_inset Quotes eld
+\end_inset
+
+current
+\begin_inset Quotes erd
+\end_inset
+
+ to it.
+ The dispatcher then calls 
+\family typewriter
+isCurrent()
+\family default
+ on all the states to work out which is now the current state.
+ Voila, we have a fully functioning state machine.
+\end_layout
+
+\begin_layout Subsection
+Evolve State Machine Limitations
+\end_layout
+
+\begin_layout Standard
+Evolve state machines implement a subset of UML2 state machines.
+ Orthogonal state partitions are not currently supported, nor are history
+ or deep history states
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+These facilities are planned for a future release.
+ Orthogonal states will be particularly useful as they will allow for state-base
+d concurrency.
+\end_layout
+
+\end_inset
+
+.
+ Choice states are not supported explicitly, but can easily be implemented
+ by a standard state.
+\end_layout
+
+\begin_layout Subsection
+Summary
+\end_layout
+
+\begin_layout Standard
+Evolve state machines let you use states to model your application, but
+ retain all the power of the component-based approach.
+ They also tie directly into implementation, so your state machines are
+ executable once you have defined the leaves.
+\end_layout
+
+\begin_layout Standard
+These state machines have been designed as part of research into highly
+ extensible systems.
+ You can resemble a state machine and customize states, or evolve an existing
+ state machine.
+\end_layout
+
+\begin_layout Standard
+Finally and thankfully, the approach also avoids the horrors of the State
+ design pattern from the Gang of Four Design Patterns book
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Don't get me started.
+ The issues with the state design pattern are numerous and include limited
+ context available to each state, having transitions fully in code making
+ them hard to see and change, and a lack of support for inheritance and
+ reuse.
+ I'll stop now as I'm getting worked up about it again...
+\end_layout
+
+\end_inset
+
+.
+ 
 \end_layout
 
 \end_body

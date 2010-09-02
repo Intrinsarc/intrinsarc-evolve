@@ -577,6 +577,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/car-start.png
+	lyxscale 50
 	scale 30
 
 \end_inset

@@ -168,6 +168,18 @@ visual locking
 
 \begin_layout Standard
 nested strata + export rules
+\end_layout
+
+\begin_layout Standard
+extending state machines
+\end_layout
+
+\begin_layout Standard
+autoconnect ports
+\end_layout
+
+\begin_layout Standard
+placeholders
 \begin_inset Newline newline
 \end_inset
 

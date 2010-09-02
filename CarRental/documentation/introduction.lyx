@@ -765,6 +765,12 @@ A configurable field of the component.
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:A-Composite-Component"
+
+\end_inset
+
 A Composite Component
 \end_layout
 
@@ -1267,7 +1273,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/hierarchy.png
-	scale 60
+	scale 150
 
 \end_inset
 

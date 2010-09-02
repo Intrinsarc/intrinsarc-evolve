@@ -34,12 +34,11 @@ public class E
 	private class IRunPortImpl implements IRun
 	{
 
-		public int run(String[] args)
+		public void run(String[] args)
 		{
 			System.out.println("$$ running, about to create: ageX = " + ageX);
 			create.create(null);
 			out.test();
-			return 0;
 		}
 	}
 }

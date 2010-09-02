@@ -25,7 +25,7 @@ public class StatesExampleRunner
 // end generated code
 
 
-	public int run(String[] args)
+	public void run(String[] args)
 	{
 		// get the first car
 		IRentalCarDetails car = cars.get(0);
@@ -39,7 +39,7 @@ public class StatesExampleRunner
 		state.rent();
 		System.out.println("  : " + state + "\n");
 		
-		System.out.println("--> Sending event: setRenter");
+		System.out.println("--> setting the renter now");
 		state.setRenterName("Andrew");
 		print(car);
 		System.out.println("  : " + state + "\n");
@@ -48,8 +48,6 @@ public class StatesExampleRunner
 		state.returnRental();
 		print(car);
 		System.out.println("  : " + state + "\n");
-		
-		return 0;
 	}
 
 	private void print(IRentalCarDetails car)

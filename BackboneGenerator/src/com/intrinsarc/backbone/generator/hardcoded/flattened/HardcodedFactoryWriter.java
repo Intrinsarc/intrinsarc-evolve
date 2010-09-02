@@ -10,6 +10,7 @@ import com.intrinsarc.backbone.generator.hardcoded.common.*;
 import com.intrinsarc.backbone.nodes.*;
 import com.intrinsarc.backbone.nodes.simple.*;
 import com.intrinsarc.backbone.nodes.simple.internal.*;
+import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.backbone.runtime.implementation.*;
 import com.intrinsarc.deltaengine.base.*;
 
@@ -114,7 +115,7 @@ public class HardcodedFactoryWriter
 
 		// write out connection variables
 		writeConnectors(registry, namer, factory, c, null, true);
-
+		
 		// handle the parts
 		c.newLine();
 		c.write(" // parts");
@@ -177,7 +178,27 @@ public class HardcodedFactoryWriter
 		// NOTE: the interface is not appended if this is factory 0, in order to
 		// make the name more "robust"
 		if (factoryNumber == 0)
-			writeVisiblePorts(registry, namer, factory, comp, c);
+		{
+			String runPortGetMethod = writeVisiblePorts(registry, namer, factory, comp, c);
+			
+			// create a possible main for running
+			if (runPortGetMethod != null)
+			{
+				c.newLine();
+				c.write("  public static void main(String args[])");
+				c.newLine();
+				c.write("  {");
+				c.newLine();
+				c.write("    " + className + " factory = new " + className + "();");
+				c.newLine();
+				c.write("    factory.initialize(null, null)." + runPortGetMethod + "().run(args);");
+				c.newLine();
+				c.write("    factory.destroy(); // destroy the factory once the run method has completed");
+				c.newLine();
+				c.write("  }");
+				c.newLine();
+			}
+		}
 		
 		c.newLine();
 		c.write("  public " + className + "() {}");
@@ -610,8 +631,10 @@ public class HardcodedFactoryWriter
 		return def.size() == 1 && "default".equals(def.get(0).getLiteral()); 
 	}
 
-	private void writeVisiblePorts(BBSimpleElementRegistry registry, UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c) throws BackboneGenerationException, IOException
+	private String writeVisiblePorts(BBSimpleElementRegistry registry, UniqueNamer namer, BBSimpleFactory factory, BBSimpleComponent comp, BufferedWriter c) throws BackboneGenerationException, IOException
 	{
+		String runPortGetMethod = null;
+		
 		// handle visible ports
 		for (BBSimplePort port : comp.getPorts())
 		{
@@ -651,6 +674,10 @@ public class HardcodedFactoryWriter
 				PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, p.getImplementationClassName());
 				ph.resolveGetMethodNames();
 
+				// is this the run port?
+				if (p.getImplementationClassName().equals(IRun.class.getCanonicalName()));
+					runPortGetMethod = ph.getGetSingleName();
+					
 				c.write("  public " + p.getImplementationClassName() + " " + ph.getGetSingleName() + "()");
 				if (port.isBeanMain())
 				{
@@ -673,5 +700,6 @@ public class HardcodedFactoryWriter
 				c.newLine();
 			}
 		}
+		return runPortGetMethod;
 	}
 }

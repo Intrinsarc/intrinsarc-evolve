@@ -272,7 +272,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename screenshots/resembling-deltas.png
+	filename generated/resemblingexample.eps
 	scale 60
 
 \end_inset
@@ -503,15 +503,19 @@ status collapsed
 
 \end_inset
 
-) on the ResemblingExample component, we see that it is empty apart from
- two connector replacements as in figure 
+) on the 
+\family typewriter
+ResemblingExample
+\family default
+ component, we see that it is empty apart from two connector replacements
+ (figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Viewing-the-deltas"
 
 \end_inset
 
-.
+).
  The rest of the structure is inherited.
 \end_layout
 
@@ -854,7 +858,7 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename screenshots/evolvingexample.png
+	filename generated/evolvedcarsexample.eps
 	scale 60
 
 \end_inset
@@ -1346,10 +1350,6 @@ Retiring a component
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -1857,7 +1857,7 @@ Destructive Strata
 \begin_layout Standard
 A stratum containing evolutions is known as destructive
 \begin_inset Foot
-status open
+status collapsed
 
 \begin_layout Plain Layout
 The use of the word destructive is historical, it simply means that the
