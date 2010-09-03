@@ -362,7 +362,7 @@ gwtgui
 \end_inset
 
 This builds the client as a set of GWT widgets, expressed as Evolve components.
- It displays the rental cars, and allows new cars to be added, using AJAX
+ It displays the rental cars, and allows new cars to be added, using ajax
  techniques.
 \end_layout
 

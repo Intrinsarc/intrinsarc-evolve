@@ -124,6 +124,228 @@ name "cha:Tutorial-D:-The"
 The GWT / Hibernate Car Rental System
 \end_layout
 
+\begin_layout Standard
+In this tutorial we will build a GWT ajax front-end for the car rental system,
+ and a back-end service built on Hibernate and the H2 SQL database.
+ To whet your appetite, figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Car-Rental"
+
+\end_inset
+
+ shows a picture of the GUI where one person has rented a car, and a further
+ three cars are still available.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-car-rental"
+
+\end_inset
+
+ shows the corresponding entries in the database.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolve-car-rental.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-Car-Rental"
+
+\end_inset
+
+The Car Rental GWT front end
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolve-car-rental-db.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-car-rental"
+
+\end_inset
+
+The car rental database rows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although we have deliberately kept this example small, it demonstrates convincin
+gly that Evolve's component approach can mould to fit in with some fairly
+ exotic technologies.
+ In the case of GWT, the components will actually be running in the browser
+ as GWT-translated Javascript.
+ In the case of Hibernate, we will persist the 
+\family typewriter
+RentalCar
+\family default
+ composites into SQL.
+ This can all be achieved without any changes to our approach and the full
+ complement of techniques including components, state machines, evolution
+ and resemblance are available in both environments.
+\end_layout
+
+\begin_layout Standard
+This tutorial covers the 
+\family typewriter
+gwt
+\family default
+, 
+\family typewriter
+service interfaces
+\family default
+, 
+\family typewriter
+gwtgui
+\family default
+, 
+\family typewriter
+gwtservice
+\family default
+ and 
+\family typewriter
+hibernate
+\family default
+ strata from the example model.
+ For reference, we repeat a picture of these strata in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-strata-used"
+
+\end_inset
+
+.
+ Note that the only part of this tutorial that builds on the previous tutorials
+ is the back end - the 
+\family typewriter
+gwtservice
+\family default
+ and 
+\family typewriter
+hibernate
+\family default
+ strata depend on the definitions of rental cars and their factories, as
+ they work with and persist them.
+ The front end does not use the car components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/tutorial-strata.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-strata-used"
+
+\end_inset
+
+The strata used in the tutorials
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage pagebreak
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -131,7 +353,1142 @@ name "sec:Importing-the-GWT"
 
 \end_inset
 
-Importing the GWT Widget Beans into Evolve
+Importing the GWT Widgets into Evolve
+\end_layout
+
+\begin_layout Standard
+Before using GWT to build our interface, we must make the GWT widgets available
+ for use within Evolve.
+ Luckily, they are packaged as JavaBean-like classes and we can use the
+ Bean Importer tool to import these into Evolve as leaves.
+\end_layout
+
+\begin_layout Standard
+This section describes how we imported the GWT widgets into the tutorial
+ model.
+\end_layout
+
+\begin_layout Standard
+First, we created the 
+\family typewriter
+gwt
+\family default
+ stratum to inport the GWT widgets into.
+ We set the 
+\family typewriter
+bb-classpath
+\family default
+ stereotype property to point to both 
+\family typewriter
+gwt-user.jar
+\family default
+ and the JDK 
+\family typewriter
+rt.jar
+\family default
+ (needed for some primitives) and start up the importer.
+ We selected the GWT widget package (
+\family typewriter
+com.google.gwt.user.client.ui
+\family default
+), selected all the beans that were found, and then clicked 
+\begin_inset Quotes eld
+\end_inset
+
+Add to import list
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The result is figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Importing-the-GWT"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The importer sometimes mistakes a bean for a primitive and vice versa.
+ In the former situation, it is most likely because the bean has no explicit
+ set or get methods.
+ To correct this, right-click on the item in the browser's lower left tree
+ and select 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Toggle bean/primitive
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/gwt-import.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Importing-the-GWT"
+
+\end_inset
+
+Importing the GWT widgets
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We can see, for instance, that the importer decided that the 
+\family typewriter
+CheckBox
+\family default
+ bean could be turned into a leaf.
+ After seeing that there were no errors, we then clicked 
+\begin_inset Quotes eld
+\end_inset
+
+Import all
+\begin_inset Quotes erd
+\end_inset
+
+ and imported the beans into the stratum.
+ In figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-subject-browser"
+
+\end_inset
+
+ we can see the subject browser showing the imported components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/browser-on-checkbox.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-subject-browser"
+
+\end_inset
+
+The subject browser showing the imported components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If you are going to try the import on the existing 
+\family typewriter
+gwt
+\family default
+ stratum, ensure that you make that stratum writeable first.
+ The example model has marked this stratum read only.
+ Right click on the stratum and uncheck the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Read only
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ option.
+ Notice also that because we have already imported the GWT components into
+ this stratum, you will be presented with refresh options.
+ If you want to start from the beginning, make another stratum, make it
+ depend on the 
+\family typewriter
+backbone
+\family default
+ stratum, and copy over the 
+\family typewriter
+bb-classpath
+\family default
+ property from the 
+\family typewriter
+gwt
+\family default
+ stratum.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Creating Views of the Imported Components
+\end_layout
+
+\begin_layout Standard
+We then navigated into our gwt stratum to see the imported components on
+ the diagram.
+ We hadn't made any views of the components yet so the diagram was empty.
+\end_layout
+
+\begin_layout Standard
+To create views of the components, we used the referencing technique first
+ shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Subjects-and-Views"
+
+\end_inset
+
+.
+ We created a new component on the page, typed the first few characters
+ of 
+\family typewriter
+CheckBox
+\family default
+, pressed 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ and then selected 
+\family typewriter
+CheckBox
+\family default
+ from the list.
+ We now had a view of the imported component.
+ Note that no ports or attributes were showing at this point.
+\end_layout
+
+\begin_layout Standard
+Because imported components can be very complex with literally hundreds
+ of ports and attributes, by default the first ever view of a component
+ will show none of these.
+ To make them visible, right click on the component and choose 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show specific attributes
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show specific ports
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ If you want to see all ports and attributes, choose the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show hidden
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Attributes
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ or the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show hidden
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Ports
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ options.
+\end_layout
+
+\begin_layout Subsection
+Legacy versus Non-Legacy Beans
+\end_layout
+
+\begin_layout Standard
+When a bean is imported, and it is not already in the model, then it is
+ imported as a 
+\begin_inset Quotes eld
+\end_inset
+
+legacy
+\begin_inset Quotes erd
+\end_inset
+
+ bean.
+ To see what this means, consider that most existing beans do not implement
+ an interface, but rely on direct access to the class.
+ The listing below shows the form of most beans in existing libraries.
+\end_layout
+
+\begin_layout LyX-Code
+public class Bean
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  private int attribute;
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout LyX-Code
+public class NextBean
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  private Bean required;
+\end_layout
+
+\begin_layout LyX-Code
+  ...
+\end_layout
+
+\begin_layout LyX-Code
+}
+\end_layout
+
+\begin_layout Standard
+This is not the way that Evolve interface-centric way.
+ Leaves generated from Evolve will always implement interfaces, and no leaf
+ will reference another leaf class directly.
+\end_layout
+
+\begin_layout Standard
+To fit existing beans into the Evolve system, when a bean is imported it
+ is marked as legacy and a synthetic interface will be created.
+ For this interface, the implementation class is set to the same class as
+ the bean itself.
+ This lets us pretend that the bean is a conventional leaf.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Legacy-beans-have"
+
+\end_inset
+
+ shows what the beans from the listing above would look like after import.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/legacy-beans.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Legacy-beans-have"
+
+\end_inset
+
+Legacy beans have a synthetic interface to avoid directly coupling to classes
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+All of the GWT widgets will be organised in this way on import.
+\end_layout
+
+\begin_layout Section
+Building the User Interface
+\end_layout
+
+\begin_layout Standard
+We can now use the GWT widgets to build out interface.
+ Navigate into the 
+\family typewriter
+gwtgui
+\family default
+ stratum.
+ You will see three packages.
+ Navigate into the 
+\family typewriter
+addcar widget
+\family default
+ package - this model is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-AddCarWidget-composite"
+
+\end_inset
+
+ below.
+ This defines the 
+\begin_inset Quotes eld
+\end_inset
+
+Add new car:
+\begin_inset Quotes erd
+\end_inset
+
+ widget shown at the top of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Car-Rental"
+
+\end_inset
+
+.
+ It controls how a new rental car is entered into the system.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/addcarwidget.eps
+	scale 80
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-AddCarWidget-composite"
+
+\end_inset
+
+The 
+\family typewriter
+AddCarWidget
+\family default
+ composite
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The widget itself is pretty simple.
+ It uses a horizontal panel to bind together a label (
+\begin_inset Quotes eld
+\end_inset
+
+Add new car:
+\begin_inset Quotes erd
+\end_inset
+
+) and the textbox for entering the car's information into.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Interestingly, we have managed to define 
+\family typewriter
+AddCarWidget
+\family default
+ without any GWT-specific support for composite widgets.
+ We have simply used normal Evolve practices.
+ The AddCarWidget can now be used as a widget in a larger design, as we
+ shall soon see.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now consider building a widget showing a single car and its rental status,
+ and allowing it to be rented or returned.
+ Navigate into the 
+\family typewriter
+rentallogic & widget
+\family default
+ package.
+ Here we have defined another composite widget as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-widget-for"
+
+\end_inset
+
+.
+ Multiple of these are shown in the lower part of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Car-Rental"
+
+\end_inset
+
+, one per car.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/carrentalwidget.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-widget-for"
+
+\end_inset
+
+The widget for viewing and renting a car
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+CarRentalWidget
+\family default
+ is defined in a similar way to the previous one, with a small addition
+ of the 
+\family typewriter
+RentalLogic
+\family default
+ part which adds some logic handling when the textbox is entered or the
+ button clicked.
+ In this case a horizontal panel is used to structure two labels, a textbox
+ and a button.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+RentalLogic
+\family default
+ leaf, shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-component-for"
+
+\end_inset
+
+, handles the logic for when a renter is set for a car, or when it is returned
+ from rental.
+ In both cases, a callback from a GWT widget results in a call to the 
+\family typewriter
+IRentalServicesAsync
+\family default
+ GWT service interface.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/rentallogic.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-component-for"
+
+\end_inset
+
+The component for handling the rental logic
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the widgets we are building are simply components, we can evolve and
+ reuse them to good effect.
+ For instance, we might want to keep the UI structure (the widgets) separate
+ from the logic.
+ In that case, we could have defined the CarRentalWidget without the RentalLogic
+ part and used resemblance to add it in a new composite.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Putting the User Interface Together
+\end_layout
+
+\begin_layout Standard
+Navigate to the car rental widget package.
+ Here we tie the two widgets we have defined into the user interface shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Bringing-the-full"
+
+\end_inset
+
+.
+ However, there is a slight twist - we want to dynamically create a separate
+ 
+\family typewriter
+CarRentalWidget
+\family default
+ part per car in the database.
+ The 
+\family typewriter
+CarRentalWidgetFactory
+\family default
+ is used to accomplish this.
+ Finally, we connect up a 
+\family typewriter
+GUILogic
+\family default
+ part which has a small amount of logic to control the population of these
+ widgets.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/carrentalform.eps
+	width 100text%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Bringing-the-full"
+
+\end_inset
+
+Bringing the full UI together
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Making the Service Available
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+RentalService
+\family default
+ leaf is simply a shell component with a hyperport, designed to make the
+ 
+\family typewriter
+IRentalServiceAsync
+\family default
+ GWT-provided service available to the entire GUI structure.
+ Look at RentalService.java to see how trivial this is.
+\end_layout
+
+\begin_layout Standard
+Generating the Full Implementation
+\end_layout
+
+\begin_layout Standard
+We cannot run the GWT system inside Evolve, it must be run in hosted mode
+ as provided by the GWT toolkit.
+ To allow this, we generate the full code for the stratum
+\begin_inset Newline newline
+\end_inset
+
+(
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Backbone
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Generate full implementation
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+) which creates the 
+\family typewriter
+CarRentalFormFactory.java
+\family default
+ class.
+ As this does not provide 
+\family typewriter
+IRun
+\family default
+, no main() method will be generated.
+ We instead add the instantiation of our factory to the GWT-created class
+ 
+\family typewriter
+CarRentalGUI
+\family default
+, as below.
+\end_layout
+
+\begin_layout LyX-Code
+public class CarRentalGUI implements EntryPoint
+\end_layout
+
+\begin_layout LyX-Code
+{
+\end_layout
+
+\begin_layout LyX-Code
+  public void onModuleLoad()
+\end_layout
+
+\begin_layout LyX-Code
+  {
+\end_layout
+
+\begin_layout LyX-Code
+    CarRentalFormFactory form =
+\end_layout
+
+\begin_layout LyX-Code
+        new CarRentalFormFactory().initialize(null, null);
+\end_layout
+
+\begin_layout LyX-Code
+    RootPanel.get("application").add(form.getPanel_Provided());
+\end_layout
+
+\begin_layout LyX-Code
+  }
+\end_layout
+
+\begin_layout LyX-Code
+} 
+\end_layout
+
+\begin_layout Standard
+That completes the integration with GWT for the front-end.
+\end_layout
+
+\begin_layout Section
+Running the Front and Back Ends in GWT
 \end_layout
 
 \end_body

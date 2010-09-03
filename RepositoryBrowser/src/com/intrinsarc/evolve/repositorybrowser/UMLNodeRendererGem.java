@@ -94,12 +94,29 @@ public class UMLNodeRendererGem implements Gem
     		new UMLStereotypeDeterminer(CommonRepositoryFunctions.COMPONENT, CommonRepositoryFunctions.FACTORY, false));
     addIcon(ClassImpl.class, null, null, null, "placeholder.png",
   		new UMLStereotypeDeterminer(CommonRepositoryFunctions.COMPONENT, CommonRepositoryFunctions.PLACEHOLDER, false));
+    addIcon(ClassImpl.class, null, null, null, "state.png", new UMLIconDeterminer()
+    {
+			public boolean isRelevant(Element element)
+			{
+				return
+					StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.STATE) &&
+					!UMLTypes.containsParts((Class) element);
+			}
+    });
+    addIcon(ClassImpl.class, null, null, null, "composite-state.png", new UMLIconDeterminer()
+    {
+			public boolean isRelevant(Element element)
+			{
+				return
+					StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.STATE);
+			}
+    });
     addIcon(ClassImpl.class, null, null, null, "leaf.png", new UMLIconDeterminer()
     {
 			public boolean isRelevant(Element element)
 			{
 				return
-					StereotypeUtilities.isStereotypeApplied(element, CommonRepositoryFunctions.COMPONENT) &&
+					StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.COMPONENT) &&
 					!UMLTypes.containsParts((Class) element);
 			}
     });
@@ -161,6 +178,35 @@ public class UMLNodeRendererGem implements Gem
     addIcon(CommentImpl.class, null, null, null, "note.png", null);
 
     // parts are quite specific
+    // start with the state parts
+    addIcon(PropertyImpl.class, "Part", null, null, "state-part.png",
+      new UMLIconDeterminer()
+      {
+        public boolean isRelevant(Element element)
+        {
+          return UMLTypes.extractInstanceOfPart(element) != null && 
+						StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.STATE_PART);
+        }          
+      });
+      addIcon(DeltaDeletedAttributeImpl.class, null, null, null, "state-part.png", "delta-deleted.png",
+      new UMLIconDeterminer()
+      {
+        public boolean isRelevant(Element element)
+        {
+          return UMLTypes.extractInstanceOfPart(((DeltaDeletedAttribute) element).getDeleted()) != null &&
+						StereotypeUtilities.isRawStereotypeApplied(((DeltaDeletedAttribute) element).getDeleted(), CommonRepositoryFunctions.STATE_PART);
+        }          
+      });
+    addIcon(DeltaReplacedAttributeImpl.class, null, null, null, "state-part.png", "delta-replaced.png",
+      new UMLIconDeterminer()
+      {
+        public boolean isRelevant(Element element)
+        {
+          return UMLTypes.extractInstanceOfPart(((DeltaReplacedAttribute) element).getReplaced()) != null &&
+          	StereotypeUtilities.isRawStereotypeApplied(((DeltaReplacedAttribute) element).getReplaced(), CommonRepositoryFunctions.STATE_PART);
+        }          
+      });
+    // now add normal parts
     addIcon(PropertyImpl.class, "Part", null, null, "tree-part.png",
       new UMLIconDeterminer()
       {

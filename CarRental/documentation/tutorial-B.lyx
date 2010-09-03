@@ -894,7 +894,7 @@ CarsExample
 \end_layout
 
 \begin_layout Subsection
-Evolution a Component
+Evolving a Component
 \end_layout
 
 \begin_layout Standard
@@ -1267,7 +1267,7 @@ This particular technique will not work if using Backbone with OSGi or other
  Java.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Section
 Retirement
 \end_layout
 
@@ -1312,8 +1312,9 @@ reference "fig:Retiring-a-component"
 \end_inset
 
 .
- It is an error to refer to the retired element in strata that depend on
- the stratum with the retirement.
+ To enforce the retirement, it is an error to refer to the retired element
+ in strata that depend on the stratum with the retirement.
+ In effect, retirement is the delta version of subject deletion.
 \end_layout
 
 \begin_layout Standard

@@ -11,7 +11,9 @@ import javax.swing.tree.*;
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
+import org.eclipse.uml2.Class;
 import org.eclipse.uml2.Package;
+import org.eclipse.uml2.impl.*;
 
 import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.idraw.foundation.*;
@@ -195,9 +197,17 @@ public class UMLTreeMediator
         if (t2.getShortCutType() == ShortCutType.NORMAL && t1.getShortCutType() == ShortCutType.NONE)
           return -1;
         
+        // if one node is an applied stereotype, push it down
+        EClass stereoVal = UML2Package.eINSTANCE.getAppliedBasicStereotypeValue(); 
+        if (e1.eClass() == stereoVal && e2.eClass() != stereoVal)
+        	return 1;
+        if (e1.eClass() != stereoVal && e2.eClass() == stereoVal)
+        	return -1;
+        
         // if the nodes have different types, base the return on a comparison of the types
         String c1 = e1.eClass().getName();
         String c2 = e2.eClass().getName();
+                
         if (!c1.equals(c2))
           return c1.compareTo(c2);
         

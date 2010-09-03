@@ -675,8 +675,10 @@ public class HardcodedFactoryWriter
 				ph.resolveGetMethodNames();
 
 				// is this the run port?
-				if (p.getImplementationClassName().equals(IRun.class.getCanonicalName()));
+				if (p.getImplementationClassName().equals(IRun.class.getCanonicalName()))
+				{
 					runPortGetMethod = ph.getGetSingleName();
+				}
 					
 				c.write("  public " + p.getImplementationClassName() + " " + ph.getGetSingleName() + "()");
 				if (port.isBeanMain())

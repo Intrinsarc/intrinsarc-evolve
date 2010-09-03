@@ -537,14 +537,14 @@ public class GrouperNodeGem
         String startTag = "export ";
         if (name.startsWith(startTag) && (name.endsWith(".eps") || name.endsWith(".gif") || name.endsWith(".jpg") || name.endsWith(".png")))
         {
-        	name = name.substring(startTag.length());
+        	String fname = name.substring(startTag.length());
 
         	// is this a delta export?
         	String deltas = "deltas ";
         	boolean addDeltas = false;
-        	if (name.startsWith(deltas))
+        	if (fname.startsWith(deltas))
         	{
-        		name = name.substring(deltas.length());
+        		fname = fname.substring(deltas.length());
         		addDeltas = true;
         	}
         	
@@ -555,19 +555,19 @@ public class GrouperNodeGem
           // copy to clipboard
           if (view != null)
           {
-            if (name.endsWith(".eps"))
+            if (fname.endsWith(".eps"))
               ClipboardViewContextGem.saveAsEPS(
-                  new File(directory, name),
+                  new File(directory, fname),
                   view.getCanvas(),
                   view.getDrawnBounds());
             else
             {
-              int length = name.length();
+              int length = fname.length();
               ClipboardViewContextGem.saveAsImage(
-                  new File(directory, name),
+                  new File(directory, fname),
                   view.getCanvas(),
                   view.getDrawnBounds(),
-                  name.substring(length - 3, length));
+                  fname.substring(length - 3, length));
             }
           }
         }
