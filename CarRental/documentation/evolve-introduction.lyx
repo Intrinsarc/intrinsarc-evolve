@@ -308,7 +308,7 @@ electronic circuit board and chip
 
  metaphor for software, where component instances are joined together using
  connectors to form larger components.
- The underlying foundation scales well to model large, complex systems,
+ The underlying foundation scales well to support large, complex systems,
  but can seamlessly handle fine-grained components too.
  It provides powerful facilities for reuse and evolution, allowing multiple
  variants of an application to be built quickly and easily.

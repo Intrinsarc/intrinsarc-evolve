@@ -119,7 +119,11 @@ Overview of the Tutorials
 
 \begin_layout Standard
 This chapter looks at an overview of the tutorial examples, contained in
- the car-rental.evolve model.
+ the 
+\family typewriter
+car-rental.evolve
+\family default
+ model.
  Load the model by following the instructions in section 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -266,10 +270,9 @@ states
 \end_inset
 
 This shows how to define state machines.
- These are another form of component, with the visual appearance and behaviour
+ These are another form of component, with the visual appearance and behavior
  of UML2 statecharts.
- As they are components, state machines can be reused using resemblance
- and evolved.
+ As they are components, state machines can be resembled and evolved.
 \end_layout
 
 \begin_layout Itemize
@@ -281,13 +284,13 @@ factory
 \begin_inset Newline newline
 \end_inset
 
-This show how to dynamically instantiate components.
+This shows how to dynamically instantiate components.
  Basically, factories are just lazily instantiated components, where the
  internal parts and connectors are created on demand.
  This is a powerful approach that allows complex structures to be created
  easily.
- As they are components, factories can be resembled and evolved giving access
- to the power of these constructs for dynamic structures.
+ As they are also components, factories can be resembled and evolved giving
+ access to the power of these constructs for dynamic structures.
 \end_layout
 
 \begin_layout Itemize
@@ -302,7 +305,7 @@ hyperports
 Hyperports are ports which cut through the compositional hierarchy.
  They allow a part, at a high level in the hierarchy, to connect to any
  number of lower level parts.
- This gives the convenience of singletons, without any of the disadvantages.
+ This gives the convenience of singletons, without the disadvantages.
 \end_layout
 
 \begin_layout Standard
@@ -336,7 +339,7 @@ service interfaces
 
 The service interfaces between the client and server are defined.
  These interfaces are implemented by the back-end and used by the front-end
- to display information about the rental cars.
+ to retrieve information about the rental cars.
 \end_layout
 
 \begin_layout Itemize
@@ -349,7 +352,7 @@ gwtservice
 \end_inset
 
 This builds the service as a set of Evolve components.
- It keeps a list of the rental cars and who is renting them.
+ It keeps track of the rental cars and who is renting them.
 \end_layout
 
 \begin_layout Itemize
@@ -417,10 +420,10 @@ status collapsed
 The GWT and Hibernate integrations are simple because Evolve is basically
  a JavaBean system and these technologies work well with beans.
  The use of beans in the Java ecosystem is a lightweight and yet powerful
- approach to components, and Evolve leverages this to provide simple integration.
+ approach to components, and Evolve leverages this fully.
  It is often the case that integration with other technologies involves
- little other than reverse-engineering a bean library into Evolve and then
- working with the imported component definitions.
+ little other than importing a bean library into Evolve and then working
+ with the imported component definitions.
 \end_layout
 
 \end_body

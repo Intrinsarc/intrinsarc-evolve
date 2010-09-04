@@ -6,7 +6,7 @@ import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.base.*;
 
 
-public class CarRental
+public class RentalServiceLogic
 // start generated code
 	// main port
  implements com.intrinsarc.carrentalgui.client.IRentalService

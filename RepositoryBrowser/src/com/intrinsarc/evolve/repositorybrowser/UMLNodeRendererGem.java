@@ -179,13 +179,14 @@ public class UMLNodeRendererGem implements Gem
 
     // parts are quite specific
     // start with the state parts
-    addIcon(PropertyImpl.class, "Part", null, null, "state-part.png",
+    addIcon(PropertyImpl.class, null, null, null, "state-part.png",
       new UMLIconDeterminer()
       {
         public boolean isRelevant(Element element)
         {
-          return UMLTypes.extractInstanceOfPart(element) != null && 
-						StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.STATE_PART);
+        	return
+        		UMLTypes.extractInstanceOfPart(element) != null && 
+        		StereotypeUtilities.isRawStereotypeApplied(element, CommonRepositoryFunctions.STATE_PART);
         }          
       });
       addIcon(DeltaDeletedAttributeImpl.class, null, null, null, "state-part.png", "delta-deleted.png",
@@ -470,7 +471,6 @@ public class UMLNodeRendererGem implements Gem
         icon = getUMLIcon(element, object.getShortCutType());
 
       // set the icon type
-      boolean defaultIcon = icon == null && element != null;
       if (icon == null)
         icon = DEFAULT_ICON;
 

@@ -1504,6 +1504,12 @@ status collapsed
 \end_layout
 
 \begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Evolution-as-a"
+
+\end_inset
+
 Evolution as a Form of Aspect-Oriented Programming (AOP)
 \end_layout
 

@@ -177,7 +177,8 @@ The top level files in the Evolve distribution
 \end_layout
 
 \begin_layout Standard
-You must have Java1.5+ installed already.
+Evolve is written in Java.
+ You must have Java1.5+ installed already.
  Java1.6+ is preferred.
 \end_layout
 
@@ -255,7 +256,7 @@ Setting Up The Environment
 \begin_layout Standard
 Before going further, we need to configure a small number of environment
  variables from within Evolve.
- Select the 
+ Select the
 \begin_inset ERT
 status collapsed
 
@@ -287,7 +288,7 @@ status collapsed
 
 \end_inset
 
- menu item or press 
+menu item or press
 \begin_inset ERT
 status open
 
@@ -300,7 +301,7 @@ menu{F4}
 
 \end_inset
 
- and choose the Variables tab.
+and choose the Variables tab.
  You should see something like figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -512,7 +513,7 @@ Navigating Around the Tutorial Model
 \begin_layout Standard
 We are now going to load the tutorial model that is used in the following
  chapters.
- Select the 
+ Select the
 \begin_inset ERT
 status collapsed
 
@@ -544,7 +545,7 @@ status collapsed
 
 \end_inset
 
- menu item.
+menu item.
  Navigate to the 
 \family typewriter
 tutorial
@@ -578,7 +579,7 @@ status open
 \begin_inset Graphics
 	filename screenshots/car-start.png
 	lyxscale 50
-	scale 30
+	scale 35
 
 \end_inset
 
@@ -608,6 +609,47 @@ The tutorial model
 
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Evolve models are XML files.
+ Files with a 
+\family typewriter
+.evolve
+\family default
+ extension are uncompressed.
+ To create a compressed model choose the 
+\family typewriter
+.evolvez
+\family default
+ extension when saving.
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Subsubsection*
 Navigating into Strata
 \end_layout
@@ -622,12 +664,12 @@ base
 factory
 \family default
  etc.
- are known as strata.
+ are strata.
  These are very similar to UML2 packages.
  To visit into a stratum, double-click it, or alternatively middle-click
  it.
- To exit back to the parent, double-click or middle-click the white background.
- To go backwards or forwards in the diagram history, select the 
+ To exit back to the parent, double-click or middle-click the diagram background.
+ To go backwards or forwards in the diagram history, select the
 \begin_inset ERT
 status collapsed
 
@@ -655,7 +697,7 @@ status collapsed
 
 \end_inset
 
- or 
+or
 \begin_inset ERT
 status collapsed
 
@@ -683,7 +725,7 @@ status collapsed
 
 \end_inset
 
- menu options.
+menu options.
 \end_layout
 
 \begin_layout Subsubsection*
@@ -692,7 +734,11 @@ Tabs
 
 \begin_layout Standard
 Evolve uses a tabbed graphical interface.
- To open a new diagram tab, select the 
+ To open a new diagram tab, select the
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset ERT
 status collapsed
 
@@ -720,7 +766,7 @@ status collapsed
 
 \end_inset
 
- menu option.
+menu option.
  The tab can then be dragged into a different position as required.
  To avoid the tab docking, hold the shift key while dragging its titlebar.
 \end_layout
@@ -740,7 +786,7 @@ Component focus
 \end_inset
 
  by default, showing the tools used to define components.
- To change the focus, use the 
+ To change the focus, use the
 \begin_inset ERT
 status collapsed
 
@@ -764,7 +810,7 @@ status collapsed
 
 \end_inset
 
- menu options.
+menu options.
  The 
 \begin_inset Quotes eld
 \end_inset
@@ -813,7 +859,7 @@ idea{
 
 \end_inset
 
-When pressing 
+When pressing
 \begin_inset ERT
 status collapsed
 
@@ -837,8 +883,8 @@ status collapsed
 
 \end_inset
 
- to bring up the mini-palette, you will only see tools relevant for the
- current focus.
+to bring up the mini-palette, you will only see tools relevant for the current
+ focus.
  For instance, if we are in the 
 \begin_inset Quotes eld
 \end_inset
@@ -863,7 +909,7 @@ status collapsed
 
 \begin_layout Standard
 An extremely useful alternative to using the tool palette directly is to
- press the the 
+ press the the
 \begin_inset ERT
 status collapsed
 
@@ -887,12 +933,12 @@ status collapsed
 
 \end_inset
 
- key over the diagram.
+key over the diagram.
  This will bring up a mini-palette with tools relevant for the current diagram
  context.
  This allows rapid entry of a design.
  Note that to draw a connecting line between nodes, you must hover over
- the inside edge of the shape before pressing 
+ the inside edge of the shape before pressing
 \begin_inset ERT
 status collapsed
 
@@ -932,7 +978,11 @@ Keys
 \begin_inset Quotes erd
 \end_inset
 
- tab of the 
+ tab of the
+\begin_inset Newline newline
+\end_inset
+
+
 \begin_inset ERT
 status collapsed
 
@@ -950,34 +1000,6 @@ File
 \end_inset
 
 Preferences
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
-\begin_inset Newline newline
-\end_inset
-
-
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
@@ -992,7 +1014,7 @@ status collapsed
 
 \end_inset
 
- dialog.
+dialog.
  By default the keys are set to sensible defaults for Windows and Linux.
  MacOSX users may find several of them inconvenient however and will want
  to remap these.
@@ -1035,7 +1057,7 @@ status collapsed
 
 ) and pasted 
 \family typewriter
-
+(
 \begin_inset ERT
 status collapsed
 
@@ -1048,9 +1070,9 @@ menu{
 
 \end_inset
 
-control 
+control V
 \family default
-V
+
 \begin_inset ERT
 status collapsed
 
@@ -1061,7 +1083,7 @@ status collapsed
 
 \end_inset
 
- back onto the same, or another, diagram.
+) back onto the same, or another, diagram.
  We can also paste into an external wordprocessor such as Word or OpenOffice
  Writer.
  For external programs, the underlying vectory graphics format used is the
@@ -1078,7 +1100,7 @@ Full Screen Mode
 \end_layout
 
 \begin_layout Standard
-Evolve can be switched to full screen mode by pressing 
+Evolve can be switched to full screen mode by pressing
 \begin_inset ERT
 status collapsed
 
@@ -1102,7 +1124,7 @@ status collapsed
 
 \end_inset
 
- or invoking the 
+or invoking the
 \begin_inset ERT
 status collapsed
 
@@ -1130,7 +1152,7 @@ status collapsed
 
 \end_inset
 
- menu option.
+menu option.
  In this mode, the top menus are hidden and can be revealed by moving the
  mouse to the top of the screen.
 \end_layout
@@ -1140,7 +1162,7 @@ To further increase the diagram real estate, drag the titlebar of the tool
  palette to the dock on the left hand side.
  The palette will then be hidden and the screen will be almost completely
  taken up by the diagram space.
- You will then need to use the 
+ You will then need to use the
 \begin_inset ERT
 status collapsed
 
@@ -1164,7 +1186,7 @@ status collapsed
 
 \end_inset
 
- key to invoke the mini-palette to create diagrams.
+key to invoke the mini-palette to create diagrams.
 \end_layout
 
 \begin_layout Standard
@@ -1245,7 +1267,7 @@ reference "fig:Multiple-views-of"
 Test
 \family default
 .
- We can then delete views by selecting them and pressing 
+ We can then delete views by selecting them and pressing
 \family typewriter
 
 \begin_inset ERT
@@ -1273,7 +1295,7 @@ status collapsed
 
 \end_inset
 
- (
+(
 \begin_inset ERT
 status collapsed
 
@@ -1303,7 +1325,6 @@ status collapsed
 
 ).
  To remove the entire subject and all its views, however, we need to invoke
- 
 \begin_inset ERT
 status collapsed
 
@@ -1383,7 +1404,7 @@ Multiple views of the same component subject
 \begin_layout Standard
 Diagrams allows us to look at the views.
  To look at the subjects directly, however, we instead use the subject browser.
- To invoke this, select an item on the screen and select 
+ To invoke this, select an item on the screen and select
 \begin_inset ERT
 status collapsed
 
@@ -1411,8 +1432,7 @@ status collapsed
 
 \end_inset
 
-.
- This will bring up the browser on the subject of the element selected,
+- this will bring up the browser on the subject of the element selected,
  as per figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1478,16 +1498,23 @@ Consider if we have an existing component
 SpellChecker
 \family default
 , and an unnamed component.
- If we want the unnammed component to be a further view of SpellChecker,
- we start typing the name (
+ If we want the unnammed component to be a further view of 
+\family typewriter
+SpellChecker
+\family default
+, we start typing the name (
 \begin_inset Quotes eld
 \end_inset
 
+
+\family typewriter
 Spe...
+\family default
+
 \begin_inset Quotes erd
 \end_inset
 
-) and then press the 
+) and then press the
 \begin_inset ERT
 status collapsed
 
@@ -1511,7 +1538,7 @@ status collapsed
 
 \end_inset
 
- key as in figure 
+key as in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Press-tab-while"
@@ -1520,11 +1547,11 @@ reference "fig:Press-tab-while"
 
 .
  A list of possible matches will then appear, and we can click on one.
- This will result in the view being of the chosen component.
+ This will result in the view referencing the chosen component.
 \end_layout
 
 \begin_layout Standard
-If we do not press 
+If we do not press
 \begin_inset ERT
 status collapsed
 
@@ -1552,12 +1579,16 @@ status collapsed
 \begin_inset Quotes eld
 \end_inset
 
+
+\family typewriter
 SpellChecker
+\family default
+
 \begin_inset Quotes erd
 \end_inset
 
  name, then we will have created a different component with the same name.
- Remember to press 
+ Remember to press
 \begin_inset ERT
 status collapsed
 
@@ -1581,7 +1612,7 @@ status collapsed
 
 \end_inset
 
- when referencing an existing element!
+when referencing an existing element!
 \end_layout
 
 \begin_layout Standard
@@ -1672,7 +1703,7 @@ tag
 \begin_inset Quotes erd
 \end_inset
 
- the current stratum to indicate that we want to run it, using the 
+ the current stratum to indicate that we want to run it, using the
 \begin_inset ERT
 status collapsed
 
@@ -1700,8 +1731,8 @@ status collapsed
 
 \end_inset
 
- menu option.
- Then choose the 
+menu option.
+ Then choose the
 \begin_inset ERT
 status collapsed
 
@@ -1729,7 +1760,7 @@ status collapsed
 
 \end_inset
 
- menu option.
+menu option.
  The components in the diagram are instantiated and a runner dialog should
  show appear as in figure 
 \begin_inset CommandInset ref
@@ -1753,7 +1784,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/runner.png
-	scale 50
+	scale 60
 
 \end_inset
 

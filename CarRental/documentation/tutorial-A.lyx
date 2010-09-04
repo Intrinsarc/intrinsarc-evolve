@@ -114,25 +114,24 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Tutorial A: 
 \begin_inset CommandInset label
 LatexCommand label
 name "cha:Tutorial-A:-Creating"
 
 \end_inset
 
-Creating and Composing Components
+Tutorial A: Creating and Composing Components
 \end_layout
 
 \begin_layout Standard
-In this tutorial, we will create one component for representing rental cars
- and another for representing their renters.
+In this tutorial, we will create a component for representing rental car
+ details and another for representing renters.
  We will then connect instances of these into a composite component and
  execute the model.
 \end_layout
 
 \begin_layout Standard
-Along the way we will cover:
+Along the way we will discover:
 \end_layout
 
 \begin_layout Itemize
@@ -170,8 +169,8 @@ How to run a Backbone program independently from Evolve.
 \end_layout
 
 \begin_layout Itemize
-How to generate a program for a Backbone model, that doesn't require the
- Backbone interpreter.
+How to generate a program from a model that doesn't require the Backbone
+ interpreter.
 \end_layout
 
 \begin_layout Standard
@@ -208,8 +207,8 @@ reference "sec:Running-A-Backbone"
 
 \end_inset
 
- has already described how to run this model and you should see the output
- as per figure 
+ has already described how to run this model and you should have seen the
+ output as per figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-Backbone-runner"
@@ -462,7 +461,7 @@ status collapsed
 
 \end_inset
 
- in the body of the component and selecting the attribute options.
+ in the body of the component and selecting the attribute option.
 \end_layout
 
 \begin_layout Standard
@@ -585,14 +584,7 @@ status collapsed
 \end_inset
 
  option.
- You should see a subject browser, as per figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Looking-at-the"
-
-\end_inset
-
-.
+ You should see a subject browser.
  Click on the stereotype
 \begin_inset Foot
 status collapsed
@@ -1027,8 +1019,8 @@ bb-classpath
 \begin_inset Newline newline
 \end_inset
 
-This is the classpath used to find class files and jar files for reverse
- engineering beans into Evolve.
+This is the classpath used to find class files and jar files for importing
+ beans into Evolve.
  Separate any items by a space, and use quotes for classpath entries with
  spaces.
 \end_layout
@@ -1042,7 +1034,7 @@ bb-source-folder
 \begin_inset Newline newline
 \end_inset
 
-This specifies where to write out the Backbone definitions for the stratum.
+This specifies where to write the Backbone definitions for the stratum.
 \end_layout
 
 \begin_layout Itemize

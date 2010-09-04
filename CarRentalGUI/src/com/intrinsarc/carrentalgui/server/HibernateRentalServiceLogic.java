@@ -8,7 +8,7 @@ import org.hibernate.cfg.*;
 import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.base.*;
 
-public class HibernateCarRental
+public class HibernateRentalServiceLogic
 // start generated code
 	// main port
  implements com.intrinsarc.carrentalgui.client.IRentalService, ILifecycle

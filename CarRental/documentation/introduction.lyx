@@ -118,28 +118,24 @@ Introduction
 \end_layout
 
 \begin_layout Section
-The Background of Evolve
+What is Evolve?
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+In essence, Evolve is simply a convenient and powerful way to connect together
+ classes to structure a program.
+ The connection code created is simple and transparent.
 \end_layout
 
 \begin_layout Standard
-Several years ago as the technical lead for a large Java enterprise system,
+Several years ago as the technical lead for a large Java enterprise application,
  I started wondering about components.
  The system we constructed had a number of natural abstractions which could
- loosely have been termed components but we struggled to separate these
+ have been loosely termed components but we struggled to separate these
  out from each other or find their true essence.
- This got me thinking, and after taking a year off to work on a UML2 CASE
- tool
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Part of this is licensed to Gentleware AG as the basis of PoseidonUML version
- 8
-\end_layout
-
-\end_inset
-
-, I 
+ After thinking deeply about this, I 
 \begin_inset Quotes eld
 \end_inset
 
@@ -147,44 +143,42 @@ invented
 \begin_inset Quotes erd
 \end_inset
 
- a theory of hierarchical components which would allow me to break such
- a system down neatly into a collection of connected components.
+ a theory of hierarchical components which would allow me to break a system
+ down neatly into connected components.
  Or at least I thought I invented this approach...
 \end_layout
 
 \begin_layout Standard
-Of course I didn't really invent this paradigm at all - I simple rediscovered
- it.
+Of course I didn't really invent it at all - I rediscovered it.
  It turned out that hierarchical components had been discovered over 10
- years before by two eminent professors
+ years before
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-Professors Jeff Magee and Jeff Kramer from Imperial College, London
+By Professors Jeff Magee and Jeff Kramer from Imperial College, London.
+ That system was called Darwin.
 \end_layout
 
 \end_inset
 
 .
- The influential system they created was called Darwin, and was a large
- part of the inspiration for Microsoft's COM system.
- Philips also used an embedded version called Koala for the controlling
- software of some of their television sets.
- After reading one of the professors' articles in a book, I contacted them
- and they subsequently supervised my PhD, where I added reuse and evolution
- support to a component language.
+ That work was a large part of the inspiration for Microsoft's COM and Philips
+ also used an embedded version for the software in some of their television
+ sets.
 \end_layout
 
 \begin_layout Standard
-In short, Evolve is a fusion of a UML2 graphical tool, with a Darwin-like
- component language called Backbone.
- Backbone programs are created in Evolve, using UML2 composite structure
- diagrams, and then executed using the Backbone interpreter.
+Evolve is a fusion of a UML2 CASE tool with a powerful, hierarchical component
+ model.
+ It allows you to connect up classes like an electronics designer wires
+ up chips.
+ Components are created in Evolve, using UML2 composite structure diagrams,
+ which can then executed.
  At all times, the link between the graphical view and the code is kept
  intact.
- Evolve components at the lowest level are simply plain classes, in keeping
- with JavaBeans
+ Components at the lowest level are simply plain classes, in keeping with
+ JavaBeans
 \begin_inset Foot
 status collapsed
 
@@ -200,100 +194,50 @@ Although JavaBeans is often used to refer to Swing/AWT widgets, we use the
 \end_layout
 
 \begin_layout Subsection
-A Quick Rundown of Evolve and Backbone
+A Quick Tour of Evolve
 \end_layout
 
 \begin_layout Standard
-Evolve is a lightweight, but fully-fledged, modeling environment for defining
- components.
- It is deeply integrated with the Backbone component system.
- Some of its features are listed below.
+Some of Evolve's features are listed below.
 \end_layout
 
-\begin_layout Enumerate
+\begin_layout Itemize
 Components are defined using UML2 composite structure diagrams.
- Evolve is a fully featured CASE tool
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-Evolve supports only the UML2 diagram types relevant to component modeling,
- as well as adding some diagram types of its own.
 \end_layout
 
-\end_inset
-
-.
+\begin_layout Itemize
+JavaBean code can be generated, and existing beans can be quickly imported.
 \end_layout
 
-\begin_layout Enumerate
-JavaBean code can be generated, and existing beans can be reverse-engineered
- quickly into the environment.
- JavaBeans are first-class components in Evolve.
+\begin_layout Itemize
+Full support for the reuse and evolution of components, giving the advantages
+ of AOP without the drawbacks.
 \end_layout
 
-\begin_layout Enumerate
-Full support for the reuse and evolution of components.
-\begin_inset Newline newline
-\end_inset
-
-Two constructs, resemblance and evolution, allow new components to be robustly
- defined in terms of existing ones.
-\end_layout
-
-\begin_layout Enumerate
-Evolution can be used to augment components, much like aspect-oriented programmi
-ng.
-\begin_inset Newline newline
-\end_inset
-
-This does not suffer from the limitations of aspects such as the reliance
- on method and field name conventions, the indirect application making it
- difficult to see which aspects are applied, or difficulty composing aspects.
-\end_layout
-
-\begin_layout Enumerate
+\begin_layout Itemize
 Support for state machines and their reuse and evolution.
 \end_layout
 
-\begin_layout Enumerate
-Port interface inference, where Evolve infers the interfaces provided and
- required by a component.
+\begin_layout Itemize
+A single model can hold and execute many variants of a system.
 \end_layout
 
-\begin_layout Enumerate
-A single model can hold and execute many variants of a system, allowing
- all permutations to be checked easily.
+\begin_layout Itemize
+Full error checking to guarantee all components will connect correctly at
+ runtime.
 \end_layout
 
-\begin_layout Enumerate
-Error checking, where a model is fully checked to ensure all the connected
- components will match up correctly at runtime.
-\end_layout
-
-\begin_layout Enumerate
+\begin_layout Itemize
 Full support for renaming and restructuring parts of the model.
 \end_layout
 
-\begin_layout Enumerate
-Execution of Backbone programs from within the Evolve tool.
+\begin_layout Itemize
+Parts of a model can be exported and imported for collaborative development.
 \end_layout
 
-\begin_layout Enumerate
-Parts of a model can be exported and imported allowing for collaborative
- development.
-\end_layout
-
-\begin_layout Standard
-Some of the features of the Backbone component language and runtime:
-\end_layout
-
-\begin_layout Enumerate
-A full hierarchical component model supporting the reuse and evolution approach.
-\end_layout
-
-\begin_layout Enumerate
-Two runtime options are available:
+\begin_layout Itemize
+Component programs can be run from inside Evolve.
+ Two runtime options are available:
 \end_layout
 
 \begin_deeper
@@ -304,8 +248,8 @@ The Backbone interpreter can be used.
 \end_layout
 
 \begin_layout Enumerate
-Alternatively, a Java program can be created directly from the model, removing
- any runtime overhead.
+A simple Java program can be created directly from the model, removing any
+ runtime overhead.
  In this mode, a library of 15kb is used, consisting mainly of interfaces.
 \end_layout
 
@@ -359,8 +303,8 @@ status collapsed
 
 \begin_layout Standard
 In other words, a component is separated from its environment by interfaces.
- An instance can be connected up to other instances which offer compatible
- interfaces.
+ A component instance can be connected up to other instances which offer
+ compatible interfaces.
  
 \end_layout
 
@@ -372,8 +316,8 @@ A Leaf Component
 With a bit of effort, we can make a Java class fit into this definition.
  A class can certainly be instantiated, and we can use conventions for provided
  and required interfaces.
- We call this a leaf component, as it cannot be further broken down into
- smaller parts.
+ We call this a leaf component - it cannot be further broken down into smaller
+ parts.
 \end_layout
 
 \begin_layout Standard
@@ -409,7 +353,10 @@ document
 ISuggest
 \family default
  interface via the same port.
- In other words, if you call the 
+\end_layout
+
+\begin_layout Standard
+In other words, if you call the 
 \family typewriter
 check()
 \family default
@@ -603,8 +550,7 @@ The only really troublesome part is mapping the provided interface of
 document
 \family default
 .
- For this, we simply use an anonymous inner class, and provide a getter
- for it.
+ For this, we use an anonymous inner class, and provide a getter for it.
  We use the
 \family typewriter
  _Provided
@@ -615,7 +561,7 @@ document
 \begin_layout Standard
 As long as we follow these conventions, we can regard each JavaBean as a
  leaf component.
- We have introduced the following terminology.
+ We have introduced the following terms.
 \end_layout
 
 \begin_layout Standard
@@ -775,7 +721,12 @@ A Composite Component
 \end_layout
 
 \begin_layout Standard
-Now, suppose that we had a 
+A composite component connects up instances of other components to make
+ a new component.
+\end_layout
+
+\begin_layout Standard
+Suppose that we had a 
 \family typewriter
 Document
 \family default
@@ -787,7 +738,7 @@ reference "fig:A-document-component"
 \end_inset
 
 .
- Note how the 
+ Note how the interfaces of the 
 \family typewriter
 spell
 \family default
@@ -795,15 +746,15 @@ spell
 \family typewriter
 Document
 \family default
- is reciprocal to the interfaces provided and required by 
+ are the opposites of the interfaces provided and required by the 
 \family typewriter
 document
 \family default
- of the 
+ port of 
 \family typewriter
 SpellChecker
 \family default
- leaf.
+.
 \end_layout
 
 \begin_layout Standard
@@ -857,9 +808,11 @@ Document
 \end_layout
 
 \begin_layout Standard
-These two components are able to be connected up together, because they
- offer complementary interfaces.
- The SpellChecker provides a 
+
+\family typewriter
+SpellChecker
+\family default
+ provides an 
 \family typewriter
 ISuggest
 \family default
@@ -868,11 +821,11 @@ ISuggest
 IDocument
 \family default
  implementation.
- The 
+ 
 \family typewriter
 Document
 \family default
- leaf requires an 
+ requires an 
 \family typewriter
 ISuggest
 \family default
@@ -881,7 +834,8 @@ ISuggest
 IDocument
 \family default
  one.
- We connect up an instance of each, joining them via a connector 
+ As these are complementary, we can connect an instance of each of these
+ together, joining them via a connector 
 \family typewriter
 conn
 \family default
@@ -964,7 +918,7 @@ doc
 \family default
 .
  Evolve inferred them from the definitions of the internal parts and their
- connections
+ connections.
 \end_layout
 
 \begin_layout Standard
@@ -1152,7 +1106,7 @@ A general name for a port, part, connector or attribute.
 \end_layout
 
 \begin_layout Section
-A Compositional Hierarchy
+Compositional Hierarchy
 \end_layout
 
 \begin_layout Standard
@@ -1163,8 +1117,8 @@ WordProcessor
  composite, if we ignore the internal parts and connectors, is the same
  form as that of leaves.
  It has ports with provided and required interfaces, and can have attributes.
- In other words, we can now treat the composite like any other and use instances
- of it to define new components.
+ In other words, we can now treat the composite like any other component
+ and use instances of it to define new components.
  Figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -1196,7 +1150,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/office-suite.eps
-	scale 80
+	scale 60
 
 \end_inset
 
@@ -1231,8 +1185,8 @@ OfficeSuite
 \end_layout
 
 \begin_layout Standard
-We are effectively building up a hierarchy of component instances, as shown
- in figure 
+We are building up a hierarchy of component instances, as shown in figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-compositional-hierarchy"
@@ -1332,8 +1286,10 @@ The Backbone Component Language
 \end_layout
 
 \begin_layout Standard
-So where does Backbone fit into this? In fact, each component definition
- in Evolve turns directly into a compact Backbone textual definition.
+So what is Backbone and where does it fit into this? Backbone is a component
+ language.
+ Evolve models are turned directly into a compact Backbone textual definition
+ which can then be executed.
 \end_layout
 
 \begin_layout Standard
@@ -1405,11 +1361,8 @@ WordProcessor
 \end_layout
 
 \begin_layout Standard
-The textual form is fed into the Backbone interpreter to execute a component
- structure as a program.
- This also allows the programs to be run outside of Evolve.
- It is, in fact, possible to program directly in the textual form of Backbone
- although some of the advantages of the Evolve environment are lost.
+A Backbone program can also be executed outside of Evolve.
+ It can also be translated into a simple Java class.
 \end_layout
 
 \begin_layout Section
@@ -1418,19 +1371,19 @@ A Quick Review
 
 \begin_layout Standard
 That is really all there is to the underlying component approach.
- We construct leaf components in Backbone, and generate the code for these
- as simple Java classes (JavaBeans).
- We import existing JavaBeans into a model as leaves.
- We then connect up parts, using connectors, into bigger, composite components
- which can then be further used as parts in other designs.
- Composite components do not require any Java code, they exist only within
+ We create leaf components in Backbone, and Evolve can help us generate
+ the code for these as simple Java classes (JavaBeans).
+ We can import existing JavaBeans into a model as leaves.
+ We then connect up parts into bigger, composite components which can then
+ be further used as parts in other designs.
+ Composite components do not require any Java code; they exist only within
  Evolve and Backbone.
 \end_layout
 
 \begin_layout Standard
-Component hierarchy provides a powerful and scalable design approach that
- has served digital electronics very well for decades, ever since the introducti
-on of the integrated circuit.
+Component hierarchy provides a powerful (and scalable) design approach that
+ has served digital electronics very well for decades - ever since the introduct
+ion of the integrated circuit.
  Evolve allows the same approach for software.
  All the advanced techniques that we will introduce subsequently in this
  document are based on these fundamentals.
@@ -1438,8 +1391,7 @@ on of the integrated circuit.
 
 \begin_layout Standard
 Unlike in electronics, however, we are not working with physical components.
- There are several advantages to this - the first is that we can immediately
- 
+ There are advantages to this - the first is that we can immediately 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1448,19 +1400,18 @@ shrink
 \end_inset
 
  down a composite and treat it like any other component.
- Further, we can introduce constructs for manipulating the compositional
- structure and connectors of a system that allow us to evolve and remake
- it powerful and convenient ways.
- Evolve started as an approach to produce highly extensible software, and
- this ability to remake a hierarchy is what ensures that Evolve components
- can always be extended and customised.
+ Second, we can introduce constructs to manipulate the structure and connectors
+ of a system which evolve and remake it in powerful and convenient ways.
+ Evolve started as a way to produce highly extensible software, and this
+ ability to remake a hierarchy is what ensures that Evolve components can
+ always be extended and customised.
 \end_layout
 
 \begin_layout Standard
 The following chapter will show you how to install and startup the Evolve
  environment, and how to navigate quickly around a model.
- Then we will walk through an example model, showing how to create and execute
- component models.
+ We will then walk through an example model, showing how to create and execute
+ components.
 \end_layout
 
 \end_body

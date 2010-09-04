@@ -770,7 +770,7 @@ public final class ClassifierNodeGem implements Gem
 			{
 				if (!displayOnlyIcon)
 					zOwner.setBackgroundColor(null);
-				zOwner.setPenColor(lineColor);
+				zOwner.setPenColor(Color.DARK_GRAY);
 			}
 
 			// a possible miniappearance

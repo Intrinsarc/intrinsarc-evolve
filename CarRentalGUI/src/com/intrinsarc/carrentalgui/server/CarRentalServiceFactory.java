@@ -13,7 +13,7 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   private com.intrinsarc.backbone.runtime.api.ICreate c;
 
  // parts
-  private com.intrinsarc.carrentalgui.server.HibernateCarRental x1 = new com.intrinsarc.carrentalgui.server.HibernateCarRental();
+  private com.intrinsarc.carrentalgui.server.HibernateRentalServiceLogic x1 = new com.intrinsarc.carrentalgui.server.HibernateRentalServiceLogic();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
       RentalCarFactory f = new RentalCarFactory();

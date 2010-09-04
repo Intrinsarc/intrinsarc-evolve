@@ -114,120 +114,904 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Advanced Backbone Modeling: A Taster
+Advanced Modeling in Evolve: A Teaser
 \end_layout
 
 \begin_layout Standard
-feature modeling
+As an introduction to Evolve this document is not the right place to dive
+ too deeply into advanced techniques.
+ This chapter outlines some of these tecnniques briefly, but in enough detail
+ for the adventurous reader to explore.
+ A future advanced manual will be more forthcoming on these subjects.
 \end_layout
 
 \begin_layout Standard
-sharing models
+I will occasionally refer to the greater detail in my PhD thesis in this
+ section.
+ The title is 
+\begin_inset Quotes eld
+\end_inset
+
+A Rigourous, Architectural Approach to Extensible Applications
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It explains the Evolve/Backbone approach in some detail, and includes a
+ formal logic specification of the underlying component model.
+ The Backbone interpreter is a refinement of this specification.
 \end_layout
 
 \begin_layout Standard
-visitor pattern?
+The thesis can be downloaded at the following location.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+http://intrinsarc.com/research/phd
+\end_layout
+
+\begin_layout Section
+Highly Extensible Systems
 \end_layout
 
 \begin_layout Standard
-reverse engineering a legacy application
+As I mentioned in the introduction to this document, I have researched hierarchi
+cal component models and their applicability to highly extensible systems
+ in some depth.
+ In fact, my entire thesis was on this subject.
+ Let me explain a bit about extensibility.
 \end_layout
 
 \begin_layout Standard
-evolve as a plugin architecture
+An extensible system is one that can be changed to meet new requirements,
+ without requiring that the implementation code for that system be changed
+ (or even seen).
 \end_layout
 
 \begin_layout Standard
-merging independent strata in a collaborative environment
+The upshot is that a system created fully using Backbone components can
+ always be extended to add new requirements, without destroying the original
+ application, by utilising resemblance and evolution.
+ The original design is amended using deltas, which are applied against
+ the system to produce the customized system.
+ A designer can easily produce and maintain many variants of an application
+ in this way.
 \end_layout
 
 \begin_layout Standard
-evolution instead of AOP
+In other words, as you design a system in Evolve, extensibility is naturally
+ woven in without any conscious effort on the part of the programmer.
+ This is a great benefit over existing design approaches which often require
+ huge amounts of pre-planning and forethought to accommodate possible future
+ changes.
+ In Evolve, decisions regarding future features can be delayed until very
+ late, preventing much work and subsequent rework.
+ You can think of Evolve as providing an agile approach to design - you
+ do not need to think too hard about what is coming next, and can take comfort
+ in the knowledge that you will be able to restructure a system to accommodate
+ changes when they are actually needed.
 \end_layout
 
 \begin_layout Standard
-product lines + variants
+Section 1.3 of the thesis outlines the requirements for an extensibility
+ approach and shows how Backbone satisfies these.
+ The limitations of this approach relate to the granularity of components
+ which govern the possible work required in the worst case scenario if a
+ component must be fully replaced in a system.
+ In other words, extensibility is always possible, but the amount of work
+ to replace a given component will be dictated by how coarse-grained that
+ component is.
+ This is described in section 8.2 of the thesis.
+ Thankfully, the hierarchical model supports fine-grained components well.
+\end_layout
+
+\begin_layout Subsection
+Evolve as a Way of Avoiding Framework Syndrome
 \end_layout
 
 \begin_layout Standard
-handling conflicts from multiple resemblance
+A framework is a large-scale, reuseable piece of software, which provides
+ 
+\begin_inset Quotes eld
+\end_inset
+
+plugpoints
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+hooks
+\begin_inset Quotes erd
+\end_inset
+
+ that a developer can register with to get callbacks.
+ The motto of a framework is known as the Hollywood Principle: 
+\begin_inset Quotes eld
+\end_inset
+
+Don't call us, we'll call you
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-chained and nested state machines
+Frameworks often require a huge amount of predictive development, and much
+ rework to get the structure correct for reuse.
+ A phrase often used is: 
+\begin_inset Quotes eld
+\end_inset
+
+It's not a framework until it has been reused three times or more
+\begin_inset Quotes erd
+\end_inset
+
+.
+ I call the upfont work required for a framework, and the analysis paralysis
+ that it causes, the 
+\begin_inset Quotes eld
+\end_inset
+
+framework syndrome
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-integrating picture export into a publishing pipeline: copy/paste as EMF,
- export grouped images
+The Evolve approach reduces much of this type of work.
+ A library can be built using Evolve in confidence, knowing that it will
+ be naturally extensible and users can easily customize it without further
+ effort by the framework developers.
+ The framework can then be evolved by further stratum, allowing both version
+ 1.0 and 1.1 to coexist.
+\end_layout
+
+\begin_layout Subsection
+Sharing Parts of a Model in a Collaborative Environment
 \end_layout
 
 \begin_layout Standard
-visual locking
+Evolve can be used by multiple parties to work on a single model in a collaborat
+ive but disconnected way.
+ By 
+\begin_inset Quotes eld
+\end_inset
+
+disconnected
+\begin_inset Quotes erd
+\end_inset
+
+ I mean where the parties do not all use a common version control system.
+ The version control-like nature of resemblance and evolution allow this
+ sharing and collaboration.
 \end_layout
 
 \begin_layout Standard
-nested strata + export rules
+This is explained in section 5.2.12 of the thesis.
+ Basically, a set of common strata are distributed in read only form to
+ people who then extend the system by building their own 
+\begin_inset Quotes eld
+\end_inset
+
+extension
+\begin_inset Quotes erd
+\end_inset
+
+ strata on top of this.
+ Each extension strata has a single owner who has write permission.
+ The extensions can then be combined by importing them all into a single
+ model.
 \end_layout
 
 \begin_layout Standard
-extending state machines
+When bringing these strata into a single model, we can get conflicts due
+ to overlapping evolutions of components in the common strata.
+ This can be dealt with using a further stratum and subsequent evolution.
+ In other words, the branches created by the extension strata can be merged
+ using evolution without destroying the extension strata definitions.
+ This is shown in 3.3.7 of the thesis.
+\end_layout
+
+\begin_layout Subsection
+Evolve as a Plugin System
 \end_layout
 
 \begin_layout Standard
-autoconnect ports
+You may have been reading the above description of disconnected collaboration
+ and thought 
+\begin_inset Quotes eld
+\end_inset
+
+That sounds like a plugin architecture
+\begin_inset Quotes erd
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-placeholders
-\begin_inset Newline newline
+In section 7.1 of the thesis, I compare and contrast the Backbone approach
+ with a plugin approach.
+ i.e.
+ Can Backbone be used as a plugin architecture? What are the advantages
+ and disadvantages? The upshot is that Backbone can replace plugin systems
+ and ameliorates many of their deficiencies
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+Unfortunately, Backbone does not currently provide a convenient way to distribut
+e application subsets to end users.
+ This will be rectified in a future version.
+\end_layout
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+In section 7.1.2 of the thesis I provide a critique of the Eclipse plugin
+ model and show how in certain circumstances extending a plugin-based system
+ can go very badly wrong.
+ Plugin architectures generally require far too much forethought in planning
+ for extension, which Backbone avoids through the provision of the evolution
+ construct.
+\end_layout
+
+\begin_layout Section
+Extensible Feature Modeling
+\end_layout
+
+\begin_layout Standard
+As you used Evolve, you may have been wondering: 
+\begin_inset Quotes eld
+\end_inset
+
+This is great for design and implementation, but how do I model requirements?
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The short answer is that you model them using requirement features.
+\end_layout
+
+\begin_layout Standard
+A feature is just that - a feature of an application.
+ Features can be broken down into mandatory and optional subfeatures, and
+ certain features can exclude other features.
+ This is a powerful way to model requirements.
+ For more reading on the subject, have a look at the following link.
+\end_layout
+
+\begin_layout LyX-Code
+http://en.wikipedia.org/wiki/Feature_model
+\end_layout
+
+\begin_layout Standard
+Jeff De Luca and Peter Coad (of Togethersoft fame) were some of the first
+ people to build a development process around features.
+ Features form the unit of estimation and iterations are planned around
+ feature lists.
+ Feature driven development is described in some detail in the following
+ link.
+ 
+\end_layout
+
+\begin_layout LyX-Code
+http://en.wikipedia.org/wiki/Feature_Driven_Development
+\end_layout
+
+\begin_layout Standard
+Evolve fully supports these hierarchical feature models, but with an extensibili
+ty twist.
+ Yes, you've guessed it - we can use resemblance and evolution to restructure
+ the feature set of an application.
+\end_layout
+
+\begin_layout Standard
+To try out the feature modeling facilities of Evolve, change to the feature
+ focus using the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Focus
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Feature focus
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ menu option.
+ Break a feature down into subfeatures using the 
+\begin_inset Quotes eld
+\end_inset
+
+mandatory
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+optional
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+one or more
+\begin_inset Quotes erd
+\end_inset
+
+ or 
+\begin_inset Quotes eld
+\end_inset
+
+one of
+\begin_inset Quotes erd
+\end_inset
+
+ links.
+ To indicate that a component implements a particular feature, draw a trace
+ link from the component to that feature.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Feature-modeling-in"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/features.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Feature-modeling-in"
+
+\end_inset
+
+Feature modeling in Evolve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-features to come:
+To see what features are supported by components, open the feature hierarchy
+ browser by right-clicking on a feature and choosing the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Show feature hierarchy
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ option.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-feature-hiearchy"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-team edition
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/feature-hierarchy.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-feature-hiearchy"
+
+\end_inset
+
+The feature hiearchy browser
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Reengineering a Legacy Application
 \end_layout
 
 \begin_layout Standard
-applicability to frameworks and non-predicting
+Evolve can be applied incrementally to a legacy application, giving the
+ benefits of the approach in an iterative fashion.
+ The overall architecture of a system can be moved quickly to an initial
+ coarse-grained, interface-centric design, and connected up using Evolve.
+ Over time these coarse components can be refined organically, as and when
+ the system needs changing or extension in specific areas.
 \end_layout
 
 \begin_layout Standard
-concurrency primitives
+An example is described in section 7.4 of the thesis where I gradually refactored
+ a medium sized (16kloc) and very mature system with over 200 classes, so
+ that it could be extended using Evolve.
+\end_layout
+
+\begin_layout Section
+Evolution Instead of Aspects
 \end_layout
 
 \begin_layout Standard
-full documentation system
+I have already touched on this subject in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Evolution-as-a"
+
+\end_inset
+
+ of this document.
+ Evolution can be used to replace aspects, with very few of their disadvantages
+ such as lexical fragility and a tension between reuse and method context.
 \end_layout
 
 \begin_layout Standard
-protocol analysis
-\begin_inset Newline newline
+Evolution is perhaps not as straightforward as aspects for pure cross-cutting
+ concerns that do not require an application-level context, such as tracing
+ or logging.
+ For extending an application, and incorporation of new logic however, I
+ contend that evolution is far more powerful and robust.
+\end_layout
+
+\begin_layout Standard
+In the Advanced Techniques manual I will outline a much larger example to
+ show this in detail.
+\end_layout
+
+\begin_layout Section
+Product Lines
+\end_layout
+
+\begin_layout Standard
+Much research has gone into the idea of product lines, which are basically
+ a way of producing multiple variants of an application with slightly different
+ feature sets.
+ Evolve compares well against such approaches, providing a number of advantages,
+ and I review it against one such system in section 7.2 of the thesis.
+\end_layout
+
+\begin_layout Standard
+Evolve allows multiple variants of an application to be created in a sensible
+ manner, just like a product line system.
+ It is not uncommon to find a single Evolve model with ten or more permutations
+ of an application.
+ Furthermore, Evolve can use feature modeling which came from research into
+ product lines.
+\end_layout
+
+\begin_layout Section
+Creating Documents From Evolve Models
+\end_layout
+
+\begin_layout Standard
+We have already discussed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Loading-and-Navigating"
+
+\end_inset
+
+ that Evolve allows a part of a diagram to be paste into a wordprocessor.
+\end_layout
+
+\begin_layout Standard
+However, this can be a cumbersome way of document large models.
+ Evolve offers an alternative - it can export selected diagram elements
+ by using the 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Export grouped images
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+ feature.
+\end_layout
+
+\begin_layout Standard
+To use this, choose the 
+\begin_inset Quotes eld
+\end_inset
+
+Grouper
+\begin_inset Quotes erd
+\end_inset
+
+ tool and place a grouper on a diagram.
+ Select it and type 
+\begin_inset Quotes eld
+\end_inset
+
+export figure.png
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Then, drag a set of figures into the grouper.
+ Select 
+\begin_inset Quotes eld
+\end_inset
+
+Export grouped images
+\begin_inset Quotes erd
+\end_inset
+
+ and choose a directory to save the image(s) into.
+ An example of this is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-grouper-which"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/grouped-export.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-grouper-which"
+
+\end_inset
+
+A grouper which will export a figure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
 \end_inset
 
 
 \end_layout
 
 \begin_layout Standard
-what other systems get wrong:
+Note that I have colored the background of the grouper to make it obvious.
+ Normally the background is transparent.
 \end_layout
 
 \begin_layout Standard
-confusing instances and components, prototypes/singletons
+The possible images types that can be exported are: eps (Postscript), jpg,
+ png and gif.
+ Further, if you want the image exported with delta marks on, use 
+\begin_inset Quotes eld
+\end_inset
+
+export deltas figure.png
+\begin_inset Quotes erd
+\end_inset
+
+.
+ A single model can have any number of these exports.
 \end_layout
 
 \begin_layout Standard
-annotation at class level rather than instances
+This facility is how this document was produced, and also how I wrote my
+ thesis.
+ Both documents have literally hundreds of figures.
+ I use an advanced wordprocessor called Lyx (http://www.lyx.org) which allows
+ the insertion of pictures from files.
+ When these files are overwritten, due to a new image export, Lyx automatically
+ picks up the changes.
+ This means that I can amend a model, re-export the images and literally
+ have dozens of pictures update in unison.
+ This allows me to produce complex documents easily.
 \end_layout
 
 \begin_layout Standard
-put about formal model and refer to phd
+Any wordprocessor that allows picture insertion via files, and can refresh
+ the pictures from the files, can utilize this very useful approach.
+\end_layout
+
+\begin_layout Section
+Controlling Component Complexity Through Visual Locking
+\end_layout
+
+\begin_layout Standard
+When I started reengineering a legacy system, I came across one component
+ with around 30 parts.
+ It became apparent that sometimes hierarchy is not enough to fully control
+ visual complexity.
+ It is also necessary to be able to present and work on multiple 
+\begin_inset Quotes eld
+\end_inset
+
+fixed
+\begin_inset Quotes erd
+\end_inset
+
+ views of a single component where each view shows a subset of the insides.
+ Visual locking provides this.
+\end_layout
+
+\begin_layout Standard
+To try this, create a new component called 
+\begin_inset Quotes eld
+\end_inset
+
+Component
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Create another view of it using the technique described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Subjects-and-Views"
+
+\end_inset
+
+.
+ Then visually lock each view by selecting each in turn, right-clicking
+ and ticking the 
+\begin_inset Quotes eld
+\end_inset
+
+Visual lock
+\begin_inset Quotes erd
+\end_inset
+
+ menu option.
+ Each is now locked and only constituents added directly via that view will
+ be shown.
+ Normally a separate view will show every part, port, attribute and connector
+ available to that component.
+ Locking prevents this and allows us to present a component from multiple
+ viewpoints.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Two-visually-locked"
+
+\end_inset
+
+ contains two visually locked views of the same component showing different
+ constituents.
+ The ellipsis at the bottom corner of each indicates that there are more
+ constituents that are not being shown.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/visual-locking.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Two-visually-locked"
+
+\end_inset
+
+Two visually locked views of the same component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Strata as Modules
+\end_layout
+
+\begin_layout Standard
+A stratum can be used as a module.
+ Through nested strata, a stratum X can control which of its components
+ and interfaces can be accessed by those depending on X.
+ In other words, it can selectively export definitions in nested strata
+ to the wider world.
+\end_layout
+
+\begin_layout Standard
+The rules around nested strata and visibility are described in section 4.2.2
+ of the thesis.
+ If you are feeling brave, also have a look at the formal description in
+ section 4.2.1.
+\end_layout
+
+\begin_layout Section
+Extending State Machines
+\end_layout
+
+\begin_layout Standard
+State machines can be extended using resemblance and evolution.
+ The state machine apparatus in Evolve has been designed to allow extension
+ along a number of dimension: extra states, extra transitions, and extra
+ events.
+ This is described more fully in section 6.3.3 of the thesis.
+ That section also discusses chaining and nesting of state machines, and
+ offers a more detailed critique of the State design pattern.
 \end_layout
 
 \end_body

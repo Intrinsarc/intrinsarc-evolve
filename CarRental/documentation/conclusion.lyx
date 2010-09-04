@@ -114,7 +114,222 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Summary and Roadmap
+Roadmap and Further Reading
+\end_layout
+
+\begin_layout Standard
+In this brief chapter, I outline the Evolve roadmap for the next year or
+ so.
+ I also present further reading for curious developers.
+\end_layout
+
+\begin_layout Section
+The Evolve Roadmap
+\end_layout
+
+\begin_layout Subsection
+Team System
+\end_layout
+
+\begin_layout Standard
+The team version of Evolve is currently under development.
+ This allows multiple developers to collaborate on a single model, avoiding
+ the overhead of exporting and importing stratum.
+\end_layout
+
+\begin_layout Subsection
+Concurrency Primitives
+\end_layout
+
+\begin_layout Standard
+A set of concurrency primitives will be added to Evolve and Backbone, allowing
+ concurrency to be described and controlled by properties in the component
+ design.
+ Orthogonal/concurrent states will also be supported.
+\end_layout
+
+\begin_layout Subsection
+Web Publishing System
+\end_layout
+
+\begin_layout Standard
+A full web publishing system is being developed for Evolve to allow a model
+ to be dynamically available via a HTTP server.
+ This will be available sometime early 2011, and will build on the team
+ system.
+\end_layout
+
+\begin_layout Subsection
+Protocol Analysis
+\end_layout
+
+\begin_layout Standard
+Work has started on adding protocol and behavioral analysis.
+ A method-level sequence diagram (with UML2 operators) can be constructed
+ for each port of a leaf, and high level goals can be defined.
+ The analyzer can then determine if the goals can be achieved using the
+ existing protocols.
+\end_layout
+
+\begin_layout Standard
+Further, protocol analysis will automatically determine the protocols of
+ any composite component port.
+\end_layout
+
+\begin_layout Subsection
+Internet Distribution System and Licensing Manager
+\end_layout
+
+\begin_layout Standard
+Although Evolve has many features which allow it to operate as an effective
+ plugin system, it currently provides no convenient way to distribute strata
+ and associated jars to end users.
+ An internet-based distribution system will be added, along with a license
+ manager to control enabling of various features.
+ This will tie into the feature modeling facility already in Evolve.
+\end_layout
+
+\begin_layout Section
+Further Reading
+\end_layout
+
+\begin_layout Standard
+For the interested reader, I would like to recommend the following books
+ and articles.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Software Architectures for Product Families
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Mehdi Jazayeri, Alexander Ran, Frank van der Linden
+\end_layout
+
+\begin_layout Standard
+This book was published in 2000 and was how I first found out about Darwin
+ and Koala.
+ The Darwin article by Jeff Magee and Jeff Kramer is excellent and very
+ clear.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+The Rich Engineering Heritage Behind Dependency Injection
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Andrew McVeigh
+\begin_inset Newline newline
+\end_inset
+
+http://www.javalobby.org/articles/di-heritage/
+\end_layout
+
+\begin_layout Standard
+In this online article, I look at how component systems offer a richer form
+ of dependency injection.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Real-Time Object-Oriented Modeling
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Bran Selic, Garth Gullekson, Paul T.
+ Ward
+\end_layout
+
+\begin_layout Standard
+This book describes the approach behind the amazing Objectime system, which
+ eventually became RationalRose Realtime.
+ It was literally 15 years ahead of its time.
+ This was the first system to offer structural inheritance, and the effects
+ of the concepts introduced are still being felt today.
+ Bran was one of the leads on the UML2 specification and many of the component
+ and state machine concepts introduced into UML came from here.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Aspect-Oriented Programming with the e Verification Language
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+David Robinson
+\end_layout
+
+\begin_layout Standard
+This book looks at the e language, which has a similar evolution construct
+ to Evolve, but working at a method rather than structural level.
+ It looks at how this construct makes AOP-like crosscutting possible.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Aspect-Oriented Programming is Quantification and Obliviousness
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Robert E.
+ Filman , Daniel P.
+ Friedman
+\begin_inset Newline newline
+\end_inset
+
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.28.287
+\end_layout
+
+\begin_layout Standard
+This paper describes what makes up AOP, and gives insight into why it seems
+ inordinately focussed on simple and non-domain-based cross-cutting concerns
+ such as logging and tracing.
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+Design Principles and Design Patterns
+\emph default
+
+\begin_inset Newline newline
+\end_inset
+
+Robert 
+\begin_inset Quotes eld
+\end_inset
+
+Uncle Bob
+\begin_inset Quotes erd
+\end_inset
+
+ Martin
+\begin_inset Newline newline
+\end_inset
+
+http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf
+\end_layout
+
+\begin_layout Standard
+Where would we be without Uncle Bob to tell us how to structure our object-orien
+ted systems all those years ago? Timeless principles that still apply.
 \end_layout
 
 \end_body
