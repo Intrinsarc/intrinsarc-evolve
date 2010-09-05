@@ -352,7 +352,7 @@ The strata used in the tutorials
 \end_layout
 
 \begin_layout Section
-Prerequisites for Setting Up and Running this Example
+Setting Up and Running the Example
 \end_layout
 
 \begin_layout Standard
@@ -372,7 +372,8 @@ fwarning{
 \end_layout
 
 \begin_layout Standard
-Disclaimer: This chapter contains Eclipse-centric build and run instructions.
+Disclaimer: This chapter contains very Eclipse-centric build and run instruction
+s.
  We created the example in Eclipse using the Google GWT plugin.
  We apologize for the exclusive focus on a single IDE but we trust that
  users of other environments will be able to tweak the example to get it
@@ -417,25 +418,543 @@ tutorial-d-files.zip
 CarRentalGUI
 \family default
  folder at the top level.
- Unzip this so that the contents are located under the 
+ Unzip this into the 
 \family typewriter
 tutorial
 \family default
- directory in the Evolve installation area.
- It should be in the same location as the 
+ directory under the Evolve installation area.
+ The files in the 
 \family typewriter
-CarRental
+tutorial
 \family default
- folder.
- This is shown in figure X.
+ area should look like those in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Unzip-the-CarRentalGUI"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
-dsxd
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/adding-carrentalgui.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Unzip-the-CarRentalGUI"
+
+\end_inset
+
+Unzip the CarRentalGUI folder in the Evolve tutorial directory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Standard
-We tested the example using Eclipse Helios.
+To build and run this example you will need:
+\end_layout
+
+\begin_layout Itemize
+Eclipse from 
+\family typewriter
+http://www.eclipse.org
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+We used Eclipse Helios, version 3.6.
+\end_layout
+
+\begin_layout Itemize
+The GWT plugin for Eclipse from 
+\family typewriter
+http://code.google.com/eclipse
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+We used the GWT plugin for Eclipse 3.6.
+ Install this by adding the update site to Eclipse using the instructions
+ at the GWT plugin site.
+ This will also download the GWT toolkit.
+ We used version 2.0.4.
+\end_layout
+
+\begin_layout Itemize
+The H2 database from 
+\family typewriter
+http://www.h2database.com
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+You can use any SQL database really, but H2 is our personal favorite.
+\end_layout
+
+\begin_layout Standard
+We also used Hibernate for the example, but we included the jars in the
+ example so that you do not have to download it.
+\end_layout
+
+\begin_layout Subsection
+Setting Up Eclipse
+\end_layout
+
+\begin_layout Standard
+Install the GWT plugin for Eclipse by following the quick start instructions
+ at
+\end_layout
+
+\begin_layout LyX-Code
+http://code.google.com/eclipse/docs/getting_started.html
+\end_layout
+
+\begin_layout Standard
+Ensure that the 
+\family typewriter
+EVOLVE
+\family default
+ classpath variable is set in Eclipse to point to Evolve's installation
+ directory.
+ You should have this set up already for the previous tutorials, as described
+ in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Compiling-the-Tutorial"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Import the project into Eclipse using the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Import
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Existing Projects into Workspace
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+ Use the dialog to select the 
+\family typewriter
+CarRentalGUI
+\family default
+ folder and import the project.
+ Ensure that you don't use the 
+\begin_inset Quotes eld
+\end_inset
+
+copy into workspace
+\begin_inset Quotes erd
+\end_inset
+
+ option or else the files loaded into Eclipse and the files that Evolve
+ generates will be in different directories.
+\end_layout
+
+\begin_layout Standard
+Note that sometimes Eclipse requires a restart to pick up the correct GWT_SDK
+ reference in the libraries.
+\end_layout
+
+\begin_layout Subsection
+Setting Up the H2 Database
+\end_layout
+
+\begin_layout Standard
+Install the correct H2 distribution for your platform.
+\end_layout
+
+\begin_layout Standard
+The connection details used from our GWT back end are kept in 
+\family typewriter
+CarRentalGUI
+\backslash
+src
+\backslash
+hibernate.cfg.xml
+\family default
+.
+ These are shown below.
+\end_layout
+
+\begin_layout LyX-Code
+<property name="hibernate.connection.url">
+\end_layout
+
+\begin_layout LyX-Code
+  jdbc:h2:tcp://localhost/~/carrental
+\end_layout
+
+\begin_layout LyX-Code
+</property>
+\end_layout
+
+\begin_layout LyX-Code
+<property name="hibernate.connection.username">
+\end_layout
+
+\begin_layout LyX-Code
+  sa
+\end_layout
+
+\begin_layout LyX-Code
+</property>
+\end_layout
+
+\begin_layout LyX-Code
+<property name="hibernate.default_schema">
+\end_layout
+
+\begin_layout LyX-Code
+  CarRental
+\end_layout
+
+\begin_layout LyX-Code
+</property>
+\end_layout
+
+\begin_layout Standard
+To create this database, log in to the H2 console using the parameters shown
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Logging-into-the"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/h2-parameters.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Logging-into-the"
+
+\end_inset
+
+Logging into the H2 console
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Then use the H2 console to create the schema in file 
+\family typewriter
+CarRentalGUI
+\backslash
+src
+\backslash
+schema.ddl
+\family default
+.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Creating-the-database"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/creating-schema.png
+	scale 50
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Creating-the-database"
+
+\end_inset
+
+Creating the database schema
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We used version 1.2.140 of the H2 client jar.
+ If you use a different version of H2 ensure that you copy the client jar
+ over to replace the one at 
+\family typewriter
+CarRentalGUI
+\backslash
+war
+\backslash
+WEB-INF
+\backslash
+lib
+\family default
+ and that you adjust the library references in the Eclipse project.
+\end_layout
+
+\begin_layout Subsection
+Setting Up the Evolve Variables
+\end_layout
+
+\begin_layout Standard
+Invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Window
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Preferences
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option in Evolve, choose the 
+\begin_inset Quotes eld
+\end_inset
+
+Variables
+\begin_inset Quotes erd
+\end_inset
+
+ tab and add the following three variables.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+CARSGUI
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+Point this at the 
+\family typewriter
+tutorial
+\backslash
+CarRentalGUI
+\family default
+ directory of the Evolve installation.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+GWT
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+Point this at the directory containing the 
+\family typewriter
+gwt-user.jar
+\family default
+ file that was installed by the GWT plugin.
+ You will need to search for this in your Eclipse plugin area.
+\end_layout
+
+\begin_layout Itemize
+
+\family typewriter
+JRTLIB
+\family default
+
+\begin_inset Newline newline
+\end_inset
+
+Point this at a directory containing the JRE 
+\family typewriter
+rt.jar
+\family default
+ library.
+\end_layout
+
+\begin_layout Standard
+Phew, that's it! You should now be able to test your installation by running
+ the project.
+ Right-click the 
+\family typewriter
+CarRentalGUI
+\family default
+ project in Eclipse and invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Run as
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Web application
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option provided by the GWT plugin.
+ If you then point a web browser at the URL listed in the GWT console, you
+ should see something similar to figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-Car-Rental"
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -584,7 +1103,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/carrental-transient.eps
-	scale 60
+	scale 50
 
 \end_inset
 
@@ -2591,116 +3110,6 @@ status collapsed
 \end_inset
 
 
-\end_layout
-
-\begin_layout Section
-\begin_inset CommandInset label
-LatexCommand label
-name "sec:Running-the-Example"
-
-\end_inset
-
-Running the Example
-\end_layout
-
-\begin_layout Standard
-To run both the front and back end in Eclipse, right-click on the 
-\family typewriter
-CarRentalGUI
-\family default
- project in the Eclipse project explorer and select the
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-Run as
-\begin_inset Formula $\vartriangleright$
-\end_inset
-
-Web application
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-menu option provided by the GWT plugin.
- The client and server will start up.
- Point a web browser to the URL shown in the console.
-\end_layout
-
-\begin_layout Standard
-To add a new car, type in a car name and press
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-enter
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-.
- To rent a given car, type the name of a renter and press
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-enter
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-again.
- Press the 
-\begin_inset Quotes eld
-\end_inset
-
-return
-\begin_inset Quotes erd
-\end_inset
-
- button to return a car to the available pool.
 \end_layout
 
 \begin_layout Subsection

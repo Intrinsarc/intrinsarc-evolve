@@ -370,7 +370,7 @@ We need to add a variable
 \family typewriter
 BB
 \family default
- for the folder to write the Backbone files to.
+, which will be where Evolve writes the Backbone files to.
  Type 
 \family typewriter
 BB
@@ -397,8 +397,8 @@ Folder...
 \end_layout
 
 \begin_layout Standard
-Finally, we need to set up some variables that are used for the tutorials
- later in this document.
+Finally, we need to set up some a variable for the tutorials later in this
+ document.
  Add the variable 
 \family typewriter
 CARS
@@ -407,27 +407,12 @@ CARS
 \family typewriter
 tutorial
 \backslash
-carrental
+CarRental
 \family default
  directory of the installation.
- Add the variable 
-\family typewriter
-CARSGUI
-\family default
- and point it to the 
-\family typewriter
-tutorial
-\backslash
-carrentalgui
-\family default
- directory.
  Alternatively, you can configure 
 \family typewriter
 CARS
-\family default
- and 
-\family typewriter
-CARSGUI
 \family default
  using the 
 \family typewriter
@@ -442,6 +427,22 @@ reference "fig:Setting-up-the"
 \end_inset
 
 .
+\end_layout
+
+\begin_layout Standard
+Don't worry about setting up the 
+\family typewriter
+CARSGUI
+\family default
+ variable just yet.
+ This is used for the GWT/Hibernate tutorial in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Tutorial-D:-The"
+
+\end_inset
+
+, and separate configuration instructions are included there.
 \end_layout
 
 \begin_layout Standard
@@ -558,9 +559,9 @@ tutorial
 \family typewriter
 car-rental.evolve
 \family default
- model.
- After a couple of seconds of loading, you should see something like figure
- 
+ file.
+ After a couple of seconds of loading, you should see the model shown in
+ figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-tutorial-model"
@@ -1193,6 +1194,191 @@ status collapsed
 key to invoke the mini-palette to create diagrams.
 \end_layout
 
+\begin_layout Section
+
+\series bold
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Compiling-the-Tutorial"
+
+\end_inset
+
+Compiling the Tutorial Files
+\end_layout
+
+\begin_layout Standard
+The tutorials make use of the Java code in the Evolve 
+\family typewriter
+tutorial
+\backslash
+CarRental
+\family default
+ directory.
+ To compile these classes, use the provided 
+\family typewriter
+build.xml
+\family default
+ ant script in that directory.
+\end_layout
+
+\begin_layout Standard
+This directory also contains an Eclipse project.
+ To import this, use the Eclipse menu option
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Import
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Existing Projects into Workspace
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ In the dialog, select the 
+\family typewriter
+tutorial
+\backslash
+CarRental
+\family default
+ directory, and it will detect the project.
+ Import this, ensuring that you don't use the 
+\begin_inset Quotes eld
+\end_inset
+
+copy into workspace
+\begin_inset Quotes erd
+\end_inset
+
+ option.
+\end_layout
+
+\begin_layout Standard
+You will also need to define the 
+\family typewriter
+EVOLVE
+\family default
+ classpath variable so that Eclipse can locate the Backbone jar.
+ Use the 
+\begin_inset Quotes eld
+\end_inset
+
+Classpath Variables
+\begin_inset Quotes erd
+\end_inset
+
+ section of
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Window
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Preferences
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+to point this to the root Evolve installation directory.
+ The project should now compile correctly.
+ For reference, our classpath variables in Eclipse are shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Eclipse-classpath-variables"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/evolve-eclipse-var.png
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Eclipse-classpath-variables"
+
+\end_inset
+
+Eclipse classpath variables
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We created the project in Eclipse Helios but it should work in any recent
+ version.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
@@ -1271,7 +1457,7 @@ reference "fig:Multiple-views-of"
 Test
 \family default
 .
- We can then delete views by selecting them and pressing
+ We can delete views by selecting them and pressing
 \family typewriter
 
 \begin_inset ERT
@@ -1328,7 +1514,7 @@ status collapsed
 \end_inset
 
 ).
- To remove the entire subject and all its views, however, we need to invoke
+ To remove a subject and all its views, however, we need to invoke
 \begin_inset ERT
 status collapsed
 

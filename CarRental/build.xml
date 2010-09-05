@@ -1,0 +1,31 @@
+<project name="CarRental" default="compile" basedir=".">
+    <description>
+        A simple ant script to build tuturials A-C in the Evolve user guide
+    </description>
+	
+  <!-- set global properties for this build -->
+  <property name="src" location="src"/>
+  <property name="bin" location="bin"/>
+
+  <path id="classpath">
+    <fileset dir="../../common" includes="backbone.jar"/>
+  </path>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create the bin directory structure used by compile -->
+    <mkdir dir="${bin}"/>
+  </target>
+
+  <target name="compile" depends="init" description="compile the source " >
+    <!-- Compile the java code from ${src} into ${bin} -->
+    <javac srcdir="${src}" destdir="${bin}" classpathref="classpath" includeantruntime="false"/>
+  </target>
+
+  <target name="clean"
+        description="clean up" >
+    <!-- Delete the ${build} directory tree -->
+    <delete dir="${bin}"/>
+  </target>
+</project>

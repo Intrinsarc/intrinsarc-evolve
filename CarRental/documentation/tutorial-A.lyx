@@ -107,7 +107,7 @@ figs-within-sections
 \defskip medskip
 \quotes_language english
 \papercolumns 1
-\papersides 2
+\papersides 1
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
