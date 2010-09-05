@@ -244,15 +244,15 @@ The car rental database rows
 
 \begin_layout Standard
 Although we have deliberately kept this example small, it demonstrates convincin
-gly that Evolve's component approach can mould to fit in with some fairly
- exotic technologies.
- In the case of GWT, the components will actually be running in the browser
+gly that Evolve's component approach can integrate with some fairly exotic
+ technologies.
+ In the case of GWT, our components will actually be running in the browser
  as GWT-translated Javascript.
- In the case of Hibernate, we will persist the 
+ In the case of Hibernate, the 
 \family typewriter
 RentalCar
 \family default
- composites using SQL.
+ parts will be persisted and recreated from a SQL database.
  This can all be achieved without any changes to our approach and the full
  complement of techniques including components, state machines, evolution
  and resemblance are available in both environments.
@@ -298,7 +298,7 @@ gwtservice
 hibernate
 \family default
  strata depend on the definitions of rental cars and their factories, as
- they work with and persist them.
+ they will create, manipulate and persist instances of cars.
  The front end does not use the car components.
 \end_layout
 
@@ -314,7 +314,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/tutorial-strata.eps
-	scale 90
+	scale 80
 
 \end_inset
 
@@ -374,7 +374,7 @@ fwarning{
 \begin_layout Standard
 Disclaimer: This chapter contains Eclipse-centric build and run instructions.
  We created the example in Eclipse using the Google GWT plugin.
- We apologise for the exclusive focus on a single IDE but we trust that
+ We apologize for the exclusive focus on a single IDE but we trust that
  users of other environments will be able to tweak the example to get it
  running also.
  We will look at rectifying this situation in the future to at least include
@@ -439,7 +439,7 @@ We tested the example using Eclipse Helios.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -487,7 +487,7 @@ As per GWT conventions,
 \family typewriter
 IRentalServiceAsync
 \family default
- is the asynchronous (ajax) interface to be used by the GWT front end.
+ is the asynchronous interface to be used by the ajax front end.
  
 \family typewriter
 IRentalService
@@ -542,7 +542,7 @@ Navigate into the
 gwtservice
 \family default
  stratum.
- Here we have define a server which uses the previously defined 
+ Here we have defined a server which uses the existing 
 \family typewriter
 CarFactory
 \family default
@@ -619,7 +619,7 @@ RentalServiceLogic
 \end_layout
 
 \begin_layout Standard
-The code for the server lives in 
+The code for this bean is in 
 \family typewriter
 RentalServiceLogic.java
 \family default
@@ -629,8 +629,8 @@ RentalServiceLogic.java
 createRentalCar()
 \family default
  method.
- Of particular interest is the use of the parameters to set the car model
- and purchase date.
+ Of particular interest is the use of parameters to set the car model and
+ purchase date.
 \end_layout
 
 \begin_layout LyX-Code
@@ -662,7 +662,7 @@ createRentalCar()
 \end_layout
 
 \begin_layout Standard
-We then connect this up to the factory part via a composite, as per figure
+We then connect this up to the factory part via a composite, as in figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -671,19 +671,6 @@ reference "fig:Connecting-up-to"
 \end_inset
 
 .
- Note that this provides the 
-\family typewriter
-IRentalService
-\family default
- because we have exposed the 
-\family typewriter
-service
-\family default
- port of the 
-\family typewriter
-RentalServiceLogic
-\family default
- part.
 \end_layout
 
 \begin_layout Standard
@@ -733,16 +720,18 @@ Connecting up to a car factory
 \end_layout
 
 \begin_layout Standard
-As the GWT environment cannot use the Backbone interpreter, to allow our
- service to be run we generate a full implementation of the 
-\family typewriter
-CarRentalService
-\family default
- component
-\begin_inset Newline newline
+As the GWT environment cannot use the Backbone interpreter
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The interpreter uses standard Java reflection which is not allowed in Java
+ GWT code.
+\end_layout
+
 \end_inset
 
-(
+, we generated a full implementation (
 \begin_inset ERT
 status collapsed
 
@@ -770,7 +759,15 @@ status collapsed
 
 \end_inset
 
-) which creates the 
+) of the 
+\family typewriter
+CarRentalService
+\family default
+ component to allow our server to be run in the GWT environment.
+\end_layout
+
+\begin_layout Standard
+This created the 
 \family typewriter
 CarRentalServiceFactory.java
 \family default
@@ -853,9 +850,10 @@ public class RentalServiceImpl extends RemoteServiceServlet
 \end_layout
 
 \begin_layout Standard
-That's it - we now have a rental service created in Evolve that we can run.
+That's it - we now have a rental service created in Evolve that we can run
+ in GWT.
  Note that the cars created by this service are not persisted - they reside
- only in memory and will be destroyed when the application completes.
+ only in memory and will be destroyed when the application terminates.
 \end_layout
 
 \begin_layout Standard
@@ -879,8 +877,8 @@ Navigate into the
 hibernate
 \family default
  stratum.
- In this example, we amend the previous components to use Hibernate to persist
- the cars into a SQL database.
+ We now amend our server to use Hibernate to persist the cars into a SQL
+ database.
  
 \end_layout
 
@@ -1038,13 +1036,16 @@ cars
 \family default
  port.
  In other words, this restores the full state of the server from the database
- at startup time.
+ at startup time, and recreates the set of 
+\family typewriter
+RentalCar
+\family default
+ instances including their connections.
  Any further created cars will also be added to this port.
 \end_layout
 
 \begin_layout Standard
-The logic for creating a new car is a simple variation on the non-persistent
- version.
+The logic for creating a new car is a variation on the non-persistent version.
 \end_layout
 
 \begin_layout LyX-Code
@@ -1099,18 +1100,12 @@ It's as simple as that.
 \family typewriter
 CarRentalService
 \family default
- composite (figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:Connecting-up-to"
-
-\end_inset
-
-) from this perspective, we can see that the evolution of 
+ composite from this perspective, we can see that the evolution of 
 \family typewriter
 CarRental
 \family default
- has automatically affected this as we would expect, shown in figure 
+ has automatically affected this as we would expect, as shown in figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:CarRentalService-from-the"
@@ -1192,7 +1187,7 @@ RentalCarDetails
 RenterDetails
 \family default
  instance.
- This can be seen by looking at the 
+ This connection can be seen by looking at the 
 \family typewriter
 RentalCar
 \family default
@@ -1295,8 +1290,8 @@ CarRentalServiceFactory.java
 gwtservice
 \family default
  stratum also writes to.
- The stratum we last used to generate a full implementation will be the
- one used when we run our GWT example.
+ The stratum we use last to generate a full implementation will be the one
+ used when we run our GWT example.
 \end_layout
 
 \begin_layout Standard
@@ -1347,7 +1342,7 @@ First, we created the
 \family typewriter
 gwt
 \family default
- stratum to import the GWT widgets into.
+ stratum to hold the definitions.
  We set the 
 \family typewriter
 bb-classpath
@@ -1487,12 +1482,12 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
-We can see, for instance, that the importer decided that the 
+In the lower right pane of the importer, we can see how the 
 \family typewriter
 CheckBox
 \family default
- bean could be turned into a leaf.
- After seeing that there were no errors, we then clicked 
+ bean translated into a leaf component.
+ After noting that there were no errors, we then clicked 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1578,7 +1573,7 @@ If you are going to try the above import on the existing
 \family typewriter
 gwt
 \family default
- stratum, ensure that you make that stratum writeable first.
+ stratum, ensure that you make that stratum writable first.
  The example model has marked this stratum read only.
  Right click on the stratum and uncheck the 
 \begin_inset ERT
@@ -1621,6 +1616,7 @@ bb-classpath
 gwt
 \family default
  stratum.
+ You might also want to do this in a new model.
 \begin_inset ERT
 status collapsed
 
@@ -1869,10 +1865,9 @@ public class NextBean
 \end_layout
 
 \begin_layout Standard
-This is not the in the interface-centric paradigm that Evolve uses for compoents.
- In contrast to the conventional JavaBean approach, leaves generated from
- Evolve will always implement interfaces, and no leaf will reference another
- leaf class directly.
+This is not the in the interface-centric paradigm that Evolve uses for component
+s - leaves generated from Evolve will always implement interfaces, and no
+ leaf will reference another leaf class directly.
 \end_layout
 
 \begin_layout Standard
@@ -1920,7 +1915,7 @@ name "fig:Legacy-beans-have"
 
 \end_inset
 
-Legacy beans have a synthetic interface to avoid directly coupling to classes
+Legacy beans have a synthetic interface to mimic real leaves
 \end_layout
 
 \end_inset
@@ -1938,7 +1933,7 @@ Legacy beans have a synthetic interface to avoid directly coupling to classes
 \end_layout
 
 \begin_layout Standard
-All of the GWT widgets will be organised in this way on import.
+All of the GWT widgets will be organized in this way on import.
 \end_layout
 
 \begin_layout Subsection
@@ -2123,7 +2118,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/carrentalwidget.eps
-	width 100text%
+	scale 75
 
 \end_inset
 
@@ -2162,14 +2157,16 @@ CarRentalWidget
 \family typewriter
 AddCarWidget
 \family default
-, with the small addition of a 
+.
+ In this case a horizontal panel is used to structure two labels, a textbox
+ and a button.
+ We have also added a 
 \family typewriter
 RentalLogic
 \family default
- part which adds some logic handling when the textbox is entered or the
- button clicked.
- In this case a horizontal panel is used to structure two labels, a textbox
- and a button.
+ part which adds some logic to call out to the server to rent the car when
+ the textbox is entered and return it when the button is clicked.
+ 
 \end_layout
 
 \begin_layout Standard
@@ -2182,8 +2179,8 @@ Note the
 \end_inset
 
  in the value of the slot in the second label.
- This is useful when values are quite long, and indicates that the value
- used will be taken from the 
+ This is useful when values are quite long, and indicates that the actual
+ value should be taken from the 
 \family typewriter
 actual-slot-value
 \family default
@@ -2336,7 +2333,7 @@ CarRentalWidgetFactory
 \family typewriter
 CarRentalWidget
 \family default
- part can be created for each car.
+ part can be created per car.
  Finally, we connect up a 
 \family typewriter
 GUILogic
@@ -2522,7 +2519,7 @@ status collapsed
 
 
 \backslash
-highlight{
+fhighlight{
 \end_layout
 
 \end_inset
@@ -2531,11 +2528,58 @@ highlight{
 \end_layout
 
 \begin_layout Standard
-Although we used Evolve to model every part of this example, including the
- graphical client, it is sometimes preferable to use a combination of Evolve
- components and custom Java code for certain domains.
- To use this approach simply generate less fine-grained components and write
- the component logic using conventional object-oriented code.
+We have used Evolve to model every part of our GUI, including the fine-grained
+ widgets.
+ Sometimes, however, it is more pragmatic to use a combination of Evolve
+ components in conjunction with Java classes for certain domains.
+ To use this approach, create less fine-grained components and implement
+ the internal logic using conventional Java classes.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fidea{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To use state machines in a GWT front-end, set the stratum's 
+\family typewriter
+generation-profile
+\family default
+ stereotype property to 
+\family typewriter
+gwtclient
+\family default
+.
+ This will use a generator to replace the standard state dispatcher component
+ that uses reflection.
+ GWT doesn't like Java reflection.
 \begin_inset ERT
 status collapsed
 
@@ -2560,8 +2604,11 @@ Running the Example
 \end_layout
 
 \begin_layout Standard
-To run the front and back ends in Eclipse, right-click on the project in
- the project explorer and select the
+To run both the front and back end in Eclipse, right-click on the 
+\family typewriter
+CarRentalGUI
+\family default
+ project in the Eclipse project explorer and select the
 \begin_inset ERT
 status collapsed
 
@@ -2591,10 +2638,11 @@ status collapsed
 
 menu option provided by the GWT plugin.
  The client and server will start up.
+ Point a web browser to the URL shown in the console.
 \end_layout
 
 \begin_layout Standard
-Type in a car name and press
+To add a new car, type in a car name and press
 \begin_inset ERT
 status collapsed
 
@@ -2618,8 +2666,32 @@ status collapsed
 
 \end_inset
 
-to add a new car.
- Enter the name of a renter and press return to rent a car.
+.
+ To rent a given car, type the name of a renter and press
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+enter
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+again.
  Press the 
 \begin_inset Quotes eld
 \end_inset
@@ -2637,9 +2709,10 @@ Quick Turnaround
 
 \begin_layout Standard
 Because GWT translates the generated client-side Java code directly into
- Javascript, without requiring a recompile, turnarounds to changes in the
- GUI are extremely fast.
- Make the change to the GUI components, regenerate the full implementation,
+ Javascript without requiring it to be compiled, turnarounds to changes
+ in the GUI are extremely fast.
+ i.e.
+ make a change to the GUI components, regenerate the full implementation,
  and press
 \begin_inset ERT
 status collapsed
@@ -2664,7 +2737,7 @@ status collapsed
 
 \end_inset
 
-in the browser to refresh the view.
+in the web browser to refresh the view.
 \end_layout
 
 \begin_layout Standard

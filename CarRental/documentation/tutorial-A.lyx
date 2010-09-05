@@ -117,10 +117,6 @@ figs-within-sections
 
 \begin_body
 
-\begin_layout Standard
-
-\end_layout
-
 \begin_layout Chapter
 \begin_inset CommandInset label
 LatexCommand label
@@ -1397,7 +1393,7 @@ Checking
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
-Check everthing
+Check everything
 \begin_inset ERT
 status collapsed
 
@@ -2520,9 +2516,9 @@ Many programmers will already have a collection of beans from using other
 status collapsed
 
 \begin_layout Plain Layout
-The importer is very fast, and can analyse approximately 3000 complex beans
+The importer is very fast, and can analyze approximately 3000 complex beans
  per second on my machine.
- It analyses the entire Java rt.jar library in around 5 seconds.
+ It analyzes the entire Java rt.jar library in around 5 seconds.
 \end_layout
 
 \end_inset

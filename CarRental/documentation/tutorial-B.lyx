@@ -503,10 +503,7 @@ Viewing and Manipulating Deltas
 
 \begin_layout Standard
 We can use the subject browser to view deltas directly.
- Bring up the subject browser
- 
-\lang english
-on the 
+ Bring up the subject browser on the 
 \family typewriter
 ResemblingExample
 \family default
@@ -1170,7 +1167,7 @@ Evolution allows us to reach deep into the compositional hierarchy of a
  system and globally change certain areas, possibly in multiple places.
  We can expand out the hierarchy by evolving leaves into composites, and
  compress the hierarchy by doing the reverse.
- We can literally remake an existing system in any way we require, to customise
+ We can literally remake an existing system in any way we require, to customize
  it for new requirements.
 \end_layout
 
@@ -1772,8 +1769,8 @@ menu item.
 \end_layout
 
 \begin_layout Standard
-Evolutions combinatorily increase the amount of checking required for a
- model.
+Evolutions combinatorially increase the amount of checking required for
+ a model.
  In our example model, to check from the 
 \family typewriter
 resembling

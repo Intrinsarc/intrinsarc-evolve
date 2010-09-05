@@ -128,7 +128,7 @@ What is Evolve?
 \begin_layout Quote
 
 \emph on
-In essence, Evolve is simply a convenient and powerful way to connect together
+In essence, Evolve is a convenient and powerful way to connect together
  classes to structure a program.
  The connection code created is simple and transparent.
 \end_layout
@@ -215,7 +215,7 @@ JavaBean code can be generated, and existing beans can be quickly imported.
 
 \begin_layout Itemize
 Full support for the reuse and evolution of components, giving the benefits
- of aspects without the drawbacks.
+ of aspects and much more without the drawbacks.
 \end_layout
 
 \begin_layout Itemize
@@ -1408,7 +1408,7 @@ shrink
  of a system which evolve and remake it in powerful and convenient ways.
  Evolve started as a way to produce highly extensible software, and this
  ability to remake a hierarchy is what ensures that Evolve components can
- always be extended and customised.
+ always be extended and customized.
 \end_layout
 
 \begin_layout Standard

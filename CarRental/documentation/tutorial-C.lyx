@@ -1548,7 +1548,7 @@ Evolution has no conflict between a primary and secondary axis.
 \begin_inset Newline newline
 \end_inset
 
-Aspects are often criticised for being the (weaker) secondary axis to the
+Aspects are often criticized for being the (weaker) secondary axis to the
  primary axis of the programming language.
  Although systems like Hyper-J have partially dealt with this, AOP systems
  in industrial usage suffer from this limitation.
@@ -1708,8 +1708,11 @@ reference "fig:The-RentalCar-composite"
 rent()
 \family default
  event and move to the rented state.
- When the renter returns the car we will send in a returnRental() event
- and move back to the available state.
+ When the renter returns the car we will send in a 
+\family typewriter
+returnRental()
+\family default
+ event and move back to the available state.
 \end_layout
 
 \begin_layout Standard
@@ -2624,6 +2627,159 @@ The state machine with delta marks on
 \end_layout
 
 \begin_layout Subsection
+Replacing a Part with One Of a Different Type
+\end_layout
+
+\begin_layout Standard
+When evolving a component, the simplest way to replace a part is to right-click
+ on it and select 
+\begin_inset Quotes eld
+\end_inset
+
+Replace
+\begin_inset Quotes erd
+\end_inset
+
+ from the menu.
+ This will give us a replacement part of exactly the same type.
+ This is how we replaced the part in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-the-CarsExample"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+However, when we evolved 
+\family typewriter
+RentalCar
+\family default
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-RentalCar-to"
+
+\end_inset
+
+, we instead replaced the 
+\family typewriter
+RenterDetails
+\family default
+ part with a 
+\family typewriter
+RentalState
+\family default
+ part.
+ In other words, we changed the component that the part is an instance of.
+\end_layout
+
+\begin_layout Standard
+To achieve this we must first place a view of 
+\family typewriter
+RentalCar
+\family default
+ on the diagram, and right-click and choose 
+\begin_inset Quotes eld
+\end_inset
+
+Evolve
+\begin_inset Quotes erd
+\end_inset
+
+ to make an evolution.
+ Then, add a 
+\family typewriter
+RentalState
+\family default
+ part and move its ports to be roughly in the same proximity to the part
+ as the ports that we want to map to on the 
+\family typewriter
+RenterDetails
+\family default
+ part.
+ You can also delete any unwanted ports.
+ Then, select the 
+\family typewriter
+RentalState
+\family default
+ part *but* right-click over the existing 
+\family typewriter
+RenterDetails
+\family default
+ part and select 
+\begin_inset Quotes eld
+\end_inset
+
+Replace (with existing part)
+\begin_inset Quotes erd
+\end_inset
+
+.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Replacing-an-existing"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/replacing-part-with-new-type.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Replacing-an-existing"
+
+\end_inset
+
+Replacing an existing part with a new one of different type
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This will replace the part with the new one, and preserve all existing connectio
+ns.
+\end_layout
+
+\begin_layout Subsubsection
 Implementing the Leaf States
 \end_layout
 
@@ -2756,7 +2912,7 @@ Available
  state will then cease to be current.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Nested State Machines
 \end_layout
 
@@ -2773,7 +2929,7 @@ If you can get hold of it, I thoroughly recommend the book
 \begin_inset Quotes eld
 \end_inset
 
-Modeling Reactive Systems with Statcharts
+Modeling Reactive Systems with Statecharts
 \begin_inset Quotes erd
 \end_inset
 
@@ -2787,7 +2943,7 @@ Modeling Reactive Systems with Statcharts
 .
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Multiple Out Ports
 \end_layout
 
@@ -2810,7 +2966,7 @@ In a similar way, a single state machine may instantiate many end terminals.
  Only one start terminal is allowed, however.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Combining States and Components
 \end_layout
 
@@ -2858,7 +3014,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/combined-rentalstate.eps
-	scale 50
+	scale 60
 
 \end_inset
 
@@ -2892,7 +3048,7 @@ Combining state and component parts
 
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 How Do State Machines Work?
 \end_layout
 
@@ -3013,7 +3169,7 @@ isCurrent()
  Voila, we have a fully functioning state machine.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Evolve State Machine Limitations
 \end_layout
 
@@ -3037,14 +3193,14 @@ d concurrency.
  by a standard state.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Summary
 \end_layout
 
 \begin_layout Standard
-Evolve state machines let you use states and explicit transitions to model
- your application, but also retain all the power of the component-based
- approach.
+Evolve state machines allow you to use states and explicit transitions to
+ model your application, whilst also retaining all the power of the component-ba
+sed approach.
  They tie directly into implementation, so your state machines are executable
  once you have defined the leaves.
 \end_layout

@@ -1090,7 +1090,7 @@ status collapsed
 back onto the same, or another, diagram.
  We can also paste into an external wordprocessor such as Word or OpenOffice
  Writer.
- For external programs, the underlying vectory graphics format used is the
+ For external programs, the underlying vector graphics format used is the
  Enhanced Windows Meta-file format (EMF).
 \end_layout
 
@@ -1194,7 +1194,7 @@ key to invoke the mini-palette to create diagrams.
 \end_layout
 
 \begin_layout Standard
-\begin_inset Newpage pagebreak
+\begin_inset Newpage newpage
 \end_inset
 
 
@@ -1502,7 +1502,7 @@ Consider if we have an existing component
 SpellChecker
 \family default
 , and an unnamed component.
- If we want the unnammed component to be a further view of 
+ If we want the unnamed component to be a further view of 
 \family typewriter
 SpellChecker
 \family default
@@ -1753,7 +1753,7 @@ Backbone
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
-Run Backone
+Run Backbone
 \begin_inset ERT
 status collapsed
 

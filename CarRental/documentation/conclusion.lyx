@@ -118,13 +118,15 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
-Roadmap and Further Reading
+Product Roadmap and Further Reading
 \end_layout
 
 \begin_layout Standard
-In this brief chapter, I outline the Evolve roadmap for the next year or
- so.
- I also present further reading for curious developers.
+In this brief chapter, I outline the Evolve roadmap we are planning for
+ the next year or so.
+ I also present further reading for curious developers who want to know
+ more about the background of hierarchical components and how they relate
+ to dependency injection and other approaches.
 \end_layout
 
 \begin_layout Section
@@ -147,21 +149,37 @@ Support for Other Implementation Languages
 
 \begin_layout Standard
 We plan to support C# fully.
- We are also looking into the feasibility of providing C++ support.
+ We are also looking into the feasibility of providing C++ support
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+We have also, rather curiously, found that Python and Ruby can be supported
+ rather easily.
 \end_layout
 
-\begin_layout Subsubsection
-Concurrency Primitives
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Concurrency Constructs
 \end_layout
 
 \begin_layout Standard
-A set of concurrency primitives will be added to Evolve and Backbone, allowing
- concurrency to be described and controlled by properties in the component
- design.
- Orthogonal/concurrent states will also be supported.
+Concurrency in hierarchical component models has a long and distinguished
+ academic research history.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Standard
+A set of constructs will be added to Evolve and Backbone, allowing concurrency
+ to be described and controlled by properties in the component design.
+ Orthogonal/concurrent states will also be supported.
+ 
+\end_layout
+
+\begin_layout Subsection
 Web Publishing System
 \end_layout
 
@@ -172,7 +190,7 @@ A full web publishing system is being developed for Evolve to allow a model
  system.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Protocol Analysis
 \end_layout
 
@@ -185,11 +203,11 @@ Work has started on adding protocol and behavioral analysis.
 \end_layout
 
 \begin_layout Standard
-Further, protocol analysis will automatically determine the protocols of
+Protocol analysis can be used to automatically determine the protocols of
  any composite component port.
 \end_layout
 
-\begin_layout Subsubsection
+\begin_layout Subsection
 Internet Distribution System and Licensing Manager
 \end_layout
 
@@ -265,11 +283,12 @@ Bran Selic, Garth Gullekson, Paul T.
 \end_layout
 
 \begin_layout Standard
-This book describes the approach behind the amazing Objectime system, which
+This book describes the approach behind the amazing ObjecTime system, which
  eventually became RationalRose Realtime.
  It was literally 15 years ahead of its time.
  This was the first system to offer structural inheritance, and the effects
  of the concepts introduced are still being felt today.
+ Concurrency via actors was fully supported.
  Bran was one of the leads on the UML2 specification and many of the component
  and state machine concepts introduced into UML came from here.
 \end_layout
@@ -312,7 +331,7 @@ http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.28.287
 
 \begin_layout Standard
 This paper describes what makes up AOP, and gives insight into why it seems
- inordinately focussed on simple and non-domain-based cross-cutting concerns
+ inordinately focused on simple and non-domain-based cross-cutting concerns
  such as logging and tracing.
 \end_layout
 
