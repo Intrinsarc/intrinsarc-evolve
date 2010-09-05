@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -164,27 +168,7 @@ s.
  In electronics terms, this is almost the equivalent of jumper wires between
  circuit boards.
  Interestingly, hyperports give all of the advantages of the singleton design
- pattern, without any of its disadvantages
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-I deeply dislike the singleton 
-\begin_inset Quotes eld
-\end_inset
-
-anti-pattern
-\begin_inset Quotes erd
-\end_inset
-
- introduced by the Gang-of-Four Design Patterns book, although I agree it
- is sometimes necessary.
- I'll have more to say on this later.
-\end_layout
-
-\end_inset
-
-.
+ pattern, without any of its disadvantages.
 \end_layout
 
 \begin_layout Standard
@@ -192,8 +176,8 @@ Finally, we describe how Evolve supports state machines.
  State machines are an incredibly useful way to describe how a system changes
  state, and our approach allows them to be implemented as easily as other
  components.
- In fact, Evolve state machines are components with the visual look for
- UML2 state machines, and can be resembled and evolved.
+ In fact, Evolve state machines are components with the visual look of UML2
+ state machines, and they can be resembled and evolved.
  They also support nesting and chaining.
 \end_layout
 
@@ -223,7 +207,11 @@ A factory is a way to dynamically instantiate the insides (parts, connectors,
 
 \begin_layout Standard
 Let's create a rental car using this approach.
- Look inside the factory stratum, and you will see a 
+ Look inside the 
+\family typewriter
+factory
+\family default
+ stratum, and you will see a 
 \family typewriter
 CarFactory
 \family default
@@ -300,26 +288,7 @@ A factory is a composite component, with a
 \family typewriter
 create
 \family default
- port
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-When a factory component is created, it is set to resemble the 
-\family typewriter
-FactoryBase
-\family default
- component.
- This is where the 
-\family typewriter
-create
-\family default
- port is inherited from.
-\end_layout
-
-\end_inset
-
-.
+ port automatically added.
  The create port provides the 
 \family typewriter
 ICreate
@@ -399,12 +368,8 @@ Using the Create Port
 \end_layout
 
 \begin_layout Standard
-To use this, we must connect the 
-\family typewriter
-create
-\family default
- port to another component - in this case we make a small runner component
- called 
+To use the port, we must connect it up to another component that has some
+ logic - in this case we make a small runner component called 
 \family typewriter
 FactoryExampleRunner
 \family default
@@ -526,8 +491,8 @@ FactoryExample
 \begin_layout Standard
 To execute the example, tag and run the stratum and the output should look
  as below.
- Our runner component added a Volkswagen, then a Saab, then destroyed the
- first car and then the second.
+ Our runner component dynamically adds a Volkswagen, then a Saab, then destroys
+ the first car and then the second.
 \end_layout
 
 \begin_layout LyX-Code
@@ -575,7 +540,11 @@ After deleting second car:
 \end_layout
 
 \begin_layout Standard
-The Java code in FactoryExampleRunner.java to accomplish this looks as follows.
+The Java code in 
+\family typewriter
+FactoryExampleRunner.java
+\family default
+ to accomplish this is as follows.
 \end_layout
 
 \begin_layout LyX-Code
@@ -657,7 +626,7 @@ status collapsed
 
 \begin_layout Plain Layout
 The Darwin language introduced the concept, but did not allow direct programmati
-c, or multiple, instantiation.
+c instantiation.
 \end_layout
 
 \end_inset
@@ -682,7 +651,7 @@ Isomorphic factories makes working with dynamic structures easy, but crucially
  by looking at static diagrams of the model.
  Architecture Description Languages have this as a primary concern - the
  ability to fully describe all of the possible connections between dynamically
- create components from a static description.
+ created components from a static description.
  Although this removes some of the flexibility of being able to create object
  structures in an ad-hoc fashion, we gain a large advantage in that we can
  now analyze the entire system and know all of the runtime possibilities.
@@ -710,8 +679,8 @@ RentalCar
 status collapsed
 
 \begin_layout Plain Layout
-Compare and contrast this with how you dynamically instantiate complex structure
-s in Spring.
+Compare and contrast this with how you instantiate complex structures in
+ Spring.
  If you want to dynamically create multiple instances, a bean must be marked
  as prototype.
  However, this limits complex connections between bean instances, forcing
@@ -748,7 +717,7 @@ To see the connections that will result from nesting, right-click on the
 \family typewriter
 FactoryExample
 \family default
- composite and choose the 
+ composite and choose the
 \begin_inset ERT
 status collapsed
 
@@ -776,7 +745,7 @@ status open
 
 
 \family default
- menu option.
+menu option.
  This will show something like figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -872,7 +841,7 @@ If we added a factory part inside
 \family typewriter
 CarFactory
 \family default
-, it would turn into a factory (id=2) at the same level as the others.
+, it would turn into another factory (id=2) at the same level as the others.
 \end_layout
 
 \begin_layout Subsection
@@ -904,8 +873,8 @@ Creator
 \end_layout
 
 \begin_layout Standard
-This part is also connected up to the create port of the factory, before
- being 
+This part is connected up to the create port of the factory, before being
+ 
 \begin_inset Quotes eld
 \end_inset
 
@@ -923,6 +892,15 @@ create
 ICreate
 \family default
  interface.
+ When a factory is created it is set to resemble 
+\family typewriter
+FactoryBase
+\family default
+, and the 
+\family typewriter
+create
+\family default
+ port is inherited from this.
 \end_layout
 
 \begin_layout Section
@@ -1006,7 +984,7 @@ IPrinter
 \family typewriter
 print(String warning)
 \family default
- method, and prints any received warnings to the console.
+ method, and writes any received warnings to the console.
 \end_layout
 
 \begin_layout Standard
@@ -1556,13 +1534,13 @@ We can see at a glance which changes are applied.
 \begin_inset Newline newline
 \end_inset
 
-Viewing the composition hierarchy of the components from the perspective
+Viewing the compositional hierarchy of the components from the perspective
  of 
 \family typewriter
 hyperport
 \family default
  will show us the full structure, without us needing to work out in our
- heads which aspects will be applied at runtime.
+ heads what the structure will be like at runtime.
 \end_layout
 
 \begin_layout Itemize
@@ -1650,61 +1628,21 @@ set*
 \begin_layout Standard
 These comments may be upsetting to AOP advocates.
  It is true that the above discussion is only cursory, and that the printer
- example could have also been achieved easily also using AOP.
+ example could have also been achieved using AOP.
  However, the advantages of the evolution approach start to accrue when
  the examples become more involved than this short tutorial will allow.
- I will address this topic in the manual on advanced techniques.
+ I will address this topic in a later manual on advanced techniques.
 \end_layout
 
 \begin_layout Standard
-For the readers who would like to dig deeper, I would suggest the following
- literature.
-\end_layout
+Section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Evolution-Instead-of"
 
-\begin_layout Enumerate
-The book 
-\begin_inset Quotes eld
 \end_inset
 
-Aspect-Oriented Programming With the e Verification Language
-\begin_inset Quotes erd
-\end_inset
-
- by David Robinson.
-\begin_inset Newline newline
-\end_inset
-
-The 
-\emph on
-e
-\emph default
- language uses a form of evolution to model several aspect-like situations,
- and shows how the approach can offer advantages over aspects.
-\end_layout
-
-\begin_layout Enumerate
-The academic paper 
-\begin_inset Quotes eld
-\end_inset
-
-Aspect-Oriented Programming is Quantification and Obliviousness
-\begin_inset Quotes erd
-\end_inset
-
- by Robert Filman and Dan Friedman.
-\begin_inset Newline newline
-\end_inset
-
-http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.28.287
-\begin_inset Newline newline
-\end_inset
-
-This paper shows that there is a tension in aspects between the quantification
- side and making aspects know too much about the context of the underlying
- code they will apply to.
- Have you ever wondered why most (all?) AOP examples add logging and transaction
-s to a system? Read this paper for insight as to why aspects tend not to
- address the business logic of a system.
+ discusses aspects further.
 \end_layout
 
 \begin_layout Section
@@ -1731,7 +1669,7 @@ under the covers
 
 , with the visual appearance of UML2 statecharts.
  They can be combined with ordinary components in powerful ways.
- Further, unlike UML2 statecharts diagrams, Evolve state machines are executable.
+ Further, Evolve state machines are executable.
 \end_layout
 
 \begin_layout Standard
@@ -1740,7 +1678,7 @@ If you have yet to experience the power of states, now is the time! Navigate
 \family typewriter
 states
 \family default
- stratum for this tutorial.
+ stratum for this part of the tutorial.
 \end_layout
 
 \begin_layout Subsection
@@ -1764,7 +1702,7 @@ reference "fig:The-RentalCar-composite"
 \end_inset
 
 .
- The state machine will feature two states: available and rented.
+ This state machine will feature two states: available and rented.
  When someone rents the car, we will send in a 
 \family typewriter
 rent()
@@ -2358,7 +2296,7 @@ Available
  state upon instantiation.
  The 
 \family typewriter
-state.rent()
+rent()
 \family default
  event then pushes it into the 
 \family typewriter
@@ -2371,7 +2309,7 @@ renterName
  attribute.
  Finally, sending in the 
 \family typewriter
-state.returnRental()
+returnRental()
 \family default
  event causes a transition back to 
 \family typewriter
@@ -2393,7 +2331,7 @@ State focus
 \begin_inset Quotes erd
 \end_inset
 
- by invoking the 
+ by invoking the
 \begin_inset ERT
 status collapsed
 
@@ -2421,7 +2359,7 @@ status collapsed
 
 \end_inset
 
- menu option.
+menu option.
  We then used the 
 \begin_inset Quotes eld
 \end_inset
@@ -2431,7 +2369,7 @@ State
 \end_inset
 
  tool from the palette.
- Creating a leaf state in this way produces the component shown in figure
+ Creating a leaf state in this way produced the component shown in figure
  
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -2591,7 +2529,7 @@ Rented
 \end_layout
 
 \begin_layout Standard
-We next created the composite state machine via the 
+Finally we created the composite state machine by using the 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2629,7 +2567,7 @@ Transition
 \end_inset
 
  tool.
- We now have our state machine, as shown in figure 
+ The result was our state machine, as shown in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:The-state-machine-1"
@@ -2692,9 +2630,28 @@ Implementing the Leaf States
 \begin_layout Standard
 The Java implementation of each leaf state must follow a protocol to work
  correctly.
- The class itself must implement the IEvent method isCurrent(), and the
- ITransition method enter().
- Look at Available.java for a guide.
+ The class itself must implement the 
+\family typewriter
+IEvent
+\family default
+ method 
+\family typewriter
+isCurrent()
+\family default
+, and the 
+\family typewriter
+ITransition
+\family default
+ method 
+\family typewriter
+enter()
+\family default
+.
+ Look at 
+\family typewriter
+Available.java
+\family default
+ for a guide.
  The relevant methods from this class are below:
 \end_layout
 
@@ -2727,8 +2684,12 @@ When a state wants to transition to another, it calls the
 \family typewriter
 enter()
 \family default
- method on the next state and tests the return value to decide if the transition
- has been successful.
+ method on the next state via an 
+\family typewriter
+out
+\family default
+ port and then tests the return value to decide if the transition has been
+ successful.
  To automatically accept the transition, set 
 \family typewriter
 current
@@ -2808,7 +2769,7 @@ State machines can be treated as state parts in another machine, in an analogous
 status collapsed
 
 \begin_layout Plain Layout
-If you can get hold of it, I thoroughly recomment the book 
+If you can get hold of it, I thoroughly recommend the book 
 \begin_inset Quotes eld
 \end_inset
 
@@ -2835,7 +2796,7 @@ It is possible to create multiple
 \family typewriter
 out
 \family default
- ports for a state to allow different transitions outwards on different
+ ports for a state thereby allowing different transitions outwards on different
  conditions.
  There is no special handling for the existing 
 \family typewriter
@@ -2873,12 +2834,12 @@ reference "fig:Combining-state-and"
 
 \end_inset
 
- shows how we might enhance the 
+ shows how we might adjust our machine to directly propagate a service to
+ the boundary of the composite, or how the 
 \family typewriter
 Rented
 \family default
- state to directly propagate a service to the exterior of the composite,
- and how it might make use of an embedded 
+ part might make use of an embedded 
 \family typewriter
 AddressBook
 \family default
@@ -3081,17 +3042,18 @@ Summary
 \end_layout
 
 \begin_layout Standard
-Evolve state machines let you use states to model your application, but
- retain all the power of the component-based approach.
- They also tie directly into implementation, so your state machines are
- executable once you have defined the leaves.
+Evolve state machines let you use states and explicit transitions to model
+ your application, but also retain all the power of the component-based
+ approach.
+ They tie directly into implementation, so your state machines are executable
+ once you have defined the leaves.
 \end_layout
 
 \begin_layout Standard
 These state machines have been designed as part of research into highly
  extensible systems.
- You can resemble a state machine and customize states, or evolve an existing
- state machine.
+ You can resemble a state machine and customize states and transitions,
+ or evolve an existing state machine.
 \end_layout
 
 \begin_layout Standard

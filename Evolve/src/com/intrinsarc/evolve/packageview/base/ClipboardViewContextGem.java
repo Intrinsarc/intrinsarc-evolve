@@ -10,6 +10,7 @@ import javax.swing.*;
 
 import org.eclipse.uml2.Package;
 import org.freehep.graphicsio.*;
+import org.freehep.graphicsio.emf.*;
 import org.freehep.graphicsio.ps.*;
 import org.freehep.swing.*;
 import org.freehep.util.*;
@@ -314,7 +315,6 @@ public class ClipboardViewContextGem
     }
   }
   
-
   public static void saveAsEPS(File file, ZCanvas canvas, UBounds bounds)
   {
     double x = Math.max(bounds.getX() - 1, 0);
@@ -349,6 +349,67 @@ public class ClipboardViewContextGem
     {
       ex.printStackTrace();
     }
+  }  
+  
+  public static void saveAsRTFMetafile(File file, ZCanvas canvas, UBounds bounds)
+  {
+  	// if file is null, copy to clipboard instead
+    double x = bounds.getX() - 1;
+    double y = bounds.getY() - 1;
+    double width = bounds.getWidth() + 1;
+    double height = bounds.getHeight() + 1;
+    int rx = (int) Math.round(x);
+    int ry = (int) Math.round(y);
+    int rwidth = (int) Math.round(width);
+    int rheight = (int) Math.round(height);
+    canvas.setSize((int) Math.round(x + width), (int) Math.round(y + height));
+
+    // move it to the clipboard
+    String headerString =
+      "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale100"
+        + "{{\\*\\shppict{\\pict\\picscalex800\\picscaley800\\piccropl0"
+        + "\\piccropr0\\piccropt0\\piccropb0\\picwgoal" + width + "\\pichgoal" + height + "\\emfblip{\\*}";
+    String footerString = "}}\\par }}";
+    try
+    {
+      final OutputStream out = file != null ? new FileOutputStream(file) : new ByteArrayOutputStream();
+
+      // place the data on the clipboards
+      OutputStream test = new OutputStream()
+      {
+        public void write(int b) throws IOException
+        {
+          if (b < 0)
+            b = 256 + b;
+          HexUtility.writeRawString(out, HexUtility.int8ToHexString(b));
+        }
+      };
+
+      out.write(headerString.getBytes());
+
+      // the image is offset by about 30 twips
+      EMFGraphics2D g =
+        new EMFGraphics2D(test, new Dimension(rwidth + rx - offset + sidePad * 2, rheight + ry - offset + sidePad * 2));
+      g.startExport();
+      g.translate((double) - offset + sidePad, -offset + sidePad);
+      g.clipRect(0, 0, rwidth + rx, rheight + ry);
+      canvas.paint(g);
+      g.endExport();
+
+      out.write(footerString.getBytes());
+      out.close();
+
+      if (file == null)
+      {
+      	InputStream s = new ByteArrayInputStream(((ByteArrayOutputStream) out).toByteArray());
+      	MetafileTransferable transferImage = new MetafileTransferable(s);
+      	Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferImage, transferImage);
+      }
+    }
+    catch (IOException ex)
+    {
+      ex.printStackTrace();
+    }
   }
   
   private static void setUserProperty(String name, String value)
@@ -364,4 +425,5 @@ public class ClipboardViewContextGem
     properties.setProperty(
         PSGraphics2D.class.getName() + "." + name, value);    
   }
+
 }

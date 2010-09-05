@@ -535,7 +535,7 @@ public class GrouperNodeGem
       if (effect.equals("exportGroupedImage"))
       {
         String startTag = "export ";
-        if (name.startsWith(startTag) && (name.endsWith(".eps") || name.endsWith(".gif") || name.endsWith(".jpg") || name.endsWith(".png")))
+        if (name.startsWith(startTag) && (name.endsWith(".eps") || name.endsWith(".gif") || name.endsWith(".jpg") || name.endsWith(".png") || name.endsWith(".rtf")))
         {
         	String fname = name.substring(startTag.length());
 
@@ -557,6 +557,12 @@ public class GrouperNodeGem
           {
             if (fname.endsWith(".eps"))
               ClipboardViewContextGem.saveAsEPS(
+                  new File(directory, fname),
+                  view.getCanvas(),
+                  view.getDrawnBounds());
+            else
+            if (fname.endsWith(".rtf"))
+              ClipboardViewContextGem.saveAsRTFMetafile(
                   new File(directory, fname),
                   view.getCanvas(),
                   view.getDrawnBounds());

@@ -1,0 +1,738 @@
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 345
+\begin_document
+\begin_header
+\textclass book
+\begin_preamble
+\usepackage{wrapfig}
+\usepackage{graphicx}
+\usepackage{color}
+
+\definecolor{side}{rgb}{0.9,0.9,0.99}
+\definecolor{outside}{rgb}{0.6,0.6,0.6}
+
+\newcommand{\sidebar}[3]
+{
+  \begin{wrapfigure}{O}{#1\textwidth}
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+  \end{wrapfigure}
+}
+\newcommand{\idea}[2][0.5]
+{
+  \sidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\warning}[2][0.5]
+{
+  \sidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\highlight}[2][0.5]
+{
+  \sidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\fsidebar}[3]
+{
+  \fcolorbox{outside}{side}{
+    \begin{minipage}[t]{#1\columnwidth}
+    \includegraphics[scale=0.07]{#2}
+    #3
+    \end{minipage}}
+}
+\newcommand{\fidea}[2][1.0]
+{
+  \fsidebar{#1}{./icons/tip}{#2}
+}
+
+\newcommand{\fwarning}[2][1.0]
+{
+  \fsidebar{#1}{./icons/warn}{#2}
+}
+
+\newcommand{\fhighlight}[2][1.0]
+{
+  \fsidebar{#1}{./icons/highlight}{#2}
+}
+
+\newcommand{\menu}[1]
+{
+  \fcolorbox{outside}{side}{#1}
+}
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
+\end_preamble
+\use_default_options true
+\begin_modules
+theorems-ams
+eqs-within-sections
+figs-within-sections
+\end_modules
+\language english
+\inputencoding auto
+\font_roman lmodern
+\font_sans lmss
+\font_typewriter lmtt
+\font_default_family sfdefault
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+
+\graphics default
+\float_placement h
+\paperfontsize 11
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry true
+\use_amsmath 1
+\use_esint 1
+\cite_engine basic
+\use_bibtopic false
+\paperorientation portrait
+\leftmargin 3cm
+\topmargin 3cm
+\rightmargin 3cm
+\bottommargin 3cm
+\secnumdepth 2
+\tocdepth 2
+\paragraph_separation skip
+\defskip medskip
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\author "" 
+\author "" 
+\end_header
+
+\begin_body
+
+\begin_layout Chapter
+Documenting Evolve Models
+\end_layout
+
+\begin_layout Standard
+Evolve supports copying figures and pasting them into a wordprocessor such
+ as Word or OpenOffice.
+ This uses EMF vector graphics, a compact and scalable format.
+ The limitation of this approach, however, is that the copied images will
+ not be automatically updated if the model changes.
+ Because of this, using copy&paste is tedious and not recommented for creating
+ substantial documents with many figures - each changed figure has to be
+ manually updated in turn.
+\end_layout
+
+\begin_layout Standard
+Evolve provides another approach, which is far superior.
+ It allows figures to be marked up and exported together in a single action
+ from a model.
+ We can then link to these images from a wordprocessor document and update
+ them in bulk when the model changes.
+ This facility is how this document was produced, and also how I wrote a
+ several-hundred page research document with hundreds of figures.
+ Evolve makes creating documentation in this way a relatively painless affair
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+I shudder when I think of the pain I have gone through trying to use Rational
+ SoDA for documentation.
+ Evolve provides a far better way.
+\end_layout
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+Marking Up Figures and Exporting Them
+\end_layout
+
+\begin_layout Standard
+Evolve provides a way to mark up figures to be exported from a model.
+\end_layout
+
+\begin_layout Standard
+To create an export, choose the 
+\begin_inset Quotes eld
+\end_inset
+
+Grouper
+\begin_inset Quotes erd
+\end_inset
+
+ tool and place a grouper on the diagram.
+ Select it and type 
+\begin_inset Quotes eld
+\end_inset
+
+export imagename.extension
+\begin_inset Quotes erd
+\end_inset
+
+, where 
+\begin_inset Quotes eld
+\end_inset
+
+extension
+\begin_inset Quotes erd
+\end_inset
+
+ can be any of: 
+\begin_inset Quotes eld
+\end_inset
+
+eps
+\begin_inset Quotes erd
+\end_inset
+
+ (Postscript), 
+\begin_inset Quotes eld
+\end_inset
+
+jpg
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+png
+\begin_inset Quotes erd
+\end_inset
+
+, 
+\begin_inset Quotes eld
+\end_inset
+
+gif
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+rtf
+\begin_inset Quotes erd
+\end_inset
+
+ (Rich Text Format with embedded EMF).
+ If you want to export with delta marks on, use 
+\begin_inset Quotes eld
+\end_inset
+
+export 
+\series bold
+deltas
+\series default
+ imagename.extension
+\begin_inset Quotes erd
+\end_inset
+
+.
+ A model can have any number of groupers.
+\end_layout
+
+\begin_layout Standard
+Then, drag a set of figures into the grouper.
+ An example of this is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-grouper-which"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement H
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/grouped-export.png
+	scale 45
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-grouper-which"
+
+\end_inset
+
+A grouper which will export a figure
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+(Note that I have colored the background of the grouper to make it obvious.
+ Normally the background is transparent.)
+\end_layout
+
+\begin_layout Standard
+To export all the figures for the entire model, invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Export grouped images
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option and choose a directory to save the image(s) into.
+ Every image is saved into the chose directory, so ensure the image names
+ in the groupers are unique.
+\end_layout
+
+\begin_layout Standard
+That's all there is to it.
+ We will now discuss how to use these images using three different wordprocessor
+s.
+\end_layout
+
+\begin_layout Section
+Creating the Document
+\end_layout
+
+\begin_layout Standard
+Any wordprocessor that allows the insertion of linked files can utilize
+ this approach.
+ We have had fantastic results with Microsoft Word and Lyx.
+ OpenOffice Writer can also be used but its images are sometimes cropped
+ and the process of linking is cumbersome.
+\end_layout
+
+\begin_layout Subsection
+Using Word
+\end_layout
+
+\begin_layout Standard
+(We describe below how to link the images using Word 2007.
+ It's the version we use, although we are fairly sure older versions will
+ work also.)
+\end_layout
+
+\begin_layout Standard
+The best approach when using Word is to export RTF images (using the 
+\begin_inset Quotes eld
+\end_inset
+
+rtf
+\begin_inset Quotes erd
+\end_inset
+
+ extension).
+ These contain EMF vector graphics inside, which scale properly when the
+ image is resized.
+\end_layout
+
+\begin_layout Standard
+Suppose that we have exported an image to 
+\family typewriter
+c:
+\backslash
+images
+\backslash
+figure.rtf
+\family default
+.
+ To add this to a Word document, choose the 
+\begin_inset Quotes eld
+\end_inset
+
+Insert
+\begin_inset Quotes erd
+\end_inset
+
+ tab on the ribbon and invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Object
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Text from file...
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+ Select the RTF file in the dialog and then change the insert mode to 
+\begin_inset Quotes eld
+\end_inset
+
+Insert as link
+\begin_inset Quotes erd
+\end_inset
+
+.
+ The linking part is crucial - if we do not do this we will simply insert
+ a static picture into the document.
+\end_layout
+
+\begin_layout Subsubsection
+Updating Linked Images
+\end_layout
+
+\begin_layout Standard
+To update the links when the figures are re-exported from Evolve, invoke
+ the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Prepare
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Edit Links to Files...
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+ This can be accessed from the large Office icon in the top left of the
+ ribbon.
+ Select all the links and click on 
+\begin_inset Quotes eld
+\end_inset
+
+Update Now
+\begin_inset Quotes erd
+\end_inset
+
+ and the images will be updated, bringing the document in line with the
+ model.
+\end_layout
+
+\begin_layout Subsection
+Using OpenOffice
+\end_layout
+
+\begin_layout Standard
+We have had less success with OpenOffice.
+ Although this technique can still be used, we would advise either using
+ Word or Lyx.
+ Our example was tested with OpenOffice 3.2.
+\end_layout
+
+\begin_layout Standard
+To insert a linked RTF image in a Writer document, invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Insert
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Object
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+OLE Object...
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+ This will bring up a dialog allowing you to choose an Object type.
+ Click on the 
+\begin_inset Quotes eld
+\end_inset
+
+Create from file
+\begin_inset Quotes erd
+\end_inset
+
+ option at the top of the dialog and then click the 
+\begin_inset Quotes eld
+\end_inset
+
+Link to file
+\begin_inset Quotes erd
+\end_inset
+
+ option.
+ The last part is crucial or the image cannot be updated later.
+ Finally, choose the file using the 
+\begin_inset Quotes eld
+\end_inset
+
+Search...
+\begin_inset Quotes erd
+\end_inset
+
+ button and the linked image will be inserted.
+\end_layout
+
+\begin_layout Subsubsection
+Updating Linked Images
+\end_layout
+
+\begin_layout Standard
+To update the images in the entire document after an image export, select
+ the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Tools
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Update
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Update All
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+\end_layout
+
+\begin_layout Subsection
+Using Lyx
+\end_layout
+
+\begin_layout Standard
+Lyx (http://www.lyx.org) is an advanced wordprocessor that uses L
+\noun on
+a
+\noun default
+T
+\noun on
+e
+\noun default
+X under the covers.
+ Don't be put off by the L
+\noun on
+a
+\noun default
+T
+\noun on
+e
+\noun default
+X part - Lyx shields the user from this, and the documents produced look
+ fantastic.
+ I'd encourage you to try Lyx at least once, as it is a superb tool for
+ creating documentation.
+ It is my favourite by a long way.
+\end_layout
+
+\begin_layout Standard
+For Lyx, make sure you export EPS 
+\begin_inset Quotes eld
+\end_inset
+
+.eps
+\begin_inset Quotes erd
+\end_inset
+
+ images.
+ These are postscript, and scale well.
+ To insert an image once it has been exported, choose the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Insert
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Graphics...
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu option.
+ Browse for the EPS file and it will be inserted as a linked image.
+\end_layout
+
+\begin_layout Standard
+Image updating happens automatically in Lyx, there is no need to manually
+ invoke this.
+ This makes for a very pleasant documenting experience - if I want a change
+ to a figure while working on a chapter, I switch over to Evolve and hit
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+control E
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+and voila, the document magically updates to reflect the model.
+\end_layout
+
+\begin_layout Section
+A Few Tips
+\end_layout
+
+\begin_layout Standard
+Although any exported images can be regenerated if they are deleted, it
+ still makes sense to keep these under version control, in addition to the
+ Evolve model that is being documented.
+ This way other developers can also collaborate on the documentation.
+\end_layout
+
+\begin_layout Standard
+If you want to send around a document without links, simply export it in
+ PDF or XPS format.
+\end_layout
+
+\begin_layout Standard
+Finally, a quick word about copy/pasting figures from Evolve into a presentation
+ tool such as PowerPoint.
+ For reasons we cannot fathom, this does not work directly.
+ However, there is an easy workaround - copy the figures into Word/OpenOffice
+ first and then select these and copy/paste from the wordpressor into PowerPoint
+/Impress.
+\end_layout
+
+\end_body
+\end_document

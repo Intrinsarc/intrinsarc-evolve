@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -1027,7 +1031,7 @@ Pasting into a Wordprocessor
 \end_layout
 
 \begin_layout Standard
-Elements on a diagram can be copied (
+Elements on a diagram can be copied
 \family typewriter
 
 \begin_inset ERT
@@ -1055,9 +1059,9 @@ status collapsed
 
 \end_inset
 
-) and pasted 
+and pasted
 \family typewriter
-(
+
 \begin_inset ERT
 status collapsed
 
@@ -1083,7 +1087,7 @@ status collapsed
 
 \end_inset
 
-) back onto the same, or another, diagram.
+back onto the same, or another, diagram.
  We can also paste into an external wordprocessor such as Word or OpenOffice
  Writer.
  For external programs, the underlying vectory graphics format used is the
@@ -1295,7 +1299,7 @@ status collapsed
 
 \end_inset
 
-(
+(or by invoking
 \begin_inset ERT
 status collapsed
 

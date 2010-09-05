@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -114,6 +118,12 @@ figs-within-sections
 \begin_body
 
 \begin_layout Chapter
+\begin_inset CommandInset label
+LatexCommand label
+name "cha:Advanced-Modeling-in"
+
+\end_inset
+
 Advanced Modeling in Evolve: A Teaser
 \end_layout
 
@@ -419,7 +429,7 @@ ty twist.
 
 \begin_layout Standard
 To try out the feature modeling facilities of Evolve, change to the feature
- focus using the 
+ focus using the
 \begin_inset ERT
 status collapsed
 
@@ -447,7 +457,7 @@ status collapsed
 
 \end_inset
 
- menu option.
+menu option.
  Break a feature down into subfeatures using the 
 \begin_inset Quotes eld
 \end_inset
@@ -541,7 +551,7 @@ Feature modeling in Evolve
 
 \begin_layout Standard
 To see what features are supported by components, open the feature hierarchy
- browser by right-clicking on a feature and choosing the 
+ browser by right-clicking on a feature and choosing the
 \begin_inset ERT
 status collapsed
 
@@ -565,7 +575,7 @@ status collapsed
 
 \end_inset
 
- option.
+option.
  This is shown in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -642,6 +652,12 @@ An example is described in section 7.4 of the thesis where I gradually refactore
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Evolution-Instead-of"
+
+\end_inset
+
 Evolution Instead of Aspects
 \end_layout
 
@@ -653,9 +669,61 @@ reference "sub:Evolution-as-a"
 
 \end_inset
 
- of this document.
+.
  Evolution can be used to replace aspects, with very few of their disadvantages
- such as lexical fragility and a tension between reuse and method context.
+ such as lexical fragility and the tension between reuse and method context
+ of an aspect.
+\end_layout
+
+\begin_layout Standard
+For the readers who would like to dig deeper, I would suggest the following
+ literature.
+\end_layout
+
+\begin_layout Enumerate
+The book 
+\begin_inset Quotes eld
+\end_inset
+
+Aspect-Oriented Programming With the e Verification Language
+\begin_inset Quotes erd
+\end_inset
+
+ by David Robinson.
+\begin_inset Newline newline
+\end_inset
+
+The 
+\emph on
+e
+\emph default
+ language uses a form of evolution to model several aspect-like situations,
+ and shows how the approach can offer advantages over aspects.
+\end_layout
+
+\begin_layout Enumerate
+The academic paper 
+\begin_inset Quotes eld
+\end_inset
+
+Aspect-Oriented Programming is Quantification and Obliviousness
+\begin_inset Quotes erd
+\end_inset
+
+ by Robert Filman and Dan Friedman.
+\begin_inset Newline newline
+\end_inset
+
+http://citeseerx.ist.psu.edu/viewdoc/summary?doi=10.1.1.28.287
+\begin_inset Newline newline
+\end_inset
+
+This paper shows that there is a tension in aspects between the quantification
+ side and making aspects know too much about the context of the underlying
+ code they will apply to.
+ Have you ever wondered why most (all?) AOP examples add logging and transaction
+s to a system? Read this paper for insight as to why aspects tend not to
+ address the business logic of a system.
 \end_layout
 
 \begin_layout Standard
@@ -690,178 +758,6 @@ Evolve allows multiple variants of an application to be created in a sensible
  of an application.
  Furthermore, Evolve can use feature modeling which came from research into
  product lines.
-\end_layout
-
-\begin_layout Section
-Creating Documents From Evolve Models
-\end_layout
-
-\begin_layout Standard
-We have already discussed in section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Loading-and-Navigating"
-
-\end_inset
-
- that Evolve allows a part of a diagram to be paste into a wordprocessor.
-\end_layout
-
-\begin_layout Standard
-However, this can be a cumbersome way of document large models.
- Evolve offers an alternative - it can export selected diagram elements
- by using the 
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-File
-\begin_inset Formula $\vartriangleright$
-\end_inset
-
-Export grouped images
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
- feature.
-\end_layout
-
-\begin_layout Standard
-To use this, choose the 
-\begin_inset Quotes eld
-\end_inset
-
-Grouper
-\begin_inset Quotes erd
-\end_inset
-
- tool and place a grouper on a diagram.
- Select it and type 
-\begin_inset Quotes eld
-\end_inset
-
-export figure.png
-\begin_inset Quotes erd
-\end_inset
-
-.
- Then, drag a set of figures into the grouper.
- Select 
-\begin_inset Quotes eld
-\end_inset
-
-Export grouped images
-\begin_inset Quotes erd
-\end_inset
-
- and choose a directory to save the image(s) into.
- An example of this is shown in figure 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:A-grouper-which"
-
-\end_inset
-
-.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement H
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename screenshots/grouped-export.png
-	scale 45
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:A-grouper-which"
-
-\end_inset
-
-A grouper which will export a figure
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Note that I have colored the background of the grouper to make it obvious.
- Normally the background is transparent.
-\end_layout
-
-\begin_layout Standard
-The possible images types that can be exported are: eps (Postscript), jpg,
- png and gif.
- Further, if you want the image exported with delta marks on, use 
-\begin_inset Quotes eld
-\end_inset
-
-export deltas figure.png
-\begin_inset Quotes erd
-\end_inset
-
-.
- A single model can have any number of these exports.
-\end_layout
-
-\begin_layout Standard
-This facility is how this document was produced, and also how I wrote my
- thesis.
- Both documents have literally hundreds of figures.
- I use an advanced wordprocessor called Lyx (http://www.lyx.org) which allows
- the insertion of pictures from files.
- When these files are overwritten, due to a new image export, Lyx automatically
- picks up the changes.
- This means that I can amend a model, re-export the images and literally
- have dozens of pictures update in unison.
- This allows me to produce complex documents easily.
-\end_layout
-
-\begin_layout Standard
-Any wordprocessor that allows picture insertion via files, and can refresh
- the pictures from the files, can utilize this very useful approach.
 \end_layout
 
 \begin_layout Section

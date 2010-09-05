@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -1444,7 +1448,7 @@ The importer sometimes confuses a bean for a primitive and vice versa.
  In the former situation, this generally happens because the bean has no
  explicit set or get methods.
  To correct this, right-click on the item in the browser's lower left tree
- and select 
+ and select
 \begin_inset ERT
 status collapsed
 
@@ -1659,7 +1663,7 @@ reference "sec:Subjects-and-Views"
 \family typewriter
 CheckBox
 \family default
-, pressed 
+, pressed
 \begin_inset ERT
 status collapsed
 
@@ -1683,7 +1687,7 @@ status collapsed
 
 \end_inset
 
- and then selected 
+and then selected 
 \family typewriter
 CheckBox
 \family default
@@ -1696,7 +1700,7 @@ CheckBox
 Because imported components can be very complex with literally hundreds
  of ports and attributes, by default the first ever view of a component
  will show none of these.
- To make them visible, right click on the component and choose 
+ To make them visible, right click on the component and choose
 \begin_inset ERT
 status collapsed
 
@@ -1720,7 +1724,7 @@ status collapsed
 
 \end_inset
 
- or 
+or
 \begin_inset ERT
 status collapsed
 
@@ -1745,7 +1749,7 @@ status collapsed
 \end_inset
 
 .
- If you want to see all ports and attributes, choose the 
+ If you want to see all ports and attributes, choose the
 \begin_inset ERT
 status collapsed
 
@@ -1773,7 +1777,7 @@ status collapsed
 
 \end_inset
 
- or the 
+or the
 \begin_inset ERT
 status collapsed
 
@@ -1801,7 +1805,7 @@ status collapsed
 
 \end_inset
 
- options.
+options.
 \end_layout
 
 \begin_layout Subsubsection
@@ -2510,6 +2514,41 @@ public class CarRentalGUI implements EntryPoint
 That completes the integration with GWT for the front-end.
 \end_layout
 
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+highlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Although we used Evolve to model every part of this example, including the
+ graphical client, it is sometimes preferable to use a combination of Evolve
+ components and custom Java code for certain domains.
+ To use this approach simply generate less fine-grained components and write
+ the component logic using conventional object-oriented code.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -2522,7 +2561,7 @@ Running the Example
 
 \begin_layout Standard
 To run the front and back ends in Eclipse, right-click on the project in
- the project explorer and select the 
+ the project explorer and select the
 \begin_inset ERT
 status collapsed
 
@@ -2550,12 +2589,12 @@ status collapsed
 
 \end_inset
 
- menu option provided by the GWT plugin.
+menu option provided by the GWT plugin.
  The client and server will start up.
 \end_layout
 
 \begin_layout Standard
-Type in a car name and press 
+Type in a car name and press
 \begin_inset ERT
 status collapsed
 
@@ -2579,7 +2618,7 @@ status collapsed
 
 \end_inset
 
- to add a new car.
+to add a new car.
  Enter the name of a renter and press return to rent a car.
  Press the 
 \begin_inset Quotes eld
@@ -2601,7 +2640,7 @@ Because GWT translates the generated client-side Java code directly into
  Javascript, without requiring a recompile, turnarounds to changes in the
  GUI are extremely fast.
  Make the change to the GUI components, regenerate the full implementation,
- and press 
+ and press
 \begin_inset ERT
 status collapsed
 
@@ -2625,7 +2664,7 @@ status collapsed
 
 \end_inset
 
- in the browser to refresh.
+in the browser to refresh the view.
 \end_layout
 
 \begin_layout Standard

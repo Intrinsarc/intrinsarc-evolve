@@ -10,6 +10,8 @@ import javax.swing.*;
 
 import org.freehep.graphicsio.emf.*;
 
+import com.intrinsarc.evolve.freeform.grouper.*;
+import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
@@ -79,63 +81,7 @@ public class CopyAction extends AbstractAction
     UBounds bounds = view.getDrawnBounds();
   
     // copy to clipboard
-  	copyToClipboardAsExtendedMetafile(canvas, bounds);
-  }
-
-  private static void copyToClipboardAsExtendedMetafile(ZCanvas canvas, UBounds bounds)
-  {
-    double x = bounds.getX() - 1;
-    double y = bounds.getY() - 1;
-    double width = bounds.getWidth() + 1;
-    double height = bounds.getHeight() + 1;
-    int rx = (int) Math.round(x);
-    int ry = (int) Math.round(y);
-    int rwidth = (int) Math.round(width);
-    int rheight = (int) Math.round(height);
-    canvas.setSize((int) Math.round(x + width), (int) Math.round(y + height));
-
-    // move it to the clipboard
-    String headerString =
-      "{\\rtf1\\ansi\\ansicpg1252\\uc1 \\viewkind1\\viewscale100"
-        + "{{\\*\\shppict{\\pict\\picscalex800\\picscaley800\\piccropl0"
-        + "\\piccropr0\\piccropt0\\piccropb0\\picwgoal" + width + "\\pichgoal" + height + "\\emfblip{\\*}";
-    String footerString = "}}\\par }}";
-    try
-    {
-      final ByteArrayOutputStream out = new ByteArrayOutputStream();
-
-      // place the data on the clipboards
-      OutputStream test = new OutputStream()
-      {
-        public void write(int b) throws IOException
-        {
-          if (b < 0)
-            b = 256 + b;
-          HexUtility.writeRawString(out, HexUtility.int8ToHexString(b));
-        }
-      };
-
-      out.write(headerString.getBytes());
-
-      // the image is offset by about 30 twips
-      EMFGraphics2D g =
-        new EMFGraphics2D(test, new Dimension(rwidth + rx - offset + sidePad * 2, rheight + ry - offset + sidePad * 2));
-      g.startExport();
-      g.translate((double) - offset + sidePad, -offset + sidePad);
-      g.clipRect(0, 0, rwidth + rx, rheight + ry);
-      canvas.paint(g);
-      g.endExport();
-
-      out.write(footerString.getBytes());
-
-      InputStream s = new ByteArrayInputStream(out.toByteArray());
-      MetafileTransferable transferImage = new MetafileTransferable(s);
-      Toolkit.getDefaultToolkit().getSystemClipboard().setContents(transferImage, transferImage);
-    }
-    catch (IOException ex)
-    {
-      ex.printStackTrace();
-    }
+  	ClipboardViewContextGem.saveAsRTFMetafile(null, canvas, bounds);
   }
 
   public static class CopyCommandGenerator

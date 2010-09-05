@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -210,8 +214,8 @@ JavaBean code can be generated, and existing beans can be quickly imported.
 \end_layout
 
 \begin_layout Itemize
-Full support for the reuse and evolution of components, giving the advantages
- of AOP without the drawbacks.
+Full support for the reuse and evolution of components, giving the benefits
+ of aspects without the drawbacks.
 \end_layout
 
 \begin_layout Itemize

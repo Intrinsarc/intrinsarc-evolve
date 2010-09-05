@@ -63,6 +63,10 @@
 {
   \fcolorbox{outside}{side}{#1}
 }
+
+\usepackage{chngcntr}
+\counterwithout{figure}{section}
+\renewcommand{\thefigure}{\thechapter.\arabic{figure}}
 \end_preamble
 \use_default_options true
 \begin_modules
@@ -138,6 +142,15 @@ The team version of Evolve is currently under development.
 \end_layout
 
 \begin_layout Subsection
+Support for Other Implementation Languages
+\end_layout
+
+\begin_layout Standard
+We plan to support C# fully.
+ We are also looking into the feasibility of providing C++ support.
+\end_layout
+
+\begin_layout Subsubsection
 Concurrency Primitives
 \end_layout
 
@@ -148,7 +161,7 @@ A set of concurrency primitives will be added to Evolve and Backbone, allowing
  Orthogonal/concurrent states will also be supported.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Web Publishing System
 \end_layout
 
@@ -159,7 +172,7 @@ A full web publishing system is being developed for Evolve to allow a model
  system.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Protocol Analysis
 \end_layout
 
@@ -176,7 +189,7 @@ Further, protocol analysis will automatically determine the protocols of
  any composite component port.
 \end_layout
 
-\begin_layout Subsection
+\begin_layout Subsubsection
 Internet Distribution System and Licensing Manager
 \end_layout
 
