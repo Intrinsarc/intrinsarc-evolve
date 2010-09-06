@@ -641,7 +641,7 @@ public abstract class DEComponent extends DEElement
 				}
 			}
 
-		return graph.makeTopologicalSort();
+		return graph.makeTopologicalSort(true);
 	}
 	
 	public boolean defaultValuesCanBeTopologicallySorted(DEStratum perspective)

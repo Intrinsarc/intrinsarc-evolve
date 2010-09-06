@@ -281,7 +281,7 @@ public class BeanSubjectCreator
 			}
 
 		// now we can process in order, knowing that any superclass has been processed before us
-		for (BeanClass cls : graph.makeTopologicalSort())
+		for (BeanClass cls : graph.makeTopologicalSort(true))
 		{
 			Class me = classes.get(cls.getNode().name);
 			

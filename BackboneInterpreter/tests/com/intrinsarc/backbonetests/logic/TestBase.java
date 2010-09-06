@@ -207,7 +207,7 @@ public class TestBase
 	{
 		ErrorRegister errors = new ErrorRegister();
 		StratumErrorDetector detector = new StratumErrorDetector(errors);
-		List<DEStratum> system = new ArrayList<DEStratum>(top.determineOrderedPackages(false));
+		List<DEStratum> system = new ArrayList<DEStratum>(top.determineOrderedPackages(false, true));
 		
     detector.checkAllInOrder(system, system.size() - 1, true, null);
 		if (errors.countErrors() > 0)
@@ -224,7 +224,7 @@ public class TestBase
 	{
 		ErrorRegister errors = new ErrorRegister();
 		StratumErrorDetector detector = new StratumErrorDetector(errors);
-		List<DEStratum> system = new ArrayList<DEStratum>(top.determineOrderedPackages(false));
+		List<DEStratum> system = new ArrayList<DEStratum>(top.determineOrderedPackages(false, true));
 		
     detector.checkAllInOrder(system, system.size() - 1, true, null);
     Set<ErrorDescription> allIgnores = new HashSet<ErrorDescription>();

@@ -136,7 +136,7 @@ public class ErrorAdornerGem
 			IDeltaEngine engine = GlobalDeltaEngine.engine;
 			
 			// only named element can have errors against them
-			if (object == null || !(object instanceof NamedElement) || GlobalDeltaEngine.engine.locateObject(object) == null || ((Element) figure.getSubject()).isThisDeleted())
+			if (object == null || !(object instanceof NamedElement) || ((Element) figure.getSubject()).isThisDeleted() || GlobalDeltaEngine.engine.locateObject(object) == null)
 				return null;
 
 			NamedElement subject = (NamedElement) object;

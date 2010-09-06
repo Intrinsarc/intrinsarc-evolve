@@ -117,7 +117,7 @@ public class BBSimpleComponent extends BBSimpleElement
 			}
 		}
 		
-		List<DEAttribute> sorted = graph.makeTopologicalSort();
+		List<DEAttribute> sorted = graph.makeTopologicalSort(true);
 		if (!sorted.isEmpty())
 		{
 			// topologically sort the attributes

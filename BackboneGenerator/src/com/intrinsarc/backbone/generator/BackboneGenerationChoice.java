@@ -46,7 +46,7 @@ public class BackboneGenerationChoice
   {
 		List<DEStratum> st = new ArrayList<DEStratum>();
 		st.add(getSingleStratum());
-		st = DEStratum.determineOrderedPackages(st, false);
+		st = DEStratum.determineOrderedPackages(st, false, true);
 		Collections.reverse(st);
 		return st;
   }

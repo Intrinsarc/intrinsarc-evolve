@@ -235,15 +235,15 @@ public abstract class DEStratum extends DEObject
   }
   
   // utility functions
-  public List<DEStratum> determineOrderedPackages(boolean onlyNested)
+  public List<DEStratum> determineOrderedPackages(boolean onlyNested, boolean tolerateCircularity)
   {
   	List<DEStratum> starts = new ArrayList<DEStratum>();
   	
   	starts.add(this);
-  	return determineOrderedPackages(starts, onlyNested);
+  	return determineOrderedPackages(starts, onlyNested, tolerateCircularity);
   }
   
-  public static List<DEStratum> determineOrderedPackages(List<DEStratum> start, boolean onlyNested)
+  public static List<DEStratum> determineOrderedPackages(List<DEStratum> start, boolean onlyNested, boolean tolerateCircularity)
   {
   	// sort the packages based on the transitive closure
   	if (onlyNested)
@@ -262,7 +262,7 @@ public abstract class DEStratum extends DEObject
     		for (DEStratum dep : p.getTransitive())
     			graph.addEdge(p, dep);
 
-    	List<DEStratum> sorted = graph.makeTopologicalSort();
+    	List<DEStratum> sorted = graph.makeTopologicalSort(tolerateCircularity);
     	return sorted;
   	}
   }

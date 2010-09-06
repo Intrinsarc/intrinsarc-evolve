@@ -295,7 +295,7 @@ public final class BasicDiagramViewGem implements Gem
         for (DiagramFigureAdornerFacet adorner : adorners)
         {
           // determine any adornment changes
-          final Map<FigureFacet, Integer> nextAdorned;        
+          final Map<FigureFacet, Integer> nextAdorned;
           nextAdorned = adorner.determineAdornments(diagramFacet, new HashSet<FigureFacet>(figures.values()));
           
           Set<FigureFacet> intersection = new HashSet<FigureFacet>(nextAdorned.keySet());
@@ -308,10 +308,6 @@ public final class BasicDiagramViewGem implements Gem
           previouslyAdorned.set(lp, nextAdorned);
           lp++;
         }
-      
-			// if the changes are persistent, we need to recreate the figures
-			if (length == 0 && modifiedAdorned.isEmpty())
-				return;
 				
 			final Runnable modificationProcessor = new Runnable()
 			{

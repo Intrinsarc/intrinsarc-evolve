@@ -48,14 +48,14 @@ public class SimpleDirectedGraph<N>
 		return false;
 	}
 
-	public List<N> makeTopologicalSort()
+	public List<N> makeTopologicalSort(boolean tolerateCircularity)
 	{
 		List<N> sorted = new ArrayList<N>();
-		makeTopologicalSort(new LinkedHashSet<N>(nodes), sorted);
+		makeTopologicalSort(new LinkedHashSet<N>(nodes), sorted, tolerateCircularity);
 		return sorted;
 	}
 
-	private void makeTopologicalSort(HashSet<N> left, List<N> sorted)
+	private void makeTopologicalSort(HashSet<N> left, List<N> sorted, boolean tolerateCircularity)
 	{
 		// find anything in left doesn't depend on left (apart from itself)
 		while (left.size() != 0)
@@ -68,10 +68,20 @@ public class SimpleDirectedGraph<N>
 			sorted.addAll(move);
 			if (move.isEmpty())
 			{
-				System.out.println("$$ graph = " + left);
-				for (N n : edges.keySet())
-					System.out.println("  $$ Node = " + n + ", edges = " + edges.get(n));
-				throw new IllegalStateException("Graph is not directed!");
+				if (tolerateCircularity)
+				{
+					// remove the first and carry on
+					N top = left.iterator().next();
+					left.remove(top);
+					sorted.add(top);
+				}
+				else
+				{
+					System.out.println("$$ graph = " + left);
+					for (N n : edges.keySet())
+						System.out.println("  $$ Node = " + n + ", edges = " + edges.get(n));
+					throw new IllegalStateException("Graph is not directed!");
+				}
 			}
 		}
 	}

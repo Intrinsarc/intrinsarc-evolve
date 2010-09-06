@@ -1495,7 +1495,7 @@ public class ApplicationWindow extends SmartJFrame
 			DEStratum currentPackage = GlobalDeltaEngine.engine.locateObject(current).asStratum();
 
 			// expand out and check everything
-			final List<DEStratum> toCheck = currentPackage.determineOrderedPackages(false);
+			final List<DEStratum> toCheck = currentPackage.determineOrderedPackages(false, true);
 
 			// clear any current errors and recheck
 			final EnhancedPackageErrorDetector detector = new EnhancedPackageErrorDetector(errors);
@@ -1519,7 +1519,7 @@ public class ApplicationWindow extends SmartJFrame
 
 			// expand out and check everything
 			final EnhancedPackageErrorDetector detector = new EnhancedPackageErrorDetector(errors);
-			final List<DEStratum> toCheck = currentPackage.determineOrderedPackages(false);
+			final List<DEStratum> toCheck = currentPackage.determineOrderedPackages(false, true);
 
 			// clear any current errors
 			errors.clear();
