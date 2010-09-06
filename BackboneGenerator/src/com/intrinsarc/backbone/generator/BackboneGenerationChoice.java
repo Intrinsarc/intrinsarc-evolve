@@ -103,10 +103,10 @@ public class BackboneGenerationChoice
       throw new BackboneGenerationException("A single stratum must be tagged before running", null);
     
     String stratum = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_STRATUM);
-    if (stratum == null || stratum.isEmpty())
+    if (stratum == null || stratum.length() == 0)
     	stratum = CommonRepositoryFunctions.getFullyQualifiedName(singleStratum, "::", GlobalSubjectRepository.repository.getTopLevelModel());
     String component = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT);
-    if (component == null || component.isEmpty())
+    if (component == null || component.length() == 0)
       throw new BackboneGenerationException(CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT + " must be set to an existing component", null);
     String port = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_PORT);
     if (port == null || port.length() == 0)

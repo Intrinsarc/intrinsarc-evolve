@@ -122,8 +122,8 @@ public class ApplicationWindow extends SmartJFrame
 		setFocusTraversalKeys(KeyboardFocusManager.FORWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 		setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 
-		// allow files to be dropped onto the frame
-		new FileDropTarget(this,
+		// allow files to be dropped onto the frame -- need to find a way to only have this work for Java1.6+
+/*		new FileDropTarget(this,
 				new FileDropTarget.Listener()
 				{
 					public boolean acceptFile(File file)
@@ -133,7 +133,7 @@ public class ApplicationWindow extends SmartJFrame
 						return true;
 					}
 				});
-	}
+*/	}
 
 	public IEasyDock getDesktop()
 	{
@@ -1951,24 +1951,23 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
-			JMenuItem newsItem = new JMenuItem(
-					new URLAction("News and Announcements", URL_BASE + "/news"));
+/*			JMenuItem newsItem = new JMenuItem(
+					new URLAction("News and Announcements", URL_BASE + "/evolve/news"));
 			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
 			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
-
+*/
 			JMenuItem docItem = new JMenuItem(
-					new URLAction("Documentation", URL_BASE + "/documentation"));
+					new URLAction("Documentation", URL_BASE + "/evolve/download"));
 			docItem.setIcon(HELP_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", docItem));
 			GlobalPreferences.registerKeyAction("Help", docItem, null, "Documentation");
 
 			JMenuItem supportItem = new JMenuItem(
-					new URLAction("Support forum", URL_BASE + "/support"));
+					new URLAction("Support forum", URL_BASE + "/evolve/support"));
 			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
 			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
 
-			JMenuItem versionItem = new JMenuItem(
-					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/version_history"));
+			JMenuItem versionItem = new JMenuItem("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION);
 			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
 			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
 

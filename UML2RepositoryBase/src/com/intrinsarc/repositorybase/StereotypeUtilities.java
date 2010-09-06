@@ -7,7 +7,6 @@ import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.sun.xml.internal.bind.v2.runtime.*;
 
 public class StereotypeUtilities
 {

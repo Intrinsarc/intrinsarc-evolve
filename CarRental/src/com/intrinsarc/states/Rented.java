@@ -42,7 +42,6 @@ public class Rented
 		throw new IllegalStateException("Already rented!");
 	}
 	
-	@Override
 	public void returnRental()
 	{
 		current = !out.enter();
