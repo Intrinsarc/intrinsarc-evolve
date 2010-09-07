@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public class FileDropTarget extends TransferHandler
 {
-/*	private JFrame frame;
 	private Listener listener;
 	
 	public interface Listener
@@ -16,7 +15,6 @@ public class FileDropTarget extends TransferHandler
 
 	public FileDropTarget(JFrame frame, Listener listener)
 	{
-		this.frame = frame;
 		this.listener = listener;
 		frame.setTransferHandler(this);
 	}
@@ -47,4 +45,4 @@ public class FileDropTarget extends TransferHandler
   {
     return listener.acceptFile(extractFile(info));
   }
-*/}
+}

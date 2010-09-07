@@ -141,7 +141,7 @@ public class ModelMover
 	  	          currentTop,
 	  	          UML2Package.eINSTANCE.getPackage_ChildPackages(),
 	  	          false);
-	  	      importInto.getChildPackages().add(element);
+	  	      importInto.settable_getChildPackages().add(element);
 
 	  	      // the replaced package can now be deleted
 	  	      if (existing != null)
