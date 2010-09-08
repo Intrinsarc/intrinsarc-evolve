@@ -95,6 +95,7 @@ public class CommonRepositoryFunctions
 	public static final String BACKBONE_RUN_COMPONENT = "bb-run-component";
 	public static final String BACKBONE_RUN_PORT = "bb-run-port";
 	public static final String BACKBONE_CMD_LINE = "bb-cmd-line-arguments";
+	public static final String DEFAULT_PACKAGE = "default-java-package";
 
 	// visual stereotypes
 	public static final String VISUAL_EFFECT = "visual-effect";
@@ -301,6 +302,7 @@ public class CommonRepositoryFunctions
     addAttribute(uuids, stratum, STRATUM_PREAMBLE, stringType, "A preamble which is inserted into the Backbone code for this stratum");
     addAttribute(uuids, stratum, BACKBONE_CLASSPATH, stringType, "The classpath to use for Backbone for this stratum");
     addAttribute(uuids, stratum, BACKBONE_RUN_STRATUM, stringType, "The stratum of the component to use for running");
+    addAttribute(uuids, stratum, DEFAULT_PACKAGE, stringType, "The package name that the 'auto' class implementation button will use");
     addAttribute(uuids, stratum, BACKBONE_RUN_COMPONENT, stringType, "The component to use for running");
     addAttribute(uuids, stratum, BACKBONE_RUN_PORT, stringType, "The component port to use for running");
     addAttribute(uuids, stratum, BACKBONE_CMD_LINE, stringType, "The command line arguments that will be passed when running the Backbone program");

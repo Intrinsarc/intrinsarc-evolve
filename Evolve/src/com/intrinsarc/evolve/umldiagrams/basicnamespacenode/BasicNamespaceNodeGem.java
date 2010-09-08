@@ -9,7 +9,6 @@ import javax.swing.*;
 
 import net.xoetrope.editor.color.*;
 
-import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
@@ -19,7 +18,6 @@ import com.intrinsarc.evolve.umldiagrams.base.*;
 import com.intrinsarc.evolve.umldiagrams.colors.*;
 import com.intrinsarc.evolve.umldiagrams.dependencyarc.*;
 import com.intrinsarc.evolve.umldiagrams.packagenode.*;
-import com.intrinsarc.evolve.umldiagrams.requirementsfeaturenode.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.moveandresize.*;
@@ -414,7 +412,16 @@ public final class BasicNamespaceNodeGem implements Gem
 	    // make the manipulators
 	    BasicNamespaceSizes sizes = makeCurrentSizeInfo().makeActualSizes();
 	    ManipulatorFacet keyFocus = null;
-	    if (favoured)
+      ManipulatorFacet resizing = new ResizingManipulatorGem(
+      		coordinator,
+          figureFacet,
+          diagramView,
+          sizes.getOuter(),
+          resizeVetterFacet,
+          firstSelected).getManipulatorFacet();
+      Manipulators others = new Manipulators(resizing);
+      
+      if (favoured)
 	    {
 	      TextManipulatorGem textGem = new TextManipulatorGem(
 	      		coordinator,
@@ -428,17 +435,13 @@ public final class BasicNamespaceNodeGem implements Gem
 	          TextManipulatorGem.TEXT_PANE_CENTRED_TYPE);
 	      textGem.connectTextableFacet(textableFacet);
 	      keyFocus = textGem.getManipulatorFacet();
+	      others.addOther(
+	      		new DefaultPackageManipulator(coordinator, diagramView, figureFacet).getManipulatorFacet());
 		  }
 		  
 	    return new Manipulators(
 	        keyFocus,
-	        new ResizingManipulatorGem(
-	        		coordinator,
-	            figureFacet,
-	            diagramView,
-	            sizes.getOuter(),
-	            resizeVetterFacet,
-	            firstSelected).getManipulatorFacet());
+	        others);
 	  }
 	
 	  public ZNode formView()

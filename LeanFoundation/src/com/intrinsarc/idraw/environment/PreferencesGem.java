@@ -321,7 +321,7 @@ public class PreferencesGem implements Gem
 		{
 			String variableContents = registry.get(VariableEditor.VARIABLES + "/" + name, null);
 			if (variableContents == null)
-				throw new VariableNotFoundException("Cannot find variable " + name);
+				throw new VariableNotFoundException("Cannot find variable $" + name);
 			return variableContents;
 		}
 		
@@ -341,7 +341,7 @@ public class PreferencesGem implements Gem
 				String variableContents = registry.get(VariableEditor.VARIABLES + "/" + name, null);
 				referencedVariables.add(name);
 				if (variableContents == null)
-					throw new VariableNotFoundException("Cannot find variable " + name);
+					throw new VariableNotFoundException("Cannot find variable $" + name);
 				
 				text = text.substring(0, loc.start) + variableContents + text.substring(loc.end);
 				

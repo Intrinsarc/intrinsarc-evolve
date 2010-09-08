@@ -44,7 +44,7 @@ public class BBLoadList
 			String name = text.substring(loc.start + 1, loc.end);
 			String variableContents = getVariable(name);
 			if (variableContents == null)
-				throw new BBVariableNotFoundException("Cannot find variable " + name);
+				throw new BBVariableNotFoundException("Cannot find variable $" + name);
 			
 			text = text.substring(0, loc.start) + variableContents + text.substring(loc.end);
 			

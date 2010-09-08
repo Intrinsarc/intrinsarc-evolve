@@ -212,6 +212,14 @@ public final class FeatureNodeGem implements Gem
             fillColor,
             TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE_DISPLAY_AS_IF_EDITING,
             allowTYPE0Manipulators ? ManipulatorFacet.TYPE0: ManipulatorFacet.TYPE2);
+	      
+	      // choose the bit after = to be selected
+	      int equals = name.indexOf('=');
+	      if (equals != -1 && name.length() > equals + 1)
+	      {
+	      	textGem.setSelectionText(name.substring(equals + 2));
+	      }
+	      
 	      textGem.connectTextableFacet(textableFacet);
 	      keyFocus = textGem.getManipulatorFacet();
 			}  

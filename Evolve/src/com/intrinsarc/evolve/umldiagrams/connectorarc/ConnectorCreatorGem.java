@@ -134,7 +134,7 @@ public class ConnectorCreatorGem implements Gem
         Stereotype stereo = GlobalSubjectRepository.repository.findStereotype(
             UML2Package.eINSTANCE.getConnector(), CommonRepositoryFunctions.CONNECTOR);
         connector.getAppliedBasicStereotypes().add(stereo);
-        StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(
+        StereotypeUtilities.setBooleanRawStereotypeAttribute(
             connector, CommonRepositoryFunctions.DIRECTED, true);
       }
 

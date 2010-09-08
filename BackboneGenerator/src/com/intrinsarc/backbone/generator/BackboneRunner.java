@@ -303,7 +303,7 @@ public class BackboneRunner
     else
     	frame.setTitleText(name + ": " + niceTarget);
     String cmd =
-      javaCmd + " -classpath " + classpath + " " +
+      "\"" + javaCmd + "\" -classpath " + classpath + " " +
       (analyseProtocol ? "-DanalyseProtocol " : "") +
       BACKBONE_INTERPRETER + " -nocheck " + translatedLoadList + " " + target;
     exec.add(javaCmd);

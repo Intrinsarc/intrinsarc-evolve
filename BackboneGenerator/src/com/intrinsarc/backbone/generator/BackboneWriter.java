@@ -24,11 +24,11 @@ public class BackboneWriter
 {
   public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB/base"));
   public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/common/backbone.jar"));
-  public static final Preference BB_JAVA_CMD_PREF = new Preference("Backbone", "Java command", new PersistentProperty("java"));
+  public static Preference BB_JAVA_CMD_PREF;
   public static final Preference BB_WRITE_BASE_PREF = new Preference("Backbone", "Generate Backbone base", new PersistentProperty(true));
   public static final Preference BB_WRITE_BACKUPS = new Preference("Backbone", "Backup leaf implementation files before writing", new PersistentProperty(true));
 	
-  public static void registerPreferenceSlots()
+  public static void registerPreferenceSlots(String javaDir)
   {
     // declare the preference types
     PreferenceType stringType = new PreferenceTypeString();
@@ -48,6 +48,10 @@ public class BackboneWriter
     		BB_CLASS_PATH_PREF,
         stringType,
         "The classpath for the Backbone base");
+    
+    String separator = System.getProperty("file.separator", "/");
+    BB_JAVA_CMD_PREF = new Preference("Backbone", "Java command",
+    		new PersistentProperty((javaDir == null ? "" : javaDir + separator) + "java")); 
     GlobalPreferences.preferences.addPreferenceSlot(
     		BB_JAVA_CMD_PREF,
         stringType,

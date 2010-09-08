@@ -1291,6 +1291,7 @@ public class ApplicationWindow extends SmartJFrame
 							ScreenProperties.getUndoPopupColor(), Color.black, 1500);
 					// ask the window coordinator to refresh all window titles
 					applicationWindowCoordinator.refreshWindowTitles();
+					RepositoryUtility.setModelVariable(saveAsFileName);
 				}
 			} finally
 			{

@@ -53,10 +53,11 @@ public class Evolve
 		// must have at least one arg
 		if (args.length == 0)
 		{
-			System.err.println("Usage: evolve home_directory {logToFile} {fileToOpen}");
+			System.err.println("Usage: evolve home_directory java_bin_directory {logToFile} {fileToOpen}");
 			System.exit(-1);
 		}
 		String home = args[0];
+		String javaDir = args[1];
 		
     String version = System.getProperty("java.specification.version");
     System.out.println("Evolve " + EVOLVE_VERSION);
@@ -118,15 +119,15 @@ public class Evolve
     themes.registerPreferenceSlots();
     themes.interpretPreferences();
     BaseColors.registerPreferenceSlots();
-    BackboneWriter.registerPreferenceSlots();
+    BackboneWriter.registerPreferenceSlots(javaDir);
     HTMLDocumentationGenerator.registerPreferenceSlots();
     PreferenceTypeDirectory.registerPreferenceSlots();
     RegisteredGraphicalThemes.getInstance().setLookAndFeel();
     
     setUpUUIDGenerator();
     Evolve application = new Evolve();
-    application.setUpServices(home, args.length > 2 && args[2] != null ? args[2] : null);
-    application.setUpGUI(args.length > 1 && args[1] != null);
+    application.setUpServices(home, args.length > 3 && args[3] != null ? args[3] : null);
+    application.setUpGUI(args.length > 2 && args[2] != null);
     application.showGUI();
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;

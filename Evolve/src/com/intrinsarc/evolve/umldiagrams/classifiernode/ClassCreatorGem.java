@@ -97,12 +97,12 @@ public final class ClassCreatorGem implements Gem
       // is this a placeholder
       PersistentProperty place = properties.retrieve(">placeholder", false);
       if (place.asBoolean())
-      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.PLACEHOLDER, true);
+      	StereotypeUtilities.setBooleanRawStereotypeAttribute(cls, CommonRepositoryFunctions.PLACEHOLDER, true);
       
       // is this a factory
       PersistentProperty fact = properties.retrieve(">factory", false);
       if (fact.asBoolean())
-      	StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(cls, CommonRepositoryFunctions.FACTORY, true);
+      	StereotypeUtilities.setBooleanRawStereotypeAttribute(cls, CommonRepositoryFunctions.FACTORY, true);
       
       // set the kind
       PersistentProperty k = properties.retrieve(">kind", 0);

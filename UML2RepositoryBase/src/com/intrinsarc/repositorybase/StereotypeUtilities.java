@@ -148,6 +148,10 @@ public class StereotypeUtilities
         	^ ("" + value.getValue()).hashCode();
     }
 		
+    // add in the readonly bit
+    if (GlobalSubjectRepository.repository.isReadOnly(element))
+    	hash ^= 1;
+    
 		return hash;
 	}
 	
@@ -168,6 +172,10 @@ public class StereotypeUtilities
       	hash ^= value.getProperty().getName().hashCode() ^ ("" + value.getValue()).hashCode();
     }
 		
+    // add in the readonly bit
+    if (GlobalSubjectRepository.repository.isReadOnly(element))
+    	hash ^= 1;
+    
 		return hash;
 	}
 	
@@ -377,7 +385,7 @@ public class StereotypeUtilities
 	 * @param set
 	 * @return
 	 */
-	public static void setBooleanRawStereotypeAttributeTransaction(
+	public static void setBooleanRawStereotypeAttribute(
 			Element classifier, String propertyUUID, boolean set)
 	{
 		// find the property, or create it
@@ -410,6 +418,50 @@ public class StereotypeUtilities
 		{
 			LiteralBoolean literal = (LiteralBoolean) currentValue.getValue();
 			literal.setValue(set);
+		}
+	}
+
+	/**
+	 * form a command to set a stereotype attribute
+	 * 
+	 * @param classifier
+	 * @param propertyName
+	 * @param set
+	 * @return
+	 */
+	public static void setStringRawStereotypeAttribute(
+			Element classifier, String propertyUUID, String set)
+	{
+		// find the property, or create it
+		AppliedBasicStereotypeValue existing = null;
+		for (Object obj : classifier.getAppliedBasicStereotypeValues())
+		{
+			AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
+			if (value.getProperty().getName().equals(propertyUUID))
+			{
+				existing = value;
+				break;
+			}
+		}
+		final AppliedBasicStereotypeValue currentValue = existing;
+
+		// if this is null we need to create the value
+		if (currentValue == null)
+		{
+			final Property property =
+			  (Property) findAllStereotypePropertiesFromRawAppliedStereotypes(classifier).get(propertyUUID).getConstituent().getRepositoryObject();
+			if (property == null)
+			  return;
+			AppliedBasicStereotypeValue value = classifier.createAppliedBasicStereotypeValues();
+			value.setProperty(property);
+			Expression literal = (Expression) value
+					.createValue(UML2Package.eINSTANCE.getExpression());
+			literal.setBody(set);
+		}
+		else
+		{
+			Expression literal = (Expression) currentValue.getValue();
+			literal.setBody(set);
 		}
 	}
 

@@ -79,7 +79,7 @@ public final class PackageCreatorGem implements Gem
       boolean relaxed = properties.retrieve(">relaxed", false).asBoolean();
       if (relaxed)
       {
-        StereotypeUtilities.setBooleanRawStereotypeAttributeTransaction(
+        StereotypeUtilities.setBooleanRawStereotypeAttribute(
             pkg, CommonRepositoryFunctions.RELAXED, relaxed);
       }
 

@@ -589,6 +589,9 @@ public class XMLSubjectRepositoryGem implements Gem
   
   private Collection<NamedElement> queryObjectsByName(java.lang.Class<?> elementClass, String name, boolean includeSubclasses, boolean startsWith)
   {
+  	// this query will be case insensitive if name is lowercase
+  	boolean caseInsensitive = allLowerCase(name);
+  	name = lcase(name, caseInsensitive);
     List<NamedElement> matched = new ArrayList<NamedElement>();
     for (TreeIterator treeElement = resource.getAllContents(); treeElement.hasNext();)
     {
@@ -600,8 +603,8 @@ public class XMLSubjectRepositoryGem implements Gem
         NamedElement namedElement = (NamedElement) element;
         boolean nameOk =
           startsWith ?
-              namedElement.getName().startsWith(name) :
-              namedElement.getName().equals(name);
+          		lcase(namedElement.getName(), caseInsensitive).startsWith(name) :
+          		lcase(namedElement.getName(), caseInsensitive).equals(name);
               
         if (!namedElement.isThisDeleted() && nameOk)
           matched.add(namedElement);
@@ -610,7 +613,19 @@ public class XMLSubjectRepositoryGem implements Gem
     return matched;
   }
 
-  public SubjectRepositoryFacet getSubjectRepositoryFacet()
+  private boolean allLowerCase(String name)
+	{
+  	return name.toLowerCase().equals(name);
+	}
+
+
+	private String lcase(String name, boolean caseInsensitive)
+	{
+  	return caseInsensitive ? name.toLowerCase() : name;
+	}
+
+
+	public SubjectRepositoryFacet getSubjectRepositoryFacet()
   {
     return subjectFacet;
   }

@@ -745,8 +745,14 @@ public final class ClassifierNodeGem implements Gem
 				textGem.connectTextableFacet(textableFacet);
 				keyFocus = textGem.getManipulatorFacet();
 			}
-			Manipulators manipulators = new Manipulators(keyFocus, new ResizingManipulatorGem(coordinator, figureFacet,
-					diagramView, figureFacet.getFullBounds(), resizeVetterFacet, firstSelected).getManipulatorFacet());
+			Manipulators manipulators = new Manipulators(
+					keyFocus,
+					new ResizingManipulatorGem(coordinator, figureFacet,
+					diagramView,
+					figureFacet.getFullBounds(), resizeVetterFacet, firstSelected).getManipulatorFacet());
+			if (favoured && !isPart)
+				manipulators.addOther(
+						new ImplementationClassManipulator(coordinator, diagramView, figureFacet).getManipulatorFacet());
 
 			// return the manipulators
 			return manipulators;

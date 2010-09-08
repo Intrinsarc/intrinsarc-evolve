@@ -80,7 +80,7 @@ public final class TextManipulatorGem implements Gem
 	private String cmdDescription;
 	private String undoCmdDescription;
 	private DiagramViewFacet diagramView;
-
+  private String selectionText;
 
 
   public static EkitCore makeEkit(boolean useIcons, String text)
@@ -664,6 +664,11 @@ public final class TextManipulatorGem implements Gem
     this.manipulatorType = manipulatorType;
   }
   
+  public void setSelectionText(String selectionText)
+  {
+  	this.selectionText = selectionText;
+  }
+  
   public void connectTextableFacet(TextableFacet textableFacet)
   {
   	this.target = textableFacet;
@@ -743,8 +748,17 @@ public final class TextManipulatorGem implements Gem
     state = EDITING_STATE;
     manipulatorFacet.cleanUp();
     manipulatorFacet.addToView(diagramLayer, canvas);
-		
-		currentText.selectAll();
+
+    if (selectionText == null)
+    	currentText.selectAll();
+    else
+    {
+    	int startIndex = textToStart.lastIndexOf(selectionText);
+    	if (startIndex == -1)
+    		currentText.selectAll();
+    	else
+    		currentText.select(startIndex, startIndex + selectionText.length());
+    }
     currentText.requestFocus();
   }
 

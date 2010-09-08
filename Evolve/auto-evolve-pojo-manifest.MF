@@ -25,7 +25,7 @@ Class-path: extended-emf/uml2-pojo-odb-latest.jar
   gui/freehep-graphicsio-ps-2.1.1.jar
   gui/freehep-io-2.0.2.jar
   gui/freehep-swing-2.0.3.jar
-  gui/freehep-util-2.0.2  
+  gui/freehep-util-2.0.2.jar 
   gui/dockingFramesCommon-1.0.7.jar
   gui/dockingFramesCore-1.0.7.jar
   common/backbone.jar

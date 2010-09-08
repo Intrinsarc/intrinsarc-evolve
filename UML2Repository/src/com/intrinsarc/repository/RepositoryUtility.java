@@ -4,12 +4,12 @@ import java.io.*;
 import java.util.*;
 
 import javax.swing.*;
-import javax.swing.filechooser.*;
 import javax.swing.filechooser.FileFilter;
 
 import org.eclipse.emf.common.util.*;
 
 import com.intrinsarc.deltaengine.errorchecking.*;
+import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 
@@ -41,8 +41,17 @@ public class RepositoryUtility
 	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
+	  setModelVariable(fileName);
 	}
 	
+	public static void setModelVariable(String fileName)
+	{
+		// set the evolve home directory as the EVOLVE variable
+		GlobalPreferences.preferences.setVariableValue(
+				"MODEL", 
+				fileName == null ? "" : new File(fileName).getParent().toString());
+	}
+
 	private static void closeExisting()
 	{
   	// clear out the checked once strata
@@ -52,6 +61,7 @@ public class RepositoryUtility
 	  if (repository != null)
 	    repository.close();
 	  repository = null;
+	  setModelVariable(null);
 	}
 	
 	public static String chooseFileNameToCreate(JFrame frame, String text, String extensionType, String extension, File startDirectory)
