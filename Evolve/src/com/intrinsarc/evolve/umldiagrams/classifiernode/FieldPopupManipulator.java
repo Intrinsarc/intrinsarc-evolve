@@ -6,10 +6,12 @@ import java.awt.Component;
 import javax.swing.*;
 
 import org.eclipse.uml2.*;
+import org.freehep.graphics2d.*;
 
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.utility.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 
@@ -21,6 +23,7 @@ import edu.umd.cs.jazz.util.*;
 public abstract class FieldPopupManipulator implements Gem
 {
 	private static final ImageIcon ICON = IconLoader.loadIcon("implementation.png");
+	private static final ImageIcon ICON_BAD = IconLoader.loadIcon("implementation-bad.png");
 
 	protected ToolCoordinatorFacet coordinator;
 	protected DiagramViewFacet diagramView;
@@ -28,17 +31,19 @@ public abstract class FieldPopupManipulator implements Gem
 	protected boolean readOnly;
 	private ManipulatorFacetImpl manipulatorFacet = new ManipulatorFacetImpl();
 	private ManipulatorListenerFacet manipListener;
+	private boolean bad;
 	
 	public abstract void setUpPopup();
 	public abstract void removePopup();
 	public abstract void setTextAndFinish();
 	
-	public FieldPopupManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure)
+	public FieldPopupManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, boolean bad)
 	{
 		this.coordinator = coordinator;
 		this.diagramView = diagramView;
 		this.figure = figure;
 		readOnly = GlobalSubjectRepository.repository.isReadOnly(getElement());
+		this.bad = bad;
 	}
 
 	public ManipulatorFacet getManipulatorFacet()
@@ -66,11 +71,15 @@ public abstract class FieldPopupManipulator implements Gem
 	  {
 	  	this.diagramLayer = diagramLayer;
 	  	
-	  	UPoint pt = figure.getFullBounds().getPoint().subtract(new UDimension(16, 16));
+	  	UBounds bounds = figure.getFullBounds();
+	  	UPoint tl = bounds.getTopLeftPoint();
+	  	UPoint tr = bounds.getTopRightPoint();
+	  	UPoint middle = Grid.roundToGrid(new UBounds(tl, tr).getMiddlePoint());
+	  	UPoint pt = middle.subtract(new UDimension(8, 16));
 	  	group = new ZGroup();
 	  	
 	  	ZTransformGroup transform = new ZTransformGroup();
-	  	ZImage img = new ZImage(ICON.getImage());
+	  	ZImage img = new ZImage(bad ? ICON_BAD.getImage() : ICON.getImage());
 	  	ZVisualLeaf ileaf = new ZVisualLeaf(img);
 	  	transform.setTranslation(pt.getX(), pt.getY());
 	  	transform.addChild(ileaf);

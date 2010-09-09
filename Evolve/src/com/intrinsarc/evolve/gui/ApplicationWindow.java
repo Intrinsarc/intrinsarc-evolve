@@ -123,16 +123,16 @@ public class ApplicationWindow extends SmartJFrame
 		setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 
 		// allow files to be dropped onto the frame -- need to find a way to only have this work for Java1.6+
-		new FileDropTarget(this,
-				new FileDropTarget.Listener()
-				{
-					public boolean acceptFile(File file)
-					{
-						// if this doesn't end an acceptable prefix, complain
-						openFile(file.toString(), true);
-						return true;
-					}
-				});
+//		new FileDropTarget(this,
+//				new FileDropTarget.Listener()
+//				{
+//					public boolean acceptFile(File file)
+//					{
+//						// if this doesn't end an acceptable prefix, complain
+//						openFile(file.toString(), true);
+//						return true;
+//					}
+//				});
 	}
 
 	public IEasyDock getDesktop()

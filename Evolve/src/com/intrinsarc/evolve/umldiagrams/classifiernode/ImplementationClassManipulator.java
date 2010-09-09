@@ -14,16 +14,18 @@ import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repositorybase.*;
 
-public final class ImplementationClassManipulator extends FieldPopupManipulator
+public class ImplementationClassManipulator extends FieldPopupManipulator
 {
 	private Popup pop;
 	private JTextField field;
 	private JButton auto;
 	private boolean forceReplace;
+	private boolean composite;
 
-	public ImplementationClassManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure)
+	public ImplementationClassManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, boolean composite)
 	{
-		super(coordinator, diagramView, figure);
+		super(coordinator, diagramView, figure, composite);
+		this.composite = composite;
 	}
 
 	public void setUpPopup()
@@ -35,13 +37,14 @@ public final class ImplementationClassManipulator extends FieldPopupManipulator
   					BorderFactory.createEmptyBorder(5, 5, 5, 5)));
   	JLabel label = new JLabel("Class:");
   	label.setBorder(new EmptyBorder(0, 0, 0, 5));
-  	panel.add(label, BorderLayout.WEST);
   	auto = new JButton();
   	field = new JTextField();
-  	panel.add(field, BorderLayout.CENTER);
   	JPanel button = new JPanel(new BorderLayout());
   	button.setBorder(new EmptyBorder(0, 5, 0, 0));
   	button.add(auto, BorderLayout.EAST);
+  	
+  	panel.add(label, BorderLayout.WEST);
+  	panel.add(field, BorderLayout.CENTER);
   	panel.add(button, BorderLayout.EAST);
   	
   	// possibly readonly
@@ -51,7 +54,7 @@ public final class ImplementationClassManipulator extends FieldPopupManipulator
   	adjustUIState();
 
   	// set the field to be quite wide
-  	field.setPreferredSize(new Dimension(230, 0));
+  	field.setPreferredSize(new Dimension(200, 0));
   	
   	UPoint pt = findInsidePoint(diagramView, panel);
   	pop = PopupFactory.getSharedInstance().getPopup(
@@ -69,18 +72,29 @@ public final class ImplementationClassManipulator extends FieldPopupManipulator
 		{
 			public void actionPerformed(ActionEvent e)
 			{
-				if (!hasImplementationClassField())
+				// handle composite
+				if (composite)
 				{
-					forceReplace = true;
-					adjustUIState();
+					if (!hasImplementationClassField())
+						forceReplace = true;
+					field.setText("");
+					setTextAndFinish();
 				}
 				else
 				{
-					// set the implementation class according to the default package of the home + the name of the element
-					String homePackage = getHomePackage();
-					field.setText((homePackage != null && homePackage.length() > 0 ? homePackage + "." : "") + getElement().getName());
+					if (!hasImplementationClassField())
+					{
+						forceReplace = true;
+						adjustUIState();
+					}
+					else
+					{
+						// set the implementation class according to the default package of the home + the name of the element
+						String homePackage = getHomePackage();
+						field.setText((homePackage != null && homePackage.length() > 0 ? homePackage + "." : "") + getElement().getName());
+					}
+					field.requestFocus();
 				}
-				field.requestFocus();
 			}
 		});
   	
@@ -138,13 +152,18 @@ public final class ImplementationClassManipulator extends FieldPopupManipulator
 		finishManipulator();		
 	}
 	
-  private String getImplementationClassName()
+  public static String getImplementationClassName(Element element)
   {
-  	DEComponent comp = GlobalDeltaEngine.engine.locateObject(getElement()).asComponent();
+  	DEElement comp = GlobalDeltaEngine.engine.locateObject(element).asElement();
   	DEStratum home = comp.getHomeStratum();
   	return comp.getImplementationClass(home);	  	
   }
 
+  private String getImplementationClassName()
+  {
+  	return getImplementationClassName(getElement());
+  }
+  
 	private String getHomePackage()
 	{
   	DEComponent comp = GlobalDeltaEngine.engine.locateObject(getElement()).asComponent();
@@ -160,7 +179,10 @@ public final class ImplementationClassManipulator extends FieldPopupManipulator
   	boolean hasStereo = hasImplementationClassField() || forceReplace;
   	if (!forceReplace)
   		field.setText(getImplementationClassName());
-  	auto.setText(hasStereo ? "Auto" : "Replace");
+  	String autoText = hasStereo ? "Auto" : "Replace";
+  	if (composite)
+  		autoText = "Remove";
+  	auto.setText(autoText);
   	field.setEnabled(hasStereo && !readOnly);
 	}
 	

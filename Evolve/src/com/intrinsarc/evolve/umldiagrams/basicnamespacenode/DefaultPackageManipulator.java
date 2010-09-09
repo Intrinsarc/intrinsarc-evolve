@@ -21,7 +21,7 @@ public class DefaultPackageManipulator extends FieldPopupManipulator
 
 	public DefaultPackageManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure)
 	{
-		super(coordinator, diagramView, figure);
+		super(coordinator, diagramView, figure, false);
 	}
 
 	public void setUpPopup()
@@ -45,7 +45,7 @@ public class DefaultPackageManipulator extends FieldPopupManipulator
   	// set the field to be quite wide
   	ZSwing txt = new ZSwing(new ZCanvas(), new JButton("Aj"));
   	int height = (int) txt.getBounds().getHeight(); 
-  	field.setPreferredSize(new Dimension(1230, height));
+  	field.setPreferredSize(new Dimension(200, height));
   	field.setEnabled(!readOnly);
   	
   	UPoint pt = findInsidePoint(diagramView, panel);

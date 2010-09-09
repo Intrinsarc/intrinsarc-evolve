@@ -229,7 +229,8 @@ public final class ClassifierNodeGem implements Gem
 		// evolution)
 		final String newOwner = sub ? "(" + (retired ? "retires " : "replaces ") + props.getSubstitutesForName() + ")"
 				: "(from "
-						+ GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage().getRepositoryObject()) + ")";
+						+ GlobalSubjectRepository.repository.getFullStratumNames((Element) props.getHomePackage()
+								.getRepositoryObject()) + ")";
 		owner = newOwner;
 		showAsState = StereotypeUtilities.isStereotypeApplied(subject, "state");
 
@@ -241,9 +242,10 @@ public final class ClassifierNodeGem implements Gem
 	private boolean isLocatedInCorrectView()
 	{
 		SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-		Package visualStratum = repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainedFacet().getContainer());
+		Package visualStratum = repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet
+				.getContainedFacet().getContainer());
 		Package owningStratum = repository.findOwningStratum(subject);
-		
+
 		return visualStratum == owningStratum;
 	}
 
@@ -284,16 +286,17 @@ public final class ClassifierNodeGem implements Gem
 			if (displayOnlyIcon != displayAsIcon)
 			{
 				displayOnlyIcon = displayAsIcon;
-	
+
 				contents.getFigureFacet().setShowing(isContentsShowing());
 				ports.getFigureFacet().setShowing(!displayOnlyIcon);
 				attributesOrSlots.getFigureFacet().setShowing(!displayOnlyIcon);
 				suppressAttributesOrSlots = displayOnlyIcon;
-	
+
 				// we are about to autosize, so need to make a resizing
-				ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram()).getResizingFiguresFacet();
+				ResizingFiguresFacet resizings = new ResizingFiguresGem(null, figureFacet.getDiagram())
+						.getResizingFiguresFacet();
 				resizings.markForResizing(figureFacet);
-	
+
 				ClassifierSizeInfo info = makeCurrentInfo();
 				UBounds newBounds = info.makeActualSizes().getOuter();
 				UBounds centredBounds = ResizingManipulatorGem.formCentrePreservingBoundsExactly(figureFacet.getFullBounds(),
@@ -318,9 +321,8 @@ public final class ClassifierNodeGem implements Gem
 			// look upwards, until we find one that has a PackageFacet registered
 			Namespace newOwner = (Namespace) figureFacet.getDiagram().getLinkedObject();
 			Namespace currentOwner = (Namespace) subject.getOwner();
-			Namespace containerOwner = repository.findVisuallyOwningNamespace(
-					figureFacet.getDiagram(),
-					figureFacet.getContainedFacet().getContainer());
+			Namespace containerOwner = repository.findVisuallyOwningNamespace(figureFacet.getDiagram(), figureFacet
+					.getContainedFacet().getContainer());
 			if (containerOwner != null)
 				newOwner = containerOwner;
 
@@ -751,8 +753,22 @@ public final class ClassifierNodeGem implements Gem
 					diagramView,
 					figureFacet.getFullBounds(), resizeVetterFacet, firstSelected).getManipulatorFacet());
 			if (favoured && !isPart)
-				manipulators.addOther(
-						new ImplementationClassManipulator(coordinator, diagramView, figureFacet).getManipulatorFacet());
+			{
+				// only show at home
+				DEStratum visualHome =
+					GlobalDeltaEngine.engine.locateObject(
+							GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), figureFacet.getContainerFacet())).asStratum();
+				DEElement elem =
+					GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asElement();
+				
+				boolean composite = elem.asComponent() != null && elem.asComponent().isComposite(elem.getHomeStratum());
+				String impl = ImplementationClassManipulator.getImplementationClassName((Element) figureFacet.getSubject());
+				if (elem.getHomeStratum() == visualHome && (!composite || impl != null && impl.length() > 0))
+				{
+					manipulators.addOther(
+							new ImplementationClassManipulator(coordinator, diagramView, figureFacet, composite).getManipulatorFacet());
+				}
+			}
 
 			// return the manipulators
 			return manipulators;
@@ -1351,8 +1367,8 @@ public final class ClassifierNodeGem implements Gem
 			{
 				public void actionPerformed(ActionEvent e)
 				{
-					coordinator.startTransaction(
-							locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals" : "Unlocked visuals");
+					coordinator.startTransaction(locked ? "Unlocked visuals" : "Locked visuals", locked ? "Locked visuals"
+							: "Unlocked visuals");
 					locked = !locked;
 					coordinator.commitTransaction(true);
 				}
@@ -1547,8 +1563,8 @@ public final class ClassifierNodeGem implements Gem
 					primitiveContents, false, deletedConnectorUuidsFacet, false);
 			final ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts,
 					primitiveContents, true, deletedConnectorUuidsFacet, false);
-			showAllItem.setEnabled(
-					(!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
+			showAllItem
+					.setEnabled((!connectorHelper.isShowingAllConstituents() || !portLinkHelper.isShowingAllConstituents())
 							&& primitiveContents.isShowing() && !displayOnlyIcon);
 
 			showAllItem.addActionListener(new ActionListener()
@@ -1616,7 +1632,8 @@ public final class ClassifierNodeGem implements Gem
 			JMenuItem showAllItem = new JMenuItem("Parts");
 			final ClassPartHelper partHelper = new ClassPartHelper(coordinator, figureFacet, primitiveContents, contents,
 					false);
-			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing() && !displayOnlyIcon);
+			showAllItem.setEnabled(!partHelper.isShowingAllConstituents() && primitiveContents.isShowing()
+					&& !displayOnlyIcon);
 
 			showAllItem.addActionListener(new ActionListener()
 			{
@@ -1919,8 +1936,7 @@ public final class ClassifierNodeGem implements Gem
 
 				// find any attributes to add or delete
 				PartPortInstanceHelper portInstanceHelper = new PartPortInstanceHelper(figureFacet, primitivePorts, ports, true);
-				ports.clean(
-						getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
+				ports.clean(getVisuallySuppressedUUIDs(ConstituentTypeEnum.DELTA_PORT),
 						portInstanceHelper.getConstituentUuids());
 				if (!suppressAttributesOrSlots)
 					slotHelper.makeUpdateTransaction(attributesOrSlots, locked);
@@ -2011,25 +2027,15 @@ public final class ClassifierNodeGem implements Gem
 			if (pass == ViewUpdatePassEnum.PENULTIMATE)
 			{
 				// find any connectors to possibly add or delete
-				ClassConnectorHelper connectorHelper = new ClassConnectorHelper(
-						figureFacet,
-						primitivePorts,
-						primitiveContents,
-						false,
-						deletedConnectorUuidsFacet,
-						false);
+				ClassConnectorHelper connectorHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
+						false, deletedConnectorUuidsFacet, false);
 
 				// get the composite command for fixing up the connectors
 				connectorHelper.makeUpdateCommand(locked);
 
 				// find any connectors or port links to possibly add or delete
-				ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(
-						figureFacet,
-						primitivePorts,
-						primitiveContents,
-						true,
-						deletedConnectorUuidsFacet,
-						false);
+				ClassConnectorHelper portLinkHelper = new ClassConnectorHelper(figureFacet, primitivePorts, primitiveContents,
+						true, deletedConnectorUuidsFacet, false);
 				// get the composite command for fixing up the port links
 				portLinkHelper.makeUpdateCommand(locked);
 				portLinkHelper.cleanUuids(ConstituentTypeEnum.DELTA_CONNECTOR);
@@ -2041,8 +2047,8 @@ public final class ClassifierNodeGem implements Gem
 			// should we be displaying the owner?
 			SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 			ElementProperties props = new ElementProperties(figureFacet, subject);
-			final boolean shouldBeDisplayingOwningPackage =
-				!isLocatedInCorrectView() && !forceSuppressOwningPackage || props.getElement().isReplacement();
+			final boolean shouldBeDisplayingOwningPackage = !isLocatedInCorrectView() && !forceSuppressOwningPackage
+					|| props.getElement().isReplacement();
 
 			// is this active?
 			boolean subjectActive = false;
@@ -2066,8 +2072,7 @@ public final class ClassifierNodeGem implements Gem
 			// suppress any command
 			if (shouldBeDisplayingOwningPackage == showOwningPackage && newName.equals(name) && owner.equals(newOwner)
 					&& classifierSubject.isAbstract() == isAbstract && subjectActive == isActive
-					&& stereotypeHashcode == actualStereotypeHashcode
-					&& ellipsis == info.isEllipsis()
+					&& stereotypeHashcode == actualStereotypeHashcode && ellipsis == info.isEllipsis()
 					&& displayOnlyIcon == shouldDisplayOnlyIcon() && isElementRetired() == retired
 					&& shouldBeState == showAsState)
 			{
@@ -2094,20 +2099,14 @@ public final class ClassifierNodeGem implements Gem
 					component = component.getReplaces().iterator().next();
 				}
 
-				Element elem = (Element) component.getRepositoryObject(); 
-				DiagramFacet sourceDiagram = (DiagramFacet) ClassifierConstituentHelper.findOwningDiagram(
-						(Package) figureFacet.getDiagram().getLinkedObject(),
-						elem,
-						replaces)[0];
-				
+				Element elem = (Element) component.getRepositoryObject();
+				DiagramFacet sourceDiagram = (DiagramFacet) ClassifierConstituentHelper.findOwningDiagram((Package) figureFacet
+						.getDiagram().getLinkedObject(), elem, replaces)[0];
+
 				if (sourceDiagram != null)
-					GlobalPackageViewRegistry.activeRegistry.open(
-								(Package) sourceDiagram.getLinkedObject(),
-								true,
-								false,
-								figureFacet.getFullBounds(),
-								GlobalPackageViewRegistry.activeRegistry.getFocussedView().getFixedPerspective(),
-								true);
+					GlobalPackageViewRegistry.activeRegistry.open((Package) sourceDiagram.getLinkedObject(), true, false,
+							figureFacet.getFullBounds(), GlobalPackageViewRegistry.activeRegistry.getFocussedView()
+									.getFixedPerspective(), true);
 			}
 		}
 
@@ -2544,7 +2543,8 @@ public final class ClassifierNodeGem implements Gem
 		if (isPart && subject == null)
 			haveIcon = false;
 
-		UDimension minimumIconExtent = (miniAppearanceFacet == null ? null : miniAppearanceFacet.getMinimumDisplayOnlyAsIconExtent());
+		UDimension minimumIconExtent = (miniAppearanceFacet == null ? null : miniAppearanceFacet
+				.getMinimumDisplayOnlyAsIconExtent());
 
 		// work out the package name for visibility calcs
 		String owningPackageString = null;
@@ -2578,31 +2578,13 @@ public final class ClassifierNodeGem implements Gem
 			}
 		}
 
-		info = new ClassifierSizeInfo(
-				topLeft,
-				extent,
-				autoSized,
-				isPart && name.length() == 0 ? " : " : name,
-				font,
-				packageFont,
-				haveIcon,
-				displayOnlyIcon,
-				minimumIconExtent,
-				attributesOrSlots.getMinimumExtent(),
-				suppressAttributesOrSlots,
-				operations.getMinimumExtent(),
-				suppressOperations,
-				suppressContents,
-				contents.getMinimumBounds(),
-				contents.isEmpty(),
-				owningPackageString,
-				isAbstract,
-				isActive,
-				ports.getFigureFacet().getContainerFacet().getContents().hasNext());
-		info.setEllipsis(
-				attributeEllipsis && !suppressAttributesOrSlots ||
-				operationEllipsis && !suppressOperations ||
-				portsEllipsis || partsEllipsis || connectorsEllipsis || traceEllipsis);
+		info = new ClassifierSizeInfo(topLeft, extent, autoSized, isPart && name.length() == 0 ? " : " : name, font,
+				packageFont, haveIcon, displayOnlyIcon, minimumIconExtent, attributesOrSlots.getMinimumExtent(),
+				suppressAttributesOrSlots, operations.getMinimumExtent(), suppressOperations, suppressContents,
+				contents.getMinimumBounds(), contents.isEmpty(), owningPackageString, isAbstract, isActive, ports
+						.getFigureFacet().getContainerFacet().getContents().hasNext());
+		info.setEllipsis(attributeEllipsis && !suppressAttributesOrSlots || operationEllipsis && !suppressOperations
+				|| portsEllipsis || partsEllipsis || connectorsEllipsis || traceEllipsis);
 
 		return info;
 	}
@@ -2770,20 +2752,22 @@ public final class ClassifierNodeGem implements Gem
 			{
 				final Property replaced = (Property) figureFacet.getSubject();
 				final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
-				final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
+				final FigureFacet clsFigure = ClassifierConstituentHelper
+						.extractVisualClassifierFigureFromConstituent(figureFacet);
 				final Class cls = (Class) clsFigure.getSubject();
 				coordinator.startTransaction("replaced part", "removed replaced part");
 
 				// now form the port remap based on locations of ports
 				if (fancyReplace != null)
 					new PortRemapper(figureFacet, other, figureFacet).remapPortsBasedOnProximity();
-				
+
 				// if we are doing a fancy replace, move the other part into place
 				if (fancyReplace != null)
 				{
 					MovingFiguresGem movingGem = new MovingFiguresGem(diagramView.getDiagram(), other.getFullBounds().getPoint());
 					MovingFiguresFacet movingFacet = movingGem.getMovingFiguresFacet();
-					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]{ other }));
+					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]
+					{ other }));
 					movingFacet.start(other);
 					movingFacet.move(figureFacet.getFullBounds().getPoint());
 					movingFacet.end();
@@ -2801,7 +2785,7 @@ public final class ClassifierNodeGem implements Gem
 					PersistentFigure pfig = figureFacet.makePersistentFigure();
 					pfig.setSubject(replacement.getReplacement());
 					figureFacet.acceptPersistentFigure(pfig);
-          diagramView.getDiagram().forceAdjust(figureFacet);
+					diagramView.getDiagram().forceAdjust(figureFacet);
 				}
 				coordinator.commitTransaction(true);
 
@@ -2858,7 +2842,7 @@ public final class ClassifierNodeGem implements Gem
 			}
 
 			// copy over any applied stereotypes
-	    ClassifierConstituentHelper.copyStereotypesAndValues(replaced, next);
+			ClassifierConstituentHelper.copyStereotypesAndValues(replaced, next);
 
 			// copy over any remaps also
 			for (Object obj : oldSpec.undeleted_getPortRemaps())
