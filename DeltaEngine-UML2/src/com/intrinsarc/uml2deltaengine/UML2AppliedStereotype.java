@@ -26,7 +26,6 @@ public class UML2AppliedStereotype extends DEAppliedStereotype
     for (Object obj : element.undeleted_getAppliedBasicStereotypeValues())
     {
       AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-      System.out.println("$$ value = " + value + ", is deleted = " + value.isThisDeleted() + ", property = " + value.getProperty());
       if (!value.isThisDeleted() && !value.getProperty().isThisDeleted())
       {
       	Property prop = value.getProperty();

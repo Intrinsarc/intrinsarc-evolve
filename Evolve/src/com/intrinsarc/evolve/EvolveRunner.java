@@ -10,14 +10,27 @@ import com.intrinsarc.evolve.gui.*;
  * @author andrew
  * 
  * todo:
- * 1. make class take impl class from name + default pkg, unless impl class set
+ *
+ *1. fix appliedbasicstereotypevalue not going to deleted state when property removed
+ *2. add in delta mark for replacing element
+ *3. remove all implementation-class values, selectively add gwt ones back and bb ones back
+ *4. change default-java-package to just java-package
+ *5. fix model moving bug
+ *6. remove impl class manipulator
+ *7. complain if stratum has leaf or interface but no java-package
+ *8. error if name of leaf is not a java identifier, also interface
+ *9. error on leaf when multiple names are there, also interface
+ *10. error only if composite has or inherits an implementation class name
  * 2. when importing, set impl class stereo unless it is same as auto
- * 3. remove stereo from elements in model unless it causes a problem
+ * 
  * 4. apply rule to components and interfaces
  * 5. relax rule about composites, but still enforce no explicit class
- * 6. make impl class manipulator smart enough to understand auto and still alow setting
+ * 6. make impl class manipulator smart enough to understand auto and still allow setting
  * 7. ensure backbone still works using similar approach
  * 8. rename default-java-package to java-package
+ * 
+ * 1. delete model back to ctrl-D
+ * 2. add an easy way to see implementation class of a leaf
  */
 
 public class EvolveRunner
