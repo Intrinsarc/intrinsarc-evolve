@@ -201,4 +201,10 @@ public class BBStratum extends DEStratum implements Serializable
 				e.resolveLazyReferences();
 		}
 	}
+
+	@Override
+	public String getJavaPackage()
+	{
+		return null;
+	}
 }

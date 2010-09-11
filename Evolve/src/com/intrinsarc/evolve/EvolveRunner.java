@@ -8,7 +8,16 @@ import com.intrinsarc.evolve.gui.*;
 /**
  * this is to provide a jar so that evolve can be run easily
  * @author andrew
- *
+ * 
+ * todo:
+ * 1. make class take impl class from name + default pkg, unless impl class set
+ * 2. when importing, set impl class stereo unless it is same as auto
+ * 3. remove stereo from elements in model unless it causes a problem
+ * 4. apply rule to components and interfaces
+ * 5. relax rule about composites, but still enforce no explicit class
+ * 6. make impl class manipulator smart enough to understand auto and still alow setting
+ * 7. ensure backbone still works using similar approach
+ * 8. rename default-java-package to java-package
  */
 
 public class EvolveRunner

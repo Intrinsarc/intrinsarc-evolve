@@ -14,6 +14,7 @@ public abstract class DEStratum extends DEObject
   /** get any packages or strata that are nested directly in this */
   public abstract List<? extends DEStratum> getDirectlyNestedPackages();
 	public abstract List<DEElement> getChildElements();
+	public abstract String getJavaPackage();
 
   /**
    * flattened is the full transformation down to a flat package structure where every package

@@ -921,6 +921,14 @@ public abstract class DEElement extends DEObject
 		return applied;
 	}
 	
+	public String getAutoImplementationClass(DEStratum perspective)
+	{
+		String pkg = getHomeStratum().getJavaPackage();
+		if (pkg.length() == 0)
+			return getName(perspective);
+		return pkg + "." + getName(perspective);
+	}
+	
 	public String getImplementationClass(DEStratum perspective)
 	{
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);

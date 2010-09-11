@@ -164,4 +164,13 @@ public class UML2Stratum extends DEStratum
 			return false;
 		return parent.isReadOnly();			
 	}
+
+	@Override
+	public String getJavaPackage()
+	{
+    String pkg = StereotypeUtilities.extractStringProperty(
+    		subject,
+    		CommonRepositoryFunctions.DEFAULT_PACKAGE);
+    return pkg == null ? "" : pkg;
+	}
 }

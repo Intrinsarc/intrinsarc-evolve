@@ -237,6 +237,15 @@ public class ComponentErrorChecker
       {
 	      if (impl == null)
 	      	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.NO_IMPLEMENTATION);
+	      
+	    	String autoName = component.getAutoImplementationClass(perspective);
+	    	String implName = component.getImplementationClass(perspective);
+	    	if (!autoName.equals(implName))
+	    	{
+	    		System.out.println("$$ auto name = " + autoName + ", implName = " + implName);
+	        errors.addError(
+	            new ErrorLocation(perspective, component), ErrorCatalog.BAD_INDEX);	
+	    	}
       }
       
       // a factory currently cannot be a leaf
