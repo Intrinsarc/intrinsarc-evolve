@@ -84,6 +84,20 @@ public class AppliedBasicStereotypeValueImpl extends ElementImpl implements Appl
 		
 	}
 
+
+	/**
+	 * return deleted if the property is deleted or not there...
+	 * put in to handle when a stereotype property is removed AMcVeigh 11/9/2009
+	 * 
+	 * @generated NOT
+	 */
+	public boolean isThisDeleted()
+	{
+		if (property == null || property.isThisDeleted())
+			return true;
+		return super.isThisDeleted();
+	}
+	
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
