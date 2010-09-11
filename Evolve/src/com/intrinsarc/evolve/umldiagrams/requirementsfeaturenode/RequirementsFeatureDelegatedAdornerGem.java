@@ -53,6 +53,9 @@ public class RequirementsFeatureDelegatedAdornerGem
           subject.undeleted_getDeltaDeletedSubfeatures(),
           subject.undeleted_getDeltaReplacedSubfeatures());
       
+      // possibly add a replacement adorner
+      InterfaceDelegatedAdornerGem.addReplacementAdorner(cls, displays);      
+      
       return displays;
     }
   }

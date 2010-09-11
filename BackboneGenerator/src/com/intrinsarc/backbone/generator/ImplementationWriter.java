@@ -71,7 +71,7 @@ public class ImplementationWriter
 	{
 		DEInterface iface = element.asInterface();
 		if (iface != null &&
-				!iface.isBean(iface.getHomeStratum()))
+				!iface.isLegacyBean(iface.getHomeStratum()))
 		{
 			InterfaceDefinitionRefresher refresher = new InterfaceDefinitionRefresher(base, stratum, iface);
 			return refresher.refreshCode();

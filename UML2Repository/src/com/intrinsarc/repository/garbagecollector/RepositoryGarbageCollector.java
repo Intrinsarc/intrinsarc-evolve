@@ -205,7 +205,6 @@ public class RepositoryGarbageCollector
           Element referenced = (Element) obj;
           if (referenced.isThisDeleted())
           {
-          	System.out.println("$$ deleting referenced1 " + referenced);
             referencesToRemove.add(
                 new RemovalEntry(
                     element,
@@ -219,7 +218,6 @@ public class RepositoryGarbageCollector
       Element referenced = (Element) element.eGet(ref);
       if (referenced != null && referenced.isThisDeleted())
       {
-      	System.out.println("$$ deleting referenced2 " + referenced + ", element = " + element);
         referencesToRemove.add(
             new RemovalEntry(
                 element,
@@ -271,10 +269,7 @@ public class RepositoryGarbageCollector
       return true;
         
     if (element.isThisDeleted())
-    {
-    	System.out.println("$$ deleted element = " + element);
       return true;
-    }
 
     // process each sub-element
     collectNestedElements(element);    

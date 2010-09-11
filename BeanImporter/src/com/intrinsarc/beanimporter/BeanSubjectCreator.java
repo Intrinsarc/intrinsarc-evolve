@@ -489,8 +489,8 @@ public class BeanSubjectCreator
 		cl.setComponentKind(ComponentKind.NORMAL_LITERAL);
 		cl.settable_getAppliedBasicStereotypes().clear();
 		cl.settable_getAppliedBasicStereotypes().add(componentStereo);
-		if (cls.isLegacyBean())
-				setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN);
+		setBooleanProperty(cl, CommonRepositoryFunctions.LEGACY_BEAN, cls.isLegacyBean());
+		setBooleanProperty(cl, CommonRepositoryFunctions.LIFECYCLE_CALLBACKS, cls.hasLifecycleCallbacks());
 		setImplementation(cl, cls.getNode().name);
 		classes.put(cls.getNode().name, cl);
 	}
@@ -511,13 +511,11 @@ public class BeanSubjectCreator
 	{
 		port.settable_getAppliedBasicStereotypes().clear();
 		port.settable_getAppliedBasicStereotypes().add(portStereo);
-		if (cls.isLegacyBean() && field.isMain())
-			setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN);
-		if (field.isNoName())
-			setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_NO_NAME);
+		setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_MAIN, cls.isLegacyBean() && field.isMain());
+		setBooleanProperty(port, CommonRepositoryFunctions.PORT_BEAN_NO_NAME, field.isNoName());
 	}
 
-	private void setBooleanProperty(Element cl, String uuid)
+	private void setBooleanProperty(Element cl, String uuid, boolean on)
 	{
 		DeltaPair pair = StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(uuid);
     final Property property =
@@ -525,24 +523,45 @@ public class BeanSubjectCreator
     if (property == null)
       return;
 
-    AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property);
-		LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
-		literal.setValue(true);
+    AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property, !on);
+    if (!on)
+    {
+    	if (value != null)
+    		GlobalSubjectRepository.repository.incrementPersistentDelete(value);
+    }
+    else
+    {
+    	LiteralBoolean literal = (LiteralBoolean) value.createValue(UML2Package.eINSTANCE.getLiteralBoolean());
+    	literal.setValue(true);
+    }
 	}
 
 	private void setImplementation(Element cl, String className)
 	{
+		// what is the auto implementation?
+		DEElement elem = GlobalDeltaEngine.engine.locateObject(cl).asElement();
+		String auto = elem.getAutoImplementationClass(null);
+		boolean same = className.equals(auto);
+
 		DeltaPair pair = StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(CommonRepositoryFunctions.IMPLEMENTATION_CLASS);
     final Property property =
     	pair != null ? (Property) pair.getConstituent().getRepositoryObject() : null;
     if (property == null)
       return;
-		AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property);
+		AppliedBasicStereotypeValue value = findOrCreateAppliedValue(cl, property, same);
+		
+		// is this the same?
+		if (same)
+		{
+			if (value != null)
+				GlobalSubjectRepository.repository.incrementPersistentDelete(value);
+			return;
+		}
 		Expression literal = (Expression) value.createValue(UML2Package.eINSTANCE.getExpression());
 		literal.setBody(className);
 	}
 
-	private AppliedBasicStereotypeValue findOrCreateAppliedValue(Element cl, Property property)
+	private AppliedBasicStereotypeValue findOrCreateAppliedValue(Element cl, Property property, boolean findOnly)
 	{
 		for (Object obj : cl.undeleted_getAppliedBasicStereotypeValues())
 		{
@@ -552,6 +571,8 @@ public class BeanSubjectCreator
 				return val;
 			}
 		}
+		if (findOnly)
+			return null;
 		AppliedBasicStereotypeValue val = cl.createAppliedBasicStereotypeValues();
 		val.setProperty(property);
 		return val;

@@ -15,8 +15,14 @@ public class Utilities
       if (c instanceof Container)
         setEnabledRecursively((Container) c, enabled);
       else
-        c.setEnabled(enabled);
+      {
+      	if (c.getName() == null || !c.getName().equals("uuid"))
+      		c.setEnabled(enabled);
+      	if (c.getName() != null && c.getName().equals("uuid"))
+      		System.out.println("$$ found uuid");
+      }
     }
+    root.validate();
   }
   
   public static void addSeparator(JPopupMenu menu)

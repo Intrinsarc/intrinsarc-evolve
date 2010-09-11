@@ -1,5 +1,6 @@
 package com.intrinsarc.beanimporter;
 
+import java.io.*;
 import java.util.*;
 
 import org.eclipse.uml2.*;
@@ -8,6 +9,7 @@ import org.objectweb.asm.*;
 import org.objectweb.asm.Type;
 import org.objectweb.asm.tree.*;
 
+import com.intrinsarc.backbone.runtime.api.*;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.repositorybase.*;
 
@@ -29,6 +31,7 @@ public class BeanClass
 	private Set<BeanClass> wantsThis;
 	private DEElement existing;
 	private boolean legacyBean;
+	private boolean lifecycleCallbacks;
 
 	public BeanClass(ClassNode node, DEStratum perspective, Element existingElement)
 	{
@@ -47,6 +50,11 @@ public class BeanClass
 		name = extractClassName(node.name);
 		originalName = name;
 		this.type = type;
+	}
+	
+	public boolean hasLifecycleCallbacks()
+	{
+		return lifecycleCallbacks;
 	}
 	
 	public boolean isRefresh()
@@ -108,6 +116,12 @@ public class BeanClass
 				interfaces = new ArrayList<String>();
 			interfaces.add(((String) i).replace("/", "."));
 		}
+		if (interfaces != null)
+		{
+			if (interfaces.contains(ILifecycle.class.getName()))
+				lifecycleCallbacks = true;
+			interfaces = filter(interfaces);
+		}
 		
 		// is this something existing?
 		if (existingElement != null)
@@ -160,7 +174,7 @@ public class BeanClass
 			if (!mains.isEmpty())
 			{
 				List<Type> types = new ArrayList<Type>();
-				for (Object t : node.interfaces)
+				for (Object t : slashFilter(node.interfaces))
 					types.add(Type.getType("L" + (String) t + ";"));
 
 				String mainName = mains.get(0).getName();
@@ -312,6 +326,15 @@ public class BeanClass
 	private static final String _PROVIDED = "_Provided";
 	private void handleGetOrSet(MethodNode m, String mName)
 	{
+		// ignore anything with a BackboneIgnore annotation
+		if (m.visibleAnnotations != null)
+			for (Object mn : m.visibleAnnotations)
+			{
+				AnnotationNode an = (AnnotationNode) mn;
+				if (an.desc.contains("BackboneIgnore"))
+					return;
+			}
+		
 		Type type = null;
 		boolean set = false;
 		boolean get = false;
@@ -410,10 +433,11 @@ public class BeanClass
 
 	private boolean areIgnoring(String cls)
 	{
-		if (cls.equals("java.lang.Object") ||
-				cls.equals("java.io.Serializable") ||
-				cls.equals("java.lang.Cloneable") ||
-				cls.equals("java.lang.Comparable"))
+		if (cls.equals(Object.class.getName()) ||
+				cls.equals(Serializable.class.getName()) ||
+				cls.equals(Cloneable.class.getName()) ||
+				cls.equals(Comparable.class.getName()) ||
+				cls.equals(ILifecycle.class.getName()))
 			return true;
 		return false;
 	}
@@ -529,8 +553,17 @@ public class BeanClass
 		
 		return needed;
 	}
-	
-	
+		
+	private List<String> slashFilter(List<String> interfaces)
+	{
+		List<String> ret = new ArrayList<String>();
+		if (interfaces == null)
+			return ret;
+		for (String str : interfaces)
+			if (!areIgnoring(str.replace("/", ".")))
+				ret.add(str);
+		return ret;
+	}
 
 	private List<String> filter(List<String> interfaces)
 	{

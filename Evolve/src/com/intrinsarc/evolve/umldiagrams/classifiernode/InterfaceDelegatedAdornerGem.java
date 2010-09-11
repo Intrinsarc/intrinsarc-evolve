@@ -49,10 +49,31 @@ public class InterfaceDelegatedAdornerGem
           subject.undeleted_getOwnedOperations(),
           subject.undeleted_getDeltaDeletedOperations(),
           subject.undeleted_getDeltaReplacedOperations());
+      
+      // possibly add a replacement adorner
+      addReplacementAdorner(iface, displays);      
                 
       return displays;
     }
   }
+  
+	public static void addReplacementAdorner(FigureFacet figure, Map<FigureFacet, Integer> displays)
+	{
+    // possibly add an adorner for replacement
+    Integer existing = displays.get(figure);
+    for (Object odep : ((NamedElement) figure.getSubject()).undeleted_getOwnedAnonymousDependencies())
+    {
+    	Dependency dep = (Dependency) odep;
+    	if (dep.isReplacement())
+    	{
+    		if (existing != null) // must be delete
+    			existing = DeltaTypeEnum.DELTA_ELEMENT_REPLACE_AND_DELETE.ordinal();
+    		else
+    			existing = DeltaTypeEnum.DELTA_ELEMENT_REPLACE.ordinal();
+    		displays.put(figure, existing);
+    	}
+    }
+	}
   
   public static void determineAdornments(
       Map<FigureFacet, Integer> displays,
@@ -82,6 +103,6 @@ public class InterfaceDelegatedAdornerGem
     
     // if some deletes exist, add this with a delete
     if (!deletes.isEmpty())
-      displays.put(classifier, DeltaTypeEnum.DELTA_DELETE.ordinal());
+      displays.put(classifier, DeltaTypeEnum.DELTA_DELETE.ordinal());    
   }
 }

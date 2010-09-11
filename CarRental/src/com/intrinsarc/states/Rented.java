@@ -5,7 +5,7 @@ import com.intrinsarc.backbone.runtime.api.*;
 public class Rented
 // start generated code
 	// main port
- implements com.intrinsarc.states.IRentalEvent
+ extends com.intrinsarc.backbone.runtime.implementation.State implements com.intrinsarc.states.IRentalEvent
 {
 	// attributes
 	private String renterName = "";
@@ -14,19 +14,8 @@ public class Rented
 	public String getRenterName() { return renterName; }
 	public void setRenterName(String renterName) { this.renterName = renterName;}
 
-	// required ports
-	private ITransition out;
-	// provided ports
-	private ITransitionInImpl in_Provided = new ITransitionInImpl();
-
-	// port setters and getters
-	public void setOut(ITransition out) { this.out = out; }
-	public ITransition getIn_Provided() { return in_Provided; }
-
 // end generated code
 	
-	private boolean current;
-
 	public boolean isCurrent()
 	{
 		return current;
@@ -51,14 +40,5 @@ public class Rented
 	public String toString()
 	{
 		return "rented";
-	}
-
-	private class ITransitionInImpl implements ITransition
-	{
-		public boolean enter()
-		{
-			current = true;
-			return current;
-		}
 	}
 }

@@ -1,5 +1,9 @@
 package com.intrinsarc.base;
 
+import java.lang.annotation.*;
+
+import com.intrinsarc.backbone.runtime.api.*;
+
 
 public class RentalCarDetails
 // start generated code
@@ -24,11 +28,13 @@ public class RentalCarDetails
 
 // end generated code
 	
+	@BackboneIgnore
 	public void setRenterName(String renterName)
 	{
 		renter.setRenterName(renterName);
 	}
 	
+	@BackboneIgnore
 	public String getRenterName()
 	{
 		return renter.getRenterName();

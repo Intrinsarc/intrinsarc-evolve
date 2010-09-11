@@ -51,7 +51,15 @@ public class DeltaAdornerGem
     public ZNode adornFigure(final FigureFacet figure, int style)
     {
       DeltaTypeEnum display = DeltaTypeEnum.values()[style];
-      return getNode(figure, display);
+      if (display == DeltaTypeEnum.DELTA_ELEMENT_REPLACE_AND_DELETE)
+      {
+        ZGroup group = new ZGroup();
+        group.addChild(getNode(figure, DeltaTypeEnum.DELTA_ELEMENT_REPLACE));
+        group.addChild(getNode(figure, DeltaTypeEnum.DELTA_DELETE));
+        return group;
+      }
+      else
+      	return getNode(figure, display);
     }
     
     private ZNode getNode(final FigureFacet figure, final DeltaTypeEnum deltaType)
@@ -86,6 +94,15 @@ public class DeltaAdornerGem
             middle.addChild(new ZVisualLeaf(line));
           }        
           break;
+        case DELTA_ELEMENT_REPLACE:
+        {
+          col = Color.BLUE;
+          ZLine line = new ZLine(new UPoint(5, 3), new UPoint(5, 7));
+          line.setPenPaint(col);
+          line.setPenWidth(2);
+          middle.addChild(new ZVisualLeaf(line));
+        }        
+        break;
         case DELTA_DELETE:
         default:
           {
@@ -128,6 +145,11 @@ public class DeltaAdornerGem
       if (figure.getLinkingFacet() != null)
         moveTo = figure.getLinkingFacet().getMajorPoint(CalculatedArcPoints.MAJOR_POINT_MIDDLE).subtract(new UDimension(width, height / 2));
       else
+      if (deltaType == DeltaTypeEnum.DELTA_DELETE)
+      {      	
+        moveTo = full.getTopLeftPoint().subtract(new UDimension(width + 1, -height - 7));
+      }
+      else
         moveTo = full.getTopLeftPoint().subtract(new UDimension(width + 1, -2));
       
       group.setTranslation(moveTo.getX(), moveTo.getY());
@@ -141,6 +163,7 @@ public class DeltaAdornerGem
           switch (deltaType)
           {
             case DELTA_ADD:
+            case DELTA_ELEMENT_REPLACE:
               // don't display anything
               break;
             case DELTA_DELETE:
@@ -243,6 +266,7 @@ public class DeltaAdornerGem
           }
         } 
       };
+      
       group.addMouseListener(mouse);
       group.addMouseMotionListener(mouse);
       

@@ -934,16 +934,27 @@ public abstract class DEElement extends DEObject
 		return getForcedImplementationClass(perspective) != null;
 	}
 	
-	private String getAutoImplementationClass(DEStratum perspective)
+	public String getAutoImplementationClass(DEStratum perspective)
 	{
-		String pkg = getHomeStratum().getJavaPackage();
-		String name = perspective == null ? getName(getHomeStratum()) : getName(perspective);
+		DEStratum use = perspective == null ? getHomeStratum() : perspective;
+
+		String pkg = getPackage(use);
+
+		String name = getName(use);
 		// possibly remove the prime if this is an evolution
 		if (name.endsWith("`"))
 			name = name.substring(0, name.length() - 1);
+		if (asInterface() != null && asInterface().isLegacyBean(use) && name.startsWith("I"))
+			name = name.substring(1);
 		if (pkg.length() == 0)
 			return name;
 		return pkg + "." + name;
+	}
+	
+	private String getPackage(DEStratum perspective)
+	{
+		List<DEElement> tops = getTopmost(perspective);
+		return tops.get(0).getHomeStratum().getJavaPackage();
 	}
 	
 	private String getForcedImplementationClass(DEStratum perspective)
@@ -969,19 +980,16 @@ public abstract class DEElement extends DEObject
 	 */
 	public Set<String> getImplementationInheritances(DEStratum perspective)
 	{
-		// look for the previous implementation classes we have inherited
 		Set<String> inherits = new LinkedHashSet<String>();
-		Set<DeltaPair> stereos =
-			getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getPairs(perspective, DeltaPairTypeEnum.OLD_OBJECTS_E);
-		for (DeltaPair pair : stereos)
+
+		// look for the previous implementation classes we have inherited
+		Set<DEElement> resembles_e = getResembles_e(perspective);
+		for (DEElement elem : resembles_e)
 		{
-			// just take the first
-			DEAppliedStereotype applied = pair.getConstituent().asAppliedStereotype();
-			String inherit = applied.getStringProperty(IMPLEMENTATION_STEREOTYPE_PROPERTY);
+			String inherit = elem.getImplementationClass(elem.getHomeStratum());
 			if (inherit.length() != 0)
-				inherits.add(inherit);
+				inherits.add(inherit);			
 		}
-		
 		return inherits;
 	}
 }

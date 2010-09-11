@@ -112,7 +112,10 @@ public class ClassDelegatedAdornerGem
           subject.undeleted_getOwnedAnonymousDependencies(),
           subject.undeleted_getDeltaDeletedTraces(),
           subject.undeleted_getDeltaReplacedTraces());
-      
+
+      // possibly add a replacement adorner
+	    InterfaceDelegatedAdornerGem.addReplacementAdorner(cls, displays);      
+                
       return displays;
     }
   }

@@ -9,7 +9,7 @@ public abstract class DEInterface extends DEElement
     return this;
   }
   
-	public boolean isBean(DEStratum perspective)
+	public boolean isLegacyBean(DEStratum perspective)
 	{
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)

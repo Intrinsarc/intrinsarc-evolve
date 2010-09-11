@@ -1,24 +1,12 @@
 package com.intrinsarc.states;
 
-import com.intrinsarc.backbone.runtime.api.*;
 
 public class Available
 // start generated code
 	// main port
- implements com.intrinsarc.states.IRentalEvent
+ extends com.intrinsarc.backbone.runtime.implementation.State implements com.intrinsarc.states.IRentalEvent
 {
-	// required ports
-	private ITransition out;
-	// provided ports
-	private ITransitionInImpl in_Provided = new ITransitionInImpl();
-
-	// port setters and getters
-	public void setOut(ITransition out) { this.out = out; }
-	public ITransition getIn_Provided() { return in_Provided; }
-
 // end generated code
-
-	private boolean current;
 
 	public boolean isCurrent()
 	{
@@ -53,14 +41,5 @@ public class Available
 	public String getRenterName()
 	{
 		return "";
-	}
-
-	private class ITransitionInImpl implements ITransition
-	{
-		public boolean enter()
-		{
-			current = true;
-			return current;
-		}
 	}
 }

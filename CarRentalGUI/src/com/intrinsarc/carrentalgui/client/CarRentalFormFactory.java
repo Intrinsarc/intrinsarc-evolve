@@ -17,7 +17,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private String text;
 
   // connectors
-  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c;
+  private IRentalServiceAsync c;
   private com.intrinsarc.backbone.runtime.api.ICreate c1;
   private com.google.gwt.user.client.ui.TextBox c2;
   private com.google.gwt.user.client.ui.Label c3;
@@ -156,7 +156,7 @@ class CarRentalWidgetFactory implements IHardcodedFactory
   private String text2;
 
   // connectors
-  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c11;
+  private IRentalServiceAsync c11;
   private com.google.gwt.user.client.ui.Label c12;
   private com.google.gwt.user.client.ui.Button c13;
   private com.google.gwt.user.client.ui.ChangeListener c14;

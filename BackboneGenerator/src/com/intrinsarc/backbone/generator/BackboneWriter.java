@@ -22,7 +22,7 @@ import com.intrinsarc.swing.*;
  */
 public class BackboneWriter
 {
-  public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB/base"));
+  public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB"));
   public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/common/backbone.jar"));
   public static Preference BB_JAVA_CMD_PREF;
   public static final Preference BB_WRITE_BASE_PREF = new Preference("Backbone", "Generate Backbone base", new PersistentProperty(true));

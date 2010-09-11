@@ -18,14 +18,14 @@ public class RentalLogic
 
 	// required ports
 	private com.google.gwt.user.client.ui.ChangeListener refresh;
-	private com.intrinsarc.carrentalgui.client.IRentalServiceAsync service;
+	private IRentalServiceAsync service;
 	private com.google.gwt.user.client.ui.TextBox renter;
 	// provided ports
 	private ChangeListenerRenterSetImpl renterSet_Provided = new ChangeListenerRenterSetImpl();
 
 	// port setters and getters
 	public void setRefresh(com.google.gwt.user.client.ui.ChangeListener refresh) { this.refresh = refresh; }
-	public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync service) { this.service = service; }
+	public void setService(IRentalServiceAsync service) { this.service = service; }
 	public void setRenter(com.google.gwt.user.client.ui.TextBox renter) { this.renter = renter; }
 	public com.google.gwt.user.client.ui.ChangeListener getRenterSet_Provided() { return renterSet_Provided; }
 
