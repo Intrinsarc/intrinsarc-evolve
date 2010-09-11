@@ -107,7 +107,7 @@ public class PackageViewContextGem
 
 			// delete model elements
 			JMenuItem deleteSubjectsItem = new DeleteSubjectsMenuItem(currentView, toolCoordinatorFacet);
-			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "shift DELETE", "The delete subjects operation");
+			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "ctrl D", "The delete subjects operation");
 			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteSubjectsItem));
 
 			// select all

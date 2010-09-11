@@ -11,7 +11,6 @@ import com.intrinsarc.evolve.gui.*;
  * 
  * todo:
  *
- *1. fix appliedbasicstereotypevalue not going to deleted state when property removed
  *2. add in delta mark for replacing element
  *3. remove all implementation-class values, selectively add gwt ones back and bb ones back
  *4. change default-java-package to just java-package
@@ -29,8 +28,11 @@ import com.intrinsarc.evolve.gui.*;
  * 7. ensure backbone still works using similar approach
  * 8. rename default-java-package to java-package
  * 
- * 1. delete model back to ctrl-D
- * 2. add an easy way to see implementation class of a leaf
+ * 3. ant scripts for release
+ * --------------------------------------------------------------
+ * (done)add an easy way to see implementation class of a leaf
+ * (done) fix appliedbasicstereotypevalue not going to deleted state when property removed
+ * (done) delete model back to ctrl-D
  */
 
 public class EvolveRunner

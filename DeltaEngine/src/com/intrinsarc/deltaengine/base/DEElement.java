@@ -470,7 +470,9 @@ public abstract class DEElement extends DEObject
           contains = true;
       }
       if (!contains)
+      {
         topmostReplacers.add(r);
+      }
     }
     
     if (topmostReplacers.isEmpty())
@@ -921,15 +923,30 @@ public abstract class DEElement extends DEObject
 		return applied;
 	}
 	
-	public String getAutoImplementationClass(DEStratum perspective)
+	public String getImplementationClass(DEStratum perspective)
 	{
-		String pkg = getHomeStratum().getJavaPackage();
-		if (pkg.length() == 0)
-			return getName(perspective);
-		return pkg + "." + getName(perspective);
+		String impl = getForcedImplementationClass(perspective);
+		return impl == null ? getAutoImplementationClass(perspective) : impl; 
 	}
 	
-	public String getImplementationClass(DEStratum perspective)
+	public boolean hasForcedImplementationClass(DEStratum perspective)
+	{
+		return getForcedImplementationClass(perspective) != null;
+	}
+	
+	private String getAutoImplementationClass(DEStratum perspective)
+	{
+		String pkg = getHomeStratum().getJavaPackage();
+		String name = perspective == null ? getName(getHomeStratum()) : getName(perspective);
+		// possibly remove the prime if this is an evolution
+		if (name.endsWith("`"))
+			name = name.substring(0, name.length() - 1);
+		if (pkg.length() == 0)
+			return name;
+		return pkg + "." + name;
+	}
+	
+	private String getForcedImplementationClass(DEStratum perspective)
 	{
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)
@@ -946,7 +963,7 @@ public abstract class DEElement extends DEObject
 			return null;
 		return prop;
 	}
-	
+
 	/**
 	 * we want the implementation class that we should inherit from
 	 */

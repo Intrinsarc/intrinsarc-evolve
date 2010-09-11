@@ -226,26 +226,18 @@ public class ComponentErrorChecker
       }
       
       // ensure we have only 1 implementation
-      String impl = component.getImplementationClass(perspective);
+      boolean impl = component.hasForcedImplementationClass(perspective);
+      String fullImpl = component.getImplementationClass(perspective);
       if (component.isPlaceholder(perspective))
       {
-	      if (impl != null)
+	      if (impl)
 	      	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.NO_IMPLEMENTATION_ALLOWED);
       }
       else
       if (!component.isAbstract(perspective) && component.isLeaf(perspective) && component.getComponentKind() != ComponentKindEnum.STEREOTYPE)
       {
-	      if (impl == null)
+	      if (fullImpl == null)
 	      	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.NO_IMPLEMENTATION);
-	      
-	    	String autoName = component.getAutoImplementationClass(perspective);
-	    	String implName = component.getImplementationClass(perspective);
-	    	if (!autoName.equals(implName))
-	    	{
-	    		System.out.println("$$ auto name = " + autoName + ", implName = " + implName);
-	        errors.addError(
-	            new ErrorLocation(perspective, component), ErrorCatalog.BAD_INDEX);	
-	    	}
       }
       
       // a factory currently cannot be a leaf
@@ -254,9 +246,9 @@ public class ComponentErrorChecker
     }
     else
     {
-    	// a composite cannot have an implementation
-    	String impl = component.getImplementationClass(perspective);
-      if (impl != null)
+    	// a composite cannot have a forced implementation
+      boolean impl = component.hasForcedImplementationClass(perspective);
+      if (impl)
       	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.NO_IMPLEMENTATION_ALLOWED);
     	
       // an composite must be nested inside a stratum or package

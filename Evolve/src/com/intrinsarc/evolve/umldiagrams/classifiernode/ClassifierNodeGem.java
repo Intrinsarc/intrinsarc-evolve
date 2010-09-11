@@ -763,7 +763,7 @@ public final class ClassifierNodeGem implements Gem
 				
 				boolean composite = elem.asComponent() != null && elem.asComponent().isComposite(elem.getHomeStratum());
 				String impl = ImplementationClassManipulator.getImplementationClassName((Element) figureFacet.getSubject());
-				if (elem.getHomeStratum() == visualHome && (!composite || impl != null && impl.length() > 0))
+//				if (elem.getHomeStratum() == visualHome && (!composite || impl != null && impl.length() > 0))
 				{
 					manipulators.addOther(
 							new ImplementationClassManipulator(coordinator, diagramView, figureFacet, composite).getManipulatorFacet());

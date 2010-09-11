@@ -54,7 +54,7 @@ public class ImplementationClassManipulator extends FieldPopupManipulator
   	adjustUIState();
 
   	// set the field to be quite wide
-  	field.setPreferredSize(new Dimension(200, 0));
+  	field.setPreferredSize(new Dimension(250, 0));
   	
   	UPoint pt = findInsidePoint(diagramView, panel);
   	pop = PopupFactory.getSharedInstance().getPopup(
@@ -125,29 +125,32 @@ public class ImplementationClassManipulator extends FieldPopupManipulator
 	}
 	
 	public void setTextAndFinish()
-	{		
-		if (forceReplace)
+	{
+		if (false)
 		{
-			// replace the stereo
-			Stereotype componentStereo = 
-				GlobalSubjectRepository.repository.findStereotype(
-						UML2Package.eINSTANCE.getClass_(),
-						CommonRepositoryFunctions.COMPONENT);
-	  	StereotypeUtilities.formAddRawStereotypeTransaction(
-	  			coordinator,
-	  			getElement(),
-	  			componentStereo);
-		}
-		
-		boolean hasStereo = hasImplementationClassField();
-		if (hasStereo && !field.getText().equals(getImplementationClassName()))
-		{			
-			coordinator.startTransaction("Set implementation class", "Unset implementation class");
-			StereotypeUtilities.setStringRawStereotypeAttribute(
-					getElement(),
-					CommonRepositoryFunctions.IMPLEMENTATION_CLASS,
-					field.getText());
-			coordinator.commitTransaction();						
+			if (forceReplace)
+			{
+				// replace the stereo
+				Stereotype componentStereo = 
+					GlobalSubjectRepository.repository.findStereotype(
+							UML2Package.eINSTANCE.getClass_(),
+							CommonRepositoryFunctions.COMPONENT);
+		  	StereotypeUtilities.formAddRawStereotypeTransaction(
+		  			coordinator,
+		  			getElement(),
+		  			componentStereo);
+			}
+			
+			boolean hasStereo = hasImplementationClassField();
+			if (hasStereo && !field.getText().equals(getImplementationClassName()))
+			{			
+				coordinator.startTransaction("Set implementation class", "Unset implementation class");
+				StereotypeUtilities.setStringRawStereotypeAttribute(
+						getElement(),
+						CommonRepositoryFunctions.IMPLEMENTATION_CLASS,
+						field.getText());
+				coordinator.commitTransaction();						
+			}
 		}
 		finishManipulator();		
 	}
