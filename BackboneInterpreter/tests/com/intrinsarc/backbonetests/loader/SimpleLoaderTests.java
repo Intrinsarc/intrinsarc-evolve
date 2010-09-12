@@ -59,7 +59,7 @@ public class SimpleLoaderTests
 		
 		// should have an implementation property of test.A
 		assertEquals(1, applied.getProperties().size());
-		assertEquals("test.A", applied.getStringProperty("implementation-class"));
+		assertEquals("test.A", applied.getStringProperty("force-implementation"));
 		
 		// should have a single port named port which provides IFace
 		Set<DeltaPair> ports = a.getDeltas(ConstituentTypeEnum.DELTA_PORT).getAddObjects();

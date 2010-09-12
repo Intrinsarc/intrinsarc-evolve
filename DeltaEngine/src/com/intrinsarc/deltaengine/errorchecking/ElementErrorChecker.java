@@ -205,5 +205,50 @@ public class ElementErrorChecker
       errors.addError(
           new ErrorLocation(element), ErrorCatalog.CANNOT_REFER_TO_SUBSTITUTION);          
   }
+  
+  public static boolean isValidClassName(String full)
+  {
+  	int length = full.length();
+  	if (full == null || length == 0)
+  		return false;
+  	
+  	if (!Character.isJavaIdentifierPart(full.charAt(0)) || !Character.isJavaIdentifierPart(full.charAt(length-1)))
+  		return false;
+  	
+  	StringTokenizer tok = new StringTokenizer(full, ".");
+  	while (tok.hasMoreTokens())
+  	{
+  		String t = tok.nextToken();
+  		if (!isValidJavaPart(t))
+  			return false;
+  	}
+  	return true;
+  }
+  
+	private static boolean isValidJavaPart(String part)
+	{
+		if (part == null || part.length() == 0)
+			return false;
+		
+		// must start properly
+		if (!Character.isJavaIdentifierStart(part.charAt(0)))
+			return false;
+		
+		// check the rest
+		int length = part.length();
+		for (int lp = 1; lp < length; lp++)
+			if (!Character.isJavaIdentifierPart(part.charAt(lp)))
+				return false;
+		
+		return true;
+	}
+
+	public static void checkStratumPackageExists(ErrorRegister errors, DEElement element)
+	{
+		DEStratum home = element.getHomeStratum();
+		String pkg = home.getJavaPackage();
+    if ((pkg == null || pkg.length() == 0) && !element.hasForcedImplementationClass(home))
+    	errors.addError(new ErrorLocation(home), ErrorCatalog.NO_STRATUM_PACKAGE);
+	}
 }
 

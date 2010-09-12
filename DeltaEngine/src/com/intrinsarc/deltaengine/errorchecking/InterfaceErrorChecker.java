@@ -1,5 +1,7 @@
 package com.intrinsarc.deltaengine.errorchecking;
 
+import java.util.*;
+
 import com.intrinsarc.deltaengine.base.*;
 
 public class InterfaceErrorChecker
@@ -45,7 +47,11 @@ public class InterfaceErrorChecker
     
     // an interface must specify an implementation class
     String impl = iface.getImplementationClass(perspective);
-    if (impl == null)
+    if (impl == null || impl.length() == 0)
     	errors.addError(new ErrorLocation(iface.getParent(), iface), ErrorCatalog.NO_IMPLEMENTATION);
+    else
+    if (!ElementErrorChecker.isValidClassName(impl))
+    	errors.addError(new ErrorLocation(iface.getHomeStratum(), iface), ErrorCatalog.IMPLEMENTATION_INVALID);
+    ElementErrorChecker.checkStratumPackageExists(errors, iface);
   }
 }

@@ -227,7 +227,6 @@ public class ComponentErrorChecker
       
       // ensure we have only 1 implementation
       boolean impl = component.hasForcedImplementationClass(perspective);
-      String fullImpl = component.getImplementationClass(perspective);
       if (component.isPlaceholder(perspective))
       {
 	      if (impl)
@@ -236,8 +235,14 @@ public class ComponentErrorChecker
       else
       if (!component.isAbstract(perspective) && component.isLeaf(perspective) && component.getComponentKind() != ComponentKindEnum.STEREOTYPE)
       {
+        String fullImpl = component.getImplementationClass(perspective);
 	      if (fullImpl == null)
 	      	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.NO_IMPLEMENTATION);
+
+	      // the implementation name must be valid
+	      if (!ElementErrorChecker.isValidClassName(fullImpl))
+	      	errors.addError(new ErrorLocation(perspective, component), ErrorCatalog.IMPLEMENTATION_INVALID);
+	      ElementErrorChecker.checkStratumPackageExists(errors, component);
       }
       
       // a factory currently cannot be a leaf

@@ -46,7 +46,7 @@ public class CommonRepositoryFunctions
   public static final String FACTORY                  = DEComponent.FACTORY_STEREOTYPE_PROPERTY;
   public static final String LEGACY_BEAN              = DEComponent.LEGACY_BEAN_STEREOTYPE_PROPERTY;
 
-  public static final String IMPLEMENTATION_CLASS     = "implementation-class";
+  public static final String IMPLEMENTATION_CLASS     = "force-implementation";
   public static final String PROTOCOLS                = "protocols";
   public static final String RELAXED                  = "relaxed";
   public static final String CHECK_ONCE_IF_READ_ONLY  = "check-once-if-read-only";
@@ -95,7 +95,7 @@ public class CommonRepositoryFunctions
 	public static final String BACKBONE_RUN_COMPONENT = "bb-run-component";
 	public static final String BACKBONE_RUN_PORT = "bb-run-port";
 	public static final String BACKBONE_CMD_LINE = "bb-cmd-line-arguments";
-	public static final String DEFAULT_PACKAGE = "default-java-package";
+	public static final String DEFAULT_PACKAGE = "java-package";
 
 	// visual stereotypes
 	public static final String VISUAL_EFFECT = "visual-effect";

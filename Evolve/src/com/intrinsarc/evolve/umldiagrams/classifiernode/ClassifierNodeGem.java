@@ -762,11 +762,16 @@ public final class ClassifierNodeGem implements Gem
 					GlobalDeltaEngine.engine.locateObject(figureFacet.getSubject()).asElement();
 				
 				boolean composite = elem.asComponent() != null && elem.asComponent().isComposite(elem.getHomeStratum());
-				String impl = ImplementationClassManipulator.getImplementationClassName((Element) figureFacet.getSubject());
-//				if (elem.getHomeStratum() == visualHome && (!composite || impl != null && impl.length() > 0))
+				String impl = elem.getForcedImplementationClass(visualHome);
+				if (!composite || impl != null && impl.length() > 0)
 				{
 					manipulators.addOther(
-							new ImplementationClassManipulator(coordinator, diagramView, figureFacet, composite).getManipulatorFacet());
+							new ImplementationClassManipulator(
+									coordinator,
+									diagramView,
+									figureFacet,
+									elem.getImplementationClass(visualHome),
+									composite).getManipulatorFacet());
 				}
 			}
 

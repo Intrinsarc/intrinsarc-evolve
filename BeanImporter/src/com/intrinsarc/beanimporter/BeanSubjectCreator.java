@@ -540,7 +540,7 @@ public class BeanSubjectCreator
 	{
 		// what is the auto implementation?
 		DEElement elem = GlobalDeltaEngine.engine.locateObject(cl).asElement();
-		String auto = elem.getAutoImplementationClass(null);
+		String auto = elem.getAutoImplementationClass(null, null);
 		boolean same = className.equals(auto);
 
 		DeltaPair pair = StereotypeUtilities.findAllStereotypePropertiesFromRawAppliedStereotypes(cl).get(CommonRepositoryFunctions.IMPLEMENTATION_CLASS);

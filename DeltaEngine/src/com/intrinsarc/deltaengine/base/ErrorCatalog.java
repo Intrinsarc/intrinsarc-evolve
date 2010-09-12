@@ -79,6 +79,8 @@ public class ErrorCatalog
 	public static final ErrorDescription TURN_OFF_INHERITANCE = new ErrorDescription("Turn off implementation inheritance using no-inheritance");
 	public static final ErrorDescription NAME_CONFLICTS = new ErrorDescription("Name (including singular variants) conflicts with another port or attribute name");
 	public static final ErrorDescription LEGACY_BEAN_BAD_INDEX = new ErrorDescription("Legacy beans do not support integer indices");
+	public static final ErrorDescription IMPLEMENTATION_INVALID = new ErrorDescription("Implementation class must be a valid Java identifier");
+	public static final ErrorDescription NO_STRATUM_PACKAGE = new ErrorDescription("Set the Java package on a stratum with leaves or interfaces");
 
 	// the diagram errors
   public static final ErrorDescription DIAGRAM_ELEMENT_NOT_VISIBLE = new ErrorDescription("This element is not visible from this diagram", true);

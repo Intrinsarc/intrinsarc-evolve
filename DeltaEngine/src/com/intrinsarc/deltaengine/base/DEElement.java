@@ -4,7 +4,7 @@ import java.util.*;
 
 public abstract class DEElement extends DEObject
 {
-	public static final String IMPLEMENTATION_STEREOTYPE_PROPERTY = "implementation-class";
+	public static final String IMPLEMENTATION_STEREOTYPE_PROPERTY = "force-implementation";
 
 	private Map<DEStratum, Set<DEElement>> cachedResembles_e;
   private Map<DEStratum, Set<DEElement>> cachedFilteredResembles_e;
@@ -926,7 +926,7 @@ public abstract class DEElement extends DEObject
 	public String getImplementationClass(DEStratum perspective)
 	{
 		String impl = getForcedImplementationClass(perspective);
-		return impl == null ? getAutoImplementationClass(perspective) : impl; 
+		return impl == null ? getAutoImplementationClass(perspective, null) : impl; 
 	}
 	
 	public boolean hasForcedImplementationClass(DEStratum perspective)
@@ -934,30 +934,51 @@ public abstract class DEElement extends DEObject
 		return getForcedImplementationClass(perspective) != null;
 	}
 	
-	public String getAutoImplementationClass(DEStratum perspective)
+	public String getAutoImplementationClass(DEStratum perspective, boolean multiple[])
 	{
-		DEStratum use = perspective == null ? getHomeStratum() : perspective;
-
-		String pkg = getPackage(use);
-
-		String name = getName(use);
-		// possibly remove the prime if this is an evolution
-		if (name.endsWith("`"))
-			name = name.substring(0, name.length() - 1);
-		if (asInterface() != null && asInterface().isLegacyBean(use) && name.startsWith("I"))
-			name = name.substring(1);
-		if (pkg.length() == 0)
-			return name;
-		return pkg + "." + name;
-	}
-	
-	private String getPackage(DEStratum perspective)
-	{
+		perspective = perspective == null ? getHomeStratum() : perspective;
 		List<DEElement> tops = getTopmost(perspective);
-		return tops.get(0).getHomeStratum().getJavaPackage();
+		
+		// if it is just us...
+		if (tops.size() == 1 && tops.get(0) == this)
+		{
+			perspective = getHomeStratum();
+			String pkg = perspective.getJavaPackage();
+			String name = getName(perspective);
+			// possibly remove the prime if this is an evolution
+			if (name.endsWith("`"))
+				name = name.substring(0, name.length() - 1);
+			if (asInterface() != null && asInterface().isLegacyBean(perspective) && name.startsWith("I"))
+				name = name.substring(1);
+			if (pkg.length() == 0)
+				return name;
+			return pkg + "." + name;
+		}
+
+		// otherwise we need to amalgamate
+		String impl = "";
+		Set<String> already = new HashSet<String>();
+		boolean first = true;
+		for (DEElement top : tops)
+		{
+			String next = top.getAutoImplementationClass(null, null);			
+			if (!already.contains(next))
+			{
+				if (!first)
+				{
+					impl += " versus ";
+					if (multiple != null)
+						multiple[0] = true;
+				}
+				impl += next;
+				already.add(next);
+			}
+			first = false;
+		}
+		return impl;
 	}
 	
-	private String getForcedImplementationClass(DEStratum perspective)
+	public String getForcedImplementationClass(DEStratum perspective)
 	{
 		DEAppliedStereotype stereo = getAppliedStereotype(perspective);
 		if (stereo == null)

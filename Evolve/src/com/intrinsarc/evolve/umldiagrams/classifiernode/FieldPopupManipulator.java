@@ -72,10 +72,7 @@ public abstract class FieldPopupManipulator implements Gem
 	  	this.diagramLayer = diagramLayer;
 	  	
 	  	UBounds bounds = figure.getFullBounds();
-	  	UPoint tl = bounds.getTopLeftPoint();
-	  	UPoint tr = bounds.getTopRightPoint();
-	  	UPoint middle = Grid.roundToGrid(new UBounds(tl, tr).getMiddlePoint());
-	  	UPoint pt = middle.subtract(new UDimension(8, 16));
+	  	UPoint pt = bounds.getPoint().subtract(new UDimension(16, 16));
 	  	group = new ZGroup();
 	  	
 	  	ZTransformGroup transform = new ZTransformGroup();
