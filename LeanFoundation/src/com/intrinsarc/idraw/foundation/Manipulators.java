@@ -146,4 +146,9 @@ public class Manipulators implements ManipulatorFacet
 		if (keyFocus != null)
 			keyFocus.mouseReleased(over, point, event);
 	}
+
+	public boolean handlesReadonly()
+	{
+		return keyFocus.handlesReadonly();
+	}
 }

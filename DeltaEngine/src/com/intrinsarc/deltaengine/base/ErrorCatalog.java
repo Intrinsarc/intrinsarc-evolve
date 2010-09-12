@@ -43,7 +43,7 @@ public class ErrorCatalog
 	public static final ErrorDescription CANNOT_HAVE_PARTS = new ErrorDescription("No parts allowed in this type of component");
 	public static final ErrorDescription COMPOSITE_CANNOT_HAVE_PORT_LINKS = new ErrorDescription("No port links allowed in composites");
 	public static final ErrorDescription NO_DIRECT_PORT_CONNECTIONS_ALLOWED = new ErrorDescription("No port to port connections allowed");
-	public static final ErrorDescription STEREOTYPE_NOT_VISIBLE = new ErrorDescription("Stereotype not visible");
+	public static final ErrorDescription STEREOTYPE_NOT_VISIBLE = new ErrorDescription("Stereotype not visible. Have you made the home stratum depend on backbone?");
 	public static final ErrorDescription REQUIRED_PORT_NOT_CONNECTED = new ErrorDescription("A mandatory required port of a part is not connected");
 
 	// currently disabled -- seems like an unnecessarily harsh restriction AMcV 24/6/2010

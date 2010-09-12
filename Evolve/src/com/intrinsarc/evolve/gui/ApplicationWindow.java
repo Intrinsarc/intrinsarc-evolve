@@ -1835,6 +1835,7 @@ public class ApplicationWindow extends SmartJFrame
 				{
 					public int askAboutSave(String message)
 					{
+						applicationWindowCoordinator.switchRepository();
 						return ApplicationWindow.this.askAboutSave(message, true);
 					}
 

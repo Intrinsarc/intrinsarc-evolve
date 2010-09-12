@@ -31,7 +31,7 @@ public abstract class FieldPopupManipulator implements Gem
 	protected boolean readOnly;
 	private ManipulatorFacetImpl manipulatorFacet = new ManipulatorFacetImpl();
 	private ManipulatorListenerFacet manipListener;
-	private boolean bad;
+	protected boolean bad;
 	
 	public abstract void setUpPopup();
 	public abstract void removePopup();
@@ -165,6 +165,11 @@ public abstract class FieldPopupManipulator implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return true;
+		}
 	}
 	
   protected UPoint findInsidePoint(DiagramViewFacet diagramView, JPanel panel)

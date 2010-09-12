@@ -210,6 +210,11 @@ public final class ResizingManipulatorGem implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 
   public ResizingManipulatorGem(

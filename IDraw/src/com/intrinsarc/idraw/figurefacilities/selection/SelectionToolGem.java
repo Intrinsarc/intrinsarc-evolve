@@ -759,14 +759,14 @@ public final class SelectionToolGem implements Gem
       if (manip != null && (manipType == 1 || manipType == 2))
       {
         // not for readonly
-        if (!diagramReadOnlyMode)
+        if (!diagramReadOnlyMode || manip.handlesReadonly())
           enter_BUTTON_PRESS_ENTRY_SUBSTATE(e, localPoint, nodes[0], manip);
       }
       else
       if (manip != null && manipType == 3 && !e.isShiftDown())
       {
         // not for readonly
-        if (!diagramReadOnlyMode)
+        if (!diagramReadOnlyMode || manip.handlesReadonly())
           enter_POSSIBLY_MANIPULATING_SUBSTATE(e, localPoint, nodes[0], manip, overIgnoringManipulators);
       }
       else

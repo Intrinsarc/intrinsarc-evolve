@@ -85,6 +85,11 @@ public class GrouperNodeGem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 
 	/**

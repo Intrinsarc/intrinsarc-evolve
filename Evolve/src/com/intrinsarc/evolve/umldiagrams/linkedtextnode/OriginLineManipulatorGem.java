@@ -121,6 +121,11 @@ public class OriginLineManipulatorGem implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 
   public OriginLineManipulatorGem(FigureFacet originFigure, UPoint majorPoint)

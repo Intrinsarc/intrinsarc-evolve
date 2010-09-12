@@ -18,7 +18,6 @@ Class-path: extended-emf/uml2-pojo-odb-latest.jar
   gui/l2fprod-common-fontchooser.jar
   gui/resources.jar
   gui/evolve-main.jar
-  gui/protocoltofsp.jar
   gui/freehep-graphics2d-2.1.1.jar
   gui/freehep-graphicsio-2.1.1.jar
   gui/freehep-graphicsio-emf-2.1.1.jar

@@ -94,4 +94,9 @@ public class FeatureSuppressToggleManipulator extends ManipulatorAdapter
   public void setLayoutOnly()
   {
   }
+
+	public boolean handlesReadonly()
+	{
+		return false;
+	}
 }

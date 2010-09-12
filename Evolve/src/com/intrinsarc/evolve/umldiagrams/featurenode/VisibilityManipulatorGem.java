@@ -134,5 +134,10 @@ public final class VisibilityManipulatorGem implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 }

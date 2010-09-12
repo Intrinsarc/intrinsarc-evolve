@@ -640,6 +640,11 @@ public final class TextManipulatorGem implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 
   public TextManipulatorGem(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, String cmdDescription, String undoCmdDescription, String textToStart, Font font, Color textColour, Color backgroundColour, int type)

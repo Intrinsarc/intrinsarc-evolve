@@ -455,7 +455,7 @@ public class CommonRepositoryFunctions
     create.setKind(PortKind.CREATE_LITERAL);
     
     // create the state classes
-    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, null);
+    Class state = addLeaf(uuids, impls, stateStereo, STATE_CLASS, implClass, "com.intrinsarc.backbone.runtime.implementation.State");
     state.setIsAbstract(true);
     Port in = addPort(uuids, state, "in", "in", transition, null, null, null, stereoPort);
     Port out = addPort(uuids, state, "out", "out", null, transition, 0, 1, stereoPort);

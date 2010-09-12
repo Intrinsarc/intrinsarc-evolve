@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="WINDOWS-1252" standalone="no"?>
 <jardesc>
-    <jar path="Academic Work/latest-evolve-distribution/evolve.jar"/>
-    <options buildIfNeeded="true" compress="true" descriptionLocation="/Evolve/evolve-pojo-runner.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
+    <jar path="C:/Users/andrew/Desktop/evolve-release/evolve.jar"/>
+    <options buildIfNeeded="true" compress="true" descriptionLocation="/EvolveRelease/jardescs/evolve-pojo-runner.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" storeRefactorings="false" useSourceFolders="false"/>
     <storedRefactorings deprecationInfo="true" structuralOnly="false"/>
     <selectedProjects/>
-    <manifest generateManifest="false" manifestLocation="/Evolve/auto-evolve-pojo-manifest.MF" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
+    <manifest generateManifest="false" manifestLocation="/EvolveRelease/jardescs/auto-evolve-pojo-manifest.MF" manifestVersion="1.0" reuseManifest="true" saveManifest="true" usesManifest="true">
         <sealing sealJar="false">
             <packagesToSeal/>
             <packagesToUnSeal/>

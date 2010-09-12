@@ -1,0 +1,76 @@
+<project name="EvolveRelease" default="release" basedir=".">
+    <description>
+        A simple ant script to build the release for evolve and tutorial d
+    </description>
+	
+  <!-- set global properties for this build -->
+  <property name="version" value="0.9b4"/>
+	<property name="desktop" value="C:\Users\andrew\Desktop"/>
+  <property name="evolve" location="${desktop}\evolve-release"/>
+  <property name="evolveb4zip" location="${desktop}\evolve-distribution\evolve-${version}"/>	
+  <property name="evolvezip" location="${desktop}\evolve-distribution\evolve-${version}.zip"/>	
+  <property name="tutd" location="${desktop}\CarRentalGUI"/>
+  <property name="tutdb4zip" location="${desktop}\tutd\CarRentalGUI"/>
+  <property name="tutdzip" location="${desktop}\evolve-distribution\tutorial-d-files.zip"/>
+  <property name="tutdafterzip" location="${desktop}\evolve-distribution\CarRentalGUI"/>
+
+  <target name="release">
+
+  	<!-- release evolve -->
+  	<mkdir dir="${evolve}"/>
+    <delete dir="${desktop}\evolve-distribution"/>
+  	
+  	<!-- make the main evolve distribution -->
+  	<copy todir="${evolve}">
+  		<fileset dir="extra-files"/>
+  	</copy>
+  	<copy file="../UML2-ODB-Libraries/uml2-pojo-odb-latest.jar" todir="${evolve}/extended-emf"/>
+  	<copy file="../CommonResources/dockingFramesCommon-1.0.7.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/dockingFramesCore-1.0.7.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-graphics2d-2.1.1.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-graphicsio-2.1.1.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-graphicsio-emf-2.1.1.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-graphicsio-ps-2.1.1.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-io-2.0.2.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-swing-2.0.3.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/freehep-util-2.0.2.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/JTattoo.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/l2fprod-common-fontchooser.jar" todir="${evolve}/gui"/>
+  	<copy file="../CommonResources/asm-3.1.jar" todir="${evolve}/common"/>
+  	<copy file="../CommonResources/asm-tree-3.1.jar" todir="${evolve}/common"/>
+  	<copy file="../CommonResources/JSyntaxPane.jar" todir="${evolve}/common"/>
+  	<copy todir="${evolve}/emf">
+  		<fileset dir="../EMF-Libraries" includes="*.jar"/>
+  	</copy>
+  	<copy file="../Evolve/models/base.evolve" todir="${evolve}/models"/>
+
+  	<!-- copy over the basic tutorial files -->
+  	<copy file="../CarRental/models/car-rental.evolve" todir="${evolve}/tutorial"/>
+  	<copy file="../CarRental/.classpath" todir="${evolve}/tutorial/CarRental"/>
+  	<copy file="../CarRental/.project" todir="${evolve}/tutorial/CarRental"/>
+    <copy file="../CarRental/build.xml" todir="${evolve}/tutorial/CarRental"/>
+  	<copy todir="${evolve}/tutorial/CarRental/src">
+  		<fileset dir="../CarRental/src"/>
+  	</copy>
+  	<copy todir="${evolve}/tutorial/CarRental/bin">
+  		<fileset dir="../CarRental/bin"/>
+  	</copy>
+  	
+  	<!-- release tutorial d -->
+    <delete dir="${tutd}"/>
+  	<copy todir="${tutd}">
+  		<fileset dir="../CarRentalGUI"/>
+  	</copy>
+  	
+  	<!-- now move over to real names and build the zips -->
+		<move file="${evolve}" tofile="${evolveb4zip}"/>
+    <zip destfile="${evolvezip}" basedir="${evolveb4zip}\.."/>  	
+		<move file="${tutd}" tofile="${tutdb4zip}"/>
+    <zip destfile="${tutdzip}" basedir="${tutdb4zip}\.."/>
+		<move file="${tutdb4zip}" tofile="${tutdafterzip}"/>
+    <delete dir="${tutdb4zip}\.."/>
+		<delete dir="${evolve}"/>
+    <delete dir="${tutd}"/>
+  	
+  </target>
+</project>

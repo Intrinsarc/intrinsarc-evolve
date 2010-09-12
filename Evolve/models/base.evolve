@@ -3,17 +3,17 @@
   <appliedBasicStereotypeValues uuid="3a6505e0-e0ef-4718-be9e-e02a0232e673" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.0">
     <value xsi:type="uml:LiteralBoolean" uuid="47a05b0a-9911-4aa1-a91a-0b2080a0d826" value="true"/>
   </appliedBasicStereotypeValues>
-  <j_diagramHolder uuid="017b8b9e-f469-464a-9d27-bd0bc47cbe5c" saveTime="Sun Sep 12, 2010 at 11:17:41 BST" savedBy="Andrew">
-    <diagram uuid="0636965e-3cac-44bb-aaab-ddfa024b02ee" lastFigureId="1">
-      <figures uuid="bc6831cf-8646-44c6-bd3d-d3fe5ba1fb02" id="0" recreator="Package" name="backbone" autosized="false" point="252 348" dimensions="87 75" subject="//@childPackages.0">
-        <figures uuid="7c671194-24f9-4fbd-af7f-2f82154185a0" id="0_C" recreator="SimpleContainer" point="252 363" dimensions="87 60" offset="4 4">
-          <properties uuid="2f7dd9f6-ad0f-4c70-beaa-5e5926f8d882" name="deletedUuids" value=""/>
-          <properties uuid="3914bd4c-590a-41ae-87a0-0a82cbf9ba65" name="addedUuids" value=""/>
-          <properties uuid="3db1405c-3ade-4fac-96ba-7fc73b4be95f" name="backdrop" value="false"/>
+  <j_diagramHolder uuid="017b8b9e-f469-464a-9d27-bd0bc47cbe5c" saveTime="Sun Sep 12, 2010 at 10:36:13 BST" savedBy="Andrew">
+    <diagram uuid="ced99364-84bd-41d4-97a4-67967dcaa277" lastFigureId="1">
+      <figures uuid="58b1d1fb-21b9-4397-befc-8c829d305c6c" id="0" recreator="Package" name="backbone" autosized="false" point="252 348" dimensions="87 75" subject="//@childPackages.0">
+        <figures uuid="31531cc0-d1e0-4b64-89a4-6e7b228ecf4e" id="0_C" recreator="SimpleContainer" point="252 363" dimensions="87 60" offset="4 4">
+          <properties uuid="be1de624-e16c-476c-9e1a-fa91619d3bd7" name="deletedUuids" value=""/>
+          <properties uuid="aacd8688-2e2a-42a3-add0-2ff400d26a6e" name="addedUuids" value=""/>
+          <properties uuid="6857717e-198f-4f75-84a7-923fe6ac5e09" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="e3a71156-12ee-447e-873f-1cb00040abac" name="fill" value="255 255 255"/>
-        <properties uuid="2a74fd5b-216c-41ec-be75-29ba84ccdf67" name="stereoHash" value="253362321"/>
-        <properties uuid="3d8d8400-2eb8-43e7-a561-4bbb09004ba8" name="owner" value="model"/>
+        <properties uuid="d66c5753-2035-4187-8b81-60c40e9bcf60" name="fill" value="255 255 255"/>
+        <properties uuid="3de1befd-f33f-410e-80e8-2ba5e706854c" name="stereoHash" value="727371390"/>
+        <properties uuid="519e9732-c78e-4850-b274-dfeff0969986" name="owner" value="model"/>
       </figures>
     </diagram>
   </j_diagramHolder>
@@ -26,81 +26,81 @@
     <ownedAnonymousDependencies uuid="backbone-standard-profile" client="//@childPackages.0" dependencyTarget="//@childPackages.0/@childPackages.2"/>
     <ownedAnonymousDependencies uuid="backbone-api" client="//@childPackages.0" dependencyTarget="//@childPackages.0/@childPackages.3"/>
     <ownedAnonymousDependencies uuid="backbone-implementation" client="//@childPackages.0" dependencyTarget="//@childPackages.0/@childPackages.4"/>
-    <j_diagramHolder uuid="ac41f77c-f721-41f1-ab47-d9b125b7d6fb" saveTime="Sun Sep 12, 2010 at 11:17:41 BST" savedBy="Andrew">
-      <diagram uuid="100d80c1-8174-46b9-8c92-53a220e9bf0c" lastFigureId="10">
-        <figures uuid="1952206a-45fc-41b3-a525-f8827f10a50d" id="3" recreator="Profile" name="standard profile" autosized="false" point="516 148" dimensions="98 75" subject="//@childPackages.0/@childPackages.2">
-          <figures uuid="be810733-be0c-49a3-aed0-11388624be87" id="3_C" recreator="SimpleContainer" point="516 163" dimensions="98 60" offset="4 4">
-            <properties uuid="78550af9-1f43-42b3-9059-b26ae17b281f" name="deletedUuids" value=""/>
-            <properties uuid="6da22cc0-7884-4a72-a86e-c7fb9a263f84" name="addedUuids" value=""/>
-            <properties uuid="9144bf7c-4e7b-409d-95d8-7e342ffbc7d5" name="backdrop" value="false"/>
+    <j_diagramHolder uuid="ac41f77c-f721-41f1-ab47-d9b125b7d6fb" saveTime="Sun Sep 12, 2010 at 10:36:13 BST" savedBy="Andrew">
+      <diagram uuid="3b54fa0f-6d1a-4a5b-ae98-629fac6f8b34" lastFigureId="10">
+        <figures uuid="fb7d2e69-d8ca-4853-8706-253cef9c4cad" id="3" recreator="Profile" name="standard profile" autosized="false" point="516 148" dimensions="98 75" subject="//@childPackages.0/@childPackages.2">
+          <figures uuid="ca564cff-bdee-4eb7-afcd-9099a6beaf73" id="3_C" recreator="SimpleContainer" point="516 163" dimensions="98 60" offset="4 4">
+            <properties uuid="331bc50f-f308-47ed-855c-2f8bc40b0c8c" name="deletedUuids" value=""/>
+            <properties uuid="30d072fe-c7e1-4c7c-9f81-3f4468e5e5c7" name="addedUuids" value=""/>
+            <properties uuid="6c63ed49-6820-4438-892d-79fbd532d9d9" name="backdrop" value="false"/>
           </figures>
-          <properties uuid="59994bac-ac64-4750-93ae-606dccf5fb58" name="fill" value="252 255 206"/>
-          <properties uuid="ca710bee-6238-4c0b-9aad-76499fa194a8" name="stereoHash" value="1"/>
-          <properties uuid="2355b99a-5832-4e5f-9fdf-459bf0aa8ae9" name="owner" value="backbone"/>
+          <properties uuid="def445a2-db5e-4577-afa6-779cee1968ce" name="fill" value="252 255 206"/>
+          <properties uuid="bb9212cb-3f60-43d6-b485-b860cfc08b7a" name="stereoHash" value="1"/>
+          <properties uuid="2a067fa6-63ca-4a8b-8481-51bccd8a3d3c" name="owner" value="backbone"/>
         </figures>
-        <figures uuid="e8cbfb14-d8d6-4067-8a07-113d378527a5" id="2" recreator="Profile" name="backbone profile" autosized="false" point="380 448" dimensions="103 75" subject="//@childPackages.0/@childPackages.0">
-          <figures uuid="9d395623-5d14-4f32-bc83-7835ea082a03" id="2_C" recreator="SimpleContainer" point="380 463" dimensions="103 60" offset="4 4">
-            <properties uuid="1c280432-3b31-4b4a-a5a2-96a38492fd50" name="deletedUuids" value=""/>
-            <properties uuid="157cd501-1bdb-4ecc-86f8-b62e6de5d443" name="addedUuids" value=""/>
-            <properties uuid="d6ab22a8-769e-4e77-957a-42f7a7e58cdc" name="backdrop" value="false"/>
+        <figures uuid="709209b6-be11-43df-aca7-893e31e06e12" id="2" recreator="Profile" name="backbone profile" autosized="false" point="380 448" dimensions="103 75" subject="//@childPackages.0/@childPackages.0">
+          <figures uuid="d625fa03-9aaf-44b3-8ea6-f842342eca64" id="2_C" recreator="SimpleContainer" point="380 463" dimensions="103 60" offset="4 4">
+            <properties uuid="18ea8ece-151d-4f43-b1ca-e43b4b7e1187" name="deletedUuids" value=""/>
+            <properties uuid="1b3df21f-f6a4-4a21-a954-a8c7f893ff4f" name="addedUuids" value=""/>
+            <properties uuid="83b4dd22-f000-42d1-854b-8b3c1e8a329e" name="backdrop" value="false"/>
           </figures>
-          <properties uuid="cf3506bf-8286-41a8-839a-fc575ff0e331" name="fill" value="252 255 206"/>
-          <properties uuid="45fc91a5-ad83-4754-9ba6-a402d778b151" name="stereoHash" value="1"/>
-          <properties uuid="b6df03cc-d058-4455-8e19-fdc1eb5be593" name="owner" value="backbone"/>
+          <properties uuid="0cc57722-5ca4-4a56-82b2-e4189a0cf514" name="fill" value="252 255 206"/>
+          <properties uuid="4cdfc920-d9a1-4d33-8646-20e8d0e80eab" name="stereoHash" value="1"/>
+          <properties uuid="e32f7f18-7586-46eb-94e5-e76a0004b949" name="owner" value="backbone"/>
         </figures>
-        <figures uuid="97e12225-8ed3-4cf1-ba38-bdd3648e56fa" id="1" recreator="Package" name="api" autosized="false" point="128 284" dimensions="87 75" subject="//@childPackages.0/@childPackages.3">
-          <figures uuid="67cbdf6e-829b-4d6d-8298-a0b70bba6b4d" id="1_C" recreator="SimpleContainer" point="128 299" dimensions="87 60" offset="4 4">
-            <properties uuid="f672960f-b542-4f15-bfc5-678e4b366715" name="deletedUuids" value=""/>
-            <properties uuid="4ce1a857-28bd-41d4-b805-1bbc5c46406b" name="addedUuids" value=""/>
-            <properties uuid="644b4cf6-8aff-44db-bbc9-c0a5c01eb2c8" name="backdrop" value="false"/>
+        <figures uuid="8fdfcb90-1b61-4aa2-9391-20d020abe4aa" id="1" recreator="Package" name="api" autosized="false" point="128 284" dimensions="87 75" subject="//@childPackages.0/@childPackages.3">
+          <figures uuid="3fa8bb29-b65d-455f-ad45-eb7f5024f902" id="1_C" recreator="SimpleContainer" point="128 299" dimensions="87 60" offset="4 4">
+            <properties uuid="93104f50-31a1-4719-bf99-ac7c46d80cf5" name="deletedUuids" value=""/>
+            <properties uuid="dff13004-1085-4904-a461-e525054c0638" name="addedUuids" value=""/>
+            <properties uuid="82c20728-b7e0-4ece-a1d6-4ae6404a1f9b" name="backdrop" value="false"/>
           </figures>
-          <properties uuid="4b50df2e-0295-4766-83c4-a92961ddcc9d" name="fill" value="224 207 207"/>
-          <properties uuid="b41e419d-f3be-4598-bfa1-31009d96734b" name="stereoHash" value="-1881991235"/>
-          <properties uuid="1f0bfa08-8fb7-4c63-9394-8803a11c713e" name="owner" value="backbone"/>
+          <properties uuid="bd2bf9ff-2cd2-41c5-beff-cf59f269ebcc" name="fill" value="224 207 207"/>
+          <properties uuid="fc2ef13f-ba99-4f3c-82b9-d8c46bd268cb" name="stereoHash" value="-1881991235"/>
+          <properties uuid="2fe7c667-f5a4-41e6-9b22-a9ab7ebdb22c" name="owner" value="backbone"/>
         </figures>
-        <figures uuid="eccc0c85-a17d-4252-8e6a-0782c134ca2d" id="0" recreator="Package" name="implementation" autosized="false" point="268 148" dimensions="98 75" subject="//@childPackages.0/@childPackages.4">
-          <figures uuid="3cf29f31-2810-40da-84c6-a487eeb5dac8" id="0_C" recreator="SimpleContainer" point="268 163" dimensions="98 60" offset="4 4">
-            <properties uuid="7f8a82ed-1d6f-4620-972a-6e32bf42584b" name="deletedUuids" value=""/>
-            <properties uuid="9f9f7244-d30f-4d16-8356-46ccddab1570" name="addedUuids" value=""/>
-            <properties uuid="812487db-6d01-4e8e-b210-b7c79b17b4ab" name="backdrop" value="false"/>
+        <figures uuid="6643054a-c1b0-4ffd-8722-b03dbeb2e932" id="0" recreator="Package" name="implementation" autosized="false" point="268 148" dimensions="98 75" subject="//@childPackages.0/@childPackages.4">
+          <figures uuid="2ad7a2c9-3b46-4bdf-9c99-2743086ce604" id="0_C" recreator="SimpleContainer" point="268 163" dimensions="98 60" offset="4 4">
+            <properties uuid="17f2046a-4dbb-458c-8b7d-07fd461fdb71" name="deletedUuids" value=""/>
+            <properties uuid="5a60845e-695c-46a7-89c9-a7e52c9b4688" name="addedUuids" value=""/>
+            <properties uuid="f8aba41e-06c6-4fcc-9012-c0439af7fce4" name="backdrop" value="false"/>
           </figures>
-          <properties uuid="d10ebb68-a9e9-4f4a-a7a7-704f4c84ec16" name="fill" value="224 207 207"/>
-          <properties uuid="801a1de6-1a8b-48be-8603-7276a528e6ad" name="stereoHash" value="-1881991235"/>
-          <properties uuid="76c7286c-6836-41e6-92b1-406531dd7cd7" name="owner" value="backbone"/>
+          <properties uuid="ebc1af41-73d4-4a8a-8914-fe35001183e7" name="fill" value="224 207 207"/>
+          <properties uuid="178ce172-4cde-4009-a9e2-0ef5ba60c0ce" name="stereoHash" value="-1881991235"/>
+          <properties uuid="24f657f0-7753-478f-9ec8-18c652ae71f0" name="owner" value="backbone"/>
         </figures>
-        <figures uuid="51224d38-a094-412f-8f7b-5eb55ab114c5" id="7" recreator="dependency" anchor1Id="1" anchor2Id="2" virtualPoint="301.5 403.5" points="2 216 349.6 380 453" subject="//@childPackages.0/@childPackages.3/@ownedAnonymousDependencies.0">
-          <figures uuid="d49f5937-3649-4ff4-a20d-b6c6331af6cc" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="284 384" dimensions="3.3 15.1">
-            <properties uuid="4409469f-72ab-41ef-9219-30bad9ef809d" name="suppress" value="true"/>
-          </figures>
-        </figures>
-        <figures uuid="f437cacc-3f1d-48ef-a363-963b5189dc20" id="6" recreator="dependency" anchor1Id="0" anchor2Id="1" virtualPoint="244.3 253.5" points="2 275.7 224.1 211.6 284" subject="//@childPackages.0/@childPackages.4/@ownedAnonymousDependencies.1">
-          <figures uuid="507e501a-ea78-4e68-aaad-8a5a9c2b2369" id="6_M" recreator="Linked Text" containedName="text" text="" show="false" point="228 240" dimensions="3.3 15.1">
-            <properties uuid="d95fcd33-d85c-4048-8654-7767ee4b9742" name="suppress" value="true"/>
+        <figures uuid="6841800e-8440-4be9-9059-8755e30996a1" id="7" recreator="dependency" anchor1Id="1" anchor2Id="2" virtualPoint="301.5 403.5" points="2 216 349.6 380 453" subject="//@childPackages.0/@childPackages.3/@ownedAnonymousDependencies.0">
+          <figures uuid="e25aa388-3b59-4b2b-a028-14be78ac0a36" id="7_M" recreator="Linked Text" containedName="text" text="" show="false" point="284 384" dimensions="3.3 15.1">
+            <properties uuid="950f78ae-6514-41a5-8643-d144b8dee756" name="suppress" value="true"/>
           </figures>
         </figures>
-        <figures uuid="675369cb-a70f-4925-977c-e1747512925c" id="5" recreator="dependency" anchor1Id="0" anchor2Id="2" virtualPoint="374.3 335.5" points="2 331.7 224 417.1 447.9" subject="//@childPackages.0/@childPackages.4/@ownedAnonymousDependencies.0">
-          <figures uuid="3679f18e-c0e7-4172-8e96-75334e3e74b7" id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="360 320" dimensions="3.3 15.1">
-            <properties uuid="fc715dcc-d5ee-4f11-87f1-ce5e7ee2ff4f" name="suppress" value="true"/>
+        <figures uuid="68ac5dd7-1632-479b-ab20-2e4272451736" id="6" recreator="dependency" anchor1Id="0" anchor2Id="1" virtualPoint="244.3 253.5" points="2 275.7 224.1 211.6 284" subject="//@childPackages.0/@childPackages.4/@ownedAnonymousDependencies.1">
+          <figures uuid="1f9bf5bb-71be-4e21-b1f6-3f6c58d8bacb" id="6_M" recreator="Linked Text" containedName="text" text="" show="false" point="228 240" dimensions="3.3 15.1">
+            <properties uuid="1878ddfe-af75-4eb6-ae59-a04250bea80b" name="suppress" value="true"/>
           </figures>
         </figures>
-        <figures uuid="95936aeb-f96c-4076-89e3-afe3a5778c8e" id="4" recreator="Profile" name="documentation profile" autosized="false" point="592 284" dimensions="131 75" subject="//@childPackages.0/@childPackages.1">
-          <figures uuid="c2d4e57c-b3b2-4716-9059-b636352b69d4" id="4_C" recreator="SimpleContainer" point="592 299" dimensions="131 60" offset="4 4">
-            <properties uuid="c6085c9d-2bfa-43f8-adf0-7ec4e83b46f7" name="deletedUuids" value=""/>
-            <properties uuid="597857e5-4c0e-4b12-9505-15b75844095d" name="addedUuids" value=""/>
-            <properties uuid="88dd8784-5734-4ee3-a86a-a72225529514" name="backdrop" value="false"/>
-          </figures>
-          <properties uuid="9fdaf56b-4cc4-4635-8375-4632f61cb8db" name="fill" value="252 255 206"/>
-          <properties uuid="4be43992-5284-4a1c-8fc7-2381648451e9" name="stereoHash" value="1"/>
-          <properties uuid="617e2152-b7a5-4a54-8d71-25403fb89897" name="owner" value="backbone"/>
-        </figures>
-        <figures uuid="c8516b62-514a-45d3-9d3c-c46df9766100" id="9" recreator="dependency" anchor1Id="3" anchor2Id="2" virtualPoint="498.3 335.5" points="2 547.8 224.1 448.2 448" subject="//@childPackages.0/@childPackages.2/@ownedAnonymousDependencies.0">
-          <figures uuid="8c8a5066-e7bd-41ef-8072-4106ff78412d" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="482 320" dimensions="3.3 15.1">
-            <properties uuid="a3ae9902-44dd-4b06-a69a-cfce66d928fb" name="suppress" value="true"/>
+        <figures uuid="0927dde1-e7d0-4f57-baf5-2de4ecf8e977" id="5" recreator="dependency" anchor1Id="0" anchor2Id="2" virtualPoint="374.3 335.5" points="2 331.7 224 417.1 447.9" subject="//@childPackages.0/@childPackages.4/@ownedAnonymousDependencies.0">
+          <figures uuid="4af2b4be-307c-467d-bdf8-906bd4d917bb" id="5_M" recreator="Linked Text" containedName="text" text="" show="false" point="360 320" dimensions="3.3 15.1">
+            <properties uuid="1de2ea22-90a4-4ef2-beae-955c3dd0abdb" name="suppress" value="true"/>
           </figures>
         </figures>
-        <figures uuid="632b695d-d827-4bf6-8a5f-7b05978b9235" id="8" recreator="dependency" anchor1Id="4" anchor2Id="2" virtualPoint="544.5 403.5" points="2 604.5 359.9 483.2 448" subject="//@childPackages.0/@childPackages.1/@ownedAnonymousDependencies.0">
-          <figures uuid="085bdae8-b2ce-475d-9c07-f9c6e24dc4d1" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="531.8 389.5" dimensions="3.3 15.1">
-            <properties uuid="7d018b9f-89c5-4fd5-99b7-e378da1aeb90" name="suppress" value="true"/>
+        <figures uuid="30a6e5a9-25bf-4abe-bbf7-8a4b955000c0" id="4" recreator="Profile" name="documentation profile" autosized="false" point="592 284" dimensions="131 75" subject="//@childPackages.0/@childPackages.1">
+          <figures uuid="e16b8579-feff-43f4-a5fa-b79e87babf2d" id="4_C" recreator="SimpleContainer" point="592 299" dimensions="131 60" offset="4 4">
+            <properties uuid="c9e073e2-f87c-4fea-a18e-49f8add647f4" name="deletedUuids" value=""/>
+            <properties uuid="5126b313-5de2-4d51-8387-e4d268bf76dc" name="addedUuids" value=""/>
+            <properties uuid="21def755-69d6-403d-a976-39a494ef6933" name="backdrop" value="false"/>
+          </figures>
+          <properties uuid="5127b7bc-b9fc-4456-ac12-ceaba662a236" name="fill" value="252 255 206"/>
+          <properties uuid="b105f149-ea0a-4243-8db5-bdeac8f5e47a" name="stereoHash" value="1"/>
+          <properties uuid="651be4e1-4fa8-48d8-b196-1be3b104a35e" name="owner" value="backbone"/>
+        </figures>
+        <figures uuid="f6f3a36c-7fa6-4d65-b702-7e71625021e3" id="9" recreator="dependency" anchor1Id="3" anchor2Id="2" virtualPoint="498.3 335.5" points="2 547.8 224.1 448.2 448" subject="//@childPackages.0/@childPackages.2/@ownedAnonymousDependencies.0">
+          <figures uuid="f9badaf0-b5ae-4045-821e-a68c33469964" id="9_M" recreator="Linked Text" containedName="text" text="" show="false" point="482 320" dimensions="3.3 15.1">
+            <properties uuid="96c381a6-e86b-4762-9e70-d647f99368f4" name="suppress" value="true"/>
+          </figures>
+        </figures>
+        <figures uuid="2ac0e5a6-b337-4a9a-9605-a2bbf8a8aa16" id="8" recreator="dependency" anchor1Id="4" anchor2Id="2" virtualPoint="544.5 403.5" points="2 604.5 359.9 483.2 448" subject="//@childPackages.0/@childPackages.1/@ownedAnonymousDependencies.0">
+          <figures uuid="487fab44-a662-48ef-bbec-c5f24f8540a5" id="8_M" recreator="Linked Text" containedName="text" text="" show="false" point="531.8 389.5" dimensions="3.3 15.1">
+            <properties uuid="be366603-f4b1-4903-99ba-83961c916e39" name="suppress" value="true"/>
           </figures>
         </figures>
       </diagram>
@@ -1665,7 +1665,7 @@
       </ownedMember>
       <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.28" uuid="State" name="State" isAbstract="true" componentKind="normal">
         <appliedBasicStereotypeValues uuid="ac1214b7-be52-43dc-acae-8294815fc6c4" property="//@childPackages.0/@childPackages.0/@ownedMember.13/@ownedAttribute.0">
-          <value xsi:type="uml:Expression" uuid="150c13b8-f96b-42e1-b836-483c06def48c"/>
+          <value xsi:type="uml:Expression" uuid="150c13b8-f96b-42e1-b836-483c06def48c" body="com.intrinsarc.backbone.runtime.implementation.State"/>
         </appliedBasicStereotypeValues>
         <ownedPort appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.19" uuid="in" name="in" type="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0/@ownedAnonymousType">
           <ownedAnonymousType xsi:type="uml:Class" uuid="5b96b85a-3487-43a3-8ba5-85ff0fa3a3e2" name="(port type)">
@@ -1799,413 +1799,413 @@
           </ownedAnonymousType>
         </ownedPort>
       </ownedMember>
-      <j_diagramHolder uuid="971ed20d-61cf-40f8-bf69-cc9bed016226" saveTime="Sun Sep 12, 2010 at 11:17:41 BST" savedBy="Andrew">
-        <diagram uuid="cd8a6c9e-6f86-461f-84b9-13615a39c9cd" lastFigureId="37">
-          <figures uuid="221bc187-e27e-4b1e-952f-938f581f2bbb" id="35" recreator="Note" point="56 396" dimensions="160 43" subject="//@childPackages.0/@childPackages.4/@ownedComment.0">
-            <figures uuid="5f0dcb22-e7bc-436f-b787-d8568bc58293" id="35_C" recreator="SimpleContainer" point="56 396" dimensions="160 43" offset="2 2">
-              <properties uuid="b4f03c6a-5045-4ba7-b48d-2fbbe84a0b5b" name="deletedUuids" value=""/>
-              <properties uuid="98345a44-d743-4508-82f2-e4091379a435" name="addedUuids" value=""/>
-              <properties uuid="37bbb442-cdcc-406a-bb41-3b583962cd8c" name="backdrop" value="false"/>
+      <j_diagramHolder uuid="971ed20d-61cf-40f8-bf69-cc9bed016226" saveTime="Sun Sep 12, 2010 at 10:36:13 BST" savedBy="Andrew">
+        <diagram uuid="015741d5-2c17-499c-819c-6546d0414c14" lastFigureId="37">
+          <figures uuid="8a20a997-213a-42d3-9169-dc0f0eab01eb" id="35" recreator="Note" point="56 396" dimensions="160 43" subject="//@childPackages.0/@childPackages.4/@ownedComment.0">
+            <figures uuid="7779b16e-ef4a-47d2-bbeb-2774786cb355" id="35_C" recreator="SimpleContainer" point="56 396" dimensions="160 43" offset="2 2">
+              <properties uuid="a855f192-7dee-40da-814b-0db6cecab619" name="deletedUuids" value=""/>
+              <properties uuid="69a36d48-636b-4abe-914b-12634671cc9d" name="addedUuids" value=""/>
+              <properties uuid="caf23214-6f16-43c0-9452-6479833eed20" name="backdrop" value="false"/>
             </figures>
-            <properties uuid="3a68cd43-39ec-4f33-9505-b2c97732f458" name="hideNote" value="true"/>
-            <properties uuid="0d149467-ca76-4006-9bd5-fba96c69c551" name="hash" value="1.976660915E9"/>
+            <properties uuid="5a70b2cb-39a0-4242-94d0-f60e6ee05178" name="hideNote" value="true"/>
+            <properties uuid="913e7648-25f8-49cd-9e93-8324bd0029c0" name="hash" value="1.976660915E9"/>
           </figures>
-          <figures uuid="63dff054-0904-4222-afa4-8487a89ea01e" id="36" recreator="Note" point="52 32" dimensions="132 43" subject="//@childPackages.0/@childPackages.4/@ownedComment.1">
-            <figures uuid="14acaacb-eac7-471a-a94c-02cb92603c86" id="36_C" recreator="SimpleContainer" point="52 32" dimensions="132 43" offset="2 2">
-              <properties uuid="15e35a6e-0390-47bc-95b9-a9f2c345631e" name="deletedUuids" value=""/>
-              <properties uuid="6055409d-d2c5-4522-b9dc-d14b8641d8b6" name="addedUuids" value=""/>
-              <properties uuid="3f27856b-5f3a-421b-856a-f7a890991e2a" name="backdrop" value="false"/>
+          <figures uuid="e0828fd8-d2db-4098-826a-e1c0863f330c" id="36" recreator="Note" point="52 32" dimensions="132 43" subject="//@childPackages.0/@childPackages.4/@ownedComment.1">
+            <figures uuid="7342d3ad-5608-4f13-8b2c-d278510f7e1e" id="36_C" recreator="SimpleContainer" point="52 32" dimensions="132 43" offset="2 2">
+              <properties uuid="9144f048-7ef2-408e-8c08-f94f37635a30" name="deletedUuids" value=""/>
+              <properties uuid="255cb799-c190-44a3-bfe5-04867aa62a88" name="addedUuids" value=""/>
+              <properties uuid="666e6b18-b34e-4cfd-962e-3ef193c75ba4" name="backdrop" value="false"/>
             </figures>
-            <properties uuid="2e94e3d7-1f84-4276-b719-764b302769ad" name="hideNote" value="true"/>
-            <properties uuid="06e30896-4b6f-4f34-9a0c-c695253af544" name="hash" value="1.390012705E9"/>
+            <properties uuid="0bb169ad-6534-4a03-bf3e-159bb4531b43" name="hideNote" value="true"/>
+            <properties uuid="eeb9567b-1131-4869-8cf0-f7a24d749c1b" name="hash" value="1.390012705E9"/>
           </figures>
-          <figures uuid="67dbffbf-c015-4d10-9e14-cf4dc6e00717" id="3" recreator="Class" name="State" autosized="false" point="584 520" dimensions="124 104" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.2">
-            <figures uuid="72cb46f5-7d8a-4a64-8cea-3d302c78c855" id="3_A" recreator="Attributes" containedName="attrs" point="592 546.7" dimensions="40 8">
-              <properties uuid="14898f2e-bad5-4c3d-9480-92df8209f466" name="deletedUuids" value=""/>
-              <properties uuid="9c795c3c-eb2c-4d2b-958b-1d51354628e5" name="addedUuids" value=""/>
+          <figures uuid="7aac91ed-cbb3-4277-9c54-d2c53f2649c1" id="3" recreator="Class" name="State" autosized="false" point="584 520" dimensions="124 104" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.2">
+            <figures uuid="fb2166bd-b450-4602-bf44-2086668dd61c" id="3_A" recreator="Attributes" containedName="attrs" point="592 546.7" dimensions="40 8">
+              <properties uuid="0d0b6bde-f3f5-4e14-a40d-bdb70bd3a952" name="deletedUuids" value=""/>
+              <properties uuid="c73cdac4-72a5-43af-a9d4-64a0a4062e72" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="3b276a5f-0f9d-4f95-adf1-bf86801b2186" id="3_C" recreator="SimpleContainer" containedName="contents" point="592 554.7" dimensions="108 61.3" offset="4 4">
-              <properties uuid="fa1fe9f2-d95c-4243-b4fc-d308ad607656" name="deletedUuids" value=""/>
-              <properties uuid="8c5ef0aa-6b3d-496c-bc99-d4e69182f0a0" name="addedUuids" value=""/>
-              <properties uuid="7e17a97b-794a-4400-adcd-e3707172d09a" name="backdrop" value="false"/>
+            <figures uuid="46b46a38-5f7e-43cf-bb1e-7627490cf121" id="3_C" recreator="SimpleContainer" containedName="contents" point="592 554.7" dimensions="108 61.3" offset="4 4">
+              <properties uuid="6f7dd30b-69ad-4ce9-bb95-b7ed556709c6" name="deletedUuids" value=""/>
+              <properties uuid="ca93b103-c9aa-4b0e-a81a-f01e55376224" name="addedUuids" value=""/>
+              <properties uuid="49def17b-b870-443d-8f16-232531107b9a" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="e88397d6-6719-4adb-8851-f9b5a1ad6ce4" id="3_P" recreator="PortCompartment" containedName="ports" point="584 520" dimensions="124 104">
-              <figures uuid="4cf19b0f-c7b6-4032-8bb1-8b99e0996c6e" id="17" recreator="Port" autosized="false" point="576 564" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.2">
-                <figures uuid="35b896b0-b67b-4f95-a8e5-f572df246f91" id="17_T" recreator="Linked Text" containedName="text" text="events" point="544 532" dimensions="36 14.7"/>
-                <properties uuid="1d0c7a46-7bb4-4ff0-bc05-3dfbfc73de8e" name="extraText" value=""/>
-                <properties uuid="bb650596-0bc5-49c0-8774-eb44e4993cf9" name="classScope" value="true"/>
-                <properties uuid="f6c73987-e784-4b11-b3ba-2fd276b9e4c4" name="fill" value="192 192 192"/>
-                <properties uuid="ca2b5758-2ac3-48c4-8368-2b7863731dca" name="drawInferred" value="true"/>
+            <figures uuid="d0571c6d-56f4-4e26-81ca-397aea29023c" id="3_P" recreator="PortCompartment" containedName="ports" point="584 520" dimensions="124 104">
+              <figures uuid="86dbd078-a0e5-4465-91ad-07d2bb0e6ca6" id="17" recreator="Port" autosized="false" point="576 564" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.2">
+                <figures uuid="dbf84ce1-d90f-42f7-a681-7984a6697698" id="17_T" recreator="Linked Text" containedName="text" text="events" point="544 532" dimensions="36 14.7"/>
+                <properties uuid="f7cd6c34-e4f9-47f3-baee-b28438d08865" name="extraText" value=""/>
+                <properties uuid="46a3bba1-52ae-44fd-93f9-b75032ee2acc" name="classScope" value="true"/>
+                <properties uuid="34287396-cb0b-443e-a4f9-59bbd6a53348" name="fill" value="192 192 192"/>
+                <properties uuid="246e6670-f841-4337-983d-0bbe7006b30c" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="de726c82-1675-4316-9afb-3005bbc8053a" id="15" recreator="Port" autosized="false" point="636 512" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0">
-                <figures uuid="b7d7b3ce-aaea-4813-bbaf-5189e32ba71f" id="15_T" recreator="Linked Text" containedName="text" text="in" point="656 496" dimensions="10 14.7"/>
-                <properties uuid="594d5ed0-85bd-458d-9922-1e65d333db30" name="extraText" value=""/>
-                <properties uuid="d5d9a176-8f77-41e1-ae3d-07ffe3336162" name="classScope" value="true"/>
-                <properties uuid="4e5e9a44-e305-47e9-861f-2a65894288bf" name="fill" value="192 192 192"/>
-                <properties uuid="cde09658-9018-46e2-99fe-acc9b399b4fb" name="drawInferred" value="true"/>
+              <figures uuid="b2af2765-6b9e-4c8f-8c07-eb42a28f6ce8" id="15" recreator="Port" autosized="false" point="636 512" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0">
+                <figures uuid="d704b498-87df-4357-b912-a91ab49bd500" id="15_T" recreator="Linked Text" containedName="text" text="in" point="656 496" dimensions="10 14.7"/>
+                <properties uuid="944fc471-1a97-4c6f-8228-0492f868db54" name="extraText" value=""/>
+                <properties uuid="bfc6fbb6-82d4-4f05-970e-6fc33dd90172" name="classScope" value="true"/>
+                <properties uuid="ad1d3468-5492-4728-8f74-799258e44ddd" name="fill" value="192 192 192"/>
+                <properties uuid="5d578963-1b4d-4c28-a0c0-521af1dc3e45" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="8cee8980-e485-4945-8e73-ca5f0ed49213" id="16" recreator="Port" autosized="false" point="636 616" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
-                <figures uuid="9fec5097-300b-48f5-a63b-86ae0a445b67" id="16_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="656 628" dimensions="46.7 14.7"/>
-                <properties uuid="e4b2f7fb-5d7b-4bda-988c-a2b2598346d8" name="extraText" value=""/>
-                <properties uuid="f5d26d37-3864-49dd-be8c-84309e644168" name="classScope" value="true"/>
-                <properties uuid="0728a616-0d76-490c-92a9-ee407fe75b1c" name="fill" value="192 192 192"/>
-                <properties uuid="81d83bf0-c18c-450c-9557-e3300d07b01a" name="drawInferred" value="true"/>
+              <figures uuid="ffddf710-405e-4dcd-b7b2-cc0db273df1c" id="16" recreator="Port" autosized="false" point="636 616" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
+                <figures uuid="6d3f7f3c-24fd-4b9d-a3bc-31eac76d9be8" id="16_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="656 628" dimensions="46.7 14.7"/>
+                <properties uuid="7e7a1290-85c6-41ab-bf44-a6c57b275329" name="extraText" value=""/>
+                <properties uuid="d9e269a9-8c5d-4698-ad1e-b9e266a39180" name="classScope" value="true"/>
+                <properties uuid="93d8f4c2-30e6-4e68-85d6-440cad916da7" name="fill" value="192 192 192"/>
+                <properties uuid="24e7e09f-9bad-48d5-9081-e75793b44b81" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="bf4bba7c-749a-4470-a0a4-c0752b14d062" name="deletedUuids" value=""/>
-              <properties uuid="635c0475-034f-49a2-b5f3-074a36d1ef08" name="classScope" value="true"/>
-              <properties uuid="5b39607b-f2bc-4e82-9335-74df39706836" name="addedUuids" value=""/>
+              <properties uuid="38276d6f-6b90-4dec-af30-0464a78c51c0" name="deletedUuids" value=""/>
+              <properties uuid="af5e0b50-aceb-42f4-ae4d-12808c98c877" name="classScope" value="true"/>
+              <properties uuid="7a878e5c-83cd-4ff0-ad0a-78497e1a9610" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="6ccabb84-6971-448a-b886-434acd0d55f5" id="3_O" recreator="Operations" containedName="ops" point="592 554.7" dimensions="40 8">
-              <properties uuid="9f81d71a-c1bb-4835-b9ce-8dfe082fd908" name="deletedUuids" value=""/>
-              <properties uuid="4cf1038d-6f91-4dc3-9f04-f3f77f9707b8" name="addedUuids" value=""/>
+            <figures uuid="3be995fa-1ada-43b8-97ad-1842b316f366" id="3_O" recreator="Operations" containedName="ops" point="592 554.7" dimensions="40 8">
+              <properties uuid="60966e40-248b-47db-bb05-7429e01f949f" name="deletedUuids" value=""/>
+              <properties uuid="48beeea5-f0dc-4f7f-9e36-e41554deb601" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="5e21b25d-86e6-4e72-a047-217e992af1f2" name="fill" value="240 200 200"/>
-            <properties uuid="05533d32-449c-45d8-9a3c-0212158abf70" name="state" value="true"/>
-            <properties uuid="07b58697-8e48-4fe5-a087-21ca81409cc1" name="stereoHash" value="-1323648521"/>
-            <properties uuid="62e7b726-b7a5-4148-a283-f75daa32497a" name="deletedUuids" value=""/>
-            <properties uuid="76cdb4ac-ed05-4f57-aaf4-cf24b8c39213" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="e3b1015a-bb77-4ffd-9503-ce3833c44d3a" name="addedUuids" value=""/>
+            <properties uuid="e09e1416-4a84-456c-92ac-317e0cff5780" name="fill" value="240 200 200"/>
+            <properties uuid="995efcbe-c54c-4d1d-84e2-bcc438a28e11" name="state" value="true"/>
+            <properties uuid="c716c9a7-bf77-4dcc-b523-dfae77f9d714" name="stereoHash" value="726670032"/>
+            <properties uuid="97cc7b05-4cdd-4d52-9b72-3866ba68458c" name="deletedUuids" value=""/>
+            <properties uuid="021167b8-b024-4b1c-8180-1153889544b6" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="9e37bd74-15f6-4db2-8e2f-add2d574b1a8" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="0605f657-94b6-48e0-99e7-28fe9da5961d" id="2" recreator="Class" name="FactoryBase" autosized="false" point="488 204" dimensions="119.7 42.7" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.1">
-            <figures uuid="bcf9615d-645c-40e0-adfe-79f9fd63e110" id="2_A" recreator="Attributes" containedName="attrs" point="496 230.7" dimensions="40 8">
-              <properties uuid="0d77b9f2-b093-4637-915b-97c5a82d42d2" name="deletedUuids" value=""/>
-              <properties uuid="df618115-cedd-4df3-8053-e37340d1f030" name="addedUuids" value=""/>
+          <figures uuid="430c006c-0546-4293-bc28-d1bca4d17ba4" id="2" recreator="Class" name="FactoryBase" autosized="false" point="488 204" dimensions="119.7 42.7" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.1">
+            <figures uuid="63919a0e-6b46-4139-b494-6b3759f8cdca" id="2_A" recreator="Attributes" containedName="attrs" point="496 230.7" dimensions="40 8">
+              <properties uuid="a79bc032-dc7b-41d1-9010-f8745aedb518" name="deletedUuids" value=""/>
+              <properties uuid="5e98e912-bfaa-48bc-9b9c-3d21c7625868" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="99c7427c-5397-4bed-a1c0-4890f9262888" id="2_C" recreator="SimpleContainer" containedName="contents" point="496 238.7" dimensions="103.7 0" offset="4 4">
-              <properties uuid="1fab060e-4685-4116-ab6b-806a2be3faed" name="deletedUuids" value=""/>
-              <properties uuid="7b286236-c620-4605-85b1-0582210a1552" name="addedUuids" value=""/>
-              <properties uuid="dc1b528a-85d3-49c7-8c11-0bc483f4c281" name="backdrop" value="false"/>
+            <figures uuid="7cf701cb-de1a-4ba6-b420-1c995f81fede" id="2_C" recreator="SimpleContainer" containedName="contents" point="496 238.7" dimensions="103.7 0" offset="4 4">
+              <properties uuid="b0d901b5-689e-4d2b-a403-10069bd6c128" name="deletedUuids" value=""/>
+              <properties uuid="84c5c0c2-8862-4ca8-aa60-306f6972708f" name="addedUuids" value=""/>
+              <properties uuid="e83e1cd9-b14c-4de9-aaa8-1031869e0681" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="7fd9be8d-fb27-4e0d-9fdf-007eb8348406" id="2_P" recreator="PortCompartment" containedName="ports" point="488 204" dimensions="119.7 42.7">
-              <figures uuid="56857fe8-214a-4338-8dbf-8756ab8d3292" id="9" recreator="Port" autosized="false" point="540 196" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.1/@ownedPort.0">
-                <figures uuid="92a21a0c-a531-4a42-83a4-83315e02746a" id="9_T" recreator="Linked Text" containedName="text" text="creator" point="564 180" dimensions="38 14.7"/>
-                <properties uuid="7ebec2db-dfc9-4291-a3e7-4d255e967668" name="extraText" value=""/>
-                <properties uuid="9e2e6b2f-c1d9-4496-8d87-a93d6c9e25a8" name="classScope" value="true"/>
-                <properties uuid="8e53d7da-9b60-49fd-9f20-1e67328fe9b3" name="fill" value="192 192 192"/>
-                <properties uuid="4af2fea9-2045-4e06-9546-1432affbe722" name="drawInferred" value="true"/>
+            <figures uuid="4a9b50c6-11d3-4509-b409-2f93bbb5e16f" id="2_P" recreator="PortCompartment" containedName="ports" point="488 204" dimensions="119.7 42.7">
+              <figures uuid="8cdc6f5f-56d2-4288-a306-96a879ce0aab" id="9" recreator="Port" autosized="false" point="540 196" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.1/@ownedPort.0">
+                <figures uuid="b787a9f9-1459-4f82-a559-71b1ecf0e33d" id="9_T" recreator="Linked Text" containedName="text" text="creator" point="564 180" dimensions="38 14.7"/>
+                <properties uuid="f9e62914-9d01-4561-ab4b-f458fe7fab31" name="extraText" value=""/>
+                <properties uuid="6b4c7583-4050-419d-a821-c37f2ffbd4ef" name="classScope" value="true"/>
+                <properties uuid="73b39cfe-93e0-4633-b1ad-d10b4066f8e7" name="fill" value="192 192 192"/>
+                <properties uuid="b6c114f6-087a-4337-8748-06b144838f1d" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="8bbe850f-ea21-4dc8-b577-391b58a8d2bd" name="deletedUuids" value=""/>
-              <properties uuid="6e20038a-a224-492a-95bf-e7f6017a131f" name="classScope" value="true"/>
-              <properties uuid="fba1681c-8563-4897-bfbc-7ad3fb85b3ec" name="addedUuids" value=""/>
+              <properties uuid="80e29f65-b329-4852-b1d9-80d6aba0ebb5" name="deletedUuids" value=""/>
+              <properties uuid="7c2ac3b5-d269-4cc4-b20f-54759f19a57a" name="classScope" value="true"/>
+              <properties uuid="ecc192fc-354b-4480-8712-13161d1736f3" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="572b2218-22d1-46a2-a0e2-1353f3e1ab54" id="2_O" recreator="Operations" containedName="ops" point="496 238.7" dimensions="40 8">
-              <properties uuid="f9749dfb-453a-40e2-aed7-892cfa561bc4" name="deletedUuids" value=""/>
-              <properties uuid="3cab626b-d276-409b-9f6b-4cb86ed5c340" name="addedUuids" value=""/>
+            <figures uuid="dbb7beff-2b02-4cae-a20a-cc2307304a7f" id="2_O" recreator="Operations" containedName="ops" point="496 238.7" dimensions="40 8">
+              <properties uuid="384fe937-989d-4f1b-a18b-b7d51063fd6d" name="deletedUuids" value=""/>
+              <properties uuid="c26e2a7f-e463-45b2-bdcf-7d6e13b9332d" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="e709e6f6-3a49-411a-ba1d-ea5affa5c850" name="fill" value="255 255 255"/>
-            <properties uuid="dc62764f-9b14-446b-9653-6c696dad1589" name="stereoHash" value="1438178426"/>
-            <properties uuid="f1d4562b-559b-43cf-986d-6a0ee0a2aca8" name="deletedUuids" value=""/>
-            <properties uuid="0c1204d8-9a52-48e0-8a58-0f5448a39ede" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="ae30257a-0642-4173-a135-7c65f324df63" name="addedUuids" value=""/>
+            <properties uuid="2e4f42dc-0c36-42b3-9308-c744af62789a" name="fill" value="255 255 255"/>
+            <properties uuid="c700ef9e-3e4e-4fb3-8d07-3e9c1af950d2" name="stereoHash" value="1029087848"/>
+            <properties uuid="79041381-02d6-4ae6-a79f-c6c8751b262f" name="deletedUuids" value=""/>
+            <properties uuid="920a6473-2e6f-4a93-8521-5b1311c2ca16" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="a7f090cd-0c3f-4e30-bc74-41c03d78f249" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="0d304616-07ed-42fc-b962-2261eab6f7da" id="1" recreator="Class" name="StateDispatcher" autosized="false" point="172 544" dimensions="196 128" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.6">
-            <figures uuid="1c754d25-f3f6-4c7a-b97b-2bfc769a1355" id="1_A" recreator="Attributes" containedName="attrs" point="180 570.7" dimensions="40 8">
-              <properties uuid="f76ba416-c4a8-4d73-9a40-5b7c5ce0eacc" name="deletedUuids" value=""/>
-              <properties uuid="23080d88-a138-464a-9f49-bdb3147e5979" name="addedUuids" value=""/>
+          <figures uuid="041c1059-38c4-4520-baeb-984be56a8bba" id="1" recreator="Class" name="StateDispatcher" autosized="false" point="172 544" dimensions="196 128" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.6">
+            <figures uuid="5fb9fda8-70ef-4fe6-aef0-c5e7c37245ba" id="1_A" recreator="Attributes" containedName="attrs" point="180 570.7" dimensions="40 8">
+              <properties uuid="2515839b-28ab-4004-a647-5b346b89b86b" name="deletedUuids" value=""/>
+              <properties uuid="44a18ec0-92c9-4455-9ccd-8f7e25719551" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="12bb8b63-1a4e-44ab-bc3c-e82aed4d2093" id="1_C" recreator="SimpleContainer" containedName="contents" point="180 578.7" dimensions="180 85.3" offset="4 4">
-              <properties uuid="b8791028-f916-43fe-8516-cf8d2e038e11" name="deletedUuids" value=""/>
-              <properties uuid="3e00d019-e97b-4d68-8fe8-e366fc053c38" name="addedUuids" value=""/>
-              <properties uuid="292f470a-13f5-43a8-816e-6f05c0c59043" name="backdrop" value="false"/>
+            <figures uuid="9cff0bba-9e77-44ef-96ac-c8d69309cf8c" id="1_C" recreator="SimpleContainer" containedName="contents" point="180 578.7" dimensions="180 85.3" offset="4 4">
+              <properties uuid="446e162f-9082-4d74-9991-c538f592dc64" name="deletedUuids" value=""/>
+              <properties uuid="2aebfb52-237d-4866-8ec4-c2ebb181965a" name="addedUuids" value=""/>
+              <properties uuid="776298c3-39d8-4904-9254-4898ecd3ffe9" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="5848fbd8-024e-4793-8b55-db3d954f5039" id="1_P" recreator="PortCompartment" containedName="ports" point="172 544" dimensions="196 128">
-              <figures uuid="3944a297-ed27-4f0e-a250-2375d5c40853" id="13" recreator="Port" autosized="false" point="204 664" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.3">
-                <figures uuid="b7fde266-04e5-4929-b9fb-6f5582ffc801" id="13_T" recreator="Linked Text" containedName="text" text="dEnd [0..*]" point="140 676" dimensions="56 14.7"/>
-                <properties uuid="25eace8a-09a1-48e2-bccd-0db4179ba390" name="extraText" value=""/>
-                <properties uuid="5739215a-9370-4fb9-8892-d475b610d36e" name="classScope" value="true"/>
-                <properties uuid="b1137870-d684-4398-a2bc-87dedbd86f15" name="fill" value="192 192 192"/>
-                <properties uuid="c10432d1-ccbb-4468-8b56-2218ffa846b0" name="drawInferred" value="true"/>
+            <figures uuid="803c4813-0f22-4178-a00f-5c383e22ab0e" id="1_P" recreator="PortCompartment" containedName="ports" point="172 544" dimensions="196 128">
+              <figures uuid="2b1aff5d-1001-4889-bdfa-6c5560ece6f6" id="13" recreator="Port" autosized="false" point="204 664" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.3">
+                <figures uuid="549ffc7a-8afa-4dec-834e-8c0ffd677d2a" id="13_T" recreator="Linked Text" containedName="text" text="dEnd [0..*]" point="140 676" dimensions="56 14.7"/>
+                <properties uuid="1e004b36-895f-46d6-b8b9-2918149c09e6" name="extraText" value=""/>
+                <properties uuid="cbe4b727-0e08-4329-ab0c-d34926bef881" name="classScope" value="true"/>
+                <properties uuid="41e7a5ec-a0e2-47e3-9be6-931531e67be1" name="fill" value="192 192 192"/>
+                <properties uuid="5871f248-e2f3-4073-92cb-a68beb1e8cf6" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="f189a879-e638-48a0-89cc-1f6f784fd650" id="11" recreator="Port" autosized="false" point="312 664" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.1">
-                <figures uuid="8303f9de-e24b-4c10-8078-0ccb336d224e" id="11_T" recreator="Linked Text" containedName="text" text="dDispatch [0..*]" point="332 676" dimensions="83 14.7"/>
-                <properties uuid="900b79b3-2b5e-4851-a780-729ab0799e75" name="extraText" value=""/>
-                <properties uuid="83478b8a-52a1-4f38-99ff-4207f37b6776" name="classScope" value="true"/>
-                <properties uuid="80364c72-dc71-47d3-9471-f26f316ed666" name="fill" value="192 192 192"/>
-                <properties uuid="08aaee3d-c2f9-4a9c-95f4-eda6d8c41d1e" name="drawInferred" value="true"/>
+              <figures uuid="955b4642-3a9a-4530-8fe9-e2c080d906da" id="11" recreator="Port" autosized="false" point="312 664" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.1">
+                <figures uuid="33ef5019-50c6-4bae-93fa-497c192c5508" id="11_T" recreator="Linked Text" containedName="text" text="dDispatch [0..*]" point="332 676" dimensions="83 14.7"/>
+                <properties uuid="7bab43c1-0085-4e8f-865b-14d7ce0f2ffe" name="extraText" value=""/>
+                <properties uuid="e77f8926-d913-4bb3-bf11-784c1d233166" name="classScope" value="true"/>
+                <properties uuid="df644fa1-3ed6-4e58-beb9-06e2cf854d30" name="fill" value="192 192 192"/>
+                <properties uuid="9facdaeb-72fa-4437-990f-206cb2e3d3f5" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="2175fecc-07ee-44a7-90be-dfded6788f00" id="12" recreator="Port" autosized="false" point="204 536" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.2">
-                <figures uuid="b560f8fb-e897-483a-9130-d4a7b835ffde" id="12_T" recreator="Linked Text" containedName="text" text="dStart" point="164 524" dimensions="32 14.7"/>
-                <properties uuid="c15b4f96-29b3-40e5-9440-b25382babcfa" name="extraText" value=""/>
-                <properties uuid="40c1d64c-a748-4863-8f40-8064b4f7e117" name="classScope" value="true"/>
-                <properties uuid="593976f7-99f7-44c7-95f2-b5ad886bf9be" name="fill" value="192 192 192"/>
-                <properties uuid="2e34060e-8f96-4790-b42d-b9870550e1d1" name="drawInferred" value="true"/>
+              <figures uuid="a2b6471e-7105-4186-8da3-8e058c577f33" id="12" recreator="Port" autosized="false" point="204 536" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.2">
+                <figures uuid="0bad9fb9-3dd5-4bfb-9a42-70d549761c4a" id="12_T" recreator="Linked Text" containedName="text" text="dStart" point="164 524" dimensions="32 14.7"/>
+                <properties uuid="a84b898b-fcf6-4dc2-b850-1d030ccbc10c" name="extraText" value=""/>
+                <properties uuid="8869e55f-2bff-46f5-b2f3-692aa69d2b17" name="classScope" value="true"/>
+                <properties uuid="f3a8a3f8-b698-4004-9c60-a264d9c3dec3" name="fill" value="192 192 192"/>
+                <properties uuid="b76f5fdb-0a92-48f3-affa-da324e349f73" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="9a797ed0-7d98-4024-a1fb-b3e54027383d" id="10" recreator="Port" autosized="false" point="312 536" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.0">
-                <figures uuid="ebe8972d-9ed6-4f5e-b5ff-e2883abffb86" id="10_T" recreator="Linked Text" containedName="text" text="dEvents" point="332 520" dimensions="44 14.7"/>
-                <properties uuid="832c0164-c6d9-4207-9512-13e75ff0f4a9" name="extraText" value=""/>
-                <properties uuid="b32635de-7bc8-40df-aaf2-8bfdf0f4a7f4" name="classScope" value="true"/>
-                <properties uuid="2b689636-c3a5-417e-b4d4-25b8b4171c7d" name="fill" value="192 192 192"/>
-                <properties uuid="6dd0fac4-958f-4402-bf3a-121788c6f9fb" name="drawInferred" value="true"/>
+              <figures uuid="2c692b5c-e629-4aa9-9bab-60166c3daa48" id="10" recreator="Port" autosized="false" point="312 536" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedPort.0">
+                <figures uuid="0fc39811-d824-4947-a311-ce5693440aa2" id="10_T" recreator="Linked Text" containedName="text" text="dEvents" point="332 520" dimensions="44 14.7"/>
+                <properties uuid="7b26556c-f8d7-4747-a813-d4735d876669" name="extraText" value=""/>
+                <properties uuid="e71a6631-4d71-4c4e-86d0-44880a8586d6" name="classScope" value="true"/>
+                <properties uuid="bad214bf-d6ba-4887-88b0-f5a71d912bb6" name="fill" value="192 192 192"/>
+                <properties uuid="ac0f0850-c207-4308-bf97-7d4b684e2d24" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="4308da50-5a95-4596-b62b-e8b84cd4bab7" name="deletedUuids" value=""/>
-              <properties uuid="17f61df6-0f31-4a60-a87e-ff7967e394b3" name="classScope" value="true"/>
-              <properties uuid="36425699-6d88-442e-84ba-34b196f754bb" name="addedUuids" value=""/>
+              <properties uuid="ca63cccd-491e-4ace-8dee-fe997080c5e7" name="deletedUuids" value=""/>
+              <properties uuid="46df7398-cb48-4fec-b9c7-9f1efe5a8813" name="classScope" value="true"/>
+              <properties uuid="bf476468-c497-44a4-88ad-0fb9094327ab" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="74bd7d5b-607a-4bd6-904d-9666a940053b" id="1_O" recreator="Operations" containedName="ops" point="180 578.7" dimensions="40 8">
-              <properties uuid="b6019e94-7a02-4f5e-8652-af9c0e432d17" name="deletedUuids" value=""/>
-              <properties uuid="ba8b59aa-24f6-427b-a71f-365f2ce2a27b" name="addedUuids" value=""/>
+            <figures uuid="9a09089a-2e7b-457d-a994-859994747a8d" id="1_O" recreator="Operations" containedName="ops" point="180 578.7" dimensions="40 8">
+              <properties uuid="d04110c4-dacd-4938-8051-5259c53edbfc" name="deletedUuids" value=""/>
+              <properties uuid="16ebf4be-64e6-4b6f-9ff6-63200346980d" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="089196a3-3f7a-4f34-ae2f-e512b5f0414c" name="fill" value="210 210 235"/>
-            <properties uuid="57537faa-d2c3-4429-956b-e74217823948" name="stereoHash" value="896825936"/>
-            <properties uuid="61f9e1a6-76dc-459f-9b7b-04ba52530be4" name="deletedUuids" value=""/>
-            <properties uuid="08c98616-37eb-445f-a0b5-7195e5cb1928" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="57fc7fdc-fdac-4833-abd4-18d48791826a" name="addedUuids" value=""/>
+            <properties uuid="287df340-801c-4705-b4a1-55e29ae9b92c" name="fill" value="210 210 235"/>
+            <properties uuid="45b68ee6-8a76-44e8-afa8-ad5e29a1fe8a" name="stereoHash" value="-2050577347"/>
+            <properties uuid="13fff19b-cef0-4c1a-8e6a-30aa17b520dc" name="deletedUuids" value=""/>
+            <properties uuid="00a8dba9-7bba-4cf9-b2f6-94ccb1bcdf9a" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="7abc1bbf-6c94-4e75-a471-e4ac27ff0046" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="99c99966-df5e-4b8a-9762-4d65b34b8143" id="0" recreator="Class" name="Creator" autosized="false" point="196 200" dimensions="138 53.7" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.0">
-            <figures uuid="afbc0f92-ad19-4ebb-a583-034ba9ca96c4" id="0_O" recreator="Operations" containedName="ops" point="204 245.7" dimensions="40 8">
-              <properties uuid="ceaf5cd5-fe6f-4c92-9880-e7441d849615" name="deletedUuids" value=""/>
-              <properties uuid="f524b0c8-da6a-4244-850e-0c267e3e2f76" name="addedUuids" value=""/>
+          <figures uuid="5f69c830-3eda-4f8b-acd2-22f58d132b7c" id="0" recreator="Class" name="Creator" autosized="false" point="196 200" dimensions="138 53.7" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.0">
+            <figures uuid="7e836547-4318-47a9-b7da-4e3412e53e03" id="0_O" recreator="Operations" containedName="ops" point="204 245.7" dimensions="40 8">
+              <properties uuid="ec3f6e28-5716-40d6-ae3a-4a13289a7fa8" name="deletedUuids" value=""/>
+              <properties uuid="08f71b9d-520a-4db4-9377-7228a29ef193" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="67d45683-7068-416c-b7c7-4ff2de351ebb" id="0_P" recreator="PortCompartment" containedName="ports" point="196 200" dimensions="138 53.7">
-              <figures uuid="d1ec42a5-105f-4fdd-8db1-37d16032640d" id="8" recreator="Port" autosized="false" point="212 192" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.0/@ownedPort.0">
-                <figures uuid="cd4405d8-2569-4f25-8e05-9b6f2a4f7704" id="8_T" recreator="Linked Text" containedName="text" text="create" point="232 180" dimensions="34 14.7"/>
-                <properties uuid="4b9052bd-4059-47c4-9e68-bbca020cb1f7" name="extraText" value=""/>
-                <properties uuid="7aa4c8ff-4ccc-41ff-857f-85b7fc0c86db" name="classScope" value="true"/>
-                <properties uuid="238540af-68ed-4147-98a0-77a89e45e193" name="fill" value="192 192 192"/>
-                <properties uuid="db1976fc-b608-4d2a-94b0-f5f516ca99aa" name="drawInferred" value="true"/>
+            <figures uuid="c34ed06a-9e15-4aa3-a9f3-f17eaaa1b429" id="0_P" recreator="PortCompartment" containedName="ports" point="196 200" dimensions="138 53.7">
+              <figures uuid="14003e25-cc73-444d-9816-dff82aa820e2" id="8" recreator="Port" autosized="false" point="212 192" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.0/@ownedPort.0">
+                <figures uuid="2cdd4f4d-d0b8-4438-ae57-c535ae7d0d2e" id="8_T" recreator="Linked Text" containedName="text" text="create" point="232 180" dimensions="34 14.7"/>
+                <properties uuid="9d7d5258-c786-4c8e-adfc-a7baa34fd17f" name="extraText" value=""/>
+                <properties uuid="011d9591-bc72-436a-95a9-5d2fcf8483b3" name="classScope" value="true"/>
+                <properties uuid="b482f434-67ab-4a8e-9ce9-6838e762027f" name="fill" value="192 192 192"/>
+                <properties uuid="2b47feb2-673d-46f0-8c6d-8bebc0943b1f" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="0180875e-925b-4566-9450-ab1989e8cad8" name="deletedUuids" value=""/>
-              <properties uuid="93775e60-14ea-45d4-b5a9-3da144eb3537" name="classScope" value="true"/>
-              <properties uuid="63bdf50e-ac64-48e3-95ed-c67f2a9afdbc" name="addedUuids" value=""/>
+              <properties uuid="058ba116-5c2f-4e47-a513-33a70f1cedbe" name="deletedUuids" value=""/>
+              <properties uuid="7a25b80c-925d-40be-9386-bb624481924c" name="classScope" value="true"/>
+              <properties uuid="1bebade6-979a-43f0-b526-001a7a78dc03" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="b66d857e-07cd-48a7-b4ed-06c24ac0219c" id="0_A" recreator="Attributes" containedName="attrs" point="204 226.7" dimensions="122 19">
-              <figures uuid="0a0918e3-7096-4ac8-ad7f-3c77f9f32a51" id="7" recreator="Attribute" name="factoryNumber : int" point="207 228.7" dimensions="116 15" subject="//@childPackages.0/@childPackages.4/@ownedMember.0/@ownedAttribute.0">
-                <properties uuid="5f4d4e42-ca82-4f94-bd95-4983fae5faf5" name="stereoHash" value="1"/>
+            <figures uuid="73caca57-52c1-4271-8928-f31e5aa18565" id="0_A" recreator="Attributes" containedName="attrs" point="204 226.7" dimensions="122 19">
+              <figures uuid="f167afcc-c5f8-4660-bacd-c81e857ef5ea" id="7" recreator="Attribute" name="factoryNumber : int" point="207 228.7" dimensions="116 15" subject="//@childPackages.0/@childPackages.4/@ownedMember.0/@ownedAttribute.0">
+                <properties uuid="76a5c40e-8ca3-43a7-bec8-c891f02114c9" name="stereoHash" value="1"/>
               </figures>
-              <properties uuid="a8d252d1-f0e2-4ffb-b824-1de1087257ab" name="deletedUuids" value=""/>
-              <properties uuid="047d2fed-0336-4c5a-8f22-7283e88f302a" name="addedUuids" value=""/>
+              <properties uuid="de54828a-1d81-49a2-875f-17210154b32a" name="deletedUuids" value=""/>
+              <properties uuid="8cf92c6a-f886-417b-a8f2-48900eb3a5f9" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="322accc7-8ed5-48d5-89da-cd361a50fcef" id="0_C" recreator="SimpleContainer" containedName="contents" point="204 245.7" dimensions="122 0" offset="4 4">
-              <properties uuid="5227676d-4219-4100-9a68-e953076cd7cb" name="deletedUuids" value=""/>
-              <properties uuid="d687d51a-2b03-40be-b14b-55a47f14d99c" name="addedUuids" value=""/>
-              <properties uuid="369a0de2-3c25-4ca4-8891-e16451a9254c" name="backdrop" value="false"/>
+            <figures uuid="d2c7b609-60c8-48e0-b377-c65f2521e2ba" id="0_C" recreator="SimpleContainer" containedName="contents" point="204 245.7" dimensions="122 0" offset="4 4">
+              <properties uuid="4226718b-aade-40dd-ae71-a774d95bebb2" name="deletedUuids" value=""/>
+              <properties uuid="790aa579-879b-4c39-b3d6-2996a5b5ea5b" name="addedUuids" value=""/>
+              <properties uuid="19ebe71e-a4a4-4573-a35c-597dee62bcb2" name="backdrop" value="false"/>
             </figures>
-            <properties uuid="c5983dcd-0f35-44c3-930f-c39a235989a6" name="fill" value="210 210 235"/>
-            <properties uuid="5359eb3b-4f84-431f-8522-ae6789c143a2" name="stereoHash" value="436769158"/>
-            <properties uuid="dbc2e5ef-f2a5-4861-aca0-01b4e82d7c03" name="deletedUuids" value=""/>
-            <properties uuid="c25d1fee-1988-406a-9223-e0f40d7ea8f3" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="78ed38f4-36e4-4a91-80eb-13442a06f58e" name="addedUuids" value=""/>
+            <properties uuid="7c694e67-61e7-4fff-b286-6949eb819836" name="fill" value="210 210 235"/>
+            <properties uuid="1978d276-090d-4cb4-9f0e-1bef5d626137" name="stereoHash" value="2065722828"/>
+            <properties uuid="42987ea5-6c7e-4c7a-8fd4-ad742e002602" name="deletedUuids" value=""/>
+            <properties uuid="61543a41-a895-4e26-8772-d6f9f3419c90" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="2c9a6c79-be8d-4e00-ae05-f5df2ef4fec7" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="23ad53a0-3ffb-47e3-aa94-5736d91c587c" id="6" recreator="Class" name="End" autosized="false" point="832 924" dimensions="124 88" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.4">
-            <figures uuid="7459e9c6-676c-4ce3-94b6-adfb26f1424f" id="6_C" recreator="SimpleContainer" containedName="contents" point="840 958.7" dimensions="108 45.3" offset="4 4">
-              <properties uuid="b25f724f-3bd8-4b85-af2b-7a0e46fe549c" name="deletedUuids" value=""/>
-              <properties uuid="6f6a32ee-71e5-4488-a4e3-6811329cd092" name="addedUuids" value=""/>
-              <properties uuid="4d7ca44f-833e-4329-b3dd-b1e5c4178c70" name="backdrop" value="false"/>
+          <figures uuid="a653fddc-d390-4517-8830-ab4b2a42ef09" id="6" recreator="Class" name="End" autosized="false" point="832 924" dimensions="124 88" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.4">
+            <figures uuid="b1b9f11d-a80d-4205-b1b4-f625581316c7" id="6_C" recreator="SimpleContainer" containedName="contents" point="840 958.7" dimensions="108 45.3" offset="4 4">
+              <properties uuid="fb1f382c-647b-4748-a276-45557c2306ac" name="deletedUuids" value=""/>
+              <properties uuid="b1ecdf6a-d641-44b2-b724-4038fbf9b908" name="addedUuids" value=""/>
+              <properties uuid="1e6d627c-38df-496b-a9eb-09066c2b162b" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="bfdf9920-4c1f-4808-8908-16a34c78717d" id="6_A" recreator="Attributes" containedName="attrs" point="840 950.7" dimensions="40 8">
-              <properties uuid="feefe67c-fcca-4b4a-b3d0-285dafe980c6" name="deletedUuids" value=""/>
-              <properties uuid="a6dc1b3d-c6be-4574-91cf-3f4277831b48" name="addedUuids" value=""/>
+            <figures uuid="de06090f-b469-4580-a144-0c0128ec61d1" id="6_A" recreator="Attributes" containedName="attrs" point="840 950.7" dimensions="40 8">
+              <properties uuid="ef38c077-55a6-42ab-a248-13354246152e" name="deletedUuids" value=""/>
+              <properties uuid="d3bda2f1-fa59-4f90-843a-7d352469d3af" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="ac32aa5c-92dd-4ab7-81be-205c0c4dabba" id="6_O" recreator="Operations" containedName="ops" point="840 958.7" dimensions="40 8">
-              <properties uuid="bd65be59-143c-40ad-8173-6aa6fd9eb350" name="deletedUuids" value=""/>
-              <properties uuid="6b4f84b1-fe29-494d-a0ea-bba6434384c8" name="addedUuids" value=""/>
+            <figures uuid="5ae3f301-4ab6-4e57-a3ef-090243003fce" id="6_O" recreator="Operations" containedName="ops" point="840 958.7" dimensions="40 8">
+              <properties uuid="cc7598f7-efa1-4efe-b168-61454e4845f5" name="deletedUuids" value=""/>
+              <properties uuid="4236a0d5-7507-4c00-8097-c94c94ca708f" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="0677f5f5-1027-4fd6-b841-fa6d1bc5c268" id="6_P" recreator="PortCompartment" containedName="ports" point="832 924" dimensions="124 88">
-              <figures uuid="e5d4ff1a-ad25-45f9-aca8-e6d2e9070889" id="32" recreator="Port" autosized="false" point="948 960" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@ownedPort.0">
-                <figures uuid="3a7f5b48-4194-4824-acef-05569af11548" id="32_T" recreator="Linked Text" containedName="text" text="endTerminal" point="964 924" dimensions="70 14.7"/>
-                <properties uuid="6b69dcd6-1625-4926-a945-827675684442" name="extraText" value=""/>
-                <properties uuid="d2215617-13ff-414b-ab9a-6181cdcbcdf2" name="classScope" value="true"/>
-                <properties uuid="3e36f26f-31fd-4980-8bf0-e38cd0351aa3" name="fill" value="192 192 192"/>
-                <properties uuid="1aadc79a-9a59-4968-bad0-274c7915876b" name="drawInferred" value="true"/>
+            <figures uuid="af341a8b-8e5c-4750-9a49-80a3689d5a88" id="6_P" recreator="PortCompartment" containedName="ports" point="832 924" dimensions="124 88">
+              <figures uuid="a142f206-30bc-4ac8-a2da-ac2969df1745" id="32" recreator="Port" autosized="false" point="948 960" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@ownedPort.0">
+                <figures uuid="afbdb7f9-1146-46e1-81df-1dd16a80a8fa" id="32_T" recreator="Linked Text" containedName="text" text="endTerminal" point="964 924" dimensions="70 14.7"/>
+                <properties uuid="740821cc-35f4-4f5f-8b1c-f38d7935da7f" name="extraText" value=""/>
+                <properties uuid="a1fe9a8d-dc64-4aef-995a-94e9110ecaaa" name="classScope" value="true"/>
+                <properties uuid="8bb29a93-fc37-4448-a1ef-8aa00b9795bd" name="fill" value="192 192 192"/>
+                <properties uuid="ca710309-41ed-4144-bc6b-697ed906dfb8" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="20b6a762-8458-42e9-96db-dddf15591aba" id="31" recreator="Port" autosized="false" point="844 1004" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
-                <figures uuid="046590f2-352b-4b8b-b6de-5c9b760f31ae" id="31_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="864 1016" dimensions="46.7 14.7"/>
-                <properties uuid="6bdec11f-24f8-46fa-be79-29e3b669cc66" name="extraText" value=""/>
-                <properties uuid="c817eb2d-03c5-46a7-9ef3-34a8ddf54bce" name="classScope" value="true"/>
-                <properties uuid="a40b514a-2957-4845-b414-a51a26a63945" name="fill" value="192 192 192"/>
-                <properties uuid="b6b0cdf7-9151-4a55-8419-79943b9a6362" name="drawInferred" value="true"/>
+              <figures uuid="e077158d-df73-4ba0-8948-89c1cf69b380" id="31" recreator="Port" autosized="false" point="844 1004" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
+                <figures uuid="c11db58d-39b5-49d0-9f83-a9256d6dbc8c" id="31_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="864 1016" dimensions="46.7 14.7"/>
+                <properties uuid="3aa9f12a-d179-4ff4-a146-29f1d02c88f6" name="extraText" value=""/>
+                <properties uuid="c21209ca-0da9-4c16-bb31-f8a55728f04c" name="classScope" value="true"/>
+                <properties uuid="976f30de-cac7-4612-a395-caa4f8cbead4" name="fill" value="192 192 192"/>
+                <properties uuid="d9bcd603-af7c-44cd-90e2-0d10b4480a55" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="126d16bc-e001-435d-bd49-9c048d242a1e" id="18" recreator="Port" autosized="false" point="844 916" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@deltaReplacedPorts.0/@replacement">
-                <figures uuid="92454286-d33c-49ff-8d60-c8adcfe1ac13" id="18_T" recreator="Linked Text" containedName="text" text="in" point="864 900" dimensions="10 14.7"/>
-                <properties uuid="f19351f5-637b-462a-a985-76123ecd9b8c" name="extraText" value=""/>
-                <properties uuid="20a0ab97-35e8-4128-9aa1-6e6c63e8d646" name="classScope" value="true"/>
-                <properties uuid="aaa0658c-fe4e-478f-a0f7-37fa58203579" name="fill" value="192 192 192"/>
-                <properties uuid="1aff0ba1-8ce4-4daf-ba30-375fbfec252f" name="drawInferred" value="true"/>
+              <figures uuid="f72482ae-6d74-425c-850c-fdc22895268d" id="18" recreator="Port" autosized="false" point="844 916" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@deltaReplacedPorts.0/@replacement">
+                <figures uuid="4d649346-fd1c-49d8-8719-de1707049327" id="18_T" recreator="Linked Text" containedName="text" text="in" point="864 900" dimensions="10 14.7"/>
+                <properties uuid="c196d7bd-dbee-4d78-96d7-e10e1575791b" name="extraText" value=""/>
+                <properties uuid="811874fc-94bb-42ff-be2c-b1dab21ddcd6" name="classScope" value="true"/>
+                <properties uuid="a3384631-57f7-4dd1-aae3-8a3dda924bae" name="fill" value="192 192 192"/>
+                <properties uuid="3ec12f57-d183-4545-bd86-ef25f8ce0a10" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="f4ac471f-bf88-45d8-960d-404cfe018576" name="deletedUuids" value=""/>
-              <properties uuid="6a2badcc-36ae-456e-b2f1-2cdd77a6a2df" name="classScope" value="true"/>
-              <properties uuid="3c6217e4-128d-450f-b09f-b9d59ca646e6" name="addedUuids" value=""/>
+              <properties uuid="83cf05ac-23d1-4e4a-bb9e-052157d1054c" name="deletedUuids" value=""/>
+              <properties uuid="25faa7b6-0b1d-4160-84cf-00b247316585" name="classScope" value="true"/>
+              <properties uuid="e88d5832-794a-40a4-92d7-17bf1dab2b29" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="918ffe39-03a7-4527-85e3-2861c70e50ee" name="fill" value="240 200 200"/>
-            <properties uuid="7ad68cd9-0143-4bc7-9c01-561bd264e815" name="state" value="true"/>
-            <properties uuid="43d69f67-c5e9-4eb2-bbc1-c5c39a7d03ff" name="stereoHash" value="1844179116"/>
-            <properties uuid="bd66750d-9231-47e4-a659-41eb4a6e82c3" name="deletedUuids" value=""/>
-            <properties uuid="5e5027a6-af42-4363-a090-0e48cf461cc9" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="7d6be668-5ac5-48ba-80fb-7dd8d26bac23" name="addedUuids" value=""/>
+            <properties uuid="c1ff94cb-d7db-4e51-a9e7-6cb905cff3cb" name="fill" value="240 200 200"/>
+            <properties uuid="57f94a65-03cd-4a55-84bb-c13a23b4bd72" name="state" value="true"/>
+            <properties uuid="86ee5073-3176-4f37-85d4-0f169a0f4dda" name="stereoHash" value="-240783549"/>
+            <properties uuid="c6f259b5-016e-4723-9103-7dfd0bf13752" name="deletedUuids" value=""/>
+            <properties uuid="0de4d21e-91b4-4ee6-b56f-a419fb8be01b" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="a4c6b43a-af86-4ca9-b1b6-f491399f036a" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="ab19c878-48f6-4c81-8823-82f4a8125e97" id="5" recreator="Class" name="Start" autosized="false" point="596 924" dimensions="135.2 88" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.3">
-            <figures uuid="4f4881ca-6a44-4947-a17e-58b05fea20d1" id="5_A" recreator="Attributes" containedName="attrs" point="604 950.7" dimensions="40 8">
-              <properties uuid="37dc38e4-8b8f-4433-8a64-af691fb1ddc0" name="deletedUuids" value=""/>
-              <properties uuid="9c2eadd7-f8f9-4d9f-9801-9c057d27a2ea" name="addedUuids" value=""/>
+          <figures uuid="3382b8a7-9029-4d7b-9e73-80aea473c972" id="5" recreator="Class" name="Start" autosized="false" point="596 924" dimensions="135.2 88" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.3">
+            <figures uuid="c7d5b6aa-d6d7-4530-80cc-df656c4aa2e0" id="5_A" recreator="Attributes" containedName="attrs" point="604 950.7" dimensions="40 8">
+              <properties uuid="651977e3-567b-4bcc-99cc-25d69651138b" name="deletedUuids" value=""/>
+              <properties uuid="fc2d4bd8-e9da-4250-9f83-1275be4d9d80" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="2fb22d0d-f501-4814-94fd-1b0f57f4e763" id="5_C" recreator="SimpleContainer" containedName="contents" point="604 958.7" dimensions="119.2 45.3" offset="4 4">
-              <properties uuid="4a261e8d-6f07-4406-9ac7-5b229bcf881f" name="deletedUuids" value=""/>
-              <properties uuid="d9457aba-35a9-4d15-a546-62f2471f0fe7" name="addedUuids" value=""/>
-              <properties uuid="cbe8458d-fa4d-422e-a398-dd14fa6d052e" name="backdrop" value="false"/>
+            <figures uuid="d852475a-cf2b-4148-9c93-cd80dd4e029e" id="5_C" recreator="SimpleContainer" containedName="contents" point="604 958.7" dimensions="119.2 45.3" offset="4 4">
+              <properties uuid="a0c035e0-3a38-4eca-a050-61cd8f3c744a" name="deletedUuids" value=""/>
+              <properties uuid="836aa611-f2cf-42bf-a82f-73cd1fd786bc" name="addedUuids" value=""/>
+              <properties uuid="4e43bd3e-291f-4cda-8545-3d7f168f2bca" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="6a225bff-24f1-45c4-a9fd-bd1fd6a76789" id="5_O" recreator="Operations" containedName="ops" point="604 958.7" dimensions="40 8">
-              <properties uuid="54fbd83d-9cd4-4606-82d2-522f8720453d" name="deletedUuids" value=""/>
-              <properties uuid="69c22199-e4cb-48c8-9a58-2957921ecd96" name="addedUuids" value=""/>
+            <figures uuid="4bd7283b-468c-468f-90db-1a3eb40cdf12" id="5_O" recreator="Operations" containedName="ops" point="604 958.7" dimensions="40 8">
+              <properties uuid="abb31150-def6-4c15-ac23-ef815b575574" name="deletedUuids" value=""/>
+              <properties uuid="9fc06688-5758-459a-8677-2b7105fa7b0e" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="e6c3e533-dc69-4460-9166-f5524f5abff2" id="5_P" recreator="PortCompartment" containedName="ports" point="596 924" dimensions="135.2 88">
-              <figures uuid="ef363705-731e-4f82-9b57-0f9d15144b9e" id="28" recreator="Port" autosized="false" point="688 1004" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
-                <figures uuid="68716f0e-cbba-4f39-9d8e-d86ef427501b" id="28_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="708 1016" dimensions="46.7 14.7"/>
-                <properties uuid="656a0148-5703-440a-adff-33a0ac929fa3" name="extraText" value=""/>
-                <properties uuid="dac25196-88ae-4e17-bdb0-ec37cf03785a" name="classScope" value="true"/>
-                <properties uuid="acb9e3d5-920f-4914-baaa-dc1e657148c2" name="fill" value="192 192 192"/>
-                <properties uuid="06cd3520-103e-4eec-832c-8999fd3f4bfe" name="drawInferred" value="true"/>
+            <figures uuid="5bb031af-3263-4f31-bf0f-37bb7e53eea6" id="5_P" recreator="PortCompartment" containedName="ports" point="596 924" dimensions="135.2 88">
+              <figures uuid="2dd80711-7ed6-46d1-bb0d-b401f5e1a89d" id="28" recreator="Port" autosized="false" point="688 1004" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
+                <figures uuid="1f2c71ad-840d-43bd-9152-dd9102fde588" id="28_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="708 1016" dimensions="46.7 14.7"/>
+                <properties uuid="428a7335-a494-4273-b78e-b90d66a5da4f" name="extraText" value=""/>
+                <properties uuid="3f12e95d-ac7d-4495-a873-c65bc1a1f9f9" name="classScope" value="true"/>
+                <properties uuid="567e443c-89f4-415a-9253-9a70ae1f8d08" name="fill" value="192 192 192"/>
+                <properties uuid="c0edee21-56e3-4bea-ae08-688b5e4f6474" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="a4daaee8-c64a-4bcc-a101-983865bad6ab" id="29" recreator="Port" autosized="false" point="588 968" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.3/@ownedPort.0">
-                <figures uuid="56516374-2c11-4d18-bd56-459b7063c4a8" id="29_T" recreator="Linked Text" containedName="text" text="startTerminal" point="516 932" dimensions="73 14.7"/>
-                <properties uuid="c16f29ea-0a93-4323-ae52-d5fa11bf190d" name="extraText" value=""/>
-                <properties uuid="059c1ee2-7b59-42bc-ad88-f77687534f32" name="classScope" value="true"/>
-                <properties uuid="79f68f62-7bd1-468e-9ee6-e416113c80dd" name="fill" value="192 192 192"/>
-                <properties uuid="01bfd763-2588-4719-a9b9-3b9f4847d5f7" name="drawInferred" value="true"/>
+              <figures uuid="afe5d5f6-7d59-43e3-a210-df0562756236" id="29" recreator="Port" autosized="false" point="588 968" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.3/@ownedPort.0">
+                <figures uuid="48b07d84-8870-4def-9089-ad83e863be1a" id="29_T" recreator="Linked Text" containedName="text" text="startTerminal" point="516 932" dimensions="73 14.7"/>
+                <properties uuid="ea668ddb-1b82-4da6-ad13-5770103692d0" name="extraText" value=""/>
+                <properties uuid="83136697-956e-4ed5-8d40-9e583cb88115" name="classScope" value="true"/>
+                <properties uuid="c844af3d-73fd-48f1-8654-d076c1ba829b" name="fill" value="192 192 192"/>
+                <properties uuid="bff36544-b079-49eb-83db-f22e7154ea73" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="71c2cf7c-94bf-415c-8a77-c620dba488cb" id="19" recreator="Port" autosized="false" point="688 916" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.3/@deltaReplacedPorts.0/@replacement">
-                <figures uuid="715b4255-179d-421f-a302-288e2dd12f99" id="19_T" recreator="Linked Text" containedName="text" text="in" point="704 900" dimensions="10 14.7"/>
-                <properties uuid="6b72fe01-3eff-4fbf-af6a-c049eb602c22" name="extraText" value=""/>
-                <properties uuid="41205063-9703-4530-a397-cb1fea33cc7e" name="classScope" value="true"/>
-                <properties uuid="04110a33-22b8-4911-af9f-7040f30eca0a" name="fill" value="192 192 192"/>
-                <properties uuid="a3be1fb8-8948-4bb9-ba49-6efb7113b090" name="drawInferred" value="true"/>
+              <figures uuid="fa8a637c-ec22-4050-a4dd-e0aeb79a25e4" id="19" recreator="Port" autosized="false" point="688 916" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.3/@deltaReplacedPorts.0/@replacement">
+                <figures uuid="eedb0887-2bc4-4bcf-847e-b2d66406dbdf" id="19_T" recreator="Linked Text" containedName="text" text="in" point="704 900" dimensions="10 14.7"/>
+                <properties uuid="0dddc18c-cf5b-492e-8b54-287ccabf92e9" name="extraText" value=""/>
+                <properties uuid="b908b80c-c42f-4102-b155-589ca5b122f6" name="classScope" value="true"/>
+                <properties uuid="51e3878c-31dd-465f-95ac-0b07b04e0025" name="fill" value="192 192 192"/>
+                <properties uuid="e3eb35ea-3d38-4cb9-93f4-237064458df6" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="976eb923-bb5e-442a-bc65-61b9bf3b5efe" name="deletedUuids" value=""/>
-              <properties uuid="a8ab4b68-b2e9-4bc9-a1a7-f65e6445b0c5" name="classScope" value="true"/>
-              <properties uuid="66661a1b-6ed7-4fcf-8a9a-78e23900b493" name="addedUuids" value=""/>
+              <properties uuid="e202fa05-c5d5-4175-bcbd-c27580c34604" name="deletedUuids" value=""/>
+              <properties uuid="9a202f7e-59f6-4e8a-b28e-04c8e26dabc8" name="classScope" value="true"/>
+              <properties uuid="3c379bf9-5fa8-4118-948a-7e6d07c3f3d0" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="57822790-f2a0-4233-b438-d16ee3cddca5" name="fill" value="240 200 200"/>
-            <properties uuid="796f4bc3-30ed-4762-ad4b-14d63a1c337a" name="state" value="true"/>
-            <properties uuid="ee7d11d6-eef9-4159-b99d-92892c958e0c" name="stereoHash" value="192130434"/>
-            <properties uuid="1b18b840-f6d5-46ac-9694-6d454383a9ee" name="deletedUuids" value=""/>
-            <properties uuid="8532deb4-4292-4064-a58b-d084c70af856" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="93ecb9a3-96e3-4127-9d1f-8a3b62f9cbcd" name="addedUuids" value=""/>
+            <properties uuid="ddf2bd8e-df96-450d-a2fd-2c57ca20a64d" name="fill" value="240 200 200"/>
+            <properties uuid="aa3c6e2f-98b5-4a0f-9489-67611ec72330" name="state" value="true"/>
+            <properties uuid="00a843dc-053a-47d2-8a47-1ca1231e59de" name="stereoHash" value="-894932544"/>
+            <properties uuid="e102b2bd-a5f5-4ddf-b86d-2447f7a02811" name="deletedUuids" value=""/>
+            <properties uuid="a8631bef-cb60-42a2-a5d0-e89703eebda8" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="882d34ad-3183-4a4e-ad7f-00feeed3da7e" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="d143f0b3-d4af-42dd-bd8f-01517554a8be" id="4" recreator="Class" name="CompositeState" autosized="false" point="848 364" dimensions="383.6 363.1" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5">
-            <figures uuid="14bfdb28-466c-43f6-9e95-24cd5cfbb4dc" id="4_C" recreator="SimpleContainer" containedName="contents" point="856 398.7" dimensions="367.6 320.4" offset="4 4">
-              <figures uuid="328acf84-3d03-4ddf-881b-8239f43675b7" id="22" recreator="State part" name=" : End" autosized="false" point="984 620" dimensions="83.1 43.9" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAttribute.1">
-                <figures uuid="9525d574-ead0-4c6d-a479-7f41a44f2780" id="22_A" recreator="Attributes" containedName="attrs" point="992 646.7" dimensions="40 8">
-                  <properties uuid="1f4be6fc-79cb-434c-9f8a-59b156fff6ec" name="deletedUuids" value=""/>
-                  <properties uuid="33c1b416-a941-4437-8ebc-cdf41582aa8d" name="addedUuids" value=""/>
+          <figures uuid="e70d4560-155a-4847-86ed-a71c9b238673" id="4" recreator="Class" name="CompositeState" autosized="false" point="848 364" dimensions="383.6 363.1" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5">
+            <figures uuid="5a6cf815-50aa-4d9b-af08-d5f6876bf4bc" id="4_C" recreator="SimpleContainer" containedName="contents" point="856 398.7" dimensions="367.6 320.4" offset="4 4">
+              <figures uuid="314a5814-64e9-46ed-86d4-a4916d1d21ab" id="22" recreator="State part" name=" : End" autosized="false" point="984 620" dimensions="83.1 43.9" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAttribute.1">
+                <figures uuid="402fb1a3-6f75-4169-bf8c-2b59a92e1023" id="22_A" recreator="Attributes" containedName="attrs" point="992 646.7" dimensions="40 8">
+                  <properties uuid="e6e938fe-a788-422e-85c8-ba14f7c5c871" name="deletedUuids" value=""/>
+                  <properties uuid="754f7d39-ad82-4f39-a87f-9ba16755d136" name="addedUuids" value=""/>
                 </figures>
-                <figures uuid="96504e5c-099e-4a97-85ca-b973fcac52a6" id="22_C" recreator="SimpleContainer" containedName="contents" point="992 654.7" dimensions="67.1 1.2" offset="4 4">
-                  <properties uuid="c21a839f-3dfe-4adb-993f-9d565a564c0c" name="deletedUuids" value=""/>
-                  <properties uuid="a8947279-658d-4151-93f9-d2b7bd23c30f" name="addedUuids" value=""/>
-                  <properties uuid="251789cb-7828-45fe-a2c5-251445ffcb85" name="backdrop" value="false"/>
+                <figures uuid="43b01da3-cedc-48e1-98fc-6e6290855ed8" id="22_C" recreator="SimpleContainer" containedName="contents" point="992 654.7" dimensions="67.1 1.2" offset="4 4">
+                  <properties uuid="bb47c5b4-f14c-4014-967f-3a60e1082f43" name="deletedUuids" value=""/>
+                  <properties uuid="9acaacb3-41dd-453c-b067-128db90ab812" name="addedUuids" value=""/>
+                  <properties uuid="6c89243d-b271-4402-89e4-bd71a4d69b25" name="backdrop" value="false"/>
                 </figures>
-                <figures uuid="fadf891f-bfd2-422d-b437-e3794e611f84" id="22_P" recreator="PortCompartment" containedName="ports" point="984 620" dimensions="83.1 43.9">
-                  <figures uuid="b53a91f2-6a3a-4d9f-9140-01610ff5957c" id="23" recreator="PortInstance" autosized="false" point="1016 612" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@deltaReplacedPorts.0/@replacement">
-                    <figures uuid="5d76e1f5-ec37-430e-a932-949010fc056c" id="23_T" recreator="Linked Text" containedName="text" text="in" show="false" point="1016 596" dimensions="10 14.7">
-                      <properties uuid="9ccd491a-68b3-404f-9303-e6f6d74738c0" name="suppress" value="true"/>
+                <figures uuid="0e1da53b-f190-46c8-bda9-9d43693cfc35" id="22_P" recreator="PortCompartment" containedName="ports" point="984 620" dimensions="83.1 43.9">
+                  <figures uuid="c36a9095-2551-4e1c-86dd-9fdec57a537f" id="23" recreator="PortInstance" autosized="false" point="1016 612" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.4/@deltaReplacedPorts.0/@replacement">
+                    <figures uuid="51aa99aa-60c4-4f30-a234-3b22137c7525" id="23_T" recreator="Linked Text" containedName="text" text="in" show="false" point="1016 596" dimensions="10 14.7">
+                      <properties uuid="f56a1d7b-f00f-4926-839d-44039443ce78" name="suppress" value="true"/>
                     </figures>
-                    <properties uuid="e8457212-6d18-4762-aa5a-0573e3f7ce15" name="extraText" value=""/>
-                    <properties uuid="0899dcf1-960a-47a8-a0f4-72afb36ce8dc" name="fill" value="192 192 192"/>
+                    <properties uuid="2e069071-0d70-4571-b243-b62e618855ad" name="extraText" value=""/>
+                    <properties uuid="84c1cba3-754c-4191-a427-6dcd1b07895c" name="fill" value="192 192 192"/>
                   </figures>
-                  <properties uuid="a04be2be-4956-483c-b8c4-c0d98b838439" name="deletedUuids" value=" endTerminal out"/>
-                  <properties uuid="fa5e565a-1f0c-4ae3-b7ed-03876d5f754b" name="addedUuids" value=""/>
+                  <properties uuid="04a50ca9-08b4-45c9-9a10-10546719285f" name="deletedUuids" value=" endTerminal out"/>
+                  <properties uuid="f642aa4d-9921-49f6-b61d-8ebf3eb91153" name="addedUuids" value=""/>
                 </figures>
-                <figures uuid="d2250ab0-0f3e-4df8-b6bf-d11a0eb41d64" id="22_O" recreator="Operations" containedName="ops" point="992 654.7" dimensions="40 8">
-                  <properties uuid="01d431b0-4d9d-442c-9079-0f8975026d28" name="deletedUuids" value=""/>
-                  <properties uuid="a0b1e003-285d-44b2-af32-bf50266b1035" name="addedUuids" value=""/>
+                <figures uuid="d99cacb3-60f5-4bd5-9951-9e49d5499e37" id="22_O" recreator="Operations" containedName="ops" point="992 654.7" dimensions="40 8">
+                  <properties uuid="ddd52c71-8e3b-46c5-ae86-030e52e41885" name="deletedUuids" value=""/>
+                  <properties uuid="ef4089c1-02d5-485c-a651-99eabad4ec8b" name="addedUuids" value=""/>
                 </figures>
-                <properties uuid="23920703-fa18-45ff-8537-a90d2d33b081" name="fill" value="240 200 200"/>
-                <properties uuid="cab52415-adfa-4259-9292-3fce04985ea3" name="state" value="true"/>
-                <properties uuid="e4487fb1-2a54-4d42-8b2f-859ad7b290d4" name="stereoHash" value="1570301018"/>
-                <properties uuid="d96793c1-b97e-4a0a-a6a0-c1f9d2bfa991" name="deletedUuids" value=""/>
-                <properties uuid="651fc00c-0561-4816-9de5-a5c2afa3a5ee" name="owner" value=""/>
-                <properties uuid="ad6aeaaf-1610-432e-bd8c-6a32a3334e84" name="addedUuids" value=""/>
+                <properties uuid="c1afa3a2-dceb-4b69-9262-b5da0bf17be1" name="fill" value="240 200 200"/>
+                <properties uuid="a61cfb68-c163-4f6d-b586-ba572b19ab19" name="state" value="true"/>
+                <properties uuid="51dbd431-87af-4557-84eb-e498aaf2fbb6" name="stereoHash" value="-514661647"/>
+                <properties uuid="c6d25944-3962-489d-92bc-8494a9e3a089" name="deletedUuids" value=""/>
+                <properties uuid="41d6330b-09d8-40d1-8971-a008f95e4be2" name="owner" value=""/>
+                <properties uuid="010ce9f8-9d40-4913-a9f2-6493b5047f48" name="addedUuids" value=""/>
               </figures>
-              <figures uuid="5a4d312b-a9ae-4451-9b68-e8fbfd592528" id="21" recreator="State part" name=" : Start" autosized="false" point="984 456" dimensions="87 45.1" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAttribute.0">
-                <figures uuid="b43efe0c-39ab-4902-acbc-42d934c91cfe" id="21_P" recreator="PortCompartment" containedName="ports" point="984 456" dimensions="87 45.1">
-                  <figures uuid="663b9d22-dd95-4e7a-a6ab-cb82915cbfd8" id="34" recreator="PortInstance" autosized="false" point="1020 493.1" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
-                    <figures uuid="52a15dcc-d38b-4c6d-9f06-d0c7ecb3c4f5" id="34_T" recreator="Linked Text" containedName="text" text="out [0..1]" show="false" point="1040 505.1" dimensions="46.7 14.7">
-                      <properties uuid="b518ca87-4921-4455-9748-544d82f0b87e" name="suppress" value="true"/>
+              <figures uuid="3778048a-c47b-4c5c-9f9d-35fdac420c75" id="21" recreator="State part" name=" : Start" autosized="false" point="984 456" dimensions="87 45.1" suppressOperations="true" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAttribute.0">
+                <figures uuid="373cb5a6-d6bf-4744-a9aa-5e636200b327" id="21_P" recreator="PortCompartment" containedName="ports" point="984 456" dimensions="87 45.1">
+                  <figures uuid="95e32782-865f-4370-88b3-5739792995ab" id="34" recreator="PortInstance" autosized="false" point="1020 493.1" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
+                    <figures uuid="b7acd284-01fd-4a10-81b7-321abf56e411" id="34_T" recreator="Linked Text" containedName="text" text="out [0..1]" show="false" point="1040 505.1" dimensions="46.7 14.7">
+                      <properties uuid="9bc8eb11-31c6-4b7e-8b19-9980556ecb55" name="suppress" value="true"/>
                     </figures>
-                    <properties uuid="92dbe224-66a5-48fd-920c-fdc12ef8be58" name="extraText" value=""/>
-                    <properties uuid="f7ab6583-cd7b-46d5-83af-ab27ef2950a7" name="fill" value="192 192 192"/>
+                    <properties uuid="1ccbd43f-2be3-4f5c-8a1b-c61c7339b649" name="extraText" value=""/>
+                    <properties uuid="23b54ffc-8393-444f-be1b-8356aab28226" name="fill" value="192 192 192"/>
                   </figures>
-                  <properties uuid="8a4c2865-077d-428d-8537-bd4c85e4575b" name="deletedUuids" value=" startTerminal in"/>
-                  <properties uuid="87bd3d76-1655-4840-8981-4f0a8ae3b6d5" name="addedUuids" value=""/>
+                  <properties uuid="e099fb21-b11e-40e0-b28f-72336b49e50f" name="deletedUuids" value=" startTerminal in"/>
+                  <properties uuid="5e6065b4-159b-4e66-a346-fc7192e3ee54" name="addedUuids" value=""/>
                 </figures>
-                <figures uuid="65256507-6bbf-4e85-b317-1045aeb1b72d" id="21_O" recreator="Operations" containedName="ops" point="992 490.7" dimensions="40 8">
-                  <properties uuid="a1dd3a1f-b082-4103-8a4a-b489ccd74fc8" name="deletedUuids" value=""/>
-                  <properties uuid="a405947f-1d47-485a-af11-8e8cac0ac758" name="addedUuids" value=""/>
+                <figures uuid="8e581efb-0de4-4c73-885c-e7cec86870a9" id="21_O" recreator="Operations" containedName="ops" point="992 490.7" dimensions="40 8">
+                  <properties uuid="84cc5dca-5639-4347-ac99-8b47bdebc025" name="deletedUuids" value=""/>
+                  <properties uuid="e58ecd6b-5eee-4c50-8e46-63edba04dce8" name="addedUuids" value=""/>
                 </figures>
-                <figures uuid="3c6f9081-7696-450d-b0c0-88c6b629416c" id="21_C" recreator="SimpleContainer" containedName="contents" point="992 490.7" dimensions="71 2.4" offset="4 4">
-                  <properties uuid="6acf37e0-76e5-4cca-b9e1-8afd7cb70d05" name="deletedUuids" value=""/>
-                  <properties uuid="8a5c2ca1-5db6-4fa5-b60b-9754eed9e245" name="addedUuids" value=""/>
-                  <properties uuid="58354ec3-93f6-4ce6-8805-0ce5a6584b27" name="backdrop" value="false"/>
+                <figures uuid="6bb4edbf-3126-4bf5-993e-14a8f687129c" id="21_C" recreator="SimpleContainer" containedName="contents" point="992 490.7" dimensions="71 2.4" offset="4 4">
+                  <properties uuid="3ebca9ed-6a20-4e3f-92cf-a04f74a12575" name="deletedUuids" value=""/>
+                  <properties uuid="ce6d9d03-1536-45f4-9eb0-bec43ca57ad2" name="addedUuids" value=""/>
+                  <properties uuid="06dbbc80-09f8-4e9e-a585-2ffea1891cae" name="backdrop" value="false"/>
                 </figures>
-                <figures uuid="aef36fe7-fe24-49fa-8ac0-a14602b03066" id="21_A" recreator="Attributes" containedName="attrs" point="992 482.7" dimensions="40 8">
-                  <properties uuid="dcb5597b-93d3-41a8-8103-3bc959ad8f71" name="deletedUuids" value=""/>
-                  <properties uuid="214a72ed-d700-4b9d-9880-886ec8ecc2b6" name="addedUuids" value=""/>
+                <figures uuid="441183e8-e5aa-4c9b-89e1-b74fd76c41da" id="21_A" recreator="Attributes" containedName="attrs" point="992 482.7" dimensions="40 8">
+                  <properties uuid="981e9eab-4736-4b8b-a279-2600f09b83ac" name="deletedUuids" value=""/>
+                  <properties uuid="18fe93be-b49f-4b3a-a00e-bfcb2da666ba" name="addedUuids" value=""/>
                 </figures>
-                <properties uuid="dc7b0564-5607-4685-a35f-084ef2ed308c" name="fill" value="240 200 200"/>
-                <properties uuid="4abbfe86-6046-4249-ba19-57fa8a1b57da" name="state" value="true"/>
-                <properties uuid="215b7fcb-3ad8-4758-a58b-3909b4ba1575" name="stereoHash" value="-81747664"/>
-                <properties uuid="980e93d5-fd2a-4e03-8c38-1e1d38432ee4" name="deletedUuids" value=""/>
-                <properties uuid="2d68b6d0-1d9d-4464-8212-8f28c5179898" name="owner" value=""/>
-                <properties uuid="8e0c594b-5ec7-41ee-818f-62e2df735c23" name="addedUuids" value=""/>
+                <properties uuid="8551e128-f4ff-4d4d-b817-99bce008d6ca" name="fill" value="240 200 200"/>
+                <properties uuid="ba43e640-06b7-41a6-a477-38b9b407fc43" name="state" value="true"/>
+                <properties uuid="4693dc4a-9e6c-4f7f-a9d2-0a6508b3e3e0" name="stereoHash" value="-1168810642"/>
+                <properties uuid="da65d55d-c046-40cc-8a9d-9b975ca62d0d" name="deletedUuids" value=""/>
+                <properties uuid="e413c0ed-afcd-4041-b58d-390a38b30f32" name="owner" value=""/>
+                <properties uuid="b6b13b15-a891-435b-9d52-cfd334da2acd" name="addedUuids" value=""/>
               </figures>
-              <properties uuid="e2f003d1-6050-470b-b97e-87fd5d1c33e0" name="deletedUuids" value=""/>
-              <properties uuid="6131f6a3-c715-4592-963e-fed39310b497" name="addedUuids" value=""/>
-              <properties uuid="2e084278-d267-4e8d-8644-a504944fbbde" name="backdrop" value="false"/>
+              <properties uuid="942b7b64-5dcc-43d3-bc7f-f7ba084d5784" name="deletedUuids" value=""/>
+              <properties uuid="2744eeba-3cb5-44b7-ae70-9957cf14e043" name="addedUuids" value=""/>
+              <properties uuid="59714124-f33a-4a8a-b58e-3b3e60dca82f" name="backdrop" value="false"/>
             </figures>
-            <figures uuid="a3bd9802-d260-44da-b251-e733051545cc" id="4_A" recreator="Attributes" containedName="attrs" point="856 390.7" dimensions="40 8">
-              <properties uuid="324d861a-6c30-48d0-9d40-27985b480107" name="deletedUuids" value=""/>
-              <properties uuid="a561fcd6-a2bd-4c71-b1a3-8753dbbcc488" name="addedUuids" value=""/>
+            <figures uuid="090891e1-b581-457a-8359-09a272159411" id="4_A" recreator="Attributes" containedName="attrs" point="856 390.7" dimensions="40 8">
+              <properties uuid="84b5bbcf-c95a-4d24-914a-c84c4c679cb0" name="deletedUuids" value=""/>
+              <properties uuid="98f6e3cf-9b8e-4135-a42e-a6abded355c4" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="e6c91c34-bdc7-4723-94fb-b6f02ab81726" id="4_O" recreator="Operations" containedName="ops" point="856 398.7" dimensions="40 8">
-              <properties uuid="fc3a748d-883b-4579-91c6-ce119c074204" name="deletedUuids" value=""/>
-              <properties uuid="a1f59aa3-9f33-44bd-a9c1-f1426fa4e99e" name="addedUuids" value=""/>
+            <figures uuid="910d1e0b-beb2-4fb5-973f-cd3dcedb5951" id="4_O" recreator="Operations" containedName="ops" point="856 398.7" dimensions="40 8">
+              <properties uuid="e6f3ecd2-bb8e-418a-b40b-146d00836bdb" name="deletedUuids" value=""/>
+              <properties uuid="da3abb86-7f15-4c1f-9443-a72168864ee4" name="addedUuids" value=""/>
             </figures>
-            <figures uuid="bfc38ac7-8331-44b7-a2ba-74bf59848214" id="4_P" recreator="PortCompartment" containedName="ports" point="848 364" dimensions="383.6 363.1">
-              <figures uuid="84600915-3a10-4a79-a952-5b1c15c59e94" id="25" recreator="Port" autosized="false" point="1128 356" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0">
-                <figures uuid="dfb49007-91e6-4f5e-b7ea-6ea9c82ab166" id="25_T" recreator="Linked Text" containedName="text" text="in" point="1148 340" dimensions="10 14.7"/>
-                <properties uuid="05d33c95-2fb8-419d-a1ec-5633f2111cb9" name="extraText" value=""/>
-                <properties uuid="7bb5a268-6340-4036-8f99-9fcb06023b47" name="classScope" value="true"/>
-                <properties uuid="226a9604-7e1a-43ff-80a2-8bc61fd109c4" name="fill" value="192 192 192"/>
-                <properties uuid="dc901bfd-07d7-4f34-8fb7-0bf430349763" name="drawInferred" value="true"/>
+            <figures uuid="c4cee29a-bb5f-4582-963f-8c33135dd55a" id="4_P" recreator="PortCompartment" containedName="ports" point="848 364" dimensions="383.6 363.1">
+              <figures uuid="532f08d7-e49f-46f3-81ed-efce6f4bf9bd" id="25" recreator="Port" autosized="false" point="1128 356" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.0">
+                <figures uuid="cd533df3-258d-4fb9-8abb-01b382baa9e1" id="25_T" recreator="Linked Text" containedName="text" text="in" point="1148 340" dimensions="10 14.7"/>
+                <properties uuid="6dc2e017-e297-4196-94ee-a413af55b4fb" name="extraText" value=""/>
+                <properties uuid="bff7d1b9-6f89-4da1-98cd-4dfa19c7928b" name="classScope" value="true"/>
+                <properties uuid="e1d7a16f-4af6-48f6-a2cb-7ec2798d9aff" name="fill" value="192 192 192"/>
+                <properties uuid="64667721-d9de-4371-86f3-a90d8768550e" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="4a1aeb68-2d9f-4db4-9034-12c7988de5f7" id="26" recreator="Port" autosized="false" point="1128 719.1" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
-                <figures uuid="e9a0fa67-063f-49a1-b067-fb0b874c0921" id="26_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="1148 731.1" dimensions="46.7 14.7"/>
-                <properties uuid="27d3b2cc-5fd0-491d-8e83-82f442656aac" name="extraText" value=""/>
-                <properties uuid="86c436b4-64c7-4ef6-a5c5-f07267d4dcd7" name="classScope" value="true"/>
-                <properties uuid="917575d1-567a-48c6-9fa7-108563e24725" name="fill" value="192 192 192"/>
-                <properties uuid="817f63d4-724e-416a-adee-682953deef63" name="drawInferred" value="true"/>
+              <figures uuid="ad4789df-e2ec-462c-b149-665602179d56" id="26" recreator="Port" autosized="false" point="1128 719.1" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.1">
+                <figures uuid="911df38c-eef9-4a1a-8384-c8c109a3b56d" id="26_T" recreator="Linked Text" containedName="text" text="out [0..1]" point="1148 731.1" dimensions="46.7 14.7"/>
+                <properties uuid="e9978698-68a8-4809-82a3-479e5ad27718" name="extraText" value=""/>
+                <properties uuid="9b672574-5202-4629-badb-388044b1dd01" name="classScope" value="true"/>
+                <properties uuid="5bdfff5c-1d4e-42c0-96f5-b9cef70d2291" name="fill" value="192 192 192"/>
+                <properties uuid="e4b34fe9-3734-400a-b339-7573bc199c4e" name="drawInferred" value="true"/>
               </figures>
-              <figures uuid="2fece959-0a9f-4769-b944-f719c5a109ae" id="27" recreator="Port" autosized="false" point="840 484" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.2">
-                <figures uuid="d02cba8c-1773-4bff-bec5-f3e7b8c34bf4" id="27_T" recreator="Linked Text" containedName="text" text="events" point="808 452" dimensions="36 14.7"/>
-                <properties uuid="9bd8ae11-8218-4eb3-9ec0-c8ee8de7e055" name="extraText" value=""/>
-                <properties uuid="efd0a501-e935-4566-83f6-6cf401eb31e3" name="classScope" value="true"/>
-                <properties uuid="ddaf83bb-c136-4f8e-8a5f-febc6534df1a" name="fill" value="192 192 192"/>
-                <properties uuid="d6b5c148-b688-411b-9d86-053f2a84d3dc" name="drawInferred" value="true"/>
+              <figures uuid="3b76d1e4-ca31-4bd2-9971-3d9e7c1c64bf" id="27" recreator="Port" autosized="false" point="840 484" dimensions="16 16" subject="//@childPackages.0/@childPackages.4/@ownedMember.2/@ownedPort.2">
+                <figures uuid="15006c2a-3705-4685-9d08-64ccc1ab93ec" id="27_T" recreator="Linked Text" containedName="text" text="events" point="808 452" dimensions="36 14.7"/>
+                <properties uuid="b8ce5505-b011-429a-ab3d-112f4e67b152" name="extraText" value=""/>
+                <properties uuid="49ecc792-6928-4a8c-b2dc-b726f7783290" name="classScope" value="true"/>
+                <properties uuid="eb01aabe-af9d-4c8e-89ee-526e3c67816a" name="fill" value="192 192 192"/>
+                <properties uuid="a58d4c3e-d5bc-46c5-bad0-d3cd0b10b095" name="drawInferred" value="true"/>
               </figures>
-              <properties uuid="8ae2083c-6274-4eb7-8c33-85f0f7383fae" name="deletedUuids" value=""/>
-              <properties uuid="2304d840-1ce3-4a00-854c-bdf21a5eb2ea" name="classScope" value="true"/>
-              <properties uuid="1cf6647e-87de-42af-b6c2-4a25bd38ffb0" name="addedUuids" value=""/>
+              <properties uuid="94c3116f-7346-47a8-8239-cc607938a532" name="deletedUuids" value=""/>
+              <properties uuid="797c9a9a-f543-4736-ab9d-790816697776" name="classScope" value="true"/>
+              <properties uuid="e82e1554-bd58-4aa2-9ed1-c5dac72cfd1b" name="addedUuids" value=""/>
             </figures>
-            <properties uuid="0b6ee408-388e-48bd-9bce-0386192be74f" name="fill" value="240 200 200"/>
-            <properties uuid="943397f5-f0a7-49e1-b11f-3492ab37fa5a" name="state" value="true"/>
-            <properties uuid="5c81dd44-ae88-4a82-ab0e-edc9cd507d15" name="stereoHash" value="-1717155867"/>
-            <properties uuid="f47ef62e-68c7-40bc-b153-3982bd2a2782" name="deletedUuids" value=""/>
-            <properties uuid="4cc61e38-5e90-4f99-9bac-88136900479e" name="owner" value="(from backbone / implementation)"/>
-            <properties uuid="417fc798-bcb1-486d-8f3d-cd454f55410e" name="addedUuids" value=""/>
+            <properties uuid="bbcb89fb-052d-4223-b9c0-ebab63fae0a8" name="fill" value="240 200 200"/>
+            <properties uuid="31bc0ec4-2b96-4e91-86c9-2d43766229a7" name="state" value="true"/>
+            <properties uuid="3102e793-1adc-4633-babf-5e0c4d29697e" name="stereoHash" value="-1778647851"/>
+            <properties uuid="1a3782d9-c916-4684-9f1e-300539810464" name="deletedUuids" value=""/>
+            <properties uuid="65d6d204-a192-4e67-a697-9ff59d3adc28" name="owner" value="(from backbone / implementation)"/>
+            <properties uuid="abd62505-e309-440b-bfd6-13d366407c98" name="addedUuids" value=""/>
           </figures>
-          <figures uuid="3a16de3b-c560-41c4-8626-cd2d17e89cfa" id="14" recreator="Connector" anchor1Id="10" anchor2Id="11" virtualPoint="320 608" points="2 320 552 320 664" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedConnector.0">
-            <figures uuid="ddcbce5f-641f-462b-acf0-d7d461829219" id="14S" recreator="Linked Text" containedName="startText" text="" point="321 559" dimensions="3.3 15.1">
-              <properties uuid="b73a2a56-99b8-42e6-8bb4-9b4c6c94f7d6" name="majorPt" value="1"/>
+          <figures uuid="aee852b2-ab88-45c6-8ff6-25bbffd4484e" id="14" recreator="Connector" anchor1Id="10" anchor2Id="11" virtualPoint="320 608" points="2 320 552 320 664" subject="//@childPackages.0/@childPackages.4/@ownedMember.6/@ownedConnector.0">
+            <figures uuid="da27cc72-b6ef-4857-b799-38ba9d790521" id="14S" recreator="Linked Text" containedName="startText" text="" point="321 559" dimensions="3.3 15.1">
+              <properties uuid="bc5d9377-8950-4812-ba68-ef25450c390e" name="majorPt" value="1"/>
             </figures>
-            <figures uuid="72c0148d-917c-4057-b624-a2c6bcbea3b9" id="14E" recreator="Linked Text" containedName="endText" text="" point="321 642.9" dimensions="3.3 15.1">
-              <properties uuid="576ed887-33b8-45a6-b819-891642c197b8" name="majorPt" value="2"/>
+            <figures uuid="a4420bc9-2755-4077-8361-2b2903534fa7" id="14E" recreator="Linked Text" containedName="endText" text="" point="321 642.9" dimensions="3.3 15.1">
+              <properties uuid="3e30dff1-5e6d-42ca-891d-2f86cddae048" name="majorPt" value="2"/>
             </figures>
-            <figures uuid="50e4e445-bb5b-4491-b111-6c66b3de1c6f" id="14_M" recreator="Linked Text" containedName="text" text="" point="294 589.6" dimensions="3.3 15.1"/>
-            <properties uuid="098a9b86-46c5-4001-a788-f5516520c073" name="portLink" value="true"/>
+            <figures uuid="37911d2a-5e8c-4f7a-b783-305308f257d8" id="14_M" recreator="Linked Text" containedName="text" text="" point="294 589.6" dimensions="3.3 15.1"/>
+            <properties uuid="f402a1ef-1e54-44af-96b9-ebe47746913d" name="portLink" value="true"/>
           </figures>
-          <figures uuid="7055156f-6a13-4ddc-ba84-f953bf6c587d" id="20" recreator="dependency" anchor1Id="4" anchor2Id="3" virtualPoint="778 576" points="2 848 576 708 576" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAnonymousDependencies.0">
-            <figures uuid="a829d643-47e5-4062-a83f-b263692d2cde" id="20_M" recreator="Linked Text" containedName="text" text="" show="false" point="766 565.4" dimensions="3.3 15.1">
-              <properties uuid="404bcdbf-cbc6-4cf6-b52f-6c4bc5a31398" name="suppress" value="true"/>
+          <figures uuid="781270b1-4bf0-4b9a-8b89-8ba1775a7e3b" id="20" recreator="dependency" anchor1Id="4" anchor2Id="3" virtualPoint="778 576" points="2 848 576 708 576" subject="//@childPackages.0/@childPackages.4/@ownedMember.5/@ownedAnonymousDependencies.0">
+            <figures uuid="df74c5dd-c0fa-4271-93a1-b22f4c0f342b" id="20_M" recreator="Linked Text" containedName="text" text="" show="false" point="766 565.4" dimensions="3.3 15.1">
+              <properties uuid="612419f5-9ce2-4971-b2e5-8cf8e6e288e0" name="suppress" value="true"/>
             </figures>
-            <properties uuid="9bada8be-552b-4fd1-b87e-79dea3a92141" name="resemblance" value="true"/>
+            <properties uuid="cad98256-a72b-4d82-bb8e-580aa67b7fbf" name="resemblance" value="true"/>
           </figures>
         </diagram>
       </j_diagramHolder>

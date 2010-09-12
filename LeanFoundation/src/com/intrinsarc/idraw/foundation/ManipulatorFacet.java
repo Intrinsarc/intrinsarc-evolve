@@ -50,4 +50,5 @@ public interface ManipulatorFacet extends Facet
   /** add the view to the display */
   public void addToView(ZGroup diagramLayer, ZCanvas canvas);
   public void cleanUp();
+  public boolean handlesReadonly();
 }

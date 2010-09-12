@@ -6,6 +6,7 @@ import java.awt.event.*;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
 
@@ -18,10 +19,11 @@ public class ImplementationClassManipulator extends FieldPopupManipulator
 	private JTextField field;
 	private String implClass;
 
-	public ImplementationClassManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, String implClass, boolean composite)
+	public ImplementationClassManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, String implClass, boolean bad)
 	{
-		super(coordinator, diagramView, figure, composite);
+		super(coordinator, diagramView, figure, bad);
 		this.implClass = implClass;
+		this.bad |= implClass.length() > 0 && !ElementErrorChecker.isValidClassName(implClass);
 	}
 
 	public void setUpPopup()
@@ -40,7 +42,8 @@ public class ImplementationClassManipulator extends FieldPopupManipulator
   	
 		field.setText(implClass);
   	field.setEditable(false);
-  	field.setForeground(Color.GRAY.darker());
+  	
+  	field.setForeground(bad ? new Color(200, 100, 100) : Color.GRAY.darker());
   	ZSwing txt = new ZSwing(new ZCanvas(), new JButton("Aj"));
   	int height = (int) txt.getBounds().getHeight(); 
   	field.setPreferredSize(new Dimension(250, height));

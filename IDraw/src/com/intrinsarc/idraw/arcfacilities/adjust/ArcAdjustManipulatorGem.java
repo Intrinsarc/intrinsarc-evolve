@@ -286,6 +286,12 @@ public final class ArcAdjustManipulatorGem implements Gem
     {
       layoutOnly = true;
     }
+
+
+		public boolean handlesReadonly()
+		{
+			return false;
+		}
 	}
 
   private void setNodeProperties(ZNode node, String type, int index)

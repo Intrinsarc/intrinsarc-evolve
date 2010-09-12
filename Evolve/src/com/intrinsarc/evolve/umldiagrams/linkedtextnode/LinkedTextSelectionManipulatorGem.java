@@ -113,6 +113,13 @@ public class LinkedTextSelectionManipulatorGem implements Gem
     public void setLayoutOnly()
     {
     }
+
+		public boolean handlesReadonly()
+		{
+			return false;
+			// TODO Auto-generated method stub
+			
+		}
 	}
 
   public LinkedTextSelectionManipulatorGem(UBounds figureBounds, UDimension offset)

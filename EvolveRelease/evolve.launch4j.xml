@@ -1,0 +1,34 @@
+<launch4jConfig>
+  <dontWrapJar>true</dontWrapJar>
+  <headerType>gui</headerType>
+  <jar>evolve.jar</jar>
+  <outfile>evolve.exe</outfile>
+  <errTitle></errTitle>
+  <cmdLine></cmdLine>
+  <chdir></chdir>
+  <priority>normal</priority>
+  <downloadUrl>http://java.com/download</downloadUrl>
+  <supportUrl></supportUrl>
+  <customProcName>false</customProcName>
+  <stayAlive>false</stayAlive>
+  <manifest></manifest>
+  <icon>evolve.ico</icon>
+  <jre>
+    <path></path>
+    <minVersion>1.5.0</minVersion>
+    <maxVersion></maxVersion>
+    <jdkPreference>preferJre</jdkPreference>
+  </jre>
+  <versionInfo>
+    <fileVersion>0.9.0.0</fileVersion>
+    <txtFileVersion>Beta release</txtFileVersion>
+    <fileDescription>Evolve modeling environment</fileDescription>
+    <copyright>(c) Andrew McVeigh 2010</copyright>
+    <productVersion>0.9.0.0</productVersion>
+    <txtProductVersion>Beta release</txtProductVersion>
+    <productName>Evolve</productName>
+    <companyName>Intrinsarc Ltd</companyName>
+    <internalName>Evolve</internalName>
+    <originalFilename>evolve.exe</originalFilename>
+  </versionInfo>
+</launch4jConfig>
