@@ -129,6 +129,7 @@ public class StereotypeEditor
     panel.add(scroller, BorderLayout.CENTER);
     updateViewers(true);
 		panel.revalidate();
+		Utilities.setEnabledRecursively(insetPanel, enabled);
 		
 		return panel;
 	}

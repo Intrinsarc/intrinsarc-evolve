@@ -57,7 +57,6 @@ public class UMLDetailMediator
       // if this element is readonly, then disable
       refreshEnabled();
     }
-
   };
 
   public UMLDetailMediator(
