@@ -19,11 +19,9 @@ public class EvolveRunner
 		String home = getHomeDirectory(fromJars);
 		
 		// get the java executable directory
-		String javaDir = System.getProperty("sun.boot.library.path");
-		
 		Evolve.main(new String[]{
 				home,
-				javaDir,
+				null,
 				fromJars[0] && System.getProperty("logToConsole") == null ? "logToFile" : null,
 				args.length > 0 ? args[0] : null});
 	}

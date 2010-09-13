@@ -32,6 +32,7 @@ public class BackboneWriter
   {
     // declare the preference types
     PreferenceType stringType = new PreferenceTypeString();
+    PreferenceType javaType = new PreferenceTypeExecutable("-version");
     PreferenceType booleanType = new PreferenceTypeBoolean();
     PreferenceType directoryType = new PreferenceTypeDirectory();
     
@@ -54,7 +55,7 @@ public class BackboneWriter
     		new PersistentProperty((javaDir == null ? "" : javaDir + separator) + "java")); 
     GlobalPreferences.preferences.addPreferenceSlot(
     		BB_JAVA_CMD_PREF,
-        stringType,
+        javaType,
         "The command used to run java.");
     GlobalPreferences.preferences.addPreferenceSlot(
     		BB_WRITE_BACKUPS,
