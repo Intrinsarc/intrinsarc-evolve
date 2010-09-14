@@ -1,4 +1,4 @@
-#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -197,6 +197,17 @@ Although JavaBeans is often used to refer to Swing/AWT widgets, we use the
  and create new ones easily.
 \end_layout
 
+\begin_layout Standard
+The takeaway from the above is that Evolve allows you to define systems
+ where the architecture and implementation are always kept synchronized.
+ This provides all of the advantages of dependency injection approaches,
+ with far more power and none of the disadvantages.
+ The applications created are naturally extensible, and can be adapted quickly
+ for new features.
+ Reassuringly, this is all backed by a formal specification and sits on
+ the bedrock of over 20 years of advanced research into components.
+\end_layout
+
 \begin_layout Subsection
 A Quick Tour of Evolve
 \end_layout
@@ -206,11 +217,11 @@ Some of Evolve's features are listed below.
 \end_layout
 
 \begin_layout Itemize
-Components are defined using UML2 composite structure diagrams.
+Components are defined using standard UML2 diagrams.
 \end_layout
 
 \begin_layout Itemize
-JavaBean code can be generated, and existing beans can be quickly imported.
+Java code can be generated, and existing JavaBeans can be quickly imported.
 \end_layout
 
 \begin_layout Itemize
@@ -240,13 +251,13 @@ Parts of a model can be exported and imported for collaborative development.
 \end_layout
 
 \begin_layout Itemize
-Component programs can be run from inside Evolve.
+Component programs can be executed.
  Two runtime options are available:
 \end_layout
 
 \begin_deeper
 \begin_layout Enumerate
-The Backbone interpreter can be used.
+The Backbone runtime engine can be used.
  This is <350kb, including a full parser.
  It is fully open-source and has very little performance overhead.
 \end_layout
@@ -269,47 +280,18 @@ A simple Java program can be created directly from the model, removing any
 What is a Component?
 \end_layout
 
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
+\begin_layout Quote
 
-\begin_layout Plain Layout
-
-
-\backslash
-fidea{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
+\emph on
 A component is a unit of software that can be instantiated, and uses interfaces
  to describe which services it provides and requires.
- It's that simple.
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \begin_layout Standard
 In other words, a component is separated from its environment by interfaces.
- A component instance can be connected up to other instances which offer
- compatible interfaces.
- 
+ A component instance can then be connected up to other instances which
+ offer compatible interfaces.
+ It really is that simple!
 \end_layout
 
 \begin_layout Subsection
@@ -440,8 +422,8 @@ A spellchecker leaf component
 \end_layout
 
 \begin_layout Standard
-To map this onto a Java class following bean conventions, would could do
- something like the following:
+To map this onto a Java class following bean conventions, we would do something
+ like the following.
 \end_layout
 
 \begin_layout LyX-Code
@@ -505,7 +487,11 @@ public class SpellChecker implements ISpellCheck
 \end_layout
 
 \begin_layout LyX-Code
-  public ISuggest getDocument_Provided() { return provided; }
+  public ISuggest getDocument_Provided()
+\end_layout
+
+\begin_layout LyX-Code
+    { return document_Provided; }
 \begin_inset Newline newline
 \end_inset
 
@@ -630,7 +616,7 @@ Provided interface
 
 \begin_layout Plain Layout
 A service provided by a component.
- Mapped onto the implemented interfaces of the JavaBean or onto an instance
+ Mapped onto the implemented interfaces of the class or onto an instance
  of an anonymous inner class.
 \end_layout
 
@@ -652,7 +638,7 @@ Required interface
 
 \begin_layout Plain Layout
 A service required by a component.
- Mapped onto a field of the JavaBean, with a setter only.
+ Mapped onto a field of the class, with a setter only.
 \end_layout
 
 \end_inset
@@ -908,7 +894,15 @@ instances
 \begin_inset Quotes erd
 \end_inset
 
- is critical here, and is often missed out in other component technologies.
+ is critical here, and we call these 
+\begin_inset Quotes eld
+\end_inset
+
+parts
+\begin_inset Quotes erd
+\end_inset
+
+.
  We have literally defined a new component by connecting together two instances
  of other components.
  Note that we did not need to specify the interfaces on the external ports
@@ -968,7 +962,7 @@ fidea{
 \begin_layout Standard
 Note that a composite component exists only in Evolve, and it does not need
  a Java class associated with it.
- At runtime, the Backbone interpreter 
+ To execute this, the Backbone runtime engine 
 \begin_inset Quotes eld
 \end_inset
 
@@ -1365,8 +1359,16 @@ WordProcessor
 \end_layout
 
 \begin_layout Standard
+At runtime, the Backbone engine reads in the definitions, and flattens them
+ into connections between leaf components.
+ It then instantiates the classes corresponding to the leaves, connects
+ them up and passes control over to one of the instances.
+\end_layout
+
+\begin_layout Standard
 A Backbone program can also be executed outside of Evolve.
- It can also be translated into a simple Java class.
+ It can also be translated into a simple Java class, allowing any program
+ to be run independently from Evolve or Backbone.
 \end_layout
 
 \begin_layout Section

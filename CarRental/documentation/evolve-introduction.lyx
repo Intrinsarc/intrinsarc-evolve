@@ -1,4 +1,4 @@
-#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -205,7 +205,7 @@ Creating, Reusing and Executing Components in Evolve
 \end_layout
 
 \begin_layout Date
-Version 0.9, 6
+18
 \begin_inset Formula $^{\text{th}}$
 \end_inset
 
@@ -289,19 +289,19 @@ What is Evolve?
 \end_layout
 
 \begin_layout Standard
-Evolve is a CASE tool for defining components and connecting them together
- to form new components.
- It also provides a runtime environment to execute these components.
+Evolve is an environment and toolset for defining components and connecting
+ them together to form new components.
+ It also provides a runtime engine to execute these components.
  In other words, you use it to create applications out of plain vanilla
- objects, using an interface-centric approach.
+ classes, using an interface-centric approach.
 \end_layout
 
 \begin_layout Standard
 You may be wondering: how does this differ from Spring, Guice, Unity or
  any other run-of-the-mill Dependency Injection approach? The simple answer
- is that Evolve is based on a remarkable hierarchical component model derived
- from over 20 years of advanced research, that other approaches can only
- clumsily approximate.
+ is that Evolve is based on a remarkable hierarchical component technology
+ derived from over 20 years of advanced research, that other approaches
+ can only clumsily approximate.
  This is basically an 
 \begin_inset Quotes eld
 \end_inset
@@ -316,6 +316,14 @@ electronic circuit board and chip
  but can seamlessly handle fine-grained components too.
  It provides powerful facilities for reuse and evolution, allowing multiple
  variants of an application to be built quickly and easily.
+\end_layout
+
+\begin_layout Standard
+The benefit of all this is that it allows you to create robust, elegant
+ and principled systems, with a direct and powerful link between architecture
+ and implementation.
+ The systems you create using Evolve are naturally extensible and can be
+ easily adapted for new requirements.
 \end_layout
 
 \begin_layout Standard
