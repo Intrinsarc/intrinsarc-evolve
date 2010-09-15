@@ -121,7 +121,7 @@ figs-within-sections
 \begin_inset Graphics
 	filename screenshots/evolve-front.png
 	lyxscale 15
-	scale 150
+	scale 125
 	rotateOrigin leftTop
 
 \end_inset
