@@ -219,10 +219,11 @@ base
 \end_inset
 
 This stratum defines the components for representing rental cars.
- We demonstrate how to generate JavaBean code from leaf components and roundtrip
- them.
- We then show how to use the Bean Importer to update the leaves if the Java
- classes are modified externally.
+ We demonstrate how to generate Java class skeletons from leaf components
+ and also how to roundtrip these so that any code added in an IDE is not
+ lost.
+ We then show how to use the Bean Importer to update the leaves if the structure
+ of the Java classes is modified externally.
  Finally, we show how to register for lifecycle callbacks, and various ways
  to execute the model.
 \end_layout
@@ -274,9 +275,8 @@ states
 \end_inset
 
 This shows how to define state machines.
- These are another form of component, with the visual appearance and behavior
- of UML2 statecharts.
- As they are components, state machines can be resembled and evolved.
+ These components with the visual appearance and behavior of UML2 statecharts.
+ State machines can be resembled and evolved.
 \end_layout
 
 \begin_layout Itemize
@@ -289,12 +289,12 @@ factory
 \end_inset
 
 This shows how to dynamically instantiate components.
- Basically, factories are just lazily instantiated components, where the
- internal parts and connectors are created on demand.
+ Basically, factories are composite components where the internal parts
+ and connectors are created on demand.
  This is a powerful approach that allows complex structures to be created
  easily.
  As they are also components, factories can be resembled and evolved giving
- access to the power of these constructs for dynamic structures.
+ access to the full power of these constructs for dynamic structures.
 \end_layout
 
 \begin_layout Itemize
@@ -315,8 +315,7 @@ Hyperports are ports which cut through the compositional hierarchy.
 \begin_layout Standard
 At this point, we will have covered the basic techniques in full.
  Tutorial D then applies these to build the GWT front-end and Hibernate
- back-end, resulting in a complete (albeit basic) application for tracking
- rental cars.
+ back-end, resulting in a complete application for tracking rental cars.
 \end_layout
 
 \begin_layout Itemize
@@ -355,7 +354,7 @@ gwtservice
 \begin_inset Newline newline
 \end_inset
 
-This builds the service as a set of Evolve components.
+This builds the server as a set of Evolve components.
  It keeps track of the rental cars and who is renting them.
 \end_layout
 
@@ -387,8 +386,7 @@ This evolves the
 gwtservice
 \family default
  stratum to store the car rental information in a database.
- We use the evolution construct to replace part of the service component
- to make it transactional.
+ We use the evolution construct to update the server to make it transactional.
 \end_layout
 
 \begin_layout Standard

@@ -16,11 +16,6 @@ public class Rented
 
 // end generated code
 	
-	public boolean isCurrent()
-	{
-		return current;
-	}
-
 	public boolean isRented()
 	{
 		return true;

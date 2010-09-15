@@ -208,7 +208,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/evolve-car-rental-db.png
-	scale 50
+	scale 40
 
 \end_inset
 
@@ -255,7 +255,7 @@ RentalCar
  parts will be persisted and recreated from a SQL database.
  This can all be achieved without any changes to our approach and the full
  complement of techniques including components, state machines, evolution
- and resemblance are available in both environments.
+ and resemblance are available.
 \end_layout
 
 \begin_layout Standard
@@ -313,8 +313,8 @@ status open
 \noindent
 \align center
 \begin_inset Graphics
-	filename generated/tutorial-strata.eps
-	scale 80
+	filename generated/tutorial-d-strata.eps
+	scale 40
 
 \end_inset
 
@@ -331,7 +331,7 @@ name "fig:The-strata-used"
 
 \end_inset
 
-The strata used in the tutorials
+The strata used in tutorial D
 \end_layout
 
 \end_inset
@@ -339,13 +339,6 @@ The strata used in the tutorials
 
 \end_layout
 
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-\begin_inset Newpage pagebreak
 \end_inset
 
 
@@ -527,8 +520,8 @@ You can use any SQL database really, but H2 is our personal favorite.
 \end_layout
 
 \begin_layout Standard
-We also used Hibernate for the example, but we included the jars in the
- example so that you do not have to download it.
+We also used Hibernate, but we included the jars in the example so that
+ you do not have to download it.
 \end_layout
 
 \begin_layout Subsection
@@ -1375,17 +1368,6 @@ That's it - we now have a rental service created in Evolve that we can run
  only in memory and will be destroyed when the application terminates.
 \end_layout
 
-\begin_layout Standard
-See section 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "sec:Running-the-Example"
-
-\end_inset
-
- for details on how to run the complete application.
-\end_layout
-
 \begin_layout Subsection
 Creating a Service With Persistence
 \end_layout
@@ -1418,13 +1400,13 @@ reference "fig:Evolving-CarRental-to"
 \family typewriter
 HibernateRentalServiceLogic
 \family default
- as part of the evolution and set the implementation class to 
+ as part of the evolution which has also altered the implementation class
+ to 
 \family typewriter
-com.intrinsarc.carrentalgui.server.HibernateRentalServiceLogic
+HibernateRentalServiceLogic.java
 \family default
 .
- We have also turned off implementation inheritance, and enabled lifecycle
- callbacks.
+ We have turned off implementation inheritance, and enabled lifecycle callbacks.
 \end_layout
 
 \begin_layout Standard
@@ -2001,6 +1983,46 @@ status collapsed
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The importer will use the Java package, of the stratum it is importing into,
+ to decide if it needs to force the implementation class of an element.
+ If the package combined with the element name is correct, 
+\family typewriter
+force-implementation
+\family default
+ will not be set for the leaf or interface.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 In the lower right pane of the importer, we can see how the 
 \family typewriter
 CheckBox
@@ -2384,9 +2406,10 @@ public class NextBean
 \end_layout
 
 \begin_layout Standard
-This is not the in the interface-centric paradigm that Evolve uses for component
-s - leaves generated from Evolve will always implement interfaces, and no
- leaf will reference another leaf class directly.
+This typical bean is not in the interface-centric style that Evolve uses
+ for components.
+ In contrast to the above, leaves generated from Evolve will always implement
+ interfaces and no leaf will reference another leaf class directly.
 \end_layout
 
 \begin_layout Standard
@@ -2550,15 +2573,8 @@ AddCarWidget
 
 \begin_layout Standard
 The widget itself is pretty simple.
- It uses a horizontal panel to bind together a label (
-\begin_inset Quotes eld
-\end_inset
-
-Add new car:
-\begin_inset Quotes erd
-\end_inset
-
-) and the textbox for entering the car's information into.
+ It uses a horizontal panel to bind together a label and a textbox for entering
+ the car's information into.
 \end_layout
 
 \begin_layout Standard
@@ -2637,7 +2653,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename generated/carrentalwidget.eps
-	scale 75
+	scale 65
 
 \end_inset
 
@@ -2698,12 +2714,11 @@ Note the
 \end_inset
 
  in the value of the slot in the second label.
- This is useful when values are quite long, and indicates that the actual
- value should be taken from the 
+ This indicates that the actual value should be taken from the 
 \family typewriter
 actual-slot-value
 \family default
- stereotype property of the slot.
+ stereotype property of the slot, and is quite useful when values are long.
  This property is set to 
 \begin_inset Quotes eld
 \end_inset
@@ -2936,11 +2951,7 @@ Generating the Full Implementation
 \begin_layout Standard
 We cannot run the GWT system inside Evolve - it must be run in hosted mode
  as provided by the GWT toolkit.
- To allow this, we generate the full code for the stratum
-\begin_inset Newline newline
-\end_inset
-
-(
+ To allow this, we use
 \begin_inset ERT
 status collapsed
 
@@ -2968,22 +2979,13 @@ status collapsed
 
 \end_inset
 
-) which creates the 
+to generate the 
 \family typewriter
 CarRentalFormFactory.java
 \family default
  class.
- As this does not provide 
-\family typewriter
-IRun
-\family default
-, no 
-\family typewriter
-main()
-\family default
- method will be generated.
- We instead add the instantiation of our factory to the GWT-created class
- 
+ We then add the instantiation of our factory to the GWT-created module
+ class 
 \family typewriter
 CarRentalGUI
 \family default
@@ -3098,7 +3100,7 @@ gwtclient
 .
  This will use a generator to replace the standard state dispatcher component
  that uses reflection.
- GWT doesn't like Java reflection.
+ GWT doesn't like reflection.
 \begin_inset ERT
 status collapsed
 

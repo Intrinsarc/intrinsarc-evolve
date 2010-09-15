@@ -126,7 +126,8 @@ This chapter describes how to document Evolve models using a wordprocessor.
 \end_layout
 
 \begin_layout Standard
-Evolve supports copying figures and pasting them into Word or OpenOffice.
+At a basic level, Evolve supports copying figures and pasting them into
+ Word or OpenOffice.
  This uses EMF vector graphics, a compact and scalable format.
  The limitation of this approach, however, is that the copied images will
  not be automatically updated if the model changes.
@@ -140,15 +141,15 @@ Evolve provides another approach, which is far superior.
  It allows figures to be marked up and exported in bulk from a model.
  We can then link to these images from a wordprocessor document and update
  them all when the model changes.
- This facility is how this document was produced, and also how I wrote a
- several-hundred page research document with hundreds of figures.
+ This facility is how this document was produced, and also how we wrote
+ a several-hundred page research document with hundreds of figures.
  Evolve makes creating documentation in this way a relatively painless affair
 \begin_inset Foot
 status collapsed
 
 \begin_layout Plain Layout
-I shudder when I think of the pain I have gone through trying to use Rational
- SoDA for documentation.
+We collectively shudder when we think of the pain we have suffered through
+ trying to use Rational SoDA for documentation.
  Evolve provides a far better way.
 \end_layout
 
@@ -303,7 +304,7 @@ A grouper which will export a figure
 \end_layout
 
 \begin_layout Standard
-(Note that I have colored the background of the grouper to make it obvious.
+(Note that we have colored the background of the grouper to make it obvious.
  Normally the background is transparent.)
 \end_layout
 
@@ -450,12 +451,9 @@ Updating Linked Images
 \begin_layout Standard
 To update the links after figures have been re-exported from Evolve, invoke
  the
-
 \begin_inset Newline newline
 \end_inset
 
-
-\lang english
 
 \begin_inset ERT
 status collapsed
@@ -525,7 +523,7 @@ X part - Lyx shields the user from this, and the documents produced look
  fantastic.
  I'd encourage you to try Lyx at least once, as it is a superb tool for
  creating documentation.
- It is my favorite by a long way.
+ It is our favorite by a long way.
 \end_layout
 
 \begin_layout Standard
@@ -539,7 +537,7 @@ For Lyx, make sure you export EPS
 
  images.
  These are postscript, and scale properly when resized.
- To insert an image once it has been exported, choose the
+ To insert an image into Lyx once it has been exported, choose the
 \begin_inset ERT
 status collapsed
 
@@ -575,8 +573,8 @@ menu option.
 \begin_layout Standard
 Image updating happens automatically in Lyx, there is no need to manually
  invoke this.
- This makes for a very pleasant documenting experience - if I want a change
- to a figure while working on a chapter, I switch over to Evolve and hit
+ This makes for a very pleasant documenting experience - if you want a change
+ to a figure while working on a chapter, switch over to Evolve and hit
 \begin_inset ERT
 status collapsed
 
@@ -666,7 +664,7 @@ Link to file
 \end_inset
 
  option.
- The last part is crucial or the image cannot be updated later.
+ The last part is crucial or the image will not be updated later.
  Finally, choose the file using the 
 \begin_inset Quotes eld
 \end_inset
@@ -685,12 +683,9 @@ Updating Linked Images
 \begin_layout Standard
 To update the images in the entire document after an image export, select
  the
-
 \begin_inset Newline newline
 \end_inset
 
-
-\lang english
 
 \begin_inset ERT
 status collapsed

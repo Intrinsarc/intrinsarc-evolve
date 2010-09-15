@@ -144,13 +144,13 @@ How to create leaf components and tie each of them to an implementation
 \end_layout
 
 \begin_layout Itemize
-How to generate Java code for a leaf component, and regenerate without overwriti
-ng code added outside of Evolve.
+How to generate Java skeleton code for a leaf component, and regenerate
+ without overwriting code added outside of Evolve.
 \end_layout
 
 \begin_layout Itemize
-How to use the Bean Importer to refresh a leaf if its definition is altered
- outside of Evolve.
+How to use the Bean Importer to refresh a leaf if its fundamental definition
+ is altered outside of Evolve.
 \end_layout
 
 \begin_layout Itemize
@@ -412,13 +412,86 @@ status collapsed
 
 \end_layout
 
-\begin_layout Subsubsection*
-Creating the RentalCarDetails Leaf
+\begin_layout Standard
+The 
+\family typewriter
+RenterDetails
+\family default
+ leaf is defined similarly, in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-RenterDetails-leaf"
+
+\end_inset
+
+.
+ This provides the 
+\family typewriter
+IRenterDetails
+\family default
+ interface, which allows it to be connected up to 
+\family typewriter
+RentalCarDetails
+\family default
+ which requires the same interface.
 \end_layout
 
 \begin_layout Standard
-This leaf component was created by choosing tools from the palette on the
- left, and applying them to the diagram.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/renterdetails.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-RenterDetails-leaf"
+
+\end_inset
+
+The RenterDetails leaf
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+How We Created the RentalCarDetails Leaf
+\end_layout
+
+\begin_layout Standard
+The leaf component was created by choosing the 
+\begin_inset Quotes eld
+\end_inset
+
+Component
+\begin_inset Quotes erd
+\end_inset
+
+ tool from the palette on the left, and applying it to the diagram.
  An alternative is to simply press the
 \begin_inset ERT
 status collapsed
@@ -532,41 +605,152 @@ on the port.
 \end_layout
 
 \begin_layout Subsubsection*
-Associating the Leaf with an Implementation Class
+The Implementation Class of a Leaf Component or Interface
 \end_layout
 
 \begin_layout Standard
-As the leaf represents a JavaBean, we must tie it to an implementation class.
- This will be the class that is generated for the leaf.
- Select the 
+The implementation class used for a leaf is the Java package that is set
+ for the stratum where the component is defined, along with the name of
+ the class.
+ This is the Java class that will be generated for the leaf.
+\end_layout
+
+\begin_layout Standard
+To set the package, go back to the top level diagram and select the stratum.
+ You will see an icon in the top left corner.
+ Click this and enter in the desired package name, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Setting-the-Java"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/setting-package.png
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Setting-the-Java"
+
+\end_inset
+
+Setting the Java package of a stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Now go back into the diagram and select the 
 \family typewriter
 RentalCarDetails
 \family default
- component and press
-\begin_inset ERT
-status collapsed
+ leaf.
+ You will see an icon at the top left, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Viewing-the-implementation"
+
+\end_inset
+
+.
+ Click this and it will show you the full class name.
+ This is the Java implementation class that the leaf is associated with.
+ To change this, either change the package of the stratum, or the name of
+ the class.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
 
 \begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/setting-class.png
+	scale 60
+
+\end_inset
 
 
-\backslash
-menu{
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Viewing-the-implementation"
+
+\end_inset
+
+Viewing the implementation class of a leaf
 \end_layout
 
 \end_inset
 
-F2
-\begin_inset ERT
-status collapsed
+
+\end_layout
 
 \begin_layout Plain Layout
 
-}
 \end_layout
 
 \end_inset
 
-or invoke the
+
+\end_layout
+
+\begin_layout Standard
+Interfaces use the same approach.
+\end_layout
+
+\begin_layout Subsubsection*
+Forcing a Different Implementation Class
+\end_layout
+
+\begin_layout Standard
+It is possible to force a different implementation class for a leaf.
+ To do this, select the leaf and invoke the
 \begin_inset ERT
 status collapsed
 
@@ -594,20 +778,41 @@ status collapsed
 
 \end_inset
 
-menu option.
- You should see a subject browser.
- Click on the stereotype
-\begin_inset Foot
+menu option or press
+\begin_inset ERT
 status collapsed
 
 \begin_layout Plain Layout
-In UML2 terminology, the implementation class of a leaf component is held
- on the stereotype.
+
+
+\backslash
+menu{
 \end_layout
 
 \end_inset
 
- tab, and you will see a dialog like figure 
+F2
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ You should see a subject browser.
+ Click on the 
+\begin_inset Quotes eld
+\end_inset
+
+Stereotypes
+\begin_inset Quotes erd
+\end_inset
+
+ tab and you will see a dialog like figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Entering-in-the"
@@ -615,11 +820,22 @@ reference "fig:Entering-in-the"
 \end_inset
 
  below.
- Enter the class into the 
+ Enter the full class name in the 
 \family typewriter
-implementation-class
+force-implementation
 \family default
- field.
+ field
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+In UML2 terminology, the forced implementation class of a leaf component
+ is held on the stereotype.
+\end_layout
+
+\end_inset
+
+.
 \end_layout
 
 \begin_layout Standard
@@ -669,79 +885,7 @@ Setting the implementation class for a leaf
 \end_layout
 
 \begin_layout Standard
-The implementation class is always added to a component in this way.
- Interfaces use the same approach to set the implementation interface.
-\end_layout
-
-\begin_layout Standard
-The 
-\family typewriter
-RenterDetails
-\family default
- leaf for holding the renter information is defined similarly, in figure
- 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "fig:The-RenterDetails-leaf"
-
-\end_inset
-
-.
- This provides the 
-\family typewriter
-IRenterDetails
-\family default
- interface, which allows it to be connected up to 
-\family typewriter
-RentalCarDetails
-\family default
- which requires the same interface.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Float figure
-placement h
-wide false
-sideways false
-status open
-
-\begin_layout Plain Layout
-\noindent
-\align center
-\begin_inset Graphics
-	filename generated/renterdetails.eps
-	scale 60
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-\begin_inset Caption
-
-\begin_layout Plain Layout
-\begin_inset CommandInset label
-LatexCommand label
-name "fig:The-RenterDetails-leaf"
-
-\end_inset
-
-The RenterDetails leaf
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Plain Layout
-
-\end_layout
-
-\end_inset
-
-
+Interfaces can the same approach to force the implementation interface.
 \end_layout
 
 \begin_layout Section
@@ -832,6 +976,217 @@ The RentalCar composite component
 \end_inset
 
 
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+How We Created the Composite
+\end_layout
+
+\begin_layout Standard
+The composite component was created by choosing the 
+\begin_inset Quotes eld
+\end_inset
+
+Component
+\begin_inset Quotes erd
+\end_inset
+
+ tool from the palette on the left, and applying it to the diagram.
+ The ports and attributes were created in the same way as those for the
+ leaf - by pressing
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+on or near the edge of the component, or by explicitly choosing tools from
+ the palette.
+\end_layout
+
+\begin_layout Standard
+The parts were created by resizing the component to be a bit larger, and
+ pressing
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+in the middle of the component.
+ The 
+\begin_inset Quotes eld
+\end_inset
+
+Part
+\begin_inset Quotes erd
+\end_inset
+
+ menu item was then chosen, creating an empty part inside the component.
+ If you try this you will notice that the text inside the part is simply
+ a colon 
+\begin_inset Quotes eld
+\end_inset
+
+:
+\begin_inset Quotes erd
+\end_inset
+
+.
+ Select the part and type 
+\family typewriter
+partA: RentalCarDetails
+\family default
+ for instance.
+ The first section is the name, followed by a colon and then next comes
+ the type.
+\end_layout
+
+\begin_layout Standard
+Several things should be noted when entering a part.
+ The first is that the colon is very important as it separates the name
+ and type.
+ Also, the name can be empty but the type cannot.
+ Finally, note that it is not necessary to press
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+to select the type - Evolve will find the existing component with the entered
+ type name.
+\end_layout
+
+\begin_layout Standard
+To create the connectors, press
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+over the start port, select 
+\begin_inset Quotes eld
+\end_inset
+
+Connector
+\begin_inset Quotes erd
+\end_inset
+
+ and then click on the end port.
+\end_layout
+
+\begin_layout Standard
+It is never necessary to specify the required and provided interfaces of
+ ports on a composite.
+ These are determined automatically by a powerful inference algorithm that
+ takes into account the internal connections in the component.
+ It also understands interface inheritance.
+ Inferred interfaces have a dotted line around them.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+If you want to hide connectors to a port, middle click on that port.
+ Middle click again to re-show the connectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
 \end_layout
 
 \end_inset
@@ -1061,7 +1416,7 @@ purchased
 \family typewriter
 java.util.Date(int, int, int)
 \family default
- constructor is called.
+ will be called at runtime.
  Other possible literals are 
 \family typewriter
 default
@@ -1116,9 +1471,9 @@ cars
 \end_layout
 
 \begin_layout Standard
-When using integers, the actual integer index will be used when creating
- the connection.
- On the other hand, alphabetical indices are just used to order the connections.
+When using integers, the actual integer index will be used to make the connectio
+n.
+ On the other hand, alphabetical indices just order the connections.
  Alphabetical indices are preferred over integers, as this allows a resembling
  or evolving definition to always insert an index in between existing indices
 \begin_inset Foot
@@ -1167,7 +1522,7 @@ fidea{
 \begin_layout Standard
 If no index is provided, connections happen in any order.
  It is possible to force the use of indices by marking a port as ordered
- through the browser.
+ through the subject browser.
 \begin_inset ERT
 status collapsed
 
@@ -1520,7 +1875,11 @@ reference "sec:Setting-Up-The"
 
 \end_inset
 
-, we defined the variable CARS to point to the tutorial directory.
+, we defined the variable 
+\family typewriter
+CARS
+\family default
+ to point to the tutorial directory.
 \end_layout
 
 \begin_layout Itemize
@@ -1636,7 +1995,7 @@ menu{
 
 \end_inset
 
-Checking
+Backbone
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
@@ -1653,6 +2012,8 @@ status collapsed
 
 .
  This only needs to be done once.
+ It simply indicates which stratum will be used for running or generation
+ from now on.
 \end_layout
 
 \begin_layout Standard
@@ -1697,7 +2058,7 @@ menu{
 
 \end_inset
 
-Checking
+Backbone
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
@@ -1854,8 +2215,17 @@ stratum base
 \begin_layout Standard
 The connection between the graphical component views and the generated Backbone
  code should be fairly clear.
- Note that in general Backbone identifies elements according to UUID, using
- element names solely to help with human readability.
+ Note that in general Backbone identifies elements according to their UUID
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+A globally unique identifier assigned when the element is created.
+\end_layout
+
+\end_inset
+
+, using element names solely to help with human readability.
  When listing Backbone code in Evolve, the names are put in where possible.
  Where they are missing, the UUID is shown.
  In the files generated to 
@@ -2057,6 +2427,67 @@ status collapsed
 \begin_layout Standard
 Note that Java interfaces are generated with an almost identical marker-based
  approach.
+\end_layout
+
+\begin_layout Subsubsection
+A Recap of Evolve Implementation Class Generation
+\end_layout
+
+\begin_layout Standard
+Let's quickly recap the code generation side of Evolve.
+ We define leaf components which are associated with Java classes.
+ Evolve can generate a skeleton for each leaf class, automatically creating
+ the getters and setters to represent the leaf.
+ You can then add methods and fields to the class using an IDE, as long
+ as you write your additions outside of the code generation markers.
+ If you do this, Evolve will preserve your code changes when you regenerate
+ allowing you to move between Evolve and the IDE at will.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+For those familiar with dependency injection, note that Evolve uses setter
+ injection exclusively.
+ It does not use constructor injection, as this prevents situations like
+ those shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-wordprocessor-composite"
+
+\end_inset
+
+ where the two parts refer to each other.
+ Setter injection is more general, and places no restrictions on the type
+ of complex connections that are often made in advanced component models.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -2392,10 +2823,6 @@ status collapsed
 \end_inset
 
 or invoke the
-\begin_inset Newline newline
-\end_inset
-
-
 \begin_inset ERT
 status collapsed
 
@@ -2457,12 +2884,8 @@ fhighlight{
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
-All features are available in this mode, including the resemblance and evolution
- constructs, state machines, factories, hyperports and others.
+All features are available in this mode, including the advanced features
+ and techniques discussed in later chapters.
 \begin_inset ERT
 status collapsed
 
@@ -2496,8 +2919,8 @@ Importing Beans and Refreshing Leaves from Code
 \end_layout
 
 \begin_layout Standard
-Evolve contains a Bean Importer, which can process existing class and jar
- files and import them into Evolve as leaf components.
+Evolve contains a bean importer, which can process existing class and jar
+ files and import them as leaf components.
  This can be used to import JavaBean libraries
 \begin_inset Foot
 status collapsed
@@ -2532,11 +2955,7 @@ The importer uses the
 bb-classpath
 \family default
  setting on the stratum to know which files to process.
- Let's start it up now and look at how it works.
-\end_layout
-
-\begin_layout Standard
-To start the importer, choose the
+ To start the importer, choose the
 \begin_inset ERT
 status collapsed
 
@@ -2709,8 +3128,9 @@ The importer showing the Evolve representation of a bean
 
 \begin_layout Standard
 After importing the beans, the model is updated.
- Note that if you import a bean library, then the definitions will go into
- the model, but will not be visible on a diagram until they are added.
+ Note that if you import a bean library, then the subject definitions will
+ go into the model, but will not be visible on a diagram until they are
+ explicitly added.
  You must add a new component to a diagram and then use the
 \begin_inset ERT
 status collapsed
@@ -2769,11 +3189,11 @@ Summary
 \end_layout
 
 \begin_layout Standard
-We've covered a lot in this section- you now know how to create leaves and
- composites, and how to reuse existing bean libraries.
- In the next chapter, we will show how to reuse and evolve components, allowing
- us to quickly customize and build on an existing application without destroying
- its original definition.
+We've covered a lot in this section - you now know how to create leaves
+ and composites, and how to import and reuse existing bean libraries.
+ In the next chapter, we will show how to resemble and evolve components,
+ allowing us to quickly customize and build on an existing application without
+ destroying its original definition.
 \end_layout
 
 \end_body

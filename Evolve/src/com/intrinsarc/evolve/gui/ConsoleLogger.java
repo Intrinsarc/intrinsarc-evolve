@@ -123,4 +123,15 @@ public class ConsoleLogger
 		if (logFile != null)
 			logFile.delete();
 	}
+
+	public void flush()
+	{
+		try
+		{
+			logger.flush();
+		}
+		catch (IOException e)
+		{
+		}
+	}
 }

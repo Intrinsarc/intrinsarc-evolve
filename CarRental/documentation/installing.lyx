@@ -126,6 +126,12 @@ Installing Evolve
 \end_layout
 
 \begin_layout Standard
+Evolve is written in Java.
+ You must have Java1.5+ installed already.
+ Java1.6+ is preferred.
+\end_layout
+
+\begin_layout Standard
 Download Evolve from
 \end_layout
 
@@ -181,20 +187,14 @@ The top level files in the Evolve distribution
 \end_layout
 
 \begin_layout Standard
-Evolve is written in Java.
- You must have Java1.5+ installed already.
- Java1.6+ is preferred.
-\end_layout
-
-\begin_layout Standard
 There are several ways to run Evolve.
  If you are using Windows, you can double-click 
 \family typewriter
 evolve.exe
 \family default
- or drag the shortcut to the desktop and double-click that.
- If you are using Linux or MacOSX, then you may be able to double-click
- the executable 
+ or create a shortcut, drag it to the desktop, and double-click that.
+ If you are using Linux or MacOS, then you may be able to double-click the
+ executable 
 \family typewriter
 evolve.jar
 \family default
@@ -209,6 +209,8 @@ java -jar evolve.jar
 
 \begin_layout Standard
 Upon running Evolve, you should see a screen like the following.
+ The startup diagram shows a stratum containing the Backbone definitions.
+ Every model builds on this.
 \end_layout
 
 \begin_layout Standard
@@ -314,9 +316,18 @@ reference "fig:Evolve-environment-variables"
 \end_inset
 
 .
- The EVOLVE variable will already be automatically set to the directory
- that you ran Evolve from.
+ The 
+\family typewriter
+EVOLVE
+\family default
+ variable will already be automatically set to the directory that you ran
+ Evolve from.
  This is overwritten each time you run Evolve.
+ The 
+\family typewriter
+MODEL
+\family default
+ variable is automatically set to the directory of the model currently loaded.
 \end_layout
 
 \begin_layout Standard
@@ -331,7 +342,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/start-variables.png
-	scale 60
+	scale 55
 
 \end_inset
 
@@ -366,7 +377,7 @@ Evolve environment variables
 \end_layout
 
 \begin_layout Standard
-We need to add a variable 
+We first need to add a variable 
 \family typewriter
 BB
 \family default
@@ -418,7 +429,11 @@ CARS
 \family typewriter
 EVOLVE
 \family default
- variable.
+ or 
+\family typewriter
+MODEL
+\family default
+ variables.
  I use the following settings, as per figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -427,22 +442,6 @@ reference "fig:Setting-up-the"
 \end_inset
 
 .
-\end_layout
-
-\begin_layout Standard
-Don't worry about setting up the 
-\family typewriter
-CARSGUI
-\family default
- variable just yet.
- This is used for the GWT/Hibernate tutorial in chapter 
-\begin_inset CommandInset ref
-LatexCommand ref
-reference "cha:Tutorial-D:-The"
-
-\end_inset
-
-, and separate configuration instructions are included there.
 \end_layout
 
 \begin_layout Standard
@@ -457,7 +456,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/bb-variable.png
-	scale 60
+	scale 55
 
 \end_inset
 
@@ -501,7 +500,15 @@ Java command
 \begin_inset Quotes erd
 \end_inset
 
- describes the command to run Java.
+ describes the command to run Java by clicking 
+\begin_inset Quotes eld
+\end_inset
+
+Test
+\begin_inset Quotes erd
+\end_inset
+
+.
  If not, amend it to point to the correct binary.
 \end_layout
 
@@ -971,6 +978,17 @@ status collapsed
 \end_layout
 
 \begin_layout Subsubsection*
+The Size of a Diagram
+\end_layout
+
+\begin_layout Standard
+You will notice that a diagram often does not have scroll bars.
+ These are hidden until required to save diagram real estate.
+ To enlarge the diagram simply drag a figure to the edge of the diagram
+ - the diagram will enlarge and the scroll bars will appear.
+\end_layout
+
+\begin_layout Subsubsection*
 Keys
 \end_layout
 
@@ -1318,7 +1336,7 @@ status collapsed
 
 to point this to the root Evolve installation directory.
  The project should now compile correctly.
- For reference, our classpath variables in Eclipse are shown in figure 
+ For reference, our Eclipse classpath variables are shown in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:Eclipse-classpath-variables"
@@ -1592,9 +1610,9 @@ Multiple views of the same component subject
 \end_layout
 
 \begin_layout Standard
-Diagrams allows us to look at the views.
+Diagrams allow us to see graphical views of subjects.
  To look at the subjects directly, however, we instead use the subject browser.
- To invoke this, select an item on the screen and select
+ Select an item on the screen and invoke
 \begin_inset ERT
 status collapsed
 
@@ -1631,7 +1649,7 @@ reference "fig:Looking-at-the"
 \end_inset
 
 .
- The top left tree shows the strata of the model the bottom left tree shows
+ The top left tree shows the strata of the model, the bottom left tree shows
  the elements in the currently selected strata, and the right hand pane
  shows the details of the selected element.
 \end_layout

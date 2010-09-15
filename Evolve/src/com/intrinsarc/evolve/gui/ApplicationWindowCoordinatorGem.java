@@ -104,7 +104,7 @@ public class ApplicationWindowCoordinatorGem
 			for (ApplicationWindow window : new HashSet<ApplicationWindow>(windows))
 				window.close();
 			if (logger != null)
-				logger.close();
+				logger.flush();
 			System.exit(0);
 		}
 

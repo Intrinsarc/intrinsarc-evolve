@@ -1,4 +1,4 @@
-#LyX 1.6.4 created this file. For more info see http://www.lyx.org/
+#LyX 1.6.6.1 created this file. For more info see http://www.lyx.org/
 \lyxformat 345
 \begin_document
 \begin_header
@@ -121,6 +121,7 @@ figs-within-sections
 \begin_inset Graphics
 	filename screenshots/evolve-front.png
 	lyxscale 15
+	scale 150
 	rotateOrigin leftTop
 
 \end_inset
@@ -205,7 +206,7 @@ Creating, Reusing and Executing Components in Evolve
 \end_layout
 
 \begin_layout Date
-18
+15
 \begin_inset Formula $^{\text{th}}$
 \end_inset
 
@@ -289,19 +290,31 @@ What is Evolve?
 \end_layout
 
 \begin_layout Standard
-Evolve is an environment and toolset for defining components and connecting
- them together to form new components.
- It also provides a runtime engine to execute these components.
+Evolve is a tool for defining components and connecting them together to
+ form new components.
+ It also provides a runtime engine to execute these configurations.
  In other words, you use it to create applications out of plain vanilla
  classes, using an interface-centric approach.
 \end_layout
 
 \begin_layout Standard
 You may be wondering: how does this differ from Spring, Guice, Unity or
- any other run-of-the-mill Dependency Injection approach? The simple answer
- is that Evolve is based on a remarkable hierarchical component technology
- derived from over 20 years of advanced research, that other approaches
- can only clumsily approximate.
+ any other 
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+mbox{run-of-the-mill}
+\end_layout
+
+\end_inset
+
+ dependency injection approach? The simple answer is that Evolve is based
+ on a remarkable hierarchical component approach derived from over 20 years
+ of advanced research, that other approaches can only clumsily approximate.
  This is basically an 
 \begin_inset Quotes eld
 \end_inset
@@ -319,9 +332,8 @@ electronic circuit board and chip
 \end_layout
 
 \begin_layout Standard
-The benefit of all this is that it allows you to create robust, elegant
- and principled systems, with a direct and powerful link between architecture
- and implementation.
+In short, Evolve allows you to create principled and elegant systems that
+ have a direct and powerful link between architecture and implementation.
  The systems you create using Evolve are naturally extensible and can be
  easily adapted for new requirements.
 \end_layout

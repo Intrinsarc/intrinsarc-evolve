@@ -134,7 +134,7 @@ hyperports
 \family typewriter
 states
 \family default
- strata.
+ strata in the tutorial model.
 \end_layout
 
 \begin_layout Standard
@@ -286,10 +286,10 @@ Factory
 \begin_layout Standard
 A factory is a composite component, with a 
 \family typewriter
-create
+creator
 \family default
  port automatically added.
- The create port provides the 
+ This port provides the 
 \family typewriter
 ICreate
 \family default
@@ -364,7 +364,7 @@ name "sub:Using-the-Create"
 
 \end_inset
 
-Using the Create Port
+Using the Creator Port
 \end_layout
 
 \begin_layout Standard
@@ -425,7 +425,7 @@ name "fig:A-runner-component"
 
 \end_inset
 
-A runner component which can use the create factory port
+A runner component which can use the creator factory port
 \end_layout
 
 \end_inset
@@ -649,9 +649,21 @@ same shape
 Isomorphic factories makes working with dynamic structures easy, but crucially
  also allow a designer to see the full connections that can be made at runtime
  by looking at static diagrams of the model.
- Architecture Description Languages have this as a primary concern - the
- ability to fully describe all of the possible connections between dynamically
- created components from a static description.
+ Component languages
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+These languages are known as Architecture Description Languages (ADLs) in
+ research and academia.
+ They deal with defining the structure of a system as interconnected components.
+\end_layout
+
+\end_inset
+
+ have this as a primary concern - the ability to fully describe all of the
+ possible connections between dynamically created components from a static
+ description.
  Although this removes some of the flexibility of being able to create object
  structures in an ad-hoc fashion, we gain a large advantage in that we can
  now analyze the entire system and know all of the runtime possibilities.
@@ -873,8 +885,11 @@ Creator
 \end_layout
 
 \begin_layout Standard
-This part is connected up to the create port of the factory, before being
- 
+This part is connected up to the 
+\family typewriter
+creator
+\family default
+ port of the factory, before being 
 \begin_inset Quotes eld
 \end_inset
 
@@ -898,7 +913,7 @@ FactoryBase
 \family default
 , and the 
 \family typewriter
-create
+creator
 \family default
  port is inherited from this.
 \end_layout
@@ -946,8 +961,15 @@ Connecting Through a Hierarchy
 \end_layout
 
 \begin_layout Standard
-Suppose that we wanted to amend our factory example, so that we printed
- out a warning to a printer every time the purchased field of 
+Suppose that we wanted to amend the factory example of figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-FactoryExample-composite"
+
+\end_inset
+
+, so that we printed out a warning to a printer every time the purchased
+ field of 
 \family typewriter
 RentalCarDetails
 \family default
@@ -1465,9 +1487,10 @@ fidea{
 \end_layout
 
 \begin_layout Standard
-A hyperport must allow many connections.
- A port with just provided interfaces is suitable, as is an indexed hyperport
- with some required interfaces.
+A hyperport has to allow many connections, as it may be connected to many
+ other ports.
+ A hyperport with just provided interfaces is suitable, as is an indexed
+ hyperport with some required interfaces.
 \begin_inset ERT
 status collapsed
 
@@ -1503,9 +1526,10 @@ Aspects were invented to allow cross-cutting behavior to be added to a program
 \end_layout
 
 \begin_layout Standard
-Evolution can achieve many of the same effects of aspects without the disadvanta
-ges.
- By using evolution instead we find that:
+Evolution can achieve many of the same effects of aspects, and much more,
+ without the disadvantages.
+ By using evolution to make changes to a system instead of aspects we find
+ that:
 \end_layout
 
 \begin_layout Itemize
@@ -1653,7 +1677,7 @@ State Machines
 State machines are a technique for describing how a system's state undergoes
  transitions in response to events.
  They are useful precisely because they force the programmer to be explicit
- about what events are handled and what these will do to the system.
+ about which events are handled and what these will do to the system.
 \end_layout
 
 \begin_layout Standard
@@ -2381,7 +2405,7 @@ reference "fig:An-empty-leaf"
 \end_inset
 
 .
- It automatically inherits the 
+ It inherits the 
 \family typewriter
 events
 \family default
@@ -2397,7 +2421,7 @@ out
 \family typewriter
 State
 \family default
- component it resembles.
+ component it automatically resembles.
 \end_layout
 
 \begin_layout Standard
@@ -2784,73 +2808,34 @@ Implementing the Leaf States
 \end_layout
 
 \begin_layout Standard
-The Java implementation of each leaf state must follow a protocol to work
- correctly.
- The class itself must implement the 
-\family typewriter
-IEvent
-\family default
- method 
-\family typewriter
-isCurrent()
-\family default
-, and the 
-\family typewriter
-ITransition
-\family default
- method 
-\family typewriter
-enter()
-\family default
-.
- Look at 
+The Java implementation of each leaf state must follow a simple protocol
+ to work correctly - look at 
 \family typewriter
 Available.java
 \family default
  for a guide.
- The relevant methods from this class are below:
-\end_layout
-
-\begin_layout LyX-Code
-private boolean current;
-\end_layout
-
-\begin_layout LyX-Code
-public boolean isCurrent() { return current; }
-\end_layout
-
-\begin_layout LyX-Code
-
-\end_layout
-
-\begin_layout LyX-Code
-private class ITransitionInImpl implements ITransition {
-\end_layout
-
-\begin_layout LyX-Code
-  public boolean enter() { current = true; return current; }
-\end_layout
-
-\begin_layout LyX-Code
-}
+ Note that nearly all of the logic is already inherited from the 
+\family typewriter
+State
+\family default
+ superclass, including the implementation of the 
+\family typewriter
+in
+\family default
+ port.
 \end_layout
 
 \begin_layout Standard
-When a state wants to transition to another, it calls the 
+When a state wants to transition to another state, it calls the 
 \family typewriter
 enter()
 \family default
- method on the next state via an 
+ method on the next state via the 
 \family typewriter
 out
 \family default
  port and then tests the return value to decide if the transition has been
  successful.
- To automatically accept the transition, set 
-\family typewriter
-current
-\family default
- to true as per the listing above.
  When the machine starts, the start state will call 
 \family typewriter
 enter()
@@ -2860,11 +2845,6 @@ enter()
 Available
 \family default
  part which will make that the current state.
- 
-\family typewriter
-isCurrent()
-\family default
- should just return whether or not the state is current.
 \end_layout
 
 \begin_layout Standard
@@ -2910,6 +2890,16 @@ Rented
 Available
 \family default
  state will then cease to be current.
+\end_layout
+
+\begin_layout Standard
+If you want to change the inherited implementation of the 
+\family typewriter
+in
+\family default
+ port, which by default accepts any transition, replace it and call it a
+ different name.
+ This allows transition acceptance logic to be customized for the state.
 \end_layout
 
 \begin_layout Subsubsection

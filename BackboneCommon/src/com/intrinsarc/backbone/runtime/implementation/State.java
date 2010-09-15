@@ -27,4 +27,9 @@ public abstract class State
 			return current;
 		}
 	}
+	
+	public boolean isCurrent()
+	{
+		return current;
+	}
 }

@@ -8,11 +8,6 @@ public class Available
 {
 // end generated code
 
-	public boolean isCurrent()
-	{
-		return current;
-	}
-
 	public boolean isRented()
 	{
 		return false;

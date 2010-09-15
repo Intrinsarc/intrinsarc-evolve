@@ -136,28 +136,44 @@ As an introduction to Evolve, this document is not the right place to dive
 \end_layout
 
 \begin_layout Standard
-I will occasionally refer to the greater detail in my PhD thesis.
- The title is 
-\begin_inset Quotes eld
-\end_inset
+The Evolve approach and these techniques are described in great detail in
+ my PhD thesis.
+ My work builds on the influential Darwin model, augmenting it to allow
+ the construction of highly extensible applications.
+ In this chapter I will occasionally refer to this thesis.
+\end_layout
 
-A Rigourous, Architectural Approach to Extensible Applications
-\begin_inset Quotes erd
-\end_inset
-
-.
- It explains the Evolve/Backbone approach in some detail, and includes a
- formal logic specification of the underlying component model.
+\begin_layout Standard
+Also described in the thesis is a formal logic specification of the underlying
+ component approach.
+ This states precisely how the resemblance and evolution constructs operate.
  The Backbone interpreter is a refinement of this specification.
 \end_layout
 
 \begin_layout Standard
-The thesis can be downloaded at the following location.
+The thesis is titled 
+\begin_inset Quotes eld
+\end_inset
+
+A Rigorous, Architectural Approach to Extensible Applications
+\begin_inset Quotes erd
+\end_inset
+
+.
+ It can be downloaded at the following location.
  
 \end_layout
 
 \begin_layout LyX-Code
 http://intrinsarc.com/research
+\end_layout
+
+\begin_layout Standard
+(As an aside, my research work commenced after I had accumulated nearly
+ 20 years of industrial software engineering experience in the financial,
+ telecommunications and broadcasting domains.
+ What I guess I'm trying to say is that the work describes a highly pragmatic
+ marriage of the best parts of the industrial and scientific approaches).
 \end_layout
 
 \begin_layout Section
@@ -167,7 +183,7 @@ Highly Extensible Systems
 \begin_layout Standard
 I have researched hierarchical component models and their applicability
  to highly extensible systems in some depth.
- In fact, my entire thesis was on this subject.
+ In fact as you now know, my entire thesis was on this subject.
  Let me explain a bit about extensibility.
 \end_layout
 
@@ -178,9 +194,10 @@ An extensible system is one that can be changed to meet new requirements,
 \end_layout
 
 \begin_layout Standard
-The upshot is that a system created fully using Backbone components can
- always be extended to add new requirements, without destroying the original
- application, by utilizing resemblance and evolution.
+The upshot is that a system created fully using Backbone components has
+ an amazing property - they can always be extended to add new requirements,
+ without destroying the original application, by utilizing resemblance and
+ evolution.
  The original design can be amended using deltas, which are then applied
  to produce the customized system.
  A designer can easily produce and maintain many variants of an application
@@ -319,8 +336,9 @@ extension
 \end_layout
 
 \begin_layout Standard
-When bringing these strata into a single model, we can get conflicts due
- to overlapping evolutions of components in the common strata.
+When bringing these strata into a single model (effectively a merge), we
+ can get conflicts due to overlapping evolutions of components in the common
+ strata.
  This can be dealt with using a further stratum and subsequent evolution.
  In other words, the branches created by the extension strata can be merged
  using evolution without destroying the extension strata definitions.
@@ -373,6 +391,335 @@ In section 7.1.2 of the thesis I provide a critique of the Eclipse plugin
  Plugin architectures generally require far too much forethought in planning
  for extension, which Backbone avoids through the provision of the evolution
  construct.
+\end_layout
+
+\begin_layout Section
+The Interaction Between Resemblance and Evolution
+\end_layout
+
+\begin_layout Standard
+In section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Summary"
+
+\end_inset
+
+ I mentioned that resemblance and evolution interact.
+ This is described formally in section 4.2.3 of the thesis.
+ Thankfully, it is very intuitive so it can also be described easily here.
+\end_layout
+
+\begin_layout Standard
+Consider if we have the system shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Branched-evolution-and"
+
+\end_inset
+
+.
+ We have stratum 
+\family typewriter
+Z
+\family default
+ at the base, defining component 
+\family typewriter
+C
+\family default
+ which resembles 
+\family typewriter
+B
+\family default
+ which resembles 
+\family typewriter
+A
+\family default
+.
+ Strata 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+Y
+\family default
+ build on 
+\family typewriter
+Z
+\family default
+ and both evolve 
+\family typewriter
+B
+\family default
+.
+ Stratum 
+\family typewriter
+W
+\family default
+ depends on 
+\family typewriter
+Y
+\family default
+ and also evolves 
+\family typewriter
+B
+\family default
+.
+ Finally stratum 
+\family typewriter
+V
+\family default
+ depends on 
+\family typewriter
+X
+\family default
+ and 
+\family typewriter
+W
+\family default
+, but does not define an evolution.
+ You might have already noticed that this parallel evolution scenario is
+ really a bit like two branches in a version control system.
+ 
+\family typewriter
+V
+\family default
+ is like a merge of the branches which must rectify any conflicts.
+\end_layout
+
+\begin_layout Standard
+So, the question we really want answered is:
+\end_layout
+
+\begin_layout Quote
+
+\emph on
+\begin_inset Quotes eld
+\end_inset
+
+What does the resemblance graph look like from each stratum perspective?
+\begin_inset Quotes erd
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/expanded-resemblance.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Branched-evolution-and"
+
+\end_inset
+
+Branched evolution and a subsequent merge
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is a simple for the 
+\family typewriter
+Z
+\family default
+ perspective.
+ For any other perspective, we construct what is called an 
+\begin_inset Quotes eld
+\end_inset
+
+expanded resemblance
+\begin_inset Quotes erd
+\end_inset
+
+ graph.
+ This factors evolutions into the resemblance graph, allowing us to see
+ exactly how it interacts with resemblance.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-resemblance"
+
+\end_inset
+
+ shows the graph from these five perspectives.
+ You can see that an evolution is always inserted just after the component
+ it evolves.
+ For instance, from perspective 
+\family typewriter
+Y
+\family default
+, we have 
+\family typewriter
+C
+\family default
+ resembles 
+\family typewriter
+B'
+\family default
+ (from 
+\family typewriter
+Y
+\family default
+) which resembles 
+\family typewriter
+B
+\family default
+ which resembles 
+\family typewriter
+A
+\family default
+.
+ Stratum 
+\family typewriter
+W
+\family default
+ can already see 
+\family typewriter
+Y
+\family default
+'s evolution through its dependencies, so its evolution is inserted after
+ this.
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/resemblance-permutations.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-expanded-resemblance"
+
+\end_inset
+
+The expanded resemblance graph from each perspective
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+From the perspective of 
+\family typewriter
+V
+\family default
+, we see that the two stratum branches have resulted in C multiply resembling
+ the two divergent evolutions of 
+\family typewriter
+B
+\family default
+! In other words, 
+\family typewriter
+C
+\family default
+, from 
+\family typewriter
+V
+\family default
+'s perspective, resembles the merged result of the evolutions.
+\end_layout
+
+\begin_layout Standard
+Consider that the two branches may have made incompatible changes.
+ One side may have deleted a part that the other side depends on, for instance.
+ When these are merged together (in the same way that multiple resemblance
+ is handled normally), the end result can be in error.
+ The rule is that if a merge results in an error, a subsequent evolution
+ in the stratum causing the error is required to correct this.
+ This can always be achieved using the delete/add/replace deltas available
+ with evolution.
+ In our example, stratum 
+\family typewriter
+V
+\family default
+ merges the two branches, and would be the place where any errors would
+ need to be corrected.
+\end_layout
+
+\begin_layout Standard
+So, in summary, evolution and resemblance combine to form an expanded resemblanc
+e graph which can change from each perspective.
+ Evolution can result in fundamental changes to this graph, inserting definition
+s in between existing elements defined much lower down.
+ This is what gives evolution much of its power - the ability to affect
+ existing elements and customize their resemblance hierarchies.
+ Knowledge of the expanded resemblance graph concepts allows a designer
+ to effect profound changes to an application.
+\end_layout
+
+\begin_layout Standard
+In section 3.3 of the thesis, an example is presented that works through
+ the above rules.
+ It shows how deep changes to a model can result from evolutions, and how
+ merge conflicts can be corrected even when the errors are deep within a
+ compositional hierarchy.
 \end_layout
 
 \begin_layout Section
@@ -727,7 +1074,7 @@ This paper shows that there is a tension in aspects between the quantification
  code they will apply to.
  Have you ever wondered why most (all?) AOP examples add logging and transaction
 s to a system? Read this paper for insight as to why aspects tend not to
- address the business logic of a system.
+ address business logic.
 \end_layout
 
 \begin_layout Standard
@@ -773,8 +1120,7 @@ When I reengineered a legacy system, I came across one component with around
  30 parts (!) which was very difficult to work with graphically.
  It became apparent that sometimes hierarchy is not enough to fully control
  visual complexity.
- It is also sometimes necessary to be able to present and work on multiple
- 
+ It is also sometimes necessary to be able to work on multiple 
 \begin_inset Quotes eld
 \end_inset
 
@@ -782,7 +1128,7 @@ fixed
 \begin_inset Quotes erd
 \end_inset
 
- views of a single component where each view shows a subset of the insides.
+ views of a single component, where each view shows a subset of the insides.
  Visual locking provides this.
 \end_layout
 
@@ -832,8 +1178,8 @@ reference "fig:Two-visually-locked"
 
  contains two visually locked views of the same component showing different
  constituents.
- The ellipsis at the bottom corner of each indicates that there are more
- constituents that are not being shown.
+ The ellipsis at the bottom corner indicates that there are more constituents
+ that are not being shown.
 \end_layout
 
 \begin_layout Standard

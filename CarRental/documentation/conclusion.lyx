@@ -122,9 +122,9 @@ Product Roadmap and Further Reading
 \end_layout
 
 \begin_layout Standard
-In this brief chapter, I outline the Evolve roadmap we are planning for
+In this brief chapter, we outline the Evolve roadmap we are planning for
  the next year or so.
- I also present further reading for curious developers who want to know
+ We also present further reading for curious developers who want to know
  more about the background of hierarchical components and how they relate
  to dependency injection and other approaches.
 \end_layout
@@ -149,18 +149,7 @@ Support for Other Implementation Languages
 
 \begin_layout Standard
 We plan to support C# fully.
- We are also looking into the feasibility of providing C++ support
-\begin_inset Foot
-status collapsed
-
-\begin_layout Plain Layout
-We have also, rather curiously, found that Python and Ruby can be supported
- rather easily.
-\end_layout
-
-\end_inset
-
-.
+ We are also looking into the feasibility of providing C++ support.
 \end_layout
 
 \begin_layout Subsection
@@ -195,16 +184,19 @@ Protocol Analysis
 \end_layout
 
 \begin_layout Standard
-Work has started on adding protocol and behavioral analysis.
+Work has started on adding protocol and behavioral analysis to Evolve.
  A method-level sequence diagram (with UML2 operators) can be constructed
  for each port of a leaf, and high level goals can be defined.
  The analyzer can then determine if the goals can be achieved using the
  existing protocols.
+ The protocols of any composite component port are determined automatically.
 \end_layout
 
 \begin_layout Standard
-Protocol analysis can be used to automatically determine the protocols of
- any composite component port.
+This is useful because it allows you to see how your system will respond
+ to certain situations.
+ You can verify its behaviour by constructing inputs and looking at the
+ output sequence diagrams.
 \end_layout
 
 \begin_layout Subsection

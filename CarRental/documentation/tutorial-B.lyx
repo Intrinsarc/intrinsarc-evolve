@@ -145,7 +145,7 @@ When we modify inherited structure in this way, Evolve records deltas rather
  This is crucial, because it means that any later changes to resembled component
 s will flow through to the resembling or evolving component.
  This also allows us to use strata to represent branches of an application,
- and to use evolution to rectify any conflicts between them.
+ and to use evolution to merge and rectify any conflicts between them.
 \end_layout
 
 \begin_layout Standard
@@ -745,23 +745,21 @@ no-inheritance
 \end_layout
 
 \begin_layout Standard
-(We must also remember to replace the stereotype of the resembler if we
- wish to alter the inherited 
+(Note that if the component we are resembling has forced the implementation
+ class using the 
 \family typewriter
-implementation-class
+force-implementation
 \family default
- property.)
+ stereotype property, our new component will also have this as it will inherit
+ the stereotype.
+ If we wish to alter this we must replace the inherited stereotype in our
+ new component and alter the property setting).
 \end_layout
 
 \begin_layout Standard
 With a bit of care, a leaf can be defined using resemblance from a composite
  (if we delta delete all the parts and connectors) and a composite may be
- defined via resemblance from a leaf (if we add parts and connectors, and
- remove the inherited 
-\family typewriter
-implementation-class
-\family default
- property).
+ defined via resemblance from a leaf (if we add parts and connectors).
 \end_layout
 
 \begin_layout Subsection
@@ -780,7 +778,7 @@ Component Evolution
 \end_layout
 
 \begin_layout Standard
-We now show how to evolve a component.
+We now show how to evolve a component in order to change its definition.
  We evolve the 
 \family typewriter
 CarsExample
@@ -939,8 +937,8 @@ reference "fig:An-evolution-of"
 
 \end_inset
 
-, which demonstrates that the new part has been connected in between the
- existing ones, and that the replaced part details have taken effect.
+, which demonstrates that the new part has been connected between the existing
+ ones, and that the replaced part details have taken effect.
 \end_layout
 
 \begin_layout Standard
@@ -1017,6 +1015,8 @@ existing
  component.
  Evolution is resemblance and then a replacement of an old definition with
  the new definition.
+ As the deltas are kept separate from the original definition, the original
+ is not destroyed or modified directly.
 \end_layout
 
 \begin_layout Standard
@@ -1139,7 +1139,7 @@ name "fig:After-evolving-D"
 
 \end_inset
 
-After evolving D to D' composed of F and G
+After evolving D to D', now composed of F and G
 \end_layout
 
 \end_inset
@@ -1207,8 +1207,9 @@ When we evolve a component (or interface) we can also change its name if
 \end_layout
 
 \begin_layout Standard
-Recall that names do not control identity in Evolve, and they can be changed
- without affecting the system.
+Recall that names do not control identity in Evolve.
+ As such, unless a name relates directly to Java code in a leaf or inteface,
+ it can be changed without affecting the system.
 \end_layout
 
 \begin_layout Section
@@ -1475,8 +1476,8 @@ Relaxed and Strict Strata
 \end_layout
 
 \begin_layout Standard
-Elements can only refer to other elements in strata that their home depends
- upon.
+Elements can only refer to other elements in their home stratum, or in strata
+ that their home depends upon.
  The error checker will flag any violations to this rule.
 \end_layout
 
@@ -1589,6 +1590,67 @@ Strict and Relaxed strata are useful as they allow us to model architectural
  layers in a system.
  In layering, a decision is often made to restrict access to lower-down
  layers.
+ The equivalent layer diagram corresponding to figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:X-is-a"
+
+\end_inset
+
+ is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-layer-diagram"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename generated/layers.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-layer-diagram"
+
+\end_inset
+
+A equivalent layer diagram of the strata
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
 \end_layout
 
 \begin_layout Subsection
@@ -1882,7 +1944,7 @@ Destructive
 \end_inset
 
  option.
- In the example model the 
+ In our tutorial model, the 
 \family typewriter
 states
 \family default
@@ -1903,7 +1965,20 @@ Nested Strata and Packages
 
 \begin_layout Standard
 Strata can be nested.
- A nested stratum can access any strata that its parent depends on.
+ A nested stratum can access any strata that its parent depends on, and
+ a parent can reference any definitions in its child strata
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+These rules are different to UML1.3+.
+ We have carefully constructed Evolve's rules to fit into the extensibility
+ approach.
+\end_layout
+
+\end_inset
+
+.
  The visibility of nested packages can be controlled, allowing a stratum
  to act like a module.
  A full discussion of nested strata is beyond the scope of this document,
@@ -2085,6 +2160,12 @@ You may have guessed already - primitive types can be resembled and evolved.
 \end_layout
 
 \begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Summary"
+
+\end_inset
+
 Summary
 \end_layout
 
@@ -2109,6 +2190,20 @@ Neither resemblance nor evolution directly modify existing components.
  the component language, allowing strata to be used to represent branching
  and subsequent merging and conflict resolution.
  Conflicts are resolved using further strata to evolve and correct errors.
+\end_layout
+
+\begin_layout Standard
+Finally, it is worth noting that resemblance and evolution interact in a
+ very clever way to allow the resemblance structure of an existing system
+ to be remade in a new stratum.
+ This is explained further in chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "cha:Advanced-Modeling-in"
+
+\end_inset
+
+, where we give an overview of how this works.
 \end_layout
 
 \end_body
