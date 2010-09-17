@@ -340,7 +340,7 @@ public class ApplicationWindow extends SmartJFrame
 				});
 		browserGem.getRepositoryBrowserFacet().selectFirstElements();
 
-		browserFacet.setTreeDivider(height / 2);
+		browserFacet.setTreeDivider((int)(height * 0.4));
 		browserFacet.setDetailDivider((int)(width * .3));
 
 		browsers.add(browserFacet);

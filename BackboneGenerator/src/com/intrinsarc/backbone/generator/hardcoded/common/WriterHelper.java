@@ -188,7 +188,13 @@ public class WriterHelper
 	public static String extractFolder(PreferencesFacet prefs, DEStratum stratum, DEStratum start, int folderType, boolean[] direct, boolean dontAddStrataName) throws BackboneGenerationException
 	{
 		if (stratum == null)
-			throw new BackboneGenerationException("Problem finding " + new String[]{"Backbone", "Java", "classpath"}[folderType] + " base folder for " + start.getFullyQualifiedName(), start);
+		{
+			throw new BackboneGenerationException(
+					"Problem finding the " + new String[]{"bb-source-folder", "bb-java-folder", "bb-classpath"}[folderType] + " setting for stratum '" + start.getFullyQualifiedName() + "'." +
+					"\nThis controls where the " + new String[]{"Backbone files are written to", "Java code is written to", "compiled leaves are found"}[folderType] + "." +
+					"\nHave you set this property for the stratum?",
+					start);
+		}
 
 		// travel upwards, looking for the property
 		// if we get to the top, throw an exception

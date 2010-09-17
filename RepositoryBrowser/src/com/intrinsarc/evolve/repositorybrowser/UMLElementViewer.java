@@ -123,7 +123,7 @@ public class UMLElementViewer
       	boolean readOnly = false;
       	if (fName.equals("uuid") && !GlobalPreferences.preferences.getRawPreference(RepositoryBrowserGem.EDITABLE_UUIDS).asBoolean())
       		readOnly = true;
-      	if (documentation || element instanceof Package && fName.equals("name"))
+      	if (documentation || element instanceof Package && fName.equals("name") || fName.equals("body"))
       		return new UMLLongStringAttributeViewer(element, feature, listener, readOnly);
       	else
       		return new UMLStringAttributeViewer(element, feature, listener, readOnly);
