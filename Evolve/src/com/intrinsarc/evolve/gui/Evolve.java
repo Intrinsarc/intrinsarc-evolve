@@ -91,12 +91,16 @@ public class Evolve
     // complain if we don't have a least version of the runtime
     if (version.compareTo(BEST_VERSION) < 0)
     {
-	  	Object[] options = {"Run Evolve anyway",
-	  	                    "Quit"};
+	  	Object[] options = {"I understand, but run Evolve anyway",
+	  	                    "Quit - I will install Java 1.6"};
 	  	int n = JOptionPane.showOptionDialog(null,
 	  	    "You are using version " + version + " of the Java runtime." +
-	  	    "\nEvolve prefers at version " + BEST_VERSION + " or greater.\nIt functions correctly with this version, but the graphical performance is not optimal." +
-	  	    "\n\nYou might consider quitting and installing a newer version.",
+	  	    "\n\nAlthough the Backbone runtime, along with any code generated from Evolve, are compatible with Java 1.5+,\n" +
+	  	    "the Evolve tool itself prefers version " + BEST_VERSION + " or greater.\n\n" +
+	  	    "Evolve mostly works with your version, but the graphical performance is not optimal and there are small glitches.\n\n" +
+	  	    "You should consider quitting and installing a newer version. Alternatively, if you really cannot use " + BEST_VERSION +
+	  	    "\nplease contact me at info@intrinsarc.com and explain why.  With a bit of work, we can support " + LEAST_VERSION +
+	  	    "\ncompletely but would prefer not to if at all possible.\n\n",
 	  	    "Java version mismatch",
 	  	    JOptionPane.YES_NO_CANCEL_OPTION,
 	  	    JOptionPane.INFORMATION_MESSAGE,
@@ -104,7 +108,7 @@ public class Evolve
 	  	    options,
 	  	    options[1]);
 	
-	  	if (n == 1)
+	  	if (n != 0)
 	  		System.exit(0);
     }
     

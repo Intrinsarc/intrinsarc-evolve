@@ -17,7 +17,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
   private String text;
 
   // connectors
-  private IRentalServiceAsync c;
+  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c;
   private com.intrinsarc.backbone.runtime.api.ICreate c1;
   private com.google.gwt.user.client.ui.TextBox c2;
   private com.google.gwt.user.client.ui.Label c3;
@@ -53,6 +53,7 @@ public class CarRentalFormFactory implements IHardcodedFactory
     public void destroy(Object memento) { ((IHardcodedFactory) memento).destroy(); }
   };
   public com.google.gwt.user.client.ui.VerticalPanel getPanel_Provided() { return x2; }
+  public void setService(com.intrinsarc.carrentalgui.client.IRentalServiceAsync val) { x3.setRequired(val); }
 
   public CarRentalFormFactory() {}
 
@@ -156,7 +157,7 @@ class CarRentalWidgetFactory implements IHardcodedFactory
   private String text2;
 
   // connectors
-  private IRentalServiceAsync c11;
+  private com.intrinsarc.carrentalgui.client.IRentalServiceAsync c11;
   private com.google.gwt.user.client.ui.Label c12;
   private com.google.gwt.user.client.ui.Button c13;
   private com.google.gwt.user.client.ui.ChangeListener c14;

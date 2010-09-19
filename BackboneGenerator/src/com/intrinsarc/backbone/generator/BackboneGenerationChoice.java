@@ -111,6 +111,8 @@ public class BackboneGenerationChoice
       		"The stratum's " + CommonRepositoryFunctions.BACKBONE_RUN_COMPONENT + " property must be set to the name of the component you wish to run.", null);
     String port = StereotypeUtilities.extractStringProperty(singleStratum, CommonRepositoryFunctions.BACKBONE_RUN_PORT);
     if (port == null || port.length() == 0)
+    	port = "-none-";
+    if (port == null || port.length() == 0)
       throw new BackboneGenerationException(
       		"The stratum's " + CommonRepositoryFunctions.BACKBONE_RUN_PORT + " property must be set to the name of the port you wish to run.", null);
     return new String[]{stratum, component, port};

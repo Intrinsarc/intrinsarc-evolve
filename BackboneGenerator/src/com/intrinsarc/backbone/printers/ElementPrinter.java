@@ -53,9 +53,19 @@ public class ElementPrinter
 					  (c.getComponentKind() == ComponentKindEnum.STEREOTYPE ? " is-stereotype" : "")));
 		}
 
-		String implClass = elem.getImplementationClass(null);
-		String impl = implClass != null ? " implementation-class " + implClass : "";
-		b.append(impl);
+		// only write out the implementation if it is needed
+		boolean needsImpl = false;
+		if (element.asComponent() != null && element.asComponent().isLeaf(perspective))
+			needsImpl = true;
+		if (element.asInterface() != null)
+			needsImpl = true;
+		if (needsImpl)
+		{
+			String implClass = elem.getImplementationClass(null);
+			String impl = implClass != null ? " implementation-class " + implClass : "";
+			b.append(impl);
+		}
+		
 		b.append("\n" + makeRString(indent, elem) + indent + "\t{\n");
 		
 		for (DeltaPair pair : elem.getDeltas(ConstituentTypeEnum.DELTA_APPLIED_STEREOTYPE).getReplaceObjects())

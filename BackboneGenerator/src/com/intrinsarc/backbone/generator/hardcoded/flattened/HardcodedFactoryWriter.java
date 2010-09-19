@@ -694,10 +694,12 @@ public class HardcodedFactoryWriter
 			for (BBSimpleInterface r : port.getRequires())
 			{
 				PortMethodHelper ph = new PortMethodHelper(registry.getPerspective(), port, r.getImplementationClassName());
+				PortMethodHelper pho = new PortMethodHelper(registry.getPerspective(), end.getPort(), r.getImplementationClassName());
 				ph.resolveSetMethodNames();
+				pho.resolveSetMethodNames();
 
 				c.write("  public void " + ph.getSetSingleName() + "(" + r.getImplementationClassName() + " val)");
-				c.write(" { " + partName + "." + ph.getSetSingleName() + "(val); }");
+				c.write(" { " + partName + "." + pho.getSetSingleName() + "(val); }");
 
 				c.newLine();
 			}

@@ -13,7 +13,10 @@ public class CarRentalGUI implements EntryPoint
 	 */
 	public void onModuleLoad()
 	{
-		CarRentalFormFactory form = new CarRentalFormFactory().initialize(null, null);
+		CarRentalFormFactory form = new CarRentalFormFactory();
+		form.setService((IRentalServiceAsync) GWT.create(IRentalService.class));
+		form.initialize(null, null);
+		
 		RootPanel.get("application").add(form.getPanel_Provided());
 	}
 }

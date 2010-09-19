@@ -17,9 +17,13 @@ public class BBSimpleInstantiatedFactory
 	private Map<BBSimplePart, Object> iparts = new HashMap<BBSimplePart, Object>();
 	private Map<CachedConnectorEnd, Map<BBSimpleInterface, Object>> cachedProvides = new HashMap<CachedConnectorEnd, Map<BBSimpleInterface,Object>>();
 	private ArrayList<BBSimpleInstantiatedFactory> children;
+	private DEStratum perspective;
 	
-	public BBSimpleInstantiatedFactory(BBSimpleInstantiatedFactory parent, BBSimpleFactory factory)
+	public BBSimpleInstantiatedFactory(DEStratum perspective, BBSimpleInstantiatedFactory parent, BBSimpleFactory factory)
 	{
+		this.perspective = perspective;
+		if (perspective == null && parent != null)
+			this.perspective = parent.perspective;
 		this.parent = parent;
 		if (parent != null)
 			parent.addChild(this);
@@ -38,7 +42,7 @@ public class BBSimpleInstantiatedFactory
 		children.remove(child);
 	}
 	
-	public void instantiate(Map<String, Object> suppliedParameters) throws BBRuntimeException
+	public void instantiate(Map<String, Object> suppliedParameters, IRuntimeCallback callback) throws BBRuntimeException
 	{
 		Set<String> setNames = suppliedParameters == null ? null : new HashSet<String>(suppliedParameters.keySet());
 		
@@ -78,6 +82,9 @@ public class BBSimpleInstantiatedFactory
 				s.setValue(obj, simple, part.getType());
 			}
 		}
+		
+		if (callback != null)
+		callback.beforeConnections(this);
 		
 		// connect up all the parts
 		// must connect this in a way which allows numbered indices first, on both sides
@@ -143,7 +150,42 @@ public class BBSimpleInstantiatedFactory
 		return factory.getFactory(factoryNumber);
 	}
 
-	public void runViaPort(DEStratum perspective, BBSimplePort provider, String[] args) throws BBRuntimeException, BBImplementationInstantiationException
+	public <T> boolean setRequiredPort(String portName, Class<T> requiredInterface, T provided) throws BBRuntimeException
+	{
+		// locate the connector that is connected to this port
+		for (BBSimpleConnector conn : factory.getConnectors())
+		{
+			for (int lp = 0; lp < 2; lp++)
+			{
+				BBSimpleConnectorEnd end = conn.makeSimpleConnectorEnd(lp);
+				if (end.getPart() == null && end.getPort().getRawName().equals(portName))
+				{
+					BBSimpleConnectorEnd other = conn.makeSimpleConnectorEnd(1 - lp);
+					BBSimplePart part = other.getPart();
+					Object object = iparts.get(part);
+					ReflectivePort field = null;
+					try
+					{
+						field = BBSimpleConnector.getPortField(
+							perspective, part.getType(), other.getPort(), requiredInterface, false);
+					}
+					catch (BBImplementationInstantiationException ex)
+					{
+						throw new BBRuntimeException("Instantiation problem finding interface " + requiredInterface + " on port " + portName, null, ex);						
+					}
+					if (field != null)
+					{
+						field.setSingle(object, provided);
+						return true;
+					}
+				}
+			}
+		}
+		// if we got here, we couldn't find the port
+		throw new BBRuntimeException("Problem finding interface " + requiredInterface + " on port " + portName, null);
+	}
+	
+	public void runViaPort(BBSimplePort provider, String[] args) throws BBRuntimeException, BBImplementationInstantiationException
 	{
 		// locate the connector that is connected to this port
 		for (BBSimpleConnector conn : factory.getConnectors())

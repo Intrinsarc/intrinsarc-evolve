@@ -196,7 +196,7 @@ public class BBSimpleComponent extends BBSimpleElement
 		return implementationClassName;
 	}
 
-	public BBSimpleInstantiatedFactory instantiate(BBSimpleElementRegistry registry) throws BBImplementationInstantiationException, BBRuntimeException
+	public BBSimpleInstantiatedFactory instantiate(BBSimpleElementRegistry registry, IRuntimeCallback callback) throws BBImplementationInstantiationException, BBRuntimeException
 	{
 		flatten(registry);
 
@@ -231,8 +231,8 @@ public class BBSimpleComponent extends BBSimpleElement
 			factory.resolveImplementation(registry);
 		
 		// instantiate the first factory, giving
-		BBSimpleInstantiatedFactory instance = new BBSimpleInstantiatedFactory(null, map.get(0));
-		instance.instantiate(null);
+		BBSimpleInstantiatedFactory instance = new BBSimpleInstantiatedFactory(registry.getPerspective(), null, map.get(0));
+		instance.instantiate(null, callback);
 		return instance;
 	}
 

@@ -22,10 +22,10 @@ public class Creator implements ICreate
 	
 	public Object create(Map<String, Object> values)
 	{
-		BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(context, context.getFactory(factoryNumber));
+		BBSimpleInstantiatedFactory me = new BBSimpleInstantiatedFactory(null, context, context.getFactory(factoryNumber));
 		try
 		{
-			me.instantiate(values);
+			me.instantiate(values, null);
 			lastMemento = me;
 			return me;
 		}

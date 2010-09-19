@@ -31,13 +31,15 @@ public class PreferenceTypeExecutable implements PreferenceType
   {
     return new PreferenceSlotEditor()
     {
-      private String oldValue = slot.getStringValue(registry, "");
+  		private String defaultValue = slot.getPreference().getDefaultValue();
+      private String oldValue = slot.getStringValue(registry, defaultValue);
       private String newValue = oldValue;
-  
+      private JTextField field; 
+
       {
         // add the line containing the set value
         JButton file = new JButton("File...");
-        final JTextField field = new JTextField(newValue);
+        field = new JTextField(newValue);
         field.setPreferredSize(new Dimension(10, file.getPreferredSize().height));
         field.addKeyListener(new KeyAdapter()
         {
@@ -91,6 +93,8 @@ public class PreferenceTypeExecutable implements PreferenceType
   
       public void apply()
       {
+    		if (newValue.equals(defaultValue))
+        	newValue = null;
         if (newValue != null && !newValue.equals(oldValue))
           slot.setStringValue(registry, newValue);
       }
@@ -104,7 +108,7 @@ public class PreferenceTypeExecutable implements PreferenceType
         return newValue;
       }
 
-			public Class getType()
+			public Class<?> getType()
 			{
 				return PreferenceTypeFile.class;
 			}      
@@ -135,22 +139,5 @@ public class PreferenceTypeExecutable implements PreferenceType
     };
     thread.start();
     return thread;
-  }
-
-  private void createEndProcessChecker(final Process proc)
-  {
-    new Thread()
-    {
-      public void run()
-      {
-        try
-        {
-          proc.waitFor();
-        }
-        catch (InterruptedException e)
-        {
-        }
-      }
-    }.start();
   }
 }

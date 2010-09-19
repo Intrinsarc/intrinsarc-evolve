@@ -32,7 +32,6 @@ public class BackboneInterpreter
 
 	private static void run(String[] args)
 	{
-		boolean displayTreeOnly = false;
 		boolean nocheck = args[0].equals("-nocheck");
 		int offset = nocheck ? 1 : 0;
 		String loadListFile = args[0 + offset];
@@ -43,7 +42,19 @@ public class BackboneInterpreter
 		if (port.equals("-none-"))
 			port = null;
 		args = truncateInterpreterArgs(args, offset);
-		
+		new BackboneInterpreter().runBackbone(loadListFile, stratum, component, port, nocheck, args, null);		
+	}
+
+	public void runBackbone(
+			String loadListFile,
+			String stratum,
+			String component,
+			String port,
+			boolean noCheck,
+			String[] args,
+			IRuntimeCallback beforeConnections)
+	{
+		boolean displayTreeOnly = false;
 		String tab = ARROW + "  ";
 		System.out.println(tab + "loading system from " + loadListFile);
 		
@@ -54,7 +65,7 @@ public class BackboneInterpreter
 			BBStratum root = GlobalNodeRegistry.registry.getRoot();
 
 			// perform the error check
-			if (nocheck)
+			if (noCheck)
 				System.out.println("Skipping checking phase");
 			else
 			{
@@ -114,7 +125,6 @@ public class BackboneInterpreter
 					if (p.getRequires().size() != 0 && p.getLowerBound() != 0)
 						throw new BBImplementationInstantiationException("Top component must not have mandatory required ports", top);
 
-			
 			BBSimplePort provider = null;
 			if (port != null && top.getPorts() != null)
 				for (BBSimplePort p : top.getPorts())
@@ -134,9 +144,9 @@ public class BackboneInterpreter
 				if (port != null)
 					throw new BBImplementationInstantiationException("Cannot locate port " + port, top);
 
-			BBSimpleInstantiatedFactory instance = top.instantiate(registry);
+			BBSimpleInstantiatedFactory instance = top.instantiate(registry, beforeConnections);
 			if (provider != null)
-				instance.runViaPort(registry.getPerspective(), provider, args);
+				instance.runViaPort(provider, args);
 		}
 		catch (BBNodeNotFoundException e)
 		{
@@ -218,17 +228,6 @@ public class BackboneInterpreter
 		return system;
 	}
 	
-	private static DEPort findNamedPort(String fullName, DEStratum perspective, DEComponent runComponent, String portName) throws BBBadRunPointException
-	{
-		Set<DeltaPair> pairs = runComponent.getDeltas(ConstituentTypeEnum.DELTA_PORT).getConstituents(perspective);
-		for (DeltaPair pair : pairs)
-		{
-			if (pair.getConstituent().getName().equals(portName))
-				return pair.getConstituent().asPort();
-		}
-		throw new BBBadRunPointException("Cannot find port: " + portName);
-	}
-
 	private static DEComponent findNamedComponent(String fullName, DEStratum runStratum, String componentName) throws BBBadRunPointException
 	{
 		for (DEElement elem : runStratum.getChildElements())

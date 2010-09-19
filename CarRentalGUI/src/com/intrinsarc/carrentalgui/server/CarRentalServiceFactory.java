@@ -13,7 +13,7 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   private com.intrinsarc.backbone.runtime.api.ICreate c;
 
  // parts
-  private com.intrinsarc.carrentalgui.server.HibernateRentalServiceLogic x1 = new com.intrinsarc.carrentalgui.server.HibernateRentalServiceLogic();
+  private com.intrinsarc.carrentalgui.server.RentalServiceLogic x1 = new com.intrinsarc.carrentalgui.server.RentalServiceLogic();
   private ICreate factory = new ICreate() {
     public Object create(java.util.Map<String, Object> values) {
       RentalCarFactory f = new RentalCarFactory();
@@ -34,7 +34,6 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   {
     c = factory;
     x1.setCreate(c);
-    x1.afterInit();
     return this;
   }
   public void childDestroyed(IHardcodedFactory child) { children.remove(child); }
@@ -42,7 +41,6 @@ public class CarRentalServiceFactory implements IHardcodedFactory
   public void destroy()
   {
     destroyChildren(null, this, children);
-    x1.beforeDelete();
     x1.setCreate(null);
   }
 
