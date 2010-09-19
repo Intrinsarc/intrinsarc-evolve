@@ -126,9 +126,13 @@ Installing Evolve
 \end_layout
 
 \begin_layout Standard
-Evolve is written in Java.
- You must have Java1.5+ installed already.
- Java1.6+ is preferred.
+Evolve is written in Java and runs on any system with Java 1.6.
+\end_layout
+
+\begin_layout Standard
+Note that although 1.6 is required to run the graphical part of Evolve, the
+ Backbone runtime engine and any Java code generated from Evolve are compatible
+ with Java 1.5+.
 \end_layout
 
 \begin_layout Standard
@@ -199,12 +203,20 @@ evolve.exe
 evolve.jar
 \family default
  file.
- If all else fails, or you wish to run Evolve from the command line, change
+ Alternatively, if you wish to run Evolve from the command line, change
  to the install directory and type the following.
 \end_layout
 
 \begin_layout LyX-Code
 java -jar evolve.jar
+\end_layout
+
+\begin_layout Standard
+If you want to increase the memory available, pass it in as a JVM parameter.
+\end_layout
+
+\begin_layout LyX-Code
+java -Xmx265m -jar evolve.jar
 \end_layout
 
 \begin_layout Standard
@@ -249,6 +261,51 @@ Evolve on startup
 
 \end_layout
 
+\begin_layout Standard
+You may like to change the Swing look and feel used for Evolve.
+ To do this, invoke the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+File
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Preferences
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Edit Environment Preferences
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+menu item to bring up the preferences dialog, and change to the 
+\begin_inset Quotes eld
+\end_inset
+
+Appearance
+\begin_inset Quotes erd
+\end_inset
+
+ tab.
+\end_layout
+
 \begin_layout Section
 \begin_inset CommandInset label
 LatexCommand label
@@ -285,7 +342,7 @@ Preferences
 
 Edit Environment Preferences
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
@@ -342,7 +399,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/start-variables.png
-	scale 55
+	scale 50
 
 \end_inset
 
@@ -456,7 +513,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/bb-variable.png
-	scale 55
+	scale 50
 
 \end_inset
 

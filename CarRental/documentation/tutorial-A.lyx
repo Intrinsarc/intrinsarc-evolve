@@ -2758,6 +2758,118 @@ system.loadlist
 \end_layout
 
 \begin_layout Subsection
+Calling the Backbone Interpreter from a Program
+\end_layout
+
+\begin_layout Standard
+Alternatively, if you wish to call the Backbone interpreter from your program,
+ instantiate the interpreter class and call the 
+\family typewriter
+runBackbone()
+\family default
+ method.
+ Note that you must reference the 
+\family typewriter
+backbone.jar
+\family default
+ library.
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+BackboneInterpreter interp = new BackboneInterpreter();
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+interp.runBackbone(
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+  loadListFile, stratum, component,
+\end_layout
+
+\begin_layout LyX-Code
+
+\family typewriter
+  port, noCheck, args, beforeConnections);
+\end_layout
+
+\begin_layout Standard
+Change the parameters to be correct for the program you wish to execute.
+ The 
+\family typewriter
+noCheck
+\family default
+ parameter controls whether the Backbone model will be checked before execution
+ - set it to true if you do not want the check.
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+beforeConnections
+\family default
+ parameter must implement the 
+\family typewriter
+IRuntimeCallback
+\family default
+ interface.
+ If this parameter is not null, the runtime will call back on the 
+\family typewriter
+beforeConnections()
+\family default
+ method of the interface, after the parts have been created but before any
+ connections are made.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+The 
+\family typewriter
+beforeConnections
+\family default
+ callback can be used to set any required interfaces of the top level component.
+ Use the 
+\family typewriter
+setRequiredPort()
+\family default
+ method of the passed in 
+\family typewriter
+\lang english
+BBSimpleInstantiatedFactory
+\family default
+ instance to do this.
+ This allows the components created to use interfaces provided by your program.
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
 Running Without the Backbone Interpreter
 \end_layout
 

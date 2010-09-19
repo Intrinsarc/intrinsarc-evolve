@@ -2990,6 +2990,15 @@ CarRentalFormFactory.java
 CarRentalGUI
 \family default
 , as below.
+ Note the 
+\family typewriter
+setService()
+\family default
+ line where we explicitly set the required 
+\family typewriter
+service
+\family default
+ interface of the form to be that of the GWT server.
 \end_layout
 
 \begin_layout LyX-Code
@@ -3009,15 +3018,27 @@ public class CarRentalGUI implements EntryPoint
 \end_layout
 
 \begin_layout LyX-Code
-    CarRentalFormFactory form =
+    CarRentalFormFactory form = new CarRentalFormFactory();
 \end_layout
 
 \begin_layout LyX-Code
-        new CarRentalFormFactory().initialize(null, null);
+    form.setService((IRentalServiceAsync)
 \end_layout
 
 \begin_layout LyX-Code
-    RootPanel.get("application").add(form.getPanel_Provided());
+      GWT.create(IRentalService.class));
+\end_layout
+
+\begin_layout LyX-Code
+    form.initialize(null, null);
+\begin_inset Newline newline
+\end_inset
+
+ 
+\end_layout
+
+\begin_layout LyX-Code
+   RootPanel.get("application").add(form.getPanel_Provided());
 \end_layout
 
 \begin_layout LyX-Code
