@@ -4,7 +4,7 @@
     </description>
 	
   <!-- set global properties for this build -->
-  <property name="version" value="0.9b5"/>
+  <property name="version" value="0.9b6"/>
 	<property name="desktop" value="C:\Users\andrew\Desktop"/>
   <property name="evolve" location="${desktop}\evolve-release"/>
   <property name="evolveb4zip" location="${desktop}\evolve-distribution\evolve-${version}"/>	
@@ -47,6 +47,7 @@
   	<!-- copy over the basic tutorial files -->
   	<copy file="../CarRental/models/car-rental.evolve" todir="${evolve}/tutorial"/>
   	<copy file="../CarRental/.classpath" todir="${evolve}/tutorial/CarRental"/>
+  	<replace file="${evolve}/tutorial/CarRental/.classpath" token='classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"' value='classpathentry kind="var" path="EVOLVE/common/backbone.jar"'/>
   	<copy file="../CarRental/.project" todir="${evolve}/tutorial/CarRental"/>
     <copy file="../CarRental/build.xml" todir="${evolve}/tutorial/CarRental"/>
   	<copy todir="${evolve}/tutorial/CarRental/src">
@@ -55,12 +56,15 @@
   	<copy todir="${evolve}/tutorial/CarRental/bin">
   		<fileset dir="../CarRental/bin"/>
   	</copy>
+  	<replace file="${evolve}/tutorial/CarRental/.classpath" token='classpathentry combineaccessrules="false" kind="src" path="/BackboneInterpreter"' value='classpathentry kind="var" path="EVOLVE/common/backbone.jar"'/>
   	
   	<!-- release tutorial d -->
     <delete dir="${tutd}"/>
   	<copy todir="${tutd}">
   		<fileset dir="../CarRentalGUI"/>
   	</copy>
+  	<replace file="${tutd}/.classpath" token='classpathentry combineaccessrules="false" kind="src" path="/BackboneGWTBase"' value='classpathentry kind="var" path="EVOLVE/common/backbone-gwt-base.jar"'/>
+  	<replace file="${tutd}/.classpath" token='classpathentry combineaccessrules="false" kind="src" path="/CarRental"' value='classpathentry kind="var" path="EVOLVE/tutorial/CarRental/bin"'/>
   	
   	<!-- now move over to real names and build the zips -->
 		<move file="${evolve}" tofile="${evolveb4zip}"/>
