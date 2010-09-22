@@ -474,7 +474,7 @@ public class ApplicationWindow extends SmartJFrame
 
 		public GarbageCollectRepositoryAction(boolean displayFinalMessage)
 		{
-			super("Garbage collect repository");
+			super("Garbage collect model");
 			this.displayFinalMessage = displayFinalMessage;
 		}
 
@@ -572,7 +572,7 @@ public class ApplicationWindow extends SmartJFrame
 							registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
 
 							monitor.displayInterimPopup(GARBAGE_ICON,
-									"Garbage collection in progress...", "Saved repository",
+									"Garbage collection in progress...", "Saved model",
 									ScreenProperties.getUndoPopupColor(), -1);
 						}
 					}
@@ -1111,12 +1111,12 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public CreateNewXMLRepositoryAction()
 		{
-			super("Create new XML repository");
+			super("Create new model");
 		}
 
 		public void actionPerformed(ActionEvent e)
 		{
-			int chosen = askAboutSave("Create new XML repository...", false);
+			int chosen = askAboutSave("Create new model...", false);
 			if (chosen == JOptionPane.CANCEL_OPTION)
 				return;
 			String repos = "" +
@@ -1151,12 +1151,12 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public OpenExistingXMLRepositoryAction()
 		{
-			super("Existing XML repository");
+			super("Existing model");
 		}
 
 		public void actionPerformed(ActionEvent e)
 		{
-			int chosen = askAboutSave("Open existing XML repository...", false);
+			int chosen = askAboutSave("Open existing model...", false);
 			if (chosen == JOptionPane.CANCEL_OPTION)
 				return;
 
@@ -1182,7 +1182,7 @@ public class ApplicationWindow extends SmartJFrame
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
 			{
-				popup.displayPopup(SAVE_ICON, "Problem opening XML repository", ex
+				popup.displayPopup(SAVE_ICON, "Problem opening model", ex
 						.getMessage(), ScreenProperties.getUndoPopupColor(), Color.black,
 						3000);
 				recent.removeFile(fileName);
@@ -1344,7 +1344,7 @@ public class ApplicationWindow extends SmartJFrame
 				String text = "";
 				if (save.getRepositoryToSave())
 				{
-					text += "repository";
+					text += "model";
 				}
 				int diagrams = save.getDiagramsToSave();
 				if (diagrams > 0)
@@ -1695,13 +1695,15 @@ public class ApplicationWindow extends SmartJFrame
 			JMenuItem openExistingXMLRepositoryAction = new JMenuItem(new OpenExistingXMLRepositoryAction());
 			openExistingXMLRepositoryAction.setIcon(XML_ICON);
 			open.add(openExistingXMLRepositoryAction);
-			GlobalPreferences.registerKeyAction("File/Open", openExistingXMLRepositoryAction, null, "Open an existing XML model");
+			GlobalPreferences.registerKeyAction("File/Open", openExistingXMLRepositoryAction, null, "Open an existing model");
 
 			// only add the database entries if the database jars are present
+			boolean database = false;
 			try
 			{
 				ClassLoader.getSystemClassLoader().loadClass("com.objectdb.jdo.PMImpl");
 				{
+					database = true;
 					JMenuItem openLocalDbRepositoryAction = new JMenuItem(
 							new OpenLocalDbRepositoryAction());
 					openLocalDbRepositoryAction.setIcon(LOCALDB_ICON);
@@ -1814,10 +1816,13 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File", print, "ctrl P", "Print the current diagram");
 			entries.add(new SmartMenuItemImpl("File", "Print", print));
 			
-			JMenuItem refresh = new JMenuItem(new RefreshAction());
-			refresh.setIcon(REFRESH_ICON);
-			GlobalPreferences.registerKeyAction("File", refresh, "F5", "Refresh the model from the repository");
-			entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
+			if (database)
+			{
+				JMenuItem refresh = new JMenuItem(new RefreshAction());
+				refresh.setIcon(REFRESH_ICON);
+				GlobalPreferences.registerKeyAction("File", refresh, "F5", "Refresh the model from the repository");
+				entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
+			}
 
 			JMenuItem collect = new JMenuItem(new GarbageCollectRepositoryAction(true));
 			collect.setIcon(GARBAGE_ICON);
@@ -2202,7 +2207,7 @@ public class ApplicationWindow extends SmartJFrame
 				{
 					if (name.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || name.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX) || name.endsWith(".xml"))
 					{
-						monitor.displayInterimPopup(SAVE_ICON, "Loading XML repository", name, null, -1);
+						monitor.displayInterimPopup(SAVE_ICON, "Loading model", name, null, -1);
 						RepositoryUtility.useXMLRepository(name, true);
 						applicationWindowCoordinator.switchRepository();
 					}
@@ -2222,7 +2227,7 @@ public class ApplicationWindow extends SmartJFrame
 						{
 							monitor.stopActivityAndDisplayPopup(
 									SAVE_ICON,
-									"Repository loading problem",
+									"Model loading problem",
 									"Problem interpreting recent file name " + name,
 									null,
 									3000,
@@ -2246,7 +2251,7 @@ public class ApplicationWindow extends SmartJFrame
 					{
 						monitor.stopActivityAndDisplayPopup(
 								SAVE_ICON,
-								"Repository loading problem",
+								"Model loading problem",
 								"File " + name + " must be of form \n\t*.evolve, *.evolvez *.xml, *.evolvedb or host:*.odb",
 								null,
 								3000,
@@ -2259,8 +2264,8 @@ public class ApplicationWindow extends SmartJFrame
 					long msecs = ((end - start) / 100) * 100;
 					monitor.stopActivityAndDisplayPopup(
 							SAVE_ICON,
-							"Loaded repository",
-							"Repository loaded in " + msecs / 1000.0 + " seconds",
+							"Loaded model",
+							"Model loaded in " + msecs / 1000.0 + " seconds",
 							null,
 							1000,
 							false);
@@ -2272,7 +2277,7 @@ public class ApplicationWindow extends SmartJFrame
 				catch (RepositoryOpeningException ex)
 				{
 					monitor.stopActivityAndDisplayPopup(
-							SAVE_ICON, "Repository loading problem", ex.getMessage(),
+							SAVE_ICON, "Model loading problem", ex.getMessage(),
 							null, 3000, false);
 					recent.removeFile(name);
 				}
