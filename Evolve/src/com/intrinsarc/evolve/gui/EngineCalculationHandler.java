@@ -7,7 +7,7 @@ import javax.swing.*;
 
 public class EngineCalculationHandler
 {
-	private static Calendar WHEN = new GregorianCalendar(2010, Calendar.OCTOBER, 15); 
+	private static Calendar WHEN = new GregorianCalendar(2010, Calendar.NOVEMBER, 1); 
 	
 	public static void checkCalculation()
 	{

@@ -29,7 +29,7 @@ import com.intrinsarc.swing.lookandfeel.*;
  */
 public class Evolve
 {
-	public static final String EVOLVE_VERSION = "v0.9b6, released 21st September 2010";
+	public static final String EVOLVE_VERSION = "v1.0rc1, released 27th September 2010";
   public static final String LEAST_VERSION = "1.5";
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
