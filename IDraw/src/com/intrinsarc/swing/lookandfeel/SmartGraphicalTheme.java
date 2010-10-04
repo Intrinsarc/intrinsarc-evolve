@@ -23,7 +23,6 @@ public class SmartGraphicalTheme implements GraphicalTheme
   {
     // setup the look and feel properties    
     Properties props = setOptions(subtheme);
-    changeWindowIcons();
 
     // set your theme
     SmartLookAndFeel.setTheme(subtheme);
@@ -63,14 +62,6 @@ public class SmartGraphicalTheme implements GraphicalTheme
     return
       font.getName() + " " +
       (font.isBold() ? "bold " : "") + (font.isItalic() ? "italic " : "") + (font.getSize() - subtractSize);
-  }
-
-  public static void changeWindowIcons()
-  {
-    UIManager.put("InternalFrame.iconifyIcon", loadIcon("jtb-minimize.png"));
-    UIManager.put("InternalFrame.maximizeIcon", loadIcon("jtb-maximize.png"));
-    UIManager.put("InternalFrame.minimizeIcon", loadIcon("jtb-restore.png"));
-    UIManager.put("InternalFrame.closeIcon", loadIcon("jtb-close.png"));
   }
 
   private static ImageIcon loadIcon(String iconName)

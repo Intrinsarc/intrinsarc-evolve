@@ -13,7 +13,6 @@ public class AcrylGraphicalTheme implements GraphicalTheme
   {
     // setup the look and feel properties    
     Properties props = SmartGraphicalTheme.setOptions(subtheme);
-    SmartGraphicalTheme.changeWindowIcons();
 
     // set your theme
     AcrylLookAndFeel.setTheme(subtheme);

@@ -25,11 +25,6 @@ public class LunaGraphicalTheme implements GraphicalTheme
     UIManager.setLookAndFeel(LunaLookAndFeel.class.getName());
   }
 
-  private static ImageIcon loadIcon(String iconName)
-  {
-    return IconLoader.loadIcon(iconName);
-  }
-
   public String getName()
   {
     return THEME_NAME;

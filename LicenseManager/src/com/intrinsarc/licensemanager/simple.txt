@@ -1,0 +1,89 @@
+public static void main(String[] args) {
+     try {
+          Serializer serializer = new Persister();
+          Lure lure = new Lure();
+          lure.setCompany("Donzai");
+          lure.setModel("Marlin Buster");
+          lure.setQuantityInStock(23);
+          lure.setType("Trolling");
+		
+          File result = new File("lure.xml");
+          serializer.write(lure, result);
+     } catch (Exception e) {
+          e.printStackTrace();
+     }
+}
+
+public static void main(String[] args) {
+     try {
+          Serializer serializer = new Persister();
+          File source = new File("lure.xml");
+          Lure lure = serializer.read(Lure.class, source);
+
+          System.out.println(lure.getCompany());
+          System.out.println(lure.getModel());
+          System.out.println(lure.getQuantityInStock());
+          System.out.println(lure.getType());
+     } catch (Exception e) {
+          e.printStackTrace();
+     }
+}
+
+
+@Root
+public class Inventory {
+	
+     @ElementList
+     private List<AdvancedLure> lures;
+	
+     @Attribute
+     private String warehouse;
+
+
+@Root
+public class Lure {
+
+     @Attribute
+     private String type;
+	
+     @Element
+     private String company;
+	
+     @Element
+     private int quantityInStock;
+	
+     @Element
+     private String model;
+
+     public String getType() {
+		return type;
+     }
+
+     public void setType(String type) {
+          this.type = type;
+     }
+
+     public String getCompany() {
+          return company;
+     }
+
+     public void setCompany(String company) {
+          this.company = company;
+     }
+
+     public int getQuantityInStock() {
+          return quantityInStock;
+     }
+
+     public void setQuantityInStock(int quantityInStock) {
+          this.quantityInStock = quantityInStock;
+     }
+
+     public String getModel() {
+          return model;
+     }
+
+     public void setModel(String model) {
+          this.model = model;
+     }
+}
