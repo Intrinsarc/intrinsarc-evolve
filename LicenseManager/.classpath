@@ -8,5 +8,6 @@
 	<classpathentry kind="lib" path="/CommonResources/simple-xml-2.3.6.jar"/>
 	<classpathentry kind="lib" path="/CommonResources/stax-1.2.0.jar"/>
 	<classpathentry kind="lib" path="/CommonResources/stax-api-1.0.1.jar"/>
+	<classpathentry kind="lib" path="/CommonResources/freehep-swing-2.0.3.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
