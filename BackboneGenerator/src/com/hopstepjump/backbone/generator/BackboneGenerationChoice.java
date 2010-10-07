@@ -29,15 +29,6 @@ public class BackboneGenerationChoice
     locateChosenFigures();
   }
   
-  public void adjustSelectionForSingleStratum() throws BackboneGenerationException
-  {
-  	// should have a single stratum selected
-  	FigureFacet figure = diagramView.getSelection().getSingleSelection();
-  	if (figure == null || extractStratum(figure.getSubject()) == null)
-  		throw new BackboneGenerationException("A single stratum must be selected", null);
-  	singleStratum = (Package) figure.getSubject();
-  }
-  
   public DEStratum getSingleStratum() throws BackboneGenerationException
   {
   	if (singleStratum == null)
@@ -162,4 +153,12 @@ public class BackboneGenerationChoice
       return pkg;
     return null;
   }
+
+	public void selectSingleStratum(Package pkg) throws BackboneGenerationException
+	{
+  	// should have a single stratum selected
+  	if (pkg == null || extractStratum(pkg) == null)
+  		throw new BackboneGenerationException("A single stratum must be selected", null);
+  	singleStratum = pkg;
+	}
 }

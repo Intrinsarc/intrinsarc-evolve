@@ -162,9 +162,9 @@ do website, go into beta
 status open
 
 \begin_layout Plain Layout
-Days left = 3 dev, 4 example, 10 docs.
- Website start ETA = 14th August.
- If website takes 3 days, full beta = 21st August
+Days left = 0 dev, 4 example, 10 docs.
+ Website start ETA ~ 31st August.
+ If website takes 3 days, full beta = ??
 \end_layout
 
 \end_inset
@@ -291,15 +291,29 @@ visual inheritance of connector ends, curve, transition arrow
 \end_layout
 
 \begin_layout Enumerate
-attribute issues (aliasing, defaults, 
+
 \color green
-replace of attr with default
+disappearing interfaces on redefs/factories
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+attribute issues (aliasing, defaults, replace of attr with default
 \color inherit
 )
 \end_layout
 
 \begin_layout Enumerate
-disappearing interfaces on redefs/factories
+hanging on load (!), key strokes not registering
+\end_layout
+
+\begin_layout Enumerate
+remap of remap, remap in general
+\end_layout
+
+\begin_layout Enumerate
+provided interface problem when require + provide not in immediate hierarchy
 \end_layout
 
 \begin_layout Enumerate
@@ -319,6 +333,10 @@ fix performance issues + memory leaks when loading a new project in import
 
 \series bold
 Next up:
+\end_layout
+
+\begin_layout Itemize
+part aliasing in factories! -- for many to many relationships
 \end_layout
 
 \begin_layout Itemize
@@ -348,10 +366,6 @@ concurrency via actors and possibly concurrent state machines + expanded
 \begin_inset Newline newline
 \end_inset
 
-(??)
-\end_layout
-
-\begin_layout Itemize
 slightly slow diagrams in complex situations == profile using jprofiler
 \end_layout
 
@@ -360,7 +374,7 @@ jump to source integration with eclipse, intellij
 \end_layout
 
 \begin_layout Itemize
-making nice for MacOS?
+making nice for MacOS
 \end_layout
 
 \begin_layout Standard
@@ -374,11 +388,21 @@ blog from Javalobby, part of a series
 \end_layout
 
 \begin_layout Enumerate
-performance tip: readonly for check once
+performance tips: readonly for check once, full screen hide palette
 \end_layout
 
 \begin_layout Enumerate
 F8 versus shift-F8
+\end_layout
+
+\begin_layout Enumerate
+front part of manual simple tutorial, no more than 20 pages.
+ last parts are reference, user guide referring to phd doc.
+ 150 pages total.
+\end_layout
+
+\begin_layout Enumerate
+navigation basics: difference between diagram and model
 \end_layout
 
 \begin_layout Standard
@@ -392,12 +416,98 @@ training -- $650 per person per day, min of 3 people
 \end_layout
 
 \begin_layout Itemize
-support: $500 per CPU gold, $250 per CPU: differentiators = SLA times
+support: $500 per CPU gold, $250 per CPU silver: differentiators = SLA times,
+ support channels
+\end_layout
+
+\begin_layout Itemize
+discounts for large number of licenses
+\end_layout
+
+\begin_layout Itemize
+updates: free upgrades for a year, 50% upgrade to get another year
 \end_layout
 
 \begin_layout Itemize
 integration modules: GWT, Swing, JPA (all included), others such as SWT,
- web services
+ web services, S3 + Amazon, Google app engine, cloud?
+\end_layout
+
+\begin_layout Standard
+
+\series bold
+Example application for documentation:
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Requirements
+\end_layout
+
+\begin_layout Enumerate
+strong focus on services
+\end_layout
+
+\begin_layout Enumerate
+a small data model without many to many
+\end_layout
+
+\begin_layout Enumerate
+a state chart that may be persisted, with normal parts in also
+\end_layout
+
+\begin_layout Enumerate
+GWT front end, hibernate back end
+\end_layout
+
+\begin_layout Enumerate
+using a factory
+\end_layout
+
+\begin_layout Enumerate
+use of replace, resemblance
+\end_layout
+
+\begin_layout Enumerate
+lifecycle
+\end_layout
+
+\begin_layout Enumerate
+hardcoded generation
+\end_layout
+
+\begin_layout Standard
+Application: Car rental?
+\end_layout
+
+\begin_layout Enumerate
+car has details and a lifecycle
+\end_layout
+
+\begin_layout Enumerate
+extensions could add fields etc
+\end_layout
+
+\begin_layout Enumerate
+has a lifecycle state: available -> rented -> retired.
+ Extension could add -> accident repair ->.
+ Event buttons on gui!
+\end_layout
+
+\begin_layout Enumerate
+states could use external services to determine which way to fork on event
+\end_layout
+
+\begin_layout Enumerate
+CarManager could be decomposed into several internal services
+\end_layout
+
+\begin_layout Enumerate
+each stratum should be runnable in its own right.
+ Start should be very simple.
 \end_layout
 
 \end_body

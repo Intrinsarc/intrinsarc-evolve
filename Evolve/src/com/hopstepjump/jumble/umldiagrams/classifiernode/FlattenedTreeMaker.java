@@ -92,7 +92,7 @@ public class FlattenedTreeMaker
 				String title = "Flattened "
 						+ GlobalSubjectRepository.repository.getFullyQualifiedName(
 								(Element) figureFacet.getSubject(), "::")
-						+ " from perspective " + perspective.getFullyQualifiedName();
+						+ " from perspective " + perspective.getFullyQualifiedName() + (registry.getHasComplexConnectors().isEmpty() ? "" : " >> has complex connectors");
 	
 				// provide a refresh option
 				final JPopupMenu menu = new JPopupMenu();

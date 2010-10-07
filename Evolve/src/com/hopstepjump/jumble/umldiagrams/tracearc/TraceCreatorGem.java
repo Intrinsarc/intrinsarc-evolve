@@ -107,8 +107,6 @@ public class TraceCreatorGem implements Gem
     
     public Object createNewSubject(DiagramFacet diagram, ReferenceCalculatedArcPoints calculatedPoints, PersistentProperties properties)
     {
-      SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
-
       // make an dependency and store it in the type
       CalculatedArcPoints points = new CalculatedArcPoints(calculatedPoints);
       NamedElement client = extractDependentClient(points.getNode1().getFigureFacet().getSubject());

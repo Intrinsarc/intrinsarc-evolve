@@ -3,3 +3,4 @@ glob:.metadata/
 glob:.JETEmitters/
 relre:.*\.orig
 relre:ODB-Libraries/libs-2Beta2_34/log/*.log
+glob:*.bak

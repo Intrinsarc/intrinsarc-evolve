@@ -28,7 +28,7 @@ public class D
 	{
 		public void test()
 		{
-			System.out.println("$$ inside D instance: attr1 = " + attr1.get() + ", attr2 = " + attr2);
+			System.out.println("$$ inside D instance: attr1 = " + attr1.get() + ", attr2 = " + attr2.get());
 			out.test();
 		}
 	}

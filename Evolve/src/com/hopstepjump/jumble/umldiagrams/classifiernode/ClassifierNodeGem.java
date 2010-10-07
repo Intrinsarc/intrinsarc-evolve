@@ -1028,6 +1028,9 @@ public final class ClassifierNodeGem implements Gem
 			boolean isInterface = subject instanceof Interface;
 			boolean isPrimitive = subject instanceof PrimitiveType;
 
+			if (miniAppearanceFacet != null)
+				miniAppearanceFacet.addToContextMenu(popup, diagramView, coordinator);
+
 			if (isPart)
 			{
 				// only add a replace if this is not visually at home
@@ -1071,7 +1074,7 @@ public final class ClassifierNodeGem implements Gem
 					Set<DeltaPair> pairs = conns.getConstituents(perspective, true);
 					boolean someFixes = false;
 
-					for (DeltaPair pair : pairs)
+					for (final DeltaPair pair : pairs)
 					{
 						DEConnector conn = pair.getConstituent().asConnector();
 						for (int lp = 0; lp < 2; lp++)
@@ -1100,15 +1103,15 @@ public final class ClassifierNodeGem implements Gem
 								}
 								else
 								{
-									final DeltaDeletedConnector del = ((Class) subject).createDeltaDeletedConnectors();
-									del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
-									GlobalSubjectRepository.repository.incrementPersistentDelete(del);
-
 									delete.addActionListener(new ActionListener()
 									{
 										public void actionPerformed(ActionEvent e)
 										{
 											coordinator.startTransaction("fixed bad connector", "unfixed bad connector");
+											final DeltaDeletedConnector del = ((Class) subject).createDeltaDeletedConnectors();
+											del.setDeleted((Connector) pair.getOriginal().getRepositoryObject());
+											GlobalSubjectRepository.repository.incrementPersistentDelete(del);
+
 											GlobalSubjectRepository.repository.decrementPersistentDelete(del);
 											coordinator.commitTransaction();
 										}
@@ -1123,9 +1126,6 @@ public final class ClassifierNodeGem implements Gem
 					fix.setEnabled(someFixes);
 				}
 			}
-
-			if (miniAppearanceFacet != null)
-				miniAppearanceFacet.addToContextMenu(popup, diagramView, coordinator);
 
 			Utilities.addSeparator(popup);
 

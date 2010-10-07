@@ -28,8 +28,8 @@ public class InterfaceParser
 		final BBInterface i = new BBInterface(ref);
 		
 		ex.
-			oneOf(new LiteralMatch("implementation-class",
-					new IAction() { public void act() { ex.literal().literal(implementation); } })).
+			guard("implementation-class",
+					new IAction() { public void act() { ex.literal(implementation); } }).
 			guard("resembles",
 					new IAction() { public void act() { ParserUtilities.parseUUIDs(ex, i.settable_getRawResembles()); } }).
 			guard("replaces",

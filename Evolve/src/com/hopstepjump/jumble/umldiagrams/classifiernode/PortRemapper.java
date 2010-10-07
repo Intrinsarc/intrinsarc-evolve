@@ -92,7 +92,6 @@ public class PortRemapper
         if (match.getPort() != replacedProx.getPort())
         {
           PortRemap remap = spec.createPortRemap();
-          GlobalSubjectRepository.repository.incrementPersistentDelete(remap);
           remap.setOriginalPort(replacedProx.getPort());
           remap.setNewPort(match.getPort());
           remaps.add(remap);
@@ -119,7 +118,7 @@ public class PortRemapper
         if (pair.getConstituent().getRepositoryObject() == port.getSubject())
         {
           PortProximity prox = new PortProximity(
-              port, (Port) pair.getOriginal().getRepositoryObject(),
+              port, (Port) pair.getConstituent().getRepositoryObject(),
               partBounds);
           proxes.add(prox);
           break;

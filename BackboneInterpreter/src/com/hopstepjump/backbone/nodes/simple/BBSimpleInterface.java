@@ -90,6 +90,11 @@ public class BBSimpleInterface extends BBSimpleElement
 		return complex;
 	}
 	
+	public String toString()
+	{
+		return getTreeDescription();
+	}
+	
 	@Override
 	public String getTreeDescription()
 	{

@@ -1,19 +1,11 @@
 package com.hopstepjump.backbone.nodes.lazy;
 
-import com.hopstepjump.backbone.parserbase.*;
-import com.hopstepjump.deltaengine.base.*;
 
 public class LazyObject<T>
 {
 	private UuidReference reference;
 	private T object;
 	private Class<T> cls;
-	
-	public LazyObject(UuidReference reference, Class<T> cls)
-	{
-		this.reference = reference;
-		this.cls = cls;
-	}
 	
 	public LazyObject(Class<T> cls)
 	{

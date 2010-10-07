@@ -68,19 +68,14 @@ public class RegisteredGraphicalThemes
   private RegisteredGraphicalThemes()
   {
     themes.add(new LunaGraphicalTheme());
+    themes.add(new NimbusGraphicalTheme());
+    themes.add(new QuaquaGraphicalTheme());
     themes.add(new SmartGraphicalTheme());
     themes.add(new FastGraphicalTheme());
-    themes.add(new AeroGraphicalTheme());
     themes.add(new AluminiumGraphicalTheme());
-    themes.add(new MintGraphicalTheme());
     themes.add(new AcrylGraphicalTheme());
-    themes.add(new McWinGraphicalTheme());
-    themes.add(new HiFiGraphicalTheme());
-    themes.add(new NoireGraphicalTheme());
-    themes.add(new GraphiteGraphicalTheme());
     themes.add(new SystemGraphicalTheme());
     themes.add(new MetalGraphicalTheme());
-    themes.add(new NimbusGraphicalTheme());
   }
 
   public List<GraphicalTheme> getThemes()

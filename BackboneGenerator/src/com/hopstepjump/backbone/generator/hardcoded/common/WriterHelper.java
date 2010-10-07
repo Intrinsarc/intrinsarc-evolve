@@ -165,7 +165,7 @@ public class WriterHelper
 				if (bb == null)
 					value = null;
 				else
-					value = bb + "/" + stratum.getName();
+					value = bb + "/" + getPeerUniqueName(stratum);
 			}
 			break;
 		case 1:

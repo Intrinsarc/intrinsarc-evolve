@@ -65,7 +65,12 @@ public class BBSimpleInstantiatedFactory
 			
 			// set up the attributes
 			for (BBSimpleSlot s : part.getSlots())
-				s.setValue(obj, iattributes.get(s.getEnvironmentAlias()), part.getType());
+			{
+				Attribute simple = iattributes.get(s.getEnvironmentAlias());
+				if (simple == null)
+					simple = parent.resolveAttributeValue(s.getEnvironmentAlias());
+				s.setValue(obj, simple, part.getType());
+			}
 		}
 		
 		// connect up all the parts

@@ -66,6 +66,8 @@ public class UML2Connector extends DEConnector
     List<ConnectorEnd> ends = subject.undeleted_getEnds();
     if (ends.size() < index)
       return null;
+    if (ends.size() <= index)
+    	return null;
     return getEngine().locateObject(ends.get(index).undeleted_getRole()).asConstituent().asPort();
   }
 

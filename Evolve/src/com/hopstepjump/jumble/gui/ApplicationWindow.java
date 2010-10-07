@@ -718,35 +718,55 @@ public class ApplicationWindow extends SmartJFrame
 		}
 	}
 
-	class TagBackboneAction extends AbstractAction
+	class TagBackboneItem extends UpdatingJMenuItem
 	{
-		public TagBackboneAction()
+		public TagBackboneItem()
 		{
-			super("Tag Backbone stratum");
+			super("");
+			addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					Package pkg = BeanImportMenuItem.getPossibleSingleSelectedPackage();
+					if (pkg == null)
+						pkg = BeanImportMenuItem.getPossibleCurrentPackage();
+					if (pkg == null)
+						return;
+					
+					// save the selection
+					ToolCoordinatorFacet toolFacet = coordinator;
+					choice = new BackboneGenerationChoice(toolFacet);
+		
+					// ensure we have a single stratum
+					try
+					{
+						choice.selectSingleStratum(pkg);
+					}
+					catch (BackboneGenerationException ex)
+					{
+						toolFacet.invokeErrorDialog("Backbone tagging problem...", ex.getMessage());
+						choice = null;
+						return;
+					}
+		
+					// if we got here we were successful, so show a nice popup
+					popup.displayPopup(TAG_ICON, "Tagged Backbone stratum",
+							"<html>Tagged " + GlobalSubjectRepository.repository.getFullyQualifiedName(pkg, " :: "), null, null, 1200);
+				}
+			});
 		}
 
-		public void actionPerformed(ActionEvent e)
+		public boolean update()
 		{
-			ToolCoordinatorFacet toolFacet = coordinator;
-
-			// save the selection
-			choice = new BackboneGenerationChoice(toolFacet);
-
-			// ensure we have a single stratum
-			try
-			{
-				choice.adjustSelectionForSingleStratum();
-			}
-			catch (BackboneGenerationException ex)
-			{
-				toolFacet.invokeErrorDialog("Backbone tagging problem...", ex.getMessage());
-				choice = null;
-				return;
-			}
-
-			// if we got here we were successful, so show a nice popup
-			popup.displayPopup(TAG_ICON, "Backbone tagging",
-					"Stratum tagged successfully", null, null, 1200);
+			boolean enabled = true;
+			if (BeanImportMenuItem.getPossibleSingleSelectedPackage() != null)
+				setText("Tag selected stratum");
+			else
+			if (BeanImportMenuItem.getPossibleCurrentPackage() != null)
+				setText("Tag current stratum");
+			else
+				enabled = false;
+			return enabled;
 		}
 	}
 
@@ -854,7 +874,7 @@ public class ApplicationWindow extends SmartJFrame
 		int height = GlobalPreferences.preferences.getRawPreference(RegisteredGraphicalThemes.INITIAL_RUNNER_HEIGHT).asInteger();
 
 		IEasyDockable dockable = desktop.createExternalPaletteDockable(
-				"Backbone runner", APPLICATION_ICON, new Point(x, y), new Dimension(width, height), true,
+				"Backbone runner", RUN_ICON, new Point(x, y), new Dimension(width, height), true,
 				true, internalComponent);
 		runner.setDockable(desktop, dockable);
 
@@ -1422,8 +1442,8 @@ public class ApplicationWindow extends SmartJFrame
 			boolean showing = deltaAdorner.isEnabled();
 			popup.displayPopup(null, null, showing ? new JLabel(
 					"Show delta view", DELTA_ICON, JLabel.LEADING) : new JLabel(
-					"Hide delta view", BLANK_ICON, JLabel.LEADING), ScreenProperties
-					.getUndoPopupColor(), Color.black, 1000);
+					"Hide delta view", BLANK_ICON, JLabel.LEADING),
+					ScreenProperties.getUndoPopupColor(), Color.black, 1000);
 
 			// resync just in case a change was made
 			resyncDiagramsAndBrowser();
@@ -1862,31 +1882,32 @@ public class ApplicationWindow extends SmartJFrame
 			}
 
 			// add the backbone tagger
-			JMenuItem tagItem = new JMenuItem(new TagBackboneAction());
+			JMenuItem tagItem = new TagBackboneItem();
 			tagItem.setIcon(TAG_ICON);
-			GlobalPreferences.registerKeyAction("Tools", tagItem, "ctrl T", "Tag elements for generation or running");
-			entries.add(new SmartMenuItemImpl("Tools", "Backbone", tagItem));
+			GlobalPreferences.registerKeyAction("Backbone", tagItem, "ctrl T", "Tag elements for generation or running");
+			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", tagItem));
 
 			// add the backbone source generator
 			JMenuItem generateItem = new JMenuItem(new GenerateMixedAction());
-			GlobalPreferences.registerKeyAction("Tools",generateItem, "ctrl G", "Generate Backbone code and implementation code for the model");
-			entries.add(new SmartMenuItemImpl("Tools", "Backbone", generateItem));
+			GlobalPreferences.registerKeyAction("Backbone",generateItem, "ctrl G", "Generate Backbone code and implementation code for the model");
+			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", generateItem));
 
 			// add the backbone full implementation generator
 			JMenuItem fullGenerateItem = new JMenuItem(new GenerateFullImplementationAction());
-			GlobalPreferences.registerKeyAction("Tools",fullGenerateItem, "ctrl shift G", "Generate hardcoded classes and leaf implementations for the model");
-			entries.add(new SmartMenuItemImpl("Tools", "Backbone", fullGenerateItem));
+			GlobalPreferences.registerKeyAction("Backbone",fullGenerateItem, "ctrl shift G", "Generate hardcoded classes and leaf implementations for the model");
+			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", fullGenerateItem));
 
 			// add the backbone rerunner
 			JMenuItem rerunItem = new JMenuItem(new RunBackboneAction());
 			rerunItem.setIcon(RUN_ICON);
-			GlobalPreferences.registerKeyAction("Tools",rerunItem, "ctrl R", "Run the Backbone model");
-			entries.add(new SmartMenuItemImpl("Tools", "Backbone", rerunItem));
+			GlobalPreferences.registerKeyAction("Backbone",rerunItem, "ctrl R", "Run the Backbone model");
+			entries.add(new SmartMenuItemImpl("Backbone", "Backbone", rerunItem));
 			
       // add the bean importer
+///			xxx
       JMenuItem beanImport = new BeanImportMenuItem(coordinator, popup, monitor); 
-      entries.add(new SmartMenuItemImpl("Tools", "Beans", beanImport));      		
-			GlobalPreferences.registerKeyAction("Tools",beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
+      entries.add(new SmartMenuItemImpl("File", "ImportExport", beanImport));      		
+			GlobalPreferences.registerKeyAction("File", beanImport, null, "Analyse and import JavaBeans from the classpath of the selected stratum");
 
 			// add the protocol analyser
 			if (Evolve.ADVANCED)

@@ -69,7 +69,7 @@ public class StereotypeUtilities
       for (Object obj : element.undeleted_getAppliedBasicStereotypeValues())
       {
         AppliedBasicStereotypeValue value = (AppliedBasicStereotypeValue) obj;
-        if (value != null && !value.isThisDeleted() && !value.getProperty().isThisDeleted())
+        if (value != null && !value.isThisDeleted() && value.getProperty() != null && !value.getProperty().isThisDeleted())
           if (value.getProperty().getUuid().equals(attributeUUID)
               && value.getValue() instanceof Expression)
           {
@@ -291,8 +291,8 @@ public class StereotypeUtilities
       for (Object obj : element.undeleted_getAppliedBasicStereotypes())
       {
         Stereotype st = (Stereotype) obj;
-        if (st == stereo)
-          addPropertiesForAllHierarchy(properties, perspective, engine.locateObject(st).asComponent());        
+        if (st.equals(stereo.getRepositoryObject()))
+          addPropertiesForAllHierarchy(properties, perspective, stereo);        
       }
     }
 
