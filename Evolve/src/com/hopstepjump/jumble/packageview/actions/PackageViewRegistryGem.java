@@ -74,7 +74,7 @@ public class PackageViewRegistryGem implements Gem
 			ReusableDiagramViewFacet view = getType(CLIPBOARD_TYPE);
 			if (view == null)
 			{
-				ReusableDiagramViewGem gem = new ReusableDiagramViewGem(coordinator, adorners, desktop, CLIPBOARD_TYPE, closeable, Color.GRAY, false, possibleFixedPerspective);
+				ReusableDiagramViewGem gem = new ReusableDiagramViewGem(coordinator, adorners, desktop, CLIPBOARD_TYPE, closeable, Color.WHITE, false, possibleFixedPerspective);
 				gem.connectReusableDiagramViewContextFacet(new ClipboardViewContextGem().getReusableDiagramViewContextFacet());
 				gem.connectKeyInterpreterFacet(clipboardKeysFacet);
 				view = gem.getReusableDiagramViewFacet();

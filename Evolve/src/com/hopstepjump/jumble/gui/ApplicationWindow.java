@@ -2243,7 +2243,7 @@ public class ApplicationWindow extends SmartJFrame
 						monitor.stopActivityAndDisplayPopup(
 								SAVE_ICON,
 								"Repository loading problem",
-								"File " + name + " must be of form \n\t*.uml2, *.uml2z *.xml, *.uml2db or host:*.odb",
+								"File " + name + " must be of form \n\t*.evolve, *.evolvez *.xml, *.evolvedb or host:*.odb",
 								null,
 								3000,
 								false);
