@@ -1,6 +1,7 @@
 package com.intrinsarc.lbase;
 
 import java.io.*;
+import java.security.*;
 import java.util.*;
 
 public class LDetails
@@ -37,5 +38,23 @@ public class LDetails
 		{
 			System.err.println("$$ Problem tokenizing details line: " + line);
 		}
+	}
+	
+	public String toString()
+	{
+		String str = "";
+		for (String name : details.keySet())
+			str += name + "=" + details.get(name) + "\n";
+		return str;
+	}
+	
+	public byte[] encrypt(PublicKey key)
+	{
+		return null;
+	}
+
+	public byte[] decrypt(PrivateKey key)
+	{
+		return null;
 	}
 }

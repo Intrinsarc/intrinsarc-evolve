@@ -4,7 +4,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import com.intrinsarc.swing.*;
 import com.jtattoo.plaf.*;
 import com.jtattoo.plaf.luna.*;
 
