@@ -208,7 +208,8 @@ public final class ToolCoordinatorGem implements Gem
     	dialog.add(panel, BorderLayout.SOUTH);
     	dialog.setModal(true);
     	dialog.pack();
-    	last.requestFocusInWindow();
+    	if (last != null)
+    		last.requestFocusInWindow();
     	
     	// centre with the frame
     	UPoint frameCentre = new UPoint(frame.getLocation()).add(new UDimension(frame.getSize()).multiply(0.5));

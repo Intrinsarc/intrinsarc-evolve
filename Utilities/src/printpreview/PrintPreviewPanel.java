@@ -1,6 +1,5 @@
 package printpreview;
 
-/* save and compile as PrintPreviewS2.java */
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.print.*;
@@ -15,20 +14,18 @@ public class PrintPreviewPanel extends JPanel
 	private BufferedImage pcImage;
 	private boolean portrait = true;
 	private PreviewPage prp;
-	private int pcw;
-	private int pch;
-	private double hw;
+	private double fWidth = pageFormat.getWidth();
+	private double fHeight = pageFormat.getHeight();
 
 	public PrintPreviewPanel(Component pc, int percentScale)
 	{
 		targetComponent = pc;
-		this.percentScale = percentScale;
+		this.percentScale = percentScale / 2;
 
-		pcImage = new BufferedImage(pcw = targetComponent.getWidth(), pch = targetComponent.getHeight(), BufferedImage.TYPE_INT_ARGB);
+		pcImage = new BufferedImage(targetComponent.getWidth(), targetComponent.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics g = pcImage.createGraphics();
 		targetComponent.paint(g);
 		g.dispose();
-		hw = (double) pch / (double) pcw;
 
 		pageFormat.setOrientation(PageFormat.PORTRAIT);
 		prp = new PreviewPage();
@@ -37,21 +34,9 @@ public class PrintPreviewPanel extends JPanel
 		add(prp, BorderLayout.CENTER);
 	}
 
-	GridBagConstraints buildConstraints(GridBagConstraints gbc, int gx, int gy, int gw, int gh, double wx, double wy)
-	{
-		gbc.gridx = gx;
-		gbc.gridy = gy;
-		gbc.gridwidth = gw;
-		gbc.gridheight = gh;
-		gbc.weightx = wx;
-		gbc.weighty = wy;
-		gbc.fill = GridBagConstraints.BOTH;
-		return gbc;
-	}
-
 	public class PreviewPage extends JPanel
 	{
-		int x1, y1, l1, h1, x2, y2;
+		int x1, y1, l1, h1;
 		Image image;
 
 		public PreviewPage()
@@ -66,51 +51,75 @@ public class PrintPreviewPanel extends JPanel
 			// PORTRAIT
 			if (pageFormat.getOrientation() == PageFormat.PORTRAIT)
 			{
-				int xoff = (getWidth() - 330) / 2 - 10;
-				int yoff = (getHeight() - 430) / 2 - 20;
+				double multiplier = multiplier();
+				int fw = getFWidth();
+				int fh = getFHeight();
+				int xoff = (getWidth() - fw) / 2 - 10;
+				int yoff = (getHeight() - fh) / 2 - 20;
 				
-				x1 = (int) Math.rint(((double) pageFormat.getImageableX() / 72) * 40);
-				y1 = (int) Math.rint(((double) pageFormat.getImageableY() / 72) * 40);
-				l1 = (int) Math.rint(((double) pageFormat.getImageableWidth() / 72) * 40);
-				h1 = (int) Math.rint(((double) pageFormat.getImageableHeight() / 72) * 40);
+				x1 = (int) Math.rint(pageFormat.getImageableX() * multiplier);
+				y1 = (int) Math.rint(pageFormat.getImageableY() * multiplier);
+				l1 = (int) Math.rint(pageFormat.getImageableWidth() * multiplier);
+				h1 = (int) Math.rint(pageFormat.getImageableHeight() * multiplier);
 
-				x2 = (int) Math.rint((double) l1 * percentScale / 100);
-				y2 = (int) Math.rint(((double) l1 * hw) * percentScale / 100);
-				image = pcImage.getScaledInstance(x2, y2, Image.SCALE_AREA_AVERAGING);
+				image = pcImage.getScaledInstance(
+						(int) (pcImage.getWidth() * percentScale / 100 * multiplier),
+						(int) (pcImage.getHeight() * percentScale / 100 * multiplier),
+						Image.SCALE_AREA_AVERAGING);
 				
-				g.setClip(9 + xoff, 9 + yoff, 342, 442);
+				g.setClip(9 + xoff, 9 + yoff, fw + 2, fh + 2);
 				g.setColor(Color.WHITE);
-				g.fillRect(10 + xoff, 10 + yoff, 340, 440);
+				g.fillRect(10 + xoff, 10 + yoff, fw, fh);
 				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, this);
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x1 + 10 + xoff, y1 + 10 + yoff, l1, h1);
 				g.setColor(Color.black);
-				g.drawRect(10 + xoff, 10 + yoff, 340, 440);
+				g.drawRect(10 + xoff, 10 + yoff, fw, fh);
 			}
 			// LANDSCAPE
 			else
 			{
-				int xoff = (getWidth() - 430) / 2 - 15;
-				int yoff = (getHeight() - 330) / 2 - 20;
+				double multiplier = multiplier();
+				int fw = getFHeight();
+				int fh = getFWidth();
+				int xoff = (getWidth() - fw) / 2 - 10;
+				int yoff = (getHeight() - fh) / 2 - 20;
 
-				x1 = (int) Math.rint(((double) pageFormat.getImageableX() / 72) * 40);
-				y1 = (int) Math.rint(((double) pageFormat.getImageableY() / 72) * 40);
-				l1 = (int) Math.rint(((double) pageFormat.getImageableWidth() / 72) * 40);
-				h1 = (int) Math.rint(((double) pageFormat.getImageableHeight() / 72) * 40);
+				x1 = (int) Math.rint(pageFormat.getImageableX() * multiplier);
+				y1 = (int) Math.rint(pageFormat.getImageableY() * multiplier);
+				l1 = (int) Math.rint(pageFormat.getImageableWidth() * multiplier);
+				h1 = (int) Math.rint(pageFormat.getImageableHeight() * multiplier);
 
-				x2 = (int) Math.rint((double) l1 * percentScale / 100);
-				y2 = (int) Math.rint(((double) l1 * hw) * percentScale / 100);
-				image = pcImage.getScaledInstance(x2, y2, Image.SCALE_AREA_AVERAGING);
+				image = pcImage.getScaledInstance(
+						(int) (pcImage.getWidth() * percentScale / 100 * multiplier),
+						(int) (pcImage.getHeight() * percentScale / 100 * multiplier),
+						Image.SCALE_AREA_AVERAGING);
 
-				g.setClip(9 + xoff, 9 + yoff, 442, 342);
+				g.setClip(9 + xoff, 9 + yoff, fw + 2, fh + 2);
 				g.setColor(Color.WHITE);
-				g.fillRect(10 + xoff, 10 + yoff, 440, 340);
+				g.fillRect(10 + xoff, 10 + yoff, fw, fh);
 				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, this);
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x1 + 10 + xoff, y1 + 10 + yoff, l1, h1);
 				g.setColor(Color.BLACK);
-				g.drawRect(10 + xoff, 10 + yoff, 440, 340);
+				g.drawRect(10 + xoff, 10 + yoff, fw, fh);
 			}
+		}
+
+		private int getFWidth()
+		{
+			// scale according to the width and height
+			return (int) (fWidth * multiplier());
+		}
+
+		private int getFHeight()
+		{
+			return (int) (fHeight * multiplier());
+		}
+		
+		private double multiplier()
+		{
+			return Math.min((double) (getWidth() - 20) / fWidth, (double) (getHeight() - 30) / fHeight);
 		}
 	}
 	
@@ -131,7 +140,7 @@ public class PrintPreviewPanel extends JPanel
 	
 	public void setScale(int percent)
 	{
-		this.percentScale = percent;
+		this.percentScale = percent / 2;
 		setProperties();
 	}
 
@@ -148,7 +157,8 @@ public class PrintPreviewPanel extends JPanel
 			try
 			{
 				printerJob.print();
-			} catch (PrinterException exception)
+			}
+			catch (PrinterException exception)
 			{
 				System.err.println("Printing error: " + exception);
 			}
@@ -163,15 +173,12 @@ public class PrintPreviewPanel extends JPanel
 		{
 			Graphics2D g2D = (Graphics2D) g;
 			g2D.translate(format.getImageableX(), format.getImageableY());
-			// disableDoubleBuffering(mp);
+			
 			// scale to fill the page
-			double dw = format.getImageableWidth();
-			double dh = format.getImageableHeight();
-			double xScale = dw / (1028 * percentScale / 100);
-			double yScale = dh / (768 * percentScale / 100);
-			g2D.scale(xScale, yScale);
+			double scale = percentScale / 100;
+			g2D.scale(scale, scale);
+			
 			targetComponent.paint(g);
-			// enableDoubleBuffering(mp);
 			return Printable.PAGE_EXISTS;
 		}
 	}
