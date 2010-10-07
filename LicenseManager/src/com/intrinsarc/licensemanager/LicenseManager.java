@@ -8,6 +8,7 @@ import java.security.*;
 import java.util.*;
 
 import javax.swing.*;
+import javax.swing.event.*;
 
 import org.freehep.swing.*;
 
@@ -17,7 +18,13 @@ import com.jtattoo.plaf.luna.*;
 public class LicenseManager extends JFrame
 {
   public static final String LICENSE_KEY = "q35p-g5x9-8ftd-z1au";
+  public static final ImageIcon LOCK_ICON = loadIcon("lock.png");
+  public static final ImageIcon FOLDER_ICON = loadIcon("folder.png");
+  public static final ImageIcon KEY_ICON = loadIcon("bullet_key.png");
+  public static final ImageIcon LICENSE_ICON = loadIcon("page_white.png");
+  public static final ImageIcon UP_ICON = loadIcon("arrow_up.png");
   public static final Font DEFAULT_FONT = new Font("Arial", 12, Font.PLAIN);
+  public static final String UP_TO_PARENT = "..";
   public static final String ALGORITHM = "RSA";
   public static final int KEY_BITS = 1024;
   private PrivateKey privateKey;
@@ -33,34 +40,6 @@ public class LicenseManager extends JFrame
 		mgr.setVisible(true);
 	}
 
-	private class LoadKeyPairAction extends AbstractAction
-	{
-		JFrame parent;
-		
-		public LoadKeyPairAction(JFrame parent)
-		{
-			super("Load keypair");
-			this.parent = parent;
-		}
-		
-		@Override
-		public void actionPerformed(ActionEvent e)
-		{
-			JFileChooser chooser = new JFileChooser();
-			chooser.setDialogTitle("Select the keypair file to open...");
-	    ExtensionFileFilter filter = new ExtensionFileFilter();
-	    filter.addExtension("keypair");
-			chooser.setFileFilter(filter);
-			chooser.showOpenDialog(parent);
-
-			File file = chooser.getSelectedFile();
-			if (file != null)
-			{
-//				FileReader reader = new FileReader(file);
-			}
-		}
-	}
-	
 	private class GenerateKeypairAction extends AbstractAction
 	{
 		JFrame parent;
@@ -117,14 +96,11 @@ public class LicenseManager extends JFrame
 	public LicenseManager()
 	{
 		super("Evolve license manager");
-		setIconImage(loadIcon("lock.png").getImage());
+		setIconImage(LOCK_ICON.getImage());
 		
 		JMenuBar menuBar = new JMenuBar();
 		JMenu keys = new JMenu("Keys");
 		menuBar.add(keys);
-		JMenuItem load = new JMenuItem(new LoadKeyPairAction(this));
-		keys.add(load);
-		keys.addSeparator();
 		JMenuItem gen = new JMenuItem(new GenerateKeypairAction(this));
 		keys.add(gen);
 		
@@ -138,15 +114,98 @@ public class LicenseManager extends JFrame
 
 		setJMenuBar(menuBar);
 		
-		JPanel panel = new JPanel(new BorderLayout());
-		JTable table = new JTable();
-		JScrollPane scroll = new JScrollPane(table);
-		panel.add(scroll, BorderLayout.CENTER);
-		add(panel);
+		JSplitPane split = new JSplitPane();
+		add(split);
+		
+		JPanel left = new JPanel(new BorderLayout());
+		split.setLeftComponent(left);
+		JPanel right = new JPanel(new BorderLayout());
+		split.setRightComponent(right);
+		split.setPreferredSize(new Dimension(900, 500));
+		split.setDividerLocation(400);
+		
+		addDirectoryBrowser(left, ".");
 		pack();
 	}
 	
 	////////////////////////////////////////////////////////////////
+	
+	private void addDirectoryBrowser(final JPanel panel, final String current)
+	{
+		File cfile = new File(current);
+
+		panel.removeAll();
+		final DefaultListModel model = new DefaultListModel();
+		JList list = new JList(model);
+		JPanel full = new JPanel(new BorderLayout());
+		JLabel dir = new JLabel(cfile.getAbsolutePath());
+		dir.setBorder(BorderFactory.createEtchedBorder());
+		full.add(dir, BorderLayout.NORTH);
+		full.add(list, BorderLayout.CENTER);
+		panel.add(full, BorderLayout.CENTER);
+		
+		// add the current files
+		File[] all = cfile.listFiles();
+		model.addElement(UP_TO_PARENT);
+		for (File file : all)
+		{
+			if (file.isDirectory())
+				model.addElement(">" + file.getName());
+		}
+		for (File file : all)
+		{
+			if (!file.isDirectory())
+				model.addElement(file.getName());
+		}
+		
+		list.addListSelectionListener(new ListSelectionListener()
+		{
+			public void valueChanged(ListSelectionEvent e)
+			{
+				if (e.getValueIsAdjusting())
+					return;
+				String value = (String) model.get(e.getFirstIndex());
+				if (value.startsWith(">"))
+				{
+					addDirectoryBrowser(panel, current + "/" + value.substring(1));
+				}
+			}
+		});
+		
+		list.setCellRenderer(new DefaultListCellRenderer()
+		{
+			@Override
+			public Component getListCellRendererComponent(
+					JList list,
+					Object value,
+					int index,
+					boolean isSelected,
+					boolean cellHasFocus)
+			{
+				Icon icon = null;
+				String str = (String) value;
+				if (str.endsWith(".keypair"))
+					icon = KEY_ICON;
+				else
+				if (str.endsWith(".license"))
+					icon = LICENSE_ICON;
+				else
+				if (str.equals(UP_TO_PARENT))
+				{
+					icon = UP_ICON;
+				}
+				if (str.startsWith(">"))
+				{
+					str = str.substring(1);
+					icon = FOLDER_ICON;
+				}
+				JLabel label = (JLabel) super.getListCellRendererComponent(list, str, index, isSelected, cellHasFocus);
+				if (icon != null)
+					label.setIcon(icon);
+				return label;
+			}
+		});
+	}
 	
 	private static void changeLookAndFeel() throws Exception
 	{
