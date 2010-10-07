@@ -1172,6 +1172,7 @@ public final class BasicNamespaceNodeGem implements Gem
         		"Select color",
         		chooser,
         		new JButton[]{new JButton("OK"), new JButton("Cancel")},
+        		0,
         		null);
         if (chosen == 0)
         {

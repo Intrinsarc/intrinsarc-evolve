@@ -104,7 +104,7 @@ public class ConsoleLogger
 				final JScrollPane scroller = new JScrollPane(pane);
 				scroller.setPreferredSize(new Dimension(600, 400));
 				
-				coordinator.invokeAsDialog(null, "Evolve log: " + logFile, scroller, null, null);
+				coordinator.invokeAsDialog(null, "Evolve log: " + logFile, scroller, null, 0, null);
 			}
 		});
 		return item;

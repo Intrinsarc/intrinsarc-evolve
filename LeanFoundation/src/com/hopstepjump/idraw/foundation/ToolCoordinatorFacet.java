@@ -38,7 +38,7 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManage
 
   public int invokeYesNoCancelDialog(String title, Object message);
   public int invokeErrorDialog(String title, Object message);
-  public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JButton buttons[], Runnable runAfterShown);
+  public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JComponent buttons[], int defaultButton, Runnable runAfterShown);
   public void changedDiagram(DiagramFacet view);
   public IEasyDock getDock();
 	public int getFrameXPreference(Preference xPreference);

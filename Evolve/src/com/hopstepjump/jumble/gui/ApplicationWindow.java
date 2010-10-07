@@ -1130,7 +1130,7 @@ public class ApplicationWindow extends SmartJFrame
 				coordinator.invokeAsDialog(
 						ERROR_ICON,
 						"Error opening base model",
-						new JLabel("<html>Cannot open base repository:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + repos + "<br>Defaulting to empty model"), null, null);
+						new JLabel("<html>Cannot open base repository:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + repos + "<br>Defaulting to empty model"), null, -1, null);
 				try
 				{
 					RepositoryUtility.useXMLRepository(null, false);
@@ -1799,6 +1799,17 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File", saveTo, null, "Saves the model to another file, but remains on the original");
 			entries.add(new SmartMenuItemImpl("File", "Save", saveTo));
 
+			// add the printing options
+			JMenuItem print = new UpdatingJMenuItem(new PrintDiagramAction(coordinator))
+			{
+				public boolean update()
+				{
+					return GlobalPackageViewRegistry.activeRegistry.getFocussedView() != null;
+				}
+			};
+			GlobalPreferences.registerKeyAction("File", print, "ctrl P", "Print the current diagram");
+			entries.add(new SmartMenuItemImpl("File", "Print", print));
+			
 			JMenuItem refresh = new JMenuItem(new RefreshAction());
 			refresh.setIcon(REFRESH_ICON);
 			GlobalPreferences.registerKeyAction("File", refresh, "F5", "Refresh the model from the repository");
@@ -1921,6 +1932,7 @@ public class ApplicationWindow extends SmartJFrame
 			smartMenuBar.addSectionOrderingHint("File", "Open", "aa");
 			smartMenuBar.addSectionOrderingHint("File", "Save", "b");
 			smartMenuBar.addSectionOrderingHint("File", "ImportExport", "c");
+			smartMenuBar.addSectionOrderingHint("File", "Print", "cc");
 			smartMenuBar.addSectionOrderingHint("File", "Maintenance", "d");
 			smartMenuBar.addSectionOrderingHint("File", "Browser", "e");
 			smartMenuBar.addSectionOrderingHint("File", "Windows", "f");

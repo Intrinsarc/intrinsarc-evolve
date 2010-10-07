@@ -37,6 +37,7 @@ public class SubstitutionsMenuMaker
             "Substitutions",
             substituters.isEmpty() ? new JLabel(leadIn + "No substitutions.") : scroll,
             null,
+            0,
             null);
       }
     });

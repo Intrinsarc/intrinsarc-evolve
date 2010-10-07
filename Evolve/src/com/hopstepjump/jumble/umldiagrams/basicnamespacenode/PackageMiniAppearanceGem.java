@@ -279,6 +279,7 @@ public class PackageMiniAppearanceGem implements Gem
               "Stratum exposure",
               exposed.isEmpty() ? new JLabel("No strata are visible.") : scroll,
               null,
+              0,
               null);
         }
       });
@@ -299,6 +300,7 @@ public class PackageMiniAppearanceGem implements Gem
               "Stratum visibility",
               visible.isEmpty() ? new JLabel("No strata are visible.") : scroll,
               null,
+              0,
               null);
         } 
       });
@@ -317,6 +319,7 @@ public class PackageMiniAppearanceGem implements Gem
               "Stratum dependency",
               simpleDependsOn.isEmpty() ? new JLabel("No strata are depended upon.") : scroll,
               null,
+              0,
               null);
         }
       });
@@ -335,6 +338,7 @@ public class PackageMiniAppearanceGem implements Gem
               "Stratum transitive closure",
               simpleDependsOn.isEmpty() ? new JLabel("No other strata can be reached.") : scroll,
               null,
+              0,
               null);
         }
       });
@@ -415,6 +419,7 @@ public class PackageMiniAppearanceGem implements Gem
               "Independence analysis",
               scroll,
               null,
+              0,
               null);
         }
       });

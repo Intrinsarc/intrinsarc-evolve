@@ -462,7 +462,7 @@ public final class NoteNodeGem implements Gem
         {
           JFontChooser chooser = new JFontChooser();
           chooser.setSelectedFont(font);
-          int chosen = coordinator.invokeAsDialog(null, "Select font", chooser, new JButton[]{new JButton("OK"), new JButton("Cancel")}, null);
+          int chosen = coordinator.invokeAsDialog(null, "Select font", chooser, new JButton[]{new JButton("OK"), new JButton("Cancel")}, 0, null);
 
           if (chosen == 0)
           {

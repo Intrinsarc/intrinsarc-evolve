@@ -161,7 +161,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 	    JButton buttons[] = new JButton[]{imp, cancel};
 	    BeanImporter.conformSize(buttons);
 	    panel.setDividerLocation(180);
-			int chosen = coordinator.invokeAsDialog(IMPORT_ICON, "Exported file: " + fileName, panel, buttons,
+			int chosen = coordinator.invokeAsDialog(IMPORT_ICON, "Exported file: " + fileName, panel, buttons, 0,
 				new Runnable()
 				{
 					public void run()
@@ -294,7 +294,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 				});
 				TreeExpander.expandTree(tree, null, true, null, null, 2);
 				tree.setRootVisible(false);
-				coordinator.invokeAsDialog(WARNING_ICON, "Import warnings", panel, new JButton[]{new JButton("Garbage collect and refresh")}, null);
+				coordinator.invokeAsDialog(WARNING_ICON, "Import warnings", panel, new JButton[]{new JButton("Garbage collect and refresh")}, 0, null);
 				results.deleteReplacedPackages(true);
 			}
 	

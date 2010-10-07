@@ -169,7 +169,7 @@ public final class ToolCoordinatorGem implements Gem
     	top.setVisible(false);
     }
 
-    public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JButton buttons[], final Runnable runAfterShown)
+    public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JComponent buttons[], int defaultButton, final Runnable runAfterShown)
     {
     	final JDialog dialog = new JDialog(frame);
     	dialog.setResizable(true);
@@ -181,18 +181,25 @@ public final class ToolCoordinatorGem implements Gem
     	
     	if (buttons == null)
     		buttons = new JButton[]{new JButton("OK")};
-    	for (JButton b : buttons)
+    	JButton last = null;
+    	for (JComponent b : buttons)
     	{
-    		final int count = lp++;
     		panel.add(b);
-    		b.addActionListener(new ActionListener()
+    		if (b instanceof JButton)
     		{
-					public void actionPerformed(ActionEvent e)
-					{
-						chosen[0] = count;
-						dialog.dispose();
-					}
-    		});
+	    		final int count = lp++;
+	    		((JButton) b).addActionListener(new ActionListener()
+	    		{
+						public void actionPerformed(ActionEvent e)
+						{
+							chosen[0] = count;
+							dialog.dispose();
+						}
+	    		});
+	    		
+	    		if (count == defaultButton)
+	    			last = (JButton) b;
+    		}
     	}
     	// must have this otherwise we leak a huge amount of memory
     	dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -201,6 +208,7 @@ public final class ToolCoordinatorGem implements Gem
     	dialog.add(panel, BorderLayout.SOUTH);
     	dialog.setModal(true);
     	dialog.pack();
+    	last.requestFocusInWindow();
     	
     	// centre with the frame
     	UPoint frameCentre = new UPoint(frame.getLocation()).add(new UDimension(frame.getSize()).multiply(0.5));

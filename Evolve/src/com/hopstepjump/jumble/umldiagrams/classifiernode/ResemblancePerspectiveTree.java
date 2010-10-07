@@ -63,6 +63,7 @@ public class ResemblancePerspectiveTree
             "Filtered resemblance perspective",
             panel,
             null,
+            0,
             null);
       }
     });

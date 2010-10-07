@@ -66,7 +66,7 @@ public class HelpAboutAction extends AbstractAction
     
     tabs.add(makeSystemStatusPanel());
 
-    coordinator.invokeAsDialog(null, "About", tabs, null, null);
+    coordinator.invokeAsDialog(null, "About", tabs, null, 0, null);
   }
   
   private Component makeSystemStatusPanel()

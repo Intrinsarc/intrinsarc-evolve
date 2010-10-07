@@ -70,7 +70,7 @@ public class RegisteredGraphicalThemes
   {
     themes.add(new LunaGraphicalTheme());
     themes.add(new NimbusGraphicalTheme());
-    themes.add(new QuaquaGraphicalTheme());
+//    themes.add(new QuaquaGraphicalTheme());
     themes.add(new SmartGraphicalTheme());
     themes.add(new FastGraphicalTheme());
     themes.add(new AluminiumGraphicalTheme());

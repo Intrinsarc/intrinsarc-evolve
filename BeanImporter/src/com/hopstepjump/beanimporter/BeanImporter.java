@@ -201,6 +201,7 @@ public class BeanImporter
 				"Import into " + title,
 				panel,
 				new JButton[]{importLeaves, cancel},
+				0,
 				null);
 		return buttonNumber[0];
 	}

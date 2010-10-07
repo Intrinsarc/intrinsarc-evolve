@@ -384,6 +384,11 @@ Documentation:
 \end_layout
 
 \begin_layout Enumerate
+preface: how i stumbled on components, background to COM, missing link to
+ theory missing from much software work...
+\end_layout
+
+\begin_layout Enumerate
 blog from Javalobby, part of a series
 \end_layout
 
@@ -403,6 +408,10 @@ front part of manual simple tutorial, no more than 20 pages.
 
 \begin_layout Enumerate
 navigation basics: difference between diagram and model
+\end_layout
+
+\begin_layout Enumerate
+printing options + WMF/EMF + export grouped images
 \end_layout
 
 \begin_layout Standard

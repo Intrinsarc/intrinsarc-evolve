@@ -118,6 +118,7 @@ public class LongRunningTaskProgressMonitor implements LongRunningTaskProgressMo
 		            title,
 		            new JLabel(message),
 		            null,
+		            0,
 		            null);
 		      }                      
 		    });
