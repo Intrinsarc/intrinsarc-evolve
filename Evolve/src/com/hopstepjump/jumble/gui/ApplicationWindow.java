@@ -1974,7 +1974,7 @@ public class ApplicationWindow extends SmartJFrame
 			if (logger != null)
 			{
 				JMenuItem loggerItem = logger.getDialogMenuItem(coordinator);
-				entries.add(new SmartMenuItemImpl("Help", "Version", loggerItem));
+				entries.add(new SmartMenuItemImpl(">Help", "Version", loggerItem));
 			}
 
 			// add the error checking items
