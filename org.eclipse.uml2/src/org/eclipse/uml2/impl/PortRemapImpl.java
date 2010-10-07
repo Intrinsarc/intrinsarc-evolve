@@ -419,14 +419,8 @@ public class PortRemapImpl extends ElementImpl implements PortRemap
     if (newPort == null || newPort.getJ_deleted() > 0)
       return true;
     
-    // the replacement port (new_) must exist in the stratum of the owner of this remap
-    // NOTE: the last complex parameter should be the classifier that the part resides in
-    return !EMFOptions.doPortsExist(
-        originalPort.getUuid(),
-        extractClassifier(originalPort),
-        newPort.getUuid(),
-        extractPart().getType(),
-        extractPart().getOwner().getOwner().getOwner());
+    // probabl should check that we actually have both ports available in the new part
+    return false;
   }
 
   private Property extractPart()

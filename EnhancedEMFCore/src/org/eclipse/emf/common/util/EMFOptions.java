@@ -110,44 +110,4 @@ public class EMFOptions
     }
     return true;
   }
-
-  public static boolean doPortsExist(String originalPortUuid, EModelElement originalClassifier, String newPortUuid, EModelElement newClassifier, EModelElement stratum)
-  {
-    // ensure that the replaced element exists somewhere in the hierarchy
-    // be very defensive to avoid problems
-    IDeltaEngine engine = GlobalDeltaEngine.engine;
-    if (engine != null)
-    {
-      DEElement origC = engine.locateObject(originalClassifier).asElement();
-      DEElement newC = engine.locateObject(newClassifier).asElement();
-      DEStratum perspective = engine.locateObject(stratum).asStratum();
-
-      // make sure the original port is there
-      if (origC == null || !exists(perspective, originalPortUuid, origC, ConstituentTypeEnum.DELTA_PORT))
-        return false;
-
-      // make sure the new port is there
-      if (newC == null || !exists(perspective, newPortUuid, newC, ConstituentTypeEnum.DELTA_PORT))
-        return false;
-    }
-    return true;
-  }
-
-  /**
-   * does the uuid exist at this perspective?
-   * @param perspective
-   * @param uuidToFind
-   * @param element
-   * @param type
-   * @return
-   */
-  private static boolean exists(DEStratum perspective, String uuidToFind, DEElement element, ConstituentTypeEnum type)
-  {
-    IDeltas deltas = element.getDeltas(type);
-    Set<DeltaPair> pairs = deltas.getConstituents(perspective);
-    for (DeltaPair pair : pairs)
-      if (pair.getUuid().equals(uuidToFind))
-        return true;
-    return false;
-  }
 }
