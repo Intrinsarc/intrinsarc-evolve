@@ -13,7 +13,7 @@ public interface IEasyDock
 			String title,
 			Icon icon,
 			EasyDockSideEnum side,
-			Dimension size,
+			double proportion,
 			boolean canClose,
 			boolean remember,
 			JComponent component);

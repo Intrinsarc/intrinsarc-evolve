@@ -217,16 +217,15 @@ public class ApplicationWindow extends SmartJFrame
 		// make the palette
 		JComponent palette = paletteFacet.getPaletteComponent();
 
-		int pwidth = prefs.getRawPreference(
-				new Preference("Appearance", "Palette width")).asInteger();
-		pwidth = Math.max(50, Math.min(pwidth, 300));
+		int pwidth = prefs.getRawPreference(RegisteredGraphicalThemes.INITIAL_PALETTE_WIDTH).asInteger();
+		pwidth = Math.max(50, Math.min(pwidth, 500));
 
 		palette.setPreferredSize(new Dimension(1000, 100));
 		paletteTitle = desktop.createEmbeddedPaletteDockable(
 				"Palette",
 				PALETTE_ICON,
 				EasyDockSideEnum.WEST,
-				new Dimension(pwidth, 100),
+				pwidth / (double) (width - 40 /* 40 is needed to adjust for borders from docking frames */),
 				false,
 				false,
 				palette);
@@ -1930,33 +1929,33 @@ public class ApplicationWindow extends SmartJFrame
 			// add the help entries
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
 			aboutItem.setIcon(EVOLVE_LOGO_ICON);
-			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
+			entries.add(new SmartMenuItemImpl(">Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
-			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
+			entries.add(new SmartMenuItemImpl(">Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
 			JMenuItem newsItem = new JMenuItem(
 					new URLAction("News and Announcements", URL_BASE + "/news"));
-			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
+			entries.add(new SmartMenuItemImpl(">Help", "Support", newsItem));
 			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
 
 			JMenuItem docItem = new JMenuItem(
 					new URLAction("Documentation", URL_BASE + "/documentation"));
 			docItem.setIcon(HELP_ICON);
-			entries.add(new SmartMenuItemImpl("Help", "Support", docItem));
+			entries.add(new SmartMenuItemImpl(">Help", "Support", docItem));
 			GlobalPreferences.registerKeyAction("Help", docItem, null, "Documentation");
 
 			JMenuItem supportItem = new JMenuItem(
 					new URLAction("Support forum", URL_BASE + "/support"));
-			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
+			entries.add(new SmartMenuItemImpl(">Help", "Support", supportItem));
 			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
 
 			JMenuItem versionItem = new JMenuItem(
 					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/version_history"));
-			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
+			entries.add(new SmartMenuItemImpl(">Help", "Version", versionItem));
 			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
 
 			// possibly open up a logger menu entry

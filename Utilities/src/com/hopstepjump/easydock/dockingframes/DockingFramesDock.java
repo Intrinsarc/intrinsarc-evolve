@@ -143,7 +143,7 @@ public class DockingFramesDock implements IEasyDock
 			String title,
 			Icon icon,
 			EasyDockSideEnum side,
-			Dimension size,
+			double proportion,
 			boolean canClose,
 			boolean remember,
 			JComponent component)
@@ -152,19 +152,19 @@ public class DockingFramesDock implements IEasyDock
 		switch(side)
 		{
 		case NORTH:
-			loc = CLocation.base().normalNorth(0.2);
+			loc = CLocation.base().normalNorth(proportion);
 			break;
 		case SOUTH:
-			loc = CLocation.base().normalSouth(0.2);
+			loc = CLocation.base().normalSouth(proportion);
 			break;		
 		case EAST:
-			loc = CLocation.base().normalEast(0.2);
+			loc = CLocation.base().normalEast(proportion);
 			break;
 		case WEST:
-			loc = CLocation.base().normalWest(0.2);
+			loc = CLocation.base().normalWest(proportion);
 			break;
 		}
-		return createPaletteDockable(title, icon, size, canClose, loc, remember, component);
+		return createPaletteDockable(title, icon, null, canClose, loc, remember, component);
 	}
 
 	public IEasyDockable createExternalPaletteDockable(

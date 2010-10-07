@@ -33,6 +33,7 @@ public class RegisteredGraphicalThemes
   public static final Preference INITIAL_RUNNER_HEIGHT = new Preference("Appearance", "Initial runner height", 400);
   public static final Preference LNF_PREFERENCE = new Preference("Appearance", "Application look and feel", new PersistentProperty(LunaGraphicalTheme.THEME_NAME));
   public static final Preference LNF_SUBTHEME_PREFERENCE = new Preference("Appearance", "Application look and feel subtheme");
+	public static final Preference INITIAL_PALETTE_WIDTH = new Preference("Appearance", "Palette width", 165);
   
   private static RegisteredGraphicalThemes instance = new RegisteredGraphicalThemes();
   private List<GraphicalTheme> themes = new ArrayList<GraphicalTheme>();
@@ -204,8 +205,7 @@ public class RegisteredGraphicalThemes
         "The initial width of the runner on the screen.");
     GlobalPreferences.preferences.addPreferenceSlot(INITIAL_RUNNER_HEIGHT, integerType,
         "The initial height of the runner on the screen.");
-
-    GlobalPreferences.preferences.addPreferenceSlot(new Preference("Appearance", "Palette width", 180), integerType,
+    GlobalPreferences.preferences.addPreferenceSlot(INITIAL_PALETTE_WIDTH, integerType,
         "The width of the palette.  Limited to between 50 and 500 pixels.");
   }
 

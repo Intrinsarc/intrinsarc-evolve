@@ -20,7 +20,7 @@ class PortProximity
   {
     this.port = port;
     UBounds portBounds = portFigure.getFullBounds();
-    UDimension middle = portBounds.getMiddlePoint().subtract(partBounds.getTopLeftPoint());
+    UDimension middle = portBounds.getMiddlePoint().subtract(partBounds.getPoint());
     x = middle.getWidth() / partBounds.getWidth();
     y = middle.getHeight() / partBounds.getHeight();
   }
@@ -32,7 +32,7 @@ class PortProximity
   
   public double computeDistance(PortProximity replacedProx)
   {
-    return square(x - replacedProx.x) + square(y - replacedProx.y);
+    return Math.sqrt(square(x - replacedProx.x) + square(y - replacedProx.y));
   }
   
   private double square(double val)
@@ -66,37 +66,50 @@ public class PortRemapper
     InstanceSpecification spec = UMLTypes.extractInstanceOfPart((Property) otherPart.getSubject());
     
     List<PortRemap> remaps = new ArrayList<PortRemap>();
-    for (PortProximity replacedProx : replacedPorts)
+    for (;;)
     {
       // look for a close match with the replacedports
       PortProximity match = null;
+      PortProximity bestReplaced = null;
       double dist = 1e7;
       
-      // find the minimum distance
-      for (PortProximity otherProx : otherPorts)
-      {
-        double apart = otherProx.computeDistance(replacedProx);
-        if (apart < dist)
-        {
-          match = otherProx;
-          dist = apart;
-        }
-      }
-      
+	    for (PortProximity replacedProx : replacedPorts)
+	    {
+	      // find the minimum distance
+	      for (PortProximity otherProx : otherPorts)
+	      {
+	        double apart = otherProx.computeDistance(replacedProx);
+	        if (apart < dist)
+	        {
+	        	bestReplaced = replacedProx;
+	          match = otherProx;
+	          dist = apart;
+	        }
+	      }	      
+	    }
+	    
       // create a remap for this match, and remove both ports from the lists
       if (match != null)
       {
         otherPorts.remove(match);
+        replacedPorts.remove(bestReplaced);
         
-        // only need to create a remap if these are different
-        if (match.getPort() != replacedProx.getPort())
+        DEPart actual = GlobalDeltaEngine.engine.locateObject(replacedPart.getSubject()).asConstituent().asPart();
+        Port next = match.getPort();
+        // ouch...
+        Port orig = (Port) actual.unRemap(GlobalDeltaEngine.engine.locateObject(bestReplaced.getPort()).asConstituent().asPort()).getRepositoryObject();
+        
+        if (next != orig)
         {
-          PortRemap remap = spec.createPortRemap();
-          remap.setOriginalPort(replacedProx.getPort());
-          remap.setNewPort(match.getPort());
-          remaps.add(remap);
+	        // only need to create a remap if these are different
+	        PortRemap remap = spec.createPortRemap();
+	        remap.setOriginalPort(orig);
+	        remap.setNewPort(next);
+	        remaps.add(remap);
         }
       }
+      else
+      	break;
     }
     
     return remaps;
@@ -118,7 +131,8 @@ public class PortRemapper
         if (pair.getConstituent().getRepositoryObject() == port.getSubject())
         {
           PortProximity prox = new PortProximity(
-              port, (Port) pair.getConstituent().getRepositoryObject(),
+              port,
+              (Port) pair.getConstituent().getRepositoryObject(),
               partBounds);
           proxes.add(prox);
           break;

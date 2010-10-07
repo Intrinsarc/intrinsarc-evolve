@@ -30,12 +30,17 @@ import com.hopstepjump.swing.*;
 
 public class XMLSubjectRepositoryGem implements Gem
 {
-  public static String UML2_SUFFIX = ".uml2";
-  public static String UML2Z_SUFFIX = ".uml2z";
-  public static String UML2Z_SUFFIX_NO_DOT = "uml2z";
-  public static String[] EXTENSION_TYPES = new String[]{"uml2z", "uml2"}; 
-  public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed UML2 files (.uml2z)", "uncompressed UML2 files (.uml2)"}; 
-  public static String EXTENSION_DESCRIPTION = "UML2 files (.uml2 and .uml2z)"; 
+  public static String UML2_SUFFIX_NO_DOT = "evolve";
+  public static String UML2_SUFFIX = "." + UML2_SUFFIX_NO_DOT;
+  public static String UML2Z_SUFFIX_NO_DOT = "evolvz";
+  public static String UML2Z_SUFFIX = "." + UML2Z_SUFFIX_NO_DOT;
+  public static String[] EXTENSION_TYPES = new String[]{UML2Z_SUFFIX_NO_DOT, UML2_SUFFIX_NO_DOT}; 
+  public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed evolve files (" + UML2Z_SUFFIX + ")", "uncompressed evolve files (" + UML2_SUFFIX + ")"}; 
+  public static String EXTENSION_DESCRIPTION = "Evolve files (" + UML2_SUFFIX + " and " + UML2Z_SUFFIX + ")"; 
+
+  /** for import and export */
+  public static final String UML2_EXPORT = UML2_SUFFIX_NO_DOT + "_export";
+	public static final String UML2_EXPORT_FILES = "evolve export files (." + UML2_EXPORT + ")";
 
   private String fileName;
   private Model topLevel;
@@ -657,7 +662,7 @@ public class XMLSubjectRepositoryGem implements Gem
       // if this ends in .uml2z, then ungzip it and repoint the resource
       if (fileName.endsWith(UML2Z_SUFFIX))
       {
-      	temp = File.createTempFile("uml2", null);
+      	temp = File.createTempFile(UML2_SUFFIX_NO_DOT, null);
       	FileUtilities.copyFile(file, temp, true);
       	fileURI = URI.createFileURI(temp.getAbsolutePath());
       }

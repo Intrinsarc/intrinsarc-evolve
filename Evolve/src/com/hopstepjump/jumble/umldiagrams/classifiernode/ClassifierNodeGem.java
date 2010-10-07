@@ -2775,22 +2775,20 @@ public final class ClassifierNodeGem implements Gem
 			{
 				final Property replaced = (Property) figureFacet.getSubject();
 				final Property original = (Property) ClassifierConstituentHelper.getOriginalSubject(replaced);
-				final FigureFacet clsFigure = ClassifierConstituentHelper
-						.extractVisualClassifierFigureFromConstituent(figureFacet);
+				final FigureFacet clsFigure = ClassifierConstituentHelper.extractVisualClassifierFigureFromConstituent(figureFacet);
 				final Class cls = (Class) clsFigure.getSubject();
 				coordinator.startTransaction("replaced part", "removed replaced part");
 
 				// now form the port remap based on locations of ports
-				final List<PortRemap> remaps = fancyReplace == null ? null : new PortRemapper(figureFacet, other, figureFacet)
-						.remapPortsBasedOnProximity();
-
+				if (fancyReplace != null)
+					new PortRemapper(figureFacet, other, figureFacet).remapPortsBasedOnProximity();
+				
 				// if we are doing a fancy replace, move the other part into place
 				if (fancyReplace != null)
 				{
 					MovingFiguresGem movingGem = new MovingFiguresGem(diagramView.getDiagram(), other.getFullBounds().getPoint());
 					MovingFiguresFacet movingFacet = movingGem.getMovingFiguresFacet();
-					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]
-					{ other }));
+					movingFacet.indicateMovingFigures(Arrays.asList(new FigureFacet[]{ other }));
 					movingFacet.start(other);
 					movingFacet.move(figureFacet.getFullBounds().getPoint());
 					movingFacet.end();
@@ -2798,9 +2796,6 @@ public final class ClassifierNodeGem implements Gem
 
 				final DeltaReplacedAttribute replacement = fancyReplace == null ? createDeltaReplacedPart(cls, replaced,
 						original) : createFancyDeltaReplacedPart(cls, other, original);
-				if (remaps != null)
-					for (PortRemap remap : remaps)
-						GlobalSubjectRepository.repository.decrementPersistentDelete(remap);
 
 				// move fancy replace over
 				if (fancyReplace != null)
