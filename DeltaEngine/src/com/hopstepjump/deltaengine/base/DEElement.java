@@ -6,23 +6,24 @@ public abstract class DEElement extends DEObject
 {
 	public static final String IMPLEMENTATION_STEREOTYPE_PROPERTY = "implementation-class";
 
-	private transient Map<DEStratum, Set<DEElement>> cachedResembles_e;
-  private transient Map<DEStratum, Set<DEElement>> cachedFilteredResembles_e;
-  private transient Map<DEStratum, Set<DEElement>> cachedResemblance_eClosure;
-  private transient Map<DEStratum, Set<DEElement>> cachedFilteredResemblance_eClosure;
-  private transient Map<DEStratum, Boolean> cachedDirectlyCircular;
-  private transient Map<DEStratum, Boolean> cachedIndirectlyCircular;
-  private transient Map<DEStratum, List<DEElement>> cachedTopmost;
-  private transient HashSet<DEElement> cachedSubstitutes;
+	private Map<DEStratum, Set<DEElement>> cachedResembles_e;
+  private Map<DEStratum, Set<DEElement>> cachedFilteredResembles_e;
+  private Map<DEStratum, Set<DEElement>> cachedResemblance_eClosure;
+  private Map<DEStratum, Set<DEElement>> cachedFilteredResemblance_eClosure;
+  private Map<DEStratum, Boolean> cachedDirectlyCircular;
+  private Map<DEStratum, Boolean> cachedIndirectlyCircular;
+  private Map<DEStratum, List<DEElement>> cachedTopmost;
+  private HashSet<DEElement> cachedSubstitutes;
 
-	private transient Map<DEStratum, Set<DEElement>> superCachedImmediate;
-	private transient Map<DEStratum, Set<DEElement>> superCachedClosure;
-	private transient Map<DEStratum, Set<DEElement>> subCachedImmediate;
-	private transient Map<DEStratum, Set<DEElement>> subCachedClosure;
-	private transient Map<DEStratum, Set<DEElement>> subWithoutCachedClosure;
-	private transient Map<DEStratum, Set<DEElement>> superWithoutCachedClosure;
-  private transient Map<ConstituentTypePerspective, Set<DEConstituent>> cachedCollect; 
-	private transient Boolean shallowDestructive;
+	private Map<DEStratum, Set<DEElement>> superCachedImmediate;
+	private Map<DEStratum, Set<DEElement>> superCachedClosure;
+	private Map<DEStratum, Set<DEElement>> subCachedImmediate;
+	private Map<DEStratum, Set<DEElement>> subCachedClosure;
+	private Map<DEStratum, Set<DEElement>> subWithoutCachedClosure;
+	private Map<DEStratum, Set<DEElement>> superWithoutCachedClosure;
+	private Map<DEStratum, Set<DEElement>> inheritanceTree;
+  private Map<ConstituentTypePerspective, Set<DEConstituent>> cachedCollect; 
+	private Boolean shallowDestructive;
 	private Set<DEStratum> expanded;
 	
 
@@ -80,6 +81,7 @@ public abstract class DEElement extends DEObject
   	subCachedClosure = new HashMap<DEStratum, Set<DEElement>>();
   	subWithoutCachedClosure = new HashMap<DEStratum, Set<DEElement>>();
   	superWithoutCachedClosure = new HashMap<DEStratum, Set<DEElement>>();
+  	inheritanceTree = new HashMap<DEStratum, Set<DEElement>>();
   	cachedCollect = new HashMap<ConstituentTypePerspective, Set<DEConstituent>>();
   	shallowDestructive = null;		
 	}
@@ -100,6 +102,7 @@ public abstract class DEElement extends DEObject
   	subCachedClosure.remove(perspective);
   	subWithoutCachedClosure.remove(perspective);
   	superWithoutCachedClosure.remove(perspective);
+  	inheritanceTree.remove(perspective);
   	cachedCollect.remove(perspective);
   	shallowDestructive = null;		
 	}
@@ -619,6 +622,33 @@ public abstract class DEElement extends DEObject
 
 		superCachedImmediate.put(perspective, cached);
   	return cached;
+  }
+  
+  public Set<DEElement> getInheritanceTree(DEStratum perspective)
+  {
+  	// have we cached this?
+  	Set<DEElement> cached = inheritanceTree.get(perspective);
+  	if (cached != null)
+  		return cached;
+  	
+  	cached = new HashSet<DEElement>();
+  	cached.add(this);
+  	
+  	// keep expanding until no more additions
+  	int oldSize;
+  	do
+  	{
+  		oldSize = cached.size();
+  		for (DEElement elem : new HashSet<DEElement>(cached))
+  		{
+  			cached.addAll(elem.getSubElementClosure(perspective, true));
+  			cached.addAll(elem.getSuperElementClosure(perspective, true));
+  		}
+  	} while (cached.size() != oldSize);
+  	
+  	inheritanceTree.put(perspective, cached);
+  	return cached;
+
   }
   
   public Set<DEElement> getSuperElementClosure(DEStratum perspective, boolean inheritanceOnly)

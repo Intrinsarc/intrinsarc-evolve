@@ -4,4 +4,5 @@ public interface ITerminal
 {
 	boolean isCurrent();
 	void moveToNextState();
+	void becomeCurrent();
 }

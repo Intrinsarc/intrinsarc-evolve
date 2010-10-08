@@ -11,12 +11,15 @@ public class BBSimpleInterface extends BBSimpleElement
 	private transient String rawName;
 	private Class<?> implementationClass;
 	private String implementationClassName;
-	private transient String uuid;
-	private transient Set<BBSimpleInterface> supersPlusMe;
-	private transient DEInterface complex;
+	private String uuid;
+	private Set<BBSimpleInterface> supersPlusMe;
+	private Set<BBSimpleInterface> treePlusMe;
+	private DEInterface complex;
+	private BBSimpleElementRegistry registry;
 	
 	public BBSimpleInterface(BBSimpleElementRegistry registry, DEInterface complex)
 	{
+		this.registry = registry;
 		this.complex = complex;
 		rawName = complex.getTopName();
 		uuid = complex.getUuid();
@@ -29,6 +32,19 @@ public class BBSimpleInterface extends BBSimpleElement
 		for (DEElement sub : complex.getSuperElementClosure(registry.getPerspective(), true))
 			supersPlusMe.add(registry.retrieveInterface(sub.asInterface()));
 	}
+	
+	private Set<BBSimpleInterface> getOrMakeInheritanceTree()
+	{
+		if (treePlusMe != null)
+			return treePlusMe;
+		
+		// get the tree
+		treePlusMe = new HashSet<BBSimpleInterface>();
+		for (DEElement tree : complex.getInheritanceTree(registry.getPerspective()))
+			treePlusMe.add(registry.retrieveInterface(tree.asInterface()));
+		return treePlusMe;
+	}
+	
 
 	public void resolveImplementation(BBSimpleElementRegistry registry) throws BBImplementationInstantiationException
 	{		
@@ -80,9 +96,14 @@ public class BBSimpleInterface extends BBSimpleElement
     return false;
   }
 
-	public Set<BBSimpleInterface> getSuperInterfaceClosurePlusMe()
+	public Set<BBSimpleInterface> getInterfaceTreePlusMe()
 	{
-		return supersPlusMe;
+		return treePlusMe;
+	}
+
+	public Set<BBSimpleInterface> getInheritanceTree()
+	{
+		return getOrMakeInheritanceTree();
 	}
 
 	public DEInterface getComplex()

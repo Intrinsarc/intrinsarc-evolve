@@ -645,6 +645,7 @@ public class ComponentParser
 	private List<DEParameter> parseParameters()
 	{
 		final List<DEParameter> params = new ArrayList<DEParameter>();
+		
 		ex.
 			guard("(",
 				new IAction() {
@@ -682,7 +683,7 @@ public class ComponentParser
 	private void parseParameter(final List<DEParameter> params)
 	{
 		Token tok = ex.peek();
-		if (tok.getType() == TokenType.LITERAL && !tok.getText().equals("null") && !tok.getText().equals("true") && !tok.getText().equals("false"))
+		if (tok.getType() == TokenType.LITERAL && !tok.getText().equals("null") && !tok.getText().equals("true") && !tok.getText().equals("false") && !tok.getText().equals("default"))
 			params.add(new BBParameter(ex.nextUuid()));
 		else
 		if (tok.getType() == TokenType.STRING)

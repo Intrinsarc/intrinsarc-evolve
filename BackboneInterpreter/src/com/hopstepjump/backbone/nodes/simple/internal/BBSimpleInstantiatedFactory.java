@@ -38,15 +38,15 @@ public class BBSimpleInstantiatedFactory
 		children.remove(child);
 	}
 	
-	public void instantiate(Map<String, Object> values) throws BBRuntimeException
+	public void instantiate(Map<String, Object> suppliedParameters) throws BBRuntimeException
 	{
-		Set<String> setNames = values == null ? null : new HashSet<String>(values.keySet());
+		Set<String> setNames = suppliedParameters == null ? null : new HashSet<String>(suppliedParameters.keySet());
 		
-		// instantiate the attributes
+		// instantiate the attributes, possibly taking the values from the parameters supplied
 		List<BBSimpleAttribute> attrs = factory.getAttributes();
 		if (attrs != null)
 			for (BBSimpleAttribute attr : attrs)
-				iattributes.put(attr, new Attribute<Object>(attr.instantiate(this, values, setNames)));
+				iattributes.put(attr, new Attribute<Object>(attr.instantiate(this, suppliedParameters, setNames)));
 		
 		// we shouldn't have any names left over
 		if (setNames != null && setNames.size() != 0)
@@ -83,7 +83,9 @@ public class BBSimpleInstantiatedFactory
 		{
 			Map<BBSimpleInterface, Object> cached = end.getConnector().getProvides(this, end.getSide());
 			if (cached != null)
+			{
 				cachedProvides.put(new CachedConnectorEnd(end.getConnector(), end.getSide()), cached);
+			}
 		}
 		
 		// set the required for each port

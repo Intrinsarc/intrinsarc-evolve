@@ -64,6 +64,11 @@ public class Rented
 			renterName.set(null);
 			whenTo.set(null);
 		}
+		
+		public String toString()
+		{
+			return "rented";
+		}
 	}
 
 	private class ITransitionInImpl implements ITransition
@@ -71,7 +76,7 @@ public class Rented
 		public boolean enter()
 		{
 			current = true;
-			return true;
+			return current;
 		}
 	}
 }

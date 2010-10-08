@@ -421,15 +421,7 @@ public class BBSimpleAttribute extends BBSimpleObject
 		// create using the chosen constructor
 		try
 		{
-			// if this has a default value of null, return null
-			if (isNull)
-				return null;
-			
-			// (1) is this just a default instantiation, with no possible parameters?
-			if (isDefault)
-				return constructor.newInstance();
-
-			// (2) has this been overridden by the program caller?
+			// (1) has this been overridden by the program caller?
 			Class<?> implClass = type.getImplementationClass();
 			if (setNames != null && position == PositionEnum.TOP && setNames.contains(originalName))
 			{
@@ -440,7 +432,15 @@ public class BBSimpleAttribute extends BBSimpleObject
 				return value;
 			}
 
-			// (3) is this an alias?
+			// (2) if this has a default value of null, return null
+			if (isNull)
+				return null;
+			
+			// (3) is this just a default instantiation, with no possible parameters?
+			if (isDefault)
+				return constructor.newInstance();
+
+			// (4) is this an alias?
 			if (alias != null)
 				return context.resolveAttributeValue(alias);
 			

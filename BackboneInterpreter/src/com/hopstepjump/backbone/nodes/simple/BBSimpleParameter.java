@@ -76,7 +76,9 @@ public class BBSimpleParameter extends BBSimpleObject
 			attribute.resolveImplementation(registry);
 		else
 		if (literal.equals(DEFAULT_PATTERN))
+		{
 			isDefault = true;
+		}
 		else
 			resolvedLiteral = decodeParameter(literal, attr);
 	}

@@ -29,16 +29,25 @@ public class RentalExample2Runner
 		{
 			// get the first car
 			IRentalCarDetails car = cars.get(0);
-			IRentalEvent event = rentalStates.get(0);
+			IRentalEvent state = rentalStates.get(0);
 			
+			System.out.println("\n");
 			print(car);
+			System.out.println("  : " + state + "\n");
+			
 			System.out.println("--> Sending event: rent");
-			event.rent();
-			event.setRenter("Andrew", new Date(111, 10, 10));
+			state.rent();
+			System.out.println("  : " + state + "\n");
+			
+			System.out.println("--> Sending event: setRenter");
+			state.setRenter("Andrew", new Date(111, 10, 10));
 			print(car);
+			System.out.println("  : " + state + "\n");
+			
 			System.out.println("--> Sending event: return rental");
-			event.returnRental();
+			state.returnRental();
 			print(car);
+			System.out.println("  : " + state + "\n");
 			
 			return 0;
 		}

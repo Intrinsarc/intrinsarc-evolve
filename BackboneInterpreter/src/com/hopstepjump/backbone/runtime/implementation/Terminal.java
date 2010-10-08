@@ -17,9 +17,7 @@ public class Terminal implements IStateTerminalComponent
 	// the below is to work around a limitation with the backbone parser where both start and end
 	// terminals expect to refer to the same port by different uuids.
 	// alternative would be to make a separate Start and End class.
-	private ITerminal startTerminal_ITerminalProvided = new ITerminalImpl();
 	public ITerminal getStartTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
-	private ITerminal endTerminal_ITerminalProvided = new ITerminalImpl();
 	public ITerminal getEndTerminal_ITerminal(Class<?> required) { return terminal_ITerminalProvided; }
 	
 	private boolean current;
@@ -32,7 +30,13 @@ public class Terminal implements IStateTerminalComponent
 		{
 			return current;
 		}
-
+		
+		public void becomeCurrent()
+		{
+			current = true;
+			out_ITransitionRequired.enter();
+		}
+		
 		public void moveToNextState()
 		{
 			if (savedMethod != null)

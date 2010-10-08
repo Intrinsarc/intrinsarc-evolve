@@ -361,15 +361,16 @@ public class BBSimpleConnector extends BBSimpleObject
 		return true;
 	}
 
+	
 	private ReflectivePort getPossibleSubInterfaceField(PortFieldMap reqFieldMap, BBSimpleInterface provided)
 	{
-		for (BBSimpleInterface i : provided.getSuperInterfaceClosurePlusMe())
+		for (BBSimpleInterface i : provided.getInheritanceTree())
 			if (reqFieldMap.get(i) != null)
 				return reqFieldMap.get(i);
 
 		// do this the other way also -- we need to in case of type inference the provides may not be a subclass
 		for (BBSimpleInterface i : reqFieldMap.keySet())
-			if (i.getSuperInterfaceClosurePlusMe().contains(provided))
+			if (i.getInheritanceTree().contains(provided))
 				return reqFieldMap.get(i);
 		throw new IllegalStateException("Cannot find suitable match for provided interface " + provided.getName() + " in connector " + name);
 	}

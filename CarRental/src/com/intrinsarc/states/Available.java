@@ -52,6 +52,11 @@ public class Available
 		{
 			throw new IllegalStateException("Cannot set renter as car is currently available");
 		}
+		
+		public String toString()
+		{
+			return "available";
+		}
 	}
 
 	private class ITransitionInImpl implements ITransition
@@ -59,7 +64,7 @@ public class Available
 		public boolean enter()
 		{
 			current = true;
-			return true;
+			return current;
 		}
 	}
 }

@@ -548,13 +548,13 @@ public class ComponentErrorChecker
 	{
 		for (DEElement iface : ifaces)
 		{
-			Set<DEElement> supers = iface.getSuperElementClosure(perspective, true);
+			Set<DEElement> tree = iface.getInheritanceTree(perspective);
 			for (DEElement iface2 : ifaces)
 			{
 				if (iface != iface2)
 				{
-					Set<DEElement> overlap = new HashSet<DEElement>(supers);
-					overlap.retainAll(iface2.getSuperElementClosure(perspective, true));
+					Set<DEElement> overlap = new HashSet<DEElement>(tree);
+					overlap.retainAll(iface2.getInheritanceTree(perspective));
 					if (overlap.size() > 0)
 						return true;
 				}
