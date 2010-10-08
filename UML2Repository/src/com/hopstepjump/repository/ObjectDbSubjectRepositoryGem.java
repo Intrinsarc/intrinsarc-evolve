@@ -23,9 +23,6 @@ import com.hopstepjump.repositorybase.*;
 
 public class ObjectDbSubjectRepositoryGem implements Gem
 {
-  public static final String UML2DB_SUFFIX_DESCRIPTION = "Evolve database files (.evolvedb)";
-	public static final String UML2DB_SUFFIX_NO_DOT = "evolvedb";
-	public static String UML2DB_SUFFIX = ".evolvedb";
   private String hostName;
   private String dbName;
   private PersistenceManagerFactory pmf; 

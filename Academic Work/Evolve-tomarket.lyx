@@ -340,6 +340,10 @@ part aliasing in factories! -- for many to many relationships
 \end_layout
 
 \begin_layout Itemize
+persistent factory state for deletion after persisting
+\end_layout
+
+\begin_layout Itemize
 jar deployment + editing off deployed jars.
  also allowing modelling changes using jars for model.
 \begin_inset Newline newline
@@ -417,7 +421,7 @@ printing options + export grouped images
 \begin_layout Standard
 
 \series bold
-Ideas for revenue:
+Ideas for revenue & increasing sales:
 \end_layout
 
 \begin_layout Itemize
@@ -440,6 +444,11 @@ updates: free upgrades for a year, 50% upgrade to get another year
 \begin_layout Itemize
 integration modules: GWT, Swing, JPA (all included), others such as SWT,
  web services, S3 + Amazon, Google app engine, cloud?
+\end_layout
+
+\begin_layout Itemize
+get a good doc writer & continual publicist/blogger: e.g.
+ Geertjan W
 \end_layout
 
 \begin_layout Standard

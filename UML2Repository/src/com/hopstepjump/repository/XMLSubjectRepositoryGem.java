@@ -32,15 +32,20 @@ public class XMLSubjectRepositoryGem implements Gem
 {
   public static String UML2_SUFFIX_NO_DOT = "evolve";
   public static String UML2_SUFFIX = "." + UML2_SUFFIX_NO_DOT;
-  public static String UML2Z_SUFFIX_NO_DOT = "evolvz";
+  public static String UML2Z_SUFFIX_NO_DOT = "evolvez";
   public static String UML2Z_SUFFIX = "." + UML2Z_SUFFIX_NO_DOT;
   public static String[] EXTENSION_TYPES = new String[]{UML2Z_SUFFIX_NO_DOT, UML2_SUFFIX_NO_DOT}; 
   public static String[] EXTENSION_DESCRIPTIONS = new String[]{"compressed evolve files (" + UML2Z_SUFFIX + ")", "uncompressed evolve files (" + UML2_SUFFIX + ")"}; 
-  public static String EXTENSION_DESCRIPTION = "Evolve files (" + UML2_SUFFIX + " and " + UML2Z_SUFFIX + ")"; 
+  public static String EXTENSION_DESCRIPTION = "Evolve files (" + UML2_SUFFIX + " and " + UML2Z_SUFFIX + ")";
+  
+  public static final String UML2DB_SUFFIX_DESCRIPTION = "Evolve database files (.evolvedb)";
+	public static final String UML2DB_SUFFIX_NO_DOT = "evolvedb";
+	public static String UML2DB_SUFFIX = ".evolvedb";
+
 
   /** for import and export */
-  public static final String UML2_EXPORT = UML2_SUFFIX_NO_DOT + "_export";
-	public static final String UML2_EXPORT_FILES = "evolve export files (." + UML2_EXPORT + ")";
+  public static final String UML2_EXPORT_NO_DOT = UML2_SUFFIX_NO_DOT + "_export";
+	public static final String UML2_EXPORT_FILES = "evolve export files (." + UML2_EXPORT_NO_DOT + ")";
 
   private String fileName;
   private Model topLevel;

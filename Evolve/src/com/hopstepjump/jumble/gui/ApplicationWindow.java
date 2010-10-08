@@ -1118,7 +1118,7 @@ public class ApplicationWindow extends SmartJFrame
 				return;
 			String repos = "" +
 				GlobalPreferences.preferences.getRawPreference(Evolve.EVOLVE).asString() +
-				"/models/base.uml2";
+				"/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
 			
 			try
 			{
@@ -1206,8 +1206,8 @@ public class ApplicationWindow extends SmartJFrame
 			// let the user choose the filename
 			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
 					"Select database file to open",
-					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_DESCRIPTION,
-					ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX_NO_DOT,
+					XMLSubjectRepositoryGem.UML2DB_SUFFIX_DESCRIPTION,
+					XMLSubjectRepositoryGem.UML2DB_SUFFIX_NO_DOT,
 					recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
@@ -1941,40 +1941,40 @@ public class ApplicationWindow extends SmartJFrame
 			// add the help entries
 			JMenuItem aboutItem = new JMenuItem(new HelpAboutAction(coordinator, popup));			
 			aboutItem.setIcon(EVOLVE_LOGO_ICON);
-			entries.add(new SmartMenuItemImpl(">Help", "About", aboutItem));
+			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
-			entries.add(new SmartMenuItemImpl(">Help", "Support", mainItem));
+			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
 			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
 
 			JMenuItem newsItem = new JMenuItem(
 					new URLAction("News and Announcements", URL_BASE + "/news"));
-			entries.add(new SmartMenuItemImpl(">Help", "Support", newsItem));
+			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
 			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
 
 			JMenuItem docItem = new JMenuItem(
 					new URLAction("Documentation", URL_BASE + "/documentation"));
 			docItem.setIcon(HELP_ICON);
-			entries.add(new SmartMenuItemImpl(">Help", "Support", docItem));
+			entries.add(new SmartMenuItemImpl("Help", "Support", docItem));
 			GlobalPreferences.registerKeyAction("Help", docItem, null, "Documentation");
 
 			JMenuItem supportItem = new JMenuItem(
 					new URLAction("Support forum", URL_BASE + "/support"));
-			entries.add(new SmartMenuItemImpl(">Help", "Support", supportItem));
+			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
 			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
 
 			JMenuItem versionItem = new JMenuItem(
 					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/version_history"));
-			entries.add(new SmartMenuItemImpl(">Help", "Version", versionItem));
+			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
 			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
 
 			// possibly open up a logger menu entry
 			if (logger != null)
 			{
 				JMenuItem loggerItem = logger.getDialogMenuItem(coordinator);
-				entries.add(new SmartMenuItemImpl(">Help", "Version", loggerItem));
+				entries.add(new SmartMenuItemImpl("Help", "Version", loggerItem));
 			}
 
 			// add the error checking items
@@ -2232,7 +2232,7 @@ public class ApplicationWindow extends SmartJFrame
 						RepositoryUtility.useObjectDbRepository(hostName, dbName);
 						applicationWindowCoordinator.switchRepository();
 					}
-					else if (name.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
+					else if (name.endsWith(XMLSubjectRepositoryGem.UML2DB_SUFFIX))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading local database repository", name, null, -1);
 						RepositoryUtility.useObjectDbRepository(null, name);

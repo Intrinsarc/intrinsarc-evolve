@@ -122,6 +122,7 @@ import com.hexidec.ekit.action.*;
 import com.hexidec.ekit.component.*;
 import com.hexidec.util.Base64Codec;
 import com.hexidec.util.Translatrix;
+import com.hopstepjump.swing.*;
 
 
 
@@ -2460,7 +2461,7 @@ public class EkitCore extends JPanel implements ActionListener, KeyListener, Foc
 	  */
 	private File getFileFromChooser(String startDir, int dialogType, String[] exts, String desc)
 	{
-		JFileChooser jfileDialog = new JFileChooser(startDir);
+		JFileChooser jfileDialog = new CustomisedFileChooser(startDir);
 		jfileDialog.setDialogType(dialogType);
 		jfileDialog.setFileFilter(new MutableFilter(exts, desc));
 		int optionSelected = JFileChooser.CANCEL_OPTION;

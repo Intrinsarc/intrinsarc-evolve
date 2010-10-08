@@ -57,6 +57,7 @@ public class StateDispatcher implements IStateDispatcher
 						new Class<?>[]{required},
 						handler);
 		}
+		System.out.println("$$ asked for provided event port: " + System.identityHashCode(proxy));
 		return proxy;
 	}
 }

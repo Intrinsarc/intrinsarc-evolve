@@ -21,6 +21,7 @@ import com.hopstepjump.jumble.umldiagrams.colors.*;
 import com.hopstepjump.notifications.*;
 import com.hopstepjump.repository.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 /**
  * 
@@ -111,6 +112,8 @@ public class Evolve
 		GlobalPreferences.preferences.setVariableValue("EVOLVE", home);
 		
     registerPreferenceSlots();
+    registerFileTypes();
+    
     // handle any preferences
     RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
     themes.registerPreferenceSlots();
@@ -129,6 +132,26 @@ public class Evolve
     
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;    
   }
+	
+	private static void registerFileTypes()
+	{
+		CustomisedFileChooser.addFileType(
+				XMLSubjectRepositoryGem.UML2_SUFFIX_NO_DOT,
+				IconLoader.loadIcon("evolve-file.png"),
+				"Evolve model file");
+		CustomisedFileChooser.addFileType(
+				XMLSubjectRepositoryGem.UML2Z_SUFFIX_NO_DOT,
+				IconLoader.loadIcon("evolve-compressed-file.png"),
+				"Evolve compressed model file");
+		CustomisedFileChooser.addFileType(
+				XMLSubjectRepositoryGem.UML2_EXPORT_NO_DOT,
+				IconLoader.loadIcon("evolve-exported-file.png"),
+				"Evolve export file");
+		CustomisedFileChooser.addFileType(
+				XMLSubjectRepositoryGem.UML2DB_SUFFIX_NO_DOT,
+				IconLoader.loadIcon("evolve-database-file.png"),
+				"Evolve local database model file");
+	}
 
 	private static void registerPreferenceSlots()
 	{

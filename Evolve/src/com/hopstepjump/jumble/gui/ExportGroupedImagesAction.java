@@ -12,6 +12,7 @@ import com.hopstepjump.idraw.environment.*;
 import com.hopstepjump.idraw.foundation.*;
 import com.hopstepjump.idraw.utility.*;
 import com.hopstepjump.repositorybase.*;
+import com.hopstepjump.swing.*;
 
 public class ExportGroupedImagesAction extends AbstractAction
 {
@@ -45,7 +46,7 @@ public class ExportGroupedImagesAction extends AbstractAction
     final Model model = repository.getTopLevelModel();
     
     // ask for a directory to store the images in
-    JFileChooser chooser = new JFileChooser(); 
+    JFileChooser chooser = new CustomisedFileChooser(); 
     chooser.setCurrentDirectory(recent.getLastVisitedDirectory());
     chooser.setDialogTitle("Select a directory for the images to be saved into");
     chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);

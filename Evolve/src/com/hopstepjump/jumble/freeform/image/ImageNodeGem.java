@@ -248,7 +248,7 @@ public final class ImageNodeGem implements Gem
         public void actionPerformed(ActionEvent e)
         {
           File recent = PreferenceTypeDirectory.recent.getLastVisitedDirectory();
-          JFileChooser chooser = new JFileChooser(recent);
+          JFileChooser chooser = new CustomisedFileChooser(recent);
           if (chooser.showOpenDialog(diagramView.getCanvas()) != JFileChooser.APPROVE_OPTION)
             return;
 

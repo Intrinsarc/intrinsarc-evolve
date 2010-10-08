@@ -72,7 +72,7 @@ public class InspectAndImportStrataAction extends AbstractAction
     final String fileName = RepositoryUtility.chooseFileNameToOpen(
         frame,
         "Select exported file to inspect",
-        ModelMover.UML2_EXPORT_FILES, ModelMover.UML2_EXPORT,
+        XMLSubjectRepositoryGem.UML2_EXPORT_FILES, XMLSubjectRepositoryGem.UML2_EXPORT_NO_DOT,
         PreferenceTypeDirectory.recent.getLastVisitedDirectory());
     if (fileName == null)
     	return;

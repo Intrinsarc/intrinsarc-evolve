@@ -40,6 +40,7 @@ public class RentalCarDetails
 
 		public boolean isRented()
 		{
+			System.out.println("$$ renter = " + renter);
 			return renter.isRented();
 		}
 	}

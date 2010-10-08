@@ -12,22 +12,23 @@ public class PrintPreviewPanel extends JPanel
 	private PageFormat pageFormat = new PageFormat();
 	private double percentScale;
 	private BufferedImage pcImage;
-	private boolean portrait = true;
+	private boolean portrait;
 	private PreviewPage prp;
 	private double fWidth = pageFormat.getWidth();
 	private double fHeight = pageFormat.getHeight();
 
-	public PrintPreviewPanel(Component pc, int percentScale)
+	public PrintPreviewPanel(Component pc, int percentScale, boolean portrait)
 	{
 		targetComponent = pc;
 		this.percentScale = percentScale / 2;
+		this.portrait = portrait;
 
 		pcImage = new BufferedImage(targetComponent.getWidth(), targetComponent.getHeight(), BufferedImage.TYPE_INT_ARGB);
 		Graphics g = pcImage.createGraphics();
 		targetComponent.paint(g);
 		g.dispose();
 
-		pageFormat.setOrientation(PageFormat.PORTRAIT);
+		pageFormat.setOrientation(portrait ? PageFormat.PORTRAIT : PageFormat.LANDSCAPE);
 		prp = new PreviewPage();
 		setLayout(new BorderLayout());
 		setPreferredSize(new Dimension(460, 480));
@@ -70,7 +71,7 @@ public class PrintPreviewPanel extends JPanel
 				g.setClip(9 + xoff, 9 + yoff, fw + 2, fh + 2);
 				g.setColor(Color.WHITE);
 				g.fillRect(10 + xoff, 10 + yoff, fw, fh);
-				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, this);
+				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, null);
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x1 + 10 + xoff, y1 + 10 + yoff, l1, h1);
 				g.setColor(Color.black);
@@ -98,7 +99,7 @@ public class PrintPreviewPanel extends JPanel
 				g.setClip(9 + xoff, 9 + yoff, fw + 2, fh + 2);
 				g.setColor(Color.WHITE);
 				g.fillRect(10 + xoff, 10 + yoff, fw, fh);
-				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, this);
+				g.drawImage(image, x1 + 10 + xoff, y1 + 10 + yoff, null);
 				g.setColor(Color.LIGHT_GRAY);
 				g.drawRect(x1 + 10 + xoff, y1 + 10 + yoff, l1, h1);
 				g.setColor(Color.BLACK);

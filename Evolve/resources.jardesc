@@ -12,8 +12,9 @@
     </manifest>
     <selectedElements exportClassFiles="true" exportJavaFiles="false" exportOutputFolder="false">
         <javaElement handleIdentifier="=Resources/tree-delta-icons"/>
-        <javaElement handleIdentifier="=Resources/non-uml-palette-icons"/>
+        <javaElement handleIdentifier="=Resources/filetypes"/>
         <javaElement handleIdentifier="=RichPalette/resources"/>
+        <javaElement handleIdentifier="=Resources/non-uml-palette-icons"/>
         <javaElement handleIdentifier="=Resources/resources"/>
         <javaElement handleIdentifier="=Resources/toolbar-icons"/>
         <javaElement handleIdentifier="=Resources/tree-icons"/>

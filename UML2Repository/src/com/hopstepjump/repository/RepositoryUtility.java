@@ -54,23 +54,6 @@ public class RepositoryUtility
 	  repository = null;
 	}
 	
-	private static FileView makeFileView()
-	{
-		return new FileView()
-		{
-		  public Icon getIcon(File file)
-		  {
-		    String filename = file.getName().toLowerCase();
-		    if (filename.endsWith(XMLSubjectRepositoryGem.UML2_SUFFIX) || filename.endsWith(XMLSubjectRepositoryGem.UML2Z_SUFFIX))
-		      return MAIN_FRAME_ICON;
-			  if (filename.endsWith(ObjectDbSubjectRepositoryGem.UML2DB_SUFFIX))
-			    return LOCALDB_ICON;
-
-		    return super.getIcon(file);
-		  }
-		};
-	}
-	
 	public static String chooseFileNameToCreate(JFrame frame, String text, String extensionType, String extension, File startDirectory)
 	{
 	  return chooseFileNameToCreate(frame, text, new String[]{extensionType}, new String[]{extension}, startDirectory);
@@ -79,7 +62,7 @@ public class RepositoryUtility
 	public static String chooseFileNameToCreate(JFrame frame, String text, String extensionType[], String extensions[], File startDirectory)
 	{
 	  // ask for a file to store the model into
-	  JFileChooser chooser = new JFileChooser(startDirectory); 
+	  JFileChooser chooser = new CustomisedFileChooser(startDirectory); 
 	  chooser.setDialogTitle(text);
 	  chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 	  List<FileFilter> filters = new ArrayList<FileFilter>();
@@ -89,7 +72,6 @@ public class RepositoryUtility
 		  filters.add(next);
 	  	chooser.addChoosableFileFilter(next);
 	  }
-  	chooser.setFileView(makeFileView());
 	  if (chooser.showSaveDialog(frame) != JFileChooser.APPROVE_OPTION)
 	    return null;
 	
@@ -109,14 +91,13 @@ public class RepositoryUtility
 	public static String chooseFileNameToOpen(JFrame frame, String text, String extensionType, String extensions[], String extension, File startDirectory)
 	{
 	  // ask for a file to store the model into
-	  JFileChooser chooser = new JFileChooser(startDirectory); 
+	  JFileChooser chooser = new CustomisedFileChooser(startDirectory); 
 	  chooser.setDialogTitle(text);
 	  chooser.setFileSelectionMode(JFileChooser.FILES_ONLY);
 	  List<FileFilter> filters = new ArrayList<FileFilter>();
   	FileFilter next = new MyFileNameExtensionFilter(extensionType, extensions);
 	  filters.add(next);
   	chooser.addChoosableFileFilter(next);
-  	chooser.setFileView(makeFileView());
 	  if (chooser.showOpenDialog(frame) != JFileChooser.APPROVE_OPTION)
 	    return null;
 	

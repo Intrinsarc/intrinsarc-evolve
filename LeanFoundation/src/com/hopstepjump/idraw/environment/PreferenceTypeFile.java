@@ -7,6 +7,8 @@ import java.util.prefs.*;
 
 import javax.swing.*;
 
+import com.hopstepjump.swing.*;
+
 public class PreferenceTypeFile implements PreferenceType
 {
   public PreferenceSlotEditor makeEditor(
@@ -46,7 +48,7 @@ public class PreferenceTypeFile implements PreferenceType
             {
               public void actionPerformed(ActionEvent e)
               {
-                JFileChooser chooser = new JFileChooser(newValue);
+                JFileChooser chooser = new CustomisedFileChooser(newValue);
                 if (chooser.showOpenDialog(panel) != JFileChooser.APPROVE_OPTION)
                   return;
                 field.setText(newValue = chooser.getSelectedFile().getAbsolutePath());

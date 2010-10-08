@@ -356,6 +356,7 @@ public class PaletteManagerGem
       htmlCreator.setHideNote(true);
       palette.addEntry(makeEntry(false, "notelink.gif",    "Note link",         new ArcCreateToolGem(retrieveArcRecreator(NoteLinkCreatorGem.NAME)).getToolFacet(), "note"));
       palette.addEntry(makeEntry(true, "grouper.png",     "Grouper",            makeNodeCreateTool(retrieveNodeRecreator(GrouperCreatorGem.NAME)), "top"));
+      palette.addEntry(makeEntry(true, "doc-image.png",   "Image",              makeNodeCreateTool(retrieveNodeRecreator(ImageCreatorGem.NAME)), "top"));
       tools.addCategory(palette);
     }
     

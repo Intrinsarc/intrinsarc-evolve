@@ -45,13 +45,13 @@ public class PrintDiagramAction extends AbstractAction
 		UPoint br = bounds.getBottomRightPoint();
 		view.getCanvas().setBounds(new Rectangle(0, 0, (int) br.getX() + 1, (int) br.getY() + 1));
 		
-		final PrintPreviewPanel panel = new PrintPreviewPanel(view.getCanvas(), percentScale);
+		final PrintPreviewPanel panel = new PrintPreviewPanel(view.getCanvas(), percentScale, false);
 		ButtonGroup pf = new ButtonGroup();
 		final JRadioButton pf1 = new JRadioButton("Portrait");
-		pf1.setSelected(true);
 		JRadioButton pf2 = new JRadioButton("Landscape");
 		pf.add(pf1);
 		pf.add(pf2);
+		pf2.setSelected(true);
 		ActionListener listener = new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)

@@ -8,6 +8,8 @@ import java.util.prefs.*;
 
 import javax.swing.*;
 
+import com.hopstepjump.swing.*;
+
 /**
  * class must be stateless
  * @author amcveigh
@@ -65,7 +67,7 @@ public class PreferenceTypeDirectory implements PreferenceType
                 if (newValue == null || newValue.length() == 0)
                   newValue = PreferenceTypeDirectory.recent.getLastVisitedDirectory().getPath();
                   
-                JFileChooser chooser = new JFileChooser(newValue);
+                JFileChooser chooser = new CustomisedFileChooser(newValue);
                 chooser.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
                 if (chooser.showOpenDialog(panel) != JFileChooser.APPROVE_OPTION)
                   return;
