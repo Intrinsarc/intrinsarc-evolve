@@ -29,10 +29,13 @@ public class LDetails
 		
 		try
 		{
-			StringTokenizer tok = new StringTokenizer(line, "=");
-			String name = tok.nextToken();
-			String value = tok.nextToken();
-			details.put(name, value);
+			int index = line.indexOf('=');
+			if (index != -1)
+			{
+				String name = line.substring(0, index);
+				String value = line.substring(index+1);
+				details.put(name, value);
+			}
 		}
 		catch (NoSuchElementException ex)
 		{
@@ -61,5 +64,10 @@ public class LDetails
 	public byte[] decrypt(PrivateKey key)
 	{
 		return null;
+	}
+
+	public String get(String name)
+	{
+		return details.get(name);
 	}
 }

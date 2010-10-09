@@ -6,7 +6,7 @@ import java.net.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class AddressFinder
+public class Finder
 {
 	// do we force using the shell command?
 	private static final boolean FORCE_MACADDR_SHELL = System.getProperty("forceMACAddrShell") != null;
@@ -59,7 +59,7 @@ public class AddressFinder
 	}
 
 	
-	public static Set<String> getMACAddresses()
+	public static Set<String> findAll()
 	{
 		Set<String> addresses = new HashSet<String>();
 		
