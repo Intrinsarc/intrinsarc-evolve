@@ -24,7 +24,8 @@ public class LicenseManager extends JFrame
 
   public static final ImageIcon LOCK_ICON = loadIcon("lock.png");
   public static final ImageIcon FOLDER_ICON = loadIcon("folder.png");
-  public static final ImageIcon KEY_ICON = loadIcon("bullet_key.png");
+  public static final ImageIcon KEY_ICON = loadIcon("key.png");
+  public static final ImageIcon NO_KEY_ICON = loadIcon("key_delete.png");
   public static final ImageIcon LICENSE_ICON = loadIcon("page_white.png");
   public static final ImageIcon UP_ICON = loadIcon("arrow_up.png");
   private PrivateKey privateKey;
@@ -74,10 +75,10 @@ public class LicenseManager extends JFrame
 				if (file != null)
 				{
 					FileWriter out = new FileWriter(file);
-					out.write(pair.getPrivate().getFormat() + "\n");
-					out.write(HexUtils.toHex(pair.getPrivate().getEncoded()) + "\n");
-					out.write(pair.getPublic().getFormat() + "\n");
-					out.write(HexUtils.toHex(pair.getPublic().getEncoded()) + "\n");
+					out.write("private format=" + pair.getPrivate().getFormat() + "\n");
+					out.write("private key=" + HexUtils.toHex(pair.getPrivate().getEncoded()) + "\n");
+					out.write("public format=" + pair.getPublic().getFormat() + "\n");
+					out.write("public key=" + HexUtils.toHex(pair.getPublic().getEncoded()) + "\n");
 					out.close();
 					JOptionPane.showMessageDialog(parent, "Keypair written successfully to " + file);
 				}
@@ -128,10 +129,19 @@ public class LicenseManager extends JFrame
 		final DefaultListModel model = new DefaultListModel();
 		JList list = new JList(model);
 		JPanel full = new JPanel(new BorderLayout());
+		JPanel top = new JPanel(new BorderLayout());
+		JLabel keys = new JLabel(
+				publicKey != null ? "Keypair loaded" : "No keypair loaded",
+				publicKey != null ? KEY_ICON : NO_KEY_ICON,
+				JLabel.LEFT);
+		keys.setBorder(BorderFactory.createEtchedBorder());
+		top.add(keys, BorderLayout.NORTH);
 		JLabel dir = new JLabel(current.getAbsolutePath());
 		dir.setBorder(BorderFactory.createEtchedBorder());
-		full.add(dir, BorderLayout.NORTH);
-		full.add(list, BorderLayout.CENTER);
+		top.add(dir, BorderLayout.SOUTH);
+		full.add(top, BorderLayout.NORTH);
+		JScrollPane scroller = new JScrollPane(list);
+		full.add(scroller, BorderLayout.CENTER);
 		panel.add(full, BorderLayout.CENTER);
 		
 		// add the current files
@@ -145,7 +155,12 @@ public class LicenseManager extends JFrame
 		}
 		for (File file : all)
 		{
-			if (!file.isDirectory())
+			if (!file.isDirectory() && file.getName().endsWith(KEYPAIR_EXTENSION))
+				model.addElement(file.getName());
+		}
+		for (File file : all)
+		{
+			if (!file.isDirectory() && !file.getName().endsWith(KEYPAIR_EXTENSION))
 				model.addElement(file.getName());
 		}
 		
@@ -211,19 +226,19 @@ public class LicenseManager extends JFrame
 				return label;
 			}
 		});
+		panel.revalidate();
 	}
 	
 
 	private void showLicense(JPanel right, String value)
 	{
-		// TODO Auto-generated method stub
-		
 	}
 
 	private void showKeyPair(JPanel right, String value)
 	{
-		// TODO Auto-generated method stub
-		
+		right.removeAll();
+		right.add(new KeyViewer().makeViewer(new File(value)), BorderLayout.NORTH);
+		right.revalidate();
 	}
 
 	public static final ImageIcon loadIcon(String iconName)

@@ -40,6 +40,11 @@ public class LDetails
 		}
 	}
 	
+	public Map<String, String> getDetails()
+	{
+		return details;
+	}
+	
 	public String toString()
 	{
 		String str = "";
