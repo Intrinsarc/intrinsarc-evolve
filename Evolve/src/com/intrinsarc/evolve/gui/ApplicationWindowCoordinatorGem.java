@@ -10,6 +10,7 @@ import com.intrinsarc.evolve.errorchecking.*;
 import com.intrinsarc.evolve.packageview.actions.*;
 import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.lbase.*;
 import com.intrinsarc.repositorybase.*;
 
 /**
@@ -96,7 +97,10 @@ public class ApplicationWindowCoordinatorGem
 			PackageViewRegistryFacet viewRegistryFacet = viewRegistryGem.getPackageDiagramViewRegistryFacet();
 			
 			window.setUp(this, toolCoordinator, viewRegistryFacet, errorAdorner, deltaAdorner);
-			window.openTopLevel(true, true);			
+			window.openTopLevel(true, true);
+			
+			// show license information
+			showLicenseDetails();
 		}
 		
 		public void exitApplication()
@@ -118,6 +122,9 @@ public class ApplicationWindowCoordinatorGem
       for (ApplicationWindow window : windows)
         window.reset(getWindowTitle());
       toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
+      
+			// show license information
+      showLicenseDetails();
     }
     
     private String getWindowTitle()
@@ -133,5 +140,17 @@ public class ApplicationWindowCoordinatorGem
       for (ApplicationWindow window : windows)
         window.refreshTitle(getWindowTitle());
     }
+  }
+  
+  private void showLicenseDetails()
+  {
+		// if we don't have a valid license, complain and go into gpl mode
+		String[] error = new String[1];
+		LReal.retrieveLicense(error);
+		if (error[0] != null)
+		{
+			LicenseAction action = new LicenseAction(toolCoordinator.getToolCoordinatorFacet());
+			action.actionPerformed(null);
+		}
   }
 }

@@ -16,5 +16,6 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/BeanImporter"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/VectorGraphicsFixes"/>
 	<classpathentry kind="lib" path="resources"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/LicenseBase"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -24,7 +24,7 @@ public class KeyViewer
 		panel.add(new JLabel("<html><b>Key pair viewer"), BorderLayout.NORTH);
 		
 		final LDetails details = new LDetails(FileUtilities.loadFileContents(keysetFile));
-		JComponent main = new DetailsViewer(true).makeViewer(details);
+		JComponent main = new DetailsViewer(true).makeViewer(details, null);
 		panel.add(main, BorderLayout.CENTER);
 		
 		JPanel buttons = new JPanel(new BorderLayout());

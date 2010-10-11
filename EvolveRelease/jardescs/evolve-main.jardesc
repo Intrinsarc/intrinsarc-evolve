@@ -30,6 +30,7 @@
         <javaElement handleIdentifier="=DeltaEngine-UML2/src"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.arcfacilities.previewsupport"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figures.simplecontainernode"/>
+        <javaElement handleIdentifier="=LicenseBase/src"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.figurefacilities.selection"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.diagramsupport.moveandresize"/>
         <javaElement handleIdentifier="=IDraw/src&lt;com.intrinsarc.idraw.nodefacilities.creation"/>

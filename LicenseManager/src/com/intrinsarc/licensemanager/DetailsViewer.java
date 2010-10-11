@@ -1,6 +1,7 @@
 package com.intrinsarc.licensemanager;
 
 import java.awt.*;
+import java.awt.event.*;
 import java.util.*;
 
 import javax.swing.*;
@@ -17,7 +18,7 @@ public class DetailsViewer
 		this.readonly = readonly;
 	}
 	
-	public JComponent makeViewer(LDetails details)
+	public JComponent makeViewer(LDetails details, final Runnable changed)
 	{
 		GridBagLayout layout = new GridBagLayout();
 		JPanel panel = new JPanel(layout);
@@ -31,6 +32,15 @@ public class DetailsViewer
 			JTextField field = new JTextField(value);
 			fields.put(name, field);
 			field.setEditable(!readonly);
+			if (changed != null)
+				field.addKeyListener(new KeyAdapter()
+				{
+					@Override
+					public void keyTyped(KeyEvent e)
+					{
+						changed.run();
+					}
+				});
 			
 			constraints.gridx = 0;
 			constraints.fill = GridBagConstraints.NONE;

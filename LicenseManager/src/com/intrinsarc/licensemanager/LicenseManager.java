@@ -100,7 +100,7 @@ public class LicenseManager extends JFrame
 			}
 			
 			// populate an LDetails
-			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nexpiry-days=31\nencmacs=\ndecmacs=\nencrypted=\n");
+			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
 			right.removeAll();
 			right.add(new LicenseViewer().makeViewer(
 					parent,
@@ -108,9 +108,11 @@ public class LicenseManager extends JFrame
 					publicKey[0],
 					lic,
 					current,
+					true,
 					new Runnable() { public void run() { addDirectoryBrowser(); } }
 					), BorderLayout.NORTH);
 			right.revalidate();
+			right.repaint();
 		}
 	}
 	
@@ -178,7 +180,7 @@ public class LicenseManager extends JFrame
 	{
 		left.removeAll();
 		final DefaultListModel model = new DefaultListModel();
-		JList list = new JList(model);
+		final JList list = new JList(model);
 		JPanel full = new JPanel(new BorderLayout());
 		JPanel top = new JPanel(new BorderLayout());
 		JLabel keys = new JLabel(keyMessage[0] == null ? "No keypair loaded" : keyMessage[0], JLabel.LEFT);
@@ -223,7 +225,8 @@ public class LicenseManager extends JFrame
 			{
 				if (e.getValueIsAdjusting())
 					return;
-				String value = (String) model.get(e.getFirstIndex());
+
+				String value = (String) model.get(list.getSelectedIndex());
 				if (value.startsWith(">"))
 				{
 					current = new File(current, value.substring(1));
@@ -304,9 +307,10 @@ public class LicenseManager extends JFrame
 					publicKey[0],
 					lic,
 					current,
+					false,
 					new Runnable() { public void run() { addDirectoryBrowser(); } }
 					), BorderLayout.NORTH);
-			right.revalidate();
+			right.validate();
 		}
 		catch (Exception ex)
 		{
@@ -327,6 +331,7 @@ public class LicenseManager extends JFrame
 				new Runnable() { public void run() { addDirectoryBrowser(); } }
 				), BorderLayout.NORTH);
 		right.revalidate();
+		right.repaint();
 	}
 
 	public static final ImageIcon loadIcon(String iconName)

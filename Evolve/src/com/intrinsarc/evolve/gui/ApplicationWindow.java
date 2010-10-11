@@ -1953,6 +1953,11 @@ public class ApplicationWindow extends SmartJFrame
 			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
+			// add the license entry
+			JMenuItem licenseItem = new JMenuItem(new LicenseAction(coordinator));			
+			entries.add(new SmartMenuItemImpl("Help", "License", licenseItem));
+			GlobalPreferences.registerKeyAction("Help", licenseItem, null, "Display and enter license information");
+			
 			JMenuItem mainItem = new JMenuItem(
 					new URLAction("Intrinsarc website", URL_BASE));
 			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));

@@ -78,11 +78,7 @@ public class Finder
 		              {
 		              	String hex = "";
 		              	for (byte b : hardware)
-		              	{
-		              		if (hex.length() != 0)
-		              			hex += ":";
 		              		hex += toHex(b);
-		              	}
 		              	addresses.add(hex);
 		              }
 		          }
@@ -102,7 +98,39 @@ public class Finder
 	  return useShellToFindAddresses();
 	}
 	
+	public static byte[] fromHex(String hex)
+	{
+		int size = hex.length() / 2;
+		byte bytes[] = new byte[size];
+		
+		for (int lp = 0; lp < size; lp++)
+			bytes[lp] = toByte(hex.charAt(lp*2), hex.charAt(lp*2+1)); 
+		
+		return bytes;
+	}
+	
+	private static byte toByte(char char1, char char2)
+	{
+		return (byte) (num(char1) * 16 + num(char2));
+	}
+
+	private static int num(char ch)
+	{
+		if (Character.isDigit(ch))
+			return ch - '0';
+		return Character.toLowerCase(ch) - 'a' + 10;
+	}
+
 	private static final String[] HEX_CHARS = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "A", "B", "C", "D", "E", "F"};
+
+	public static String toHex(byte[] bytes)
+	{
+  	String hex = "";
+  	for (byte b : bytes)
+  		hex += toHex(b);
+  	return hex;
+	}
+	
 	private static String toHex(byte b)
 	{
 		if (b < 0)
@@ -121,7 +149,7 @@ public class Finder
 		{
 			Process conf = Runtime.getRuntime().exec(PLATFORM.command);
 			reader = new BufferedReader(new InputStreamReader(conf.getInputStream()));
-			Set<String> macs = new LinkedHashSet<String>(4);
+			Set<String> macs = new HashSet<String>(4);
 			StringBuilder regex = new StringBuilder("(?<!0)(?<!\\-)([0-9a-fA-F]{1,2}");
 			for (int i = 0; i < 5; i++)
 			{
@@ -142,11 +170,16 @@ public class Finder
 					{ // solaris omits first 0 (untested)
 						address = "0" + address;
 					}
+					address = address.replaceAll("(\\-|:)", "");
+					if (!address.equals("000000000000"))
+						macs.add(address.toUpperCase());
 				}
 				line = reader.readLine();
-			} while (line != null);
+			}
+			while (line != null);
 			return Collections.unmodifiableSet(macs);
-		} catch (Throwable t)
+		}
+		catch (Throwable t)
 		{
 			return null;
 		} finally

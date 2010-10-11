@@ -16,6 +16,7 @@ import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
+import com.intrinsarc.lbase.*;
 import com.intrinsarc.notifications.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
@@ -29,7 +30,7 @@ import com.intrinsarc.swing.lookandfeel.*;
  */
 public class Evolve
 {
-	public static final String EVOLVE_VERSION = "v1.0rc1, released 27th September 2010";
+	public static final String EVOLVE_VERSION = "v1.0rc2, released 10th October 2010";
   public static final String LEAST_VERSION = "1.5";
   public static final String BEST_VERSION = "1.6";
 	public static final int MAX_UNMODIFIED_UNVIEWED_DIAGRAMS = 5;
@@ -170,6 +171,7 @@ public class Evolve
 				"The number of undo/redo commands stored.");
 		BrowserInvoker.registerPreferenceSlots();
 		RepositoryBrowserGem.registerPreferenceSlots();
+		LReal.registerPreferenceSlots();
 	}
 
 	private static void setUpUUIDGenerator()

@@ -116,7 +116,7 @@ public class HelpAboutAction extends AbstractAction
       public void hyperlinkUpdate(HyperlinkEvent e)
       {
         if (e.getEventType() == EventType.ACTIVATED)
-	        openBrowser(e.getURL());
+	        openBrowser(popup, e.getURL());
       }
     });
     
@@ -156,7 +156,7 @@ public class HelpAboutAction extends AbstractAction
       {
         try
         {
-          openBrowser(new URL(TANARC_URL));
+          openBrowser(popup, new URL(TANARC_URL));
         }
         catch (MalformedURLException ex)
         {
@@ -169,7 +169,7 @@ public class HelpAboutAction extends AbstractAction
     return panel;
   }
 
-  private void openBrowser(URL url)
+  public static void openBrowser(PopupMakerFacet popup, URL url)
   {
     String error = BrowserInvoker.openBrowser(url);
     if (error != null)
