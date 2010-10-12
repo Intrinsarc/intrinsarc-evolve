@@ -43,7 +43,7 @@ public class HelpAboutAction extends AbstractAction
     tabs.add(
     		makeTextPanelFromHTMLDocument(
           preferred,
-          "License", 
+          "Legal", 
           "help-documents/evolve-license.html"));
     
     tabs.add(

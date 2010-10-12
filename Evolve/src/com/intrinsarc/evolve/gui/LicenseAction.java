@@ -7,8 +7,6 @@ import java.net.*;
 
 import javax.swing.*;
 
-import org.freehep.graphicsio.emf.gdi.*;
-
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.lbase.*;
@@ -21,22 +19,25 @@ public class LicenseAction extends AbstractAction
 	public static final ImageIcon LICENSED_ICON = IconLoader.loadIcon("good-license.png");
 	private static final String URL = "http://www.intrinsarc.com"; 
   private ToolCoordinatorFacet coordinator;
+	private Runnable tutorialLoader;
   
-  public LicenseAction(ToolCoordinatorFacet coordinator)
+  public LicenseAction(ToolCoordinatorFacet coordinator, Runnable tutorialLoader)
   {
     super("License details");
     this.coordinator = coordinator;
+    this.tutorialLoader = tutorialLoader;
   }
   
   public void actionPerformed(ActionEvent e)
   {
   	JPanel panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(500, 500));
-  	redoPanel(panel);
-    coordinator.invokeAsDialog(null, "License details", panel, null, 0, null);
+    JButton ok = new JButton("OK");
+  	redoPanel(panel, ok);
+    coordinator.invokeAsDialog(null, "License details", panel, new JButton[]{ok}, 0, null);
   }
   
-  private void redoPanel(final JPanel panel)
+  private void redoPanel(final JPanel panel, final JButton ok)
   {
   	panel.removeAll();
     panel.setBackground(Color.WHITE);
@@ -70,6 +71,27 @@ public class LicenseAction extends AbstractAction
 		GridBagConstraints constraints = new GridBagConstraints(
 				0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0);
 		
+		if (tutorialLoader != null)
+		{
+			constraints.gridx = 1;
+			constraints.gridwidth = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 1;
+			JButton load = new JButton("Load tutorial model");
+			load.setBackground(Color.ORANGE);
+			load.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					tutorialLoader.run();
+					ok.doClick();
+				}
+			});
+			details.add(load, constraints);				
+			constraints.gridy++;
+		}
+		
+		constraints.gridwidth = 1;
 		constraints.gridx = 0;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;
@@ -78,7 +100,7 @@ public class LicenseAction extends AbstractAction
 		constraints.gridx = 1;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;
-		final String machId = MachineId.getId();
+		final String machId = LMid.getId();
 		JTextField machineId = new JTextField(machId);
 		details.add(machineId, constraints);
 		JButton copyToClipboard = new JButton("Copy to clipboard");
@@ -112,14 +134,14 @@ public class LicenseAction extends AbstractAction
 		final JTextField encrypted = new JTextField(licValue);
 		details.add(encrypted, constraints);
 		
-		JButton validate = new JButton("Enter license");
+		JButton validate = new JButton(readable ? "Reenter license" : "Enter license");
 		validate.addActionListener(new ActionListener()
 		{
 			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				LReal.storeLicense(encrypted.getText());
-				redoPanel(panel);
+				redoPanel(panel, ok);
 			}
 		});
 		
@@ -134,6 +156,7 @@ public class LicenseAction extends AbstractAction
 			addDetail(details, license, "user", license.getUser(),constraints);
 			addDetail(details, license, "email", license.getEmail(), constraints);
 			addDetail(details, license, "number", "" + license.getNumber(), constraints);
+			addDetail(details, license, "features", license.getFeatures(), constraints);
 			addDetail(details, license, "expiry", license.getExpiry(), constraints);
 		}		
 		
@@ -153,6 +176,11 @@ public class LicenseAction extends AbstractAction
 			else
 				details.add(new JLabel("<html><div style='color:red'>" + errorReason[0]), constraints);
 		}
+		
+		if (readable)
+			ok.setText("OK");
+		else
+			ok.setText("Use community edition...");
 		
 		panel.add(details, BorderLayout.SOUTH);    
     panel.revalidate();

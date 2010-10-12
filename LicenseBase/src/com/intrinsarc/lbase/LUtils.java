@@ -147,7 +147,7 @@ package com.intrinsarc.lbase;
  * @author rob@iharder.net
  * @version 2.3.7
  */
-public class Utils
+public class LUtils
 {
     
 /* ********  P U B L I C   F I E L D S  ******** */   
@@ -440,7 +440,7 @@ public class Utils
 
     
     /** Defeats instantiation. */
-    private Utils(){}
+    private LUtils(){}
     
 
     
@@ -561,7 +561,7 @@ public class Utils
         while( raw.hasRemaining() ){
             int rem = Math.min(3,raw.remaining());
             raw.get(raw3,0,rem);
-            Utils.encode3to4(enc4, raw3, rem, Utils.NO_OPTIONS );
+            LUtils.encode3to4(enc4, raw3, rem, LUtils.NO_OPTIONS );
             encoded.put(enc4);
         }   // end input remaining
     }
@@ -585,7 +585,7 @@ public class Utils
         while( raw.hasRemaining() ){
             int rem = Math.min(3,raw.remaining());
             raw.get(raw3,0,rem);
-            Utils.encode3to4(enc4, raw3, rem, Utils.NO_OPTIONS );
+            LUtils.encode3to4(enc4, raw3, rem, LUtils.NO_OPTIONS );
             for( int i = 0; i < 4; i++ ){
                 encoded.put( (char)(enc4[i] & 0xFF) );
             }
@@ -644,8 +644,8 @@ public class Utils
      * @param serializableObject The object to encode
      * @param options Specified options
      * @return The Base64-encoded object
-     * @see Utils#GZIP
-     * @see Utils#DO_BREAK_LINES
+     * @see LUtils#GZIP
+     * @see LUtils#DO_BREAK_LINES
      * @throws java.io.IOException if there is an error
      * @since 2.0
      */
@@ -666,7 +666,7 @@ public class Utils
         try {
             // ObjectOutputStream -> (GZIP) -> Base64 -> ByteArrayOutputStream
             baos  = new java.io.ByteArrayOutputStream();
-            b64os = new Utils.OutputStream( baos, ENCODE | options );
+            b64os = new LUtils.OutputStream( baos, ENCODE | options );
             if( (options & GZIP) != 0 ){
                 // Gzip
                 gzos = new java.util.zip.GZIPOutputStream(b64os);
@@ -750,8 +750,8 @@ public class Utils
      * @param source The data to convert
      * @param options Specified options
      * @return The Base64-encoded data as a String
-     * @see Utils#GZIP
-     * @see Utils#DO_BREAK_LINES
+     * @see LUtils#GZIP
+     * @see LUtils#DO_BREAK_LINES
      * @throws java.io.IOException if there is an error
      * @throws NullPointerException if source array is null
      * @since 2.0
@@ -820,8 +820,8 @@ public class Utils
      * @param len Length of data to convert
      * @param options Specified options
      * @return The Base64-encoded data as a String
-     * @see Utils#GZIP
-     * @see Utils#DO_BREAK_LINES
+     * @see LUtils#GZIP
+     * @see LUtils#DO_BREAK_LINES
      * @throws java.io.IOException if there is an error
      * @throws NullPointerException if source array is null
      * @throws IllegalArgumentException if source array, offset, or length are invalid
@@ -857,7 +857,7 @@ public class Utils
     public static byte[] encodeBytesToBytes( byte[] source ) {
         byte[] encoded = null;
         try {
-            encoded = encodeBytesToBytes( source, 0, source.length, Utils.NO_OPTIONS );
+            encoded = encodeBytesToBytes( source, 0, source.length, LUtils.NO_OPTIONS );
         } catch( java.io.IOException ex ) {
             assert false : "IOExceptions only come from GZipping, which is turned off: " + ex.getMessage();
         }
@@ -876,8 +876,8 @@ public class Utils
      * @param len Length of data to convert
      * @param options Specified options
      * @return The Base64-encoded data as a String
-     * @see Utils#GZIP
-     * @see Utils#DO_BREAK_LINES
+     * @see LUtils#GZIP
+     * @see LUtils#DO_BREAK_LINES
      * @throws java.io.IOException if there is an error
      * @throws NullPointerException if source array is null
      * @throws IllegalArgumentException if source array, offset, or length are invalid
@@ -908,12 +908,12 @@ public class Utils
         if( (options & GZIP) != 0 ) {
             java.io.ByteArrayOutputStream  baos  = null;
             java.util.zip.GZIPOutputStream gzos  = null;
-            Utils.OutputStream            b64os = null;
+            LUtils.OutputStream            b64os = null;
 
             try {
                 // GZip -> Base64 -> ByteArray
                 baos = new java.io.ByteArrayOutputStream();
-                b64os = new Utils.OutputStream( baos, ENCODE | options );
+                b64os = new LUtils.OutputStream( baos, ENCODE | options );
                 gzos  = new java.util.zip.GZIPOutputStream( b64os );
 
                 gzos.write( source, off, len );
@@ -1119,7 +1119,7 @@ public class Utils
     throws java.io.IOException {
         byte[] decoded = null;
 //        try {
-            decoded = decode( source, 0, source.length, Utils.NO_OPTIONS );
+            decoded = decode( source, 0, source.length, LUtils.NO_OPTIONS );
 //        } catch( java.io.IOException ex ) {
 //            assert false : "IOExceptions only come from GZipping, which is turned off: " + ex.getMessage();
 //        }
@@ -1408,10 +1408,10 @@ public class Utils
             throw new NullPointerException( "Data to encode was null." );
         }   // end iff
         
-        Utils.OutputStream bos = null;
+        LUtils.OutputStream bos = null;
         try {
-            bos = new Utils.OutputStream( 
-                  new java.io.FileOutputStream( filename ), Utils.ENCODE );
+            bos = new LUtils.OutputStream( 
+                  new java.io.FileOutputStream( filename ), LUtils.ENCODE );
             bos.write( dataToEncode );
         }   // end try
         catch( java.io.IOException e ) {
@@ -1440,10 +1440,10 @@ public class Utils
     public static void decodeToFile( String dataToDecode, String filename )
     throws java.io.IOException {
         
-        Utils.OutputStream bos = null;
+        LUtils.OutputStream bos = null;
         try{
-            bos = new Utils.OutputStream( 
-                      new java.io.FileOutputStream( filename ), Utils.DECODE );
+            bos = new LUtils.OutputStream( 
+                      new java.io.FileOutputStream( filename ), LUtils.DECODE );
             bos.write( dataToDecode.getBytes( PREFERRED_ENCODING ) );
         }   // end try
         catch( java.io.IOException e ) {
@@ -1476,7 +1476,7 @@ public class Utils
     throws java.io.IOException {
         
         byte[] decodedData = null;
-        Utils.InputStream bis = null;
+        LUtils.InputStream bis = null;
         try
         {
             // Set up some useful variables
@@ -1493,9 +1493,9 @@ public class Utils
             buffer = new byte[ (int)file.length() ];
             
             // Open a stream
-            bis = new Utils.InputStream( 
+            bis = new LUtils.InputStream( 
                       new java.io.BufferedInputStream( 
-                      new java.io.FileInputStream( file ) ), Utils.DECODE );
+                      new java.io.FileInputStream( file ) ), LUtils.DECODE );
             
             // Read until done
             while( ( numBytes = bis.read( buffer, length, 4096 ) ) >= 0 ) {
@@ -1537,7 +1537,7 @@ public class Utils
     throws java.io.IOException {
         
         String encodedData = null;
-        Utils.InputStream bis = null;
+        LUtils.InputStream bis = null;
         try
         {
             // Set up some useful variables
@@ -1547,9 +1547,9 @@ public class Utils
             int numBytes = 0;
             
             // Open a stream
-            bis = new Utils.InputStream( 
+            bis = new LUtils.InputStream( 
                       new java.io.BufferedInputStream( 
-                      new java.io.FileInputStream( file ) ), Utils.ENCODE );
+                      new java.io.FileInputStream( file ) ), LUtils.ENCODE );
             
             // Read until done
             while( ( numBytes = bis.read( buffer, length, 4096 ) ) >= 0 ) {
@@ -1557,7 +1557,7 @@ public class Utils
             }   // end while
             
             // Save in a variable to return
-            encodedData = new String( buffer, 0, length, Utils.PREFERRED_ENCODING );
+            encodedData = new String( buffer, 0, length, LUtils.PREFERRED_ENCODING );
                 
         }   // end try
         catch( java.io.IOException e ) {
@@ -1581,7 +1581,7 @@ public class Utils
     public static void encodeFileToFile( String infile, String outfile )
     throws java.io.IOException {
         
-        String encoded = Utils.encodeFromFile( infile );
+        String encoded = LUtils.encodeFromFile( infile );
         java.io.OutputStream out = null;
         try{
             out = new java.io.BufferedOutputStream(
@@ -1609,7 +1609,7 @@ public class Utils
     public static void decodeFileToFile( String infile, String outfile )
     throws java.io.IOException {
         
-        byte[] decoded = Utils.decodeFromFile( infile );
+        byte[] decoded = LUtils.decodeFromFile( infile );
         java.io.OutputStream out = null;
         try{
             out = new java.io.BufferedOutputStream(
@@ -1631,11 +1631,11 @@ public class Utils
     
     
     /**
-     * A {@link Utils.InputStream} will read data from another
+     * A {@link LUtils.InputStream} will read data from another
      * <tt>java.io.InputStream</tt>, given in the constructor,
      * and encode/decode to/from Base64 notation on the fly.
      *
-     * @see Utils
+     * @see LUtils
      * @since 1.3
      */
     public static class InputStream extends java.io.FilterInputStream {
@@ -1652,7 +1652,7 @@ public class Utils
         
         
         /**
-         * Constructs a {@link Utils.InputStream} in DECODE mode.
+         * Constructs a {@link LUtils.InputStream} in DECODE mode.
          *
          * @param in the <tt>java.io.InputStream</tt> from which to read data.
          * @since 1.3
@@ -1663,7 +1663,7 @@ public class Utils
         
         
         /**
-         * Constructs a {@link Utils.InputStream} in
+         * Constructs a {@link LUtils.InputStream} in
          * either ENCODE or DECODE mode.
          * <p>
          * Valid options:<pre>
@@ -1677,9 +1677,9 @@ public class Utils
          *
          * @param in the <tt>java.io.InputStream</tt> from which to read data.
          * @param options Specified options
-         * @see Utils#ENCODE
-         * @see Utils#DECODE
-         * @see Utils#DO_BREAK_LINES
+         * @see LUtils#ENCODE
+         * @see LUtils#DECODE
+         * @see LUtils#DO_BREAK_LINES
          * @since 2.0
          */
         public InputStream( java.io.InputStream in, int options ) {
@@ -1844,11 +1844,11 @@ public class Utils
     
     
     /**
-     * A {@link Utils.OutputStream} will write data to another
+     * A {@link LUtils.OutputStream} will write data to another
      * <tt>java.io.OutputStream</tt>, given in the constructor,
      * and encode/decode to/from Base64 notation on the fly.
      *
-     * @see Utils
+     * @see LUtils
      * @since 1.3
      */
     public static class OutputStream extends java.io.FilterOutputStream {
@@ -1865,7 +1865,7 @@ public class Utils
         private byte[]  decodabet;  // Local copies to avoid extra method calls
         
         /**
-         * Constructs a {@link Utils.OutputStream} in ENCODE mode.
+         * Constructs a {@link LUtils.OutputStream} in ENCODE mode.
          *
          * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
          * @since 1.3
@@ -1876,7 +1876,7 @@ public class Utils
         
         
         /**
-         * Constructs a {@link Utils.OutputStream} in
+         * Constructs a {@link LUtils.OutputStream} in
          * either ENCODE or DECODE mode.
          * <p>
          * Valid options:<pre>
@@ -1889,9 +1889,9 @@ public class Utils
          *
          * @param out the <tt>java.io.OutputStream</tt> to which data will be written.
          * @param options Specified options.
-         * @see Utils#ENCODE
-         * @see Utils#DECODE
-         * @see Utils#DO_BREAK_LINES
+         * @see LUtils#ENCODE
+         * @see LUtils#DECODE
+         * @see LUtils#DO_BREAK_LINES
          * @since 1.3
          */
         public OutputStream( java.io.OutputStream out, int options ) {
@@ -1954,7 +1954,7 @@ public class Utils
                     buffer[ position++ ] = (byte)theByte;
                     if( position >= bufferLength ) { // Enough to output.
                     
-                        int len = Utils.decode4to3( buffer, 0, b4, 0, options );
+                        int len = LUtils.decode4to3( buffer, 0, b4, 0, options );
                         out.write( b4, 0, len );
                         position = 0;
                     }   // end if: enough to output

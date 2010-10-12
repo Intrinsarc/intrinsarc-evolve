@@ -6,7 +6,7 @@ import java.net.*;
 import java.util.*;
 import java.util.regex.*;
 
-public class Finder
+public class LFinder
 {
 	// do we force using the shell command?
 	private static final boolean FORCE_MACADDR_SHELL = System.getProperty("forceMACAddrShell") != null;

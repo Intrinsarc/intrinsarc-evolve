@@ -19,7 +19,6 @@ public class LWork
 
     // encrypt the plaintext using the public key
     byte[] bytes = text.getBytes();
-    System.out.println("$$ text = " + text + ", public key = " + publicKey);
     
     String out = "";
     int total = (int) Math.ceil(bytes.length / 100.0);
@@ -27,7 +26,7 @@ public class LWork
     {
     	if (out.length() > 0)
     		out += "-";
-    	out += Utils.encodeBytes(cipher.doFinal(bytes, lp*100, Math.min(100, bytes.length - lp*100)));
+    	out += LUtils.encodeBytes(cipher.doFinal(bytes, lp*100, Math.min(100, bytes.length - lp*100)));
     }
     System.out.println("    $$ " + out);
     return "-" + out + "-";
@@ -47,7 +46,7 @@ public class LWork
     while (tok.hasMoreTokens())
     {
     	String next = tok.nextToken();
-    	byte[] bytes = Utils.decode(next);
+    	byte[] bytes = LUtils.decode(next);
     	out.write(cipher.doFinal(bytes));
     }
     return new String(out.toByteArray());

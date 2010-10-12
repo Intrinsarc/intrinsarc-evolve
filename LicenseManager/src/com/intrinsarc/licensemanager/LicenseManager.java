@@ -100,7 +100,7 @@ public class LicenseManager extends JFrame
 			}
 			
 			// populate an LDetails
-			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
+			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nfeatures=base\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
 			right.removeAll();
 			right.add(new LicenseViewer().makeViewer(
 					parent,
@@ -155,9 +155,9 @@ public class LicenseManager extends JFrame
 				{
 					FileWriter out = new FileWriter(file);
 					out.write("private key format=" + pair.getPrivate().getFormat() + "\n");
-					out.write("private key=" + Utils.encodeBytes(pair.getPrivate().getEncoded()) + "\n");
+					out.write("private key=" + LUtils.encodeBytes(pair.getPrivate().getEncoded()) + "\n");
 					out.write("public key format=" + pair.getPublic().getFormat() + "\n");
-					out.write("public key=" + Utils.encodeBytes(pair.getPublic().getEncoded()) + "\n");
+					out.write("public key=" + LUtils.encodeBytes(pair.getPublic().getEncoded()) + "\n");
 					out.close();
 					addDirectoryBrowser();
 					JOptionPane.showMessageDialog(parent, "Keypair written successfully to " + file);
@@ -241,12 +241,12 @@ public class LicenseManager extends JFrame
 				else
 				if (value.endsWith(KEYPAIR_EXTENSION))
 				{
-					showKeyPair(right, value);
+					showKeyPair(right, new File(current, value).getAbsolutePath());
 				}
 				else
 				if (value.endsWith(LICENSE_EXTENSION))
 				{
-					showLicense(right, value);
+					showLicense(right, new File(current, value).getAbsolutePath());
 				}
 			}
 		});

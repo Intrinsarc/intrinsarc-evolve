@@ -96,7 +96,7 @@ public class LicenseViewer
 					try
 					{
 						String hex = "";
-						String actual = Finder.toHex(Utils.decode(machineId));
+						String actual = LFinder.toHex(LUtils.decode(machineId));
 						for (int lp = 0; lp < actual.length() / 12; lp++)
 						{
 							if (lp != 0)
@@ -137,6 +137,7 @@ public class LicenseViewer
 					"user=" + get(editor, "user") +
 					"\nemail=" + get(editor, "email") +
 					"\nnumber=" + get(editor, "number") +
+					"\nfeatures=" + get(editor, "features") +
 					"\nexpiry=" + expiry +
 					"\nmachine-id=" + get(editor, "machine-id");
 

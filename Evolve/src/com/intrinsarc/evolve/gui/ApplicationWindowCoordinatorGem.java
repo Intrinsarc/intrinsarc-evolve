@@ -2,15 +2,15 @@ package com.intrinsarc.evolve.gui;
 
 import java.util.*;
 
-import javax.swing.*;
-
 import com.intrinsarc.deltaengine.errorchecking.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.errorchecking.*;
 import com.intrinsarc.evolve.packageview.actions.*;
 import com.intrinsarc.evolve.packageview.base.*;
+import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.lbase.*;
+import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 
 /**
@@ -127,13 +127,6 @@ public class ApplicationWindowCoordinatorGem
       showLicenseDetails();
     }
     
-    private String getWindowTitle()
-    {      
-      String windowTitle = title;
-      windowTitle += " (" + GlobalSubjectRepository.repository.getFileName() + ")";
-      return windowTitle;
-    }
-
     public void refreshWindowTitles()
     {
       // handle any window specific component here
@@ -142,6 +135,13 @@ public class ApplicationWindowCoordinatorGem
     }
   }
   
+  private String getWindowTitle()
+  {      
+    String windowTitle = title;
+    windowTitle += " (" + GlobalSubjectRepository.repository.getFileName() + ")";
+    return windowTitle;
+  }
+
   private void showLicenseDetails()
   {
 		// if we don't have a valid license, complain and go into gpl mode
@@ -149,7 +149,34 @@ public class ApplicationWindowCoordinatorGem
 		LReal.retrieveLicense(error);
 		if (error[0] != null)
 		{
-			LicenseAction action = new LicenseAction(toolCoordinator.getToolCoordinatorFacet());
+			LicenseAction action = new LicenseAction(
+					toolCoordinator.getToolCoordinatorFacet(),
+					new Runnable()
+					{
+						public void run()
+						{
+							try
+							{
+								String tutorial =
+									GlobalPreferences.preferences.getRawVariableValue("EVOLVE") + "/tutorial/car-rental" + XMLSubjectRepositoryGem.UML2_SUFFIX;			
+
+								RepositoryUtility.useXMLRepository(tutorial, false);
+								
+					      // handle all the global components here...
+					      GlobalDiagramRegistry.registry.reset();
+					      ToolCoordinatorGem.clearDeltaEngine();
+					      
+					      // handle any window specific component here
+					      for (ApplicationWindow window : windows)
+					        window.reset(getWindowTitle());
+					      toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
+							}
+							catch (Exception ex)
+							{
+								ex.printStackTrace();
+							}
+						}
+					});
 			action.actionPerformed(null);
 		}
   }

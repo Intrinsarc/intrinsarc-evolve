@@ -446,8 +446,7 @@ public class ApplicationWindow extends SmartJFrame
 			// let the user choose the filename
 			String fileName = RepositoryUtility.chooseFileNameToOpen(frame,
 					"Select model preferences file to load",
-					"Evolve preferences", "evolveprefs", recent
-							.getLastVisitedDirectory());
+					"Evolve preferences", "evolveprefs", recent.getLastVisitedDirectory());
 			if (fileName == null)
 				return;
 
@@ -1954,7 +1953,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 
 			// add the license entry
-			JMenuItem licenseItem = new JMenuItem(new LicenseAction(coordinator));			
+			JMenuItem licenseItem = new JMenuItem(new LicenseAction(coordinator, null));			
 			entries.add(new SmartMenuItemImpl("Help", "License", licenseItem));
 			GlobalPreferences.registerKeyAction("Help", licenseItem, null, "Display and enter license information");
 			

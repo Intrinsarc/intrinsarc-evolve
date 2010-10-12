@@ -15,10 +15,10 @@
    id="svg3264"
    version="1.1"
    inkscape:version="0.47 r22583"
-   inkscape:export-filename="C:\Users\andrew\Desktop\license.png"
+   inkscape:export-filename="C:\work\workspace\repository\Resources\resources\evolve license.png"
    inkscape:export-xdpi="656.84003"
    inkscape:export-ydpi="656.84003"
-   sodipodi:docname="New document 3">
+   sodipodi:docname="license.svg">
   <defs
      id="defs3266">
     <inkscape:perspective
@@ -137,8 +137,8 @@
      showgrid="false"
      inkscape:window-width="1680"
      inkscape:window-height="1023"
-     inkscape:window-x="-9"
-     inkscape:window-y="-9"
+     inkscape:window-x="-32000"
+     inkscape:window-y="-32000"
      inkscape:window-maximized="1" />
   <metadata
      id="metadata3269">
@@ -158,7 +158,7 @@
      id="layer1">
     <g
        id="g3450"
-       transform="matrix(0.125,0,0,-0.125,-58.572349,176.32967)">
+       transform="matrix(0.125,0,0,-0.125,-50.572349,178.32967)">
       <g
          clip-path="url(#clipPath3454)"
          id="g3452">
@@ -186,7 +186,7 @@
     </g>
     <g
        id="g3468"
-       transform="matrix(0.125,0,0,-0.125,-58.572349,176.32967)">
+       transform="matrix(0.125,0,0,-0.125,-50.572349,178.32967)">
       <g
          clip-path="url(#clipPath3472)"
          id="g3470">
@@ -198,7 +198,7 @@
     </g>
     <g
        id="g3484"
-       transform="matrix(0.125,0,0,-0.125,-58.572349,176.32967)">
+       transform="matrix(0.125,0,0,-0.125,-50.572349,178.32967)">
       <g
          clip-path="url(#clipPath3488)"
          id="g3486">
@@ -216,7 +216,7 @@
     </g>
     <g
        id="g3496"
-       transform="matrix(0.125,0,0,-0.125,-58.572349,176.32967)">
+       transform="matrix(0.125,0,0,-0.125,-50.572349,178.32967)">
       <g
          clip-path="url(#clipPath3500)"
          id="g3498">
@@ -241,32 +241,42 @@
          x="180"
          y="228.86218"
          id="tspan3353"
-         style="fill:#333333">Any code generated will be subject to the Affero GPL version 3 license.</tspan><tspan
+         style="fill:#333333" /><tspan
          sodipodi:role="line"
          x="180"
          y="246.36218"
+         style="fill:#333333"
+         id="tspan2893">Community mode is fully featured, but for non-commercial usage.</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="263.86218"
+         style="fill:#333333"
+         id="tspan2861">Any code generated is subject to the Affero GPL version 3 license.</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="281.36218"
          id="tspan3355"
          style="fill:#333333" /><tspan
          sodipodi:role="line"
          x="180"
-         y="263.86218"
-         id="tspan3357"
-         style="fill:#333333">To purchase a valid license, visit <tspan
-   style="fill:#000080"
-   id="tspan3381">http://www.intrinsarc.com</tspan> and enter </tspan><tspan
-         sodipodi:role="line"
-         x="180"
-         y="281.36218"
-         style="fill:#333333"
-         id="tspan3375">in the machine id listed below. You will then be sent a license code</tspan><tspan
-         sodipodi:role="line"
-         x="180"
          y="298.86218"
-         style="fill:#333333"
-         id="tspan3391">which you can enter into the box below.</tspan><tspan
+         id="tspan3357"
+         style="fill:#333333">To purchase a commercial license, visit <tspan
+   style="fill:#000080"
+   id="tspan3381">http://www.intrinsarc.com</tspan></tspan><tspan
          sodipodi:role="line"
          x="180"
          y="316.36218"
+         style="fill:#333333"
+         id="tspan3375">and enter in the machine id listed below. You will then be sent a</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="333.86218"
+         style="fill:#333333"
+         id="tspan3391">license code which you can enter into the box below.</tspan><tspan
+         sodipodi:role="line"
+         x="180"
+         y="351.36218"
          id="tspan3363" /></text>
     <flowRoot
        xml:space="preserve"
@@ -278,5 +288,35 @@
            height="30"
            x="350.5"
            y="297.36218" /></flowRegion><flowPara
-         id="flowPara3371"></flowPara></flowRoot>  </g>
+         id="flowPara3371" /></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2865"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:VAGRounded-Light;font-style:normal;font-weight:normal;font-size:14;-inkscape-font-specification:VAGRounded-Light"><flowRegion
+         id="flowRegion2867"><rect
+           id="rect2869"
+           width="207"
+           height="139.5"
+           x="258.5"
+           y="43.362183" /></flowRegion><flowPara
+         id="flowPara2871"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2873"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:VAGRounded-Light;font-style:normal;font-weight:normal;font-size:14;-inkscape-font-specification:VAGRounded-Light"><flowRegion
+         id="flowRegion2875"><rect
+           id="rect2877"
+           width="230.5"
+           height="146.5"
+           x="242"
+           y="33.862183" /></flowRegion><flowPara
+         id="flowPara2879"></flowPara></flowRoot>    <flowRoot
+       xml:space="preserve"
+       id="flowRoot2881"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:VAGRounded-Light;font-style:normal;font-weight:normal;font-size:14;-inkscape-font-specification:VAGRounded-Light"><flowRegion
+         id="flowRegion2883"><rect
+           id="rect2885"
+           width="253.5"
+           height="181.5"
+           x="246.5"
+           y="17.862183" /></flowRegion><flowPara
+         id="flowPara2887"></flowPara></flowRoot>  </g>
 </svg>

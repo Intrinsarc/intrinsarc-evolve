@@ -20,6 +20,7 @@ public class LReal
 	private String expiry;
 	private Date expiryDate;
 	private String machineId;
+	private String features;
 	private Set<String> macs;
 	
 	/** register the license slot */
@@ -89,8 +90,10 @@ public class LReal
 	
 	public LReal(String encrypted) throws Exception
 	{
+		encrypted = stripWhitespace(encrypted);
+		
 		KeyFactory factory = KeyFactory.getInstance("RSA");
-		EncodedKeySpec publicSpec = new X509EncodedKeySpec(Utils.decode(PUBLIC_KEY));
+		EncodedKeySpec publicSpec = new X509EncodedKeySpec(LUtils.decode(PUBLIC_KEY));
 		PublicKey publicKey = factory.generatePublic(publicSpec);
 
 		LDetails details = new LDetails(LWork.decrypt(encrypted, publicKey, null));
@@ -98,6 +101,7 @@ public class LReal
 		email = details.get("email");
 		number = Integer.parseInt(details.get("number"));
 		expiry = details.get("expiry");
+		features = details.get("features");
 		machineId = details.get("machine-id");
 		
 		// parse some more details out
@@ -109,11 +113,20 @@ public class LReal
 		
 		// get the macs
 		macs = new HashSet<String>();
-		String actual = Finder.toHex(Utils.decode(machineId));
+		String actual = LFinder.toHex(LUtils.decode(machineId));
 		for (int lp = 0; lp < actual.length() / 12; lp++)
 			macs.add(actual.substring(lp * 12, lp * 12 + 12));
 	}
 	
+	private String stripWhitespace(String encrypted)
+	{
+		StringBuffer buf = new StringBuffer();
+		for (char ch : encrypted.toCharArray())
+			if (!Character.isWhitespace(ch))
+				buf.append(ch);
+		return buf.toString();
+	}
+
 	public boolean isExpired()
 	{
 		if (expiryDate == null)
@@ -127,7 +140,7 @@ public class LReal
 		int allowedFailures = macs.size() > 1 ? 1 : 0;
 
 		int failed = 0;
-		Set<String> current = Finder.findAll();
+		Set<String> current = LFinder.findAll();
 		for (String mac : macs)
 			if (!current.contains(mac))
 				failed++;
@@ -164,6 +177,11 @@ public class LReal
 	public String getMachineId()
 	{
 		return machineId;
+	}
+	
+	public String getFeatures()
+	{
+		return features;
 	}
 
 	public Set<String> getMacs()

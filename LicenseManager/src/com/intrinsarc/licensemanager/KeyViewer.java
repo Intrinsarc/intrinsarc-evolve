@@ -38,10 +38,10 @@ public class KeyViewer
 				{
 					// load in the keys
 					KeyFactory factory = KeyFactory.getInstance("RSA");
-					EncodedKeySpec privateSpec = new PKCS8EncodedKeySpec(Utils.decode(details.get("private key")));
+					EncodedKeySpec privateSpec = new PKCS8EncodedKeySpec(LUtils.decode(details.get("private key")));
 					
 					privateKey[0] = factory.generatePrivate(privateSpec);
-					EncodedKeySpec publicSpec = new X509EncodedKeySpec(Utils.decode(details.get("public key")));
+					EncodedKeySpec publicSpec = new X509EncodedKeySpec(LUtils.decode(details.get("public key")));
 					publicKey[0] = factory.generatePublic(publicSpec);
 					keyMessage[0] = "Keypair loaded: " + keysetFile.getAbsolutePath();
 				}
