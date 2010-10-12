@@ -30,7 +30,7 @@ final class PanningSizes
 public final class BasicDiagramViewGem implements Gem
 {
   public static final boolean USE_LOW_QUALITY_FOR_TRANSITIONS = false;
-  public static final long TRANSITION_TIME_MSECS = 400;
+  public static final long TRANSITION_TIME_MSECS = 300;
 	private ZLayerGroup parentLayer; // top layer
 	private ZLayerGroup pickLayer;
 	// used for selection and to group the object layer
@@ -733,7 +733,7 @@ public final class BasicDiagramViewGem implements Gem
       
       // we are now in a transition, so indicate that we must ingore other transitions
       String transitionType = GlobalPreferences.preferences.getRawPreference(
-          new Preference("Appearance", "Diagram transition effect", new PersistentProperty("none"))).asString();
+          new Preference("Appearance", "Diagram transition effect", new PersistentProperty("zoom"))).asString();
       if (!transitionType.equals("none"))
         ignoringTransitions = true;
       

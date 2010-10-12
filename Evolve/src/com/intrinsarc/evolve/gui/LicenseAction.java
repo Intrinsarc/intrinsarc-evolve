@@ -180,7 +180,7 @@ public class LicenseAction extends AbstractAction
 		if (readable)
 			ok.setText("OK");
 		else
-			ok.setText("Use community edition...");
+			ok.setText("Carry on using the community edition...");
 		
 		panel.add(details, BorderLayout.SOUTH);    
     panel.revalidate();

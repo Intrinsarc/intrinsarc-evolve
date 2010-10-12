@@ -18,12 +18,7 @@ public class SmartMenuItemImpl implements SmartMenuItem
 	private String sectionName;
 	private JMenuItem item;
 	/** fix for windows and other LNF's that don't offset items with no icon */
-	private Icon nullIcon = new Icon()
-	{
-    public void paintIcon(Component c, Graphics g, int x, int y) {}
-    public int getIconWidth() { return 16; }
-    public int getIconHeight() { return 16; }
-  };
+	private Icon nullIcon = new NullIcon();
 	
 	public SmartMenuItemImpl(String menuName, String sectionName, JMenuItem item)
 	{

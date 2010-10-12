@@ -166,7 +166,7 @@ public class RegisteredGraphicalThemes
         "Should OpenGL be used to accelerate Java2D?  Will only be appiled on restart.");
 
     // add the effect slots
-    PreferenceTypeEnumeration transitionOptions = new PreferenceTypeEnumeration(new String[]{"none", "zoom"});
+    PreferenceTypeEnumeration transitionOptions = new PreferenceTypeEnumeration(new String[]{"zoom", "none"});
     GlobalPreferences.preferences.addPreferenceSlot(new Preference("Appearance", "Diagram transition effect"), transitionOptions,
         "Type of transitions when moving from one diagram to another.");
 

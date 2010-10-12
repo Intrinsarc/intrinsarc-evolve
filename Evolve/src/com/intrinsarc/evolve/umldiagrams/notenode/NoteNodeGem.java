@@ -2,8 +2,10 @@ package com.intrinsarc.evolve.umldiagrams.notenode;
 
 import java.awt.*;
 import java.awt.event.*;
+import java.net.*;
 import java.util.*;
 import java.util.List;
+import java.util.regex.*;
 
 import javax.swing.*;
 import javax.swing.text.*;
@@ -16,6 +18,7 @@ import com.hexidec.ekit.*;
 import com.intrinsarc.evolve.umldiagrams.colors.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
+import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.figurefacilities.selectionbase.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulation.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulationbase.*;
@@ -37,7 +40,8 @@ import edu.umd.cs.jazz.util.*;
 
 public final class NoteNodeGem implements Gem
 {
-  static final String FIGURE_NAME = "note";
+  public static final String FIGURE_NAME = "note";
+  public static final Pattern URL = Pattern.compile(".*\\\"(http://(\\-|\\.|\\/|\\w)*).*", Pattern.MULTILINE | Pattern.DOTALL);
   private Comment subject;
   private Font font;
   private String text = "";
@@ -583,10 +587,22 @@ public final class NoteNodeGem implements Gem
     }
 
     /**
-     * @see com.intrinsarc.idraw.nodefacilities.nodesupport.BasicNodeAppearanceFacet#middleButtonPressed(ToolCoordinatorFacet)
+     * goto a possible URL when middle button is clicked
      */
     public void middleButtonPressed(ToolCoordinatorFacet coordinator)
     {
+    	// get the first link and open the browser on it
+    	Matcher match = URL.matcher(subject.getBody());
+    	if (match.matches())
+    	{
+    		try
+    		{
+      		BrowserInvoker.openBrowser(new URL(match.group(1)));    			
+    		}
+    		catch (Exception ex)
+    		{
+    		}
+    	}
     }
 
     /**

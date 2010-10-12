@@ -34,7 +34,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 			writer.newLine();
 			writer.write("import com.intrinsarc.backbone.runtime.api.*;");
 			writer.newLine();
-			writer.newLine();
+			writer.newLine();			
 		}
 		
 		String className = index == -1 ? fullClassName : fullClassName.substring(index + 1);

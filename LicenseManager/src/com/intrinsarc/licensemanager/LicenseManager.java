@@ -100,7 +100,7 @@ public class LicenseManager extends JFrame
 			}
 			
 			// populate an LDetails
-			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nfeatures=base\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
+			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nfeatures=base_1.x\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
 			right.removeAll();
 			right.add(new LicenseViewer().makeViewer(
 					parent,

@@ -75,6 +75,7 @@ public class ApplicationWindow extends SmartJFrame
 
 	// icons
 	public static final ImageIcon HELP_ICON = IconLoader.loadIcon("help.png");
+	public static final ImageIcon BLOG_ICON = IconLoader.loadIcon("blog.png");
 	public static final ImageIcon FULLSCREEN_ICON = IconLoader.loadIcon("fullscreen.png");
 	public static final ImageIcon GARBAGE_ICON = IconLoader.loadIcon("garbage.png");
 	public static final ImageIcon APPLICATION_ICON = IconLoader.loadIcon("brick.png");
@@ -1951,27 +1952,23 @@ public class ApplicationWindow extends SmartJFrame
 			aboutItem.setIcon(EVOLVE_LOGO_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "About", aboutItem));
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
-
+			
 			// add the license entry
 			JMenuItem licenseItem = new JMenuItem(new LicenseAction(coordinator, null));			
 			entries.add(new SmartMenuItemImpl("Help", "License", licenseItem));
 			GlobalPreferences.registerKeyAction("Help", licenseItem, null, "Display and enter license information");
 			
-			JMenuItem mainItem = new JMenuItem(
-					new URLAction("Intrinsarc website", URL_BASE));
-			entries.add(new SmartMenuItemImpl("Help", "Support", mainItem));
-			GlobalPreferences.registerKeyAction("Help", mainItem, null, "Visit main site");
+			JMenuItem blogItem = new JMenuItem(
+					new URLAction("Blog & news", URL_BASE + "/blog"));
+			blogItem.setIcon(BLOG_ICON);
+			entries.add(new SmartMenuItemImpl("Help", "Support", blogItem));
+			GlobalPreferences.registerKeyAction("Help", blogItem, null, "Visit blog site");
 
-/*			JMenuItem newsItem = new JMenuItem(
-					new URLAction("News and Announcements", URL_BASE + "/evolve/news"));
-			entries.add(new SmartMenuItemImpl("Help", "Support", newsItem));
-			GlobalPreferences.registerKeyAction("Help", newsItem, null, "News and Announcements");
-*/
 			JMenuItem docItem = new JMenuItem(
-					new URLAction("Documentation", URL_BASE + "/evolve/download"));
+					new URLAction("Documentation", URL_BASE + "/downloads/evolve-manual.pdf"));
 			docItem.setIcon(HELP_ICON);
 			entries.add(new SmartMenuItemImpl("Help", "Support", docItem));
-			GlobalPreferences.registerKeyAction("Help", docItem, null, "Documentation");
+			GlobalPreferences.registerKeyAction("Help", docItem, null, "View documentation");
 
 			JMenuItem supportItem = new JMenuItem(
 					new URLAction("Support forum", URL_BASE + "/evolve/support"));
@@ -2015,6 +2012,13 @@ public class ApplicationWindow extends SmartJFrame
 			smartMenuBar.addSectionOrderingHint("Checking", "Errors", "b");
 			smartMenuBar.addSectionOrderingHint("Checking", "Deltas", "c");
 
+			smartMenuBar.addSectionOrderingHint("Backbone", "About", "a");
+
+			smartMenuBar.addSectionOrderingHint("Help", "About", "a");
+			smartMenuBar.addSectionOrderingHint("Help", "Support", "b");
+			smartMenuBar.addSectionOrderingHint("Help", "License", "c");
+			smartMenuBar.addSectionOrderingHint("Help", "Version", "d");
+			
 			// add the import and export model preferences actions
 			// add the environment editor
 			JMenu preferences = new JMenu("Preferences");
@@ -2080,7 +2084,7 @@ public class ApplicationWindow extends SmartJFrame
 				if (focus.equals(paletteFacet.getFocus()))
 					setIcon(TICK_ICON);
 				else
-					setIcon(null);
+					setIcon(new NullIcon());
 				return true;
 			}
 		};
