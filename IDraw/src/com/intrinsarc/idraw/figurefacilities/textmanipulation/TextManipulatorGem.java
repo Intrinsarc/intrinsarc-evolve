@@ -648,6 +648,8 @@ public final class TextManipulatorGem implements Gem
 	  	if (swingTransform == null)
 	  		return;
 	  	boolean inText = swingTransform.getBounds().contains(point);
+	  	if (decoratorGroup != null)
+	  		inText |= decoratorGroup.getBounds().contains(point);
 	    boolean inList = listTransform == null ? false : listTransform.getBounds().contains(point); 
 	    
 	    if (state == EDITING_STATE)
@@ -734,6 +736,8 @@ public final class TextManipulatorGem implements Gem
     // to the text or the popup list?
     boolean inText = swingTransform == null ?
         false : swingTransform.getBounds().contains(point) || listTransform == null;
+  	if (decoratorGroup != null)
+  		inText |= decoratorGroup.getBounds().contains(point);
     JComponent component = inText ? currentText : scroller;
     
     // transform the point, as ZSwing components think they start at the origin
@@ -747,6 +751,8 @@ public final class TextManipulatorGem implements Gem
         component,
         point.getIntX(),
         point.getIntY());
+    if (ctarget == null)
+    	ctarget = component;
     
     if (ctarget != null)
     {

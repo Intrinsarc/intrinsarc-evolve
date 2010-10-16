@@ -733,7 +733,7 @@ public final class BasicDiagramViewGem implements Gem
       
       // we are now in a transition, so indicate that we must ingore other transitions
       String transitionType = GlobalPreferences.preferences.getRawPreference(
-          new Preference("Appearance", "Diagram transition effect", new PersistentProperty("zoom"))).asString();
+          new Preference("Appearance", "Diagram transition effect", new PersistentProperty("none"))).asString();
       if (!transitionType.equals("none"))
         ignoringTransitions = true;
       
