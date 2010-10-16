@@ -31,7 +31,8 @@ public class RegisteredGraphicalThemes
   public static final Preference INITIAL_RUNNER_Y_POS = new Preference("Appearance", "Initial runner Y position", 400);
   public static final Preference INITIAL_RUNNER_WIDTH = new Preference("Appearance", "Initial runner width", 450);
   public static final Preference INITIAL_RUNNER_HEIGHT = new Preference("Appearance", "Initial runner height", 400);
-  public static final Preference LNF_PREFERENCE = new Preference("Appearance", "Application look and feel", new PersistentProperty(LunaGraphicalTheme.THEME_NAME));
+  public static final Preference LNF_PREFERENCE = new Preference("Appearance", "Application look and feel",
+  			new PersistentProperty(RegisteredGraphicalThemesPreferences.PREFER_SYSTEM ? SystemGraphicalTheme.THEME_NAME : LunaGraphicalTheme.THEME_NAME));
   public static final Preference LNF_SUBTHEME_PREFERENCE = new Preference("Appearance", "Application look and feel subtheme");
 	public static final Preference INITIAL_PALETTE_WIDTH = new Preference("Appearance", "Palette width", 165);
   
@@ -70,13 +71,12 @@ public class RegisteredGraphicalThemes
   {
     themes.add(new LunaGraphicalTheme());
     themes.add(new NimbusGraphicalTheme());
-//    themes.add(new QuaquaGraphicalTheme());
     themes.add(new SmartGraphicalTheme());
     themes.add(new FastGraphicalTheme());
     themes.add(new AluminiumGraphicalTheme());
     themes.add(new AcrylGraphicalTheme());
-    themes.add(new SystemGraphicalTheme());
     themes.add(new MetalGraphicalTheme());
+    themes.add(new SystemGraphicalTheme());
   }
 
   public List<GraphicalTheme> getThemes()

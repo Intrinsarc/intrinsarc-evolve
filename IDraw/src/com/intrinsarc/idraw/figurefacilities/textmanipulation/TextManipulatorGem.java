@@ -80,7 +80,6 @@ public final class TextManipulatorGem implements Gem
 
 	private String cmdDescription;
 	private String undoCmdDescription;
-	private DiagramViewFacet diagramView;
   private String selectionText;
   private TextDecoratorFacet decorator;
   private ZNode decoratorNode;
@@ -130,7 +129,8 @@ public final class TextManipulatorGem implements Gem
 	  	if (decoratorNode != null)
 	  		decoratorGroup.removeChild(decoratorNode);
 	  	
-	  	decoratorNode = decorator.makeDecorator(target.getTextBounds(currentText.getText()));
+	  	UBounds bounds = target.getTextBounds(currentText.getText());
+	  	decoratorNode = decorator.makeDecorator(bounds);
 	  	if (decoratorNode != null)
 	  		decoratorGroup.addChild(decoratorNode);
 	  }
@@ -432,7 +432,7 @@ public final class TextManipulatorGem implements Gem
 	    
 	    redoDecorator();
 	    diagramLayer.addChild(decoratorGroup);
-	    diagramLayer.addChild(group);
+	    diagramLayer.addChild(group);	    
 	  }
 
     private void handlePossibleSelectionList(KeyEvent e, boolean released)
@@ -690,7 +690,6 @@ public final class TextManipulatorGem implements Gem
   public TextManipulatorGem(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, String cmdDescription, String undoCmdDescription, String textToStart, String underlyingText, Font font, Color textColour, Color backgroundColour, int type, int manipulatorType)
   {
   	this.coordinator = coordinator;
-  	this.diagramView = diagramView;
   	this.cmdDescription = cmdDescription;
   	this.undoCmdDescription = undoCmdDescription;
     this.textToStart = textToStart;

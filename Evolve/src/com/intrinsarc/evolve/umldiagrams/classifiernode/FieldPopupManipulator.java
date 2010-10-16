@@ -149,18 +149,16 @@ public abstract class FieldPopupManipulator implements Gem
 
 	  	TextableFacet tf = new TextableFacet()
 			{
-	  		private ZCanvas canvas = new ZCanvas();
-	  		
 				public UBounds vetTextResizedExtent(String text)
 				{
 					ZSwing label = makeLabel();
-					ZSwing swing = new ZSwing(canvas, new JLabel(text));
+					ZSwing tLabel = new ZSwing(canvas, new JLabel(text));
 					return
 						new UBounds(
 								figure.getFullBounds().getPoint().
 									add(new UDimension(9, 5)).add(
 										new UDimension(label.getBounds().width, 0)),
-								new UDimension(swing.getBounds().getWidth(), label.getBounds().getHeight()));
+								new UDimension(tLabel.getBounds().getWidth() + 20, label.getBounds().getHeight()));
 				}
 				
 				public void setText(String text, Object listSelection, boolean unsuppress)
@@ -206,7 +204,7 @@ public abstract class FieldPopupManipulator implements Gem
 								
 					ZRectangle rect = new ZRectangle(obounds.x, obounds.y, obounds.width, obounds.height);
 					rect.setPenPaint(Color.LIGHT_GRAY);
-					rect.setFillPaint(new Color(233, 233, 233));
+					rect.setFillPaint(new Color(243, 243, 243));
 
 					ZTransformGroup transform = new ZTransformGroup();
 					transform.addChild(new ZVisualLeaf(label));
@@ -230,6 +228,7 @@ public abstract class FieldPopupManipulator implements Gem
 	  private ZSwing makeLabel()
 	  {
 	  	JLabel label = new JLabel(labelText + " ");
+	  	label.setEnabled(!readOnly);
 	  	label.setBackground(null);
 	  	ZSwing swing = new ZSwing(canvas, label);
 	  	return swing;

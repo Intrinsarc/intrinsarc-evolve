@@ -76,7 +76,7 @@ public class BackboneInterpreter
 				int size = system.size();
 	    	final int totalPermutations = detector.calculatePerspectivePermutations(system, -1, true);
 	    	int extraSize = size > 1 ? size - 2 : 0;
-				System.out.println(tab + "total package combinations to check is " + totalPermutations + " + " + (extraSize + 1) + " at home");
+				System.out.println(tab + "total strata and combinations to check is " + totalPermutations + " + " + (extraSize + 1) + " at home");
 	    	long start = System.currentTimeMillis();
 	    	
 	    	// check all at home

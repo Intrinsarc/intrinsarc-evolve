@@ -6,6 +6,8 @@ import javax.swing.*;
 
 public class SystemGraphicalTheme implements GraphicalTheme
 {
+	public static final String THEME_NAME = "System";
+	
   public void change(String subtheme) throws Exception
   {
     UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -13,7 +15,7 @@ public class SystemGraphicalTheme implements GraphicalTheme
 
   public String getName()
   {
-    return "System";
+    return THEME_NAME;
   }
 
   public List<String> getSubthemes()

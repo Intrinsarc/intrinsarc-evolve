@@ -25,6 +25,7 @@ public abstract class StratumIterator
   	{
   		// treat the current package as the perspective
   		DEStratum perspective = toCheck.get(lp);
+  		
   		// if this is destructive, check all that came before the topmost
   		if (deepCheck || perspective.isDestructive() || joinsDestructive(perspective))
   		{

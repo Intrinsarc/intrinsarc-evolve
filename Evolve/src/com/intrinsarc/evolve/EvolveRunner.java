@@ -4,6 +4,7 @@ import java.io.*;
 import java.net.*;
 
 import com.intrinsarc.evolve.gui.*;
+import com.intrinsarc.swing.lookandfeel.*;
 
 /**
  * this is to provide a jar so that evolve can be run easily
@@ -14,6 +15,8 @@ public class EvolveRunner
 {
 	public static void main(String args[])
 	{
+		macSetup("Evolve");
+		
 		// if no arguments, pass in the actual home directory		
 		boolean fromJars[] = {false};
 		String home = getHomeDirectory(fromJars);
@@ -36,4 +39,16 @@ public class EvolveRunner
 		start = start.getParentFile();
 		return URLDecoder.decode(start.getPath());
 	}
+	
+	private static void macSetup(String appName)
+	{
+	  String os = System.getProperty("os.name").toLowerCase();
+	  boolean isMac = os.startsWith("mac os x");    
+	  if (!isMac)
+	     return;
+	 
+	  System.setProperty("apple.laf.useScreenMenuBar", "true");
+	  System.setProperty("com.apple.mrj.application.apple.menu.about.name", appName);
+		RegisteredGraphicalThemesPreferences.PREFER_SYSTEM = true;
+	 }
 }

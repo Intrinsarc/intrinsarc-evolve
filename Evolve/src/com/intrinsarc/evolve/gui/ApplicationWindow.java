@@ -1560,7 +1560,7 @@ public class ApplicationWindow extends SmartJFrame
 								// report on any status
 								if (showPopups && count % popupCycle == 0)
 									monitor.displayInterimPopupWithProgress(CHECK_ALL_ICON,
-											message, "Checking " + totalPermutations + " permutations",
+											message, "Checking " + totalPermutations + " strata and combinations",
 											ScreenProperties.getUndoPopupColor(), -1, count,
 											totalPermutations);
 
@@ -1581,7 +1581,7 @@ public class ApplicationWindow extends SmartJFrame
 					monitor.stopActivityAndDisplayPopup(CHECK_ALL_ICON,
 							"Error checking finished", "Found " + errors.countErrors()
 									+ " errors in " + (((int) (end - start) / 100) / 10.0)
-									+ " seconds, " + totalPermutations + " permutations",
+									+ " seconds, " + totalPermutations + " strata and combinations",
 							ScreenProperties.getUndoPopupColor(), 3000, true);
 				}
 				else
