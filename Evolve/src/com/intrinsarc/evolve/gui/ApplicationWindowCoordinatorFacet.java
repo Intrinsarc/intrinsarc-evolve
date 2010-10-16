@@ -16,4 +16,5 @@ public interface ApplicationWindowCoordinatorFacet extends Facet
 	public void exitApplication();
   public void switchRepository();
   public void refreshWindowTitles();
+  public LicenseAction makeLicenseAction();
 }

@@ -106,7 +106,6 @@ public class LicenseAction extends AbstractAction
 		JButton copyToClipboard = new JButton("Copy to clipboard");
 		copyToClipboard.addActionListener(new ActionListener()
 		{
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 		    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
@@ -137,7 +136,6 @@ public class LicenseAction extends AbstractAction
 		JButton validate = new JButton(readable ? "Reenter license" : "Enter license");
 		validate.addActionListener(new ActionListener()
 		{
-			@Override
 			public void actionPerformed(ActionEvent e)
 			{
 				LReal.storeLicense(encrypted.getText());

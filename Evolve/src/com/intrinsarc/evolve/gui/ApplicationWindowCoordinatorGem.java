@@ -98,9 +98,7 @@ public class ApplicationWindowCoordinatorGem
 			
 			window.setUp(this, toolCoordinator, viewRegistryFacet, errorAdorner, deltaAdorner);
 			window.openTopLevel(true, true);
-			
-			// show license information
-			showLicenseDetails();
+	  	showLicenseDetails();
 		}
 		
 		public void exitApplication()
@@ -122,9 +120,6 @@ public class ApplicationWindowCoordinatorGem
       for (ApplicationWindow window : windows)
         window.reset(getWindowTitle());
       toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
-      
-			// show license information
-      showLicenseDetails();
     }
     
     public void refreshWindowTitles()
@@ -133,6 +128,39 @@ public class ApplicationWindowCoordinatorGem
       for (ApplicationWindow window : windows)
         window.refreshTitle(getWindowTitle());
     }
+    
+  	public LicenseAction makeLicenseAction()
+  	{
+  		LicenseAction action = new LicenseAction(
+  				toolCoordinator.getToolCoordinatorFacet(),
+  				new Runnable()
+  				{
+  					public void run()
+  					{
+  						try
+  						{
+  							String tutorial =
+  								GlobalPreferences.preferences.getRawVariableValue("EVOLVE") + "/tutorial/car-rental" + XMLSubjectRepositoryGem.UML2_SUFFIX;			
+
+  							RepositoryUtility.useXMLRepository(tutorial, false);
+  							
+  				      // handle all the global components here...
+  				      GlobalDiagramRegistry.registry.reset();
+  				      ToolCoordinatorGem.clearDeltaEngine();
+  				      
+  				      // handle any window specific component here
+  				      for (ApplicationWindow window : windows)
+  				        window.reset(getWindowTitle());
+  				      toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
+  						}
+  						catch (Exception ex)
+  						{
+  							ex.printStackTrace();
+  						}
+  					}
+  				});
+  		return action;
+  	}
   }
   
   private String getWindowTitle()
@@ -149,34 +177,7 @@ public class ApplicationWindowCoordinatorGem
 		LReal.retrieveLicense(error);
 		if (error[0] != null)
 		{
-			LicenseAction action = new LicenseAction(
-					toolCoordinator.getToolCoordinatorFacet(),
-					new Runnable()
-					{
-						public void run()
-						{
-							try
-							{
-								String tutorial =
-									GlobalPreferences.preferences.getRawVariableValue("EVOLVE") + "/tutorial/car-rental" + XMLSubjectRepositoryGem.UML2_SUFFIX;			
-
-								RepositoryUtility.useXMLRepository(tutorial, false);
-								
-					      // handle all the global components here...
-					      GlobalDiagramRegistry.registry.reset();
-					      ToolCoordinatorGem.clearDeltaEngine();
-					      
-					      // handle any window specific component here
-					      for (ApplicationWindow window : windows)
-					        window.reset(getWindowTitle());
-					      toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
-							}
-							catch (Exception ex)
-							{
-								ex.printStackTrace();
-							}
-						}
-					});
+			LicenseAction action = applicationWindowCoordinatorFacet.makeLicenseAction();
 			action.actionPerformed(null);
 		}
   }

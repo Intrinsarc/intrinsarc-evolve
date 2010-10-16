@@ -1,15 +1,15 @@
 package com.intrinsarc.evolve.umldiagrams.classifiernode;
 
 import java.awt.*;
-import java.awt.Component;
 
 import javax.swing.*;
 
 import org.eclipse.uml2.*;
-import org.freehep.graphics2d.*;
 
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
+import com.intrinsarc.idraw.figurefacilities.textmanipulation.*;
+import com.intrinsarc.idraw.figurefacilities.textmanipulationbase.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.utility.*;
 import com.intrinsarc.repositorybase.*;
@@ -30,20 +30,28 @@ public abstract class FieldPopupManipulator implements Gem
 	protected FigureFacet figure;
 	protected boolean readOnly;
 	private ManipulatorFacetImpl manipulatorFacet = new ManipulatorFacetImpl();
-	private ManipulatorListenerFacet manipListener;
+	private String labelText;
+	private String startText;
 	protected boolean bad;
+	private ZCanvas canvas;
 	
-	public abstract void setUpPopup();
-	public abstract void removePopup();
-	public abstract void setTextAndFinish();
+	private TextManipulatorGem text;
 	
-	public FieldPopupManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, boolean bad)
+	public abstract void setTextAndFinish(String text);
+	
+	public FieldPopupManipulator(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView, FigureFacet figure, String labelText, boolean bad, boolean forceReadOnly)
 	{
 		this.coordinator = coordinator;
 		this.diagramView = diagramView;
 		this.figure = figure;
-		readOnly = GlobalSubjectRepository.repository.isReadOnly(getElement());
+		readOnly = forceReadOnly | GlobalSubjectRepository.repository.isReadOnly(getElement());
+		this.labelText = labelText;
 		this.bad = bad;
+	}
+	
+	public void setStartText(String startText)
+	{
+		this.startText = startText;
 	}
 
 	public ManipulatorFacet getManipulatorFacet()
@@ -67,9 +75,10 @@ public abstract class FieldPopupManipulator implements Gem
 	    return TYPE2;
 	  }
 	
-	  public void addToView(ZGroup diagramLayer, ZCanvas canvas)
+	  public void addToView(ZGroup diagramLayer, ZCanvas cvs)
 	  {
 	  	this.diagramLayer = diagramLayer;
+	  	canvas = cvs;
 	  	
 	  	UBounds bounds = figure.getFullBounds();
 	  	UPoint pt = bounds.getPoint().subtract(new UDimension(16, 16));
@@ -99,7 +108,6 @@ public abstract class FieldPopupManipulator implements Gem
 	  public void cleanUp()
 	  {
 	  	diagramLayer.removeChild(group);
-	  	removePopup();
 	  }
 	
 		/** invoked to see if we want to enter on this key
@@ -125,10 +133,108 @@ public abstract class FieldPopupManipulator implements Gem
 	  /**invoked on button press entry*/
 	  public void enterViaButtonPress(ManipulatorListenerFacet listener, ZNode source, UPoint point, int modifiers)
 	  {
-	  	manipListener = listener;
-	  	setUpPopup();
+	  	text = new TextManipulatorGem(
+	  			coordinator,
+	  			diagramView,
+	  			"",
+	  			"",
+	  			startText,
+	  			"",
+	  			ScreenProperties.getPrimaryFont(),
+	  			Color.BLACK,
+	  			Color.WHITE,
+	  			TextManipulatorGem.TEXT_AREA_ONE_LINE_TYPE_DISPLAY_AS_IF_EDITING,
+          ManipulatorFacet.TYPE0);
+	  	text.setForceReadOnly(readOnly);
+
+	  	TextableFacet tf = new TextableFacet()
+			{
+	  		private ZCanvas canvas = new ZCanvas();
+	  		
+				public UBounds vetTextResizedExtent(String text)
+				{
+					ZSwing label = makeLabel();
+					ZSwing swing = new ZSwing(canvas, new JLabel(text));
+					return
+						new UBounds(
+								figure.getFullBounds().getPoint().
+									add(new UDimension(9, 5)).add(
+										new UDimension(label.getBounds().width, 0)),
+								new UDimension(swing.getBounds().getWidth(), label.getBounds().getHeight()));
+				}
+				
+				public void setText(String text, Object listSelection, boolean unsuppress)
+				{
+					setTextAndFinish(text);
+				}
+				
+				public UBounds getTextBounds(String text)
+				{
+					return vetTextResizedExtent(text);
+				}
+				
+				public FigureFacet getFigureFacet()
+				{
+					return figure;
+				}
+				
+				public JList formSelectionList(String textSoFar)
+				{
+					return null;
+				}
+			};
+			text.connectTextableFacet(tf);
+			TextDecoratorFacet decorator = new TextDecoratorFacet()
+			{
+				public ZNode makeDecorator(UBounds bounds)
+				{
+					UBounds tbounds = 
+						new UBounds(
+								bounds.getPoint(),
+								bounds.getDimension().maxOfEach(new UDimension(200, 0)));
+					UBounds ibounds = 
+								tbounds.addToPoint(new UDimension(-3, -3)).addToExtent(new UDimension(6, 6));
+					
+					ZSwing label = makeLabel();
+					double textWidth = label.getBounds().width;
+					ZRectangle inRect = new ZRectangle(ibounds.x, ibounds.y, ibounds.width, ibounds.height);
+					inRect.setPenPaint(Color.LIGHT_GRAY);
+					inRect.setFillPaint(Color.WHITE);
+					
+					UBounds obounds =
+						tbounds.addToPoint(new UDimension(-9 - textWidth - 4, -9)).addToExtent(new UDimension(18 + textWidth + 4, 18));
+								
+					ZRectangle rect = new ZRectangle(obounds.x, obounds.y, obounds.width, obounds.height);
+					rect.setPenPaint(Color.LIGHT_GRAY);
+					rect.setFillPaint(new Color(233, 233, 233));
+
+					ZTransformGroup transform = new ZTransformGroup();
+					transform.addChild(new ZVisualLeaf(label));
+					transform.translate(obounds.x + 8, obounds.y + 1 + 9);
+					
+					ZGroup group = new ZGroup();
+					group.addChild(new ZVisualLeaf(rect));
+					group.addChild(new ZVisualLeaf(inRect));
+					group.addChild(transform);
+					
+					return group;
+				}
+			};
+			text.connectTextDecoratorFacet(decorator);		
+	  	
+			ManipulatorFacet mf = text.getManipulatorFacet();
+			mf.addToView(diagramLayer, canvas);
+	  	mf.enterImmediately(listener);
 	  }
 
+	  private ZSwing makeLabel()
+	  {
+	  	JLabel label = new JLabel(labelText + " ");
+	  	label.setBackground(null);
+	  	ZSwing swing = new ZSwing(canvas, label);
+	  	return swing;
+	  }
+	  
 		/**invoked on button release entry*/
 	  public void enterViaButtonRelease(ManipulatorListenerFacet listener, ZNode source, UPoint point, int modifiers)
 	  {
@@ -142,24 +248,28 @@ public abstract class FieldPopupManipulator implements Gem
 	  /**Invoked when a mouse button has been pressed on this figure */
 	  public void mousePressed(FigureFacet over, UPoint point, ZMouseEvent event)
 	  {
-	  	if (readOnly)
-	  		finishManipulator();
-	  	else
-	  		setTextAndFinish();
+	  	if (text != null)
+	  		text.getManipulatorFacet().mousePressed(over, point, event);
 	  }
 	
 	  /** invoked when a mouse button has been dragged on this figure */
 	  public void mouseDragged(FigureFacet over, UPoint point, ZMouseEvent event)
 	  {
+	  	if (text != null)
+	  		text.getManipulatorFacet().mouseDragged(over, point, event);
 	  }
 	
 	  public void mouseMoved(FigureFacet over, UPoint point, ZMouseEvent event)
 	  {
+	  	if (text != null)
+	  		text.getManipulatorFacet().mouseMoved(over, point, event);
 	  }
 	
 	  /**Invoked when a mouse button has been released on this figure */
 	  public void mouseReleased(FigureFacet over, UPoint point, ZMouseEvent event)
 	  {
+	  	if (text != null)
+	  		text.getManipulatorFacet().mouseReleased(over, point, event);
 	  }
 
     public void setLayoutOnly()
@@ -170,41 +280,5 @@ public abstract class FieldPopupManipulator implements Gem
 		{
 			return true;
 		}
-	}
-	
-  protected UPoint findInsidePoint(DiagramViewFacet diagramView, JPanel panel)
-	{
-  	ZCanvas canvas = diagramView.getCanvas();
-  	Component top = getTop(canvas);
-  	UBounds topBounds = new UBounds(top.getBounds());
-  	
-  	UPoint pt = figure.getFullBounds().getTopLeftPoint();
-  	pt = pt.subtract(diagramView.getCurrentPan());
-  	Point offset = diagramView.getCanvas().getLocationOnScreen();
-  	pt = pt.add(new UDimension(5 + offset.x, offset.y));
-  	ZSwing swing = new ZSwing(canvas, panel);
-  	UBounds bounds = new UBounds(pt, new UBounds(swing.getBounds()).getDimension());
-  	
-  	// adjust for right and bottom only
-  	int bringLeft = bounds.getTopRightPoint().getIntX() - topBounds.getTopRightPoint().getIntX() +20;
-  	
-  	return pt.subtract(
-  			new UDimension(bringLeft > 0 ? bringLeft : 0, 0));
-	}
-  
-	private Component getTop(Component comp)
-  {
-  	for(;;)
-  	{
-  		if (comp.getParent() == null)
-  			return comp;
-  		comp = comp.getParent();
-  	}
-  }
-	
-	protected void finishManipulator()
-	{
-		removePopup();
-		manipListener.haveFinished();
 	}
 }

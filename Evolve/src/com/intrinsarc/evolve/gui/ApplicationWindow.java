@@ -1954,7 +1954,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Help", aboutItem, null, "Display the help about dialog");
 			
 			// add the license entry
-			JMenuItem licenseItem = new JMenuItem(new LicenseAction(coordinator, null));			
+			JMenuItem licenseItem = new JMenuItem(applicationWindowCoordinator.makeLicenseAction());	
 			entries.add(new SmartMenuItemImpl("Help", "License", licenseItem));
 			GlobalPreferences.registerKeyAction("Help", licenseItem, null, "Display and enter license information");
 			

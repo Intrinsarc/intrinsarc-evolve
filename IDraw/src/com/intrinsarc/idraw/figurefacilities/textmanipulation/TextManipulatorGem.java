@@ -61,6 +61,7 @@ public final class TextManipulatorGem implements Gem
   private ZCanvas canvas;
   private ZGroup diagramLayer;
   private ZGroup group;
+  private ZGroup decoratorGroup;
   private ZTransformGroup swingTransform;
   private ZTransformGroup listTransform;
   private JComponent scroller;
@@ -81,6 +82,9 @@ public final class TextManipulatorGem implements Gem
 	private String undoCmdDescription;
 	private DiagramViewFacet diagramView;
   private String selectionText;
+  private TextDecoratorFacet decorator;
+  private ZNode decoratorNode;
+  private boolean forceReadOnly;
 
 
   public static EkitCore makeEkit(boolean useIcons, String text)
@@ -106,6 +110,11 @@ public final class TextManipulatorGem implements Gem
     return core;
   }
   
+  public void setForceReadOnly(boolean force)
+  {
+  	this.forceReadOnly = force;
+  }
+  
 	public class ManipulatorFacetImpl implements ManipulatorFacet
 	{
 	  public int getType()
@@ -113,6 +122,19 @@ public final class TextManipulatorGem implements Gem
 	    return manipulatorType;
 	  }
 	
+	  private void redoDecorator()
+	  {
+	  	if (decorator == null || currentText == null)
+	  		return;
+	  	
+	  	if (decoratorNode != null)
+	  		decoratorGroup.removeChild(decoratorNode);
+	  	
+	  	decoratorNode = decorator.makeDecorator(target.getTextBounds(currentText.getText()));
+	  	if (decoratorNode != null)
+	  		decoratorGroup.addChild(decoratorNode);
+	  }
+	  
 	  /** add the view to the display */
 	  public void addToView(ZGroup diagramLayer, ZCanvas canvas)
 	  {
@@ -124,6 +146,7 @@ public final class TextManipulatorGem implements Gem
 	    UBounds bounds = target.getTextBounds(textToStart);
 	    UBounds underlyingBounds = target.getTextBounds(underlyingText != null ? underlyingText : textToStart);
 	    group = new ZGroup();
+	    decoratorGroup = new ZGroup();
 	
 	    if (state == DISPLAYING_STATE)
 	    {
@@ -278,6 +301,7 @@ public final class TextManipulatorGem implements Gem
 	              // recentre
 	              UPoint newTranslationPoint = target.getTextBounds(text).getPoint();
 	              swingTransform.setTranslation(newTranslationPoint.getX(), newTranslationPoint.getY());
+	        	    redoDecorator();
 	            }
 	          });
 	        }
@@ -304,6 +328,7 @@ public final class TextManipulatorGem implements Gem
 	              // recentre
 	              UPoint newTranslationPoint = target.getTextBounds(text).getPoint();
 	              swingTransform.setTranslation(newTranslationPoint.getX(), newTranslationPoint.getY());
+	        	    redoDecorator();
 	            }
 	          });
 	        }
@@ -346,6 +371,7 @@ public final class TextManipulatorGem implements Gem
 	              // recentre
 	              UPoint newTranslationPoint = target.getTextBounds(text).getPoint();
 	              swingTransform.setTranslation(newTranslationPoint.getX(), newTranslationPoint.getY());
+	        	    redoDecorator();
 	            }
 	          });
 	        }
@@ -377,6 +403,9 @@ public final class TextManipulatorGem implements Gem
 	          });
 	        }
 	      }
+	      
+	      if (forceReadOnly)
+	      	currentText.setEnabled(false);
 	
 	      ZSwing textSwing = new ZSwing(canvas, currentText);	      
 	      ZVisualLeaf jazzSwing = new ZVisualLeaf(textSwing);
@@ -400,6 +429,9 @@ public final class TextManipulatorGem implements Gem
 	    group.setChildrenPickable(false);
 	    group.setChildrenFindable(false);
 	    group.putClientProperty("manipulator", this);
+	    
+	    redoDecorator();
+	    diagramLayer.addChild(decoratorGroup);
 	    diagramLayer.addChild(group);
 	  }
 
@@ -500,6 +532,7 @@ public final class TextManipulatorGem implements Gem
 	    added--;
 	    if (group != null)
 	    {
+	      diagramLayer.removeChild(decoratorGroup);
 	      diagramLayer.removeChild(group);
 	    }
 	    group = null;
@@ -525,7 +558,7 @@ public final class TextManipulatorGem implements Gem
 	  {
 	    TextManipulatorGem.this.listener = listener;
 
-      if (target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
+      if (!forceReadOnly && target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
         finishManipulation(null);
       else
         enter_EDITING_STATE_keypress(keyPressed);
@@ -536,7 +569,7 @@ public final class TextManipulatorGem implements Gem
 	  {
 	    TextManipulatorGem.this.listener = listener;
 
-      if (target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
+      if (!forceReadOnly && target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
         finishManipulation(null);
       else
         enter_EDITING_STATE_immediately();
@@ -549,7 +582,7 @@ public final class TextManipulatorGem implements Gem
 	    TextManipulatorGem.this.listener = listener;
 	    
 	    // don't do this if the subject is read only
-      if (target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
+      if (!forceReadOnly && target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
         finishManipulation(null);
       else
         enter_EDITING_STATE_button_press(point);
@@ -561,7 +594,7 @@ public final class TextManipulatorGem implements Gem
 	    TextManipulatorGem.this.listener = listener;
 	    
       // don't do this if the subject is read only
-      if (target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
+      if (!forceReadOnly && target.getFigureFacet().isSubjectReadOnlyInDiagramContext(false))
         finishManipulation(null);
       else
         enter_EDITING_STATE_button_release(point);      
@@ -600,7 +633,7 @@ public final class TextManipulatorGem implements Gem
 	    {
 	      // NOTE: we want the text *and* the selection in some cases, as this gives more info if the formSelectionList call only uses part of the text data
 	    	coordinator.startTransaction(cmdDescription, undoCmdDescription);
-			  SetTextTransaction.set(target.getFigureFacet(), current, listSelection, true);
+			  target.setText(current, listSelection, true);
 	    }
 	
 	    listener.haveFinished();	
@@ -679,6 +712,11 @@ public final class TextManipulatorGem implements Gem
   	this.target = textableFacet;
   }
 
+  public void connectTextDecoratorFacet(TextDecoratorFacet decorator)
+  {
+  	this.decorator = decorator;
+  }
+  
   private void sendMouseClickToText(JComponent text, UPoint point, int buttonMask)
   {
     sendMouseEventToText(point, MouseEvent.MOUSE_PRESSED, buttonMask);

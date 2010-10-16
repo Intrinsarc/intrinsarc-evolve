@@ -86,7 +86,8 @@ public class LFinder
 		  }
 		  catch (Exception ex)
 		  {
-		  	System.out.println(ex);
+		  	// this will be an class/method not found exception probably because we are using jre1.5
+//		  	System.out.println(ex);
 		  }
 	  
 		  // may not have found any
