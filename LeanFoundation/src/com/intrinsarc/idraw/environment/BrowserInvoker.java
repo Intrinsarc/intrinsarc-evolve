@@ -68,7 +68,7 @@ public class BrowserInvoker
       }
       else if (osName.indexOf("ix") >=0 || osName.indexOf("ux") >=0 || osName.indexOf("sun") >=0)
       {
-        String[] browsers = {"firefox", "mozilla", "konqueror", "netscape","opera","links","lynx"};
+        String[] browsers = {"firefox", "safari", "mozilla", "konqueror", "netscape", "opera", "links", "lynx"};
 
         // Build a command string which looks like "browser1 "url" || browser2
         // "url" ||..."

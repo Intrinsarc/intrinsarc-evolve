@@ -340,7 +340,7 @@ public class TraceArcGem implements Gem
     private JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
     {
       // for adding operations
-      JMenuItem replace = new JMenuItem("Replace", new NullIcon());
+      JMenuItem replace = new JMenuItem("Replace");
       replace.addActionListener(new ActionListener()
       {
         public void actionPerformed(ActionEvent e)

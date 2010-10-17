@@ -119,7 +119,7 @@ public class InterfaceMiniAppearanceGem implements Gem
 		{
 			Utilities.addSeparator(menu);
 
-			menu.add(new AbstractAction("Determine implementation class", new NullIcon())
+			menu.add(new AbstractAction("Determine implementation class")
 			{
 				public void actionPerformed(ActionEvent e)
 				{

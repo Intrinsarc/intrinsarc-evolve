@@ -274,7 +274,7 @@ public class ComponentMiniAppearanceGem implements Gem
 			// display the port details
 			if (comp.isLeaf(perspective))
 			{
-				JMenuItem ports = new JMenuItem("Display bean port information", new NullIcon());
+				JMenuItem ports = new JMenuItem("Display bean port information");
 				ports.addActionListener(new ActionListener()
 				{
 					public void actionPerformed(ActionEvent e)

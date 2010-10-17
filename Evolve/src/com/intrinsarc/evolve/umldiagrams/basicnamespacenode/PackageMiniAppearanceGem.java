@@ -265,7 +265,7 @@ public class PackageMiniAppearanceGem implements Gem
       }
       
       Utilities.addSeparator(menu);
-      menu.add(new AbstractAction("Determine exposesStrata...", new NullIcon())
+      menu.add(new AbstractAction("Determine exposesStrata...")
       {
         public void actionPerformed(ActionEvent e)
         {
@@ -285,7 +285,7 @@ public class PackageMiniAppearanceGem implements Gem
       });
 
       // if this is a stratum, provide an entry to work out the exposure
-      menu.add(new AbstractAction("Determine canSee...", new NullIcon())
+      menu.add(new AbstractAction("Determine canSee...")
       {
         public void actionPerformed(ActionEvent e)
         {
@@ -305,7 +305,7 @@ public class PackageMiniAppearanceGem implements Gem
         } 
       });
       
-      menu.add(new AbstractAction("Determine simpleDependsOn...", new NullIcon())
+      menu.add(new AbstractAction("Determine simpleDependsOn...")
       {
         public void actionPerformed(ActionEvent e)
         {
@@ -324,7 +324,7 @@ public class PackageMiniAppearanceGem implements Gem
         }
       });
 
-      menu.add(new AbstractAction("Determine transitive closure...", new NullIcon())
+      menu.add(new AbstractAction("Determine transitive closure...")
       {
         public void actionPerformed(ActionEvent e)
         {
@@ -343,7 +343,7 @@ public class PackageMiniAppearanceGem implements Gem
         }
       });
 
-      menu.add(new AbstractAction("Analyse independence...", new NullIcon())
+      menu.add(new AbstractAction("Analyse independence...")
       {
         public void actionPerformed(ActionEvent e)
         {
@@ -491,7 +491,7 @@ public class PackageMiniAppearanceGem implements Gem
   
   public static JMenuItem makeShowBackboneCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEObject object, final BackbonePrinterMode mode)
   {
-    JMenuItem code = new JMenuItem(menuText, new NullIcon());
+    JMenuItem code = new JMenuItem(menuText);
     code.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

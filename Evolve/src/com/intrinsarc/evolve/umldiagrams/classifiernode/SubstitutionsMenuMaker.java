@@ -21,7 +21,7 @@ public class SubstitutionsMenuMaker
   {
     // if this is a composite, it can be substituted
     final Type subject = (Type) figure.getSubject();
-    JMenuItem substituters = new JMenuItem("Determine substitutions...", new NullIcon());
+    JMenuItem substituters = new JMenuItem("Determine substitutions...");
     substituters.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

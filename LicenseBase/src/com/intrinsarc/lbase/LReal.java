@@ -140,7 +140,7 @@ public class LReal
 		int allowedFailures = macs.size() > 1 ? 1 : 0;
 
 		int failed = 0;
-		Set<String> current = LFinder.findAll();
+		List<String> current = LFinder.findAll();
 		for (String mac : macs)
 			if (!current.contains(mac))
 				failed++;

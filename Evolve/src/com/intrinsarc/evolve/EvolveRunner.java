@@ -43,11 +43,10 @@ public class EvolveRunner
 	private static void macSetup(String appName)
 	{
 	  String os = System.getProperty("os.name").toLowerCase();
-	  boolean isMac = os.startsWith("mac os x");    
+	  boolean isMac = os.indexOf("mac") >= 0;   
 	  if (!isMac)
 	     return;
 	 
-	  System.setProperty("apple.laf.useScreenMenuBar", "true");
 	  System.setProperty("com.apple.mrj.application.apple.menu.about.name", appName);
 		RegisteredGraphicalThemesPreferences.PREFER_SYSTEM = true;
 	 }

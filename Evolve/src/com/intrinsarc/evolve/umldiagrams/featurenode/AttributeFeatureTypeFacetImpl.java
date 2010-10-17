@@ -301,7 +301,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
   {
     // for adding operations
-    JMenuItem replaceAttributeItem = new JMenuItem("Replace", new NullIcon());
+    JMenuItem replaceAttributeItem = new JMenuItem("Replace");
     replaceAttributeItem.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

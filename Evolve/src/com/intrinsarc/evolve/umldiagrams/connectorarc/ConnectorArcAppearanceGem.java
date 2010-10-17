@@ -608,7 +608,7 @@ public class ConnectorArcAppearanceGem implements Gem
     public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
     {
       // for adding operations
-      JMenuItem replaceConnectorItem = new JMenuItem("Replace", new NullIcon());
+      JMenuItem replaceConnectorItem = new JMenuItem("Replace");
       replaceConnectorItem.addActionListener(new ActionListener()
       {
         public void actionPerformed(ActionEvent e)

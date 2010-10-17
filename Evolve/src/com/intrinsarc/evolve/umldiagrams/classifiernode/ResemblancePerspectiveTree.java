@@ -34,7 +34,7 @@ public class ResemblancePerspectiveTree
       final BasicNodeFigureFacet figure,
       final ToolCoordinatorFacet coordinator)
   {
-    JMenuItem item = new JMenuItem("Resemblance perspective...", new NullIcon());
+    JMenuItem item = new JMenuItem("Resemblance perspective...");
     item.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

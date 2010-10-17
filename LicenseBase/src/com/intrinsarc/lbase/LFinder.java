@@ -40,7 +40,7 @@ public class LFinder
 		{
 			PLATFORM = Platform.Linux;
 		}
-		else if (os.indexOf("mac os x") >= 0 || os.indexOf("macosx") >= 0)
+		else if (os.indexOf("mac") >= 0)
 		{
 			PLATFORM = Platform.MacOS;
 		}
@@ -59,7 +59,7 @@ public class LFinder
 	}
 
 	
-	public static Set<String> findAll()
+	public static List<String> findAll()
 	{
 		Set<String> addresses = new HashSet<String>();
 		
@@ -92,13 +92,22 @@ public class LFinder
 	  
 		  // may not have found any
 		  if (!addresses.isEmpty())
-		  	return addresses;
+		  	return sort(addresses);
 		}
 	  
 	  // otherwise default to JDK1.5 way
-	  return useShellToFindAddresses();
+	  return sort(useShellToFindAddresses());
 	}
 	
+	private static List<String> sort(Set<String> macs)
+	{
+		if (macs == null)
+			return null;
+		List<String> sorted = new ArrayList<String>(macs);
+		Collections.sort(sorted);
+		return sorted;			
+	}
+
 	public static byte[] fromHex(String hex)
 	{
 		int size = hex.length() / 2;
@@ -143,6 +152,7 @@ public class LFinder
 	{
 		if (PLATFORM == Platform.Unknown)
 		{
+			System.out.println("Platform is unknown");
 			return null;
 		}
 		BufferedReader reader = null;
@@ -150,6 +160,7 @@ public class LFinder
 		{
 			Process conf = Runtime.getRuntime().exec(PLATFORM.command);
 			reader = new BufferedReader(new InputStreamReader(conf.getInputStream()));
+			
 			Set<String> macs = new HashSet<String>(4);
 			StringBuilder regex = new StringBuilder("(?<!0)(?<!\\-)([0-9a-fA-F]{1,2}");
 			for (int i = 0; i < 5; i++)
@@ -157,7 +168,7 @@ public class LFinder
 				regex.append("[-:]");
 				regex.append("[0-9a-fA-F]{2}");
 			}
-			regex.append(")\t*$");
+			regex.append(")\\s*$");
 			Pattern pattern = Pattern.compile(regex.toString());
 			String line = reader.readLine();
 			do
