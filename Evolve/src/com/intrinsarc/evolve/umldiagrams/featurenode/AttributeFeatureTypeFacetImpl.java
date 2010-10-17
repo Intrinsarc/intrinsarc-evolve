@@ -19,6 +19,7 @@ import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.idraw.nodefacilities.nodesupport.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
+import com.intrinsarc.swing.enhanced.*;
 
 
 /**
@@ -300,7 +301,7 @@ public final class AttributeFeatureTypeFacetImpl implements FeatureTypeFacet
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
   {
     // for adding operations
-    JMenuItem replaceAttributeItem = new JMenuItem("Replace");
+    JMenuItem replaceAttributeItem = new JMenuItem("Replace", new NullIcon());
     replaceAttributeItem.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

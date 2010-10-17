@@ -18,6 +18,7 @@ import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.idraw.nodefacilities.nodesupport.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
+import com.intrinsarc.swing.enhanced.*;
 
 /**
  * @author Andrew
@@ -217,7 +218,7 @@ public final class OperationFeatureTypeFacetImpl implements FeatureTypeFacet
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
   {
     // for adding operations
-    JMenuItem replaceOperationItem = new JMenuItem("Replace");
+    JMenuItem replaceOperationItem = new JMenuItem("Replace", new NullIcon());
     replaceOperationItem.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

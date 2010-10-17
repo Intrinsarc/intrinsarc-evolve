@@ -2748,7 +2748,7 @@ public final class ClassifierNodeGem implements Gem
 				fancy = true;
 			}
 		}
-		JMenuItem replacePartItem = new JMenuItem(fancy ? "Replace (with existing part)" : "Replace");
+		JMenuItem replacePartItem = new JMenuItem(fancy ? "Replace (with existing part)" : "Replace", new NullIcon());
 		final Property fancyReplace = fancy ? (Property) other.getSubject() : null;
 
 		replacePartItem.addActionListener(new ActionListener()

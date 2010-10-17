@@ -17,7 +17,7 @@ public class LicenseAction extends AbstractAction
 	public static final ImageIcon LOCK_ICON = IconLoader.loadIcon("world.png");
 	public static final ImageIcon NOT_LICENSED_ICON = IconLoader.loadIcon("no-license.png");
 	public static final ImageIcon LICENSED_ICON = IconLoader.loadIcon("good-license.png");
-	private static final String URL = "http://www.intrinsarc.com"; 
+	private static final String URL = "http://www.intrinsarc.com/purchase"; 
   private ToolCoordinatorFacet coordinator;
 	private Runnable tutorialLoader;
   
@@ -31,7 +31,7 @@ public class LicenseAction extends AbstractAction
   public void actionPerformed(ActionEvent e)
   {
   	JPanel panel = new JPanel(new BorderLayout());
-    panel.setPreferredSize(new Dimension(500, 500));
+    panel.setPreferredSize(new Dimension(500, 600));
     JButton ok = new JButton("OK");
   	redoPanel(panel, ok);
     coordinator.invokeAsDialog(null, "License details", panel, new JButton[]{ok}, 0, null);

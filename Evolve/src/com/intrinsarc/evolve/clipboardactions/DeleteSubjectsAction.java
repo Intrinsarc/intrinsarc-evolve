@@ -5,11 +5,9 @@ import java.util.*;
 
 import javax.swing.*;
 
-import org.eclipse.uml2.*;
-
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.repositorybase.*;
+import com.intrinsarc.swing.enhanced.*;
 
 /**
  *

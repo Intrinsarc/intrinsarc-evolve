@@ -19,6 +19,7 @@ import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
+import com.intrinsarc.swing.enhanced.*;
 import com.intrinsarc.swing.smartmenus.*;
 
 import edu.umd.cs.jazz.*;

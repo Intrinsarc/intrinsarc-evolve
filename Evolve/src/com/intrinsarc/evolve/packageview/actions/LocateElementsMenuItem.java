@@ -22,7 +22,7 @@ public class LocateElementsMenuItem extends UpdatingJMenuItem
 	{
 		super(new CursorWaitingAction(new LocateElementsAction(toolCoordinator, diagramView), toolCoordinator, 0));
 		this.diagramView = diagramView;
-		this.toolCoordinator = toolCoordinator;		
+		this.toolCoordinator = toolCoordinator;
 	}
 
 	/*

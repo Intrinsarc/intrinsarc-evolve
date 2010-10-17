@@ -13,6 +13,7 @@ import org.eclipse.uml2.Class;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.repositorybase.*;
+import com.intrinsarc.swing.enhanced.*;
 
 public class SubstitutionsMenuMaker
 {
@@ -20,7 +21,7 @@ public class SubstitutionsMenuMaker
   {
     // if this is a composite, it can be substituted
     final Type subject = (Type) figure.getSubject();
-    JMenuItem substituters = new JMenuItem("Determine substitutions...");
+    JMenuItem substituters = new JMenuItem("Determine substitutions...", new NullIcon());
     substituters.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

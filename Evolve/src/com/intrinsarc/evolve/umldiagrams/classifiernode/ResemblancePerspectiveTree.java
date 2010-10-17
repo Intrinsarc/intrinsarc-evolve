@@ -17,6 +17,7 @@ import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.nodefacilities.nodesupport.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
+import com.intrinsarc.swing.enhanced.*;
 
 /**
  * shows the resemblance of a given element from the perspective of a given stratum
@@ -33,7 +34,7 @@ public class ResemblancePerspectiveTree
       final BasicNodeFigureFacet figure,
       final ToolCoordinatorFacet coordinator)
   {
-    JMenuItem item = new JMenuItem("Resemblance perspective...");
+    JMenuItem item = new JMenuItem("Resemblance perspective...", new NullIcon());
     item.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

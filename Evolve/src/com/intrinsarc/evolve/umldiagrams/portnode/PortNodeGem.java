@@ -694,7 +694,7 @@ public final class PortNodeGem implements Gem
 				popup.add(links);				
 			}
 			
-			JMenuItem links = new JMenuItem("Display links");
+			JMenuItem links = new JMenuItem("Display links", new NullIcon());
 			links.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -716,7 +716,7 @@ public final class PortNodeGem implements Gem
 			});
 			popup.add(links);
 			
-			JMenuItem ifaces = new JMenuItem("Display Provided + required interfaces");
+			JMenuItem ifaces = new JMenuItem("Display Provided + required interfaces", new NullIcon());
 			ifaces.addActionListener(new ActionListener()
 			{
 				public void actionPerformed(ActionEvent e)
@@ -1369,7 +1369,7 @@ public final class PortNodeGem implements Gem
   public JMenuItem getReplaceItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
   {
     // for adding operations
-    JMenuItem replaceAttributeItem = new JMenuItem("Replace");
+    JMenuItem replaceAttributeItem = new JMenuItem("Replace", new NullIcon());
     replaceAttributeItem.addActionListener(new ActionListener()
     {
       public void actionPerformed(ActionEvent e)

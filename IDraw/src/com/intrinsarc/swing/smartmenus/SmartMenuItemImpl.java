@@ -8,6 +8,7 @@ import java.awt.*;
 import javax.swing.*;
 
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.swing.enhanced.*;
 
 /**
  * @author Andrew
