@@ -31,7 +31,7 @@ public class LicenseAction extends AbstractAction
   public void actionPerformed(ActionEvent e)
   {
   	JPanel panel = new JPanel(new BorderLayout());
-    panel.setPreferredSize(new Dimension(500, 600));
+    panel.setPreferredSize(new Dimension(500, 620));
     JButton ok = new JButton("OK");
   	redoPanel(panel, ok);
     coordinator.invokeAsDialog(null, "License details", panel, new JButton[]{ok}, 0, null);

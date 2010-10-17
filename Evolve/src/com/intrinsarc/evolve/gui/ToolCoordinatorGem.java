@@ -15,7 +15,6 @@ import com.intrinsarc.easydock.*;
 import com.intrinsarc.evolve.freeform.grouper.*;
 import com.intrinsarc.evolve.freeform.image.*;
 import com.intrinsarc.evolve.freeform.measurebox.*;
-import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.evolve.umldiagrams.associationarc.*;
 import com.intrinsarc.evolve.umldiagrams.baseline.*;
 import com.intrinsarc.evolve.umldiagrams.classifiernode.*;
@@ -79,8 +78,6 @@ public final class ToolCoordinatorGem implements Gem
   
   public ToolCoordinatorGem()
   {
-		// check for beta expiry
-		EngineCalculationHandler.checkCalculation();
   	registerRecreators();
   }
 
