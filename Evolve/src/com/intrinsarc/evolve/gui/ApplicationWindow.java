@@ -1494,8 +1494,13 @@ public class ApplicationWindow extends SmartJFrame
 		{
 			DiagramViewFacet view = coordinator.getCurrentDiagramView();
 			Package current = (Package) view.getDiagram().getLinkedObject();
+			if (current == GlobalSubjectRepository.repository.getTopLevelModel())
+			{
+				new CheckAllItem().actionPerformed(e);
+				return;
+			}
 			DEStratum currentPackage = GlobalDeltaEngine.engine.locateObject(current).asStratum();
-
+			
 			// expand out and check everything
 			final List<DEStratum> toCheck = currentPackage.determineOrderedPackages(false, true);
 
@@ -1993,14 +1998,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Checking", clearErrorsItem, "F7", "Remove any error markers");
 			entries.add(new SmartMenuItemImpl("Checking", "ClearErrors", clearErrorsItem));
 
-			UpdatingJMenuItem stratumCheckItem = new UpdatingJMenuItem(new CheckStratumItem())
-			{
-				public boolean update()
-				{
-					DiagramViewFacet view = coordinator.getCurrentDiagramView();
-					return view != null && ((Package) view.getDiagram().getLinkedObject()) != GlobalSubjectRepository.repository.getTopLevelModel();
-				}				
-			};
+			JMenuItem stratumCheckItem = new JMenuItem(new CheckStratumItem());
 			stratumCheckItem.setIcon(CHECK_ONE_ICON);
 			GlobalPreferences.registerKeyAction("Checking", stratumCheckItem, "F8", "Check the current stratum for errors");
 			entries.add(new SmartMenuItemImpl("Checking", "Errors", stratumCheckItem));
