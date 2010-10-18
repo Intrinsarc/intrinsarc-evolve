@@ -19,15 +19,27 @@ public class ErrorChecker
         @Override
         public void visitInterface(DEInterface iface)
         {
-      		new InterfaceErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
-      		new ElementErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
+        	if (perspective != GlobalDeltaEngine.engine.getRoot())
+        	{
+	      		new InterfaceErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
+	      		new ElementErrorChecker(perspective, iface, errors).performCheck(diagramCheck);
+        	}
+        	else
+        		errors.addError(
+        				new ErrorLocation(perspective, iface), ErrorCatalog.ELEMENT_NOT_AT_TOPLEVEL);
         }
 
         @Override
         public void visitComponent(DEComponent component)
         {
-          new ComponentErrorChecker(perspective, component, errors).performCheck(diagramCheck);
-          new ElementErrorChecker(perspective, component, errors).performCheck(diagramCheck);
+        	if (perspective != GlobalDeltaEngine.engine.getRoot())
+        	{
+	          new ComponentErrorChecker(perspective, component, errors).performCheck(diagramCheck);
+	          new ElementErrorChecker(perspective, component, errors).performCheck(diagramCheck);
+        	}
+        	else
+        		errors.addError(
+        				new ErrorLocation(perspective, component), ErrorCatalog.ELEMENT_NOT_AT_TOPLEVEL);
         }
 
         @Override

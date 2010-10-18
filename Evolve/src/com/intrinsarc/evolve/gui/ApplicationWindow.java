@@ -23,6 +23,7 @@ import com.intrinsarc.easydock.*;
 import com.intrinsarc.easydock.dockingframes.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.errorchecking.*;
+import com.intrinsarc.evolve.guibase.*;
 import com.intrinsarc.evolve.html.*;
 import com.intrinsarc.evolve.importexport.*;
 import com.intrinsarc.evolve.packageview.actions.*;
@@ -1992,14 +1993,21 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Checking", clearErrorsItem, "F7", "Remove any error markers");
 			entries.add(new SmartMenuItemImpl("Checking", "ClearErrors", clearErrorsItem));
 
-			JMenuItem stratumCheckItem = new JMenuItem(new CheckStratumItem());
+			UpdatingJMenuItem stratumCheckItem = new UpdatingJMenuItem(new CheckStratumItem())
+			{
+				public boolean update()
+				{
+					DiagramViewFacet view = coordinator.getCurrentDiagramView();
+					return view != null && ((Package) view.getDiagram().getLinkedObject()) != GlobalSubjectRepository.repository.getTopLevelModel();
+				}				
+			};
 			stratumCheckItem.setIcon(CHECK_ONE_ICON);
 			GlobalPreferences.registerKeyAction("Checking", stratumCheckItem, "F8", "Check the current stratum for errors");
 			entries.add(new SmartMenuItemImpl("Checking", "Errors", stratumCheckItem));
 
 			JMenuItem checkAllItem = new JMenuItem(new CheckAllItem());
 			checkAllItem.setIcon(CHECK_ALL_ICON);
-			GlobalPreferences.registerKeyAction("Checking", checkAllItem, "shift F8", "Check the entire model (and all permutations) for errors");
+			GlobalPreferences.registerKeyAction("Checking", checkAllItem, "shift F8", "Check the entire model (and all combinations) for errors");
 			entries.add(new SmartMenuItemImpl("Checking", "Errors", checkAllItem));
 
 			JMenuItem toggleDeltaViewItem = new JMenuItem(new ToggleDeltaViewAction());

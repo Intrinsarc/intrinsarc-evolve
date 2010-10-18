@@ -142,7 +142,7 @@ public class ApplicationWindowCoordinatorGem
   							String tutorial =
   								GlobalPreferences.preferences.getRawVariableValue("EVOLVE") + "/tutorial/car-rental" + XMLSubjectRepositoryGem.UML2_SUFFIX;			
 
-  							RepositoryUtility.useXMLRepository(tutorial, false);
+  							RepositoryUtility.useXMLRepository(tutorial, true);
   							
   				      // handle all the global components here...
   				      GlobalDiagramRegistry.registry.reset();

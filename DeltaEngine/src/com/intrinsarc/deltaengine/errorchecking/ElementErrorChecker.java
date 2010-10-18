@@ -43,11 +43,6 @@ public class ElementErrorChecker
       errors.addError(
           new ErrorLocation(myHome, element), ErrorCatalog.ELEMENT_NAME);
     
-    // component should not be declared at the top level
-    if (element.getParent().asStratum() == GlobalDeltaEngine.engine.getRoot())
-      errors.addError(
-          new ErrorLocation(myHome, element), ErrorCatalog.ELEMENT_NOT_AT_TOPLEVEL);
-
     // anything we substitute must be visible, and there must only be 1 substitution
     Set<DEElement> redefs = element.getReplaces();
     if (redefs.size() > 1)

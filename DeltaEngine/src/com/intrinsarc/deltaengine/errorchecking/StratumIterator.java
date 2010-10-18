@@ -25,9 +25,10 @@ public abstract class StratumIterator
   	{
   		// treat the current package as the perspective
   		DEStratum perspective = toCheck.get(lp);
+  		boolean root = perspective == GlobalDeltaEngine.engine.getRoot();
   		
   		// if this is destructive, check all that came before the topmost
-  		if (deepCheck || perspective.isDestructive() || joinsDestructive(perspective))
+  		if (!root && (deepCheck || perspective.isDestructive() || joinsDestructive(perspective)))
   		{
 	  		for (int before = 0; before <= lp; before++)
 	  		{

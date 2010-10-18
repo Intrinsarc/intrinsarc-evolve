@@ -10,6 +10,7 @@ import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
+import com.intrinsarc.evolve.umldiagrams.base.*;
 import com.intrinsarc.evolve.umldiagrams.tracearc.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.arcfacilities.arcsupport.*;
@@ -73,8 +74,16 @@ public class RequirementsFeatureLinkGem
 
     public boolean hasSpecificKillAction()
     {
-      return !atHome();
+      return !atHome() || isOutOfPlace();
     }
+    
+    /** returns true if the element is out of place */
+    private boolean isOutOfPlace()
+    {
+    	RequirementsFeature req = getVisualOwner(figureFacet);
+    	return req != subject.getOwner();
+    }
+
 
     public void makeSpecificKillAction(ToolCoordinatorFacet coordinator)
     {
@@ -160,6 +169,12 @@ public class RequirementsFeatureLinkGem
   {
   	FigureFacet owner = figure.getLinkingFacet().getAnchor1().getFigureFacet();
   	return (RequirementsFeature) owner.getSubject();
+  }
+  
+  private DERequirementsFeature getVisualOwner()
+  {
+  	DERequirementsFeature de = GlobalDeltaEngine.engine.locateObject(getVisualOwner(figureFacet)).asRequirementsFeature();
+  	return de.getReplacesOrSelf().iterator().next().asRequirementsFeature();
   }
   
   private DERequirementsFeature getVisualTarget()
@@ -292,18 +307,20 @@ public class RequirementsFeatureLinkGem
 				// is this in the correct place?
 				// first, ensure that the element is included
 				IDeltaEngine engine = GlobalDeltaEngine.engine;
-				DERequirementsFeature dereq = engine.locateObject(getOwner(subject)).asRequirementsFeature();
+				DERequirementsFeature dereq = getVisualOwner();
 	      Package visualHome = GlobalSubjectRepository.repository.findVisuallyOwningStratum(figureFacet.getDiagram(), getOwnerFigure().getContainerFacet());
 	      DEStratum perspective = engine.locateObject(visualHome).asStratum();
 	      
 	      boolean found = false;
 	      DERequirementsFeature visualTarget = getVisualTarget();
-	      for (DeltaPair pair : dereq.getDeltas(ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(perspective))
+	      for (DeltaPair pair : dereq.getDeltas(
+	      		ConstituentTypeEnum.DELTA_REQUIREMENT_FEATURE_LINK).getConstituents(perspective))
 	      {
 	      	if (pair.getConstituent().getUuid().equals(subject.getUuid()))
 	      	{
 	      		// ensure this links to the correct element
-	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature().getReplacesOrSelf().iterator().next() == visualTarget)
+	      		if (pair.getConstituent().asRequirementsFeatureLink().getSubfeature().
+	      				getReplacesOrSelf().iterator().next() == visualTarget)
 	      			found = true;
 	      		break;
 	      	}

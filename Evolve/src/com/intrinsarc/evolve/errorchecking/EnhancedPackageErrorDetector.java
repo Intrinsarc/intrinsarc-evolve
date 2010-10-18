@@ -37,7 +37,8 @@ public class EnhancedPackageErrorDetector extends StratumErrorDetector
   		
   		// if this is destructive, check all that came before the topmost
   		DEStratum dePerspective = GlobalDeltaEngine.engine.locateObject(perspective).asStratum();
-  		if (deepCheck || dePerspective.isDestructive() || StratumIterator.joinsDestructive(dePerspective))
+  		boolean root = dePerspective == GlobalDeltaEngine.engine.getRoot();
+  		if (!root && (deepCheck || dePerspective.isDestructive() || StratumIterator.joinsDestructive(dePerspective)))
   		{
 	  		for (int before = 0; before <= lp; before++)
 	  			checkOne(includeDiagrams, listener, diagramsChecked, perspective, toCheck.get(before), count);
