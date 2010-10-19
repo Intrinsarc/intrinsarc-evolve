@@ -615,7 +615,9 @@ public class XMLSubjectRepositoryGem implements Gem
 
   private boolean allLowerCase(String name)
 	{
-  	return name.toLowerCase().equals(name);
+  	// uncomment out to reinstate case insensitive behaviour
+//  	return name.toLowerCase().equals(name);
+  	return false;
 	}
 
 

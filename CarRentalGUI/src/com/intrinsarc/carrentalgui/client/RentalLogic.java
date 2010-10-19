@@ -10,11 +10,11 @@ public class RentalLogic
  implements com.google.gwt.user.client.ui.ClickListener
 {
 	// attributes
-	private Integer carNo;
+	private int carNo;
 
 	// attribute setters and getters
-	public Integer getCarNo() { return carNo; }
-	public void setCarNo(Integer carNo) { this.carNo = carNo;}
+	public int getCarNo() { return carNo; }
+	public void setCarNo(int carNo) { this.carNo = carNo;}
 
 	// required ports
 	private com.google.gwt.user.client.ui.ChangeListener refresh;

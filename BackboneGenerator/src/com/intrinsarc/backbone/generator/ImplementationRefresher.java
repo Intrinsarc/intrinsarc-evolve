@@ -147,8 +147,6 @@ public abstract class ImplementationRefresher
 	{    
     if (impl.startsWith(BB_API))
     	impl = impl.substring(BB_API.length());
-    if (impl.startsWith("java.lang."))
-    	impl = impl.substring("java.lang.".length());
     return impl;
 	}
 	

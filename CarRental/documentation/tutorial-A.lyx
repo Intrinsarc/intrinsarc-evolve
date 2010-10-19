@@ -392,10 +392,6 @@ fidea{
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Standard
 We can see that this component is a leaf because the icon in the top right
  corner has filled-in legs.
  A composite component has white legs.
@@ -545,6 +541,93 @@ in the body of the component and selecting the attribute option.
 \end_layout
 
 \begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+fhighlight{
+\end_layout
+
+\end_inset
+
+Note that it is not necessary to press
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+tab
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+to enter the type of an attribute.
+ Simply press
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+space
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+, select the attribute option and enter something like 
+\begin_inset Quotes eld
+\end_inset
+
+a: int = 10
+\begin_inset Quotes erd
+\end_inset
+
+ to create one.
+\end_layout
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
 The ports were created by pressing
 \begin_inset ERT
 status collapsed
@@ -640,7 +723,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/setting-package.png
-	scale 60
+	scale 55
 
 \end_inset
 
@@ -690,8 +773,9 @@ reference "fig:Viewing-the-implementation"
 .
  Click this and it will show you the full class name.
  This is the Java implementation class that the leaf is associated with.
- To change this, either change the package of the stratum, or the name of
- the class.
+ Note that this value is not changed directly using the text entry box -
+ instead, to alter it either change the package of the stratum, or the name
+ of the class.
 \end_layout
 
 \begin_layout Standard
@@ -706,7 +790,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename screenshots/setting-class.png
-	scale 60
+	scale 55
 
 \end_inset
 
@@ -2851,7 +2935,6 @@ setRequiredPort()
 \family default
  method of the passed in 
 \family typewriter
-\lang english
 BBSimpleInstantiatedFactory
 \family default
  instance to do this.

@@ -110,7 +110,7 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 		    // for low level attributes, take the implementation class name in preference
 		    DEElement type = property.getType();
 		    String preImpl = removeRedundantPrefixes(type.getImplementationClass(perspective));
-		    String impl = PrimitiveHelper.translateLongToShortPrimitive(preImpl);
+		    String impl = PrimitiveHelper.stripJavaLang(PrimitiveHelper.translateLongToShortPrimitive(preImpl));
 	
 				String name = property.getName();
 				writer.write("\tprivate " + impl + " " + name);
