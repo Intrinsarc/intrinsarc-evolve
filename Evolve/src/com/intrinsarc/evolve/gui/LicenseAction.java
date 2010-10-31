@@ -32,12 +32,11 @@ public class LicenseAction extends AbstractAction
   {
   	JPanel panel = new JPanel(new BorderLayout());
     panel.setPreferredSize(new Dimension(500, 620));
-    JButton ok = new JButton("OK");
-  	redoPanel(panel, ok);
-    coordinator.invokeAsDialog(null, "License details", panel, new JButton[]{ok}, 0, null);
+  	redoPanel(panel);
+    coordinator.invokeAsDialog(null, "License details", panel, new JButton[]{}, 0, null);
   }
   
-  private void redoPanel(final JPanel panel, final JButton ok)
+  private void redoPanel(final JPanel panel)
   {
   	panel.removeAll();
     panel.setBackground(Color.WHITE);
@@ -71,33 +70,21 @@ public class LicenseAction extends AbstractAction
 		GridBagConstraints constraints = new GridBagConstraints(
 				0, 0, 1, 1, 1, 1, GridBagConstraints.WEST, GridBagConstraints.HORIZONTAL, new Insets(5, 5, 5, 5), 0, 0);
 		
-		if (tutorialLoader != null)
-		{
-			constraints.gridx = 1;
-			constraints.gridwidth = 1;
-			constraints.fill = GridBagConstraints.HORIZONTAL;
-			constraints.weightx = 1;
-			JButton load = new JButton("Load tutorial model");
-			load.setBackground(Color.ORANGE);
-			load.addActionListener(new ActionListener()
-			{
-				public void actionPerformed(ActionEvent e)
-				{
-					tutorialLoader.run();
-					ok.doClick();
-				}
-			});
-			details.add(load, constraints);				
-			constraints.gridy++;
-		}
+		constraints.gridx = 0;
+		constraints.gridwidth = 4;
+		JLabel options = new JLabel(readable ? "License is valid" : "If you have purchased a license, you can enter it below:");
+		details.add(options, constraints);				
+		constraints.gridy++;
 		
 		constraints.gridwidth = 1;
-		constraints.gridx = 0;
+		constraints.gridx = 1;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;
-		details.add(new JLabel("Machine ID"), constraints);
+		JLabel macId = new JLabel("machine ID");
+		macId.setForeground(Color.DARK_GRAY);
+		details.add(macId, constraints);
 
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;
 		final String machId = LMid.getId();
@@ -114,7 +101,7 @@ public class LicenseAction extends AbstractAction
 			}
 		});
 		
-		constraints.gridx = 2;
+		constraints.gridx = 3;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;		
 		details.add(copyToClipboard, constraints);
@@ -124,26 +111,34 @@ public class LicenseAction extends AbstractAction
 		constraints.gridx = 0;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;
-		details.add(new JLabel("License code"), constraints);
+		JLabel filler = new JLabel("    ");
+		details.add(filler, constraints);
 
 		constraints.gridx = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 0;
+		JLabel code = new JLabel("license code");
+		code.setForeground(Color.DARK_GRAY);
+		details.add(code, constraints);
+
+		constraints.gridx = 2;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;
 		final String licValue = LReal.retrieveEncryptedLicense();
 		final JTextField encrypted = new JTextField(licValue);
 		details.add(encrypted, constraints);
 		
-		JButton validate = new JButton(readable ? "Reenter license" : "Enter license");
+		JButton validate = new JButton(readable ? "Re-validate license" : "Validate license");
 		validate.addActionListener(new ActionListener()
 		{
 			public void actionPerformed(ActionEvent e)
 			{
 				LReal.storeLicense(encrypted.getText());
-				redoPanel(panel, ok);
+				redoPanel(panel);
 			}
 		});
 		
-		constraints.gridx = 2;
+		constraints.gridx = 3;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;		
 		details.add(validate, constraints);
@@ -161,7 +156,7 @@ public class LicenseAction extends AbstractAction
 		if (encrypted.getText().length() > 0)
 		{
 			constraints.gridy++;
-			constraints.gridx = 0;
+			constraints.gridx = 1;
 			constraints.gridwidth = 3;
 			constraints.fill = GridBagConstraints.HORIZONTAL;
 			constraints.weightx = 1;
@@ -169,16 +164,50 @@ public class LicenseAction extends AbstractAction
 			if (license != null && license.isExpired())
 				details.add(new JLabel("<html><div style='color:red'>License expired on " + license.getExpiry()), constraints);
 			else	
-			if (errorReason[0] == null)
-				details.add(new JLabel("License is valid"), constraints);
-			else
+			if (errorReason[0] != null)
 				details.add(new JLabel("<html><div style='color:red'>" + errorReason[0]), constraints);
 		}
+
+		constraints.gridy++;
+		constraints.gridx = 0;
+		constraints.gridwidth = 4;
+		JLabel options2 = new JLabel(readable ? "Please choose an option:" : "Alternatively you can continue in community mode:");
+		details.add(options2, constraints);				
+		constraints.gridy++;
 		
+		constraints.gridx = 2;
+		constraints.gridwidth = 1;
+		constraints.fill = GridBagConstraints.HORIZONTAL;
+		constraints.weightx = 1;
+		JButton load = new JButton("Load the tutorial model...");
+		load.setBackground(Color.ORANGE);
+		load.addActionListener(new ActionListener()
+		{
+			public void actionPerformed(ActionEvent e)
+			{
+				tutorialLoader.run();
+				coordinator.dismissCurrentDialog();
+			}
+		});
+		details.add(load, constraints);				
+		constraints.gridy++;
+		
+		constraints.gridx = 2;
+		constraints.gridwidth = 1;
+		JButton ok = new JButton();
 		if (readable)
-			ok.setText("OK");
+			ok.setText("Return to Evolve...");
 		else
 			ok.setText("Carry on using the community edition...");
+		details.add(ok, constraints);				
+		constraints.gridy++;
+		ok.addActionListener(new ActionListener()
+			{
+				public void actionPerformed(ActionEvent e)
+				{
+					coordinator.dismissCurrentDialog();
+				}
+			});
 		
 		panel.add(details, BorderLayout.SOUTH);    
     panel.revalidate();
@@ -188,13 +217,15 @@ public class LicenseAction extends AbstractAction
 	private void addDetail(JPanel details, LReal license, String name, String value, GridBagConstraints constraints)
 	{
 		constraints.gridy++;
-		constraints.gridx = 0;
+		constraints.gridx = 1;
 		constraints.gridwidth = 1;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;		
-		details.add(new JLabel(name), constraints);
+		JLabel label = new JLabel(name);
+		label.setForeground(Color.DARK_GRAY);
+		details.add(label, constraints);
 		
-		constraints.gridx = 1;
+		constraints.gridx = 2;
 		constraints.gridwidth = 1;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 1;

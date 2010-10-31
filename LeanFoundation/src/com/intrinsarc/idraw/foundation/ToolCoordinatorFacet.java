@@ -44,4 +44,5 @@ public interface ToolCoordinatorFacet extends PopupMakerFacet, TransactionManage
 	public int getFrameXPreference(Preference xPreference);
 	public int getFrameYPreference(Preference yPreference);
 	public int getIntegerPreference(Preference preference);
+	public void dismissCurrentDialog();
 } 

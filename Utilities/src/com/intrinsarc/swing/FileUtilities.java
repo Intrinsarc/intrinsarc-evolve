@@ -214,4 +214,27 @@ public class FileUtilities
     else
         copyFile(srcDir, dstDir, false);
   }
+
+	public static void recursivelyRemoveFiles(File srcDir, String extension[])
+	{
+    if (srcDir.isDirectory())
+    {
+      String[] children = srcDir.list();
+      for (int i=0; i < children.length; i++)
+      {
+        File file = new File(srcDir, children[i]);
+        if (file.isDirectory())
+        	recursivelyRemoveFiles(file, extension);
+        else
+        {
+        	for (int lp = 0; lp < extension.length; lp++)
+        		if (children[i].endsWith(extension[lp]))
+        		{
+        			file.delete();
+        			break;
+        		}
+        }
+      }
+    }
+	}
 }

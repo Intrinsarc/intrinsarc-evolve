@@ -1,0 +1,21 @@
+Running Evolve on Linux or MacOSX
+---------------------------------
+
+First ensure you have Java 1.6+.
+
+Then, either double-click on evolve.jar in a file manager, or execute it directly using java:
+
+  java -jar evolve.jar
+
+If any any doubts about the version, type:
+
+  java -version
+  
+Note that the Mac seems to start with a low memory allocation.  Increase this by using something like:
+
+	java -Xmx512m -jar evolve.jar
+	
+If you have any problems, feel free to send mail to info@intrinsarc.com and I will help you resolve any issues.
+
+-----------------------
+Andrew McVeigh, London

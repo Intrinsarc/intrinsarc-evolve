@@ -22,7 +22,8 @@ import com.intrinsarc.swing.*;
  */
 public class BackboneWriter
 {
-  public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB"));
+  private static final String[] EXTENSIONS = new String[]{".bb", ".bat", ".loadlist"};
+	public static final Preference GENERATION_DIR_PREF = new Preference("Backbone", "Base backbone source folder", new PersistentProperty("$BB"));
   public static final Preference BB_CLASS_PATH_PREF = new Preference("Backbone", "Base backbone classpath", new PersistentProperty("$EVOLVE/common/backbone.jar"));
   public static Preference BB_JAVA_CMD_PREF;
   public static final Preference BB_WRITE_BASE_PREF = new Preference("Backbone", "Generate Backbone base", new PersistentProperty(true));
@@ -82,7 +83,7 @@ public class BackboneWriter
       throw new BackboneGenerationException("Cannot find Base backbone source folder or classpath preference", null);
 		}
 		
-		// delete any directories first, as putting this in the main generation logic seems to lead to a race condition
+		// delete any .bb files first, as putting this in the main generation logic seems to lead to a race condition
 		for (DEStratum stratum : ordered)
     {
       if (!isInBackboneBase(stratum))
@@ -93,7 +94,7 @@ public class BackboneWriter
 	        String name = extractFolder(prefs, stratum, stratum, 0, direct, false);
         	String expanded = expandVariables(prefs, referenced, name); 
       		// delete the directory
-      		FileUtilities.deleteDir(new File(expanded));
+      		FileUtilities.recursivelyRemoveFiles(new File(expanded), EXTENSIONS);
       	}
     		
       }
@@ -107,7 +108,7 @@ public class BackboneWriter
       			name += "/" + stratum.getName();
       		String expanded = expandVariables(prefs, referenced, name);
         	File bbBase = new File(expanded);
-	        FileUtilities.deleteDir(bbBase);
+	        FileUtilities.recursivelyRemoveFiles(bbBase, EXTENSIONS);
         }
 			}
     }

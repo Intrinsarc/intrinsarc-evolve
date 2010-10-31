@@ -1977,11 +1977,12 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("Help", docItem, null, "View documentation");
 
 			JMenuItem supportItem = new JMenuItem(
-					new URLAction("Support forum", URL_BASE + "/evolve/support"));
+					new URLAction("Support forums", URL_BASE + "/support"));
 			entries.add(new SmartMenuItemImpl("Help", "Support", supportItem));
 			GlobalPreferences.registerKeyAction("Help", supportItem, null, "Support forum");
 
-			JMenuItem versionItem = new JMenuItem("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION);
+			JMenuItem versionItem = new JMenuItem(
+					new URLAction("<html><b>Version:</b> " + Evolve.EVOLVE_VERSION, URL_BASE + "/releases"));
 			entries.add(new SmartMenuItemImpl("Help", "Version", versionItem));
 			GlobalPreferences.registerKeyAction("Help", versionItem, null, "Version");
 

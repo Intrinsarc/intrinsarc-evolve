@@ -75,6 +75,7 @@ public final class ToolCoordinatorGem implements Gem
   private Semaphore sema = new Semaphore(1);
   private Semaphore sema2 = new Semaphore(1);
   private boolean inTransaction;
+  private Dialog currentDialog;
   
   public ToolCoordinatorGem()
   {
@@ -171,6 +172,7 @@ public final class ToolCoordinatorGem implements Gem
     public int invokeAsDialog(ImageIcon icon, String title, JComponent contents, JComponent buttons[], int defaultButton, final Runnable runAfterShown)
     {
     	final JDialog dialog = new JDialog(frame);
+    	currentDialog = dialog;
     	dialog.setResizable(true);
     	dialog.setLayout(new BorderLayout());
     	dialog.add(contents, BorderLayout.CENTER);
@@ -225,6 +227,7 @@ public final class ToolCoordinatorGem implements Gem
     	});
     	dialog.setVisible(true);
     	
+			currentDialog = null;
       return chosen[0];
     }
     
@@ -647,6 +650,13 @@ public final class ToolCoordinatorGem implements Gem
 		public boolean inTransaction()
 		{
 			return inTransaction;
+		}
+
+		public void dismissCurrentDialog()
+		{
+			if (currentDialog != null)
+				currentDialog.dispose();
+			currentDialog = null;
 		}
 	}
 
