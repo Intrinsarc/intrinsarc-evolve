@@ -215,7 +215,7 @@ public class FileUtilities
         copyFile(srcDir, dstDir, false);
   }
 
-	public static void recursivelyRemoveFiles(File srcDir, String extension[])
+	public static void recursivelyRemoveFiles(File srcDir, String extensions[])
 	{
     if (srcDir.isDirectory())
     {
@@ -224,11 +224,11 @@ public class FileUtilities
       {
         File file = new File(srcDir, children[i]);
         if (file.isDirectory())
-        	recursivelyRemoveFiles(file, extension);
+        	recursivelyRemoveFiles(file, extensions);
         else
         {
-        	for (int lp = 0; lp < extension.length; lp++)
-        		if (children[i].endsWith(extension[lp]))
+        	for (int lp = 0; lp < extensions.length; lp++)
+        		if (children[i].endsWith(extensions[lp]))
         		{
         			file.delete();
         			break;

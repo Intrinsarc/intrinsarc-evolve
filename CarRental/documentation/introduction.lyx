@@ -129,8 +129,10 @@ What is Evolve?
 
 \emph on
 In essence, Evolve is a convenient and powerful way to connect together
- classes to structure a program.
- The connection code created is simple and transparent.
+ classes to create a program.
+ It also features innovative reuse and evolution facilities, allowing you
+ to quickly customize an application for new requirements, without destroying
+ the old version.
 \end_layout
 
 \begin_layout Standard
@@ -209,11 +211,11 @@ The takeaway from the above is that Evolve allows you to define systems
 \end_layout
 
 \begin_layout Subsection
-A Quick Tour of Evolve
+Highlights of Evolve
 \end_layout
 
 \begin_layout Standard
-Some of Evolve's features are listed below.
+Some of Evolve's key features are listed below.
 \end_layout
 
 \begin_layout Itemize
@@ -221,12 +223,17 @@ Components are defined using standard UML2 diagrams.
 \end_layout
 
 \begin_layout Itemize
-Java code can be generated, and existing JavaBeans can be quickly imported.
+JavaBeans can be treated as full components.
+\end_layout
+
+\begin_layout Itemize
+Java code can be generated for new JavaBeans, and existing JavaBeans can
+ be quickly imported.
 \end_layout
 
 \begin_layout Itemize
 Extensive facilities are provided for the reuse and evolution of components,
- giving the benefits of aspects and much more.
+ giving the benefits of dependency injection, aspects and much more.
 \end_layout
 
 \begin_layout Itemize
@@ -269,6 +276,136 @@ A simple Java program can be created directly from the model, removing any
 \end_layout
 
 \end_deeper
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+A Quick Peek Inside Evolve
+\end_layout
+
+\begin_layout Standard
+The diagram below shows the internal makeup of Evolve.
+ The aim of showing this is to give you some insight into the inner workings
+ of the approach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename screenshots/anatomy.png
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+The anatomy of Evolve
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+These parts are explained below, starting from the lower layers and working
+ up.
+\end_layout
+
+\begin_layout Subsubsection
+A hierarchical component model with full connectors
+\end_layout
+
+\begin_layout Standard
+At the heart of Evolve is a hierarchical component model with full connectors.
+ Connectors act like wires between components, making it simple and intuitive
+ to express detailed structures that are difficult or impossible in other
+ approaches such as dependency injection.
+\end_layout
+
+\begin_layout Subsubsection
+Resemblance and evolution
+\end_layout
+
+\begin_layout Standard
+These two constructs provide unprecedented levels of support for component
+ reuse.
+ Resemblance is a form of component inheritance.
+ Evolution builds on this to allow the structure of an existing system to
+ be remodeled, without destroying the original definition.
+ These facilities can be used to create variants of a system, or to switch
+ in test components.
+\end_layout
+
+\begin_layout Subsubsection
+The Backbone interpreter
+\end_layout
+
+\begin_layout Standard
+This executes the programs created in Evolve.
+\end_layout
+
+\begin_layout Standard
+Backbone is a simple textual domain-specific language that allows plain-vanilla
+ JavaBeans to act as full components, and to be wired up according to the
+ component model.
+ The interpreter reads in the text files, and uses the instructions to instantia
+te and connect up the beans.
+\end_layout
+
+\begin_layout Standard
+JavaBeans have a representation in Backbone and also in Java code.
+ Composite components, formed by wiring together JavaBean instances, only
+ have a Backbone representation however.
+\end_layout
+
+\begin_layout Standard
+This level is analogous to the Spring XML bean configuration, but more powerful.
+ Backbone is fully open source.
+\end_layout
+
+\begin_layout Subsubsection
+UML2 wiring editor
+\end_layout
+
+\begin_layout Standard
+On top of this, Evolve provides a graphical editor for connecting up and
+ evolving components.
+ Industry standard UML2 component diagrams and state charts are used.
+\end_layout
+
+\begin_layout Subsubsection
+JavaBean code generator
+\end_layout
+
+\begin_layout Standard
+Optionally, Evolve can help you define and generate setter / getter code
+ for JavaBeans.
+ Evolve also makes it easy to import and wire together existing beans.
+\end_layout
+
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset
