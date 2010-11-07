@@ -60,10 +60,14 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 		// get the main port
 		List<DEPort> mains = leaf.getBeanMainPorts(perspective);
 		boolean lifecycle = leaf.hasLifecycleCallbacks(perspective);
-		if (mains.size() == 1 || lifecycle)
+		if (mains.size() == 1)
 		{
-			writer.write("\t// main port");		
-			writer.newLine();
+			if (mains.size() == 1)
+			{
+				writer.write("\t// main port");		
+				writer.newLine();
+			}
+		}
 			
 			// if we are inheriting, get the super classes to inherit the implementation from
 			if (useInheritance)
@@ -72,7 +76,9 @@ public class LeafImplementationRefresher extends ImplementationRefresher
 					writer.write(" extends " + removeRedundantPrefixes(inherit));
 			}
 			
-			Set<? extends DEInterface> provided = mains.get(0).getSetProvidedInterfaces();
+		if (mains.size() == 1 || lifecycle)
+		{
+			Set<? extends DEInterface> provided = mains.size() == 1 ? mains.get(0).getSetProvidedInterfaces() : new HashSet<DEInterface>();
 			int lp = 0;
 			writer.write(" implements ");
 			for (DEInterface iface : provided)

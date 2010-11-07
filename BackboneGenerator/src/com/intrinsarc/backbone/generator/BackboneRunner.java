@@ -296,7 +296,7 @@ public class BackboneRunner
     List<String> exec = new ArrayList<String>();
     String[] cmds = choice.extractRunParameters();
     String javaCmd = GlobalPreferences.preferences.getRawPreference(BackboneWriter.BB_JAVA_CMD_PREF).asString();
-    String target = cmds[0] + " " + cmds[1] + " " + cmds[2];
+    String target = "\"" + cmds[0] + "\" \"" + cmds[1] + "\" \"" + cmds[2] + "\"";
     String niceTarget = cmds[0] + "::" + cmds[1] + "." + cmds[2];
     if (analyseProtocol)
     	frame.setTitleText(name + ": " + cmds[0] + "::" + cmds[1]);

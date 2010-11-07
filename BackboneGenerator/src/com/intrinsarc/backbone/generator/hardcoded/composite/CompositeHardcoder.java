@@ -82,7 +82,7 @@ public class CompositeHardcoder
 		String next = tokens.nextToken();
 		for (DEStratum child : start.getDirectlyNestedPackages())
 		{
-			if (child.getName().equals(next))
+			if (matches(child.getName(), next))
 			{
 				DEStratum match = findNamedStratum(fullName, tokens, child);
 				if (match != null)
@@ -93,4 +93,14 @@ public class CompositeHardcoder
 		throw new BBBadRunPointException("Cannot find stratum: " + fullName);
 	}
 
+	private static boolean matches(String name1, String name2)
+	{
+		// replace any carriage returns with a space
+		return replace(name1).equals(replace(name2));
+	}
+
+	private static String replace(String name)
+	{
+		return name.replace('\n', ' ').replace('\r', ' ');
+	}
 }

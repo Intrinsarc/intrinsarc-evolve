@@ -140,7 +140,7 @@ public class ComponentParser
 				value); 
 	}
 
-	private void parseReplacedLinks(List<BBReplacedConnector> replacedLinks)
+	private void parseReplacedLinks(final List<BBReplacedConnector> replacedLinks)
 	{
 		ex.literal().literal(":").
 		oneOrMore(
@@ -152,11 +152,11 @@ public class ComponentParser
 						{
 							UuidReference reference = new UuidReference();
 							ex.uuid(reference).literal("becomes");
-							ParserUtilities.parseAppliedStereotype(ex);
-							parseLink();
+							replacedLinks.add(new BBReplacedConnector(reference, parseConnector()));
 						}
 					})).
-		literal(";");	}
+		literal(";");
+	}
 
 	private void parseAddedLinks(final List<BBConnector> addedLinks)
 	{
@@ -174,22 +174,6 @@ public class ComponentParser
 			literal(";");
 	}
 	
-	private BBConnector parseLink()
-	{
-		UuidReference reference = new UuidReference();
-		UuidReference refEnd1 = new UuidReference();
-		UuidReference refEnd2 = new UuidReference();
-		ex.
-			uuid(reference);
-		
-		ex.
-			literal("joins").
-			uuid(refEnd1).
-			literal("to").
-			uuid(refEnd2);
-		return null;
-	}
-	
 	private void parseReplacedConnectors(final List<BBReplacedConnector> replacedConnectors)
 	{
 		ex.literal().literal(":").
@@ -205,7 +189,8 @@ public class ComponentParser
 							replacedConnectors.add(new BBReplacedConnector(reference, parseConnector()));
 						}
 					})).
-		literal(";");	}
+		literal(";");
+	}
 
 	private void parseAddedConnectors(final List<BBConnector> addedConnectors)
 	{
@@ -231,12 +216,18 @@ public class ComponentParser
 		ex.
 			uuid(reference);
 		
-		BBConnector connector = new BBConnector(reference);
-		ex.
-			literal("joins");
+		final BBConnector connector = new BBConnector(reference);
+		ex.oneOf(
+				new LiteralMatch("delegates-from",
+						new IAction() { public void act()
+						{ connector.setDelegate(true); }}),
+				new LiteralMatch("joins",
+						new IAction() { public void act() {} }));
+		ex.literal();
 		end(connector, true);
 		ex.literal("to");
 		end(connector, false);
+		
 		return connector;
 	}
 	

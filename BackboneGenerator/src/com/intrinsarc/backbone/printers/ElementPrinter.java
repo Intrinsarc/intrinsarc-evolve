@@ -73,7 +73,7 @@ public class ElementPrinter
 			if (showStereotype(pair.getConstituent().asAppliedStereotype()))
 				b.append(indent + "\t\t" + makeAppliedStereotypeString(pair.getConstituent().asAppliedStereotype()) + "\n");
 		}
-		appendAll(b, indent, "operations", elem, ConstituentTypeEnum.DELTA_OPERATION, null);
+//		appendAll(b, indent, "operations", elem, ConstituentTypeEnum.DELTA_OPERATION, null);
 		appendAll(b, indent, "attributes", elem, ConstituentTypeEnum.DELTA_ATTRIBUTE, new Comparator<DeltaPair>()
 		{
 			public int compare(DeltaPair o1, DeltaPair o2)
