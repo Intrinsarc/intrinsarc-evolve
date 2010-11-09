@@ -25,7 +25,7 @@ public class StatesExampleRunner
 // end generated code
 
 
-	public void run(String[] args)
+	public boolean run(String[] args)
 	{
 		// get the first car
 		IRentalCarDetails car = cars.get(0);
@@ -48,6 +48,7 @@ public class StatesExampleRunner
 		state.returnRental();
 		print(car);
 		System.out.println("  : " + state + "\n");
+		return true;
 	}
 
 	private void print(IRentalCarDetails car)

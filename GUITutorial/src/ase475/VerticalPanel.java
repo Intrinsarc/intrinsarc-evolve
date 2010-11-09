@@ -7,8 +7,6 @@ import javax.swing.border.*;
 
 public class VerticalPanel extends JPanel
 {
-	private boolean drawBorder;
-	
 	public VerticalPanel()
 	{
 		setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));

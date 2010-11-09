@@ -191,9 +191,9 @@ public class HardcodedFactoryWriter
 				c.newLine();
 				c.write("    " + className + " factory = new " + className + "();");
 				c.newLine();
-				c.write("    factory.initialize(null, null)." + runPortGetMethod + "().run(args);");
+				c.write("    if (factory.initialize(null, null)." + runPortGetMethod + "().run(args))");
 				c.newLine();
-				c.write("    factory.destroy(); // destroy the factory once the run method has completed");
+				c.write("      factory.destroy(); // destroy the factory once the run method has completed");
 				c.newLine();
 				c.write("  }");
 				c.newLine();

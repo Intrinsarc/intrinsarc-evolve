@@ -80,6 +80,7 @@ public abstract class ImplementationRefresher
 				{
 //					System.out.println("$$ skipping file " + realFile + ", as start generator marker not found...");
 					deleteTemp = true;
+					System.out.println("$$ failed to find preamble in " + realFile);
 					return false;
 				}
 				addMarker(writer, START_GENERATED_CODE);				

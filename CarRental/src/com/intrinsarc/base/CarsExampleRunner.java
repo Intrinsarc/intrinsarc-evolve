@@ -17,7 +17,7 @@ public class CarsExampleRunner
 
 // end generated code
 	
-	public void run(String[] args)
+	public boolean run(String[] args)
 	{
 		System.out.println();
 
@@ -26,6 +26,7 @@ public class CarsExampleRunner
 					"Car: model = " + car.getModel() +
 					", purchased = " + car.getPurchased() +
 					",is rented = " + car.isRented());
+		return true;
 	}
 	
 	public void afterInit()

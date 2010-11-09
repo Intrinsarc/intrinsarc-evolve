@@ -19,9 +19,10 @@ public class A
 
 	private class IRunPortImpl implements IRun
 	{
-		public void run(String[] args)
+		public boolean run(String[] args)
 		{
 			System.out.println("$$ ran correctly, age = " + age);
+			return true;
 		}
 	}
 

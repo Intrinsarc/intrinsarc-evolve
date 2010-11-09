@@ -7,40 +7,41 @@ import javax.swing.*;
 import com.intrinsarc.backbone.runtime.api.*;
 
 public class MainFrame
+// start generated code
+	// main port
+ implements IRun
 {
-//start generated code
-//attributes
-	private Attribute<java.lang.String> title;
-	private Attribute<Integer> width = new Attribute<Integer>(500);
-	private Attribute<Integer> height = new Attribute<Integer>(300);
-//required ports
+	// attributes
+	private String title;
+	private int width = 500;
+	private int height = 300;
+
+	// attribute setters and getters
+	public String getTitle() { return title; }
+	public void setTitle(String title) { this.title = title;}
+	public int getWidth() { return width; }
+	public void setWidth(int width) { this.width = width;}
+	public int getHeight() { return height; }
+	public void setHeight(int height) { this.height = height;}
+
+	// required ports
 	private javax.swing.JPanel panel;
-//provided ports
-	private IRunRunImpl run_IRunProvided = new IRunRunImpl();
-//setters and getters
-	public Attribute<java.lang.String> getTitle() { return title; }
-	public void setTitle(Attribute<java.lang.String> title) { this.title = title;}
-	public void setWidth(Attribute<Integer> width) { this.width = width;}
-	public void setHeight(Attribute<Integer> height) { this.height = height;}
-	public void setRawTitle(java.lang.String title) { this.title.set(title);}
-	public void setPanel_JPanel(javax.swing.JPanel panel) { this.panel = panel; }
-	public com.intrinsarc.backbone.runtime.api.IRun getRun_IRun(Class<?> required) { return run_IRunProvided; }
-//end generated code
 
+	// port setters and getters
+	public void setPanel(javax.swing.JPanel panel) { this.panel = panel; }
 
-	private class IRunRunImpl implements IRun
+// end generated code
+
+	public boolean run(String[] args)
 	{
-		public int run(String[] args)
-		{
-			JFrame f = new JFrame(title.get());
-			JPanel p = new JPanel(new BorderLayout());
-			p.add(panel, BorderLayout.NORTH);
-			f.add(p);
-			f.setPreferredSize(new Dimension(width.get(), height.get()));
-			f.pack();
-			f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-			f.setVisible(true);
-			return 0;
-		}
-	}	
+		JFrame f = new JFrame(title);
+		JPanel p = new JPanel(new BorderLayout());
+		p.add(panel, BorderLayout.NORTH);
+		f.add(p);
+		f.setPreferredSize(new Dimension(width, height));
+		f.pack();
+		f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		f.setVisible(true);
+		return false;
+	}
 }

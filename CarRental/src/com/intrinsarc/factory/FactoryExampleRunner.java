@@ -23,7 +23,7 @@ public class FactoryExampleRunner
 // end generated code
 
 
-	public void run(String[] args)
+	public boolean run(String[] args)
 	{
 		// make some cars and print them out
 		Map<String, Object> params;
@@ -45,6 +45,7 @@ public class FactoryExampleRunner
 
 		creator.destroy(memento2);
 		printCars("After deleting second car:");
+		return true;
 	}
 
 	private void printCars(String msg)

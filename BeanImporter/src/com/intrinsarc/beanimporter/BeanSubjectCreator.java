@@ -357,8 +357,13 @@ public class BeanSubjectCreator
 		}
 		else
 		{
-			if (port.getUpper() > 1)
-				port.setUpperBound(1);
+			if (!field.isReadOnly())  // required
+			{
+				if (port.getLower() != 0  || port.getLowerValue() == null)
+					port.setLowerBound(0);
+				if (port.getUpper() > 1  || port.getUpperValue() == null)
+					port.setUpperBound(1);
+			}
 		}
 		
 		List<Dependency> existingDeps = type.undeleted_getOwnedAnonymousDependencies();

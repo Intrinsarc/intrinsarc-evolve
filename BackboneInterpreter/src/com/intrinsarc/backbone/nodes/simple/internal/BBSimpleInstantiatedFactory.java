@@ -198,8 +198,8 @@ public class BBSimpleInstantiatedFactory
 				Object object = iparts.get(part);
 				ReflectivePort field = BBSimpleConnector.getPortField(
 						perspective, part.getType(), connEnd.getPort(), IRun.class, true);
-				((IRun) field.getSingle(IRun.class, object)).run(args);
-				destroy();
+				if (((IRun) field.getSingle(IRun.class, object)).run(args))
+					destroy();
 			}
 		}
 	}

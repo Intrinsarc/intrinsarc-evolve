@@ -103,6 +103,7 @@ public class ImplementationWriter
 			LeafImplementationRefresher refresher = new LeafImplementationRefresher(base, stratum, comp);
 			return refresher.refreshCode();
 		}
+		
 		return false;
 	}
 }
