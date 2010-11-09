@@ -174,7 +174,7 @@ public class ApplicationWindowCoordinatorGem
   {
 		// if we don't have a valid license, complain and go into gpl mode
 		String[] error = new String[1];
-		LReal.retrieveLicense(error);
+		LReal.retrieveLicense(LicenseAction.HW_LOCKED_LICENSES, error);
 		if (error[0] != null)
 		{
 			LicenseAction action = applicationWindowCoordinatorFacet.makeLicenseAction();

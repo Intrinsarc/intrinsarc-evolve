@@ -14,6 +14,7 @@ import com.intrinsarc.swing.*;
 
 public class LicenseAction extends AbstractAction
 {
+	public static final boolean HW_LOCKED_LICENSES = false;
 	public static final ImageIcon LOCK_ICON = IconLoader.loadIcon("world.png");
 	public static final ImageIcon NOT_LICENSED_ICON = IconLoader.loadIcon("no-license.png");
 	public static final ImageIcon LICENSED_ICON = IconLoader.loadIcon("good-license.png");
@@ -42,7 +43,7 @@ public class LicenseAction extends AbstractAction
     panel.setBackground(Color.WHITE);
     
     String[] errorReason = new String[1];
-    LReal license = LReal.retrieveLicense(errorReason);
+    LReal license = LReal.retrieveLicense(HW_LOCKED_LICENSES, errorReason);
     boolean readable = errorReason[0] == null;
     
     JLabel label = new JLabel(readable ? LICENSED_ICON : NOT_LICENSED_ICON);
@@ -76,38 +77,43 @@ public class LicenseAction extends AbstractAction
 		details.add(options, constraints);				
 		constraints.gridy++;
 		
-		constraints.gridwidth = 1;
-		constraints.gridx = 1;
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.weightx = 0;
-		JLabel macId = new JLabel("machine ID");
-		macId.setForeground(Color.DARK_GRAY);
-		details.add(macId, constraints);
-
-		constraints.gridx = 2;
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.weightx = 1;
-		final String machId = LMid.getId();
-		JTextField machineId = new JTextField(machId);
-		details.add(machineId, constraints);
-		JButton copyToClipboard = new JButton("Copy to clipboard");
-		copyToClipboard.addActionListener(new ActionListener()
+		if (HW_LOCKED_LICENSES)
 		{
-			public void actionPerformed(ActionEvent e)
+			constraints.gridwidth = 1;
+			constraints.gridx = 1;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 0;
+			JLabel macId = new JLabel("machine ID");
+			macId.setForeground(Color.DARK_GRAY);
+			details.add(macId, constraints);
+	
+			constraints.gridx = 2;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 1;
+			final String machId = LMid.getId();
+			JTextField machineId = new JTextField(machId);
+			details.add(machineId, constraints);
+			JButton copyToClipboard = new JButton("Copy to clipboard");
+			copyToClipboard.addActionListener(new ActionListener()
 			{
-		    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
-		    StringSelection machIdSelection = new StringSelection(machId);
-		    clipboard.setContents(machIdSelection, null);
-			}
-		});
-		
-		constraints.gridx = 3;
-		constraints.fill = GridBagConstraints.HORIZONTAL;
-		constraints.weightx = 0;		
-		details.add(copyToClipboard, constraints);
-		machineId.setEditable(false);
-		constraints.gridy++;
+				public void actionPerformed(ActionEvent e)
+				{
+			    Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
+			    StringSelection machIdSelection = new StringSelection(machId);
+			    clipboard.setContents(machIdSelection, null);
+				}
+			});
 
+			constraints.gridx = 3;
+			constraints.fill = GridBagConstraints.HORIZONTAL;
+			constraints.weightx = 0;		
+			details.add(copyToClipboard, constraints);
+			machineId.setEditable(false);
+			constraints.gridy++;
+		}
+
+		constraints.gridwidth = 1;
+		constraints.weightx = 0;
 		constraints.gridx = 0;
 		constraints.fill = GridBagConstraints.HORIZONTAL;
 		constraints.weightx = 0;
@@ -146,9 +152,17 @@ public class LicenseAction extends AbstractAction
 		// if the license is readable, add in the details
 		if (readable)
 		{
-			addDetail(details, license, "user", license.getUser(),constraints);
-			addDetail(details, license, "email", license.getEmail(), constraints);
-			addDetail(details, license, "number", "" + license.getNumber(), constraints);
+			if (license.getSerial() == -1)
+			{
+				addDetail(details, license, "user", license.getUser(),constraints);
+				addDetail(details, license, "email", license.getEmail(), constraints);
+				addDetail(details, license, "number", "" + license.getNumber(), constraints);
+			}
+			else
+			{
+				addDetail(details, license, "serial", "" + license.getSerial(), constraints);
+			}
+				
 			addDetail(details, license, "features", license.getFeatures(), constraints);
 			addDetail(details, license, "expiry", license.getExpiry(), constraints);
 		}		

@@ -52,7 +52,12 @@ public class LicenseViewer
 				// write it locally
 				try
 				{
-					String name = get(editor, "email") + "-" + get(editor, "number") + ".license";
+					String serial = get(editor, "serial");
+					String name = null;
+					if (serial != null)
+						name = "serial-" + get(editor, "email") + "-" + get(editor, "serial") + ".license";
+					else
+						name = "hwlocked-" + get(editor, "email") + "-" + get(editor, "number") + ".license";
 					File file = new File(current, name);
 					if (file.exists())
 					{
@@ -89,37 +94,44 @@ public class LicenseViewer
 				// private key
 				// and then turn it into a details structure and encrypt using the
 				// private key
-				String machineId = editor.getField("machine-id").getText().trim();
-				JTextField macs = editor.getField("macs");
-				if (machineId.length() > 0)
+				String machineId = get(editor, "machine-id");
+				boolean serialMode = true;
+				if (machineId != null)
 				{
-					try
+					serialMode = false;
+					// mac address mode
+					machineId = machineId.trim();
+					JTextField macs = editor.getField("macs");
+					if (machineId.length() > 0)
 					{
-						String hex = "";
-						String actual = LFinder.toHex(LUtils.decode(machineId));
-						for (int lp = 0; lp < actual.length() / 12; lp++)
+						try
 						{
-							if (lp != 0)
-								hex += ",";
-							hex += actual.substring(lp * 12, lp * 12 + 12);
+							String hex = "";
+							String actual = LFinder.toHex(LUtils.decode(machineId));
+							for (int lp = 0; lp < actual.length() / 12; lp++)
+							{
+								if (lp != 0)
+									hex += ",";
+								hex += actual.substring(lp * 12, lp * 12 + 12);
+							}
+							macs.setText(hex);
 						}
-						macs.setText(hex);
+						catch (Exception ex)
+						{
+							JOptionPane.showMessageDialog(parent, ex.getMessage(), "Cannot decoded base64 macs",
+									JOptionPane.ERROR_MESSAGE);
+							return;
+						}
 					}
-					catch (Exception ex)
+	
+					// we must have some macs
+					String macval = macs.getText().trim();
+					if (macval.length() == 0)
 					{
-						JOptionPane.showMessageDialog(parent, ex.getMessage(), "Cannot decoded base64 macs",
+						JOptionPane.showMessageDialog(parent, "No mac addresses!", "Licensing problem",
 								JOptionPane.ERROR_MESSAGE);
 						return;
 					}
-				}
-
-				// we must have some macs
-				String macval = macs.getText().trim();
-				if (macval.length() == 0)
-				{
-					JOptionPane.showMessageDialog(parent, "No mac addresses!", "Licensing problem",
-							JOptionPane.ERROR_MESSAGE);
-					return;
 				}
 
 				// make a new string and encrypt it
@@ -133,13 +145,24 @@ public class LicenseViewer
 					expiry = formatter.format(cal.getTime());
 				}
 
-				String lic =
-					"user=" + get(editor, "user") +
-					"\nemail=" + get(editor, "email") +
-					"\nnumber=" + get(editor, "number") +
-					"\nfeatures=" + get(editor, "features") +
-					"\nexpiry=" + expiry +
-					"\nmachine-id=" + get(editor, "machine-id");
+				String lic = null;
+				if (serialMode)
+				{
+					lic =
+						"serial=" + get(editor, "serial") +
+						"\nfeatures=" + get(editor, "features") +
+						"\nexpiry=" + expiry;
+				}
+				else
+				{
+					lic =
+						"user=" + get(editor, "user") +
+						"\nemail=" + get(editor, "email") +
+						"\nnumber=" + get(editor, "number") +
+						"\nfeatures=" + get(editor, "features") +
+						"\nexpiry=" + expiry +
+						"\nmachine-id=" + get(editor, "machine-id");
+				}
 
 				// encrypt it and get the bytes
 				try
@@ -187,6 +210,8 @@ public class LicenseViewer
 
 	private String get(DetailsViewer editor, String name)
 	{
+		if (editor.getField(name) == null)
+			return null;
 		return editor.getField(name).getText();
 	}
 }

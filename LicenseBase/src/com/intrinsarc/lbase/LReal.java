@@ -17,6 +17,7 @@ public class LReal
 	private String user;
 	private String email;
 	private int number;
+	private int serial;
 	private String expiry;
 	private Date expiryDate;
 	private String machineId;
@@ -33,7 +34,7 @@ public class LReal
 	}
 	
 	/** returns a valid license if possible, otherwise indicates the failure reason */
-	public static LReal retrieveLicense(String[] errorReason)
+	public static LReal retrieveLicense(boolean hardwareLocked, String[] errorReason)
 	{
 		GPL_MODE = true;
 		PersistentProperty lic = GlobalPreferences.preferences.getRawPreference(LICENSE_PREFERENCE);
@@ -58,7 +59,7 @@ public class LReal
 				errorReason[0] = "License expired on " + license.getExpiry();
 				return license;
 			}
-			if (!license.isCorrectMachineId())
+			if (hardwareLocked && !license.isCorrectMachineId())
 			{
 				errorReason[0] = "License is not valid - it is for a different machine";
 				return license;
@@ -99,7 +100,12 @@ public class LReal
 		LDetails details = new LDetails(LWork.decrypt(encrypted, publicKey, null));
 		user = details.get("user");
 		email = details.get("email");
-		number = Integer.parseInt(details.get("number"));
+		number = -1;
+		if (details.get("number") != null)
+			number = Integer.parseInt(details.get("number"));
+		serial = -1;
+		if (details.get("serial") != null)
+			serial = Integer.parseInt(details.get("serial"));
 		expiry = details.get("expiry");
 		features = details.get("features");
 		machineId = details.get("machine-id");
@@ -112,10 +118,13 @@ public class LReal
 		}
 		
 		// get the macs
-		macs = new HashSet<String>();
-		String actual = LFinder.toHex(LUtils.decode(machineId));
-		for (int lp = 0; lp < actual.length() / 12; lp++)
-			macs.add(actual.substring(lp * 12, lp * 12 + 12));
+		if (serial == -1)
+		{
+			macs = new HashSet<String>();
+			String actual = LFinder.toHex(LUtils.decode(machineId));
+			for (int lp = 0; lp < actual.length() / 12; lp++)
+				macs.add(actual.substring(lp * 12, lp * 12 + 12));
+		}
 	}
 	
 	private String stripWhitespace(String encrypted)
@@ -162,6 +171,11 @@ public class LReal
 	public int getNumber()
 	{
 		return number;
+	}
+	
+	public int getSerial()
+	{
+		return serial;
 	}
 
 	public String getExpiry()

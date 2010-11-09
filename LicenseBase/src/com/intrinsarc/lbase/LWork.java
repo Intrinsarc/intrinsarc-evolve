@@ -28,7 +28,6 @@ public class LWork
     		out += "-";
     	out += LUtils.encodeBytes(cipher.doFinal(bytes, lp*100, Math.min(100, bytes.length - lp*100)));
     }
-    System.out.println("    $$ " + out);
     return "-" + out + "-";
 	}
 	

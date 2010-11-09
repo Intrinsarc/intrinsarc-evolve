@@ -73,20 +73,22 @@ public class LicenseManager extends JFrame
 		
 		JMenu license = new JMenu("License");
 		menuBar.add(license);
-		JMenuItem lic = new JMenuItem(new GenerateNewLicenseAction(this));
+		JMenuItem slic = new JMenuItem(new GenerateNewSerialLicenseAction(this));
+		license.add(slic);
+		JMenuItem lic = new JMenuItem(new GenerateNewHardwareLockedLicenseAction(this));
 		license.add(lic);
 		
 		setJMenuBar(menuBar);
 		pack();
 	}
 
-	private class GenerateNewLicenseAction extends AbstractAction
+	private class GenerateNewHardwareLockedLicenseAction extends AbstractAction
 	{
 		private JFrame parent;
 		
-		public GenerateNewLicenseAction(JFrame parent)
+		public GenerateNewHardwareLockedLicenseAction(JFrame parent)
 		{
-			super("Generate new license");
+			super("Generate new hardware locked license");
 			this.parent = parent;
 		}
 		
@@ -101,6 +103,43 @@ public class LicenseManager extends JFrame
 			
 			// populate an LDetails
 			LDetails lic = new LDetails("user=\nemail=\nnumber=1\nfeatures=base_1.x\nexpiry-days=31\nmachine-id=\nmacs=\nencrypted=\n");
+			right.removeAll();
+			right.add(new LicenseViewer().makeViewer(
+					parent,
+					privateKey[0],
+					publicKey[0],
+					lic,
+					current,
+					true,
+					new Runnable() { public void run() { addDirectoryBrowser(); } }
+					), BorderLayout.NORTH);
+			right.revalidate();
+			right.repaint();
+		}
+	}
+	
+	private class GenerateNewSerialLicenseAction extends AbstractAction
+	{
+		private JFrame parent;
+		
+		public GenerateNewSerialLicenseAction(JFrame parent)
+		{
+			super("Generate new serial number license");
+			this.parent = parent;
+		}
+		
+		@Override
+		public void actionPerformed(ActionEvent e)
+		{
+			if (privateKey[0] == null)
+			{
+				JOptionPane.showMessageDialog(parent, "Load a keypair first!", "No keypair loaded", JOptionPane.ERROR_MESSAGE);
+				return;
+			}
+			
+			// populate an LDetails
+			int serial = (int)(Math.random() * 10000);
+			LDetails lic = new LDetails("email=zzzz\nserial=" + serial + "\nfeatures=base_1.x\nexpiry-days=31\nencrypted=\n");
 			right.removeAll();
 			right.add(new LicenseViewer().makeViewer(
 					parent,
