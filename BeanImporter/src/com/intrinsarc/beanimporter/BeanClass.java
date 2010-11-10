@@ -150,6 +150,7 @@ public class BeanClass
 		}
 		
 		DEComponent cExist = existing != null ? existing.asComponent() : null;
+		
 		if (cExist != null)
 		{
 			legacyBean = existing.asComponent().isLegacyBean(perspective);
@@ -160,6 +161,7 @@ public class BeanClass
 		// add a "main" port
 		if (legacyBean)
 		{
+			type = BeanTypeEnum.BEAN;
 			List<Type> types = new ArrayList<Type>();
 			types.add(Type.getType("L" + node.name + ";"));
 

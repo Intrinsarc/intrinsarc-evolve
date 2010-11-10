@@ -4,102 +4,102 @@
   <appliedBasicStereotypeValues uuid="3a6505e0-e0ef-4718-be9e-e02a0232e673" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.0">
     <value xsi:type="uml:LiteralBoolean" uuid="47a05b0a-9911-4aa1-a91a-0b2080a0d826" value="true"/>
   </appliedBasicStereotypeValues>
-  <j_diagramHolder uuid="017b8b9e-f469-464a-9d27-bd0bc47cbe5c" saveTime="Tue Nov 9, 2010 at 12:17:40 GMT" savedBy="Andrew">
-    <diagram uuid="ff1f8010-65a6-4989-bbe0-f89bbd740a21" lastFigureId="18">
-      <figures uuid="a9be1408-4736-4289-937a-80cec45fabc4" id="17" recreator="Note" autosized="false" point="32 48" dimensions="324 88" subject="//@ownedComment.0">
-        <figures uuid="7a4820ee-ce6b-49c2-a83c-f91747e0420d" id="17_C" recreator="SimpleContainer" point="32 48" dimensions="324 88" offset="2 2">
-          <properties uuid="1b669477-c04c-46b8-b81d-5433e28f6754" name="deletedUuids" value=""/>
-          <properties uuid="7a67c8b9-d50e-4bd5-9c10-3a5c71c17f9f" name="addedUuids" value=""/>
-          <properties uuid="68ce6877-60fd-4fd6-ba6f-f321980fa7b9" name="backdrop" value="false"/>
+  <j_diagramHolder uuid="017b8b9e-f469-464a-9d27-bd0bc47cbe5c" saveTime="Tue Nov 9, 2010 at 11:41:22 GMT" savedBy="Andrew">
+    <diagram uuid="b5936ebe-5c9d-441c-9746-cdfbeae77208" lastFigureId="18">
+      <figures uuid="8e691bc9-546b-4d6e-b985-6e2d9b9f0f05" id="17" recreator="Note" autosized="false" point="32 48" dimensions="324 88" subject="//@ownedComment.0">
+        <figures uuid="ffa5396a-7a8a-41fb-97df-dbeefdec6310" id="17_C" recreator="SimpleContainer" point="32 48" dimensions="324 88" offset="2 2">
+          <properties uuid="ece1dc01-1b65-49f9-9c8f-7bdaab79f762" name="deletedUuids" value=""/>
+          <properties uuid="09468941-1938-4a28-93bd-b34ba614cd5f" name="addedUuids" value=""/>
+          <properties uuid="34705ad9-a5fc-4d6a-91e6-dcbb6a8adb67" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="88205266-43f1-427f-b6cc-a8a5479f16c9" name="hideNote" value="true"/>
-        <properties uuid="a9572be5-6f87-48af-ab62-5b4170d01678" name="hash" value="-1.51379273E9"/>
-        <properties uuid="e3e8fb52-3cd5-4be8-a133-6b298fb4ea64" name="useHTML" value="true"/>
+        <properties uuid="1510b9e0-baff-4f70-afca-daf1b92c046e" name="hideNote" value="true"/>
+        <properties uuid="6a2e94ba-e067-472b-b464-6c2f30a30d8c" name="hash" value="-1.51379273E9"/>
+        <properties uuid="7d97adaa-b67b-4f9e-b2cf-696f101ec6fc" name="useHTML" value="true"/>
       </figures>
-      <figures uuid="f9ed134a-5fd7-4dd5-a62d-40ea0b205838" id="15" recreator="dependency" anchor1Id="7" anchor2Id="5" virtualPoint="472 265.5" points="2 472 215 472 316" subject="//@childPackages.5/@ownedAnonymousDependencies.0">
-        <figures uuid="f7446f4a-f1e4-4557-b6df-2985d16b89e5" id="15_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 244" dimensions="3.3 15.1">
-          <properties uuid="5280d78a-2ca3-4daf-b785-894991746519" name="suppress" value="true"/>
-        </figures>
-      </figures>
-      <figures uuid="c655f4c7-b9a3-4c5d-81c0-95f4dd77540b" id="16" recreator="dependency" anchor1Id="8" anchor2Id="5" virtualPoint="555.5 281.5" points="2 596 246.8 515.2 316" subject="//@childPackages.6/@ownedAnonymousDependencies.0">
-        <figures uuid="84b614d3-a5e9-4ff4-b6fc-0ce54bdf32da" id="16_M" recreator="Linked Text" containedName="text" text="" show="false" point="540 260" dimensions="3.3 15.1">
-          <properties uuid="6915bb3b-e021-4ce8-8c1a-3197418edd75" name="suppress" value="true"/>
+      <figures uuid="f399e8c4-44d9-4f80-8825-797f7b633659" id="15" recreator="dependency" anchor1Id="7" anchor2Id="5" virtualPoint="472 265.5" points="2 472 215 472 316" subject="//@childPackages.5/@ownedAnonymousDependencies.0">
+        <figures uuid="dcd0557b-7ced-4284-99b3-adadd6122549" id="15_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 244" dimensions="3.3 15.1">
+          <properties uuid="7711cf68-121f-4842-b3c1-d44356cdf03c" name="suppress" value="true"/>
         </figures>
       </figures>
-      <figures uuid="4de235a5-7d78-4033-a6aa-f264e59b3ae8" id="14" recreator="dependency" anchor1Id="6" anchor2Id="5" virtualPoint="387.5 281.5" points="2 348 247.6 428 316.2" subject="//@childPackages.4/@ownedAnonymousDependencies.0">
-        <figures uuid="4cbd8e40-ed52-4ec7-9b5d-59a49199396c" id="14_M" recreator="Linked Text" containedName="text" text="" show="false" point="372 260" dimensions="3.3 15.1">
-          <properties uuid="c1811de0-2b25-4cb1-8da2-790de6a0af3b" name="suppress" value="true"/>
+      <figures uuid="502f9268-429a-488b-92fb-b3eb3125c013" id="16" recreator="dependency" anchor1Id="8" anchor2Id="5" virtualPoint="555.5 281.5" points="2 596 246.8 515.2 316" subject="//@childPackages.6/@ownedAnonymousDependencies.0">
+        <figures uuid="3e92fd7f-ed17-4eed-8392-8eaf5eadd200" id="16_M" recreator="Linked Text" containedName="text" text="" show="false" point="540 260" dimensions="3.3 15.1">
+          <properties uuid="c187240c-f97b-428c-a0d3-cd29fee4dce0" name="suppress" value="true"/>
         </figures>
       </figures>
-      <figures uuid="880b2323-db63-4dd7-b502-c8dd1f8532bf" id="12" recreator="dependency" anchor1Id="5" anchor2Id="4" virtualPoint="472 425.5" points="2 472 391 472 460" subject="//@childPackages.3/@ownedAnonymousDependencies.0">
-        <figures uuid="f3d93280-e1e4-4ad7-8f1c-0ee147c920aa" id="12_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 406" dimensions="3.3 15.1">
-          <properties uuid="8dfd330e-1362-4dbf-9366-0384384e12c5" name="suppress" value="true"/>
+      <figures uuid="cc079a8f-0a86-4bba-9e17-15b048c8b645" id="14" recreator="dependency" anchor1Id="6" anchor2Id="5" virtualPoint="387.5 281.5" points="2 348 247.6 428 316.2" subject="//@childPackages.4/@ownedAnonymousDependencies.0">
+        <figures uuid="88c50f56-8da4-47bb-8c13-a17c76921de6" id="14_M" recreator="Linked Text" containedName="text" text="" show="false" point="372 260" dimensions="3.3 15.1">
+          <properties uuid="0a7577a3-8ca2-453c-a55c-7efe7d758d96" name="suppress" value="true"/>
         </figures>
       </figures>
-      <figures uuid="d7d7636d-5fe5-4ca5-96ed-2d81146a51f0" id="10" recreator="dependency" anchor1Id="4" anchor2Id="1" virtualPoint="472 571.5" points="2 472 535 472 608" subject="//@childPackages.2/@ownedAnonymousDependencies.0">
-        <figures uuid="2669305d-b6e6-4481-9fd5-f288b9a28518" id="10_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 552" dimensions="3.3 15.1">
-          <properties uuid="fc516ab8-34b3-4e31-a368-29921873d439" name="suppress" value="true"/>
+      <figures uuid="22eb3534-e616-426b-90af-34c448a79b9f" id="12" recreator="dependency" anchor1Id="5" anchor2Id="4" virtualPoint="472 425.5" points="2 472 391 472 460" subject="//@childPackages.3/@ownedAnonymousDependencies.0">
+        <figures uuid="44f07765-454f-4318-93ff-4c13696b1685" id="12_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 406" dimensions="3.3 15.1">
+          <properties uuid="9c649faf-4cae-44d4-a48c-b98125f84ba6" name="suppress" value="true"/>
         </figures>
       </figures>
-      <figures uuid="6bab31c5-3be6-4a4c-bb7b-8c58e14e0807" id="1" recreator="Package" name="swing" autosized="false" point="428 608" dimensions="87 75" subject="//@childPackages.1">
-        <figures uuid="2cb1fa40-4fa1-4239-9055-941ea165a74a" id="1_C" recreator="SimpleContainer" point="428 623" dimensions="87 60" offset="4 4">
-          <properties uuid="a0c309b3-2acc-409e-be7c-be61f2b4526e" name="deletedUuids" value=""/>
-          <properties uuid="400c634c-ea7c-47b6-bb8d-6be820e669ee" name="addedUuids" value=""/>
-          <properties uuid="d07786aa-737d-4eb9-b383-2d8c942b3d73" name="backdrop" value="false"/>
+      <figures uuid="4a614bf5-12b0-473a-9010-651723ec1f02" id="10" recreator="dependency" anchor1Id="4" anchor2Id="1" virtualPoint="472 571.5" points="2 472 535 472 608" subject="//@childPackages.2/@ownedAnonymousDependencies.0">
+        <figures uuid="646d5c75-097e-4218-b9b8-9df3089094f8" id="10_M" recreator="Linked Text" containedName="text" text="" show="false" point="456 552" dimensions="3.3 15.1">
+          <properties uuid="dd723880-bfde-4955-94b4-4dfc930669d1" name="suppress" value="true"/>
         </figures>
-        <properties uuid="c1cc12e9-a47e-48e4-be4b-f1fb9cae2834" name="fill" value="224 207 207"/>
-        <properties uuid="7da1d7de-f8a2-4e62-a7dc-280736b7dc3e" name="stereoHash" value="-1564864858"/>
-        <properties uuid="73b557e2-66f8-4985-84c5-1e5d8b092df8" name="owner" value="model"/>
       </figures>
-      <figures uuid="8b7301f8-d45d-4deb-8d31-cf2cc0a3c1ed" id="7" recreator="Package" name="lily" autosized="false" point="428 140" dimensions="87 75" subject="//@childPackages.5">
-        <figures uuid="7f80d742-2255-4280-b34b-774be020d008" id="7_C" recreator="SimpleContainer" point="428 155" dimensions="87 60" offset="4 4">
-          <properties uuid="9b91bf04-4612-4b63-8be2-2a8915cf0c99" name="deletedUuids" value=""/>
-          <properties uuid="11b57a79-e21a-4bbe-afab-7b5ec994c9d8" name="addedUuids" value=""/>
-          <properties uuid="eb312696-0844-4577-858e-a1dfed269d27" name="backdrop" value="false"/>
+      <figures uuid="009e2958-3735-4f15-a8b3-884ffc067ace" id="1" recreator="Package" name="swing" autosized="false" point="428 608" dimensions="87 75" subject="//@childPackages.1">
+        <figures uuid="102a6613-e6b9-42f6-9716-ab5581421bd6" id="1_C" recreator="SimpleContainer" point="428 623" dimensions="87 60" offset="4 4">
+          <properties uuid="e067edd5-dcd6-4222-8ce1-69ec48ea82c6" name="deletedUuids" value=""/>
+          <properties uuid="a78d21a0-88a5-4d25-91b0-a5314d494419" name="addedUuids" value=""/>
+          <properties uuid="e736521c-2632-4fdc-b0b9-3d77fffdbd72" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="bd129a35-f945-4482-a0aa-b467178ea808" name="fill" value="224 207 207"/>
-        <properties uuid="e35d4292-b8ed-46b0-bcaa-2c66efc06d82" name="stereoHash" value="1944813656"/>
-        <properties uuid="0e221fa1-47ce-466d-97c3-5cd77ccd36c9" name="owner" value="model"/>
+        <properties uuid="41d77bf9-9a35-42e7-9aa5-0d91b2ff24a0" name="fill" value="224 207 207"/>
+        <properties uuid="f3fcad82-dc6b-41d5-abeb-301fcce75aaa" name="stereoHash" value="1167838880"/>
+        <properties uuid="6b904bac-a5e0-4a02-b68d-ac63f4cc039b" name="owner" value="model"/>
       </figures>
-      <figures uuid="e3150718-029a-43ba-b559-12c5db048628" id="6" recreator="Package" name="fred" autosized="false" point="260 172" dimensions="87 75" subject="//@childPackages.4">
-        <figures uuid="7a2629af-ab66-4213-b570-b970456866b1" id="6_C" recreator="SimpleContainer" point="260 187" dimensions="87 60" offset="4 4">
-          <properties uuid="942d69f1-bc76-43af-b136-6cf881f48833" name="deletedUuids" value=""/>
-          <properties uuid="eebb23b8-9427-4e0b-8b75-4ec26f50df37" name="addedUuids" value=""/>
-          <properties uuid="9245f76d-a89a-4e0f-811d-bf94a518b7ca" name="backdrop" value="false"/>
+      <figures uuid="c178d3de-90db-45d8-bede-e4bb278ff0dd" id="7" recreator="Package" name="lily" autosized="false" point="428 140" dimensions="87 75" subject="//@childPackages.5">
+        <figures uuid="424b5446-a704-4209-9942-b676407f0399" id="7_C" recreator="SimpleContainer" point="428 155" dimensions="87 60" offset="4 4">
+          <properties uuid="c47a602c-54ea-4f02-8c71-275c66b6817c" name="deletedUuids" value=""/>
+          <properties uuid="1d2e1694-e609-493e-a8ba-95eb75149783" name="addedUuids" value=""/>
+          <properties uuid="06a3c6b9-e59a-4ee4-a2f9-4a35bfc7e5c2" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="2f9c954c-9537-4745-826d-726c36afd0fd" name="fill" value="224 207 207"/>
-        <properties uuid="ccf47e3c-ce2a-4702-b428-dd3364ca670d" name="stereoHash" value="-1482578208"/>
-        <properties uuid="93ca02ea-0ac4-43b1-a636-a0972ccfaeb8" name="owner" value="model"/>
+        <properties uuid="a9d3e4c0-4361-446e-97ee-ffd7e6d9965b" name="fill" value="224 207 207"/>
+        <properties uuid="6ccae794-7ab3-431f-a137-bafc27a8db80" name="stereoHash" value="1485462565"/>
+        <properties uuid="10a2a351-9dc8-4dc6-bc53-eb0f332bdec6" name="owner" value="model"/>
       </figures>
-      <figures uuid="cab0ad8e-31fa-440e-a4db-b6a6e171f89f" id="5" recreator="Package" name="common" autosized="false" point="428 316" dimensions="87 75" subject="//@childPackages.3">
-        <figures uuid="210f57a3-a12e-438b-a09d-512295a98178" id="5_C" recreator="SimpleContainer" point="428 331" dimensions="87 60" offset="4 4">
-          <properties uuid="3c1d2be7-9431-4e99-a963-80a27bf7b8c6" name="deletedUuids" value=""/>
-          <properties uuid="fb86be89-06af-4615-b8c8-1583eebc254f" name="addedUuids" value=""/>
-          <properties uuid="55d18491-84e3-44cf-90a6-5663451f8c5e" name="backdrop" value="false"/>
+      <figures uuid="641c5297-2a96-4008-b1cc-b1531f78f6f4" id="6" recreator="Package" name="fred" autosized="false" point="260 172" dimensions="87 75" subject="//@childPackages.4">
+        <figures uuid="32a462d6-2fa4-41fb-9851-28a0a77b04ab" id="6_C" recreator="SimpleContainer" point="260 187" dimensions="87 60" offset="4 4">
+          <properties uuid="b079efa8-2218-4e61-8462-3e27399fb994" name="deletedUuids" value=""/>
+          <properties uuid="c7561752-a06c-43e4-9e91-ec8d114b437d" name="addedUuids" value=""/>
+          <properties uuid="10a0b1d6-6ab2-48e8-8425-bdc73fed8341" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="06b89884-9666-4e68-9ce3-3c649248b2e7" name="fill" value="224 207 207"/>
-        <properties uuid="436c3e64-6dfd-4db2-9e20-a18d602a49f2" name="stereoHash" value="344105379"/>
-        <properties uuid="4d5c6004-0c24-47d4-9ed3-ebf17aeeb983" name="owner" value="model"/>
+        <properties uuid="e2e07027-12b6-4672-88be-2da0f3c18ff8" name="fill" value="224 207 207"/>
+        <properties uuid="c5135c75-7345-4ac4-9bc2-7f54ea8e8574" name="stereoHash" value="972606278"/>
+        <properties uuid="3abe696a-85d5-4d7d-b5b4-994df7f833d4" name="owner" value="model"/>
       </figures>
-      <figures uuid="22c17b1f-20ca-4c9c-bbec-a5dca75e4216" id="4" recreator="Package" name="widgets" autosized="false" point="428 460" dimensions="87 75" subject="//@childPackages.2">
-        <figures uuid="9d92c6f5-ae6f-4da3-840e-13406ba54c36" id="4_C" recreator="SimpleContainer" point="428 475" dimensions="87 60" offset="4 4">
-          <properties uuid="dedd128c-4939-446c-b1e1-eca5d07e0f32" name="deletedUuids" value=""/>
-          <properties uuid="2c4dde35-1883-4516-b52e-29fd19496795" name="addedUuids" value=""/>
-          <properties uuid="0a6491dc-ccf3-4d03-960d-fccdb87f82c4" name="backdrop" value="false"/>
+      <figures uuid="a02348b6-7c03-4a84-833b-fd44d44ca59b" id="5" recreator="Package" name="common" autosized="false" point="428 316" dimensions="87 75" subject="//@childPackages.3">
+        <figures uuid="83c7301c-78a2-40a6-b2ab-7de7b698ed07" id="5_C" recreator="SimpleContainer" point="428 331" dimensions="87 60" offset="4 4">
+          <properties uuid="51d48c8b-f089-47c1-adcf-85b986f73962" name="deletedUuids" value=""/>
+          <properties uuid="e5cc47e7-1b47-494b-af1e-d53126a86843" name="addedUuids" value=""/>
+          <properties uuid="fd8388f7-047c-4e8e-a0f1-51b8b6f505f6" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="4c698f14-cd6a-4d47-bd1b-eb5e257bff48" name="fill" value="224 207 207"/>
-        <properties uuid="05899a12-9077-4020-a39e-fe979d1fd35e" name="stereoHash" value="-1337605193"/>
-        <properties uuid="b96bb78d-3029-4bd8-b67e-b6eecf046092" name="owner" value="model"/>
+        <properties uuid="64e508bf-6fe2-43ab-98ed-81700702efcf" name="fill" value="224 207 207"/>
+        <properties uuid="27edaf7d-b659-44ab-8b47-4c394ae41a2d" name="stereoHash" value="309595338"/>
+        <properties uuid="36748830-acdb-4d46-8eba-d10ef1ddd7b5" name="owner" value="model"/>
       </figures>
-      <figures uuid="207d7bcf-1ae2-46d1-b74d-590994a5f447" id="8" recreator="Package" name="bob" autosized="false" point="596 172" dimensions="87 75" subject="//@childPackages.6">
-        <figures uuid="7f3f63e4-d70f-4e15-9d44-b73460fc1d78" id="8_C" recreator="SimpleContainer" point="596 187" dimensions="87 60" offset="4 4">
-          <properties uuid="83db5a5d-bfaa-4711-bce3-57bf09db9ca0" name="deletedUuids" value=""/>
-          <properties uuid="2268fd7b-74e5-49ae-8633-9e56f84c1adb" name="addedUuids" value=""/>
-          <properties uuid="5645d599-f1f2-4699-8def-ddb389bd68cc" name="backdrop" value="false"/>
+      <figures uuid="ff1258d8-c708-4a38-8bc5-5e8848083122" id="4" recreator="Package" name="widgets" autosized="false" point="428 460" dimensions="87 75" subject="//@childPackages.2">
+        <figures uuid="927754fc-17f2-4900-a7b0-a89428edecae" id="4_C" recreator="SimpleContainer" point="428 475" dimensions="87 60" offset="4 4">
+          <properties uuid="c0d2ad9e-258a-497a-9438-f20d66380525" name="deletedUuids" value=""/>
+          <properties uuid="639e3e15-2181-4566-93c9-92fcdf9ae9f0" name="addedUuids" value=""/>
+          <properties uuid="580cc00d-7d22-43c7-ac67-aa4348488ed0" name="backdrop" value="false"/>
         </figures>
-        <properties uuid="4abce017-35cf-4d16-9120-e793a56672b3" name="fill" value="224 207 207"/>
-        <properties uuid="dbecd076-3141-4d1a-b59a-05d1c2247043" name="stereoHash" value="1428126819"/>
-        <properties uuid="5814923f-2c4e-470c-981d-245171c39d4b" name="owner" value="model"/>
+        <properties uuid="1a5e40b0-0a54-4c1e-b59d-a07120366e91" name="fill" value="224 207 207"/>
+        <properties uuid="b9ea4ac8-8c18-4cb2-8a9f-cadfa714d8c1" name="stereoHash" value="956265571"/>
+        <properties uuid="6abfb06f-25c1-4551-81f2-a6917aa562c6" name="owner" value="model"/>
+      </figures>
+      <figures uuid="62d88cfa-44dc-4490-8f1a-bd811b7e700b" id="8" recreator="Package" name="bob" autosized="false" point="596 172" dimensions="87 75" subject="//@childPackages.6">
+        <figures uuid="0a05898b-442b-4c8d-83c9-0dc49f76386a" id="8_C" recreator="SimpleContainer" point="596 187" dimensions="87 60" offset="4 4">
+          <properties uuid="48f03232-6a03-4359-9847-fd97758c5b27" name="deletedUuids" value=""/>
+          <properties uuid="b458eeac-8206-4897-b48b-30ba54a0c028" name="addedUuids" value=""/>
+          <properties uuid="14925773-10d8-43b2-a1c3-54cb7321106b" name="backdrop" value="false"/>
+        </figures>
+        <properties uuid="707fecf3-42a4-4b21-ab74-acbad69f52c1" name="fill" value="224 207 207"/>
+        <properties uuid="259b7aec-0160-4fe6-bce9-50cee923e321" name="stereoHash" value="-577463028"/>
+        <properties uuid="1b8b2886-0a48-44de-8c40-91f5ff1849d0" name="owner" value="model"/>
       </figures>
     </diagram>
   </j_diagramHolder>
@@ -2297,18 +2297,18 @@
       </j_diagramHolder>
     </childPackages>
   </childPackages>
-  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="5ea3f2e4-3e17-4321-a5b2-0e2a458bcb6f" name="swing" clientDependency="//@childPackages.1/@ownedAnonymousDependencies.0" readOnly="true">
+  <childPackages appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.17" uuid="5ea3f2e4-3e17-4321-a5b2-0e2a458bcb6f" name="swing" clientDependency="//@childPackages.1/@ownedAnonymousDependencies.0">
     <appliedBasicStereotypeValues uuid="296603f1-a432-432b-9750-ec908bd850c8" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.1">
       <value xsi:type="uml:LiteralBoolean" uuid="24008555-fec1-4216-ab9b-612fd30adf5b" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="dd0ebd51-5574-4a54-a6de-ef324133a27f" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="15bb50f3-7ee8-4971-9470-2774b21b4781" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="15bb50f3-7ee8-4971-9470-2774b21b4781" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="0d2a7222-db7e-4f17-999a-6bca2c00424b" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.13">
       <value xsi:type="uml:LiteralBoolean" uuid="e3fcbf5b-6298-4a58-a566-525e39347049" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="5ff19627-b672-4616-9fd2-486f517aef3d" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="556bc82a-becf-4087-9b2a-b1f6e2900ab6" body="$BB/gui"/>
+      <value xsi:type="uml:Expression" uuid="556bc82a-becf-4087-9b2a-b1f6e2900ab6" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <ownedAnonymousDependencies uuid="48a0cc7e-ddac-4773-a83d-b3d4193d942e" client="//@childPackages.1" dependencyTarget="//@childPackages.0"/>
     <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.15" uuid="2e6c2091-2847-4615-8031-9eb6d16ea0d8" name="AbstractAction" isAbstract="true" componentKind="normal">
@@ -9447,13 +9447,13 @@
       <value xsi:type="uml:LiteralBoolean" uuid="c026d7ad-d578-42c2-9b06-78edd4eb33a2" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="e2d9bc6f-07f0-4127-b781-b07343d12ec3" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="9a13b909-bc4e-49fc-8994-035ed0588bdd" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="9a13b909-bc4e-49fc-8994-035ed0588bdd" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="ef6595eb-6dca-460e-8eb9-2d5b101918c7" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.9">
-      <value xsi:type="uml:Expression" uuid="434082bf-5bca-4fcc-81ec-ee0b2337c0a2" body="$GUI/src"/>
+      <value xsi:type="uml:Expression" uuid="434082bf-5bca-4fcc-81ec-ee0b2337c0a2" body="$MODEL/src"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="37e5c55b-125e-42de-9483-cb7958185700" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="77830654-ce88-4076-a2b6-b6a6dae2353b" body="$BB/gui"/>
+      <value xsi:type="uml:Expression" uuid="77830654-ce88-4076-a2b6-b6a6dae2353b" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <ownedAnonymousDependencies uuid="d4f26a07-2dad-42f9-bfc5-c1e5ae1d0604" client="//@childPackages.2" dependencyTarget="//@childPackages.1"/>
     <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.15" uuid="c10f5e0e-e7ac-4211-976c-d32ca645a639" name="MainFrame" componentKind="normal">
@@ -10241,7 +10241,7 @@
       <value xsi:type="uml:LiteralBoolean" uuid="660c33da-7abd-42ef-9ba7-ae8f1678ec4a" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="b3ede6b6-d778-40dd-8483-873716ffde8c" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="47af98bf-bb0d-4025-800e-6243a972f43e" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="47af98bf-bb0d-4025-800e-6243a972f43e" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="887dcc05-fde1-409a-a638-e02378aec8f1" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.6">
       <value xsi:type="uml:Expression" uuid="ff9b5daf-a0ad-491e-8ea4-5f74d84d0c51" body="Example1"/>
@@ -10250,10 +10250,10 @@
       <value xsi:type="uml:Expression" uuid="8846434c-11be-4ec5-be4b-e003e819430e" body="run"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="0bb4a5b9-4f49-4e11-bb65-86df90d941bf" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.9">
-      <value xsi:type="uml:Expression" uuid="52d4f5a0-1eb7-4f0c-8d87-e4dd62e66221" body="$GUI/src"/>
+      <value xsi:type="uml:Expression" uuid="52d4f5a0-1eb7-4f0c-8d87-e4dd62e66221" body="$MODEL/src"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="f08d484f-f5bf-4673-9c9d-c92b9ece06b1" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="99b54a72-8798-464c-ba22-e185a78fcf7a" body="$BB"/>
+      <value xsi:type="uml:Expression" uuid="99b54a72-8798-464c-ba22-e185a78fcf7a" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="f966c1b3-3c65-40ab-a9ec-f87783f89ebf" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.17">
       <value xsi:type="uml:Expression" uuid="63cb463e-a3f6-4263-9e76-7d255bc27abd"/>
@@ -10535,19 +10535,19 @@
       <value xsi:type="uml:LiteralBoolean" uuid="fae78cb3-b115-4cec-a2ff-b14d72c997a0" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="3b44f87f-7090-4e26-b97b-6dde85690eda" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.9">
-      <value xsi:type="uml:Expression" uuid="6c1fcd5a-7e97-4a1a-8e40-4a3e315b17cc" body="$GUI/src"/>
+      <value xsi:type="uml:Expression" uuid="6c1fcd5a-7e97-4a1a-8e40-4a3e315b17cc" body="$MODEL/src"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="30299681-22bb-4b47-8443-bb0eac63c5ee" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.6">
       <value xsi:type="uml:Expression" uuid="ee01094d-3c54-4fb0-957b-c0807f188354" body="Fred"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="53aae38d-748d-4aac-b677-ef0d4f07b9d3" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="15ad89e1-3221-4886-bd3f-035fd3bdf8bd" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="15ad89e1-3221-4886-bd3f-035fd3bdf8bd" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="00dcbb95-7f49-461c-a03f-d2ed9c5bd017" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.7">
       <value xsi:type="uml:Expression" uuid="9989f969-4b95-4607-80f9-abea5d799e25" body="run"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="10006bf3-e360-4db7-873b-98d85ee99988" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="cc7d517f-d522-41cb-9c51-6b8c08f63bb0" body="$BB/gui"/>
+      <value xsi:type="uml:Expression" uuid="cc7d517f-d522-41cb-9c51-6b8c08f63bb0" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <ownedAnonymousDependencies uuid="ed891b1c-cdea-48dd-ab0f-bea9ea2c7bd6" client="//@childPackages.4" dependencyTarget="//@childPackages.3"/>
     <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.15" uuid="2728e7d6-fd08-4c50-96da-2492d23ea172" name="Fred" componentKind="normal">
@@ -10819,19 +10819,19 @@
       <value xsi:type="uml:LiteralBoolean" uuid="2f2a787a-f24e-4e62-8e23-22d8f37b2347" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="ac9fbfa8-4dff-4c61-b1db-8ed11c944c84" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.9">
-      <value xsi:type="uml:Expression" uuid="d9b5d3cc-4729-4695-891f-42eb23d4eb81" body="$GUI/src"/>
+      <value xsi:type="uml:Expression" uuid="d9b5d3cc-4729-4695-891f-42eb23d4eb81" body="$MODEL/src"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="c942038f-c01d-4048-afad-9d6d7476cc48" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.6">
       <value xsi:type="uml:Expression" uuid="928104b9-5cde-4c94-947b-f1656fde589d" body="Lily"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="8e8b19e0-ce76-4b3b-aa94-fe2cf2faded1" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="788456aa-84ea-4c05-b5bd-0f85a61527e1" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="788456aa-84ea-4c05-b5bd-0f85a61527e1" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="0dba1bab-a20a-4f67-8a30-929db87ccce4" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.7">
       <value xsi:type="uml:Expression" uuid="08b4035b-4e3e-485a-8332-ab6b5ffab1c9" body="run"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="b13ba421-6f22-4f19-a893-24d6c27c20e2" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="5fa7ed6f-6b86-4bf6-a0d3-704dcab065d4" body="$BB/gui"/>
+      <value xsi:type="uml:Expression" uuid="5fa7ed6f-6b86-4bf6-a0d3-704dcab065d4" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <ownedAnonymousDependencies uuid="e1b56838-1f48-429e-98df-57fe4a11bc24" client="//@childPackages.5" dependencyTarget="//@childPackages.3"/>
     <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.15" uuid="c68b064f-9c26-42dd-8741-90bce418531a" name="Lily" componentKind="normal">
@@ -11103,19 +11103,19 @@
       <value xsi:type="uml:LiteralBoolean" uuid="1b1a497d-c583-4e16-b927-55d528b25a3d" value="true"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="8daa70db-3838-4784-a76d-c9325ea6069b" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.9">
-      <value xsi:type="uml:Expression" uuid="7649a86d-db10-4d7b-980b-1b8e19d48f16" body="$GUI/src"/>
+      <value xsi:type="uml:Expression" uuid="7649a86d-db10-4d7b-980b-1b8e19d48f16" body="$MODEL/src"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="83c6c84c-3c8b-456d-b225-78ca532c9e56" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.6">
       <value xsi:type="uml:Expression" uuid="674c0913-a023-4f39-97cf-2c4c4436a485" body="Bob"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="eaf5a7e7-cceb-4258-9d26-556c63ea00ed" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.4">
-      <value xsi:type="uml:Expression" uuid="7346cc97-9e29-454a-b829-bcc0f65b749e" body="$GUI/bin"/>
+      <value xsi:type="uml:Expression" uuid="7346cc97-9e29-454a-b829-bcc0f65b749e" body="$MODEL/bin"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="09402e8f-4529-4d37-956b-692ab68b02de" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.7">
       <value xsi:type="uml:Expression" uuid="a3951696-47cb-459f-abb6-65c97c2d865d" body="run"/>
     </appliedBasicStereotypeValues>
     <appliedBasicStereotypeValues uuid="e455ae84-2900-4d70-8c0c-816bbc10c122" property="//@childPackages.0/@childPackages.0/@ownedMember.17/@ownedAttribute.8">
-      <value xsi:type="uml:Expression" uuid="74b71f15-e581-4fe9-b110-4f5b4478ea8a" body="$BB/gui"/>
+      <value xsi:type="uml:Expression" uuid="74b71f15-e581-4fe9-b110-4f5b4478ea8a" body="$MODEL/BB/gui"/>
     </appliedBasicStereotypeValues>
     <ownedAnonymousDependencies uuid="547090c9-3eae-4d30-9244-252c3416e324" client="//@childPackages.6" dependencyTarget="//@childPackages.3"/>
     <ownedMember xsi:type="uml:Class" appliedBasicStereotypes="//@childPackages.0/@childPackages.0/@ownedMember.15" uuid="66796024-129b-4fc5-9bd0-0808056081ed" name="Bob" componentKind="normal">
