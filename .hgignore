@@ -7,3 +7,6 @@ glob:*.bak
 glob:*.class
 glob:*.temp
 glob:CarRentalGUI/war/WEB-INF/classes/com/intrinsarc/carrentalgui/CarRentalGUI.gwt.xml
+
+syntax: regexp
+^GUITutorial/BB$
