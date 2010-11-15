@@ -20,7 +20,7 @@ public class DeleteAction extends AbstractAction
 
 	public DeleteAction(ToolCoordinatorFacet coordinator, DiagramViewFacet diagramView)
 	{
-		super("Delete");
+		super("Delete views only");
 		this.coordinator = coordinator;
 		this.diagramView = diagramView;
 	}

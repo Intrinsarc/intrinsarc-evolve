@@ -100,16 +100,16 @@ public class PackageViewContextGem
 			pasteItem.setIcon(PASTE_ICON);
 			items.add(new SmartMenuItemImpl("Edit", "Clipboard", pasteItem));
 
-			// delete
-			JMenuItem deleteItem = new DeleteMenuItem(currentView, toolCoordinatorFacet);
-			GlobalPreferences.registerKeyAction("Edit", deleteItem, "DELETE", "The delete views operation");
-			deleteItem.setIcon(DELETE_ICON);
-			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteItem));
-
 			// delete model elements
 			JMenuItem deleteSubjectsItem = new DeleteSubjectsMenuItem(currentView, toolCoordinatorFacet);
-			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "ctrl D", "The delete subjects operation");
+			deleteSubjectsItem.setIcon(DELETE_ICON);
+			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "DELETE", "The delete (subject + view) operation");
 			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteSubjectsItem));
+
+			// delete
+			JMenuItem deleteItem = new DeleteMenuItem(currentView, toolCoordinatorFacet);
+			GlobalPreferences.registerKeyAction("Edit", deleteItem, null, "The delete (only views) operation");
+			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteItem));
 
 			// select all
 			JMenuItem selectAllItem = new SelectAllMenuItem(currentView, toolCoordinatorFacet);

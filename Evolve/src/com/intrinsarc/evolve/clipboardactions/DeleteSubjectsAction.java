@@ -21,7 +21,7 @@ public class DeleteSubjectsAction extends AbstractAction
 
 	public DeleteSubjectsAction(ToolCoordinatorFacet coordinator, final DiagramViewFacet diagramView)
 	{
-		super("Delete subjects");
+		super("Delete");
 		this.coordinator = coordinator;
 		this.diagramView = diagramView;
 	}

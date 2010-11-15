@@ -56,6 +56,7 @@ public final class ClassifierNodeGem implements Gem
 	private static final ImageIcon ATTRIBUTE = IconLoader.loadIcon("tree-public-attribute.png");
 	private static final ImageIcon OPERATION = IconLoader.loadIcon("tree-public-operation.png");
 	private static final ImageIcon COMPOSITION_ICON = IconLoader.loadIcon("composition.png");
+	private static final ImageIcon SLOT_ICON = IconLoader.loadIcon("tree-slot.png");
 
 	private Font font = ScreenProperties.getTitleFont();
 	private Font packageFont = ScreenProperties.getSecondaryFont();
@@ -1704,6 +1705,7 @@ public final class ClassifierNodeGem implements Gem
 		private JMenuItem getAddSlotItem(final DiagramViewFacet diagramView, final ToolCoordinatorFacet coordinator)
 		{
 			JMenu menu = new JMenu("Add slot");
+			menu.setIcon(SLOT_ICON);
 
 			// only show unfilled slots
 			List<DeltaPair> properties = findUnfilledSlots();

@@ -21,6 +21,7 @@ import com.intrinsarc.evolve.umldiagrams.colors.*;
 import com.intrinsarc.evolve.umldiagrams.connectorarc.*;
 import com.intrinsarc.evolve.umldiagrams.containmentarc.*;
 import com.intrinsarc.evolve.umldiagrams.dependencyarc.*;
+import com.intrinsarc.evolve.umldiagrams.featurenode.*;
 import com.intrinsarc.evolve.umldiagrams.freetext.*;
 import com.intrinsarc.evolve.umldiagrams.implementationarc.*;
 import com.intrinsarc.evolve.umldiagrams.inheritancearc.*;
@@ -33,6 +34,7 @@ import com.intrinsarc.evolve.umldiagrams.packagenode.*;
 import com.intrinsarc.evolve.umldiagrams.portnode.*;
 import com.intrinsarc.evolve.umldiagrams.requirementsfeaturenode.*;
 import com.intrinsarc.evolve.umldiagrams.sequencesection.*;
+import com.intrinsarc.evolve.umldiagrams.slotnode.*;
 import com.intrinsarc.evolve.umldiagrams.stereotypenode.*;
 import com.intrinsarc.evolve.umldiagrams.substitutionarc.*;
 import com.intrinsarc.evolve.umldiagrams.tracearc.*;
@@ -446,6 +448,7 @@ public class PaletteManagerGem
       {
         RichPaletteCategory palette = new RichPaletteCategory(FOLDER, "Component", new String[]{COMPONENT_FOCUS});
 	      palette.addEntry(makeEntry(true, "component.png",    "Component",            makeNodeCreateTool(compositeCreator.getNodeCreateFacet()), "top"));
+	      palette.addEntry(makeEntry(true, "tree-public-attribute-up1.png",    "Attribute",            makeNodeCreateTool(new AttributeCreatorGem().getNodeCreateFacet())));	      
 	      palette.addEntry(makeEntry(true, "component.png",    "Component (small)",    makeNodeCreateTool(compositeShortcutCreator), "top"));
 	      NodeCreateFacet primitiveCreator = makePrimitiveCreator(false);
 	      palette.addEntry(makeEntry(true, "class.png",        "Primitive type",       makeNodeCreateTool(primitiveCreator), "top"));
@@ -483,6 +486,7 @@ public class PaletteManagerGem
         compositeStateCreator.setStereotype(CommonRepositoryFunctions.STATE);
         compositeStateCreator.setResemblance(CommonRepositoryFunctions.COMPOSITE_STATE_CLASS);
         palette.addEntry(makeEntry(true, "composite-state.png", "Composite state",  makeNodeCreateTool(compositeStateCreator.getNodeCreateFacet()), "top"));
+	      palette.addEntry(makeEntry(true, "tree-public-attribute-up1.png",    "Attribute",            makeNodeCreateTool(new AttributeCreatorGem().getNodeCreateFacet())));
 
         PartCreatorGem statePartCreator = new PartCreatorGem(true);
         statePartCreator.setFillColorPreference(BaseColors.STATE_COLOR);
@@ -528,9 +532,9 @@ public class PaletteManagerGem
         PartCreatorGem partCreator = new PartCreatorGem(false);
         partCreator.setFillColorPreference(BaseColors.COMPONENT_COLOR);        
 	      palette.addEntry(makeEntry(true,  "part.png",         "Part",                 makeNodeCreateTool(partCreator.getNodeCreateFacet()), "class", "part"));
-	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));
 	      palette.addEntry(makeEntry(false, "connector.png",    "Connector",            new ArcCreateToolGem(retrieveArcRecreator(ConnectorCreatorGem.NAME)).getToolFacet(), "port", null));
 	      palette.addEntry(makeEntry(false, "dependency.png",   "Delegation connector", new ArcCreateToolGem(delegateConnectorCreator.getArcCreateFacet()).getToolFacet(), "port"));
+//	      palette.addEntry(makeEntry(false, "portlink.png",     "Port link",            new ArcCreateToolGem(portLinkCreator.getArcCreateFacet()).getToolFacet(), "port"));
 	      tools.addCategory(palette);
       }
     }
