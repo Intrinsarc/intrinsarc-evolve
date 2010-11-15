@@ -8,8 +8,7 @@ public class StratumErrorDetector
 {
   protected ErrorRegister errors;
 
-  public StratumErrorDetector(
-      ErrorRegister errors)
+  public StratumErrorDetector(ErrorRegister errors)
   {
     this.errors = errors;
   }

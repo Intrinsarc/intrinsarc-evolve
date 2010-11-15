@@ -1532,7 +1532,36 @@ reference "fig:Multiple-views-of"
 Test
 \family default
 .
- We can delete views by selecting them and pressing
+ We can delete views by selecting them and invoking
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Edit
+\begin_inset Formula $\vartriangleright$
+\end_inset
+
+Delete views only
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+.
+ To remove a subject and all its views, however, we need to press
 \family typewriter
 
 \begin_inset ERT
@@ -1560,7 +1589,7 @@ status collapsed
 
 \end_inset
 
-(or by invoking
+or invoke
 \begin_inset ERT
 status collapsed
 
@@ -1578,35 +1607,6 @@ Edit
 \end_inset
 
 Delete
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}
-\end_layout
-
-\end_inset
-
-).
- To remove a subject and all its views, however, we need to invoke
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-menu{
-\end_layout
-
-\end_inset
-
-Edit
-\begin_inset Formula $\vartriangleright$
-\end_inset
-
-Delete subjects
 \begin_inset ERT
 status collapsed
 

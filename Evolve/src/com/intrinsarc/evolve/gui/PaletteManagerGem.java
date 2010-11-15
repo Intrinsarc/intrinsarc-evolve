@@ -34,7 +34,6 @@ import com.intrinsarc.evolve.umldiagrams.packagenode.*;
 import com.intrinsarc.evolve.umldiagrams.portnode.*;
 import com.intrinsarc.evolve.umldiagrams.requirementsfeaturenode.*;
 import com.intrinsarc.evolve.umldiagrams.sequencesection.*;
-import com.intrinsarc.evolve.umldiagrams.slotnode.*;
 import com.intrinsarc.evolve.umldiagrams.stereotypenode.*;
 import com.intrinsarc.evolve.umldiagrams.substitutionarc.*;
 import com.intrinsarc.evolve.umldiagrams.tracearc.*;

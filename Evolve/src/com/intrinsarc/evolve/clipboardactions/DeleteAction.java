@@ -34,8 +34,8 @@ public class DeleteAction extends AbstractAction
 		Set includedFigures = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, false);
 		
 		coordinator.startTransaction(
-		    "deleted figures from diagram",
-		    "restored deleted figures in diagram");
+		    "deleted views from diagram",
+		    "restored deleted views in diagram");
 		DeleteFromDiagramTransaction.delete(diagramView.getDiagram(), includedFigures, true);
 		coordinator.commitTransaction();
 	}

@@ -103,12 +103,12 @@ public class PackageViewContextGem
 			// delete model elements
 			JMenuItem deleteSubjectsItem = new DeleteSubjectsMenuItem(currentView, toolCoordinatorFacet);
 			deleteSubjectsItem.setIcon(DELETE_ICON);
-			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "DELETE", "The delete (subject + view) operation");
+			GlobalPreferences.registerKeyAction("Edit", deleteSubjectsItem, "DELETE", "The delete operation");
 			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteSubjectsItem));
 
 			// delete
 			JMenuItem deleteItem = new DeleteMenuItem(currentView, toolCoordinatorFacet);
-			GlobalPreferences.registerKeyAction("Edit", deleteItem, null, "The delete (only views) operation");
+			GlobalPreferences.registerKeyAction("Edit", deleteItem, null, "The delete figures/views operation");
 			items.add(new SmartMenuItemImpl("Edit", "Clipboard", deleteItem));
 
 			// select all

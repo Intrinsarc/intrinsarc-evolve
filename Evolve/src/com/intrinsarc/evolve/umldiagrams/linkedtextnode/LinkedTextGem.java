@@ -138,7 +138,7 @@ public class LinkedTextGem implements Gem
 	      		decorator.getManipulatorFacet(),
 	          new LinkedTextSelectionManipulatorGem(
 	              figureFacet.getFullBounds(),
-	              new UDimension(4, 4)).getManipulatorFacet());
+	              new UDimension(4, 4), majorPointType).getManipulatorFacet());
 	    
 	    return manipulators;
     }

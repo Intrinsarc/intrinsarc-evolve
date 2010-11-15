@@ -2,9 +2,12 @@ package com.intrinsarc.evolve.umldiagrams.linkedtextnode;
 
 import java.awt.*;
 
+import org.freehep.graphics2d.*;
+
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.utility.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -19,6 +22,7 @@ public class LinkedTextSelectionManipulatorGem implements Gem
   private ZGroup diagramLayer;
   private ZGroup group;
   private UDimension offset;
+  private int majorPointType;
 
 	private class ManipulatorFacetImpl implements ManipulatorFacet
 	{
@@ -96,8 +100,17 @@ public class LinkedTextSelectionManipulatorGem implements Gem
 	    UBounds bounds = figureBounds.addToPoint(offset.negative()).addToExtent(offset.multiply(2));
 	    group = new ZGroup();
 	    ZRoundedRectangle rect = new ZRoundedRectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight(), 6, 4);
-	    rect.setPenPaint(Color.BLACK);
-	    rect.setStroke(new BasicStroke(1, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{0,2}, 0));
+	    switch (majorPointType)
+	    {
+	    	case CalculatedArcPoints.MAJOR_POINT_START:
+	    	case CalculatedArcPoints.MAJOR_POINT_END:
+	  	    rect.setPenPaint(ScreenProperties.getFirstSelectedHighlightColor());
+	    		break;
+	    	case CalculatedArcPoints.MAJOR_POINT_MIDDLE:
+	  	    rect.setPenPaint(Color.BLACK);
+	    		break;
+	    }
+	    rect.setStroke(new BasicStroke(2, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{0,2}, 0));
 	    rect.setFillPaint(null);
 	    group.addChild(new ZVisualLeaf(rect));
 	    diagramLayer.addChild(group);
@@ -122,10 +135,11 @@ public class LinkedTextSelectionManipulatorGem implements Gem
 		}
 	}
 
-  public LinkedTextSelectionManipulatorGem(UBounds figureBounds, UDimension offset)
+  public LinkedTextSelectionManipulatorGem(UBounds figureBounds, UDimension offset, int majorPointType)
   {
     this.figureBounds = figureBounds;
     this.offset = offset;
+    this.majorPointType = majorPointType;
   }
 
   

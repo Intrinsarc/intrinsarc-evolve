@@ -4,8 +4,6 @@ import java.util.*;
 
 import javax.swing.*;
 
-import com.intrinsarc.geometry.*;
-
 public class ToolFigureClassification
 {
 	private List<String> elements;

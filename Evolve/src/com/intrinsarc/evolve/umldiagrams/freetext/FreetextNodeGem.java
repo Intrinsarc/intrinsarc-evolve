@@ -162,7 +162,7 @@ public final class FreetextNodeGem implements Gem
             primaryFocus,
             new LinkedTextSelectionManipulatorGem(
                 figureFacet.getFullBounds(),
-                new UDimension(4, 8)).getManipulatorFacet());
+                new UDimension(4, 8), CalculatedArcPoints.MAJOR_POINT_MIDDLE).getManipulatorFacet());
       
       return manipulators;
     }

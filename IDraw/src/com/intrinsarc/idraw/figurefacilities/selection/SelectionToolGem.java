@@ -8,6 +8,8 @@ import java.util.List;
 
 import javax.swing.*;
 
+import sun.font.*;
+
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.moveandresize.*;
@@ -399,113 +401,7 @@ public final class SelectionToolGem implements Gem
     	KeyStroke stroke = KeyStroke.getKeyStrokeForEvent(event);
       if (stroke.equals(INVOKE_ITEM.getAccelerator()))
       {
-      	// get the element under the mouse
-      	final UPoint pt = diagramView.getCursorPoint();
-      	FigureFacet under = getFigureUnderMouse(pt);
-      	boolean readOnly = under == null ? false : under.isSubjectReadOnlyInDiagramContext(false);
-      	ToolFigureClassification screen = under != null ? under.getToolClassification(pt, diagramView, coordinator) : null;
-      	if (under == null)
-      	{
-      		screen = new ToolFigureClassification("top", null);
-      		readOnly = diagram.isReadOnly();
-      	}
-
-      	if (screen != null)
-      	{
-      		final ZCanvas canvas = diagramView.getCanvas();
-	      	JPopupMenu menu = new JPopupMenu();
-	      	// add the elements
-	      	String category = null;
-	      	Set<String> already = new HashSet<String>();
-	      	for (final ToolClassification tool : toolClassifier.getToolClassifications())
-	      	{
-	      		if (screen != null && screen.matches(tool))
-	      		{
-	      			// don't include if we have this already
-	      			final IRichPaletteEntry rich = (IRichPaletteEntry) tool.getUserObject();
-	      			if (already.contains(rich.getName()))
-	      					continue;
-	      			already.add(rich.getName());
-	      			
-	      			// do we add a separator?
-	      			if (category != null && !category.equals(tool.getCategory()))
-	      				menu.addSeparator();
-	    				category = tool.getCategory();
-	      			
-	      			boolean contextReadOnly = readOnly;
-	      			if (!tool.isNode() && under != null)
-	      			{
-	      				// ask the arc facet if we accet the item as the start
-	      				AnchorFacet anchor = under.getAnchorFacet();
-	      				if (anchor == null)
-	      					contextReadOnly = true;
-	      				else
-	      				{
-	      					// yuck!
-	      					ArcAcceptanceFacet acceptance =
-	      						((ToolFacet) ((IRichPaletteEntry) tool.getUserObject()).getUserObject()).getPossibleArcAcceptance();
-	      					if (acceptance == null)
-	      						contextReadOnly = true;
-	      					else
-	      					contextReadOnly = !acceptance.acceptsAnchors(anchor, null);
-	      				}
-	      			}
-	      			final JMenuItem item = new JMenuItem((contextReadOnly ? "<html><body text='gray'>" : "") + rich.getName(), rich.getIcon());
-	      			
-							// possibly adjust the point to the bounding box of the figure classification
-	      			menu.add(item);
-	      			item.setEnabled(!contextReadOnly);
-	      			item.addActionListener(new ActionListener()
-	      			{
-								public void actionPerformed(ActionEvent e)
-								{
-									rich.select();
-									
-									// is this multi-tool?
-									if ((e.getModifiers() & ActionEvent.SHIFT_MASK) != 0)
-										toolClassifier.setMultiTool(true);
-
-									// click on and off to simulate a mouse press
-									int buttonMask = MouseEvent.BUTTON1_MASK;
-									
-									// create a new point to reflect the possible viewport of the view
-									UPoint adjusted = pt.subtract(diagramView.getCurrentPan());
-									
-							    sendMouseEvent(adjusted, MouseEvent.MOUSE_PRESSED, buttonMask);
-							    // only release and click if this is an actual node
-							    if (tool.isNode())
-							    {
-								    sendMouseEvent(adjusted, MouseEvent.MOUSE_RELEASED, buttonMask);
-							    }
-								}
-	      			});
-	      		}
-	      	}
-	      	
-	      	// add anything extra that the tool figure holds
-	      	if (screen.getMenuItems() != null)
-	      	{
-	      		Utilities.addSeparator(menu);
-	      		for (JMenuItem item : screen.getMenuItems())
-	      		{
-	      			menu.add(item);
-	      			item.setEnabled(item.isEnabled() && !readOnly);
-	      		}
-	      	}
-	      	
-	      	// work out the height of the menu
-	      	ZSwing s = new ZSwing(diagramView.getCanvas(), menu);
-	      	double height = s.getBounds().height;
-	      	
-	      	if (menu.getComponentCount() != 0)
-	      	{
-	      		ZGroup group = new ZGroup();
-	          group.addChild(new CrossHair(pt).formView());
-	          diagramView.turnSweepLayerOn(group);
-	          UDimension pan = diagramView.getCurrentPan();
-	      		menu.show(canvas, pt.getIntX() + 5 - pan.getIntWidth(), pt.getIntY() - (int)(height / 2) - pan.getIntHeight());
-	      	}
-      	}
+      	createAddMenu(true);
       	return;
       }
       
@@ -553,21 +449,7 @@ public final class SelectionToolGem implements Gem
         }
       }
     }
-    
-    private void sendMouseEvent(UPoint point, int event, int buttonMask)
-    {
-    	ZCanvas canvas = diagramView.getCanvas();
-      canvas.dispatchEvent(new MouseEvent(
-          canvas,
-          event,
-          0,
-          buttonMask,
-          point.getIntX(),
-          point.getIntY(),
-          1,
-          false));
-    }
-    
+
     public void keyReleased(KeyEvent event)
     {
       // not for readonly
@@ -634,7 +516,137 @@ public final class SelectionToolGem implements Gem
 		}
 	}
 
+	private JPopupMenu createAddMenu(boolean show)
+	{
+		// get the element under the mouse
+		final UPoint pt = diagramView.getCursorPoint();
+		FigureFacet under = getFigureUnderMouse(pt);
+		boolean readOnly = under == null ? false : under.isSubjectReadOnlyInDiagramContext(false);
+		ToolFigureClassification screen = under != null ? under.getToolClassification(pt, diagramView, coordinator) : null;
+		if (under == null)
+		{
+			screen = new ToolFigureClassification("top", null);
+			readOnly = diagram.isReadOnly();
+		}
 
+		if (screen == null)
+			return null;
+		else
+		{
+			final ZCanvas canvas = diagramView.getCanvas();
+			JPopupMenu menu = new JPopupMenu();
+			// add the elements
+			String category = null;
+			Set<String> already = new HashSet<String>();
+			for (final ToolClassification tool : toolClassifier.getToolClassifications())
+			{
+				if (screen != null && screen.matches(tool))
+				{
+					// don't include if we have this already
+					final IRichPaletteEntry rich = (IRichPaletteEntry) tool.getUserObject();
+					if (already.contains(rich.getName()))
+							continue;
+					already.add(rich.getName());
+					
+					// do we add a separator?
+					if (category != null && !category.equals(tool.getCategory()))
+						menu.addSeparator();
+					category = tool.getCategory();
+					
+					boolean contextReadOnly = readOnly;
+					if (!tool.isNode() && under != null)
+					{
+						// ask the arc facet if we accet the item as the start
+						AnchorFacet anchor = under.getAnchorFacet();
+						if (anchor == null)
+							contextReadOnly = true;
+						else
+						{
+							// yuck!
+							ArcAcceptanceFacet acceptance =
+								((ToolFacet) ((IRichPaletteEntry) tool.getUserObject()).getUserObject()).getPossibleArcAcceptance();
+							if (acceptance == null)
+								contextReadOnly = true;
+							else
+							contextReadOnly = !acceptance.acceptsAnchors(anchor, null);
+						}
+					}
+					final JMenuItem item = new JMenuItem((contextReadOnly ? "<html><body text='gray'>" : "") + rich.getName(), rich.getIcon());
+					
+					// possibly adjust the point to the bounding box of the figure classification
+					menu.add(item);
+					item.setEnabled(!contextReadOnly);
+					item.addActionListener(new ActionListener()
+					{
+						public void actionPerformed(ActionEvent e)
+						{
+							rich.select();
+							
+							// is this multi-tool?
+							if ((e.getModifiers() & ActionEvent.SHIFT_MASK) != 0)
+								toolClassifier.setMultiTool(true);
+
+							// click on and off to simulate a mouse press
+							int buttonMask = MouseEvent.BUTTON1_MASK;
+							
+							// create a new point to reflect the possible viewport of the view
+							UPoint adjusted = pt.subtract(diagramView.getCurrentPan());
+							
+					    sendMouseEvent(adjusted, MouseEvent.MOUSE_PRESSED, buttonMask);
+					    // only release and click if this is an actual node
+					    if (tool.isNode())
+					    {
+						    sendMouseEvent(adjusted, MouseEvent.MOUSE_RELEASED, buttonMask);
+					    }
+						}
+					});
+				}
+			}
+			
+			// add anything extra that the tool figure holds
+			if (screen.getMenuItems() != null)
+			{
+				Utilities.addSeparator(menu);
+				for (JMenuItem item : screen.getMenuItems())
+				{
+					menu.add(item);
+					item.setEnabled(item.isEnabled() && !readOnly);
+				}
+			}
+			
+			// work out the height of the menu
+			if (show)
+			{
+				ZSwing s = new ZSwing(diagramView.getCanvas(), menu);
+				double height = s.getBounds().height;
+				
+				if (menu.getComponentCount() != 0)
+				{
+					ZGroup group = new ZGroup();
+			    group.addChild(new CrossHair(pt).formView());
+			    diagramView.turnSweepLayerOn(group);
+			    UDimension pan = diagramView.getCurrentPan();
+					menu.show(canvas, pt.getIntX() + 5 - pan.getIntWidth(), pt.getIntY() - (int)(height / 2) - pan.getIntHeight());
+				}
+			}
+			return menu;
+		}
+	} 
+	
+  private void sendMouseEvent(UPoint point, int event, int buttonMask)
+  {
+  	ZCanvas canvas = diagramView.getCanvas();
+    canvas.dispatchEvent(new MouseEvent(
+        canvas,
+        event,
+        0,
+        buttonMask,
+        point.getIntX(),
+        point.getIntY(),
+        1,
+        false));
+  }
+	
 //////////////////////////////////////////////////////////////////
 /// state machine ////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////
@@ -793,14 +805,24 @@ public final class SelectionToolGem implements Gem
   	if (figure != null)
   	{
 			popup = figure.makeContextMenu(diagramView, coordinator);
+			
 			// see if a the global menu editor wants to add or modify this
       if (popup == null)
         popup = new JPopupMenu();
-			if (globalPopupMenuFacet != null)
+      
+      // put the "add" items at the top
+      addAddItems(popup);
+      
+      if (globalPopupMenuFacet != null)
 				globalPopupMenuFacet.addToContextMenu(popup, diagramView, coordinator, figure);
   	}
 		else
+		{
 			popup = diagramView.makeContextMenu(coordinator);
+			
+      // put the "add" items at the top
+      addAddItems(popup);
+		}
 			
 		if (popup != null && popup.getComponentCount() != 0)
 		{
@@ -812,7 +834,27 @@ public final class SelectionToolGem implements Gem
   	enter_STEADY_STATE();
   }
   
-  // return the container directly, if figure is a container, and it is willing to act as a backdrop
+  private void addAddItems(JPopupMenu popup)
+	{
+  	JPopupMenu add = createAddMenu(false);
+  	if (add == null)
+  		add = new JPopupMenu();
+  	JMenu addTop = new JMenu("Create");
+  	
+  	boolean enabled = false;
+  	for (Component c : add.getComponents())
+  		if (c instanceof JMenuItem)
+  		{
+  			addTop.add((JMenuItem) c);
+  			enabled = true;
+  		}
+  	addTop.setEnabled(enabled);
+  	
+  	popup.add(new JPopupMenu.Separator(), 0);
+  	popup.add(addTop, 0);
+	}
+
+	// return the container directly, if figure is a container, and it is willing to act as a backdrop
   private ContainerFacet getWillingContainer(UPoint point, FigureFacet figure)
   {
     if (figure == null)

@@ -7,7 +7,6 @@ import javax.swing.*;
 
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.swing.enhanced.*;
 
 /**
  *
@@ -37,7 +36,7 @@ public class DeleteSubjectsAction extends AbstractAction
 		Collection<String> figureIdsToDelete = CopyToDiagramUtilities.getFigureIdsIncludedInSelection(diagramView, true);
 		Set<String> includedFigureIds = DeleteFromDiagramTransaction.getFigureIdsIncludedInDelete(selection.getSelectedFigures(), selection, true);
 		
-		coordinator.startTransaction("deleted subject", "restored subjects");
+		coordinator.startTransaction("deleted elements", "restored elements");
 		KillTransaction.kill(
 		    coordinator,
 		    diagramView.getDiagram(),

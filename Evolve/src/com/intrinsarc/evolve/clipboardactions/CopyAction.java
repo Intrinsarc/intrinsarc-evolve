@@ -29,11 +29,6 @@ import edu.umd.cs.jazz.util.*;
 
 public class CopyAction extends AbstractAction
 {
-  /** the emf export is offset by this much */
-  private static final int offset = 32;
-  /** we want to offset each side by this much */
-  private static final int sidePad = 4;
-	
 	private DiagramViewFacet diagramView;
 	private ToolCoordinatorFacet coordinator;
   private DiagramFacet clipboard;

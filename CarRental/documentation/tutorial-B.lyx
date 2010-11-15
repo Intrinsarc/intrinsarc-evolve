@@ -390,7 +390,31 @@ Creating Deltas
 
 \begin_layout Standard
 Inherited parts, ports, connectors and attributes can be replaced or deleted.
- To delete an inherited item, use the
+ To delete an inherited item, press the
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+
+\backslash
+menu{
+\end_layout
+
+\end_inset
+
+Delete
+\begin_inset ERT
+status collapsed
+
+\begin_layout Plain Layout
+
+}
+\end_layout
+
+\end_inset
+
+key or use the
 \begin_inset ERT
 status collapsed
 
@@ -407,7 +431,7 @@ Edit
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
-Delete subjects
+Delete
 \begin_inset ERT
 status collapsed
 
@@ -579,7 +603,7 @@ Edit
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
-Delete subjects
+Delete
 \begin_inset ERT
 status collapsed
 
@@ -1280,7 +1304,7 @@ Edit
 \begin_inset Formula $\vartriangleright$
 \end_inset
 
-Delete subjects
+Delete
 \begin_inset ERT
 status collapsed
 

@@ -930,7 +930,7 @@ public class ApplicationWindow extends SmartJFrame
 			if (strata.get(strata.size() - 1) != GlobalDeltaEngine.engine.getRoot())
 			{
 				DEStratum root = GlobalDeltaEngine.engine.forceArtificialParent(new HashSet<DEStratum>(strata));
-				strata.add(root);
+				strata.add(0, root);
 			}
 
 			// perform an error check without the diagrams
@@ -940,7 +940,9 @@ public class ApplicationWindow extends SmartJFrame
 			errorAdorner.showErrors();
 			
 			// check only at the top level strata
-			detector.checkAllInOrder(strata, -1, true, null);
+			Collections.reverse(strata);
+			detector.checkAllInOrder(strata, strata.size() - 2, true, null);
+			Collections.reverse(strata);
 
 			int count = errors.countErrors();
 			if (count != 0)
@@ -964,7 +966,7 @@ public class ApplicationWindow extends SmartJFrame
 				else
 				{
 					throw new BackboneGenerationException(
-							"Found " + count + " errors in the strata subset",
+							"Found " + count + " errors in the strata subset - check diagrams and browser to find errors",
 							strata.size() != 0 ? strata.get(0).getRepositoryObject() : null);
 				}
 				return false;

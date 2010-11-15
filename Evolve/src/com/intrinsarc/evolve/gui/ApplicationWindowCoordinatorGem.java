@@ -120,6 +120,7 @@ public class ApplicationWindowCoordinatorGem
       for (ApplicationWindow window : windows)
         window.reset(getWindowTitle());
       toolCoordinator.getToolCoordinatorFacet().reestablishCurrentTool();
+	  	showLicenseDetails();
     }
     
     public void refreshWindowTitles()
