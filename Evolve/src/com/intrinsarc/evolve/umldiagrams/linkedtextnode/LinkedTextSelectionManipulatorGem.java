@@ -108,7 +108,7 @@ public class LinkedTextSelectionManipulatorGem implements Gem
 	  	    rect.setPenWidth(1.5);
 	    		break;
 	    	case CalculatedArcPoints.MAJOR_POINT_MIDDLE:
-	  	    rect.setPenPaint(Color.BLACK);
+	  	    rect.setPenPaint(Color.LIGHT_GRAY);
 	    		break;
 	    }
 	    rect.setFillPaint(null);

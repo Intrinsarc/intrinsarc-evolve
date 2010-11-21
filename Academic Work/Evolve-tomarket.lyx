@@ -65,6 +65,10 @@ in delta mode, delete mark not shown when deleting attribute = refresh problem?
 \end_layout
 
 \begin_layout Enumerate
+linked text manipulator doesn't resize when enter pressed on it
+\end_layout
+
+\begin_layout Enumerate
 fix up stratum iterator; remove need for root check
 \end_layout
 
