@@ -19,13 +19,13 @@ public class SyntaxStyles
 		SyntaxStyles s = new SyntaxStyles();
 		s.add("OPER", new SyntaxStyle(Color.BLACK, false, false));
 		s.add("KEYWORD", new SyntaxStyle(Color.BLUE, false, false));
-		s.add("IDENT", new SyntaxStyle(Color.GREEN.darker(), false, false));
+		s.add("IDENT", new SyntaxStyle(Color.BLACK, false, false));
 		s.add("REGEX", new SyntaxStyle(Color.ORANGE.darker(), false, false));
 
-		s.add("STRING", new SyntaxStyle(Color.ORANGE, false, false));
+		s.add("STRING", new SyntaxStyle(/*Color.BLUE*/new Color(42, 43, 255), false, false));
 		s.add("TYPE", new SyntaxStyle(Color.MAGENTA.darker(), false, false));
 		s.add("NUMBER", new SyntaxStyle(new Color(10066227), true, false));
-		s.add("COMMENT", new SyntaxStyle(new Color(3381555), false, false));
+		s.add("COMMENT", new SyntaxStyle(/*Color.GREEN*/new Color(63, 127, 95), false, false));
 		return s;
 	}
 

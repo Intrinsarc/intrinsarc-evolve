@@ -45,6 +45,47 @@
 \begin_layout Standard
 
 \series bold
+Evolve - to fix after go-live:
+\end_layout
+
+\begin_layout Standard
+Bugs:
+\end_layout
+
+\begin_layout Enumerate
+strange resizing bug / crash on load bug
+\begin_inset Newline newline
+\end_inset
+
+(looks to be a repaint event while recalculating...)
+\end_layout
+
+\begin_layout Enumerate
+in delta mode, delete mark not shown when deleting attribute = refresh problem?
+\end_layout
+
+\begin_layout Enumerate
+fix up stratum iterator; remove need for root check
+\end_layout
+
+\begin_layout Enumerate
+nested strata cannot see backbone base when hardcoding from it
+\end_layout
+
+\begin_layout Enumerate
+attributes with multiplicity
+\end_layout
+
+\begin_layout Standard
+\begin_inset Newpage newpage
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+
+\series bold
 Evolve: 11/12/2008, 30/1/2009
 \end_layout
 
@@ -147,6 +188,8 @@ full example with complex scenario for documentation + importing beans
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 documentation
 \begin_inset Newline newline
 \end_inset
@@ -156,6 +199,8 @@ documentation
 \end_layout
 
 \begin_layout Enumerate
+
+\color green
 do website, go into beta
 \end_layout
 
@@ -458,14 +503,6 @@ GWT states fixup for new scheme + must start in first state + refresh current
 \begin_layout Enumerate
 get rid of dark mark in upper corner of packages/factories when copying
  to word
-\end_layout
-
-\begin_layout Enumerate
-nested strata cannot see backbone base when hardcoding from it
-\end_layout
-
-\begin_layout Enumerate
-attributes with multiplicity
 \end_layout
 
 \begin_layout Enumerate

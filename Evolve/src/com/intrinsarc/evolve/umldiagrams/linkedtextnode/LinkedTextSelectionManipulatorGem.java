@@ -105,12 +105,12 @@ public class LinkedTextSelectionManipulatorGem implements Gem
 	    	case CalculatedArcPoints.MAJOR_POINT_START:
 	    	case CalculatedArcPoints.MAJOR_POINT_END:
 	  	    rect.setPenPaint(ScreenProperties.getFirstSelectedHighlightColor());
+	  	    rect.setPenWidth(1.5);
 	    		break;
 	    	case CalculatedArcPoints.MAJOR_POINT_MIDDLE:
 	  	    rect.setPenPaint(Color.BLACK);
 	    		break;
 	    }
-	    rect.setStroke(new BasicStroke(2, BasicStroke.CAP_SQUARE, BasicStroke.JOIN_BEVEL, 0, new float[]{0,2}, 0));
 	    rect.setFillPaint(null);
 	    group.addChild(new ZVisualLeaf(rect));
 	    diagramLayer.addChild(group);

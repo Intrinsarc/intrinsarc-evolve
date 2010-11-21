@@ -1,27 +1,38 @@
 package com.intrinsarc.evolve.umldiagrams.classifiernode;
 
+import static com.intrinsarc.backbone.generator.hardcoded.common.WriterHelper.*;
+
 import java.awt.*;
 import java.awt.event.*;
 import java.awt.geom.*;
+import java.io.*;
 import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
 
+import jsyntaxpane.*;
+
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
+import com.intrinsarc.backbone.generator.*;
+import com.intrinsarc.backbone.generator.hardcoded.common.*;
+import com.intrinsarc.backbone.printers.*;
 import com.intrinsarc.deltaengine.base.*;
 import com.intrinsarc.evolve.umldiagrams.base.*;
+import com.intrinsarc.evolve.umldiagrams.basicnamespacenode.*;
 import com.intrinsarc.gem.*;
 import com.intrinsarc.geometry.*;
+import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.figurefacilities.textmanipulationbase.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
+import com.intrinsarc.swing.lookandfeel.*;
 
 import edu.umd.cs.jazz.*;
 import edu.umd.cs.jazz.component.*;
@@ -307,9 +318,118 @@ public class ComponentMiniAppearanceGem implements Gem
 				menu.add(ports);
 			}
 
+			JMenuItem javaCode = makeShowJavaCodeItem("Show Java code", coordinator, perspective, comp);			
+      menu.add(javaCode);
+      javaCode.setEnabled(comp.isLeaf(perspective));
+
 			Utilities.addSeparator(menu);
 		}
 
+		
+	  public JMenuItem makeShowJavaCodeItem(String menuText, final ToolCoordinatorFacet coordinator, final DEStratum perspective, final DEComponent component)
+	  {
+	    JMenuItem code = new JMenuItem(menuText);
+	    code.addActionListener(new ActionListener()
+	    {
+	      public void actionPerformed(ActionEvent e)
+	      {
+	        int x = coordinator.getFrameXPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_X_POS);
+	        int y = coordinator.getFrameYPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_Y_POS);
+	        int width = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_WIDTH);
+	        int height = coordinator.getIntegerPreference(RegisteredGraphicalThemes.INITIAL_EDITOR_HEIGHT);
+
+	        coordinator.getDock().createExternalPaletteDockable(
+	            "Java Source",
+	            null,
+	            new Point(x, y), new Dimension(width, height),
+	            true,
+	            true,
+	            makeJavaEditor(new JPanel(), perspective, component));
+	        }
+	    });
+	    return code;
+	  }
+	  
+		private JPanel makeJavaEditor(final JPanel pane, final DEStratum perspective, final DEComponent component)
+		{
+			pane.setLayout(new BorderLayout());
+			final JEditorPane editor = new JEditorPane();
+			editor.setEditorKit(new SyntaxKit("java"));
+			JScrollPane scroller = new JScrollPane(editor);
+	    pane.removeAll();
+	    pane.add(scroller, BorderLayout.CENTER);
+
+	    // provide a refresh option
+	    final JPopupMenu menu = new JPopupMenu();
+	    JMenuItem item = new JMenuItem("Refresh");
+	    menu.add(item);
+	    item.addActionListener(new ActionListener()
+	    {
+	      public void actionPerformed(ActionEvent e)
+	      {
+	      	makeJavaEditor(pane, perspective, component);
+	      }
+	    });
+	    editor.addMouseListener(new MouseAdapter()
+	    {
+	      public void mouseReleased(MouseEvent e)
+	      {
+	          Point pt = e.getPoint();
+	          if (e.getButton() == MouseEvent.BUTTON3)
+	              menu.show(editor, pt.x, pt.y);
+	      }
+	    });
+	    
+	    File realFile = null;
+	    try
+	    {
+	  		PreferencesFacet prefs = GlobalPreferences.preferences;
+	      boolean base = isInBackboneBase(perspective);
+	      boolean suppress = extractSuppress(prefs, perspective, false);
+	    	
+	      if (base)
+	      {
+		    	editor.setText("/*\nSource not available -- class is in the Backbone base library\n*/");	      	
+	      }
+	      else
+	      if (suppress)
+	      {
+		    	editor.setText("/*\nSource not available -- Java generation is suppressed for this class\n*/");	      	
+	      }
+	      else
+	      {
+		    	String name = WriterHelper.extractFolder(prefs, perspective, perspective, 1, null, true);
+		    	File generationDir = new File(expandVariables(prefs, null, name));
+		    	String implName = component.getImplementationClass(perspective);
+		  		String directory = implName.replace('.', '/');
+		  		realFile = new File(generationDir, directory + ".java");
+		  		
+		  		if (!realFile.exists())
+			    	editor.setText("/*\nSource not available -- could be in jar file or not generated yet\n" +
+			    			"Looked in " + realFile + "\n*/");
+		  		else
+		  			editor.setText(FileUtilities.loadFileContents(realFile));
+	      }
+	    }
+	    catch (BackboneGenerationException ex)
+	    {
+	    	editor.setText("/*\nPreferences problem: " + ex.getMessage() + "\n*/");
+	    }
+	    catch (VariableNotFoundException ex)
+			{
+	    	editor.setText("/*\nCannot find variable: " + ex.getMessage() + "\n*/");
+			}
+	    catch (IOException ex)
+	    {
+	    	editor.setText("/*\nIO problem loading file: " + realFile + "\n*/");	
+	    }
+	    
+	    editor.moveCaretPosition(0);
+	    
+			pane.revalidate();
+			return pane;
+		}
+		
 		public Set<String> getDisplayStyles(boolean displayingOnlyAsIcon,
 				boolean anchorIsTarget)
 		{

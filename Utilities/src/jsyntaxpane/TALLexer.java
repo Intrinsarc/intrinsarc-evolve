@@ -68,7 +68,7 @@ public final class TALLexer implements Lexer
 					return new Token(TokenType.KEYWORD, start, length);
 				else
 				if (isKeyword(b.toString(), MODIFIERS))
-					return new Token(TokenType.IDENT, start, length);					
+					return new Token(TokenType.COMMENT, start, length);					
 				else
 				if (isKeyword(b.toString(), INSIDE_KEYWORDS))
 					return new Token(TokenType.REGEX, start, length);					
