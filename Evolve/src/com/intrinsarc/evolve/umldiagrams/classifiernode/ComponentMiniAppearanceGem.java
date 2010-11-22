@@ -319,8 +319,11 @@ public class ComponentMiniAppearanceGem implements Gem
 			}
 
 			JMenuItem javaCode = makeShowJavaCodeItem("Show Java code", coordinator, perspective, comp);			
-      menu.add(javaCode);
+			menu.add(javaCode);
       javaCode.setEnabled(comp.isLeaf(perspective));
+      
+      JMenuItem bbCode = PackageMiniAppearanceGem.makeShowBackboneCodeItem("Show Backbone code", coordinator, perspective, comp, BackbonePrinterMode.REAL_NAMES);
+      menu.add(bbCode);
 
 			Utilities.addSeparator(menu);
 		}
