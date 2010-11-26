@@ -10,3 +10,4 @@ glob:CarRentalGUI/war/WEB-INF/classes/com/intrinsarc/carrentalgui/CarRentalGUI.g
 
 syntax: regexp
 ^GUITutorial/BB$
+glob:ODB-Libraries/libs-2.02_1/log/
