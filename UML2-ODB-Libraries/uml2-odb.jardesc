@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <jardesc>
-    <jar path="./UML2-ODB-Libraries/uml2-odb-latest.jar"/>
+    <jar path="../uml2repository/evolve/UML2-ODB-Libraries/uml2-odb-latest.jar"/>
     <options buildIfNeeded="true" compress="true" descriptionLocation="/UML2-ODB-Libraries/uml2-odb.jardesc" exportErrors="true" exportWarnings="true" includeDirectoryEntries="false" overwrite="true" saveDescription="true" useSourceFolders="false"/>
     <manifest generateManifest="true" manifestLocation="" manifestVersion="1.0" reuseManifest="false" saveManifest="false" usesManifest="true">
         <sealing sealJar="false">
