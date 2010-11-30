@@ -16,7 +16,9 @@ import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
+import com.intrinsarc.idraw.utilities.*;
 import com.intrinsarc.idraw.utility.*;
+import com.intrinsarc.repository.modelmover.*;
 
 import edu.umd.cs.jazz.util.*;
 

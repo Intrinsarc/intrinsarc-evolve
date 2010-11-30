@@ -7,6 +7,8 @@ import javax.swing.*;
 
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.utilities.*;
+import com.intrinsarc.repository.modelmover.*;
 
 /**
  *

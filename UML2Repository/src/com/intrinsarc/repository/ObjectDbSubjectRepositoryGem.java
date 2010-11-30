@@ -1,5 +1,19 @@
 package com.intrinsarc.repository;
 
+/**
+ * todo:
+ * 1. make sure full odb + undo/redo is working
+ * 2. import base model into database on new model
+ * 3. stop odr files being written
+ * 4. test multi-user undo/redo
+ * 5. color diagram with out of date info
+ * 6. limit community users to 10 mins or 2 max
+ * 7. test import/export extensively
+ * 8. stop garbage collect on import, test multi-user import
+ * 9. prevent garbage collection on remote repository
+ * 10. package up distribution in a neat way...
+ */
+
 import java.io.*;
 import java.text.*;
 import java.util.*;
@@ -19,6 +33,7 @@ import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.notifications.*;
 import com.intrinsarc.repository.garbagecollector.*;
+import com.intrinsarc.repository.modelmover.*;
 import com.intrinsarc.repositorybase.*;
 
 public class ObjectDbSubjectRepositoryGem implements Gem
@@ -70,14 +85,27 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
 		public void undoTransaction()
 		{
+      GlobalSubjectRepository.ignoreUpdates = true;
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      start();
 			undoredo.undo();
+			end();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
 		}
 		
 		public void redoTransaction()
 		{
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      GlobalSubjectRepository.ignoreUpdates = false;
+      start();
 			undoredo.redo();
+			end();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      GlobalSubjectRepository.ignoreUpdates = true;
+      
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
 		}
@@ -134,6 +162,9 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     {
       int changed = 0;
       
+    	undoredo.ignoreNotifications();
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      
       // save each diagram
       start();
       for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
@@ -151,7 +182,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
           J_Diagram oldJDiagram = holder.getDiagram();
 
           // save the new diagram
-          J_Diagram newJDiagram =new PersistentDiagramToDbDiagramTranslator(diagram.makePersistentDiagram()).translate(holder);
+          J_Diagram newJDiagram = new PersistentDiagramToDbDiagramTranslator(diagram.makePersistentDiagram()).translate(holder);
           holder.setDiagram(newJDiagram);
 
           // possibly delete the old diagram
@@ -172,6 +203,10 @@ public class ObjectDbSubjectRepositoryGem implements Gem
         }
       }
       end();
+      
+    	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+    	undoredo.noticeNotifications();
+
       return ""; // null indicates failure...
     }
 
@@ -204,6 +239,8 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
     public void startTransaction(String redoName, String undoName)
     {
+      EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+      GlobalSubjectRepository.ignoreUpdates = false;
       start();
       pm.evictAll();
       if (!GlobalSubjectRepository.ignoreUpdates)
@@ -212,12 +249,14 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
     public void commitTransaction()
     {
+      EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
       end();
       if (!GlobalSubjectRepository.ignoreUpdates)
       	undoredo.commitTransaction();
       for (SubjectRepositoryListenerFacet listener : listeners)
         listener.sendChanges();
       longRunningTransaction = false;
+      GlobalSubjectRepository.ignoreUpdates = true;
     }
 
     public void incrementPersistentDelete(Element element)
@@ -422,10 +461,11 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		}
   }
   
-  public static ObjectDbSubjectRepositoryGem openRepository(String hostName, String dbName) throws RepositoryOpeningException
+  public static ObjectDbSubjectRepositoryGem openRepository(String hostName, String dbName, String baseModel) throws RepositoryOpeningException
   {
     ObjectDbSubjectRepositoryGem repository = new ObjectDbSubjectRepositoryGem(hostName, dbName);
-    repository.openDatabase();
+    GlobalSubjectRepository.ignoreUpdates = true;
+    repository.openDatabase(baseModel);
     return repository;
   }
   
@@ -436,7 +476,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   }
   
   
-  private void openDatabase() throws RepositoryOpeningException
+  private void openDatabase(String baseModel) throws RepositoryOpeningException
   {
     // Obtain a database connection:
     Properties properties = new Properties();
@@ -475,8 +515,12 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     if (size == 0)
     {
       start();
-      topLevel = common.initialiseModel(true);
-      pm.makePersistent(topLevel);
+/*      topLevel = common.initialiseModel(true);
+      pm.makePersistent(topLevel); */
+      
+      // load in the base model
+      XMLSubjectRepositoryGem base = XMLSubjectRepositoryGem.openFile(baseModel, false, false);
+      
       end();
     }
     else

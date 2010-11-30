@@ -23,6 +23,7 @@ import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.utility.*;
 import com.intrinsarc.repository.*;
+import com.intrinsarc.repository.modelmover.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 

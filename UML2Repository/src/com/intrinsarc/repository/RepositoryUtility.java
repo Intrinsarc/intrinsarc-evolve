@@ -18,10 +18,12 @@ public class RepositoryUtility
 	public static final ImageIcon MAIN_FRAME_ICON = IconLoader.loadIcon("xml.png");
 	public static final ImageIcon LOCALDB_ICON = IconLoader.loadIcon("database.png");
 
-	public static void useObjectDbRepository(String hostName, String dbName) throws RepositoryOpeningException
+	public static void useObjectDbRepository(String hostName, String dbName, String baseModel) throws RepositoryOpeningException
 	{
 	  closeExisting();
-	  ObjectDbSubjectRepositoryGem repositoryGem = ObjectDbSubjectRepositoryGem.openRepository(hostName, dbName);
+	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
+	  ObjectDbSubjectRepositoryGem repositoryGem = ObjectDbSubjectRepositoryGem.openRepository(hostName, dbName, baseModel);
+	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
 	  GlobalSubjectRepository.repository = repos;
 	}
@@ -29,7 +31,9 @@ public class RepositoryUtility
 	public static void useObjectDbRepository(ObjectDbSubjectRepositoryGem repositoryGem)
 	{
 	  closeExisting();
+	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
 	  SubjectRepositoryFacet repos = repositoryGem.getSubjectRepositoryFacet();
+	  EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 	  GlobalSubjectRepository.repository = repos;
 	}
 	

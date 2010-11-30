@@ -12,6 +12,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 
+import org.eclipse.emf.common.util.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
@@ -34,6 +35,7 @@ import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.utility.*;
 import com.intrinsarc.repository.*;
+import com.intrinsarc.repository.modelmover.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
@@ -602,6 +604,7 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
+			EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 			GlobalSubjectRepository.repository.refreshAll();
 			GlobalDiagramRegistry.registry.refreshAllDiagrams();
 			coordinator.clearTransactionHistory();
@@ -1122,21 +1125,18 @@ public class ApplicationWindow extends SmartJFrame
 			int chosen = askAboutSave("Create new model...", false);
 			if (chosen == JOptionPane.CANCEL_OPTION)
 				return;
-			String repos = "" +
-				GlobalPreferences.preferences.getRawPreference(Evolve.EVOLVE).asString() +
-				"/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
 			
 			try
 			{
 				// look for the base repository
-				RepositoryUtility.useXMLRepository(repos, false);
+				RepositoryUtility.useXMLRepository(getBaseModel(), false);
 			}
 			catch (RepositoryOpeningException ex)
 			{
 				coordinator.invokeAsDialog(
 						ERROR_ICON,
 						"Error opening base model",
-						new JLabel("<html>Cannot open base repository:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + repos + "<br>Defaulting to empty model"), null, -1, null);
+						new JLabel("<html>Cannot open base repository:<br>&nbsp;&nbsp;&nbsp;&nbsp;" + getBaseModel() + "<br>Defaulting to empty model"), null, -1, null);
 				try
 				{
 					RepositoryUtility.useXMLRepository(null, false);
@@ -1221,7 +1221,7 @@ public class ApplicationWindow extends SmartJFrame
 			recent.setLastVisitedDirectory(new File(fileName));
 			try
 			{
-				RepositoryUtility.useObjectDbRepository(null, fileName);
+				RepositoryUtility.useObjectDbRepository(null, fileName, getBaseModel());
 				applicationWindowCoordinator.switchRepository();
 				recent.addFile(fileName);
 			} catch (RepositoryOpeningException ex)
@@ -1233,6 +1233,13 @@ public class ApplicationWindow extends SmartJFrame
 			}
 		}
 	};
+	
+	private String getBaseModel()
+	{
+		return
+			GlobalPreferences.preferences.getRawPreference(Evolve.EVOLVE).asString() +
+			"/models/base" + XMLSubjectRepositoryGem.UML2_SUFFIX;
+	}
 
 	class OpenRemoteDbRepositoryAction extends AbstractAction
 	{
@@ -1255,7 +1262,7 @@ public class ApplicationWindow extends SmartJFrame
 				if (info == null)
 					return;
 
-				RepositoryUtility.useObjectDbRepository(info[0], info[1]);
+				RepositoryUtility.useObjectDbRepository(info[0], info[1], getBaseModel());
 				applicationWindowCoordinator.switchRepository();
 				name = info[0] + ":" + info[1];
 				recent.addFile(name);
@@ -2255,13 +2262,13 @@ public class ApplicationWindow extends SmartJFrame
 						String hostName = bits.get(0);
 						String dbName = bits.get(1);
 		
-						RepositoryUtility.useObjectDbRepository(hostName, dbName);
+						RepositoryUtility.useObjectDbRepository(hostName, dbName, getBaseModel());
 						applicationWindowCoordinator.switchRepository();
 					}
 					else if (name.endsWith(XMLSubjectRepositoryGem.UML2DB_SUFFIX))
 					{
 						monitor.displayInterimPopup(SAVE_ICON, "Loading local database repository", name, null, -1);
-						RepositoryUtility.useObjectDbRepository(null, name);
+						RepositoryUtility.useObjectDbRepository(null, name, getBaseModel());
 						applicationWindowCoordinator.switchRepository();
 					}
 					else
