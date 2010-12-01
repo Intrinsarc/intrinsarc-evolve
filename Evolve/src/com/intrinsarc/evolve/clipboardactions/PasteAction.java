@@ -9,8 +9,6 @@ import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
-import com.intrinsarc.idraw.utilities.*;
-import com.intrinsarc.repository.modelmover.*;
 
 /**
  *

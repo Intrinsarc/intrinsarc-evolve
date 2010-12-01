@@ -5,11 +5,9 @@ import java.util.*;
 
 import javax.swing.*;
 
-import com.intrinsarc.evolve.clipboardactions.CopyAction.*;
+import com.intrinsarc.evolve.clipboardactions.CopyAction.CopyCommandGenerator;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.idraw.utilities.*;
-import com.intrinsarc.repository.modelmover.*;
 
 /**
  *

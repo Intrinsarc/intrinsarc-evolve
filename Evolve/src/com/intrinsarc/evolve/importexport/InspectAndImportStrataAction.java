@@ -6,6 +6,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.util.*;
 import java.util.List;
+import java.util.regex.*;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -135,13 +136,13 @@ public class InspectAndImportStrataAction extends AbstractAction
 				{
 					if (element instanceof Package && element != top)
 						return;
-					DefaultMutableTreeNode next = new DefaultMutableTreeNode(ModelMover.getSensibleDetail(element)); 
+					DefaultMutableTreeNode next = new DefaultMutableTreeNode(getSensibleDetail(element)); 
 					node.add(next);
 			    // handle any containments
 			    for (Object containedObject : element.eClass().getEAllContainments())
 			    {
 			      EReference contained = (EReference) containedObject;
-			      if (ModelMover.containmentCanBeSet(contained))
+			      if (ImportExportBase.containmentCanBeSet(contained))
 			      {
 			      	if (element.eGet(contained) != null)
 			      	{
@@ -178,7 +179,29 @@ public class InspectAndImportStrataAction extends AbstractAction
 		{
 			export.close();
 		}
-	}		
+	}
+	
+	private static final Pattern UNNAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)", Pattern.MULTILINE | Pattern.DOTALL);
+	private static final Pattern NAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)name\\:\\ ([^,]*)(.*)", Pattern.MULTILINE | Pattern.DOTALL);
+	public static String getSensibleDetail(Element element)
+	{
+		String detail = element.toString();
+		Matcher match = NAMED_SENSIBLE.matcher(detail);
+		if (match.matches())
+		{
+			return "<html>" + match.group(1) + " <b>" + match.group(3) + "</b> " + match.group(2) + "name: " + match.group(3) + match.group(4);
+		}
+		else
+		{
+			match = UNNAMED_SENSIBLE.matcher(detail);
+			if (match.matches())
+	  	{
+				return "<html>" + match.group(1) + " " + match.group(2);
+	  	}
+			
+			return detail;
+		}
+	}
 
 	private void importPackages(SubjectRepositoryFacet toImport)
 	{
@@ -198,10 +221,11 @@ public class InspectAndImportStrataAction extends AbstractAction
 			return;
 		}
 		
-		ModelMover importer = new ModelMover(frame, coordinator.getCurrentDiagramView());
+		Package current = (Package) coordinator.getCurrentDiagramView().getDiagram().getLinkedObject();
+		ModelImporter importer = new ModelImporter(current, toImport);
 		try
 		{
-			final ImportResults results = importer.importPackages(monitor, toImport);
+			final ImportResults results = importer.importPackages(monitor);
 
 			boolean noBadReferences = results.getLeftOverOutsideReferences().isEmpty();
 			boolean noRemovals = results.getSafelyRemoved().isEmpty() && results.getUnsafelyRemoved().isEmpty();

@@ -2,23 +2,16 @@ package com.intrinsarc.evolve.clipboardactions;
 
 import java.awt.*;
 import java.awt.event.*;
-import java.io.*;
 import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
 
-import org.freehep.graphicsio.emf.*;
-
-import com.intrinsarc.evolve.freeform.grouper.*;
 import com.intrinsarc.evolve.packageview.base.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
-import com.intrinsarc.idraw.utilities.*;
-import com.intrinsarc.idraw.utility.*;
-import com.intrinsarc.repository.modelmover.*;
 
 import edu.umd.cs.jazz.util.*;
 

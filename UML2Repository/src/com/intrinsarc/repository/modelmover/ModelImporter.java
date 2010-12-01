@@ -1,86 +1,33 @@
 package com.intrinsarc.repository.modelmover;
 
-import java.net.*;
 import java.util.*;
-import java.util.regex.*;
 
 import javax.swing.*;
 
-import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.idraw.environment.*;
-import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.idraw.utilities.*;
-import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 
-
-public class ModelMover
+public class ModelImporter extends ImportExportBase
 {
-	public static final ImageIcon IMPORT_ICON = IconLoader.loadIcon("import.png");
-	public static final ImageIcon EXPORT_ICON = IconLoader.loadIcon("export.png");
-	private static final Pattern UNNAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)", Pattern.MULTILINE | Pattern.DOTALL);
-	private static final Pattern NAMED_SENSIBLE = Pattern.compile("org\\.eclipse\\.uml2\\.impl\\.(.*)Impl@.*\\ (\\(j_.*)name\\:\\ ([^,]*)(.*)", Pattern.MULTILINE | Pattern.DOTALL);
-	
-	private DiagramViewFacet diagramView;
-  /** save any references for later fixing */
-  private List<TransientSavedReference> savedReferences;
-  /** a from -> to relation */
-  private Map<String /*UUID*/, Element> translate;
-  private Model topLevelOfFrom;
-  private JFrame frame;
-
-  
-  public ModelMover(JFrame frame, DiagramViewFacet diagramView)
-  {
-    this.diagramView = diagramView;
-    this.frame = frame;
-  }
-  
-  public static String getSensibleDetail(Element element)
-  {
-  	String detail = element.toString();
-  	Matcher match = NAMED_SENSIBLE.matcher(detail);
-  	if (match.matches())
-  	{
-			return "<html>" + match.group(1) + " <b>" + match.group(3) + "</b> " + match.group(2) + "name: " + match.group(3) + match.group(4);
-  	}
-  	else
-  	{
-  		match = UNNAMED_SENSIBLE.matcher(detail);
-  		if (match.matches())
-    	{
-  			return "<html>" + match.group(1) + " " + match.group(2);
-    	}
-  		
-  		return detail;
-  	}
-  }
-
-  public Set<Package> getSelectedTopLevelPackages()
-  {
-    // collect the top level elements we've been asked to export
-    DiagramFacet diagram = diagramView.getDiagram();
-    Set<String> selected = CopyToDiagramUtilities.getFigureIdsIncludedInSelection(diagramView, false);
-    Collection<String> topLevel = CopyToDiagramUtilities.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
-    
-    // turn these into elements
-    Set<Package> elements = new HashSet<Package>();
-    for (String id : topLevel)
-    {
-      Element subject = (Element) diagram.retrieveFigure(id).getSubject();
-      if (subject != null && !subject.isThisDeleted() && subject instanceof Package)
-        elements.add((Package) subject);
-    }
-    return elements;
-  }
-
+	private static final ImageIcon IMPORT_ICON = IconLoader.loadIcon("import.png");
   private static final String TITLE = "Importing...";
-  public ImportResults importPackages(final LongRunningTaskProgressMonitorFacet monitor, final SubjectRepositoryFacet toImport) throws RepositoryOpeningException
+	
+  private Package importInto;
+  private SubjectRepositoryFacet toImport;
+
+  
+  public ModelImporter(Package importInto, SubjectRepositoryFacet toImport)
+  {
+    this.importInto = importInto;
+    this.toImport = toImport;
+  }
+  
+  public ImportResults importPackages(final LongRunningTaskProgressMonitorFacet monitor) throws RepositoryOpeningException
   {
   	final ImportResults importResults = new ImportResults();
   	final RepositoryOpeningException savedException[] = {null};
@@ -94,7 +41,6 @@ public class ModelMover
   			{
 	  	    SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 	        repository.startTransaction("", "");
-	  	  	final Package importInto = (Package) diagramView.getDiagram().getLinkedObject();
 	  	  	
 	  	    // clear some variables
 	  	    savedReferences = new ArrayList<TransientSavedReference>();
@@ -122,7 +68,6 @@ public class ModelMover
 	  	    		return;
 	  	    	}
 	  	    }
-	  	    
 
 	  	    // copy over into the new model
 	  	    Map<String, Element> safe = new LinkedHashMap<String, Element>();
@@ -410,236 +355,4 @@ public class ModelMover
 		}
 		return bad;
 	}
-
-	public String exportPackages(final LongRunningTaskProgressMonitorFacet monitor)
-  {
-		final String savedName[] = {null};
-		monitor.invokeActivityAndMonitorProgress(new Runnable()
-		{
-			public void run()
-			{
-		    // initialise any fields
-		    savedReferences = new ArrayList<TransientSavedReference>();
-		    translate = new HashMap<String, Element>();
-		    topLevelOfFrom = GlobalSubjectRepository.repository.getTopLevelModel();
-		    
-		    XMLSubjectRepositoryGem repositoryGem;
-		    try
-		    {
-		      repositoryGem = XMLSubjectRepositoryGem.openFile(null, false, false);
-		    }
-		    catch (RepositoryOpeningException e)
-		    {
-		      // will not happen, as we are creating a new repository
-		      return;
-		    }
-		    SubjectRepositoryFacet to = repositoryGem.getSubjectRepositoryFacet();
-		    
-		    try
-		    {
-			    // copy each top level element to the model in the new repository
-			    Set<Package> selected = getSelectedTopLevelPackages();
-			    Model top = to.getTopLevelModel();
-			    
-			    // set some info
-			    try
-					{
-						top.setDocumentation("Exported from " + InetAddress.getLocalHost().getHostName() + " on " + new Date());
-					}
-			    catch (UnknownHostException e)
-					{
-						top.setDocumentation("Exported on " + new Date());
-					}
-			    
-			    for (Package pkg : selected)
-			    {
-			      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Exporting package " + pkg.getName(), null, -1);
-			      Package newPkg = (Package) copyElementAndContained(
-			      		pkg,
-			          top,
-			          UML2Package.eINSTANCE.getPackage_ChildPackages(),
-			          true);
-			      // make this read-only
-			      newPkg.setReadOnly(true);
-			      lazyOn();
-			      top.getChildPackages().add(newPkg);		      
-			      lazyOff();
-			    }
-			
-			    // fix up the references and save
-			    lazyOn();
-		      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Reestablishing references", null, -1);
-			    for (TransientSavedReference ref : reestablishReferences())
-			    	createSavedReference(top, ref);
-		      monitor.displayInterimPopup(null, "", "", null, 0);
-			    String fileName = to.saveTo(
-			    		frame,
-			    		XMLSubjectRepositoryGem.UML2_EXPORT_FILES, XMLSubjectRepositoryGem.UML2_EXPORT_NO_DOT,
-			    		PreferenceTypeDirectory.recent.getLastVisitedDirectory());
-			    lazyOff();
-			    savedName[0] = fileName;
-		    }
-		    finally
-		    {
-		    	to.close();
-		    }
-			}
-		});
-		
-		return savedName[0];
-  }
-  
-  private List<TransientSavedReference> reestablishReferences()
-  {
-  	List<TransientSavedReference> outside = new ArrayList<TransientSavedReference>();
-    lazyOn();
-    for (TransientSavedReference reference : savedReferences)
-    {
-      // see if we can find the object in the new repository
-      Element toInNew = translate.get(reference.getTo().getUuid());
-      if (toInNew == null)
-      {
-				if (reference.getTo() != topLevelOfFrom)
-					outside.add(reference);
-      }
-      else
-      {
-        EReference ref = reference.getReferred();
-        if (ref.isMany())
-          ((List) reference.getFrom().eGet(ref)).add(toInNew);
-        else
-          reference.getFrom().eSet(ref, toInNew);
-      }
-    }
-    lazyOff();
-    return outside;
-  }
-
-  private void createSavedReference(Model top, TransientSavedReference reference)
-	{
-  	SavedReference saved = (SavedReference) top.createOwnedMember(UML2Package.eINSTANCE.getSavedReference());
-  	saved.setFrom(reference.getFrom().getUuid());
-  	saved.setToEClass(reference.getTo().eClass());
-  	saved.setTo(reference.getTo().getUuid());
-  	saved.setFeature(reference.getReferred());
-  	saved.setDocumentation(name(reference.getReferred()) + " from " + name(reference.getFrom()) + " to " + name(reference.getTo()));
-	}
-  
-	private String name(EReference ref)
-	{
-		return ref.getName();
-	}
-
-	private String name(Element elem)
-	{
-		return ((elem instanceof NamedElement) ? ((NamedElement) elem).getName() : "") + " (" + elem.eClass().getName() + ")";
-	}
-
-	private Element copyElementAndContained(Element from, Element toParent, EReference relationshipToParent, boolean checkDeletions)
-  {
-    // create the new element
-    EClass baseEClass = from.eClass();
-    Element exportedFrom = (Element) UML2Factory.eINSTANCE.create(baseEClass);
-    exportedFrom.setUuid(from.getUuid());
-    translate.put(from.getUuid(), exportedFrom);
-    
-    // handle any attributes, containments and references
-    for (Object attrObject : baseEClass.getEAllAttributes())
-    {
-      EAttribute attr = (EAttribute) attrObject;
-      if (attributeCanBeSet(attr))
-        exportedFrom.eSet(attr, from.eGet(attr));
-    }
-    
-    // handle any containments
-    for (Object containedObject : baseEClass.getEAllContainments())
-    {
-      EReference contained = (EReference) containedObject;
-      if (containmentCanBeSet(contained))
-      {
-        if (contained.isMany())
-        {
-          List fromElements = (List) from.eGet(contained);
-          if (fromElements != null)
-          {
-            lazyOn();
-            List toElements = (List) exportedFrom.eGet(contained);
-            for (Object element : fromElements)
-            {
-          		// don't transfer over saved references
-            	if (!(element instanceof SavedReference))
-            	{
-	              Element fromElement = (Element) element;
-	              if (!checkDeletions || !fromElement.isThisDeleted())
-	                toElements.add(copyElementAndContained((Element) element, exportedFrom, contained, checkDeletions));
-            	}
-            }
-            lazyOff();
-          }
-        }
-        else
-        {
-          Element fromElement = (Element) from.eGet(contained);
-          if (fromElement != null && (!checkDeletions || !fromElement.isThisDeleted()))
-            exportedFrom.eSet(
-                contained,
-                copyElementAndContained(fromElement, exportedFrom, contained, checkDeletions));
-        }
-      }
-    }    
-
-    for (Object referredObject : baseEClass.getEAllReferences())
-    {
-      EReference referred = (EReference) referredObject;
-      if (referenceCanBeSet(referred))
-      {
-        if (referred.isMany())
-        {
-          List toElements = (List) from.eGet(referred);
-          if (toElements != null)
-          {
-            for (Object toObject : toElements)
-            {
-              Element toElement = (Element) toObject;
-              if (!checkDeletions || !toElement.isThisDeleted())
-                savedReferences.add(new TransientSavedReference(exportedFrom, referred, toElement));
-            }
-          }
-        }
-        else
-        {
-          Element toElement = (Element) from.eGet(referred);
-          if (toElement != null && (!checkDeletions || !toElement.isThisDeleted()))
-            savedReferences.add(new TransientSavedReference(exportedFrom, referred, toElement));
-        }
-      }
-    }
-
-    return exportedFrom;
-  }
-  
-  private boolean attributeCanBeSet(EAttribute attribute)
-	{
-  	return attribute.isChangeable() && !attribute.isDerived() && !attribute.isUnsettable();
-	}
-
-  private boolean referenceCanBeSet(EReference reference)
-	{
-  	return !reference.isContainment() && reference.isChangeable() && !reference.isDerived() && !reference.isUnsettable();
-	}
-
-  public static boolean containmentCanBeSet(EReference reference)
-	{
-  	return reference.isContainment() && reference.isChangeable() && !reference.isDerived() && !reference.isUnsettable();
-	}
-
-	private void lazyOn()
-  {
-    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
-  }
-
-  private void lazyOff()
-  {
-    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
-  }
 }

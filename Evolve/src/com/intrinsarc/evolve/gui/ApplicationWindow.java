@@ -1875,7 +1875,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				public boolean update()
 				{
-					return !new ModelMover(frame, coordinator.getCurrentDiagramView()).getSelectedTopLevelPackages().isEmpty();
+					return !ExportStrataAction.getSelectedTopLevelPackages(coordinator.getCurrentDiagramView()).isEmpty();
 				}
 			};
 			entries.add(new SmartMenuItemImpl("File", "ImportExport", exportItem));

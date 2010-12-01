@@ -7,9 +7,11 @@ import java.util.*;
 
 import javax.swing.*;
 
+import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.evolve.gui.*;
+import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.utility.*;
@@ -37,9 +39,9 @@ public class ExportStrataAction extends AbstractAction
 	
 	public void actionPerformed(ActionEvent e)
 	{
-		ModelMover exporter = new ModelMover(frame, coordinator.getCurrentDiagramView());
+		Set<Package> chosen = getSelectedTopLevelPackages(coordinator.getCurrentDiagramView());
+		ModelExporter exporter = new ModelExporter(frame, chosen);
 
-		Set<Package> chosen = exporter.getSelectedTopLevelPackages();
 		if (chosen.contains(GlobalSubjectRepository.repository.getTopLevelModel()))
 		{
 			popup.displayPopup(EXPORT_ICON, "Model export problem",
@@ -64,4 +66,23 @@ public class ExportStrataAction extends AbstractAction
 			GlobalSubjectRepository.ignoreUpdates = true;
 		}
 	}
+	
+	public static Set<Package> getSelectedTopLevelPackages(DiagramViewFacet diagramView)
+	{
+	  // collect the top level elements we've been asked to export
+	  DiagramFacet diagram = diagramView.getDiagram();
+	  Set<String> selected = CopyToDiagramUtilities.getFigureIdsIncludedInSelection(diagramView, false);
+	  Collection<String> topLevel = CopyToDiagramUtilities.getTopLevelFigureIdsOnly(diagramView.getDiagram(), selected, 0, true);
+	  
+	  // turn these into elements
+	  Set<Package> elements = new HashSet<Package>();
+	  for (String id : topLevel)
+	  {
+	    Element subject = (Element) diagram.retrieveFigure(id).getSubject();
+	    if (subject != null && !subject.isThisDeleted() && subject instanceof Package)
+	      elements.add((Package) subject);
+	  }
+	  return elements;
+	}
+
 }

@@ -4,7 +4,6 @@ import java.util.*;
 
 import com.intrinsarc.idraw.diagramsupport.moveandresize.*;
 import com.intrinsarc.idraw.foundation.*;
-import com.intrinsarc.idraw.utilities.*;
 
 /**
  *

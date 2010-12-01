@@ -1,4 +1,4 @@
-package com.intrinsarc.idraw.utilities;
+package com.intrinsarc.idraw.diagramsupport;
 
 import java.util.*;
 
