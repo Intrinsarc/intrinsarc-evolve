@@ -57,8 +57,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ModelItemProvider(AdapterFactory adapterFactory)
-	{
+	public ModelItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addViewpointPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addViewpointPropertyDescriptor(Object object)
-	{
+	protected void addViewpointPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +102,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Model"); //$NON-NLS-1$
 	}
 
@@ -117,8 +112,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Model)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Model_type") : //$NON-NLS-1$
@@ -132,12 +126,10 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Model.class))
-		{
+		switch (notification.getFeatureID(Model.class)) {
 			case UML2Package.MODEL__VIEWPOINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -152,8 +144,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -163,8 +154,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -185,8 +175,7 @@ public class ModelItemProvider
 			childFeature == UML2Package.eINSTANCE.getPackage_PackageExtension() ||
 			childFeature == UML2Package.eINSTANCE.getPackage_J_diagramHolder();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -200,8 +189,7 @@ public class ModelItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

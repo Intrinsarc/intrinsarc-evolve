@@ -54,8 +54,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateableClassifierItemProvider(AdapterFactory adapterFactory)
-	{
+	public TemplateableClassifierItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -81,8 +78,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((TemplateableClassifier)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TemplateableClassifier_type") : //$NON-NLS-1$
@@ -96,8 +92,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -109,8 +104,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -120,8 +114,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -129,8 +122,7 @@ public class TemplateableClassifierItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies() ||
 			childFeature == UML2Package.eINSTANCE.getClassifier_Substitution();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -144,8 +136,7 @@ public class TemplateableClassifierItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

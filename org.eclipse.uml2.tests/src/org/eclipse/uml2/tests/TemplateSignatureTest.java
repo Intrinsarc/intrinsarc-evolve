@@ -30,8 +30,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(TemplateSignatureTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateSignatureTest(String name)
-	{
+	public TemplateSignatureTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TemplateSignature getFixture()
-	{
+	private TemplateSignature getFixture() {
 		return (TemplateSignature)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createTemplateSignature());
 	}
 
@@ -74,8 +70,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class TemplateSignatureTest extends ElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

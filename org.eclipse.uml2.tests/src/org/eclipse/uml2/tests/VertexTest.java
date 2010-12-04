@@ -28,8 +28,7 @@ public abstract class VertexTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VertexTest(String name)
-	{
+	public VertexTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class VertexTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Vertex getFixture()
-	{
+	private Vertex getFixture() {
 		return (Vertex)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class VertexTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

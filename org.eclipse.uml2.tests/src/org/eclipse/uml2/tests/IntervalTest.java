@@ -30,8 +30,7 @@ public class IntervalTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(IntervalTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class IntervalTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public IntervalTest(String name)
-	{
+	public IntervalTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class IntervalTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Interval getFixture()
-	{
+	private Interval getFixture() {
 		return (Interval)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class IntervalTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInterval());
 	}
 
@@ -74,8 +70,7 @@ public class IntervalTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

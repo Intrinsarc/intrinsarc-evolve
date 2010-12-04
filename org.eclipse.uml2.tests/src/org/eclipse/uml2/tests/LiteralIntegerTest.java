@@ -37,8 +37,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(LiteralIntegerTest.class);
 	}
 
@@ -48,8 +47,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralIntegerTest(String name)
-	{
+	public LiteralIntegerTest(String name) {
 		super(name);
 	}
 
@@ -59,8 +57,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LiteralInteger getFixture()
-	{
+	private LiteralInteger getFixture() {
 		return (LiteralInteger)fixture;
 	}
 
@@ -70,8 +67,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createLiteralInteger());
 	}
 
@@ -81,8 +77,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -93,8 +88,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralInteger#isComputable()
 	 * @generated
 	 */
-	public void testIsComputable()
-	{
+	public void testIsComputable() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -106,8 +100,7 @@ public class LiteralIntegerTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralInteger#integerValue()
 	 * @generated
 	 */
-	public void testIntegerValue()
-	{
+	public void testIntegerValue() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -347,8 +347,7 @@ public final class InteractionOperator extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final InteractionOperator[] VALUES_ARRAY =
-		new InteractionOperator[]
-		{
+		new InteractionOperator[] {
 			SEQ_LITERAL,
 			ALT_LITERAL,
 			OPT_LITERAL,
@@ -377,13 +376,10 @@ public final class InteractionOperator extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static InteractionOperator get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static InteractionOperator get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			InteractionOperator result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -396,10 +392,8 @@ public final class InteractionOperator extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static InteractionOperator get(int value)
-	{
-		switch (value)
-		{
+	public static InteractionOperator get(int value) {
+		switch (value) {
 			case SEQ: return SEQ_LITERAL;
 			case ALT: return ALT_LITERAL;
 			case OPT: return OPT_LITERAL;
@@ -422,8 +416,7 @@ public final class InteractionOperator extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InteractionOperator(int value, String name)
-	{
+	private InteractionOperator(int value, String name) {
 		super(value, name);
 	}
 

@@ -30,8 +30,7 @@ public class ImplementationTest extends RealizationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ImplementationTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ImplementationTest extends RealizationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ImplementationTest(String name)
-	{
+	public ImplementationTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ImplementationTest extends RealizationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Implementation getFixture()
-	{
+	private Implementation getFixture() {
 		return (Implementation)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ImplementationTest extends RealizationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createImplementation());
 	}
 
@@ -74,8 +70,7 @@ public class ImplementationTest extends RealizationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ImplementationTest extends RealizationTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets()
-	{
+	public void testGetTargets() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class ImplementationTest extends RealizationTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources()
-	{
+	public void testGetSources() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

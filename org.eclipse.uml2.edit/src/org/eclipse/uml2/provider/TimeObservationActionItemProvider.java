@@ -57,8 +57,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeObservationActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public TimeObservationActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addNowPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNowPropertyDescriptor(Object object)
-	{
+	protected void addNowPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,10 +106,8 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTimeObservationAction_Now());
 		}
@@ -126,8 +120,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/TimeObservationAction"); //$NON-NLS-1$
 	}
 
@@ -137,8 +130,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((TimeObservationAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TimeObservationAction_type") : //$NON-NLS-1$
@@ -152,12 +144,10 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TimeObservationAction.class))
-		{
+		switch (notification.getFeatureID(TimeObservationAction.class)) {
 			case UML2Package.TIME_OBSERVATION_ACTION__NOW:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -172,8 +162,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -193,8 +182,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -204,8 +192,7 @@ public class TimeObservationActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getStructuralFeatureAction_Object() ||
 			childFeature == UML2Package.eINSTANCE.getWriteStructuralFeatureAction_Value();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -219,8 +206,7 @@ public class TimeObservationActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

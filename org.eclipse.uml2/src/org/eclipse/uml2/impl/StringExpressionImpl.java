@@ -74,13 +74,11 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected StringExpressionImpl()
-	{
+	protected StringExpressionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (StringExpressionImpl.class.equals(getClass()))
+		if (StringExpressionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -90,8 +88,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getStringExpression();
 	}
 
@@ -100,13 +97,9 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubExpressions()
-	{
-		if (subExpression == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSubExpressions() {
+		if (subExpression == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		subExpression = new com.intrinsarc.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
 			 		return subExpression;
@@ -123,12 +116,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSubExpressions()
-	{
-		if (subExpression == null)
-		{
-			
-		
+  public EList settable_getSubExpressions() {
+		if (subExpression == null) {
 			subExpression = new com.intrinsarc.emflist.PersistentEList(StringExpression.class, this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION);
 		}
 		return subExpression;
@@ -139,14 +128,11 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSubExpressions()
-	{
+  public java.util.ArrayList undeleted_getSubExpressions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (subExpression != null)
-		{
-			for (Object object : subExpression)
-			{
+		if (subExpression != null) {
+			for (Object object : subExpression) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -193,8 +179,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StringExpression getOwningExpression()
-	{
+	public StringExpression getOwningExpression() {
 		if (eContainerFeatureID != UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION) return null;
 		return (StringExpression)eContainer;
 	}
@@ -209,8 +194,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public StringExpression undeleted_getOwningExpression()
-	{
+  public StringExpression undeleted_getOwningExpression() {
 		StringExpression temp = getOwningExpression();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -222,11 +206,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOwningExpression(StringExpression newOwningExpression)
-	{
-
-		if (newOwningExpression != eContainer || (eContainerFeatureID != UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION && newOwningExpression != null))
-		{
+	public void setOwningExpression(StringExpression newOwningExpression) {
+		if (newOwningExpression != eContainer || (eContainerFeatureID != UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION && newOwningExpression != null)) {
 			if (EcoreUtil.isAncestor(this, newOwningExpression))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -248,8 +229,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		StringExpression owningExpression = getOwningExpression();			
 		if (owningExpression != null) {
 			return owningExpression;
@@ -263,12 +243,9 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.STRING_EXPRESSION__TEMPLATE_BINDING:
@@ -297,12 +274,9 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.STRING_EXPRESSION__OWNED_COMMENT:
@@ -329,12 +303,9 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.STRING_EXPRESSION__OWNING_EXPRESSION:
 					return eContainer.eInverseRemove(this, UML2Package.STRING_EXPRESSION__SUB_EXPRESSION, StringExpression.class, msgs);
 				default:
@@ -349,10 +320,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.STRING_EXPRESSION__OWNED_ELEMENT:
@@ -389,10 +358,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -441,10 +408,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -487,10 +452,8 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.STRING_EXPRESSION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.STRING_EXPRESSION__OWNED_ELEMENT:
@@ -527,8 +490,7 @@ public class StringExpressionImpl extends TemplateableElementImpl implements Str
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getStringExpression_SubExpression())) {
 			ownedElement.addAll(getSubExpressions());

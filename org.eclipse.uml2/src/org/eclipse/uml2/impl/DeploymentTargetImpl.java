@@ -84,13 +84,11 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DeploymentTargetImpl()
-	{
+	protected DeploymentTargetImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (DeploymentTargetImpl.class.equals(getClass()))
+		if (DeploymentTargetImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -100,8 +98,7 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDeploymentTarget();
 	}
 
@@ -110,13 +107,9 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeployments()
-	{
-		if (deployment == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeployments() {
+		if (deployment == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT, new int[] {UML2Package.DEPLOYMENT_TARGET__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 			 		return deployment;
@@ -133,12 +126,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getDeployments()
-	{
-		if (deployment == null)
-		{
-			
-		
+  public EList settable_getDeployments() {
+		if (deployment == null) {
 			deployment = new com.intrinsarc.emflist.PersistentEList(Deployment.class, this, UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT, new int[] {UML2Package.DEPLOYMENT_TARGET__CLIENT_DEPENDENCY}, UML2Package.DEPLOYMENT__LOCATION);
 		}
 		return deployment;
@@ -149,14 +138,11 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getDeployments()
-	{
+  public java.util.ArrayList undeleted_getDeployments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deployment != null)
-		{
-			for (Object object : deployment)
-			{
+		if (deployment != null) {
+			for (Object object : deployment) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -266,13 +252,9 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getClientDependencies() {
+		if (clientDependency == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.DEPLOYMENT_TARGET__CLIENT_DEPENDENCY, new int[] {UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 			 		return clientDependency;
@@ -289,12 +271,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getClientDependencies()
-	{
-		if (clientDependency == null)
-		{
-			
-		
+  public EList settable_getClientDependencies() {
+		if (clientDependency == null) {
 			clientDependency = new com.intrinsarc.emflist.PersistentEList(Dependency.class, this, UML2Package.DEPLOYMENT_TARGET__CLIENT_DEPENDENCY, new int[] {UML2Package.DEPLOYMENT_TARGET__DEPLOYMENT}, UML2Package.DEPENDENCY__CLIENT);
 		}
 		return clientDependency;
@@ -305,14 +283,11 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getClientDependencies()
-	{
+  public java.util.ArrayList undeleted_getClientDependencies() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (clientDependency != null)
-		{
-			for (Object object : clientDependency)
-			{
+		if (clientDependency != null) {
+			for (Object object : clientDependency) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -330,12 +305,9 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DEPLOYMENT_TARGET__TEMPLATE_BINDING:
@@ -362,12 +334,9 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DEPLOYMENT_TARGET__OWNED_COMMENT:
@@ -398,10 +367,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DEPLOYMENT_TARGET__OWNED_ELEMENT:
@@ -454,10 +421,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -528,10 +493,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -592,10 +555,8 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DEPLOYMENT_TARGET__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DEPLOYMENT_TARGET__OWNED_ELEMENT:
@@ -648,8 +609,7 @@ public abstract class DeploymentTargetImpl extends NamedElementImpl implements D
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getDeploymentTarget_Deployment())) {
 			ownedElement.addAll(getDeployments());

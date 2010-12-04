@@ -78,13 +78,11 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GeneralOrderingImpl()
-	{
+	protected GeneralOrderingImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (GeneralOrderingImpl.class.equals(getClass()))
+		if (GeneralOrderingImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -94,8 +92,7 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getGeneralOrdering();
 	}
 
@@ -104,14 +101,11 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence getBefore()
-	{
-		if (before != null && before.eIsProxy())
-		{
+	public EventOccurrence getBefore() {
+		if (before != null && before.eIsProxy()) {
 			EventOccurrence oldBefore = before;
 			before = (EventOccurrence)eResolveProxy((InternalEObject)before);
-			if (before != oldBefore)
-			{
+			if (before != oldBefore) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.GENERAL_ORDERING__BEFORE, oldBefore, before));
 			}
@@ -129,8 +123,7 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EventOccurrence undeleted_getBefore()
-	{
+  public EventOccurrence undeleted_getBefore() {
 		EventOccurrence temp = getBefore();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -142,8 +135,7 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence basicGetBefore()
-	{
+	public EventOccurrence basicGetBefore() {
 		return before;
 	}
 
@@ -152,13 +144,10 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetBefore(EventOccurrence newBefore, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetBefore(EventOccurrence newBefore, NotificationChain msgs) {
 		EventOccurrence oldBefore = before;
 		before = newBefore;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.GENERAL_ORDERING__BEFORE, oldBefore, newBefore);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -171,11 +160,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setBefore(EventOccurrence newBefore)
-	{
-
-		if (newBefore != before)
-		{
+	public void setBefore(EventOccurrence newBefore) {
+		if (newBefore != before) {
 			NotificationChain msgs = null;
 			if (before != null)
 				msgs = ((InternalEObject)before).eInverseRemove(this, UML2Package.EVENT_OCCURRENCE__TO_AFTER, EventOccurrence.class, msgs);
@@ -195,14 +181,11 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence getAfter()
-	{
-		if (after != null && after.eIsProxy())
-		{
+	public EventOccurrence getAfter() {
+		if (after != null && after.eIsProxy()) {
 			EventOccurrence oldAfter = after;
 			after = (EventOccurrence)eResolveProxy((InternalEObject)after);
-			if (after != oldAfter)
-			{
+			if (after != oldAfter) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.GENERAL_ORDERING__AFTER, oldAfter, after));
 			}
@@ -220,8 +203,7 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EventOccurrence undeleted_getAfter()
-	{
+  public EventOccurrence undeleted_getAfter() {
 		EventOccurrence temp = getAfter();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -233,8 +215,7 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EventOccurrence basicGetAfter()
-	{
+	public EventOccurrence basicGetAfter() {
 		return after;
 	}
 
@@ -243,13 +224,10 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetAfter(EventOccurrence newAfter, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetAfter(EventOccurrence newAfter, NotificationChain msgs) {
 		EventOccurrence oldAfter = after;
 		after = newAfter;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.GENERAL_ORDERING__AFTER, oldAfter, newAfter);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -262,11 +240,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAfter(EventOccurrence newAfter)
-	{
-
-		if (newAfter != after)
-		{
+	public void setAfter(EventOccurrence newAfter) {
+		if (newAfter != after) {
 			NotificationChain msgs = null;
 			if (after != null)
 				msgs = ((InternalEObject)after).eInverseRemove(this, UML2Package.EVENT_OCCURRENCE__TO_BEFORE, EventOccurrence.class, msgs);
@@ -286,12 +261,9 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.GENERAL_ORDERING__TEMPLATE_BINDING:
@@ -324,12 +296,9 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.GENERAL_ORDERING__OWNED_COMMENT:
@@ -362,10 +331,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.GENERAL_ORDERING__OWNED_ELEMENT:
@@ -420,10 +387,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -496,10 +461,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -563,10 +526,8 @@ public class GeneralOrderingImpl extends NamedElementImpl implements GeneralOrde
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.GENERAL_ORDERING__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.GENERAL_ORDERING__OWNED_ELEMENT:

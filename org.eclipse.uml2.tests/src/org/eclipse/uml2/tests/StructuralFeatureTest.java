@@ -52,8 +52,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuralFeatureTest(String name)
-	{
+	public StructuralFeatureTest(String name) {
 		super(name);
 	}
 
@@ -63,8 +62,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StructuralFeature getFixture()
-	{
+	private StructuralFeature getFixture() {
 		return (StructuralFeature)fixture;
 	}
 
@@ -75,8 +73,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#getLower()
 	 * @generated
 	 */
-	public void testGetLower()
-	{
+	public void testGetLower() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -88,8 +85,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#getUpper()
 	 * @generated
 	 */
-	public void testGetUpper()
-	{
+	public void testGetUpper() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +97,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#lowerBound()
 	 * @generated
 	 */
-	public void testLowerBound()
-	{
+	public void testLowerBound() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +109,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#upperBound()
 	 * @generated
 	 */
-	public void testUpperBound()
-	{
+	public void testUpperBound() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -127,8 +121,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#isMultivalued()
 	 * @generated
 	 */
-	public void testIsMultivalued()
-	{
+	public void testIsMultivalued() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -140,8 +133,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#includesCardinality(int)
 	 * @generated
 	 */
-	public void testIncludesCardinality__int()
-	{
+	public void testIncludesCardinality__int() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -153,8 +145,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#includesMultiplicity(org.eclipse.uml2.MultiplicityElement)
 	 * @generated
 	 */
-	public void testIncludesMultiplicity__MultiplicityElement()
-	{
+	public void testIncludesMultiplicity__MultiplicityElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -166,8 +157,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperGt0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperGt0__DiagnosticChain_Map()
-	{
+	public void testValidateUpperGt0__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -179,8 +169,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateLowerGe0(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateLowerGe0__DiagnosticChain_Map()
-	{
+	public void testValidateLowerGe0__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -192,8 +181,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperGeLower(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperGeLower__DiagnosticChain_Map()
-	{
+	public void testValidateUpperGeLower__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -205,8 +193,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateLowerEqLowerbound(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateLowerEqLowerbound__DiagnosticChain_Map()
-	{
+	public void testValidateLowerEqLowerbound__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -218,8 +205,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#validateUpperEqUpperbound(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateUpperEqUpperbound__DiagnosticChain_Map()
-	{
+	public void testValidateUpperEqUpperbound__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -231,8 +217,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#lower()
 	 * @generated
 	 */
-	public void testLower()
-	{
+	public void testLower() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -244,8 +229,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.MultiplicityElement#upper()
 	 * @generated
 	 */
-	public void testUpper()
-	{
+	public void testUpper() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -259,8 +243,7 @@ public abstract class StructuralFeatureTest extends FeatureTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

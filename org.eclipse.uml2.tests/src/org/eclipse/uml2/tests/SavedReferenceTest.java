@@ -32,8 +32,7 @@ public class SavedReferenceTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(SavedReferenceTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class SavedReferenceTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SavedReferenceTest(String name)
-	{
+	public SavedReferenceTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class SavedReferenceTest extends PackageableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private SavedReference getFixture()
-	{
+	private SavedReference getFixture() {
 		return (SavedReference)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class SavedReferenceTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createSavedReference());
 	}
 
@@ -76,8 +72,7 @@ public class SavedReferenceTest extends PackageableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

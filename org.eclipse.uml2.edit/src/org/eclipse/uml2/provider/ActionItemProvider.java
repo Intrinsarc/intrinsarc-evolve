@@ -60,8 +60,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public ActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addEffectPropertyDescriptor(object);
@@ -93,8 +90,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEffectPropertyDescriptor(Object object)
-	{
+	protected void addEffectPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -114,8 +110,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOutputPropertyDescriptor(Object object)
-	{
+	protected void addOutputPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -137,8 +132,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInputPropertyDescriptor(Object object)
-	{
+	protected void addInputPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -160,8 +154,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContextPropertyDescriptor(Object object)
-	{
+	protected void addContextPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -183,8 +176,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocalPreconditionPropertyDescriptor(Object object)
-	{
+	protected void addLocalPreconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -206,8 +198,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLocalPostconditionPropertyDescriptor(Object object)
-	{
+	protected void addLocalPostconditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -231,10 +222,8 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getAction_LocalPrecondition());
 			childrenFeatures.add(UML2Package.eINSTANCE.getAction_LocalPostcondition());
@@ -247,8 +236,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -261,8 +249,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Action"); //$NON-NLS-1$
 	}
 
@@ -272,8 +259,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Action)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Action_type") : //$NON-NLS-1$
@@ -287,12 +273,10 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Action.class))
-		{
+		switch (notification.getFeatureID(Action.class)) {
 			case UML2Package.ACTION__EFFECT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -311,8 +295,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -422,8 +405,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -431,8 +413,7 @@ public class ActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -446,8 +427,7 @@ public class ActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

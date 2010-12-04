@@ -30,8 +30,7 @@ public class InteractionTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InteractionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class InteractionTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionTest(String name)
-	{
+	public InteractionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class InteractionTest extends BehaviorTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Interaction getFixture()
-	{
+	private Interaction getFixture() {
 		return (Interaction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class InteractionTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInteraction());
 	}
 
@@ -74,8 +70,7 @@ public class InteractionTest extends BehaviorTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class InteractionTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class InteractionTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +107,7 @@ public class InteractionTest extends BehaviorTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

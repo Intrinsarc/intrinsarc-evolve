@@ -87,13 +87,11 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ParameterSetImpl()
-	{
+	protected ParameterSetImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ParameterSetImpl.class.equals(getClass()))
+		if (ParameterSetImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -103,8 +101,7 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getParameterSet();
 	}
 
@@ -113,13 +110,9 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getParameters()
-	{
-		if (parameter == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getParameters() {
+		if (parameter == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
 			 		return parameter;
@@ -136,12 +129,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getParameters()
-	{
-		if (parameter == null)
-		{
-			
-		
+  public EList settable_getParameters() {
+		if (parameter == null) {
 			parameter = new com.intrinsarc.emflist.PersistentEList(Parameter.class, this, UML2Package.PARAMETER_SET__PARAMETER, UML2Package.PARAMETER__PARAMETER_SET);
 		}
 		return parameter;
@@ -152,14 +141,11 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getParameters()
-	{
+  public java.util.ArrayList undeleted_getParameters() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (parameter != null)
-		{
-			for (Object object : parameter)
-			{
+		if (parameter != null) {
+			for (Object object : parameter) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -192,13 +178,9 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getConditions()
-	{
-		if (condition == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getConditions() {
+		if (condition == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		condition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
 			 		return condition;
@@ -215,12 +197,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getConditions()
-	{
-		if (condition == null)
-		{
-			
-		
+  public EList settable_getConditions() {
+		if (condition == null) {
 			condition = new com.intrinsarc.emflist.PersistentEList(Constraint.class, this, UML2Package.PARAMETER_SET__CONDITION);
 		}
 		return condition;
@@ -231,14 +209,11 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getConditions()
-	{
+  public java.util.ArrayList undeleted_getConditions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (condition != null)
-		{
-			for (Object object : condition)
-			{
+		if (condition != null) {
+			for (Object object : condition) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -299,12 +274,9 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PARAMETER_SET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PARAMETER_SET__TEMPLATE_BINDING:
@@ -331,12 +303,9 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PARAMETER_SET__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PARAMETER_SET__OWNED_COMMENT:
@@ -369,10 +338,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER_SET__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PARAMETER_SET__OWNED_ELEMENT:
@@ -425,10 +392,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER_SET__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -503,10 +468,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER_SET__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -570,10 +533,8 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PARAMETER_SET__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PARAMETER_SET__OWNED_ELEMENT:
@@ -626,8 +587,7 @@ public class ParameterSetImpl extends NamedElementImpl implements ParameterSet {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getParameterSet_Condition())) {
 			ownedElement.addAll(getConditions());

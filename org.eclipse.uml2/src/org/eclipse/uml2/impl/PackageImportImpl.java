@@ -97,13 +97,11 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PackageImportImpl()
-	{
+	protected PackageImportImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (PackageImportImpl.class.equals(getClass()))
+		if (PackageImportImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -113,8 +111,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getPackageImport();
 	}
 
@@ -123,8 +120,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public VisibilityKind getVisibility()
-	{
+	public VisibilityKind getVisibility() {
 		return visibility;
 	}
 
@@ -139,9 +135,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setVisibility(VisibilityKind newVisibility)
-	{
-
+	public void setVisibility(VisibilityKind newVisibility) {
 		VisibilityKind oldVisibility = visibility;
 		visibility = newVisibility == null ? VISIBILITY_EDEFAULT : newVisibility;
 		if (eNotificationRequired())
@@ -155,14 +149,11 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getImportedPackage()
-	{
-		if (importedPackage != null && importedPackage.eIsProxy())
-		{
+	public org.eclipse.uml2.Package getImportedPackage() {
+		if (importedPackage != null && importedPackage.eIsProxy()) {
 			org.eclipse.uml2.Package oldImportedPackage = importedPackage;
 			importedPackage = (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)importedPackage);
-			if (importedPackage != oldImportedPackage)
-			{
+			if (importedPackage != oldImportedPackage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PACKAGE_IMPORT__IMPORTED_PACKAGE, oldImportedPackage, importedPackage));
 			}
@@ -180,8 +171,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package undeleted_getImportedPackage()
-	{
+  public org.eclipse.uml2.Package undeleted_getImportedPackage() {
 		org.eclipse.uml2.Package temp = getImportedPackage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -193,8 +183,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package basicGetImportedPackage()
-	{
+	public org.eclipse.uml2.Package basicGetImportedPackage() {
 		return importedPackage;
 	}
 
@@ -203,9 +192,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportedPackage(org.eclipse.uml2.Package newImportedPackage)
-	{
-
+	public void setImportedPackage(org.eclipse.uml2.Package newImportedPackage) {
 		org.eclipse.uml2.Package oldImportedPackage = importedPackage;
 		importedPackage = newImportedPackage;
 		if (eNotificationRequired())
@@ -219,8 +206,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace getImportingNamespace()
-	{
+	public Namespace getImportingNamespace() {
 		if (eContainerFeatureID != UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE) return null;
 		return (Namespace)eContainer;
 	}
@@ -235,8 +221,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Namespace undeleted_getImportingNamespace()
-	{
+  public Namespace undeleted_getImportingNamespace() {
 		Namespace temp = getImportingNamespace();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -248,11 +233,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setImportingNamespace(Namespace newImportingNamespace)
-	{
-
-		if (newImportingNamespace != eContainer || (eContainerFeatureID != UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null))
-		{
+	public void setImportingNamespace(Namespace newImportingNamespace) {
+		if (newImportingNamespace != eContainer || (eContainerFeatureID != UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE && newImportingNamespace != null)) {
 			if (EcoreUtil.isAncestor(this, newImportingNamespace))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -274,8 +256,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validatePublicOrPrivate(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validatePublicOrPrivate(DiagnosticChain diagnostics, Map context) {
 		return PackageImportOperations.validatePublicOrPrivate(this, diagnostics, context);
 	}
 
@@ -284,8 +265,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		Namespace importingNamespace = getImportingNamespace();			
 		if (importingNamespace != null) {
 			return importingNamespace;
@@ -299,12 +279,9 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE:
@@ -325,12 +302,9 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PACKAGE_IMPORT__OWNED_COMMENT:
@@ -351,12 +325,9 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.PACKAGE_IMPORT__IMPORTING_NAMESPACE:
 					return eContainer.eInverseRemove(this, UML2Package.NAMESPACE__PACKAGE_IMPORT, Namespace.class, msgs);
 				default:
@@ -371,10 +342,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PACKAGE_IMPORT__OWNED_ELEMENT:
@@ -416,10 +385,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -463,10 +430,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -506,10 +471,8 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_IMPORT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PACKAGE_IMPORT__OWNED_ELEMENT:
@@ -549,8 +512,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -566,8 +528,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getPackageImport_ImportedPackage())) {
 			target.add(getImportedPackage());
@@ -581,8 +542,7 @@ public class PackageImportImpl extends DirectedRelationshipImpl implements Packa
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		super.getSourcesHelper(source);
 		Namespace importingNamespace = getImportingNamespace();
 		if (importingNamespace != null) {

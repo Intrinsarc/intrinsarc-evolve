@@ -58,8 +58,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeTriggerItemProvider(AdapterFactory adapterFactory)
-	{
+	public TimeTriggerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,10 +68,8 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsRelativePropertyDescriptor(object);
@@ -87,8 +84,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsRelativePropertyDescriptor(Object object)
-	{
+	protected void addIsRelativePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,8 +104,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addWhenPropertyDescriptor(Object object)
-	{
+	protected void addWhenPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,10 +128,8 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTimeTrigger_When());
 		}
@@ -149,8 +142,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/TimeTrigger"); //$NON-NLS-1$
 	}
 
@@ -160,8 +152,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((TimeTrigger)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_TimeTrigger_type") : //$NON-NLS-1$
@@ -175,12 +166,10 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TimeTrigger.class))
-		{
+		switch (notification.getFeatureID(TimeTrigger.class)) {
 			case UML2Package.TIME_TRIGGER__IS_RELATIVE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -198,8 +187,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -349,8 +337,7 @@ public class TimeTriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

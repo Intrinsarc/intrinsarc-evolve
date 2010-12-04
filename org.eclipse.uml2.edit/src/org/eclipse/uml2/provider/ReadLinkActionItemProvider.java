@@ -57,8 +57,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadLinkActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public ReadLinkActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addResultPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object)
-	{
+	protected void addResultPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,10 +106,8 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getReadLinkAction_Result());
 		}
@@ -126,8 +120,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ReadLinkAction"); //$NON-NLS-1$
 	}
 
@@ -137,8 +130,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ReadLinkAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ReadLinkAction_type") : //$NON-NLS-1$
@@ -152,12 +144,10 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ReadLinkAction.class))
-		{
+		switch (notification.getFeatureID(ReadLinkAction.class)) {
 			case UML2Package.READ_LINK_ACTION__RESULT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -172,8 +162,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -193,8 +182,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -202,8 +190,7 @@ public class ReadLinkActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -217,8 +204,7 @@ public class ReadLinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

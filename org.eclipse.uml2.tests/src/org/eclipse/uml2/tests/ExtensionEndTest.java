@@ -30,8 +30,7 @@ public class ExtensionEndTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExtensionEndTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ExtensionEndTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionEndTest(String name)
-	{
+	public ExtensionEndTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ExtensionEndTest extends PropertyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExtensionEnd getFixture()
-	{
+	private ExtensionEnd getFixture() {
 		return (ExtensionEnd)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ExtensionEndTest extends PropertyTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExtensionEnd());
 	}
 
@@ -74,8 +70,7 @@ public class ExtensionEndTest extends PropertyTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

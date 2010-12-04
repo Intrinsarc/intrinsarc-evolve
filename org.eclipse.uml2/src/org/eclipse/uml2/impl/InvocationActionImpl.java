@@ -90,13 +90,11 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InvocationActionImpl()
-	{
+	protected InvocationActionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (InvocationActionImpl.class.equals(getClass()))
+		if (InvocationActionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -106,8 +104,7 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInvocationAction();
 	}
 
@@ -116,13 +113,9 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getArguments()
-	{
-		if (argument == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getArguments() {
+		if (argument == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.INVOCATION_ACTION__ARGUMENT);
 			 		return argument;
@@ -139,12 +132,8 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getArguments()
-	{
-		if (argument == null)
-		{
-			
-		
+  public EList settable_getArguments() {
+		if (argument == null) {
 			argument = new com.intrinsarc.emflist.PersistentEList(InputPin.class, this, UML2Package.INVOCATION_ACTION__ARGUMENT);
 		}
 		return argument;
@@ -155,14 +144,11 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getArguments()
-	{
+  public java.util.ArrayList undeleted_getArguments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (argument != null)
-		{
-			for (Object object : argument)
-			{
+		if (argument != null) {
+			for (Object object : argument) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -223,14 +209,11 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Port getOnPort()
-	{
-		if (onPort != null && onPort.eIsProxy())
-		{
+	public Port getOnPort() {
+		if (onPort != null && onPort.eIsProxy()) {
 			Port oldOnPort = onPort;
 			onPort = (Port)eResolveProxy((InternalEObject)onPort);
-			if (onPort != oldOnPort)
-			{
+			if (onPort != oldOnPort) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.INVOCATION_ACTION__ON_PORT, oldOnPort, onPort));
 			}
@@ -248,8 +231,7 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Port undeleted_getOnPort()
-	{
+  public Port undeleted_getOnPort() {
 		Port temp = getOnPort();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -261,8 +243,7 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Port basicGetOnPort()
-	{
+	public Port basicGetOnPort() {
 		return onPort;
 	}
 
@@ -271,9 +252,7 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOnPort(Port newOnPort)
-	{
-
+	public void setOnPort(Port newOnPort) {
 		Port oldOnPort = onPort;
 		onPort = newOnPort;
 		if (eNotificationRequired())
@@ -287,12 +266,9 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INVOCATION_ACTION__TEMPLATE_BINDING:
@@ -335,12 +311,9 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INVOCATION_ACTION__OWNED_COMMENT:
@@ -389,12 +362,9 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INVOCATION_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.INVOCATION_ACTION__IN_STRUCTURED_NODE:
@@ -411,10 +381,8 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INVOCATION_ACTION__OWNED_ELEMENT:
@@ -503,10 +471,8 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -624,10 +590,8 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -727,10 +691,8 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INVOCATION_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INVOCATION_ACTION__OWNED_ELEMENT:
@@ -817,8 +779,7 @@ public abstract class InvocationActionImpl extends ActionImpl implements Invocat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getInvocationAction_Argument())) {
 			input.addAll(getArguments());

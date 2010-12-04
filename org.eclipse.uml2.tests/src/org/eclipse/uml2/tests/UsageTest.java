@@ -30,8 +30,7 @@ public class UsageTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(UsageTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class UsageTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UsageTest(String name)
-	{
+	public UsageTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class UsageTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Usage getFixture()
-	{
+	private Usage getFixture() {
 		return (Usage)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class UsageTest extends DependencyTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createUsage());
 	}
 
@@ -74,8 +70,7 @@ public class UsageTest extends DependencyTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

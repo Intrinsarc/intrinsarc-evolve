@@ -47,8 +47,7 @@ public class PackageTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(PackageTest.class);
 	}
 
@@ -58,8 +57,7 @@ public class PackageTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageTest(String name)
-	{
+	public PackageTest(String name) {
 		super(name);
 	}
 
@@ -69,8 +67,7 @@ public class PackageTest extends NamespaceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private org.eclipse.uml2.Package getFixture()
-	{
+	private org.eclipse.uml2.Package getFixture() {
 		return (org.eclipse.uml2.Package)fixture;
 	}
 
@@ -80,8 +77,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createPackage());
 	}
 
@@ -91,8 +87,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -103,8 +98,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.PackageableElement#getPackageableElement_visibility()
 	 * @generated
 	 */
-	public void testGetPackageableElement_visibility()
-	{
+	public void testGetPackageableElement_visibility() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -116,8 +110,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.PackageableElement#setPackageableElement_visibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetPackageableElement_visibility()
-	{
+	public void testSetPackageableElement_visibility() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -129,8 +122,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#getNestedPackages()
 	 * @generated
 	 */
-	public void testGetNestedPackages()
-	{
+	public void testGetNestedPackages() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -142,8 +134,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#getNestingPackage()
 	 * @generated
 	 */
-	public void testGetNestingPackage()
-	{
+	public void testGetNestingPackage() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -155,8 +146,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#getOwnedTypes()
 	 * @generated
 	 */
-	public void testGetOwnedTypes()
-	{
+	public void testGetOwnedTypes() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -168,8 +158,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#validateElementsPublicOrPrivate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 */
-	public void testValidateElementsPublicOrPrivate__DiagnosticChain_Map()
-	{
+	public void testValidateElementsPublicOrPrivate__DiagnosticChain_Map() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -181,8 +170,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#visibleMembers()
 	 * @generated
 	 */
-	public void testVisibleMembers()
-	{
+	public void testVisibleMembers() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -194,8 +182,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#makesVisible(org.eclipse.uml2.NamedElement)
 	 * @generated
 	 */
-	public void testMakesVisible__NamedElement()
-	{
+	public void testMakesVisible__NamedElement() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -207,8 +194,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Package#mustBeOwned()
 	 * @generated
 	 */
-	public void testMustBeOwned()
-	{
+	public void testMustBeOwned() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -222,8 +208,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -235,8 +220,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -248,8 +232,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -261,8 +244,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#getVisibility()
 	 * @generated
 	 */
-	public void testGetVisibility()
-	{
+	public void testGetVisibility() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -274,8 +256,7 @@ public class PackageTest extends NamespaceTest {
 	 * @see org.eclipse.uml2.NamedElement#setVisibility(org.eclipse.uml2.VisibilityKind)
 	 * @generated
 	 */
-	public void testSetVisibility()
-	{
+	public void testSetVisibility() {
 		// TODO: implement this redefined feature setter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

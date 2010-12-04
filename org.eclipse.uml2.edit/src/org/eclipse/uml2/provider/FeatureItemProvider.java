@@ -57,8 +57,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public FeatureItemProvider(AdapterFactory adapterFactory)
-	{
+	public FeatureItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addFeaturingClassifierPropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsStaticPropertyDescriptor(Object object)
-	{
+	protected void addIsStaticPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addFeaturingClassifierPropertyDescriptor(Object object)
-	{
+	protected void addFeaturingClassifierPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -130,8 +125,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Feature)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Feature_type") : //$NON-NLS-1$
@@ -145,12 +139,10 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Feature.class))
-		{
+		switch (notification.getFeatureID(Feature.class)) {
 			case UML2Package.FEATURE__IS_STATIC:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -165,8 +157,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -176,8 +167,7 @@ public class FeatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

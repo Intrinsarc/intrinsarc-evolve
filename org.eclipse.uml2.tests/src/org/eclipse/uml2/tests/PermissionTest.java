@@ -30,8 +30,7 @@ public class PermissionTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(PermissionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class PermissionTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PermissionTest(String name)
-	{
+	public PermissionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class PermissionTest extends DependencyTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Permission getFixture()
-	{
+	private Permission getFixture() {
 		return (Permission)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class PermissionTest extends DependencyTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createPermission());
 	}
 
@@ -74,8 +70,7 @@ public class PermissionTest extends DependencyTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

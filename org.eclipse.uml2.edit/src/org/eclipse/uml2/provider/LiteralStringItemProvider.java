@@ -57,8 +57,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralStringItemProvider(AdapterFactory adapterFactory)
-	{
+	public LiteralStringItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addValuePropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object)
-	{
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +102,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/LiteralString"); //$NON-NLS-1$
 	}
 
@@ -117,8 +112,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((LiteralString)object).getValue();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LiteralString_type") : //$NON-NLS-1$
@@ -132,12 +126,10 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LiteralString.class))
-		{
+		switch (notification.getFeatureID(LiteralString.class)) {
 			case UML2Package.LITERAL_STRING__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -152,8 +144,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -163,8 +154,7 @@ public class LiteralStringItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

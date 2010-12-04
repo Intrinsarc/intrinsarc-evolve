@@ -32,8 +32,7 @@ public class RequirementsFeatureTest extends TypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(RequirementsFeatureTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class RequirementsFeatureTest extends TypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeatureTest(String name)
-	{
+	public RequirementsFeatureTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class RequirementsFeatureTest extends TypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RequirementsFeature getFixture()
-	{
+	private RequirementsFeature getFixture() {
 		return (RequirementsFeature)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class RequirementsFeatureTest extends TypeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createRequirementsFeature());
 	}
 
@@ -76,8 +72,7 @@ public class RequirementsFeatureTest extends TypeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -30,8 +30,7 @@ public class ExpansionRegionTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExpansionRegionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ExpansionRegionTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExpansionRegionTest(String name)
-	{
+	public ExpansionRegionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ExpansionRegionTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExpansionRegion getFixture()
-	{
+	private ExpansionRegion getFixture() {
 		return (ExpansionRegion)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ExpansionRegionTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExpansionRegion());
 	}
 
@@ -74,8 +70,7 @@ public class ExpansionRegionTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

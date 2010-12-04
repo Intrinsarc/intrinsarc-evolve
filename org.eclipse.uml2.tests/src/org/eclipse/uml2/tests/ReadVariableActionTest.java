@@ -30,8 +30,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ReadVariableActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ReadVariableActionTest(String name)
-	{
+	public ReadVariableActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ReadVariableAction getFixture()
-	{
+	private ReadVariableAction getFixture() {
 		return (ReadVariableAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createReadVariableAction());
 	}
 
@@ -74,8 +70,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ReadVariableActionTest extends VariableActionTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs()
-	{
+	public void testGetOutputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

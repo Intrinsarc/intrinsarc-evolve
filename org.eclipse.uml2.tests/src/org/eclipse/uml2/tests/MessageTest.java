@@ -36,8 +36,7 @@ public class MessageTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(MessageTest.class);
 	}
 
@@ -47,8 +46,7 @@ public class MessageTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageTest(String name)
-	{
+	public MessageTest(String name) {
 		super(name);
 	}
 
@@ -58,8 +56,7 @@ public class MessageTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Message getFixture()
-	{
+	private Message getFixture() {
 		return (Message)fixture;
 	}
 
@@ -69,8 +66,7 @@ public class MessageTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createMessage());
 	}
 
@@ -80,8 +76,7 @@ public class MessageTest extends NamedElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -92,8 +87,7 @@ public class MessageTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Message#getMessageKind()
 	 * @generated
 	 */
-	public void testGetMessageKind()
-	{
+	public void testGetMessageKind() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -107,8 +101,7 @@ public class MessageTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -120,8 +113,7 @@ public class MessageTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

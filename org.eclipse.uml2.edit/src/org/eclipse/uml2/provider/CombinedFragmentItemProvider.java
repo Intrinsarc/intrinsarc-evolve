@@ -60,8 +60,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CombinedFragmentItemProvider(AdapterFactory adapterFactory)
-	{
+	public CombinedFragmentItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addInteractionOperatorPropertyDescriptor(object);
@@ -90,8 +87,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInteractionOperatorPropertyDescriptor(Object object)
-	{
+	protected void addInteractionOperatorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -111,8 +107,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOperandPropertyDescriptor(Object object)
-	{
+	protected void addOperandPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -134,8 +129,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCfragmentGatePropertyDescriptor(Object object)
-	{
+	protected void addCfragmentGatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -159,10 +153,8 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getCombinedFragment_Operand());
 			childrenFeatures.add(UML2Package.eINSTANCE.getCombinedFragment_CfragmentGate());
@@ -175,8 +167,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -189,8 +180,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/CombinedFragment"); //$NON-NLS-1$
 	}
 
@@ -200,8 +190,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((CombinedFragment)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CombinedFragment_type") : //$NON-NLS-1$
@@ -215,12 +204,10 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CombinedFragment.class))
-		{
+		switch (notification.getFeatureID(CombinedFragment.class)) {
 			case UML2Package.COMBINED_FRAGMENT__INTERACTION_OPERATOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -239,8 +226,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -270,8 +256,7 @@ public class CombinedFragmentItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -147,8 +147,7 @@ public final class ParameterEffectKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final ParameterEffectKind[] VALUES_ARRAY =
-		new ParameterEffectKind[]
-		{
+		new ParameterEffectKind[] {
 			CREATE_LITERAL,
 			READ_LITERAL,
 			UPDATE_LITERAL,
@@ -169,13 +168,10 @@ public final class ParameterEffectKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterEffectKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static ParameterEffectKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			ParameterEffectKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -188,10 +184,8 @@ public final class ParameterEffectKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static ParameterEffectKind get(int value)
-	{
-		switch (value)
-		{
+	public static ParameterEffectKind get(int value) {
+		switch (value) {
 			case CREATE: return CREATE_LITERAL;
 			case READ: return READ_LITERAL;
 			case UPDATE: return UPDATE_LITERAL;
@@ -206,8 +200,7 @@ public final class ParameterEffectKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ParameterEffectKind(int value, String name)
-	{
+	private ParameterEffectKind(int value, String name) {
 		super(value, name);
 	}
 

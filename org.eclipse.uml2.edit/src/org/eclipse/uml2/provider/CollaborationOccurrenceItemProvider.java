@@ -57,8 +57,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CollaborationOccurrenceItemProvider(AdapterFactory adapterFactory)
-	{
+	public CollaborationOccurrenceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTypePropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object)
-	{
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRoleBindingPropertyDescriptor(Object object)
-	{
+	protected void addRoleBindingPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -132,10 +127,8 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getCollaborationOccurrence_RoleBinding());
 		}
@@ -148,8 +141,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/CollaborationOccurrence"); //$NON-NLS-1$
 	}
 
@@ -159,8 +151,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((CollaborationOccurrence)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CollaborationOccurrence_type") : //$NON-NLS-1$
@@ -174,12 +165,10 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CollaborationOccurrence.class))
-		{
+		switch (notification.getFeatureID(CollaborationOccurrence.class)) {
 			case UML2Package.COLLABORATION_OCCURRENCE__ROLE_BINDING:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -194,8 +183,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -295,8 +283,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -304,8 +291,7 @@ public class CollaborationOccurrenceItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies() ||
 			childFeature == UML2Package.eINSTANCE.getCollaborationOccurrence_RoleBinding();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -319,8 +305,7 @@ public class CollaborationOccurrenceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

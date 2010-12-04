@@ -82,13 +82,11 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ManifestationImpl()
-	{
+	protected ManifestationImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ManifestationImpl.class.equals(getClass()))
+		if (ManifestationImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -98,8 +96,7 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getManifestation();
 	}
 
@@ -108,14 +105,11 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageableElement getUtilizedElement()
-	{
-		if (utilizedElement != null && utilizedElement.eIsProxy())
-		{
+	public PackageableElement getUtilizedElement() {
+		if (utilizedElement != null && utilizedElement.eIsProxy()) {
 			PackageableElement oldUtilizedElement = utilizedElement;
 			utilizedElement = (PackageableElement)eResolveProxy((InternalEObject)utilizedElement);
-			if (utilizedElement != oldUtilizedElement)
-			{
+			if (utilizedElement != oldUtilizedElement) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.MANIFESTATION__UTILIZED_ELEMENT, oldUtilizedElement, utilizedElement));
 			}
@@ -133,8 +127,7 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public PackageableElement undeleted_getUtilizedElement()
-	{
+  public PackageableElement undeleted_getUtilizedElement() {
 		PackageableElement temp = getUtilizedElement();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -146,8 +139,7 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PackageableElement basicGetUtilizedElement()
-	{
+	public PackageableElement basicGetUtilizedElement() {
 		return utilizedElement;
 	}
 
@@ -156,9 +148,7 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUtilizedElement(PackageableElement newUtilizedElement)
-	{
-
+	public void setUtilizedElement(PackageableElement newUtilizedElement) {
 		if (newUtilizedElement != null && !getSuppliers().contains(newUtilizedElement)) {
 			getSuppliers().add(newUtilizedElement);
 		}
@@ -175,13 +165,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSuppliers() {
+		if (supplier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.MANIFESTATION__SUPPLIER, new int[] {UML2Package.MANIFESTATION__UTILIZED_ELEMENT});
 			 		return supplier;
@@ -198,12 +184,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getSuppliers()
-	{
-		if (supplier == null)
-		{
-			
-		
+  public EList settable_getSuppliers() {
+		if (supplier == null) {
 			supplier = new com.intrinsarc.emflist.PersistentEList(NamedElement.class, this, UML2Package.MANIFESTATION__SUPPLIER, new int[] {UML2Package.MANIFESTATION__UTILIZED_ELEMENT});
 		}
 		return supplier;
@@ -214,14 +196,11 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getSuppliers()
-	{
+  public java.util.ArrayList undeleted_getSuppliers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (supplier != null)
-		{
-			for (Object object : supplier)
-			{
+		if (supplier != null) {
+			for (Object object : supplier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -239,12 +218,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.MANIFESTATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.MANIFESTATION__TEMPLATE_BINDING:
@@ -279,12 +255,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.MANIFESTATION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.MANIFESTATION__OWNED_COMMENT:
@@ -321,12 +294,9 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.MANIFESTATION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -341,10 +311,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MANIFESTATION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.MANIFESTATION__OWNED_ELEMENT:
@@ -424,10 +392,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MANIFESTATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -529,10 +495,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MANIFESTATION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -623,10 +587,8 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.MANIFESTATION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.MANIFESTATION__OWNED_ELEMENT:
@@ -713,8 +675,7 @@ public class ManifestationImpl extends AbstractionImpl implements Manifestation 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getManifestation_UtilizedElement())) {
 			target.add(getUtilizedElement());

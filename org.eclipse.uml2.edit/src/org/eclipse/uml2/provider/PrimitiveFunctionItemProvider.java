@@ -57,8 +57,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveFunctionItemProvider(AdapterFactory adapterFactory)
-	{
+	public PrimitiveFunctionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBodyPropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object)
-	{
+	protected void addBodyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addLanguagePropertyDescriptor(Object object)
-	{
+	protected void addLanguagePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,8 +123,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/PrimitiveFunction"); //$NON-NLS-1$
 	}
 
@@ -139,8 +133,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((PrimitiveFunction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_PrimitiveFunction_type") : //$NON-NLS-1$
@@ -154,12 +147,10 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(PrimitiveFunction.class))
-		{
+		switch (notification.getFeatureID(PrimitiveFunction.class)) {
 			case UML2Package.PRIMITIVE_FUNCTION__BODY:
 			case UML2Package.PRIMITIVE_FUNCTION__LANGUAGE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -175,8 +166,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -186,8 +176,7 @@ public class PrimitiveFunctionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

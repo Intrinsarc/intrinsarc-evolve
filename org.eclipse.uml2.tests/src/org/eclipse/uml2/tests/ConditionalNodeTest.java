@@ -30,8 +30,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ConditionalNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConditionalNodeTest(String name)
-	{
+	public ConditionalNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConditionalNode getFixture()
-	{
+	private ConditionalNode getFixture() {
 		return (ConditionalNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createConditionalNode());
 	}
 
@@ -74,8 +70,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class ConditionalNodeTest extends StructuredActivityNodeTest {
 	 * @see org.eclipse.uml2.Action#getOutputs()
 	 * @generated
 	 */
-	public void testGetOutputs()
-	{
+	public void testGetOutputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

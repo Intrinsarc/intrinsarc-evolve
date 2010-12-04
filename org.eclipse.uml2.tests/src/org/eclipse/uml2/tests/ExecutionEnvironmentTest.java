@@ -30,8 +30,7 @@ public class ExecutionEnvironmentTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExecutionEnvironmentTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ExecutionEnvironmentTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExecutionEnvironmentTest(String name)
-	{
+	public ExecutionEnvironmentTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ExecutionEnvironmentTest extends NodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExecutionEnvironment getFixture()
-	{
+	private ExecutionEnvironment getFixture() {
 		return (ExecutionEnvironment)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ExecutionEnvironmentTest extends NodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExecutionEnvironment());
 	}
 
@@ -74,8 +70,7 @@ public class ExecutionEnvironmentTest extends NodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -57,8 +57,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentSpecificationItemProvider(AdapterFactory adapterFactory)
-	{
+	public DeploymentSpecificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addDeploymentLocationPropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeploymentLocationPropertyDescriptor(Object object)
-	{
+	protected void addDeploymentLocationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExecutionLocationPropertyDescriptor(Object object)
-	{
+	protected void addExecutionLocationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -128,8 +123,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/DeploymentSpecification"); //$NON-NLS-1$
 	}
 
@@ -139,8 +133,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((DeploymentSpecification)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DeploymentSpecification_type") : //$NON-NLS-1$
@@ -154,12 +147,10 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(DeploymentSpecification.class))
-		{
+		switch (notification.getFeatureID(DeploymentSpecification.class)) {
 			case UML2Package.DEPLOYMENT_SPECIFICATION__DEPLOYMENT_LOCATION:
 			case UML2Package.DEPLOYMENT_SPECIFICATION__EXECUTION_LOCATION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -175,8 +166,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -186,8 +176,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -196,8 +185,7 @@ public class DeploymentSpecificationItemProvider
 			childFeature == UML2Package.eINSTANCE.getClassifier_Substitution() ||
 			childFeature == UML2Package.eINSTANCE.getArtifact_Manifestation();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -211,8 +199,7 @@ public class DeploymentSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -30,8 +30,7 @@ public class TimeIntervalTest extends IntervalTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(TimeIntervalTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class TimeIntervalTest extends IntervalTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TimeIntervalTest(String name)
-	{
+	public TimeIntervalTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class TimeIntervalTest extends IntervalTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private TimeInterval getFixture()
-	{
+	private TimeInterval getFixture() {
 		return (TimeInterval)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class TimeIntervalTest extends IntervalTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createTimeInterval());
 	}
 
@@ -74,8 +70,7 @@ public class TimeIntervalTest extends IntervalTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

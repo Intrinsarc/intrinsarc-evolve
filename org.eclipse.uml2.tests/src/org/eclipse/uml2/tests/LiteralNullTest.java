@@ -37,8 +37,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(LiteralNullTest.class);
 	}
 
@@ -48,8 +47,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralNullTest(String name)
-	{
+	public LiteralNullTest(String name) {
 		super(name);
 	}
 
@@ -59,8 +57,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private LiteralNull getFixture()
-	{
+	private LiteralNull getFixture() {
 		return (LiteralNull)fixture;
 	}
 
@@ -70,8 +67,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createLiteralNull());
 	}
 
@@ -81,8 +77,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -93,8 +88,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralNull#isComputable()
 	 * @generated
 	 */
-	public void testIsComputable()
-	{
+	public void testIsComputable() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -106,8 +100,7 @@ public class LiteralNullTest extends LiteralSpecificationTest {
 	 * @see org.eclipse.uml2.LiteralNull#isNull()
 	 * @generated
 	 */
-	public void testIsNull()
-	{
+	public void testIsNull() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

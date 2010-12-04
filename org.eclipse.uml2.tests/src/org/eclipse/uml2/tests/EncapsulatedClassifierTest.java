@@ -28,8 +28,7 @@ public abstract class EncapsulatedClassifierTest extends StructuredClassifierTes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EncapsulatedClassifierTest(String name)
-	{
+	public EncapsulatedClassifierTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class EncapsulatedClassifierTest extends StructuredClassifierTes
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EncapsulatedClassifier getFixture()
-	{
+	private EncapsulatedClassifier getFixture() {
 		return (EncapsulatedClassifier)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class EncapsulatedClassifierTest extends StructuredClassifierTes
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures()
-	{
+	public void testGetFeatures() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -66,8 +63,7 @@ public abstract class EncapsulatedClassifierTest extends StructuredClassifierTes
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

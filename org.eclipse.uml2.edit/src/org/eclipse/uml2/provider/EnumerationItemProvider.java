@@ -57,8 +57,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumerationItemProvider(AdapterFactory adapterFactory)
-	{
+	public EnumerationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addOwnedLiteralPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedLiteralPropertyDescriptor(Object object)
-	{
+	protected void addOwnedLiteralPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,10 +106,8 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getEnumeration_OwnedLiteral());
 		}
@@ -126,8 +120,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Enumeration"); //$NON-NLS-1$
 	}
 
@@ -137,8 +130,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Enumeration)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Enumeration_type") : //$NON-NLS-1$
@@ -152,12 +144,10 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Enumeration.class))
-		{
+		switch (notification.getFeatureID(Enumeration.class)) {
 			case UML2Package.ENUMERATION__OWNED_LITERAL:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -172,8 +162,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -193,8 +182,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -202,8 +190,7 @@ public class EnumerationItemProvider
 			childFeature == UML2Package.eINSTANCE.getNamedElement_OwnedAnonymousDependencies() ||
 			childFeature == UML2Package.eINSTANCE.getClassifier_Substitution();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -217,8 +204,7 @@ public class EnumerationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

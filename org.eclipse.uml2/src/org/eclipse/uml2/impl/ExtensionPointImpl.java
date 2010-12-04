@@ -57,13 +57,11 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtensionPointImpl()
-	{
+	protected ExtensionPointImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ExtensionPointImpl.class.equals(getClass()))
+		if (ExtensionPointImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -73,8 +71,7 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getExtensionPoint();
 	}
 
@@ -83,8 +80,7 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase getUseCase()
-	{
+	public UseCase getUseCase() {
 		if (eContainerFeatureID != UML2Package.EXTENSION_POINT__USE_CASE) return null;
 		return (UseCase)eContainer;
 	}
@@ -99,8 +95,7 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UseCase undeleted_getUseCase()
-	{
+  public UseCase undeleted_getUseCase() {
 		UseCase temp = getUseCase();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -112,11 +107,8 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUseCase(UseCase newUseCase)
-	{
-
-		if (newUseCase != eContainer || (eContainerFeatureID != UML2Package.EXTENSION_POINT__USE_CASE && newUseCase != null))
-		{
+	public void setUseCase(UseCase newUseCase) {
+		if (newUseCase != eContainer || (eContainerFeatureID != UML2Package.EXTENSION_POINT__USE_CASE && newUseCase != null)) {
 			if (EcoreUtil.isAncestor(this, newUseCase))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -138,12 +130,9 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.EXTENSION_POINT__TEMPLATE_BINDING:
@@ -172,12 +161,9 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.EXTENSION_POINT__OWNED_COMMENT:
@@ -208,12 +194,9 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.EXTENSION_POINT__USE_CASE:
 					return eContainer.eInverseRemove(this, UML2Package.USE_CASE__EXTENSION_POINT, UseCase.class, msgs);
 				default:
@@ -228,10 +211,8 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.EXTENSION_POINT__OWNED_ELEMENT:
@@ -286,10 +267,8 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -362,10 +341,8 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -429,10 +406,8 @@ public class ExtensionPointImpl extends RedefinableElementImpl implements Extens
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTENSION_POINT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.EXTENSION_POINT__OWNED_ELEMENT:

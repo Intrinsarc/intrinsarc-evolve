@@ -136,8 +136,7 @@ public final class RequirementsLinkKind extends PersistentAbstractEnumerator {
 	 * @generated
 	 */
 	private static final RequirementsLinkKind[] VALUES_ARRAY =
-		new RequirementsLinkKind[]
-		{
+		new RequirementsLinkKind[] {
 			MANDATORY_LITERAL,
 			OPTIONAL_LITERAL,
 			ONE_OF_LITERAL,
@@ -158,13 +157,10 @@ public final class RequirementsLinkKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static RequirementsLinkKind get(String name)
-	{
-		for (int i = 0; i < VALUES_ARRAY.length; ++i)
-		{
+	public static RequirementsLinkKind get(String name) {
+		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
 			RequirementsLinkKind result = VALUES_ARRAY[i];
-			if (result.toString().equals(name))
-			{
+			if (result.toString().equals(name)) {
 				return result;
 			}
 		}
@@ -177,10 +173,8 @@ public final class RequirementsLinkKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static RequirementsLinkKind get(int value)
-	{
-		switch (value)
-		{
+	public static RequirementsLinkKind get(int value) {
+		switch (value) {
 			case MANDATORY: return MANDATORY_LITERAL;
 			case OPTIONAL: return OPTIONAL_LITERAL;
 			case ONE_OF: return ONE_OF_LITERAL;
@@ -195,8 +189,7 @@ public final class RequirementsLinkKind extends PersistentAbstractEnumerator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RequirementsLinkKind(int value, String name)
-	{
+	private RequirementsLinkKind(int value, String name) {
 		super(value, name);
 	}
 

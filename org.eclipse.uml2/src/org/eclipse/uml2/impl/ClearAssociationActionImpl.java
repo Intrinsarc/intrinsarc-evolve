@@ -88,13 +88,11 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClearAssociationActionImpl()
-	{
+	protected ClearAssociationActionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ClearAssociationActionImpl.class.equals(getClass()))
+		if (ClearAssociationActionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -104,8 +102,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getClearAssociationAction();
 	}
 
@@ -114,8 +111,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getObject()
-	{
+	public InputPin getObject() {
 		return object;
 	}
 
@@ -129,8 +125,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getObject()
-	{
+  public InputPin undeleted_getObject() {
 		InputPin temp = getObject();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -142,13 +137,10 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetObject(InputPin newObject, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetObject(InputPin newObject, NotificationChain msgs) {
 		InputPin oldObject = object;
 		object = newObject;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.CLEAR_ASSOCIATION_ACTION__OBJECT, oldObject, newObject);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -161,11 +153,8 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setObject(InputPin newObject)
-	{
-
-		if (newObject != object)
-		{
+	public void setObject(InputPin newObject) {
+		if (newObject != object) {
 			NotificationChain msgs = null;
 			if (object != null)
 				msgs = ((InternalEObject)object).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.CLEAR_ASSOCIATION_ACTION__OBJECT, null, msgs);
@@ -213,14 +202,11 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association getAssociation()
-	{
-		if (association != null && association.eIsProxy())
-		{
+	public Association getAssociation() {
+		if (association != null && association.eIsProxy()) {
 			Association oldAssociation = association;
 			association = (Association)eResolveProxy((InternalEObject)association);
-			if (association != oldAssociation)
-			{
+			if (association != oldAssociation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CLEAR_ASSOCIATION_ACTION__ASSOCIATION, oldAssociation, association));
 			}
@@ -238,8 +224,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Association undeleted_getAssociation()
-	{
+  public Association undeleted_getAssociation() {
 		Association temp = getAssociation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -251,8 +236,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Association basicGetAssociation()
-	{
+	public Association basicGetAssociation() {
 		return association;
 	}
 
@@ -261,9 +245,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setAssociation(Association newAssociation)
-	{
-
+	public void setAssociation(Association newAssociation) {
 		Association oldAssociation = association;
 		association = newAssociation;
 		if (eNotificationRequired())
@@ -277,12 +259,9 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__TEMPLATE_BINDING:
@@ -325,12 +304,9 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__OWNED_COMMENT:
@@ -379,12 +355,9 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.CLEAR_ASSOCIATION_ACTION__IN_STRUCTURED_NODE:
@@ -401,10 +374,8 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__OWNED_ELEMENT:
@@ -493,10 +464,8 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -613,10 +582,8 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -716,10 +683,8 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CLEAR_ASSOCIATION_ACTION__OWNED_ELEMENT:
@@ -806,8 +771,7 @@ public class ClearAssociationActionImpl extends ActionImpl implements ClearAssoc
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getClearAssociationAction_Object())) {
 			input.add(getObject());

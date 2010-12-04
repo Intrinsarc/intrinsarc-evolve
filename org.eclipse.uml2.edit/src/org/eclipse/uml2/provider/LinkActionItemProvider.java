@@ -57,8 +57,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LinkActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public LinkActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addEndDataPropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addEndDataPropertyDescriptor(Object object)
-	{
+	protected void addEndDataPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,10 +106,8 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getLinkAction_EndData());
 		}
@@ -126,8 +120,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((LinkAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_LinkAction_type") : //$NON-NLS-1$
@@ -141,12 +134,10 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LinkAction.class))
-		{
+		switch (notification.getFeatureID(LinkAction.class)) {
 			case UML2Package.LINK_ACTION__END_DATA:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -161,8 +152,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -192,8 +182,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -201,8 +190,7 @@ public class LinkActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -216,8 +204,7 @@ public class LinkActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

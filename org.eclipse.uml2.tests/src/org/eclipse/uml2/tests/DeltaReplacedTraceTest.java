@@ -32,8 +32,7 @@ public class DeltaReplacedTraceTest extends DeltaReplacedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DeltaReplacedTraceTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class DeltaReplacedTraceTest extends DeltaReplacedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedTraceTest(String name)
-	{
+	public DeltaReplacedTraceTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class DeltaReplacedTraceTest extends DeltaReplacedConstituentTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeltaReplacedTrace getFixture()
-	{
+	private DeltaReplacedTrace getFixture() {
 		return (DeltaReplacedTrace)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class DeltaReplacedTraceTest extends DeltaReplacedConstituentTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDeltaReplacedTrace());
 	}
 
@@ -76,8 +72,7 @@ public class DeltaReplacedTraceTest extends DeltaReplacedConstituentTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

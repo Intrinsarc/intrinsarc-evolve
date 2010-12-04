@@ -59,8 +59,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StateMachineItemProvider(AdapterFactory adapterFactory)
-	{
+	public StateMachineItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,10 +69,8 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addRegionPropertyDescriptor(object);
@@ -89,8 +86,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRegionPropertyDescriptor(Object object)
-	{
+	protected void addRegionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -112,8 +108,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConnectionPointPropertyDescriptor(Object object)
-	{
+	protected void addConnectionPointPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -135,8 +130,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExtendedStateMachinePropertyDescriptor(Object object)
-	{
+	protected void addExtendedStateMachinePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -158,10 +152,8 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getStateMachine_Region());
 			childrenFeatures.add(UML2Package.eINSTANCE.getStateMachine_ConnectionPoint());
@@ -174,8 +166,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -188,8 +179,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/StateMachine"); //$NON-NLS-1$
 	}
 
@@ -199,8 +189,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((StateMachine)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_StateMachine_type") : //$NON-NLS-1$
@@ -214,12 +203,10 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(StateMachine.class))
-		{
+		switch (notification.getFeatureID(StateMachine.class)) {
 			case UML2Package.STATE_MACHINE__REGION:
 			case UML2Package.STATE_MACHINE__CONNECTION_POINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -235,8 +222,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -266,8 +252,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -282,8 +267,7 @@ public class StateMachineItemProvider
 			childFeature == UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute() ||
 			childFeature == UML2Package.eINSTANCE.getEncapsulatedClassifier_OwnedPort();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -297,8 +281,7 @@ public class StateMachineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

@@ -37,8 +37,7 @@ public class ExtensionTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExtensionTest.class);
 	}
 
@@ -48,8 +47,7 @@ public class ExtensionTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionTest(String name)
-	{
+	public ExtensionTest(String name) {
 		super(name);
 	}
 
@@ -59,8 +57,7 @@ public class ExtensionTest extends AssociationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Extension getFixture()
-	{
+	private Extension getFixture() {
 		return (Extension)fixture;
 	}
 
@@ -70,8 +67,7 @@ public class ExtensionTest extends AssociationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExtension());
 	}
 
@@ -81,8 +77,7 @@ public class ExtensionTest extends AssociationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -93,8 +88,7 @@ public class ExtensionTest extends AssociationTest {
 	 * @see org.eclipse.uml2.Extension#isRequired()
 	 * @generated
 	 */
-	public void testIsRequired()
-	{
+	public void testIsRequired() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -106,8 +100,7 @@ public class ExtensionTest extends AssociationTest {
 	 * @see org.eclipse.uml2.Extension#getMetaclass()
 	 * @generated
 	 */
-	public void testGetMetaclass()
-	{
+	public void testGetMetaclass() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

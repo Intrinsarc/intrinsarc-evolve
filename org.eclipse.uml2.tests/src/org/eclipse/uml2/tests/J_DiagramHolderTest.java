@@ -32,8 +32,7 @@ public class J_DiagramHolderTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(J_DiagramHolderTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class J_DiagramHolderTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_DiagramHolderTest(String name)
-	{
+	public J_DiagramHolderTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class J_DiagramHolderTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private J_DiagramHolder getFixture()
-	{
+	private J_DiagramHolder getFixture() {
 		return (J_DiagramHolder)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class J_DiagramHolderTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createJ_DiagramHolder());
 	}
 
@@ -76,8 +72,7 @@ public class J_DiagramHolderTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

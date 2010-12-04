@@ -54,8 +54,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TriggerItemProvider(AdapterFactory adapterFactory)
-	{
+	public TriggerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addPortPropertyDescriptor(object);
@@ -82,8 +79,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPortPropertyDescriptor(Object object)
-	{
+	protected void addPortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -103,8 +99,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Trigger)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Trigger_type") : //$NON-NLS-1$
@@ -118,8 +113,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -131,8 +125,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -142,8 +135,7 @@ public class TriggerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

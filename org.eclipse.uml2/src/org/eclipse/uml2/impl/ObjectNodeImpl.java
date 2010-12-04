@@ -136,13 +136,11 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ObjectNodeImpl()
-	{
+	protected ObjectNodeImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ObjectNodeImpl.class.equals(getClass()))
+		if (ObjectNodeImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -152,8 +150,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getObjectNode();
 	}
 
@@ -162,14 +159,11 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type getType()
-	{
-		if (type != null && type.eIsProxy())
-		{
+	public Type getType() {
+		if (type != null && type.eIsProxy()) {
 			Type oldType = type;
 			type = (Type)eResolveProxy((InternalEObject)type);
-			if (type != oldType)
-			{
+			if (type != oldType) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.OBJECT_NODE__TYPE, oldType, type));
 			}
@@ -187,8 +181,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Type undeleted_getType()
-	{
+  public Type undeleted_getType() {
 		Type temp = getType();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -200,8 +193,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Type basicGetType()
-	{
+	public Type basicGetType() {
 		return type;
 	}
 
@@ -210,9 +202,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setType(Type newType)
-	{
-
+	public void setType(Type newType) {
 		Type oldType = type;
 		type = newType;
 		if (eNotificationRequired())
@@ -226,8 +216,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ObjectNodeOrderingKind getOrdering()
-	{
+	public ObjectNodeOrderingKind getOrdering() {
 		return ordering;
 	}
 
@@ -242,9 +231,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOrdering(ObjectNodeOrderingKind newOrdering)
-	{
-
+	public void setOrdering(ObjectNodeOrderingKind newOrdering) {
 		ObjectNodeOrderingKind oldOrdering = ordering;
 		ordering = newOrdering == null ? ORDERING_EDEFAULT : newOrdering;
 		if (eNotificationRequired())
@@ -258,8 +245,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecification getUpperBound()
-	{
+	public ValueSpecification getUpperBound() {
 		return upperBound;
 	}
 
@@ -273,8 +259,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ValueSpecification undeleted_getUpperBound()
-	{
+  public ValueSpecification undeleted_getUpperBound() {
 		ValueSpecification temp = getUpperBound();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -286,13 +271,10 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetUpperBound(ValueSpecification newUpperBound, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetUpperBound(ValueSpecification newUpperBound, NotificationChain msgs) {
 		ValueSpecification oldUpperBound = upperBound;
 		upperBound = newUpperBound;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.OBJECT_NODE__UPPER_BOUND, oldUpperBound, newUpperBound);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -305,11 +287,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setUpperBound(ValueSpecification newUpperBound)
-	{
-
-		if (newUpperBound != upperBound)
-		{
+	public void setUpperBound(ValueSpecification newUpperBound) {
+		if (newUpperBound != upperBound) {
 			NotificationChain msgs = null;
 			if (upperBound != null)
 				msgs = ((InternalEObject)upperBound).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.OBJECT_NODE__UPPER_BOUND, null, msgs);
@@ -343,13 +322,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getInStates()
-	{
-		if (inState == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getInStates() {
+		if (inState == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		inState = new com.intrinsarc.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
 			 		return inState;
@@ -366,12 +341,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getInStates()
-	{
-		if (inState == null)
-		{
-			
-		
+  public EList settable_getInStates() {
+		if (inState == null) {
 			inState = new com.intrinsarc.emflist.PersistentEList(State.class, this, UML2Package.OBJECT_NODE__IN_STATE);
 		}
 		return inState;
@@ -382,14 +353,11 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getInStates()
-	{
+  public java.util.ArrayList undeleted_getInStates() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (inState != null)
-		{
-			for (Object object : inState)
-			{
+		if (inState != null) {
+			for (Object object : inState) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -422,14 +390,11 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Behavior getSelection()
-	{
-		if (selection != null && selection.eIsProxy())
-		{
+	public Behavior getSelection() {
+		if (selection != null && selection.eIsProxy()) {
 			Behavior oldSelection = selection;
 			selection = (Behavior)eResolveProxy((InternalEObject)selection);
-			if (selection != oldSelection)
-			{
+			if (selection != oldSelection) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.OBJECT_NODE__SELECTION, oldSelection, selection));
 			}
@@ -447,8 +412,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Behavior undeleted_getSelection()
-	{
+  public Behavior undeleted_getSelection() {
 		Behavior temp = getSelection();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -460,8 +424,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Behavior basicGetSelection()
-	{
+	public Behavior basicGetSelection() {
 		return selection;
 	}
 
@@ -470,9 +433,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setSelection(Behavior newSelection)
-	{
-
+	public void setSelection(Behavior newSelection) {
 		Behavior oldSelection = selection;
 		selection = newSelection;
 		if (eNotificationRequired())
@@ -486,12 +447,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.OBJECT_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.OBJECT_NODE__TEMPLATE_BINDING:
@@ -532,12 +490,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.OBJECT_NODE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.OBJECT_NODE__OWNED_COMMENT:
@@ -580,12 +535,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.OBJECT_NODE__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.OBJECT_NODE__IN_STRUCTURED_NODE:
@@ -602,10 +554,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OBJECT_NODE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.OBJECT_NODE__OWNED_ELEMENT:
@@ -686,10 +636,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OBJECT_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -801,10 +749,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OBJECT_NODE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -901,10 +847,8 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.OBJECT_NODE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.OBJECT_NODE__OWNED_ELEMENT:
@@ -982,12 +926,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.OBJECT_NODE__TYPE: return UML2Package.TYPED_ELEMENT__TYPE;
 				default: return -1;
 			}
@@ -1000,12 +941,9 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == TypedElement.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == TypedElement.class) {
+			switch (baseFeatureID) {
 				case UML2Package.TYPED_ELEMENT__TYPE: return UML2Package.OBJECT_NODE__TYPE;
 				default: return -1;
 			}
@@ -1018,8 +956,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -1035,8 +972,7 @@ public abstract class ObjectNodeImpl extends ActivityNodeImpl implements ObjectN
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getObjectNode_UpperBound())) {
 			ownedElement.add(getUpperBound());

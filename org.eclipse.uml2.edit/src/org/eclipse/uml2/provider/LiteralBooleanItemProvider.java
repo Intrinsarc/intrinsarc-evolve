@@ -57,8 +57,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LiteralBooleanItemProvider(AdapterFactory adapterFactory)
-	{
+	public LiteralBooleanItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addValuePropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addValuePropertyDescriptor(Object object)
-	{
+	protected void addValuePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -106,8 +102,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/LiteralBoolean"); //$NON-NLS-1$
 	}
 
@@ -117,8 +112,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		LiteralBoolean literalBoolean = (LiteralBoolean)object;
 		return getString("_UI_LiteralBoolean_type") + " " + literalBoolean.isValue(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -130,12 +124,10 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(LiteralBoolean.class))
-		{
+		switch (notification.getFeatureID(LiteralBoolean.class)) {
 			case UML2Package.LITERAL_BOOLEAN__VALUE:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -150,8 +142,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -161,8 +152,7 @@ public class LiteralBooleanItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

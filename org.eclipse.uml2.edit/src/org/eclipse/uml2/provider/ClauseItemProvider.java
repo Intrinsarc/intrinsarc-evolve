@@ -54,8 +54,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClauseItemProvider(AdapterFactory adapterFactory)
-	{
+	public ClauseItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTestPropertyDescriptor(object);
@@ -87,8 +84,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTestPropertyDescriptor(Object object)
-	{
+	protected void addTestPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,8 +104,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyPropertyDescriptor(Object object)
-	{
+	protected void addBodyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -129,8 +124,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPredecessorClausePropertyDescriptor(Object object)
-	{
+	protected void addPredecessorClausePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -150,8 +144,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSuccessorClausePropertyDescriptor(Object object)
-	{
+	protected void addSuccessorClausePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -171,8 +164,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDeciderPropertyDescriptor(Object object)
-	{
+	protected void addDeciderPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -192,8 +184,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBodyOutputPropertyDescriptor(Object object)
-	{
+	protected void addBodyOutputPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -213,8 +204,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Clause"); //$NON-NLS-1$
 	}
 
@@ -224,8 +214,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		Clause clause = (Clause)object;
 		return getString("_UI_Clause_type") + " " + clause.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -237,8 +226,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -250,8 +238,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -261,8 +248,7 @@ public class ClauseItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

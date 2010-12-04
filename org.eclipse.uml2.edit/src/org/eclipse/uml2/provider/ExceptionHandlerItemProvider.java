@@ -54,8 +54,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExceptionHandlerItemProvider(AdapterFactory adapterFactory)
-	{
+	public ExceptionHandlerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addProtectedNodePropertyDescriptor(object);
@@ -85,8 +82,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addProtectedNodePropertyDescriptor(Object object)
-	{
+	protected void addProtectedNodePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,8 +104,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addHandlerBodyPropertyDescriptor(Object object)
-	{
+	protected void addHandlerBodyPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -129,8 +124,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExceptionInputPropertyDescriptor(Object object)
-	{
+	protected void addExceptionInputPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -150,8 +144,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addExceptionTypePropertyDescriptor(Object object)
-	{
+	protected void addExceptionTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -171,8 +164,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ExceptionHandler"); //$NON-NLS-1$
 	}
 
@@ -182,8 +174,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		ExceptionHandler exceptionHandler = (ExceptionHandler)object;
 		return getString("_UI_ExceptionHandler_type") + " " + exceptionHandler.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -195,8 +186,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -208,8 +198,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -219,8 +208,7 @@ public class ExceptionHandlerItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

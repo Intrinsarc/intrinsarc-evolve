@@ -36,8 +36,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(OpaqueExpressionTest.class);
 	}
 
@@ -47,8 +46,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public OpaqueExpressionTest(String name)
-	{
+	public OpaqueExpressionTest(String name) {
 		super(name);
 	}
 
@@ -58,8 +56,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private OpaqueExpression getFixture()
-	{
+	private OpaqueExpression getFixture() {
 		return (OpaqueExpression)fixture;
 	}
 
@@ -69,8 +66,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createOpaqueExpression());
 	}
 
@@ -80,8 +76,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -92,8 +87,7 @@ public class OpaqueExpressionTest extends ValueSpecificationTest {
 	 * @see org.eclipse.uml2.OpaqueExpression#getResult()
 	 * @generated
 	 */
-	public void testGetResult()
-	{
+	public void testGetResult() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

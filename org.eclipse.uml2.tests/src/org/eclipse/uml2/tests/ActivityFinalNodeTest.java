@@ -30,8 +30,7 @@ public class ActivityFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ActivityFinalNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ActivityFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ActivityFinalNodeTest(String name)
-	{
+	public ActivityFinalNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ActivityFinalNodeTest extends FinalNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ActivityFinalNode getFixture()
-	{
+	private ActivityFinalNode getFixture() {
 		return (ActivityFinalNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ActivityFinalNodeTest extends FinalNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createActivityFinalNode());
 	}
 
@@ -74,8 +70,7 @@ public class ActivityFinalNodeTest extends FinalNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

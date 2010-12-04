@@ -92,13 +92,11 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RequirementsFeatureImpl()
-	{
+	protected RequirementsFeatureImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (RequirementsFeatureImpl.class.equals(getClass()))
+		if (RequirementsFeatureImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -108,8 +106,7 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getRequirementsFeature();
 	}
 
@@ -118,13 +115,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSubfeatures()
-	{
-		if (subfeatures == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getSubfeatures() {
+		if (subfeatures == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		subfeatures = new com.intrinsarc.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
 			 		return subfeatures;
@@ -141,12 +134,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getSubfeatures()
-	{
-		if (subfeatures == null)
-		{
-			
-		
+	public EList settable_getSubfeatures() {
+		if (subfeatures == null) {
 			subfeatures = new com.intrinsarc.emflist.PersistentEList(RequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__SUBFEATURES);
 		}
 		return subfeatures;
@@ -157,14 +146,11 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getSubfeatures()
-	{
+	public java.util.ArrayList undeleted_getSubfeatures() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (subfeatures != null)
-		{
-			for (Object object : subfeatures)
-			{
+		if (subfeatures != null) {
+			for (Object object : subfeatures) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -210,13 +196,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedSubfeatures()
-	{
-		if (deltaReplacedSubfeatures == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedSubfeatures() {
+		if (deltaReplacedSubfeatures == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
 			 		return deltaReplacedSubfeatures;
@@ -233,12 +215,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedSubfeatures()
-	{
-		if (deltaReplacedSubfeatures == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedSubfeatures() {
+		if (deltaReplacedSubfeatures == null) {
 			deltaReplacedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_REPLACED_SUBFEATURES);
 		}
 		return deltaReplacedSubfeatures;
@@ -249,14 +227,11 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedSubfeatures()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedSubfeatures() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedSubfeatures != null)
-		{
-			for (Object object : deltaReplacedSubfeatures)
-			{
+		if (deltaReplacedSubfeatures != null) {
+			for (Object object : deltaReplacedSubfeatures) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -302,13 +277,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedSubfeatures()
-	{
-		if (deltaDeletedSubfeatures == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedSubfeatures() {
+		if (deltaDeletedSubfeatures == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
 			 		return deltaDeletedSubfeatures;
@@ -325,12 +296,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedSubfeatures()
-	{
-		if (deltaDeletedSubfeatures == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedSubfeatures() {
+		if (deltaDeletedSubfeatures == null) {
 			deltaDeletedSubfeatures = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedRequirementsFeatureLink.class, this, UML2Package.REQUIREMENTS_FEATURE__DELTA_DELETED_SUBFEATURES);
 		}
 		return deltaDeletedSubfeatures;
@@ -341,14 +308,11 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedSubfeatures()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedSubfeatures() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedSubfeatures != null)
-		{
-			for (Object object : deltaDeletedSubfeatures)
-			{
+		if (deltaDeletedSubfeatures != null) {
+			for (Object object : deltaDeletedSubfeatures) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -394,12 +358,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__TEMPLATE_BINDING:
@@ -432,12 +393,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.REQUIREMENTS_FEATURE__OWNED_COMMENT:
@@ -476,12 +434,9 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.REQUIREMENTS_FEATURE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -496,10 +451,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.REQUIREMENTS_FEATURE__OWNED_ELEMENT:
@@ -566,10 +519,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -660,10 +611,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -742,10 +691,8 @@ public class RequirementsFeatureImpl extends TypeImpl implements RequirementsFea
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.REQUIREMENTS_FEATURE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.REQUIREMENTS_FEATURE__OWNED_ELEMENT:

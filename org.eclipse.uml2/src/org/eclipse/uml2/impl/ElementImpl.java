@@ -204,8 +204,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getElement();
 	}
 
@@ -214,8 +213,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedElements()
-	{
+	public EList getOwnedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList ownedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getElement_OwnedElement());
@@ -235,8 +233,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element getOwner()
-	{
+	public Element getOwner() {
 		Element owner = basicGetOwner();
 		return owner == null ? null : (Element)eResolveProxy((InternalEObject)owner);
 	}
@@ -256,13 +253,9 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedComments()
-	{
-		if (ownedComment == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedComments() {
+		if (ownedComment == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedComment = new com.intrinsarc.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
 			 		return ownedComment;
@@ -279,12 +272,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedComments()
-	{
-		if (ownedComment == null)
-		{
-			
-		
+  public EList settable_getOwnedComments() {
+		if (ownedComment == null) {
 			ownedComment = new com.intrinsarc.emflist.PersistentEList(Comment.class, this, UML2Package.ELEMENT__OWNED_COMMENT);
 		}
 		return ownedComment;
@@ -295,14 +284,11 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedComments()
-	{
+  public java.util.ArrayList undeleted_getOwnedComments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedComment != null)
-		{
-			for (Object object : ownedComment)
-			{
+		if (ownedComment != null) {
+			for (Object object : ownedComment) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -349,8 +335,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public int getJ_deleted()
-	{
+  public int getJ_deleted() {
 		return j_deleted;
 	}
 
@@ -427,9 +412,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setJ_deleted(int newJ_deleted)
-	{
-
+  public void setJ_deleted(int newJ_deleted) {
 		int oldJ_deleted = j_deleted;
 		j_deleted = newJ_deleted;
 		if (eNotificationRequired())
@@ -443,8 +426,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getDocumentation()
-	{
+	public String getDocumentation() {
 		return documentation;
 	}
 
@@ -459,9 +441,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setDocumentation(String newDocumentation)
-	{
-
+	public void setDocumentation(String newDocumentation) {
 		newDocumentation = newDocumentation == null ? DOCUMENTATION_EDEFAULT : newDocumentation;
 		String oldDocumentation = documentation;
 		documentation = newDocumentation;
@@ -476,13 +456,9 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAppliedBasicStereotypes()
-	{
-		if (appliedBasicStereotypes == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getAppliedBasicStereotypes() {
+		if (appliedBasicStereotypes == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		appliedBasicStereotypes = new com.intrinsarc.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
 			 		return appliedBasicStereotypes;
@@ -499,12 +475,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getAppliedBasicStereotypes()
-	{
-		if (appliedBasicStereotypes == null)
-		{
-			
-		
+	public EList settable_getAppliedBasicStereotypes() {
+		if (appliedBasicStereotypes == null) {
 			appliedBasicStereotypes = new com.intrinsarc.emflist.PersistentEList(Stereotype.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPES);
 		}
 		return appliedBasicStereotypes;
@@ -515,14 +487,11 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getAppliedBasicStereotypes()
-	{
+	public java.util.ArrayList undeleted_getAppliedBasicStereotypes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (appliedBasicStereotypes != null)
-		{
-			for (Object object : appliedBasicStereotypes)
-			{
+		if (appliedBasicStereotypes != null) {
+			for (Object object : appliedBasicStereotypes) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -555,13 +524,9 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getAppliedBasicStereotypeValues()
-	{
-		if (appliedBasicStereotypeValues == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getAppliedBasicStereotypeValues() {
+		if (appliedBasicStereotypeValues == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		appliedBasicStereotypeValues = new com.intrinsarc.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
 			 		return appliedBasicStereotypeValues;
@@ -578,12 +543,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getAppliedBasicStereotypeValues()
-	{
-		if (appliedBasicStereotypeValues == null)
-		{
-			
-		
+	public EList settable_getAppliedBasicStereotypeValues() {
+		if (appliedBasicStereotypeValues == null) {
 			appliedBasicStereotypeValues = new com.intrinsarc.emflist.PersistentEList(AppliedBasicStereotypeValue.class, this, UML2Package.ELEMENT__APPLIED_BASIC_STEREOTYPE_VALUES);
 		}
 		return appliedBasicStereotypeValues;
@@ -594,14 +555,11 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getAppliedBasicStereotypeValues()
-	{
+	public java.util.ArrayList undeleted_getAppliedBasicStereotypeValues() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (appliedBasicStereotypeValues != null)
-		{
-			for (Object object : appliedBasicStereotypeValues)
-			{
+		if (appliedBasicStereotypeValues != null) {
+			for (Object object : appliedBasicStereotypeValues) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -647,8 +605,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getUuid()
-	{
+  public String getUuid() {
 		return uuid;
 	}
 
@@ -663,9 +620,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void setUuid(String newUuid)
-	{
-
+  public void setUuid(String newUuid) {
 		newUuid = newUuid == null ? UUID_EDEFAULT : newUuid;
 		String oldUuid = uuid;
 		uuid = newUuid;
@@ -680,8 +635,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateNotOwnSelf(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateNotOwnSelf(DiagnosticChain diagnostics, Map context) {
 		return ElementOperations.validateNotOwnSelf(this, diagnostics, context);
 	}
 
@@ -690,8 +644,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateHasOwner(DiagnosticChain diagnostics, Map context)
-	{
+	public boolean validateHasOwner(DiagnosticChain diagnostics, Map context) {
 		return ElementOperations.validateHasOwner(this, diagnostics, context);
 	}
 
@@ -700,8 +653,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set allOwnedElements()
-	{
+	public Set allOwnedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			Set result = (Set) cache.get(eResource(), this, UML2Package.eINSTANCE.getElement().getEOperations().get(2));
@@ -718,8 +670,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean mustBeOwned()
-	{
+	public boolean mustBeOwned() {
 		return ElementOperations.mustBeOwned(this);
 	}
 
@@ -728,12 +679,9 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -750,12 +698,9 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ELEMENT__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ELEMENT__OWNED_COMMENT:
@@ -774,10 +719,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ELEMENT__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ELEMENT__OWNED_ELEMENT:
@@ -806,10 +749,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -844,10 +785,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ELEMENT__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -878,10 +817,8 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ELEMENT__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ELEMENT__OWNED_ELEMENT:
@@ -909,8 +846,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -941,8 +877,7 @@ public abstract class ElementImpl extends EModelElementImpl implements Element {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		if (eIsSet(UML2Package.eINSTANCE.getElement_OwnedComment())) {
 			ownedElement.addAll(getOwnedComments());
 		}

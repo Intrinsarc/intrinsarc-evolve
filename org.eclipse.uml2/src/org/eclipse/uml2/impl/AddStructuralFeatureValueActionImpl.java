@@ -98,13 +98,11 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected AddStructuralFeatureValueActionImpl()
-	{
+	protected AddStructuralFeatureValueActionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (AddStructuralFeatureValueActionImpl.class.equals(getClass()))
+		if (AddStructuralFeatureValueActionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -114,8 +112,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getAddStructuralFeatureValueAction();
 	}
 
@@ -124,8 +121,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReplaceAll()
-	{
+	public boolean isReplaceAll() {
 		return (eFlags & IS_REPLACE_ALL_EFLAG) != 0;
 	}
 
@@ -140,9 +136,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsReplaceAll(boolean newIsReplaceAll)
-	{
-
+	public void setIsReplaceAll(boolean newIsReplaceAll) {
 		boolean oldIsReplaceAll = (eFlags & IS_REPLACE_ALL_EFLAG) != 0;
 		if (newIsReplaceAll) eFlags |= IS_REPLACE_ALL_EFLAG; else eFlags &= ~IS_REPLACE_ALL_EFLAG;
 		if (eNotificationRequired())
@@ -156,8 +150,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getInsertAt()
-	{
+	public InputPin getInsertAt() {
 		return insertAt;
 	}
 
@@ -171,8 +164,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getInsertAt()
-	{
+  public InputPin undeleted_getInsertAt() {
 		InputPin temp = getInsertAt();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -184,13 +176,10 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetInsertAt(InputPin newInsertAt, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetInsertAt(InputPin newInsertAt, NotificationChain msgs) {
 		InputPin oldInsertAt = insertAt;
 		insertAt = newInsertAt;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__INSERT_AT, oldInsertAt, newInsertAt);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -203,11 +192,8 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInsertAt(InputPin newInsertAt)
-	{
-
-		if (newInsertAt != insertAt)
-		{
+	public void setInsertAt(InputPin newInsertAt) {
+		if (newInsertAt != insertAt) {
 			NotificationChain msgs = null;
 			if (insertAt != null)
 				msgs = ((InternalEObject)insertAt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__INSERT_AT, null, msgs);
@@ -255,12 +241,9 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__TEMPLATE_BINDING:
@@ -303,12 +286,9 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__OWNED_COMMENT:
@@ -361,12 +341,9 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__IN_STRUCTURED_NODE:
@@ -383,10 +360,8 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__OWNED_ELEMENT:
@@ -481,10 +456,8 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -610,10 +583,8 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -722,10 +693,8 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ADD_STRUCTURAL_FEATURE_VALUE_ACTION__OWNED_ELEMENT:
@@ -817,8 +786,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -834,8 +802,7 @@ public class AddStructuralFeatureValueActionImpl extends WriteStructuralFeatureA
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getInputsHelper(EList input)
-	{
+	protected EList getInputsHelper(EList input) {
 		super.getInputsHelper(input);
 		if (eIsSet(UML2Package.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt())) {
 			input.add(getInsertAt());

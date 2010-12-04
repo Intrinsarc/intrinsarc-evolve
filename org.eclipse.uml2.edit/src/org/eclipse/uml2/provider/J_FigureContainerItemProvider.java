@@ -60,8 +60,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public J_FigureContainerItemProvider(AdapterFactory adapterFactory)
-	{
+  public J_FigureContainerItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+  public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 		}
@@ -89,10 +86,8 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+  public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getJ_FigureContainer_Figures());
 			childrenFeatures.add(UML2Package.eINSTANCE.getJ_FigureContainer_Properties());
@@ -105,8 +100,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+  protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -119,8 +113,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Object getImage(Object object)
-	{
+  public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/J_FigureContainer"); //$NON-NLS-1$
 	}
 
@@ -130,8 +123,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public String getText(Object object)
-	{
+  public String getText(Object object) {
 		J_FigureContainer j_FigureContainer = (J_FigureContainer)object;
 		return getString("_UI_J_FigureContainer_type") + " " + j_FigureContainer.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -143,12 +135,10 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public void notifyChanged(Notification notification)
-	{
+  public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(J_FigureContainer.class))
-		{
+		switch (notification.getFeatureID(J_FigureContainer.class)) {
 			case UML2Package.JFIGURE_CONTAINER__FIGURES:
 			case UML2Package.JFIGURE_CONTAINER__PROPERTIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
@@ -164,8 +154,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+  protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -195,8 +184,7 @@ public class J_FigureContainerItemProvider
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public ResourceLocator getResourceLocator()
-	{
+  public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

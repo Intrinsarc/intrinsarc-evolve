@@ -28,8 +28,7 @@ public abstract class WriteLinkActionTest extends LinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public WriteLinkActionTest(String name)
-	{
+	public WriteLinkActionTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class WriteLinkActionTest extends LinkActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private WriteLinkAction getFixture()
-	{
+	private WriteLinkAction getFixture() {
 		return (WriteLinkAction)fixture;
 	}
 

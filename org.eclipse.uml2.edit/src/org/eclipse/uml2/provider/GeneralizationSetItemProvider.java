@@ -57,8 +57,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralizationSetItemProvider(AdapterFactory adapterFactory)
-	{
+	public GeneralizationSetItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsCoveringPropertyDescriptor(object);
@@ -88,8 +85,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsCoveringPropertyDescriptor(Object object)
-	{
+	protected void addIsCoveringPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -109,8 +105,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsDisjointPropertyDescriptor(Object object)
-	{
+	protected void addIsDisjointPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -130,8 +125,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPowertypePropertyDescriptor(Object object)
-	{
+	protected void addPowertypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -151,8 +145,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addGeneralizationPropertyDescriptor(Object object)
-	{
+	protected void addGeneralizationPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -172,8 +165,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/GeneralizationSet"); //$NON-NLS-1$
 	}
 
@@ -183,8 +175,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((GeneralizationSet)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_GeneralizationSet_type") : //$NON-NLS-1$
@@ -198,12 +189,10 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(GeneralizationSet.class))
-		{
+		switch (notification.getFeatureID(GeneralizationSet.class)) {
 			case UML2Package.GENERALIZATION_SET__IS_COVERING:
 			case UML2Package.GENERALIZATION_SET__IS_DISJOINT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -219,8 +208,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -230,8 +218,7 @@ public class GeneralizationSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

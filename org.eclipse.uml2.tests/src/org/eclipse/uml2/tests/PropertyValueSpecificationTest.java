@@ -32,8 +32,7 @@ public class PropertyValueSpecificationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(PropertyValueSpecificationTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class PropertyValueSpecificationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PropertyValueSpecificationTest(String name)
-	{
+	public PropertyValueSpecificationTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class PropertyValueSpecificationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PropertyValueSpecification getFixture()
-	{
+	private PropertyValueSpecification getFixture() {
 		return (PropertyValueSpecification)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class PropertyValueSpecificationTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createPropertyValueSpecification());
 	}
 
@@ -76,8 +72,7 @@ public class PropertyValueSpecificationTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

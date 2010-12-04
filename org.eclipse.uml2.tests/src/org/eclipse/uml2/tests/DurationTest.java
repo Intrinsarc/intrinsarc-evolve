@@ -30,8 +30,7 @@ public class DurationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DurationTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class DurationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DurationTest(String name)
-	{
+	public DurationTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class DurationTest extends ValueSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Duration getFixture()
-	{
+	private Duration getFixture() {
 		return (Duration)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class DurationTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDuration());
 	}
 
@@ -74,8 +70,7 @@ public class DurationTest extends ValueSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

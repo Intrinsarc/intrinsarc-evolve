@@ -30,8 +30,7 @@ public class RemoveStructuralFeatureValueActionTest extends WriteStructuralFeatu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(RemoveStructuralFeatureValueActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class RemoveStructuralFeatureValueActionTest extends WriteStructuralFeatu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RemoveStructuralFeatureValueActionTest(String name)
-	{
+	public RemoveStructuralFeatureValueActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class RemoveStructuralFeatureValueActionTest extends WriteStructuralFeatu
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private RemoveStructuralFeatureValueAction getFixture()
-	{
+	private RemoveStructuralFeatureValueAction getFixture() {
 		return (RemoveStructuralFeatureValueAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class RemoveStructuralFeatureValueActionTest extends WriteStructuralFeatu
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createRemoveStructuralFeatureValueAction());
 	}
 
@@ -74,8 +70,7 @@ public class RemoveStructuralFeatureValueActionTest extends WriteStructuralFeatu
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

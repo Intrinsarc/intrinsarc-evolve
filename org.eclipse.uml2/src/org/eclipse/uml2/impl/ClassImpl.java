@@ -14,29 +14,20 @@ package org.eclipse.uml2.impl;
 
 import java.util.Collection;
 import java.util.Iterator;
-import java.util.Map;
 import java.util.Set;
-
-import java.util.*;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.UniqueEList;
-
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.InternalEObject;
-
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
-import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.EcoreEList;
 import org.eclipse.emf.ecore.util.InternalEList;
-
 import org.eclipse.uml2.Behavior;
 import org.eclipse.uml2.Classifier;
 import org.eclipse.uml2.CollaborationOccurrence;
@@ -48,8 +39,6 @@ import org.eclipse.uml2.DeltaDeletedConnector;
 import org.eclipse.uml2.DeltaDeletedOperation;
 import org.eclipse.uml2.DeltaDeletedPort;
 import org.eclipse.uml2.DeltaDeletedTrace;
-import org.eclipse.uml2.DeltaDeletedConstituent;
-import org.eclipse.uml2.DeltaReplacedConstituent;
 import org.eclipse.uml2.DeltaReplacedAttribute;
 import org.eclipse.uml2.DeltaReplacedConnector;
 import org.eclipse.uml2.DeltaReplacedOperation;
@@ -57,7 +46,6 @@ import org.eclipse.uml2.DeltaReplacedPort;
 import org.eclipse.uml2.DeltaReplacedTrace;
 import org.eclipse.uml2.EncapsulatedClassifier;
 import org.eclipse.uml2.Extension;
-import org.eclipse.uml2.Namespace;
 import org.eclipse.uml2.Operation;
 import org.eclipse.uml2.Port;
 import org.eclipse.uml2.Property;
@@ -66,17 +54,17 @@ import org.eclipse.uml2.StringExpression;
 import org.eclipse.uml2.StructuredClassifier;
 import org.eclipse.uml2.TemplateParameter;
 import org.eclipse.uml2.TemplateSignature;
-import org.eclipse.uml2.UML2Factory;
 import org.eclipse.uml2.Type;
+import org.eclipse.uml2.UML2Factory;
 import org.eclipse.uml2.UML2Package;
 import org.eclipse.uml2.VisibilityKind;
-
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.UnionEObjectEList;
-
 import org.eclipse.uml2.internal.operation.ClassOperations;
 import org.eclipse.uml2.internal.operation.StructuredClassifierOperations;
 import org.eclipse.uml2.internal.operation.TypeOperations;
+
+import com.intrinsarc.emflist.PersistentEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -325,13 +313,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ClassImpl()
-	{
+	protected ClassImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ClassImpl.class.equals(getClass()))
+		if (ClassImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -341,8 +327,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getClass_();
 	}
 
@@ -355,7 +340,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 		if (ownedAttribute == null) {
       if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
       {
-        ownedAttribute = new EObjectContainmentEList(Property.class, this, UML2Package.CLASS__OWNED_ATTRIBUTE);
+        ownedAttribute = new PersistentEList(Property.class, this, UML2Package.CLASS__OWNED_ATTRIBUTE);
       }
 		}
 		return ownedAttribute;
@@ -367,12 +352,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedAttributes()
-	{
-		if (ownedAttribute == null)
-		{
-			
-		
+  public EList settable_getOwnedAttributes() {
+		if (ownedAttribute == null) {
 			ownedAttribute = new com.intrinsarc.emflist.PersistentEList(Property.class, this, UML2Package.CLASS__OWNED_ATTRIBUTE, UML2Package.PROPERTY__CLASS_);
 		}
 		return ownedAttribute;
@@ -383,14 +364,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedAttributes()
-	{
+  public java.util.ArrayList undeleted_getOwnedAttributes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedAttribute != null)
-		{
-			for (Object object : ownedAttribute)
-			{
+		if (ownedAttribute != null) {
+			for (Object object : ownedAttribute) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -495,8 +473,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRoles()
-	{
+	public EList getRoles() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList role = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getStructuredClassifier_Role());
@@ -531,8 +508,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getAttributesHelper(EList attribute)
-	{
+	protected EList getAttributesHelper(EList attribute) {
 		super.getAttributesHelper(attribute);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
 			attribute.addAll(getOwnedAttributes());
@@ -546,8 +522,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember)
-	{
+	protected EList getOwnedMembersHelper(EList ownedMember) {
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedAttribute())) {
 			ownedMember.addAll(getOwnedAttributes());
@@ -576,8 +551,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getMembersHelper(EList member)
-	{
+	protected EList getMembersHelper(EList member) {
 		super.getMembersHelper(member);
 		EList role = getRoles();
 		if (!role.isEmpty()) {
@@ -594,8 +568,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getFeaturesHelper(EList feature)
-	{
+	protected EList getFeaturesHelper(EList feature) {
 		super.getFeaturesHelper(feature);
 		if (eIsSet(UML2Package.eINSTANCE.getStructuredClassifier_OwnedConnector())) {
 			feature.addAll(getOwnedConnectors());
@@ -618,13 +591,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedConnectors()
-	{
-		if (ownedConnector == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedConnectors() {
+		if (ownedConnector == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CLASS__OWNED_CONNECTOR);
 			 		return ownedConnector;
@@ -641,12 +610,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedConnectors()
-	{
-		if (ownedConnector == null)
-		{
-			
-		
+  public EList settable_getOwnedConnectors() {
+		if (ownedConnector == null) {
 			ownedConnector = new com.intrinsarc.emflist.PersistentEList(Connector.class, this, UML2Package.CLASS__OWNED_CONNECTOR);
 		}
 		return ownedConnector;
@@ -657,14 +622,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedConnectors()
-	{
+  public java.util.ArrayList undeleted_getOwnedConnectors() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedConnector != null)
-		{
-			for (Object object : ownedConnector)
-			{
+		if (ownedConnector != null) {
+			for (Object object : ownedConnector) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -697,13 +659,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedAttributes()
-	{
-		if (deltaDeletedAttributes == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedAttributes() {
+		if (deltaDeletedAttributes == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.CLASS__DELTA_DELETED_ATTRIBUTES);
 			 		return deltaDeletedAttributes;
@@ -720,12 +678,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedAttributes()
-	{
-		if (deltaDeletedAttributes == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedAttributes() {
+		if (deltaDeletedAttributes == null) {
 			deltaDeletedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedAttribute.class, this, UML2Package.CLASS__DELTA_DELETED_ATTRIBUTES);
 		}
 		return deltaDeletedAttributes;
@@ -736,14 +690,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedAttributes()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedAttributes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedAttributes != null)
-		{
-			for (Object object : deltaDeletedAttributes)
-			{
+		if (deltaDeletedAttributes != null) {
+			for (Object object : deltaDeletedAttributes) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -789,13 +740,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedAttributes()
-	{
-		if (deltaReplacedAttributes == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedAttributes() {
+		if (deltaReplacedAttributes == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.CLASS__DELTA_REPLACED_ATTRIBUTES);
 			 		return deltaReplacedAttributes;
@@ -812,12 +759,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedAttributes()
-	{
-		if (deltaReplacedAttributes == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedAttributes() {
+		if (deltaReplacedAttributes == null) {
 			deltaReplacedAttributes = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedAttribute.class, this, UML2Package.CLASS__DELTA_REPLACED_ATTRIBUTES);
 		}
 		return deltaReplacedAttributes;
@@ -828,14 +771,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedAttributes()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedAttributes() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedAttributes != null)
-		{
-			for (Object object : deltaReplacedAttributes)
-			{
+		if (deltaReplacedAttributes != null) {
+			for (Object object : deltaReplacedAttributes) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -881,13 +821,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedPorts()
-	{
-		if (deltaDeletedPorts == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedPorts() {
+		if (deltaDeletedPorts == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.CLASS__DELTA_DELETED_PORTS);
 			 		return deltaDeletedPorts;
@@ -904,12 +840,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedPorts()
-	{
-		if (deltaDeletedPorts == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedPorts() {
+		if (deltaDeletedPorts == null) {
 			deltaDeletedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedPort.class, this, UML2Package.CLASS__DELTA_DELETED_PORTS);
 		}
 		return deltaDeletedPorts;
@@ -920,14 +852,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedPorts()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedPorts() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedPorts != null)
-		{
-			for (Object object : deltaDeletedPorts)
-			{
+		if (deltaDeletedPorts != null) {
+			for (Object object : deltaDeletedPorts) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -973,13 +902,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedPorts()
-	{
-		if (deltaReplacedPorts == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedPorts() {
+		if (deltaReplacedPorts == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.CLASS__DELTA_REPLACED_PORTS);
 			 		return deltaReplacedPorts;
@@ -996,12 +921,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedPorts()
-	{
-		if (deltaReplacedPorts == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedPorts() {
+		if (deltaReplacedPorts == null) {
 			deltaReplacedPorts = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedPort.class, this, UML2Package.CLASS__DELTA_REPLACED_PORTS);
 		}
 		return deltaReplacedPorts;
@@ -1012,14 +933,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedPorts()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedPorts() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedPorts != null)
-		{
-			for (Object object : deltaReplacedPorts)
-			{
+		if (deltaReplacedPorts != null) {
+			for (Object object : deltaReplacedPorts) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1065,13 +983,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedConnectors()
-	{
-		if (deltaDeletedConnectors == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedConnectors() {
+		if (deltaDeletedConnectors == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.CLASS__DELTA_DELETED_CONNECTORS);
 			 		return deltaDeletedConnectors;
@@ -1088,12 +1002,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedConnectors()
-	{
-		if (deltaDeletedConnectors == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedConnectors() {
+		if (deltaDeletedConnectors == null) {
 			deltaDeletedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedConnector.class, this, UML2Package.CLASS__DELTA_DELETED_CONNECTORS);
 		}
 		return deltaDeletedConnectors;
@@ -1104,14 +1014,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedConnectors()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedConnectors() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedConnectors != null)
-		{
-			for (Object object : deltaDeletedConnectors)
-			{
+		if (deltaDeletedConnectors != null) {
+			for (Object object : deltaDeletedConnectors) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1157,13 +1064,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedConnectors()
-	{
-		if (deltaReplacedConnectors == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedConnectors() {
+		if (deltaReplacedConnectors == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.CLASS__DELTA_REPLACED_CONNECTORS);
 			 		return deltaReplacedConnectors;
@@ -1180,12 +1083,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedConnectors()
-	{
-		if (deltaReplacedConnectors == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedConnectors() {
+		if (deltaReplacedConnectors == null) {
 			deltaReplacedConnectors = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedConnector.class, this, UML2Package.CLASS__DELTA_REPLACED_CONNECTORS);
 		}
 		return deltaReplacedConnectors;
@@ -1196,14 +1095,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedConnectors()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedConnectors() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedConnectors != null)
-		{
-			for (Object object : deltaReplacedConnectors)
-			{
+		if (deltaReplacedConnectors != null) {
+			for (Object object : deltaReplacedConnectors) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1249,13 +1145,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedOperations()
-	{
-		if (deltaDeletedOperations == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedOperations() {
+		if (deltaDeletedOperations == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.CLASS__DELTA_DELETED_OPERATIONS);
 			 		return deltaDeletedOperations;
@@ -1272,12 +1164,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedOperations()
-	{
-		if (deltaDeletedOperations == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedOperations() {
+		if (deltaDeletedOperations == null) {
 			deltaDeletedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedOperation.class, this, UML2Package.CLASS__DELTA_DELETED_OPERATIONS);
 		}
 		return deltaDeletedOperations;
@@ -1288,14 +1176,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedOperations()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedOperations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedOperations != null)
-		{
-			for (Object object : deltaDeletedOperations)
-			{
+		if (deltaDeletedOperations != null) {
+			for (Object object : deltaDeletedOperations) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1341,13 +1226,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedOperations()
-	{
-		if (deltaReplacedOperations == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedOperations() {
+		if (deltaReplacedOperations == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.CLASS__DELTA_REPLACED_OPERATIONS);
 			 		return deltaReplacedOperations;
@@ -1364,12 +1245,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedOperations()
-	{
-		if (deltaReplacedOperations == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedOperations() {
+		if (deltaReplacedOperations == null) {
 			deltaReplacedOperations = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedOperation.class, this, UML2Package.CLASS__DELTA_REPLACED_OPERATIONS);
 		}
 		return deltaReplacedOperations;
@@ -1380,14 +1257,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedOperations()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedOperations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedOperations != null)
-		{
-			for (Object object : deltaReplacedOperations)
-			{
+		if (deltaReplacedOperations != null) {
+			for (Object object : deltaReplacedOperations) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1433,13 +1307,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaDeletedTraces()
-	{
-		if (deltaDeletedTraces == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaDeletedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.CLASS__DELTA_DELETED_TRACES);
 			 		return deltaDeletedTraces;
@@ -1456,12 +1326,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaDeletedTraces()
-	{
-		if (deltaDeletedTraces == null)
-		{
-			
-		
+	public EList settable_getDeltaDeletedTraces() {
+		if (deltaDeletedTraces == null) {
 			deltaDeletedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaDeletedTrace.class, this, UML2Package.CLASS__DELTA_DELETED_TRACES);
 		}
 		return deltaDeletedTraces;
@@ -1472,14 +1338,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaDeletedTraces()
-	{
+	public java.util.ArrayList undeleted_getDeltaDeletedTraces() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaDeletedTraces != null)
-		{
-			for (Object object : deltaDeletedTraces)
-			{
+		if (deltaDeletedTraces != null) {
+			for (Object object : deltaDeletedTraces) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1525,13 +1388,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDeltaReplacedTraces()
-	{
-		if (deltaReplacedTraces == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		deltaReplacedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.CLASS__DELTA_REPLACED_TRACES);
 			 		return deltaReplacedTraces;
@@ -1548,12 +1407,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList settable_getDeltaReplacedTraces()
-	{
-		if (deltaReplacedTraces == null)
-		{
-			
-		
+	public EList settable_getDeltaReplacedTraces() {
+		if (deltaReplacedTraces == null) {
 			deltaReplacedTraces = new com.intrinsarc.emflist.PersistentEList(DeltaReplacedTrace.class, this, UML2Package.CLASS__DELTA_REPLACED_TRACES);
 		}
 		return deltaReplacedTraces;
@@ -1564,14 +1419,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public java.util.ArrayList undeleted_getDeltaReplacedTraces()
-	{
+	public java.util.ArrayList undeleted_getDeltaReplacedTraces() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (deltaReplacedTraces != null)
-		{
-			for (Object object : deltaReplacedTraces)
-			{
+		if (deltaReplacedTraces != null) {
+			for (Object object : deltaReplacedTraces) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1646,13 +1498,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedPorts()
-	{
-		if (ownedPort == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedPorts() {
+		if (ownedPort == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedPort = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.CLASS__OWNED_PORT);
 			 		return ownedPort;
@@ -1669,12 +1517,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedPorts()
-	{
-		if (ownedPort == null)
-		{
-			
-		
+  public EList settable_getOwnedPorts() {
+		if (ownedPort == null) {
 			ownedPort = new com.intrinsarc.emflist.PersistentEList(Port.class, this, UML2Package.CLASS__OWNED_PORT);
 		}
 		return ownedPort;
@@ -1685,14 +1529,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedPorts()
-	{
+  public java.util.ArrayList undeleted_getOwnedPorts() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedPort != null)
-		{
-			for (Object object : ownedPort)
-			{
+		if (ownedPort != null) {
+			for (Object object : ownedPort) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1754,8 +1595,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isActive()
-	{
+	public boolean isActive() {
 		return (eFlags & IS_ACTIVE_EFLAG) != 0;
 	}
 
@@ -1770,9 +1610,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsActive(boolean newIsActive)
-	{
-
+	public void setIsActive(boolean newIsActive) {
 		boolean oldIsActive = (eFlags & IS_ACTIVE_EFLAG) != 0;
 		if (newIsActive) eFlags |= IS_ACTIVE_EFLAG; else eFlags &= ~IS_ACTIVE_EFLAG;
 		if (eNotificationRequired())
@@ -1786,13 +1624,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedOperations()
-	{
-		if (ownedOperation == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedOperations() {
+		if (ownedOperation == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.CLASS__OWNED_OPERATION, UML2Package.OPERATION__CLASS_);
 			 		return ownedOperation;
@@ -1809,12 +1643,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedOperations()
-	{
-		if (ownedOperation == null)
-		{
-			
-		
+  public EList settable_getOwnedOperations() {
+		if (ownedOperation == null) {
 			ownedOperation = new com.intrinsarc.emflist.PersistentEList(Operation.class, this, UML2Package.CLASS__OWNED_OPERATION, UML2Package.OPERATION__CLASS_);
 		}
 		return ownedOperation;
@@ -1825,14 +1655,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedOperations()
-	{
+  public java.util.ArrayList undeleted_getOwnedOperations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedOperation != null)
-		{
-			for (Object object : ownedOperation)
-			{
+		if (ownedOperation != null) {
+			for (Object object : ownedOperation) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -1981,13 +1808,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getNestedClassifiers()
-	{
-		if (nestedClassifier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getNestedClassifiers() {
+		if (nestedClassifier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASS__NESTED_CLASSIFIER);
 			 		return nestedClassifier;
@@ -2004,12 +1827,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getNestedClassifiers()
-	{
-		if (nestedClassifier == null)
-		{
-			
-		
+  public EList settable_getNestedClassifiers() {
+		if (nestedClassifier == null) {
 			nestedClassifier = new com.intrinsarc.emflist.PersistentEList(Classifier.class, this, UML2Package.CLASS__NESTED_CLASSIFIER);
 		}
 		return nestedClassifier;
@@ -2020,14 +1839,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getNestedClassifiers()
-	{
+  public java.util.ArrayList undeleted_getNestedClassifiers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (nestedClassifier != null)
-		{
-			for (Object object : nestedClassifier)
-			{
+		if (nestedClassifier != null) {
+			for (Object object : nestedClassifier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -2074,13 +1890,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getOwnedReceptions()
-	{
-		if (ownedReception == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getOwnedReceptions() {
+		if (ownedReception == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.CLASS__OWNED_RECEPTION);
 			 		return ownedReception;
@@ -2097,12 +1909,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getOwnedReceptions()
-	{
-		if (ownedReception == null)
-		{
-			
-		
+  public EList settable_getOwnedReceptions() {
+		if (ownedReception == null) {
 			ownedReception = new com.intrinsarc.emflist.PersistentEList(Reception.class, this, UML2Package.CLASS__OWNED_RECEPTION);
 		}
 		return ownedReception;
@@ -2113,14 +1921,11 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getOwnedReceptions()
-	{
+  public java.util.ArrayList undeleted_getOwnedReceptions() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (ownedReception != null)
-		{
-			for (Object object : ownedReception)
-			{
+		if (ownedReception != null) {
+			for (Object object : ownedReception) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -2153,8 +1958,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ComponentKind getComponentKind()
-	{
+	public ComponentKind getComponentKind() {
 		return componentKind;
 	}
 
@@ -2169,9 +1973,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setComponentKind(ComponentKind newComponentKind)
-	{
-
+	public void setComponentKind(ComponentKind newComponentKind) {
 		ComponentKind oldComponentKind = componentKind;
 		componentKind = newComponentKind == null ? COMPONENT_KIND_EDEFAULT : newComponentKind;
 		if (eNotificationRequired())
@@ -2214,8 +2016,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Set inherit(Set inhs)
-	{
+	public Set inherit(Set inhs) {
 		return ClassOperations.inherit(this, inhs);
 	}
 
@@ -2224,8 +2025,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isAbstract()
-	{
+	public boolean isAbstract() {
 		return (eFlags & IS_ABSTRACT_EFLAG) != 0;
 	}
 
@@ -2240,9 +2040,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsAbstract(boolean newIsAbstract)
-	{
-
+	public void setIsAbstract(boolean newIsAbstract) {
 		boolean oldIsAbstract = (eFlags & IS_ABSTRACT_EFLAG) != 0;
 		if (newIsAbstract) eFlags |= IS_ABSTRACT_EFLAG; else eFlags &= ~IS_ABSTRACT_EFLAG;
 		if (eNotificationRequired())
@@ -2256,8 +2054,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGenerals()
-	{
+	public EList getGenerals() {
 		return getSuperClasses();
 	}
 
@@ -2267,12 +2064,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLASS__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CLASS__TEMPLATE_BINDING:
@@ -2334,12 +2128,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CLASS__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CLASS__OWNED_COMMENT:
@@ -2430,12 +2221,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.CLASS__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -2450,10 +2238,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASS__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CLASS__OWNED_ELEMENT:
@@ -2608,10 +2394,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASS__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -2828,10 +2612,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASS__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -3009,10 +2791,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CLASS__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CLASS__OWNED_ELEMENT:
@@ -3180,12 +2960,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == StructuredClassifier.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == StructuredClassifier.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASS__OWNED_ATTRIBUTE: return UML2Package.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE;
 				case UML2Package.CLASS__PART: return UML2Package.STRUCTURED_CLASSIFIER__PART;
 				case UML2Package.CLASS__ROLE: return UML2Package.STRUCTURED_CLASSIFIER__ROLE;
@@ -3203,10 +2980,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				default: return -1;
 			}
 		}
-		if (baseClass == EncapsulatedClassifier.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == EncapsulatedClassifier.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.CLASS__OWNED_PORT: return UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT;
 				default: return -1;
 			}
@@ -3219,12 +2994,9 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == StructuredClassifier.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == StructuredClassifier.class) {
+			switch (baseFeatureID) {
 				case UML2Package.STRUCTURED_CLASSIFIER__OWNED_ATTRIBUTE: return UML2Package.CLASS__OWNED_ATTRIBUTE;
 				case UML2Package.STRUCTURED_CLASSIFIER__PART: return UML2Package.CLASS__PART;
 				case UML2Package.STRUCTURED_CLASSIFIER__ROLE: return UML2Package.CLASS__ROLE;
@@ -3242,10 +3014,8 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 				default: return -1;
 			}
 		}
-		if (baseClass == EncapsulatedClassifier.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == EncapsulatedClassifier.class) {
+			switch (baseFeatureID) {
 				case UML2Package.ENCAPSULATED_CLASSIFIER__OWNED_PORT: return UML2Package.CLASS__OWNED_PORT;
 				default: return -1;
 			}
@@ -3258,8 +3028,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
@@ -3277,8 +3046,7 @@ public class ClassImpl extends BehavioredClassifierImpl implements org.eclipse.u
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRolesHelper(EList role)
-	{
+	protected EList getRolesHelper(EList role) {
 		EList ownedAttribute = getOwnedAttributes();
 		if (!ownedAttribute.isEmpty()) {
 			role.addAll(ownedAttribute);

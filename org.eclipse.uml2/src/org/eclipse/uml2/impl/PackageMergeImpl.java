@@ -72,13 +72,11 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected PackageMergeImpl()
-	{
+	protected PackageMergeImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (PackageMergeImpl.class.equals(getClass()))
+		if (PackageMergeImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -88,8 +86,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getPackageMerge();
 	}
 
@@ -98,8 +95,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getMergingPackage()
-	{
+	public org.eclipse.uml2.Package getMergingPackage() {
 		if (eContainerFeatureID != UML2Package.PACKAGE_MERGE__MERGING_PACKAGE) return null;
 		return (org.eclipse.uml2.Package)eContainer;
 	}
@@ -114,8 +110,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package undeleted_getMergingPackage()
-	{
+  public org.eclipse.uml2.Package undeleted_getMergingPackage() {
 		org.eclipse.uml2.Package temp = getMergingPackage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -127,11 +122,8 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMergingPackage(org.eclipse.uml2.Package newMergingPackage)
-	{
-
-		if (newMergingPackage != eContainer || (eContainerFeatureID != UML2Package.PACKAGE_MERGE__MERGING_PACKAGE && newMergingPackage != null))
-		{
+	public void setMergingPackage(org.eclipse.uml2.Package newMergingPackage) {
+		if (newMergingPackage != eContainer || (eContainerFeatureID != UML2Package.PACKAGE_MERGE__MERGING_PACKAGE && newMergingPackage != null)) {
 			if (EcoreUtil.isAncestor(this, newMergingPackage))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -153,14 +145,11 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getMergedPackage()
-	{
-		if (mergedPackage != null && mergedPackage.eIsProxy())
-		{
+	public org.eclipse.uml2.Package getMergedPackage() {
+		if (mergedPackage != null && mergedPackage.eIsProxy()) {
 			org.eclipse.uml2.Package oldMergedPackage = mergedPackage;
 			mergedPackage = (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)mergedPackage);
-			if (mergedPackage != oldMergedPackage)
-			{
+			if (mergedPackage != oldMergedPackage) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.PACKAGE_MERGE__MERGED_PACKAGE, oldMergedPackage, mergedPackage));
 			}
@@ -178,8 +167,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public org.eclipse.uml2.Package undeleted_getMergedPackage()
-	{
+  public org.eclipse.uml2.Package undeleted_getMergedPackage() {
 		org.eclipse.uml2.Package temp = getMergedPackage();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -191,8 +179,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package basicGetMergedPackage()
-	{
+	public org.eclipse.uml2.Package basicGetMergedPackage() {
 		return mergedPackage;
 	}
 
@@ -201,9 +188,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setMergedPackage(org.eclipse.uml2.Package newMergedPackage)
-	{
-
+	public void setMergedPackage(org.eclipse.uml2.Package newMergedPackage) {
 		org.eclipse.uml2.Package oldMergedPackage = mergedPackage;
 		mergedPackage = newMergedPackage;
 		if (eNotificationRequired())
@@ -217,8 +202,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Element basicGetOwner()
-	{
+	public Element basicGetOwner() {
 		org.eclipse.uml2.Package mergingPackage = getMergingPackage();			
 		if (mergingPackage != null) {
 			return mergingPackage;
@@ -232,8 +216,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		super.getTargetsHelper(target);
 		if (eIsSet(UML2Package.eINSTANCE.getPackageMerge_MergedPackage())) {
 			target.add(getMergedPackage());
@@ -247,12 +230,9 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.PACKAGE_MERGE__MERGING_PACKAGE:
@@ -273,12 +253,9 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.PACKAGE_MERGE__OWNED_COMMENT:
@@ -299,12 +276,9 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.PACKAGE_MERGE__MERGING_PACKAGE:
 					return eContainer.eInverseRemove(this, UML2Package.PACKAGE__PACKAGE_MERGE, org.eclipse.uml2.Package.class, msgs);
 				default:
@@ -319,10 +293,8 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.PACKAGE_MERGE__OWNED_ELEMENT:
@@ -362,10 +334,8 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -406,10 +376,8 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -446,10 +414,8 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.PACKAGE_MERGE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.PACKAGE_MERGE__OWNED_ELEMENT:
@@ -488,8 +454,7 @@ public class PackageMergeImpl extends DirectedRelationshipImpl implements Packag
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		super.getSourcesHelper(source);
 		org.eclipse.uml2.Package mergingPackage = getMergingPackage();
 		if (mergingPackage != null) {

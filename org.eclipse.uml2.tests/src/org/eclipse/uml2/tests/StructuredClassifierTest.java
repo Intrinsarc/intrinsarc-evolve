@@ -34,8 +34,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StructuredClassifierTest(String name)
-	{
+	public StructuredClassifierTest(String name) {
 		super(name);
 	}
 
@@ -45,8 +44,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private StructuredClassifier getFixture()
-	{
+	private StructuredClassifier getFixture() {
 		return (StructuredClassifier)fixture;
 	}
 
@@ -57,8 +55,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.StructuredClassifier#getParts()
 	 * @generated
 	 */
-	public void testGetParts()
-	{
+	public void testGetParts() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -72,8 +69,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.StructuredClassifier#getRoles()
 	 * @generated
 	 */
-	public void testGetRoles()
-	{
+	public void testGetRoles() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -85,8 +81,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes()
-	{
+	public void testGetAttributes() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -98,8 +93,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -111,8 +105,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers()
-	{
+	public void testGetMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -124,8 +117,7 @@ public abstract class StructuredClassifierTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures()
-	{
+	public void testGetFeatures() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

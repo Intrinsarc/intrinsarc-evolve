@@ -28,8 +28,7 @@ public abstract class MessageTriggerTest extends TriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageTriggerTest(String name)
-	{
+	public MessageTriggerTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class MessageTriggerTest extends TriggerTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MessageTrigger getFixture()
-	{
+	private MessageTrigger getFixture() {
 		return (MessageTrigger)fixture;
 	}
 

@@ -30,8 +30,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(AddVariableValueActionTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public AddVariableValueActionTest(String name)
-	{
+	public AddVariableValueActionTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private AddVariableValueAction getFixture()
-	{
+	private AddVariableValueAction getFixture() {
 		return (AddVariableValueAction)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createAddVariableValueAction());
 	}
 
@@ -74,8 +70,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class AddVariableValueActionTest extends WriteVariableActionTest {
 	 * @see org.eclipse.uml2.Action#getInputs()
 	 * @generated
 	 */
-	public void testGetInputs()
-	{
+	public void testGetInputs() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

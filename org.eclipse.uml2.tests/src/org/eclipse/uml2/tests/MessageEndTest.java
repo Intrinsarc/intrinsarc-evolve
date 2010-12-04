@@ -28,8 +28,7 @@ public abstract class MessageEndTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageEndTest(String name)
-	{
+	public MessageEndTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class MessageEndTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private MessageEnd getFixture()
-	{
+	private MessageEnd getFixture() {
 		return (MessageEnd)fixture;
 	}
 

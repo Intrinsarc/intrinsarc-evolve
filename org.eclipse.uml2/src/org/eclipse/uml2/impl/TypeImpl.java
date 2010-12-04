@@ -82,13 +82,11 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected TypeImpl()
-	{
+	protected TypeImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (TypeImpl.class.equals(getClass()))
+		if (TypeImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -98,8 +96,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getType();
 	}
 
@@ -108,8 +105,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public org.eclipse.uml2.Package getPackage()
-	{
+	public org.eclipse.uml2.Package getPackage() {
 		org.eclipse.uml2.Package package_ = basicGetPackage();
 		return package_ == null ? null : (org.eclipse.uml2.Package)eResolveProxy((InternalEObject)package_);
 	}
@@ -134,8 +130,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isRetired()
-	{
+	public boolean isRetired() {
 		return (eFlags & IS_RETIRED_EFLAG) != 0;
 	}
 
@@ -150,9 +145,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsRetired(boolean newIsRetired)
-	{
-
+	public void setIsRetired(boolean newIsRetired) {
 		boolean oldIsRetired = (eFlags & IS_RETIRED_EFLAG) != 0;
 		if (newIsRetired) eFlags |= IS_RETIRED_EFLAG; else eFlags &= ~IS_RETIRED_EFLAG;
 		if (eNotificationRequired())
@@ -166,8 +159,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean conformsTo(Type other)
-	{
+	public boolean conformsTo(Type other) {
 		return TypeOperations.conformsTo(this, other);
 	}
 
@@ -176,8 +168,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		org.eclipse.uml2.Package package_ = basicGetPackage();			
 		if (package_ != null) {
 			return package_;
@@ -191,12 +182,9 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TYPE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.TYPE__TEMPLATE_BINDING:
@@ -229,12 +217,9 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.TYPE__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.TYPE__OWNED_COMMENT:
@@ -267,12 +252,9 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.TYPE__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				default:
@@ -287,10 +269,8 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TYPE__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.TYPE__OWNED_ELEMENT:
@@ -351,10 +331,8 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TYPE__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -433,10 +411,8 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TYPE__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -506,10 +482,8 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.TYPE__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.TYPE__OWNED_ELEMENT:
@@ -577,8 +551,7 @@ public abstract class TypeImpl extends PackageableElementImpl implements Type {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

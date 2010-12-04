@@ -36,8 +36,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ConnectorEndTest.class);
 	}
 
@@ -47,8 +46,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectorEndTest(String name)
-	{
+	public ConnectorEndTest(String name) {
 		super(name);
 	}
 
@@ -58,8 +56,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConnectorEnd getFixture()
-	{
+	private ConnectorEnd getFixture() {
 		return (ConnectorEnd)fixture;
 	}
 
@@ -69,8 +66,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createConnectorEnd());
 	}
 
@@ -80,8 +76,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -92,8 +87,7 @@ public class ConnectorEndTest extends MultiplicityElementTest {
 	 * @see org.eclipse.uml2.ConnectorEnd#getDefiningEnd()
 	 * @generated
 	 */
-	public void testGetDefiningEnd()
-	{
+	public void testGetDefiningEnd() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

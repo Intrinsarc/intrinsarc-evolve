@@ -30,8 +30,7 @@ public class SignalTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(SignalTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class SignalTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public SignalTest(String name)
-	{
+	public SignalTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class SignalTest extends ClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Signal getFixture()
-	{
+	private Signal getFixture() {
 		return (Signal)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class SignalTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createSignal());
 	}
 
@@ -74,8 +70,7 @@ public class SignalTest extends ClassifierTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class SignalTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes()
-	{
+	public void testGetAttributes() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class SignalTest extends ClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

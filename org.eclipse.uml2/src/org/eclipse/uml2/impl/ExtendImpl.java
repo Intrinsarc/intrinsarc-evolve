@@ -109,13 +109,11 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected ExtendImpl()
-	{
+	protected ExtendImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (ExtendImpl.class.equals(getClass()))
+		if (ExtendImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -125,8 +123,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getExtend();
 	}
 
@@ -135,8 +132,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getRelatedElements()
-	{
+	public EList getRelatedElements() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList relatedElement = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getRelationship_RelatedElement());
@@ -156,8 +152,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getSourcesHelper(EList source)
-	{
+	protected EList getSourcesHelper(EList source) {
 		UseCase extension = getExtension();
 		if (extension != null) {
 			source.add(extension);
@@ -170,14 +165,11 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase getExtendedCase()
-	{
-		if (extendedCase != null && extendedCase.eIsProxy())
-		{
+	public UseCase getExtendedCase() {
+		if (extendedCase != null && extendedCase.eIsProxy()) {
 			UseCase oldExtendedCase = extendedCase;
 			extendedCase = (UseCase)eResolveProxy((InternalEObject)extendedCase);
-			if (extendedCase != oldExtendedCase)
-			{
+			if (extendedCase != oldExtendedCase) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.EXTEND__EXTENDED_CASE, oldExtendedCase, extendedCase));
 			}
@@ -195,8 +187,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UseCase undeleted_getExtendedCase()
-	{
+  public UseCase undeleted_getExtendedCase() {
 		UseCase temp = getExtendedCase();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -208,8 +199,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase basicGetExtendedCase()
-	{
+	public UseCase basicGetExtendedCase() {
 		return extendedCase;
 	}
 
@@ -218,9 +208,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtendedCase(UseCase newExtendedCase)
-	{
-
+	public void setExtendedCase(UseCase newExtendedCase) {
 		UseCase oldExtendedCase = extendedCase;
 		extendedCase = newExtendedCase;
 		if (eNotificationRequired())
@@ -234,8 +222,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public UseCase getExtension()
-	{
+	public UseCase getExtension() {
 		if (eContainerFeatureID != UML2Package.EXTEND__EXTENSION) return null;
 		return (UseCase)eContainer;
 	}
@@ -250,8 +237,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public UseCase undeleted_getExtension()
-	{
+  public UseCase undeleted_getExtension() {
 		UseCase temp = getExtension();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -263,11 +249,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setExtension(UseCase newExtension)
-	{
-
-		if (newExtension != eContainer || (eContainerFeatureID != UML2Package.EXTEND__EXTENSION && newExtension != null))
-		{
+	public void setExtension(UseCase newExtension) {
+		if (newExtension != eContainer || (eContainerFeatureID != UML2Package.EXTEND__EXTENSION && newExtension != null)) {
 			if (EcoreUtil.isAncestor(this, newExtension))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -289,8 +272,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Constraint getCondition()
-	{
+	public Constraint getCondition() {
 		return condition;
 	}
 
@@ -304,8 +286,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Constraint undeleted_getCondition()
-	{
+  public Constraint undeleted_getCondition() {
 		Constraint temp = getCondition();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -317,13 +298,10 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetCondition(Constraint newCondition, NotificationChain msgs)
-	{
-
+	public NotificationChain basicSetCondition(Constraint newCondition, NotificationChain msgs) {
 		Constraint oldCondition = condition;
 		condition = newCondition;
-		if (eNotificationRequired())
-		{
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UML2Package.EXTEND__CONDITION, oldCondition, newCondition);
 			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
@@ -336,11 +314,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setCondition(Constraint newCondition)
-	{
-
-		if (newCondition != condition)
-		{
+	public void setCondition(Constraint newCondition) {
+		if (newCondition != condition) {
 			NotificationChain msgs = null;
 			if (condition != null)
 				msgs = ((InternalEObject)condition).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UML2Package.EXTEND__CONDITION, null, msgs);
@@ -388,13 +363,9 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getExtensionLocations()
-	{
-		if (extensionLocation == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getExtensionLocations() {
+		if (extensionLocation == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		extensionLocation = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
 			 		return extensionLocation;
@@ -411,12 +382,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getExtensionLocations()
-	{
-		if (extensionLocation == null)
-		{
-			
-		
+  public EList settable_getExtensionLocations() {
+		if (extensionLocation == null) {
 			extensionLocation = new com.intrinsarc.emflist.PersistentEList(ExtensionPoint.class, this, UML2Package.EXTEND__EXTENSION_LOCATION);
 		}
 		return extensionLocation;
@@ -427,14 +394,11 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getExtensionLocations()
-	{
+  public java.util.ArrayList undeleted_getExtensionLocations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (extensionLocation != null)
-		{
-			for (Object object : extensionLocation)
-			{
+		if (extensionLocation != null) {
+			for (Object object : extensionLocation) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -467,8 +431,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getTargets()
-	{
+	public EList getTargets() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList target = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Target());
@@ -488,8 +451,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getExtend_Condition())) {
 			ownedElement.add(getCondition());
@@ -503,8 +465,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getSources()
-	{
+	public EList getSources() {
 		CacheAdapter cache = getCacheAdapter();
 		if (cache != null) {
 			EList source = (EList) cache.get(eResource(), this, UML2Package.eINSTANCE.getDirectedRelationship_Source());
@@ -524,8 +485,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getTargetsHelper(EList target)
-	{
+	protected EList getTargetsHelper(EList target) {
 		if (eIsSet(UML2Package.eINSTANCE.getExtend_ExtendedCase())) {
 			target.add(getExtendedCase());
 		}
@@ -537,12 +497,9 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXTEND__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.EXTEND__TEMPLATE_BINDING:
@@ -571,12 +528,9 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.EXTEND__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.EXTEND__OWNED_COMMENT:
@@ -609,12 +563,9 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.EXTEND__EXTENSION:
 					return eContainer.eInverseRemove(this, UML2Package.USE_CASE__EXTEND, UseCase.class, msgs);
 				default:
@@ -629,10 +580,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTEND__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.EXTEND__OWNED_ELEMENT:
@@ -696,10 +645,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTEND__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -779,10 +726,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTEND__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -852,10 +797,8 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.EXTEND__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.EXTEND__OWNED_ELEMENT:
@@ -917,20 +860,15 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.EXTEND__RELATED_ELEMENT: return UML2Package.RELATIONSHIP__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (derivedFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.EXTEND__SOURCE: return UML2Package.DIRECTED_RELATIONSHIP__SOURCE;
 				case UML2Package.EXTEND__TARGET: return UML2Package.DIRECTED_RELATIONSHIP__TARGET;
 				default: return -1;
@@ -944,20 +882,15 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == Relationship.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == Relationship.class) {
+			switch (baseFeatureID) {
 				case UML2Package.RELATIONSHIP__RELATED_ELEMENT: return UML2Package.EXTEND__RELATED_ELEMENT;
 				default: return -1;
 			}
 		}
-		if (baseClass == DirectedRelationship.class)
-		{
-			switch (baseFeatureID)
-			{
+		if (baseClass == DirectedRelationship.class) {
+			switch (baseFeatureID) {
 				case UML2Package.DIRECTED_RELATIONSHIP__SOURCE: return UML2Package.EXTEND__SOURCE;
 				case UML2Package.DIRECTED_RELATIONSHIP__TARGET: return UML2Package.EXTEND__TARGET;
 				default: return -1;
@@ -972,8 +905,7 @@ public class ExtendImpl extends NamedElementImpl implements Extend {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getRelatedElementsHelper(EList relatedElement)
-	{
+	protected EList getRelatedElementsHelper(EList relatedElement) {
 		EList source = getSources();
 		if (!source.isEmpty()) {
 			for (Iterator i = ((InternalEList) source).basicIterator(); i.hasNext(); ) {

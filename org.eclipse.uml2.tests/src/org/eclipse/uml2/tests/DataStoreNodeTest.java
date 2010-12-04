@@ -30,8 +30,7 @@ public class DataStoreNodeTest extends CentralBufferNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DataStoreNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class DataStoreNodeTest extends CentralBufferNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DataStoreNodeTest(String name)
-	{
+	public DataStoreNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class DataStoreNodeTest extends CentralBufferNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DataStoreNode getFixture()
-	{
+	private DataStoreNode getFixture() {
 		return (DataStoreNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class DataStoreNodeTest extends CentralBufferNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDataStoreNode());
 	}
 
@@ -74,8 +70,7 @@ public class DataStoreNodeTest extends CentralBufferNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

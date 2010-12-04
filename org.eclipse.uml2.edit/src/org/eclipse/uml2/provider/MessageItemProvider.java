@@ -58,8 +58,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public MessageItemProvider(AdapterFactory adapterFactory)
-	{
+	public MessageItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,10 +68,8 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addMessageKindPropertyDescriptor(object);
@@ -93,8 +90,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMessageKindPropertyDescriptor(Object object)
-	{
+	protected void addMessageKindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -116,8 +112,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMessageSortPropertyDescriptor(Object object)
-	{
+	protected void addMessageSortPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -137,8 +132,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addReceiveEventPropertyDescriptor(Object object)
-	{
+	protected void addReceiveEventPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -158,8 +152,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSendEventPropertyDescriptor(Object object)
-	{
+	protected void addSendEventPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -179,8 +172,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConnectorPropertyDescriptor(Object object)
-	{
+	protected void addConnectorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -200,8 +192,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInteractionPropertyDescriptor(Object object)
-	{
+	protected void addInteractionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -223,8 +214,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSignaturePropertyDescriptor(Object object)
-	{
+	protected void addSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -244,8 +234,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addArgumentPropertyDescriptor(Object object)
-	{
+	protected void addArgumentPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -269,10 +258,8 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getMessage_Argument());
 		}
@@ -285,8 +272,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Message"); //$NON-NLS-1$
 	}
 
@@ -296,8 +282,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Message)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Message_type") : //$NON-NLS-1$
@@ -311,12 +296,10 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Message.class))
-		{
+		switch (notification.getFeatureID(Message.class)) {
 			case UML2Package.MESSAGE__MESSAGE_KIND:
 			case UML2Package.MESSAGE__MESSAGE_SORT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
@@ -335,8 +318,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -486,8 +468,7 @@ public class MessageItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

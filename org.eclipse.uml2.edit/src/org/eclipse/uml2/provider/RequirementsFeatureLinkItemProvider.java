@@ -60,8 +60,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RequirementsFeatureLinkItemProvider(AdapterFactory adapterFactory)
-	{
+	public RequirementsFeatureLinkItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -71,10 +70,8 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addKindPropertyDescriptor(object);
@@ -89,8 +86,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addKindPropertyDescriptor(Object object)
-	{
+	protected void addKindPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,8 +106,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTypePropertyDescriptor(Object object)
-	{
+	protected void addTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,8 +126,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/RequirementsFeatureLink"); //$NON-NLS-1$
 	}
 
@@ -142,8 +136,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		RequirementsFeatureLink requirementsFeatureLink = (RequirementsFeatureLink)object;
 		return getString("_UI_RequirementsFeatureLink_type") + " " + requirementsFeatureLink.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -155,12 +148,10 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RequirementsFeatureLink.class))
-		{
+		switch (notification.getFeatureID(RequirementsFeatureLink.class)) {
 			case UML2Package.REQUIREMENTS_FEATURE_LINK__KIND:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -175,8 +166,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -186,8 +176,7 @@ public class RequirementsFeatureLinkItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

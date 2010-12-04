@@ -30,8 +30,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(EnumerationLiteralTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EnumerationLiteralTest(String name)
-	{
+	public EnumerationLiteralTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private EnumerationLiteral getFixture()
-	{
+	private EnumerationLiteral getFixture() {
 		return (EnumerationLiteral)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createEnumerationLiteral());
 	}
 
@@ -74,8 +70,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class EnumerationLiteralTest extends InstanceSpecificationTest {
 	 * @see org.eclipse.uml2.NamedElement#getNamespace()
 	 * @generated
 	 */
-	public void testGetNamespace()
-	{
+	public void testGetNamespace() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

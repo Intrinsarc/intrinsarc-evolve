@@ -91,13 +91,11 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LinkEndDataImpl()
-	{
+	protected LinkEndDataImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (LinkEndDataImpl.class.equals(getClass()))
+		if (LinkEndDataImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -107,8 +105,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getLinkEndData();
 	}
 
@@ -117,14 +114,11 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getValue()
-	{
-		if (value != null && value.eIsProxy())
-		{
+	public InputPin getValue() {
+		if (value != null && value.eIsProxy()) {
 			InputPin oldValue = value;
 			value = (InputPin)eResolveProxy((InternalEObject)value);
-			if (value != oldValue)
-			{
+			if (value != oldValue) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.LINK_END_DATA__VALUE, oldValue, value));
 			}
@@ -142,8 +136,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getValue()
-	{
+  public InputPin undeleted_getValue() {
 		InputPin temp = getValue();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -155,8 +148,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin basicGetValue()
-	{
+	public InputPin basicGetValue() {
 		return value;
 	}
 
@@ -165,9 +157,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(InputPin newValue)
-	{
-
+	public void setValue(InputPin newValue) {
 		InputPin oldValue = value;
 		value = newValue;
 		if (eNotificationRequired())
@@ -181,14 +171,11 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property getEnd()
-	{
-		if (end != null && end.eIsProxy())
-		{
+	public Property getEnd() {
+		if (end != null && end.eIsProxy()) {
 			Property oldEnd = end;
 			end = (Property)eResolveProxy((InternalEObject)end);
-			if (end != oldEnd)
-			{
+			if (end != oldEnd) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.LINK_END_DATA__END, oldEnd, end));
 			}
@@ -206,8 +193,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Property undeleted_getEnd()
-	{
+  public Property undeleted_getEnd() {
 		Property temp = getEnd();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -219,8 +205,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Property basicGetEnd()
-	{
+	public Property basicGetEnd() {
 		return end;
 	}
 
@@ -229,9 +214,7 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnd(Property newEnd)
-	{
-
+	public void setEnd(Property newEnd) {
 		Property oldEnd = end;
 		end = newEnd;
 		if (eNotificationRequired())
@@ -245,13 +228,9 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getQualifiers()
-	{
-		if (qualifier == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getQualifiers() {
+		if (qualifier == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		qualifier = new com.intrinsarc.emflist.PersistentEList(QualifierValue.class, this, UML2Package.LINK_END_DATA__QUALIFIER);
 			 		return qualifier;
@@ -268,12 +247,8 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getQualifiers()
-	{
-		if (qualifier == null)
-		{
-			
-		
+  public EList settable_getQualifiers() {
+		if (qualifier == null) {
 			qualifier = new com.intrinsarc.emflist.PersistentEList(QualifierValue.class, this, UML2Package.LINK_END_DATA__QUALIFIER);
 		}
 		return qualifier;
@@ -284,14 +259,11 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getQualifiers()
-	{
+  public java.util.ArrayList undeleted_getQualifiers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (qualifier != null)
-		{
-			for (Object object : qualifier)
-			{
+		if (qualifier != null) {
+			for (Object object : qualifier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -338,12 +310,9 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.LINK_END_DATA__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -360,12 +329,9 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.LINK_END_DATA__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.LINK_END_DATA__OWNED_COMMENT:
@@ -386,10 +352,8 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_DATA__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.LINK_END_DATA__OWNED_ELEMENT:
@@ -426,10 +390,8 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_DATA__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -474,10 +436,8 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_DATA__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -517,10 +477,8 @@ public class LinkEndDataImpl extends ElementImpl implements LinkEndData {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_DATA__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.LINK_END_DATA__OWNED_ELEMENT:

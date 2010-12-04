@@ -30,8 +30,7 @@ public class PrimitiveTypeTest extends DataTypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(PrimitiveTypeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class PrimitiveTypeTest extends DataTypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public PrimitiveTypeTest(String name)
-	{
+	public PrimitiveTypeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class PrimitiveTypeTest extends DataTypeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private PrimitiveType getFixture()
-	{
+	private PrimitiveType getFixture() {
 		return (PrimitiveType)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class PrimitiveTypeTest extends DataTypeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createPrimitiveType());
 	}
 
@@ -74,8 +70,7 @@ public class PrimitiveTypeTest extends DataTypeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

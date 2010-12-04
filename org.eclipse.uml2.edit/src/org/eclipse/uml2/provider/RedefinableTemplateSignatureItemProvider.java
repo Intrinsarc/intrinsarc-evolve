@@ -71,8 +71,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RedefinableTemplateSignatureItemProvider(AdapterFactory adapterFactory)
-	{
+	public RedefinableTemplateSignatureItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -82,10 +81,8 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addParameterPropertyDescriptor(object);
@@ -103,8 +100,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameterPropertyDescriptor(Object object)
-	{
+	protected void addParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -124,8 +120,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedParameterPropertyDescriptor(Object object)
-	{
+	protected void addOwnedParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -147,8 +142,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNestedSignaturePropertyDescriptor(Object object)
-	{
+	protected void addNestedSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -168,8 +162,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addNestingSignaturePropertyDescriptor(Object object)
-	{
+	protected void addNestingSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -189,8 +182,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplatePropertyDescriptor(Object object)
-	{
+	protected void addTemplatePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -214,10 +206,8 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateSignature_OwnedParameter());
 		}
@@ -230,8 +220,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/RedefinableTemplateSignature"); //$NON-NLS-1$
 	}
 
@@ -241,8 +230,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((RedefinableTemplateSignature)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_RedefinableTemplateSignature_type") : //$NON-NLS-1$
@@ -256,12 +244,10 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(RedefinableTemplateSignature.class))
-		{
+		switch (notification.getFeatureID(RedefinableTemplateSignature.class)) {
 			case UML2Package.REDEFINABLE_TEMPLATE_SIGNATURE__OWNED_PARAMETER:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -276,8 +262,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -327,8 +312,7 @@ public class RedefinableTemplateSignatureItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

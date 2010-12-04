@@ -30,8 +30,7 @@ public class ValuePinTest extends InputPinTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ValuePinTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ValuePinTest extends InputPinTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValuePinTest(String name)
-	{
+	public ValuePinTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ValuePinTest extends InputPinTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ValuePin getFixture()
-	{
+	private ValuePin getFixture() {
 		return (ValuePin)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ValuePinTest extends InputPinTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createValuePin());
 	}
 
@@ -74,8 +70,7 @@ public class ValuePinTest extends InputPinTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

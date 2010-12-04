@@ -34,8 +34,7 @@ public class J_PropertyTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(J_PropertyTest.class);
 	}
 
@@ -45,8 +44,7 @@ public class J_PropertyTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public J_PropertyTest(String name)
-	{
+	public J_PropertyTest(String name) {
 		super(name);
 	}
 
@@ -56,8 +54,7 @@ public class J_PropertyTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private J_Property getFixture()
-	{
+	private J_Property getFixture() {
 		return (J_Property)fixture;
 	}
 
@@ -67,8 +64,7 @@ public class J_PropertyTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createJ_Property());
 	}
 
@@ -78,8 +74,7 @@ public class J_PropertyTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

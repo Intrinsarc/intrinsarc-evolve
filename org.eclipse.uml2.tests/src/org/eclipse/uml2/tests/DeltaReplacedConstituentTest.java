@@ -32,8 +32,7 @@ public class DeltaReplacedConstituentTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(DeltaReplacedConstituentTest.class);
 	}
 
@@ -43,8 +42,7 @@ public class DeltaReplacedConstituentTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeltaReplacedConstituentTest(String name)
-	{
+	public DeltaReplacedConstituentTest(String name) {
 		super(name);
 	}
 
@@ -54,8 +52,7 @@ public class DeltaReplacedConstituentTest extends ElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeltaReplacedConstituent getFixture()
-	{
+	private DeltaReplacedConstituent getFixture() {
 		return (DeltaReplacedConstituent)fixture;
 	}
 
@@ -65,8 +62,7 @@ public class DeltaReplacedConstituentTest extends ElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createDeltaReplacedConstituent());
 	}
 
@@ -76,8 +72,7 @@ public class DeltaReplacedConstituentTest extends ElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

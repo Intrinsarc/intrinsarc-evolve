@@ -30,8 +30,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(GeneralizationTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GeneralizationTest(String name)
-	{
+	public GeneralizationTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Generalization getFixture()
-	{
+	private Generalization getFixture() {
 		return (Generalization)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createGeneralization());
 	}
 
@@ -74,8 +70,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getSources()
 	 * @generated
 	 */
-	public void testGetSources()
-	{
+	public void testGetSources() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -101,8 +95,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -114,8 +107,7 @@ public class GeneralizationTest extends DirectedRelationshipTest {
 	 * @see org.eclipse.uml2.DirectedRelationship#getTargets()
 	 * @generated
 	 */
-	public void testGetTargets()
-	{
+	public void testGetTargets() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

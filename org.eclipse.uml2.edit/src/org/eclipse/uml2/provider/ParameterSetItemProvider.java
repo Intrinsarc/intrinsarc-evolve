@@ -57,8 +57,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ParameterSetItemProvider(AdapterFactory adapterFactory)
-	{
+	public ParameterSetItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addParameterPropertyDescriptor(object);
@@ -86,8 +83,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameterPropertyDescriptor(Object object)
-	{
+	protected void addParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -107,8 +103,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addConditionPropertyDescriptor(Object object)
-	{
+	protected void addConditionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -132,10 +127,8 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getParameterSet_Condition());
 		}
@@ -148,8 +141,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/ParameterSet"); //$NON-NLS-1$
 	}
 
@@ -159,8 +151,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ParameterSet)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ParameterSet_type") : //$NON-NLS-1$
@@ -174,12 +165,10 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(ParameterSet.class))
-		{
+		switch (notification.getFeatureID(ParameterSet.class)) {
 			case UML2Package.PARAMETER_SET__CONDITION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -194,8 +183,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -255,8 +243,7 @@ public class ParameterSetItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

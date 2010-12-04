@@ -58,8 +58,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CallActionItemProvider(AdapterFactory adapterFactory)
-	{
+	public CallActionItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -69,10 +68,8 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addIsSynchronousPropertyDescriptor(object);
@@ -87,8 +84,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addIsSynchronousPropertyDescriptor(Object object)
-	{
+	protected void addIsSynchronousPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -108,8 +104,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addResultPropertyDescriptor(Object object)
-	{
+	protected void addResultPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -133,10 +128,8 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getCallAction_Result());
 		}
@@ -149,8 +142,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((CallAction)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_CallAction_type") : //$NON-NLS-1$
@@ -164,12 +156,10 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(CallAction.class))
-		{
+		switch (notification.getFeatureID(CallAction.class)) {
 			case UML2Package.CALL_ACTION__IS_SYNCHRONOUS:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
@@ -187,8 +177,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -208,8 +197,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection)
-	{
+	public String getCreateChildText(Object owner, Object feature, Object child, Collection selection) {
 		Object childFeature = feature;
 		Object childObject = child;
 
@@ -217,8 +205,7 @@ public class CallActionItemProvider
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPrecondition() ||
 			childFeature == UML2Package.eINSTANCE.getAction_LocalPostcondition();
 
-		if (qualify)
-		{
+		if (qualify) {
 			return getString
 				("_UI_CreateChild_text2", //$NON-NLS-1$
 				 new Object[] { getTypeText(childObject), getFeatureText(childFeature), getTypeText(owner) });
@@ -232,8 +219,7 @@ public class CallActionItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

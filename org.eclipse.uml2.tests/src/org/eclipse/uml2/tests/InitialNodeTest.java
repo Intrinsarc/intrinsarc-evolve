@@ -30,8 +30,7 @@ public class InitialNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(InitialNodeTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class InitialNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InitialNodeTest(String name)
-	{
+	public InitialNodeTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class InitialNodeTest extends ControlNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private InitialNode getFixture()
-	{
+	private InitialNode getFixture() {
 		return (InitialNode)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class InitialNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createInitialNode());
 	}
 
@@ -74,8 +70,7 @@ public class InitialNodeTest extends ControlNodeTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

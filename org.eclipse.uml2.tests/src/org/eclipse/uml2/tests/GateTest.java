@@ -30,8 +30,7 @@ public class GateTest extends MessageEndTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(GateTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class GateTest extends MessageEndTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public GateTest(String name)
-	{
+	public GateTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class GateTest extends MessageEndTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Gate getFixture()
-	{
+	private Gate getFixture() {
 		return (Gate)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class GateTest extends MessageEndTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createGate());
 	}
 
@@ -74,8 +70,7 @@ public class GateTest extends MessageEndTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -147,13 +147,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected InteractionImpl()
-	{
+	protected InteractionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (InteractionImpl.class.equals(getClass()))
+		if (InteractionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -163,8 +161,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getInteraction();
 	}
 
@@ -173,13 +170,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getCovereds()
-	{
-		if (covered == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getCovereds() {
+		if (covered == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
 			 		return covered;
@@ -196,12 +189,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getCovereds()
-	{
-		if (covered == null)
-		{
-			
-		
+  public EList settable_getCovereds() {
+		if (covered == null) {
 			covered = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__COVERED, UML2Package.LIFELINE__COVERED_BY);
 		}
 		return covered;
@@ -212,14 +201,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getCovereds()
-	{
+  public java.util.ArrayList undeleted_getCovereds() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (covered != null)
-		{
-			for (Object object : covered)
-			{
+		if (covered != null) {
+			for (Object object : covered) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -252,13 +238,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getGeneralOrderings()
-	{
-		if (generalOrdering == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getGeneralOrderings() {
+		if (generalOrdering == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
 			 		return generalOrdering;
@@ -275,12 +257,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getGeneralOrderings()
-	{
-		if (generalOrdering == null)
-		{
-			
-		
+  public EList settable_getGeneralOrderings() {
+		if (generalOrdering == null) {
 			generalOrdering = new com.intrinsarc.emflist.PersistentEList(GeneralOrdering.class, this, UML2Package.INTERACTION__GENERAL_ORDERING);
 		}
 		return generalOrdering;
@@ -291,14 +269,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getGeneralOrderings()
-	{
+  public java.util.ArrayList undeleted_getGeneralOrderings() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (generalOrdering != null)
-		{
-			for (Object object : generalOrdering)
-			{
+		if (generalOrdering != null) {
+			for (Object object : generalOrdering) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -360,8 +335,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Interaction getEnclosingInteraction()
-	{
+	public Interaction getEnclosingInteraction() {
 		if (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_INTERACTION) return null;
 		return (Interaction)eContainer;
 	}
@@ -376,8 +350,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Interaction undeleted_getEnclosingInteraction()
-	{
+  public Interaction undeleted_getEnclosingInteraction() {
 		Interaction temp = getEnclosingInteraction();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -389,11 +362,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnclosingInteraction(Interaction newEnclosingInteraction)
-	{
-
-		if (newEnclosingInteraction != eContainer || (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_INTERACTION && newEnclosingInteraction != null))
-		{
+	public void setEnclosingInteraction(Interaction newEnclosingInteraction) {
+		if (newEnclosingInteraction != eContainer || (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_INTERACTION && newEnclosingInteraction != null)) {
 			if (EcoreUtil.isAncestor(this, newEnclosingInteraction))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -415,8 +385,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InteractionOperand getEnclosingOperand()
-	{
+	public InteractionOperand getEnclosingOperand() {
 		if (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_OPERAND) return null;
 		return (InteractionOperand)eContainer;
 	}
@@ -431,8 +400,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InteractionOperand undeleted_getEnclosingOperand()
-	{
+  public InteractionOperand undeleted_getEnclosingOperand() {
 		InteractionOperand temp = getEnclosingOperand();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -444,11 +412,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnclosingOperand(InteractionOperand newEnclosingOperand)
-	{
-
-		if (newEnclosingOperand != eContainer || (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_OPERAND && newEnclosingOperand != null))
-		{
+	public void setEnclosingOperand(InteractionOperand newEnclosingOperand) {
+		if (newEnclosingOperand != eContainer || (eContainerFeatureID != UML2Package.INTERACTION__ENCLOSING_OPERAND && newEnclosingOperand != null)) {
 			if (EcoreUtil.isAncestor(this, newEnclosingOperand))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -470,13 +435,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getLifelines()
-	{
-		if (lifeline == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getLifelines() {
+		if (lifeline == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		lifeline = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
 			 		return lifeline;
@@ -493,12 +454,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getLifelines()
-	{
-		if (lifeline == null)
-		{
-			
-		
+  public EList settable_getLifelines() {
+		if (lifeline == null) {
 			lifeline = new com.intrinsarc.emflist.PersistentEList(Lifeline.class, this, UML2Package.INTERACTION__LIFELINE, UML2Package.LIFELINE__INTERACTION);
 		}
 		return lifeline;
@@ -509,14 +466,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getLifelines()
-	{
+  public java.util.ArrayList undeleted_getLifelines() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (lifeline != null)
-		{
-			for (Object object : lifeline)
-			{
+		if (lifeline != null) {
+			for (Object object : lifeline) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -578,13 +532,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getMessages()
-	{
-		if (message == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getMessages() {
+		if (message == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		message = new com.intrinsarc.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
 			 		return message;
@@ -601,12 +551,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getMessages()
-	{
-		if (message == null)
-		{
-			
-		
+  public EList settable_getMessages() {
+		if (message == null) {
 			message = new com.intrinsarc.emflist.PersistentEList(Message.class, this, UML2Package.INTERACTION__MESSAGE, UML2Package.MESSAGE__INTERACTION);
 		}
 		return message;
@@ -617,14 +563,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getMessages()
-	{
+  public java.util.ArrayList undeleted_getMessages() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (message != null)
-		{
-			for (Object object : message)
-			{
+		if (message != null) {
+			for (Object object : message) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -686,13 +629,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFragments()
-	{
-		if (fragment == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getFragments() {
+		if (fragment == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
 			 		return fragment;
@@ -709,12 +648,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getFragments()
-	{
-		if (fragment == null)
-		{
-			
-		
+  public EList settable_getFragments() {
+		if (fragment == null) {
 			fragment = new com.intrinsarc.emflist.PersistentEList(InteractionFragment.class, this, UML2Package.INTERACTION__FRAGMENT, UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION);
 		}
 		return fragment;
@@ -725,14 +660,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getFragments()
-	{
+  public java.util.ArrayList undeleted_getFragments() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (fragment != null)
-		{
-			for (Object object : fragment)
-			{
+		if (fragment != null) {
+			for (Object object : fragment) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -779,13 +711,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getFormalGates()
-	{
-		if (formalGate == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getFormalGates() {
+		if (formalGate == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		formalGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
 			 		return formalGate;
@@ -802,12 +730,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getFormalGates()
-	{
-		if (formalGate == null)
-		{
-			
-		
+  public EList settable_getFormalGates() {
+		if (formalGate == null) {
 			formalGate = new com.intrinsarc.emflist.PersistentEList(Gate.class, this, UML2Package.INTERACTION__FORMAL_GATE);
 		}
 		return formalGate;
@@ -818,14 +742,11 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getFormalGates()
-	{
+  public java.util.ArrayList undeleted_getFormalGates() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (formalGate != null)
-		{
-			for (Object object : formalGate)
-			{
+		if (formalGate != null) {
+			for (Object object : formalGate) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -887,8 +808,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		InteractionOperand enclosingOperand = getEnclosingOperand();			
 		if (enclosingOperand != null) {
 			return enclosingOperand;
@@ -902,8 +822,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedMembersHelper(EList ownedMember)
-	{
+	protected EList getOwnedMembersHelper(EList ownedMember) {
 		super.getOwnedMembersHelper(ownedMember);
 		if (eIsSet(UML2Package.eINSTANCE.getInteraction_Lifeline())) {
 			ownedMember.addAll(getLifelines());
@@ -923,12 +842,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.INTERACTION__TEMPLATE_BINDING:
@@ -1014,12 +930,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.INTERACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.INTERACTION__OWNED_COMMENT:
@@ -1134,12 +1047,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.INTERACTION__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.INTERACTION__CONTEXT:
@@ -1160,10 +1070,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.INTERACTION__OWNED_ELEMENT:
@@ -1355,10 +1263,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -1634,10 +1540,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -1863,10 +1767,8 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.INTERACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.INTERACTION__OWNED_ELEMENT:
@@ -2070,12 +1972,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass)
-	{
-		if (baseClass == InteractionFragment.class)
-		{
-			switch (derivedFeatureID)
-			{
+	public int eBaseStructuralFeatureID(int derivedFeatureID, Class baseClass) {
+		if (baseClass == InteractionFragment.class) {
+			switch (derivedFeatureID) {
 				case UML2Package.INTERACTION__COVERED: return UML2Package.INTERACTION_FRAGMENT__COVERED;
 				case UML2Package.INTERACTION__GENERAL_ORDERING: return UML2Package.INTERACTION_FRAGMENT__GENERAL_ORDERING;
 				case UML2Package.INTERACTION__ENCLOSING_INTERACTION: return UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION;
@@ -2091,12 +1990,9 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass)
-	{
-		if (baseClass == InteractionFragment.class)
-		{
-			switch (baseFeatureID)
-			{
+	public int eDerivedStructuralFeatureID(int baseFeatureID, Class baseClass) {
+		if (baseClass == InteractionFragment.class) {
+			switch (baseFeatureID) {
 				case UML2Package.INTERACTION_FRAGMENT__COVERED: return UML2Package.INTERACTION__COVERED;
 				case UML2Package.INTERACTION_FRAGMENT__GENERAL_ORDERING: return UML2Package.INTERACTION__GENERAL_ORDERING;
 				case UML2Package.INTERACTION_FRAGMENT__ENCLOSING_INTERACTION: return UML2Package.INTERACTION__ENCLOSING_INTERACTION;
@@ -2113,8 +2009,7 @@ public class InteractionImpl extends BehaviorImpl implements Interaction {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EList getOwnedElementsHelper(EList ownedElement)
-	{
+	protected EList getOwnedElementsHelper(EList ownedElement) {
 		super.getOwnedElementsHelper(ownedElement);
 		if (eIsSet(UML2Package.eINSTANCE.getInteractionFragment_GeneralOrdering())) {
 			ownedElement.addAll(getGeneralOrderings());

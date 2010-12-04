@@ -30,8 +30,7 @@ public class ExtensionPointTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ExtensionPointTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class ExtensionPointTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ExtensionPointTest(String name)
-	{
+	public ExtensionPointTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class ExtensionPointTest extends RedefinableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ExtensionPoint getFixture()
-	{
+	private ExtensionPoint getFixture() {
 		return (ExtensionPoint)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class ExtensionPointTest extends RedefinableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createExtensionPoint());
 	}
 
@@ -74,8 +70,7 @@ public class ExtensionPointTest extends RedefinableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

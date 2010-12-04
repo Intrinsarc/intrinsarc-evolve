@@ -30,8 +30,7 @@ public class StopTest extends EventOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(StopTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class StopTest extends EventOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public StopTest(String name)
-	{
+	public StopTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class StopTest extends EventOccurrenceTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Stop getFixture()
-	{
+	private Stop getFixture() {
 		return (Stop)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class StopTest extends EventOccurrenceTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createStop());
 	}
 
@@ -74,8 +70,7 @@ public class StopTest extends EventOccurrenceTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 

@@ -57,8 +57,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public LifelineItemProvider(AdapterFactory adapterFactory)
-	{
+	public LifelineItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addCoveredByPropertyDescriptor(object);
@@ -89,8 +86,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addCoveredByPropertyDescriptor(Object object)
-	{
+	protected void addCoveredByPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,8 +106,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addRepresentsPropertyDescriptor(Object object)
-	{
+	protected void addRepresentsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,8 +126,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addInteractionPropertyDescriptor(Object object)
-	{
+	protected void addInteractionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -154,8 +148,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSelectorPropertyDescriptor(Object object)
-	{
+	protected void addSelectorPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -177,8 +170,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDecomposedAsPropertyDescriptor(Object object)
-	{
+	protected void addDecomposedAsPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -200,10 +192,8 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getLifeline_Selector());
 		}
@@ -216,8 +206,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/Lifeline"); //$NON-NLS-1$
 	}
 
@@ -227,8 +216,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Lifeline)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Lifeline_type") : //$NON-NLS-1$
@@ -242,12 +230,10 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Lifeline.class))
-		{
+		switch (notification.getFeatureID(Lifeline.class)) {
 			case UML2Package.LIFELINE__SELECTOR:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -262,8 +248,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -293,8 +278,7 @@ public class LifelineItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

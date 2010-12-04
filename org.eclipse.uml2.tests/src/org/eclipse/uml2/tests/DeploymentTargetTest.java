@@ -34,8 +34,7 @@ public abstract class DeploymentTargetTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DeploymentTargetTest(String name)
-	{
+	public DeploymentTargetTest(String name) {
 		super(name);
 	}
 
@@ -45,8 +44,7 @@ public abstract class DeploymentTargetTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private DeploymentTarget getFixture()
-	{
+	private DeploymentTarget getFixture() {
 		return (DeploymentTarget)fixture;
 	}
 
@@ -57,8 +55,7 @@ public abstract class DeploymentTargetTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.DeploymentTarget#getDeployedElements()
 	 * @generated
 	 */
-	public void testGetDeployedElements()
-	{
+	public void testGetDeployedElements() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -72,8 +69,7 @@ public abstract class DeploymentTargetTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

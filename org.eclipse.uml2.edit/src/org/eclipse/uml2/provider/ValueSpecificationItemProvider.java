@@ -67,8 +67,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ValueSpecificationItemProvider(AdapterFactory adapterFactory)
-	{
+	public ValueSpecificationItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -78,10 +77,8 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addTemplateParameterPropertyDescriptor(object);
@@ -96,8 +93,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addTemplateParameterPropertyDescriptor(Object object)
-	{
+	protected void addTemplateParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -117,8 +113,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwningParameterPropertyDescriptor(Object object)
-	{
+	protected void addOwningParameterPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -140,8 +135,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((ValueSpecification)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_ValueSpecification_type") : //$NON-NLS-1$
@@ -155,8 +149,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -168,8 +161,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -179,8 +171,7 @@ public class ValueSpecificationItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

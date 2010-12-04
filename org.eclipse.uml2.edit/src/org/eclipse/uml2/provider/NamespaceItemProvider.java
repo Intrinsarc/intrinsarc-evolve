@@ -59,8 +59,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NamespaceItemProvider(AdapterFactory adapterFactory)
-	{
+	public NamespaceItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -70,10 +69,8 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addMemberPropertyDescriptor(object);
@@ -91,8 +88,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addMemberPropertyDescriptor(Object object)
-	{
+	protected void addMemberPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -114,8 +110,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addOwnedRulePropertyDescriptor(Object object)
-	{
+	protected void addOwnedRulePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -137,8 +132,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addImportedMemberPropertyDescriptor(Object object)
-	{
+	protected void addImportedMemberPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -160,8 +154,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addElementImportPropertyDescriptor(Object object)
-	{
+	protected void addElementImportPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -183,8 +176,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPackageImportPropertyDescriptor(Object object)
-	{
+	protected void addPackageImportPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -208,10 +200,8 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamespace_OwnedRule());
 			childrenFeatures.add(UML2Package.eINSTANCE.getNamespace_ElementImport());
@@ -225,8 +215,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EStructuralFeature getChildFeature(Object object, Object child)
-	{
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
 
@@ -239,8 +228,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((Namespace)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_Namespace_type") : //$NON-NLS-1$
@@ -254,12 +242,10 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(Namespace.class))
-		{
+		switch (notification.getFeatureID(Namespace.class)) {
 			case UML2Package.NAMESPACE__OWNED_RULE:
 			case UML2Package.NAMESPACE__ELEMENT_IMPORT:
 			case UML2Package.NAMESPACE__PACKAGE_IMPORT:
@@ -276,8 +262,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -367,8 +352,7 @@ public class NamespaceItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

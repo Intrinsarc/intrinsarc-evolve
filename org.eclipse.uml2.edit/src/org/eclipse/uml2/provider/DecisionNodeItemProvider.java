@@ -54,8 +54,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public DecisionNodeItemProvider(AdapterFactory adapterFactory)
-	{
+	public DecisionNodeItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -65,10 +64,8 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addDecisionInputPropertyDescriptor(object);
@@ -82,8 +79,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addDecisionInputPropertyDescriptor(Object object)
-	{
+	protected void addDecisionInputPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -103,8 +99,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/DecisionNode"); //$NON-NLS-1$
 	}
 
@@ -114,8 +109,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		String label = ((DecisionNode)object).getName();
 		return label == null || label.length() == 0 ?
 			getString("_UI_DecisionNode_type") : //$NON-NLS-1$
@@ -129,8 +123,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 		super.notifyChanged(notification);
 	}
@@ -142,8 +135,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 	}
 
@@ -153,8 +145,7 @@ public class DecisionNodeItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

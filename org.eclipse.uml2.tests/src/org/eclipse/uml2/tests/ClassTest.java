@@ -43,8 +43,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(ClassTest.class);
 	}
 
@@ -54,8 +53,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ClassTest(String name)
-	{
+	public ClassTest(String name) {
 		super(name);
 	}
 
@@ -65,8 +63,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private org.eclipse.uml2.Class getFixture()
-	{
+	private org.eclipse.uml2.Class getFixture() {
 		return (org.eclipse.uml2.Class)fixture;
 	}
 
@@ -76,8 +73,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createClass());
 	}
 
@@ -87,8 +83,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -99,8 +94,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.StructuredClassifier#getParts()
 	 * @generated
 	 */
-	public void testGetParts()
-	{
+	public void testGetParts() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -112,8 +106,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Class#getSuperClasses()
 	 * @generated
 	 */
-	public void testGetSuperClasses()
-	{
+	public void testGetSuperClasses() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -125,8 +118,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Class#getExtensions()
 	 * @generated
 	 */
-	public void testGetExtensions()
-	{
+	public void testGetExtensions() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -138,8 +130,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Class#inherit(java.util.Set)
 	 * @generated
 	 */
-	public void testInherit__Set()
-	{
+	public void testInherit__Set() {
 		// TODO: implement this feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -153,8 +144,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.StructuredClassifier#getRoles()
 	 * @generated
 	 */
-	public void testGetRoles()
-	{
+	public void testGetRoles() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -166,8 +156,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getAttributes()
 	 * @generated
 	 */
-	public void testGetAttributes()
-	{
+	public void testGetAttributes() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -179,8 +168,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getOwnedMembers()
 	 * @generated
 	 */
-	public void testGetOwnedMembers()
-	{
+	public void testGetOwnedMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -192,8 +180,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Namespace#getMembers()
 	 * @generated
 	 */
-	public void testGetMembers()
-	{
+	public void testGetMembers() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -205,8 +192,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getFeatures()
 	 * @generated
 	 */
-	public void testGetFeatures()
-	{
+	public void testGetFeatures() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}
@@ -218,8 +204,7 @@ public class ClassTest extends BehavioredClassifierTest {
 	 * @see org.eclipse.uml2.Classifier#getGenerals()
 	 * @generated
 	 */
-	public void testGetGenerals()
-	{
+	public void testGetGenerals() {
 		// TODO: implement this redefined feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

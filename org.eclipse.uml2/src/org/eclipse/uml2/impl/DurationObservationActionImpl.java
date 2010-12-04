@@ -78,13 +78,11 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected DurationObservationActionImpl()
-	{
+	protected DurationObservationActionImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (DurationObservationActionImpl.class.equals(getClass()))
+		if (DurationObservationActionImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -94,8 +92,7 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getDurationObservationAction();
 	}
 
@@ -104,13 +101,9 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList getDurations()
-	{
-		if (duration == null)
-		{
-			
-			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
-			 {
+	public EList getDurations() {
+		if (duration == null) {
+			 if (org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET) {
 			 		// create the list lazily...
 			 		duration = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
 			 		return duration;
@@ -127,12 +120,8 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getDurations()
-	{
-		if (duration == null)
-		{
-			
-		
+  public EList settable_getDurations() {
+		if (duration == null) {
 			duration = new com.intrinsarc.emflist.PersistentEList(Duration.class, this, UML2Package.DURATION_OBSERVATION_ACTION__DURATION);
 		}
 		return duration;
@@ -143,14 +132,11 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getDurations()
-	{
+  public java.util.ArrayList undeleted_getDurations() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (duration != null)
-		{
-			for (Object object : duration)
-			{
+		if (duration != null) {
+			for (Object object : duration) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -212,8 +198,7 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getValue()
-	{
+	public InputPin getValue() {
 		return null;
 	}
 
@@ -222,8 +207,7 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain basicSetValue(InputPin newValue, NotificationChain msgs)
-	{
+	public NotificationChain basicSetValue(InputPin newValue, NotificationChain msgs) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -232,8 +216,7 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setValue(InputPin newValue)
-	{
+	public void setValue(InputPin newValue) {
 		throw new UnsupportedOperationException();
 	}
 
@@ -243,12 +226,9 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.DURATION_OBSERVATION_ACTION__TEMPLATE_BINDING:
@@ -291,12 +271,9 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.DURATION_OBSERVATION_ACTION__OWNED_COMMENT:
@@ -349,12 +326,9 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.DURATION_OBSERVATION_ACTION__ACTIVITY:
 					return eContainer.eInverseRemove(this, UML2Package.ACTIVITY__NODE, Activity.class, msgs);
 				case UML2Package.DURATION_OBSERVATION_ACTION__IN_STRUCTURED_NODE:
@@ -371,10 +345,8 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.DURATION_OBSERVATION_ACTION__OWNED_ELEMENT:
@@ -467,10 +439,8 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -594,10 +564,8 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -703,10 +671,8 @@ public class DurationObservationActionImpl extends WriteStructuralFeatureActionI
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.DURATION_OBSERVATION_ACTION__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.DURATION_OBSERVATION_ACTION__OWNED_ELEMENT:

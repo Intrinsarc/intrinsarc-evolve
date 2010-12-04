@@ -57,8 +57,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public TemplateBindingItemProvider(AdapterFactory adapterFactory)
-	{
+	public TemplateBindingItemProvider(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
 
@@ -68,10 +67,8 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public List getPropertyDescriptors(Object object)
-	{
-		if (itemPropertyDescriptors == null)
-		{
+	public List getPropertyDescriptors(Object object) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
 			addBoundElementPropertyDescriptor(object);
@@ -87,8 +84,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addBoundElementPropertyDescriptor(Object object)
-	{
+	protected void addBoundElementPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -110,8 +106,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addSignaturePropertyDescriptor(Object object)
-	{
+	protected void addSignaturePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -131,8 +126,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addParameterSubstitutionPropertyDescriptor(Object object)
-	{
+	protected void addParameterSubstitutionPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
@@ -156,10 +150,8 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Collection getChildrenFeatures(Object object)
-	{
-		if (childrenFeatures == null)
-		{
+	public Collection getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(UML2Package.eINSTANCE.getTemplateBinding_ParameterSubstitution());
 		}
@@ -172,8 +164,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object getImage(Object object)
-	{
+	public Object getImage(Object object) {
 		return getResourceLocator().getImage("full/obj16/TemplateBinding"); //$NON-NLS-1$
 	}
 
@@ -183,8 +174,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getText(Object object)
-	{
+	public String getText(Object object) {
 		TemplateBinding templateBinding = (TemplateBinding)object;
 		return getString("_UI_TemplateBinding_type") + " " + templateBinding.getJ_deleted(); //$NON-NLS-1$ //$NON-NLS-2$
 	}
@@ -196,12 +186,10 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void notifyChanged(Notification notification)
-	{
+	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
 
-		switch (notification.getFeatureID(TemplateBinding.class))
-		{
+		switch (notification.getFeatureID(TemplateBinding.class)) {
 			case UML2Package.TEMPLATE_BINDING__PARAMETER_SUBSTITUTION:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
@@ -216,8 +204,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object)
-	{
+	protected void collectNewChildDescriptors(Collection newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
 		newChildDescriptors.add
@@ -237,8 +224,7 @@ public class TemplateBindingItemProvider
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ResourceLocator getResourceLocator()
-	{
+	public ResourceLocator getResourceLocator() {
 		return UML2EditPlugin.INSTANCE;
 	}
 

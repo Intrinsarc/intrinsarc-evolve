@@ -30,8 +30,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static void main(String[] args)
-	{
+	public static void main(String[] args) {
 		TestRunner.run(CommentTest.class);
 	}
 
@@ -41,8 +40,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public CommentTest(String name)
-	{
+	public CommentTest(String name) {
 		super(name);
 	}
 
@@ -52,8 +50,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private Comment getFixture()
-	{
+	private Comment getFixture() {
 		return (Comment)fixture;
 	}
 
@@ -63,8 +60,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * @see junit.framework.TestCase#setUp()
 	 * @generated
 	 */
-	protected void setUp() throws Exception
-	{
+	protected void setUp() throws Exception {
 		setFixture(UML2Factory.eINSTANCE.createComment());
 	}
 
@@ -74,8 +70,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * @see junit.framework.TestCase#tearDown()
 	 * @generated
 	 */
-	protected void tearDown() throws Exception
-	{
+	protected void tearDown() throws Exception {
 		setFixture(null);
 	}
 
@@ -88,8 +83,7 @@ public class CommentTest extends TemplateableElementTest {
 	 * @see org.eclipse.uml2.Element#getOwnedElements()
 	 * @generated
 	 */
-	public void testGetOwnedElements()
-	{
+	public void testGetOwnedElements() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

@@ -28,8 +28,7 @@ public abstract class ConnectableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ConnectableElementTest(String name)
-	{
+	public ConnectableElementTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class ConnectableElementTest extends NamedElementTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ConnectableElement getFixture()
-	{
+	private ConnectableElement getFixture() {
 		return (ConnectableElement)fixture;
 	}
 
@@ -53,8 +51,7 @@ public abstract class ConnectableElementTest extends NamedElementTest {
 	 * @see org.eclipse.uml2.Element#getOwner()
 	 * @generated
 	 */
-	public void testGetOwner()
-	{
+	public void testGetOwner() {
 		// TODO: implement this union feature getter test method
 		// Ensure that you remove @generated or mark it @generated NOT
 	}

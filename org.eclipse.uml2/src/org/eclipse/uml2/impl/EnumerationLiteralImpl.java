@@ -64,13 +64,11 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EnumerationLiteralImpl()
-	{
+	protected EnumerationLiteralImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (EnumerationLiteralImpl.class.equals(getClass()))
+		if (EnumerationLiteralImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -80,8 +78,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getEnumerationLiteral();
 	}
 
@@ -90,8 +87,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Enumeration getEnumeration()
-	{
+	public Enumeration getEnumeration() {
 		if (eContainerFeatureID != UML2Package.ENUMERATION_LITERAL__ENUMERATION) return null;
 		return (Enumeration)eContainer;
 	}
@@ -106,8 +102,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Enumeration undeleted_getEnumeration()
-	{
+  public Enumeration undeleted_getEnumeration() {
 		Enumeration temp = getEnumeration();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -119,11 +114,8 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setEnumeration(Enumeration newEnumeration)
-	{
-
-		if (newEnumeration != eContainer || (eContainerFeatureID != UML2Package.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null))
-		{
+	public void setEnumeration(Enumeration newEnumeration) {
+		if (newEnumeration != eContainer || (eContainerFeatureID != UML2Package.ENUMERATION_LITERAL__ENUMERATION && newEnumeration != null)) {
 			if (EcoreUtil.isAncestor(this, newEnumeration))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString()); //$NON-NLS-1$
 			NotificationChain msgs = null;
@@ -145,8 +137,7 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Namespace basicGetNamespace()
-	{
+	public Namespace basicGetNamespace() {
 		Enumeration enumeration = getEnumeration();			
 		if (enumeration != null) {
 			return enumeration;
@@ -160,12 +151,9 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.ENUMERATION_LITERAL__TEMPLATE_BINDING:
@@ -206,12 +194,9 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.ENUMERATION_LITERAL__OWNED_COMMENT:
@@ -254,12 +239,9 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs)
-	{
-		if (eContainerFeatureID >= 0)
-		{
-			switch (eContainerFeatureID)
-			{
+	public NotificationChain eBasicRemoveFromContainer(NotificationChain msgs) {
+		if (eContainerFeatureID >= 0) {
+			switch (eContainerFeatureID) {
 				case UML2Package.ENUMERATION_LITERAL__OWNING_PARAMETER:
 					return eContainer.eInverseRemove(this, UML2Package.TEMPLATE_PARAMETER__OWNED_PARAMETERED_ELEMENT, TemplateParameter.class, msgs);
 				case UML2Package.ENUMERATION_LITERAL__ENUMERATION:
@@ -276,10 +258,8 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.ENUMERATION_LITERAL__OWNED_ELEMENT:
@@ -349,10 +329,8 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -450,10 +428,8 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -538,10 +514,8 @@ public class EnumerationLiteralImpl extends InstanceSpecificationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSetGen(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSetGen(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.ENUMERATION_LITERAL__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.ENUMERATION_LITERAL__OWNED_ELEMENT:

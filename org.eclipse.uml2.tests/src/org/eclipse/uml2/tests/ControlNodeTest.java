@@ -28,8 +28,7 @@ public abstract class ControlNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public ControlNodeTest(String name)
-	{
+	public ControlNodeTest(String name) {
 		super(name);
 	}
 
@@ -39,8 +38,7 @@ public abstract class ControlNodeTest extends ActivityNodeTest {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	private ControlNode getFixture()
-	{
+	private ControlNode getFixture() {
 		return (ControlNode)fixture;
 	}
 

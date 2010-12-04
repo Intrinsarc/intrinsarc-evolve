@@ -68,13 +68,11 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected CallTriggerImpl()
-	{
+	protected CallTriggerImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (CallTriggerImpl.class.equals(getClass()))
+		if (CallTriggerImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -84,8 +82,7 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getCallTrigger();
 	}
 
@@ -94,14 +91,11 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation getOperation()
-	{
-		if (operation != null && operation.eIsProxy())
-		{
+	public Operation getOperation() {
+		if (operation != null && operation.eIsProxy()) {
 			Operation oldOperation = operation;
 			operation = (Operation)eResolveProxy((InternalEObject)operation);
-			if (operation != oldOperation)
-			{
+			if (operation != oldOperation) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.CALL_TRIGGER__OPERATION, oldOperation, operation));
 			}
@@ -119,8 +113,7 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public Operation undeleted_getOperation()
-	{
+  public Operation undeleted_getOperation() {
 		Operation temp = getOperation();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -132,8 +125,7 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Operation basicGetOperation()
-	{
+	public Operation basicGetOperation() {
 		return operation;
 	}
 
@@ -142,9 +134,7 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setOperation(Operation newOperation)
-	{
-
+	public void setOperation(Operation newOperation) {
 		Operation oldOperation = operation;
 		operation = newOperation;
 		if (eNotificationRequired())
@@ -158,12 +148,9 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				case UML2Package.CALL_TRIGGER__TEMPLATE_BINDING:
@@ -188,12 +175,9 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.CALL_TRIGGER__OWNED_COMMENT:
@@ -222,10 +206,8 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.CALL_TRIGGER__OWNED_ELEMENT:
@@ -279,10 +261,8 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -356,10 +336,8 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -423,10 +401,8 @@ public class CallTriggerImpl extends MessageTriggerImpl implements CallTrigger {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.CALL_TRIGGER__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.CALL_TRIGGER__OWNED_ELEMENT:

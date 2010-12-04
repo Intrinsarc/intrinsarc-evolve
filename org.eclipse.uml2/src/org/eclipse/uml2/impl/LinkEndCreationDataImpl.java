@@ -95,13 +95,11 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LinkEndCreationDataImpl()
-	{
+	protected LinkEndCreationDataImpl() {
 		super();
-		
 		if (eAdapters().size() == 0)
 			eAdapters().add(com.intrinsarc.notifications.GlobalNotifier.getSingleton());
-		if (LinkEndCreationDataImpl.class.equals(getClass()))
+		if (LinkEndCreationDataImpl.class.equals(getClass()) && org.eclipse.emf.common.util.EMFOptions.CREATE_LISTS_LAZILY_FOR_GET)
 			com.intrinsarc.notifications.GlobalNotifier.getSingleton().notifyChanged(new org.eclipse.emf.common.notify.impl.NotificationImpl(-1, null, this));
 		
 	}
@@ -111,8 +109,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UML2Package.eINSTANCE.getLinkEndCreationData();
 	}
 
@@ -121,8 +118,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isReplaceAll()
-	{
+	public boolean isReplaceAll() {
 		return (eFlags & IS_REPLACE_ALL_EFLAG) != 0;
 	}
 
@@ -137,9 +133,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setIsReplaceAll(boolean newIsReplaceAll)
-	{
-
+	public void setIsReplaceAll(boolean newIsReplaceAll) {
 		boolean oldIsReplaceAll = (eFlags & IS_REPLACE_ALL_EFLAG) != 0;
 		if (newIsReplaceAll) eFlags |= IS_REPLACE_ALL_EFLAG; else eFlags &= ~IS_REPLACE_ALL_EFLAG;
 		if (eNotificationRequired())
@@ -153,14 +147,11 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin getInsertAt()
-	{
-		if (insertAt != null && insertAt.eIsProxy())
-		{
+	public InputPin getInsertAt() {
+		if (insertAt != null && insertAt.eIsProxy()) {
 			InputPin oldInsertAt = insertAt;
 			insertAt = (InputPin)eResolveProxy((InternalEObject)insertAt);
-			if (insertAt != oldInsertAt)
-			{
+			if (insertAt != oldInsertAt) {
 				if (eNotificationRequired())
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UML2Package.LINK_END_CREATION_DATA__INSERT_AT, oldInsertAt, insertAt));
 			}
@@ -178,8 +169,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public InputPin undeleted_getInsertAt()
-	{
+  public InputPin undeleted_getInsertAt() {
 		InputPin temp = getInsertAt();
 		if (temp != null && temp.isThisDeleted())
 				return null;
@@ -191,8 +181,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public InputPin basicGetInsertAt()
-	{
+	public InputPin basicGetInsertAt() {
 		return insertAt;
 	}
 
@@ -201,9 +190,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setInsertAt(InputPin newInsertAt)
-	{
-
+	public void setInsertAt(InputPin newInsertAt) {
 		InputPin oldInsertAt = insertAt;
 		insertAt = newInsertAt;
 		if (eNotificationRequired())
@@ -231,12 +218,8 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public EList settable_getQualifiers()
-	{
-		if (qualifier == null)
-		{
-			
-		
+  public EList settable_getQualifiers() {
+		if (qualifier == null) {
 			qualifier = new com.intrinsarc.emflist.PersistentEList(QualifierValue.class, this, UML2Package.LINK_END_CREATION_DATA__QUALIFIER);
 		}
 		return qualifier;
@@ -247,14 +230,11 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
    * <!-- end-user-doc -->
 	 * @generated
 	 */
-  public java.util.ArrayList undeleted_getQualifiers()
-	{
+  public java.util.ArrayList undeleted_getQualifiers() {
 		java.util.ArrayList temp = new java.util.ArrayList();
 
-		if (qualifier != null)
-		{
-			for (Object object : qualifier)
-			{
+		if (qualifier != null) {
+			for (Object object : qualifier) {
 				org.eclipse.uml2.Element element = (org.eclipse.uml2.Element) object;
 				if (!element.isThisDeleted())
 					temp.add(element);
@@ -272,12 +252,9 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicAdd(otherEnd, msgs);
 				default:
@@ -294,12 +271,9 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs)
-	{
-		if (featureID >= 0)
-		{
-			switch (eDerivedStructuralFeatureID(featureID, baseClass))
-			{
+	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, Class baseClass, NotificationChain msgs) {
+		if (featureID >= 0) {
+			switch (eDerivedStructuralFeatureID(featureID, baseClass)) {
 				case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 					return ((InternalEList)getEAnnotations()).basicRemove(otherEnd, msgs);
 				case UML2Package.LINK_END_CREATION_DATA__OWNED_COMMENT:
@@ -320,10 +294,8 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Object eGet(EStructuralFeature eFeature, boolean resolve)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public Object eGet(EStructuralFeature eFeature, boolean resolve) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 				return getEAnnotations();
 			case UML2Package.LINK_END_CREATION_DATA__OWNED_ELEMENT:
@@ -365,10 +337,8 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eSet(EStructuralFeature eFeature, Object newValue)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eSet(EStructuralFeature eFeature, Object newValue) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 				getEAnnotations().clear();
 				getEAnnotations().addAll((Collection)newValue);
@@ -419,10 +389,8 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void eUnset(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public void eUnset(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 				getEAnnotations().clear();
 				return;
@@ -468,10 +436,8 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean eIsSet(EStructuralFeature eFeature)
-	{
-		switch (eDerivedStructuralFeatureID(eFeature))
-		{
+	public boolean eIsSet(EStructuralFeature eFeature) {
+		switch (eDerivedStructuralFeatureID(eFeature)) {
 			case UML2Package.LINK_END_CREATION_DATA__EANNOTATIONS:
 				return eAnnotations != null && !eAnnotations.isEmpty();
 			case UML2Package.LINK_END_CREATION_DATA__OWNED_ELEMENT:
@@ -509,8 +475,7 @@ public class LinkEndCreationDataImpl extends LinkEndDataImpl implements LinkEndC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());

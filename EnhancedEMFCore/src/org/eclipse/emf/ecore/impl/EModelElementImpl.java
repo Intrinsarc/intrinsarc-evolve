@@ -112,13 +112,15 @@ public abstract class EModelElementImpl extends EObjectImpl implements EModelEle
   /**
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @generated
+   * @generated NOT
    */
   public EList getEAnnotations()
   {
     if (eAnnotations == null)
     {
-      eAnnotations = new EObjectContainmentWithInverseEList(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
+    	eAnnotations = new EListArrayList();
+    // new EObjectContainmentWithInverseEList(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
+//      eAnnotations = new PersistentEList(EAnnotation.class, this, EcorePackage.EMODEL_ELEMENT__EANNOTATIONS, EcorePackage.EANNOTATION__EMODEL_ELEMENT);
     }
     return eAnnotations;
   }
