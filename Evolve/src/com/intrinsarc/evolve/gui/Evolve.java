@@ -120,6 +120,7 @@ public class Evolve
     registerFileTypes();
     
     // handle any preferences
+  	GlobalSubjectRepository.registerPreferences();    
     RegisteredGraphicalThemes themes = RegisteredGraphicalThemes.getInstance(); 
     themes.registerPreferenceSlots();
     themes.interpretPreferences();

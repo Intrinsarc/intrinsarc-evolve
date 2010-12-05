@@ -73,13 +73,168 @@ fix up stratum iterator; remove need for root check
 \end_layout
 
 \begin_layout Enumerate
-nested strata cannot see backbone base when hardcoding from it
+nested strata cannot see backbone base even when hardcoding to it
+\end_layout
+
+\begin_layout Enumerate
+model moving bugs - error on inheritance and exporting just 1 stratum
+\end_layout
+
+\begin_layout Enumerate
+remove garbage collection from import
 \end_layout
 
 \begin_layout Enumerate
 attributes with multiplicity
 \end_layout
 
+\begin_layout Standard
+To do next:
+\end_layout
+
+\begin_layout Enumerate
+team edition
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+
+\color green
+stop odr files being written
+\end_layout
+
+\begin_layout Enumerate
+
+\color green
+import base model into new model on start
+\end_layout
+
+\begin_layout Enumerate
+undo-redo working + tested
+\end_layout
+
+\begin_layout Enumerate
+color diagram with 
+\begin_inset Quotes eld
+\end_inset
+
+out of date
+\begin_inset Quotes erd
+\end_inset
+
+ info
+\end_layout
+
+\begin_layout Enumerate
+allow revert/keep on save, refresh
+\end_layout
+
+\begin_layout Enumerate
+test import/export
+\end_layout
+
+\begin_layout Enumerate
+prevent garbage collect on remote repository
+\end_layout
+
+\begin_layout Enumerate
+new release scripts
+\end_layout
+
+\begin_layout Enumerate
+limit community version connection to 2 users of 10 mins maybe
+\end_layout
+
+\begin_layout Enumerate
+current users screen
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+plugin apparatus + runtime state transfer via flattening
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+look at what eclipse does for state
+\end_layout
+
+\begin_layout Enumerate
+licensing manager + feature-by-feature licensing
+\end_layout
+
+\begin_layout Enumerate
+integrate with module system
+\end_layout
+
+\begin_layout Enumerate
+ability to hook evolve up to an app (with partial uml models in each plugin)
+ and design/rectify conflicts
+\end_layout
+
+\begin_layout Enumerate
+online update from application
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Android version
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+emphasise how extensibility handles hardware variants
+\end_layout
+
+\begin_layout Enumerate
+import and build around common android classes/libraries
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Applying to enterprise systems
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+web library: request, app, session scope
+\end_layout
+
+\begin_layout Enumerate
+pageflow via state diagrams
+\end_layout
+
+\begin_layout Enumerate
+any rendering engine: GWT, jsp etc.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Document: moving from Spring/CDI/Guice
+\end_layout
+
+\begin_layout Enumerate
+Freeform graphics palette for improving readability
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+e.g.
+ adam's class/object diagrams in market data
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+Suppress checking for strata
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+E.g.
+ if using for class diagrams etc.
+\end_layout
+
+\end_deeper
 \begin_layout Standard
 \begin_inset Newpage newpage
 \end_inset

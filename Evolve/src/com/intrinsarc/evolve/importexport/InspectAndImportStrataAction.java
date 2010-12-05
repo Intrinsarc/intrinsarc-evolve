@@ -222,7 +222,7 @@ public class InspectAndImportStrataAction extends AbstractAction
 		}
 		
 		Package current = (Package) coordinator.getCurrentDiagramView().getDiagram().getLinkedObject();
-		ModelImporter importer = new ModelImporter(current, toImport);
+		ModelImporter importer = new ModelImporter(current, toImport, false);
 		try
 		{
 			final ImportResults results = importer.importPackages(monitor);
@@ -328,11 +328,11 @@ public class InspectAndImportStrataAction extends AbstractAction
 			// refresh from disk now and recreate all diagrams
 			saver.makeRefreshAction().actionPerformed(null);
 			// garbage collect to fix up the diagrams & remove deleted items
-			saver.makeGarbageCollectAction().actionPerformed(null);
+//			saver.makeGarbageCollectAction().actionPerformed(null);
 			PreferenceTypeDirectory.recent.setLastVisitedDirectory(new File(toImport.getFileName()));
 			popup.displayPopup(IMPORT_ICON, "Import successful",
 					"Strata imported from " + toImport.getFileName(), ScreenProperties.getUndoPopupColor(),
-					Color.black, 3000);
+					Color.black, 3000);			
 		}
 		catch (RepositoryOpeningException ex)
 		{

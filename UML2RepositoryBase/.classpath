@@ -4,8 +4,8 @@
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/UML2-ODB-Libraries"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/EMF-Libraries"/>
-	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/LeanFoundation"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/DeltaEngine"/>
 	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/ODB-Libraries"/>
+	<classpathentry combineaccessrules="false" exported="true" kind="src" path="/LeanFoundation"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

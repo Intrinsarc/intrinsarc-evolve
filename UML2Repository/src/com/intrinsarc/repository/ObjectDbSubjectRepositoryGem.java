@@ -29,6 +29,7 @@ import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
 
 import com.intrinsarc.gem.*;
+import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.notifications.*;
@@ -193,7 +194,8 @@ public class ObjectDbSubjectRepositoryGem implements Gem
           String who = holder.getSavedBy();
           if (who == null || who.length() == 0 || !keepExistingModificationInfo)
           {
-            holder.setSavedBy("Andrew");          
+          	PersistentProperty user = GlobalPreferences.preferences.getRawPreference(GlobalSubjectRepository.USER_NAME);
+            holder.setSavedBy(user.asString());
             SimpleDateFormat formatter = new SimpleDateFormat(CommonRepositoryFunctions.SAVE_DATE_FORMAT);          
             holder.setSaveTime(formatter.format(new Date()));
           }
@@ -286,7 +288,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
     public void refreshAll()
     {
-      pmf.getDataStoreCache().evictAll();
+    	pmf.getDataStoreCache().evictAll();
       pm.evictAll();
     }
 
@@ -515,11 +517,16 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     if (size == 0)
     {
       start();
-/*      topLevel = common.initialiseModel(true);
-      pm.makePersistent(topLevel); */
       
       // load in the base model
       XMLSubjectRepositoryGem base = XMLSubjectRepositoryGem.openFile(baseModel, false, false);
+      SubjectRepositoryFacet importFrom = base.getSubjectRepositoryFacet();
+      
+      ModelImporter importer = new ModelImporter(null, importFrom, true);
+      ImportResults results = importer.importPackages(null);
+      topLevel = (Model) results.getTops().get(0);
+      pm.makePersistent(topLevel);
+      importFrom.close();
       
       end();
     }

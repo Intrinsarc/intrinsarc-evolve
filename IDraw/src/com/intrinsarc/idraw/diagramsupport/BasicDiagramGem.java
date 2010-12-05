@@ -871,6 +871,7 @@ public final class BasicDiagramGem implements Gem
       
       changes.clear();
       changes.add(new DiagramChange(null, RESYNC));
+      sendChangesToListeners();
     }
 
 		/**

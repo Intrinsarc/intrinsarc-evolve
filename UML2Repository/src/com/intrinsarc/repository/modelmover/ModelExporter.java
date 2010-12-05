@@ -19,6 +19,12 @@ public class ModelExporter extends ImportExportBase
 	private static final ImageIcon EXPORT_ICON = IconLoader.loadIcon("export.png");
   private JFrame frame;
 	private Set<Package> selected;
+	
+  private Model topLevelOfFrom;
+  /** save any references for later fixing */
+  private List<TransientSavedReference> savedReferences;
+  /** a from -> to relation */
+  private Map<String /*UUID*/, Element> translate;
 
   
   public ModelExporter(JFrame frame, Set<Package> selected)
@@ -70,6 +76,8 @@ public class ModelExporter extends ImportExportBase
 			    {
 			      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Exporting package " + pkg.getName(), null, -1);
 			      Package newPkg = (Package) copyElementAndContained(
+			      		translate,
+			      		savedReferences,
 			      		pkg,
 			          top,
 			          UML2Package.eINSTANCE.getPackage_ChildPackages(),
@@ -84,7 +92,7 @@ public class ModelExporter extends ImportExportBase
 			    // fix up the references and save
 			    lazyOn();
 		      monitor.displayInterimPopup(EXPORT_ICON, "Exporting...", "Reestablishing references", null, -1);
-			    for (TransientSavedReference ref : reestablishReferences())
+			    for (TransientSavedReference ref : reestablishReferences(topLevelOfFrom, translate, savedReferences))
 			    	createSavedReference(top, ref);
 		      monitor.displayInterimPopup(null, "", "", null, 0);
 			    String fileName = to.saveTo(

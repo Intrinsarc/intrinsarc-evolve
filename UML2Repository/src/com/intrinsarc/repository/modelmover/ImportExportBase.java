@@ -4,23 +4,19 @@ import java.util.*;
 
 import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
+import org.eclipse.emf.ecore.util.*;
 import org.eclipse.uml2.*;
+
+import com.intrinsarc.repositorybase.*;
 
 public abstract class ImportExportBase
 {
-  protected Model topLevelOfFrom;
-  /** save any references for later fixing */
-  protected List<TransientSavedReference> savedReferences;
-  /** a from -> to relation */
-  protected Map<String /*UUID*/, Element> translate;
-
-
   public static boolean containmentCanBeSet(EReference reference)
 	{
   	return reference.isContainment() && reference.isChangeable() && !reference.isDerived() && !reference.isUnsettable();
 	}
   
-  protected List<TransientSavedReference> reestablishReferences()
+  protected List<TransientSavedReference> reestablishReferences(Model topLevelOfFrom, Map<String /*UUID*/, Element> translate, List<TransientSavedReference> savedReferences)
   {
   	List<TransientSavedReference> outside = new ArrayList<TransientSavedReference>();
     lazyOn();
@@ -46,10 +42,12 @@ public abstract class ImportExportBase
     return outside;
   }
 
-  protected Element copyElementAndContained(Element from, Element toParent, EReference relationshipToParent, boolean checkDeletions)
+  public static Element copyElementAndContained(Map<String /*UUID*/, Element> translate, List<TransientSavedReference> savedReferences, Element from, Element toParent, EReference relationshipToParent, boolean checkDeletions)
   {
     // create the new element
     EClass baseEClass = from.eClass();
+    
+    GlobalSubjectRepository.ignoreUpdates = true;
     Element exportedFrom = (Element) UML2Factory.eINSTANCE.create(baseEClass);
     exportedFrom.setUuid(from.getUuid());
     translate.put(from.getUuid(), exportedFrom);
@@ -82,7 +80,7 @@ public abstract class ImportExportBase
             	{
 	              Element fromElement = (Element) element;
 	              if (!checkDeletions || !fromElement.isThisDeleted())
-	                toElements.add(copyElementAndContained((Element) element, exportedFrom, contained, checkDeletions));
+	                toElements.add(copyElementAndContained(translate, savedReferences, (Element) element, exportedFrom, contained, checkDeletions));
             	}
             }
             lazyOff();
@@ -94,7 +92,7 @@ public abstract class ImportExportBase
           if (fromElement != null && (!checkDeletions || !fromElement.isThisDeleted()))
             exportedFrom.eSet(
                 contained,
-                copyElementAndContained(fromElement, exportedFrom, contained, checkDeletions));
+                copyElementAndContained(translate, savedReferences, fromElement, exportedFrom, contained, checkDeletions));
         }
       }
     }    
@@ -129,22 +127,22 @@ public abstract class ImportExportBase
     return exportedFrom;
   }
   
-	protected boolean attributeCanBeSet(EAttribute attribute)
+	protected static boolean attributeCanBeSet(EAttribute attribute)
 	{
   	return attribute.isChangeable() && !attribute.isDerived() && !attribute.isUnsettable();
 	}
 
-  protected boolean referenceCanBeSet(EReference reference)
+  protected static boolean referenceCanBeSet(EReference reference)
 	{
   	return !reference.isContainment() && reference.isChangeable() && !reference.isDerived() && !reference.isUnsettable();
 	}
 
-	protected void lazyOn()
+	protected static void lazyOn()
   {
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
   }
 
-	protected void lazyOff()
+	protected static void lazyOff()
   {
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
   }

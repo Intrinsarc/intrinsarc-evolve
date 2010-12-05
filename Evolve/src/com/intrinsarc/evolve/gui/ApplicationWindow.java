@@ -604,8 +604,12 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
+			coordinator.startTransaction("", "");
 			EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+			GlobalSubjectRepository.ignoreUpdates = true;
 			GlobalSubjectRepository.repository.refreshAll();
+			coordinator.commitTransaction();
+			
 			GlobalDiagramRegistry.registry.refreshAllDiagrams();
 			coordinator.clearTransactionHistory();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
@@ -1393,7 +1397,7 @@ public class ApplicationWindow extends SmartJFrame
 				popup.displayPopup(null, null, new JLabel("No save required", SAVE_ICON, JLabel.LEADING),
 						ScreenProperties.getUndoPopupColor(), Color.black, 500);
 			}
-
+			
 			// ask the window coordinator to refresh all window titles
 			applicationWindowCoordinator.refreshWindowTitles();
 		}
@@ -1713,26 +1717,19 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File/Open", openExistingXMLRepositoryAction, null, "Open an existing model");
 
 			// only add the database entries if the database jars are present
-			boolean database = false;
-			try
+			if (isTeamEdition())
 			{
-				ClassLoader.getSystemClassLoader().loadClass("com.objectdb.jdo.PMImpl");
-				{
-					database = true;
-					JMenuItem openLocalDbRepositoryAction = new JMenuItem(
-							new OpenLocalDbRepositoryAction());
-					openLocalDbRepositoryAction.setIcon(LOCALDB_ICON);
-					open.add(openLocalDbRepositoryAction);
-					GlobalPreferences.registerKeyAction("File/Open", openLocalDbRepositoryAction, null, "Open a local database model");
+				JMenuItem openLocalDbRepositoryAction = new JMenuItem(
+						new OpenLocalDbRepositoryAction());
+				openLocalDbRepositoryAction.setIcon(LOCALDB_ICON);
+				open.add(openLocalDbRepositoryAction);
+				GlobalPreferences.registerKeyAction("File/Open", openLocalDbRepositoryAction, null, "Open a local database model");
 
-					JMenuItem openRemoteDbRepositoryAction = new JMenuItem(
-							new OpenRemoteDbRepositoryAction());
-					openRemoteDbRepositoryAction.setIcon(REMOTEDB_ICON);
-					open.add(openRemoteDbRepositoryAction);
-					GlobalPreferences.registerKeyAction("File/Open", openRemoteDbRepositoryAction, null, "Open a remote database model");
-				}
-			} catch (ClassNotFoundException e)
-			{
+				JMenuItem openRemoteDbRepositoryAction = new JMenuItem(
+						new OpenRemoteDbRepositoryAction());
+				openRemoteDbRepositoryAction.setIcon(REMOTEDB_ICON);
+				open.add(openRemoteDbRepositoryAction);
+				GlobalPreferences.registerKeyAction("File/Open", openRemoteDbRepositoryAction, null, "Open a remote database model");
 			}
 			
 			// add in a recently opened items list
@@ -1831,7 +1828,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File", print, "ctrl P", "Print the current diagram");
 			entries.add(new SmartMenuItemImpl("File", "Print", print));
 			
-			if (database)
+			if (isTeamEdition())
 			{
 				JMenuItem refresh = new JMenuItem(new RefreshAction());
 				refresh.setIcon(REFRESH_ICON);
@@ -2313,5 +2310,20 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		// set the scary monkey icon
 		setIconImage(EVOLVE_LOGO_RED_ICON.getImage());
+	}
+	
+	public static boolean isTeamEdition()
+	{
+		boolean database = false;
+		try
+		{
+			ClassLoader.getSystemClassLoader().loadClass("com.objectdb.jdo.PMImpl");
+			return true;
+		}
+		catch (ClassNotFoundException e)
+		{
+			return false;
+		}
+
 	}
 }

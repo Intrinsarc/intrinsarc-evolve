@@ -4,6 +4,7 @@ import java.util.*;
 
 import javax.swing.*;
 
+import org.eclipse.emf.common.util.*;
 import org.eclipse.emf.ecore.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
@@ -19,12 +20,19 @@ public class ModelImporter extends ImportExportBase
 	
   private Package importInto;
   private SubjectRepositoryFacet toImport;
+  
+  /** save any references for later fixing */
+  private List<TransientSavedReference> savedReferences;
+  /** a from -> to relation */
+  private Map<String /*UUID*/, Element> translate;
+  private boolean includeImportTop;
 
   
-  public ModelImporter(Package importInto, SubjectRepositoryFacet toImport)
+  public ModelImporter(Package importInto, SubjectRepositoryFacet toImport, boolean includeImportTop)
   {
     this.importInto = importInto;
     this.toImport = toImport;
+    this.includeImportTop = includeImportTop;
   }
   
   public ImportResults importPackages(final LongRunningTaskProgressMonitorFacet monitor) throws RepositoryOpeningException
@@ -32,7 +40,8 @@ public class ModelImporter extends ImportExportBase
   	final ImportResults importResults = new ImportResults();
   	final RepositoryOpeningException savedException[] = {null};
   	final RuntimeException savedRuntimeException[] = {null};
-   	monitor.invokeActivityAndMonitorProgress(new Runnable()
+  	  	
+   	Runnable runnable = new Runnable()
   	{
   		public void run()
   		{
@@ -46,16 +55,20 @@ public class ModelImporter extends ImportExportBase
 	  	    savedReferences = new ArrayList<TransientSavedReference>();
 	  	    translate = new HashMap<String, Element>();
 	  	    
-	  	    monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Opened file " + toImport.getFileName(), null, -1);
+	  	    if (monitor != null)
+	  	    	monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Opened file " + toImport.getFileName(), null, -1);
 	  	    Model importTop = toImport.getTopLevelModel();
 	  	    Model currentTop = repository.getTopLevelModel();
-	  	    topLevelOfFrom = importTop;
 	  	    
 	  	    // see if there is any problem with overlapping packages
 	  	    Set<Package> importing = new HashSet<Package>();
 	  	    collectAllPackagesContained(importTop, importing);
-	  	    importing.remove(importTop);
-	  	    Set<String> uuids = collectAllPackagesUp(importInto);
+	  	    if (!includeImportTop)
+	  	    	importing.remove(importTop);
+	  	    else
+	  	    	importResults.getTops().add(importTop);
+	  	    
+	  	    Set<String> uuids = importInto == null ? new HashSet<String>() : collectAllPackagesUp(importInto);
 	  	    
 	  	    // there must be no overlaps between the UUIDs of importInto and importing
 	  	    for (Package p : importing)
@@ -80,13 +93,19 @@ public class ModelImporter extends ImportExportBase
 	  	    	if (existing != null)
 	  	    		recordElements(safe, existing);
 	  	    	
-	    	    monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Importing package " + p.getName(), null, -1);
+	  	    	if (monitor != null)
+	  	    		monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Importing package " + p.getName(), null, -1);
 	  	      Element element = copyElementAndContained(
+	  	      		translate,
+	  	      		savedReferences,
 	  	      		(Package) pkgObject,
 	  	          currentTop,
 	  	          UML2Package.eINSTANCE.getPackage_ChildPackages(),
 	  	          false);
-	  	      importInto.settable_getChildPackages().add(element);
+	  	      if (importInto != null)
+	  	      	importInto.settable_getChildPackages().add(element);
+	  	      if (!includeImportTop)
+	  	      importResults.getTops().add(element);
 
 	  	      // the replaced package can now be deleted
 	  	      if (existing != null)
@@ -97,13 +116,17 @@ public class ModelImporter extends ImportExportBase
 	  	    }
 	  	    
 	  	    // handle saved references: inside first and then outside
-	  	    monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Reestablishing references", null, -1);
-	  	    reestablishReferences();
+	  	    if (monitor != null)
+	  	    	monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Reestablishing references", null, -1);
+	  	    reestablishReferences(importTop, translate, savedReferences);
 	  	    for (SavedReference bad : restoreOutsideReferences(importTop, currentTop))
 	  	    	importResults.addLeftOverOutsideReference(bad);
 	  	        
 	  	    // repoint any existing elements to the new imports
-	        monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Repointing references", null, -1);
+	  	    if (monitor != null)
+	  	    	monitor.displayInterimPopup(IMPORT_ICON, TITLE, "Repointing references", null, -1);
+	        EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+	        GlobalSubjectRepository.ignoreUpdates = true;
 	  	    for (String uuid : translate.keySet())
 	  	    	safe.remove(uuid);  // now contains all removed, both safe and unsafe
 	  	    Set<Element> unsafe = new HashSet<Element>();
@@ -130,7 +153,13 @@ public class ModelImporter extends ImportExportBase
 				Collections.sort(l);
 				return l;
 			}
-  	});
+  	};
+  	
+  	if (monitor != null)
+  		monitor.invokeActivityAndMonitorProgress(runnable);
+  	else
+  		runnable.run();
+  	
    	if (savedException[0] != null)
    		throw savedException[0];
    	if (savedRuntimeException[0] != null)
@@ -141,7 +170,7 @@ public class ModelImporter extends ImportExportBase
 	private void recordElements(Map<String, Element> recorded, Element start)
   {
 		// don't want to record anything that's already been deleted, or any diagram parts that have changed
-		if (start.isThisDeleted() || start instanceof J_DiagramHolder)
+		if (/*start.isThisDeleted() ||*/ start instanceof J_DiagramHolder)
 			return;
 		
 		// record the deletion
@@ -181,6 +210,8 @@ public class ModelImporter extends ImportExportBase
 		{
       GlobalSubjectRepository.repository.commitTransaction();
       GlobalSubjectRepository.repository.startTransaction("", "");
+      EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+      GlobalSubjectRepository.ignoreUpdates = true;
 		}
 		
     // create the new element

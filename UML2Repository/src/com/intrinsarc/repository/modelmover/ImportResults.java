@@ -9,6 +9,7 @@ import com.intrinsarc.repositorybase.*;
 
 public class ImportResults
 {
+	private List<Element> tops = new ArrayList<Element>();
 	private List<SavedReference> leftOverOutsideReferences = new ArrayList<SavedReference>();
 	private Set<String> safelyRemoved = new HashSet<String>();
 	private Set<String> unsafelyRemoved = new HashSet<String>();
@@ -65,5 +66,10 @@ public class ImportResults
 				GlobalSubjectRepository.repository.incrementPersistentDelete(p);
 			else
 				GlobalSubjectRepository.repository.decrementPersistentDelete(p);
+	}
+
+	public List<Element> getTops()
+	{
+		return tops;
 	}
 }

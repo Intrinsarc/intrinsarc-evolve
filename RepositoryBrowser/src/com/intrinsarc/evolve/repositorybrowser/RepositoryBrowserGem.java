@@ -156,11 +156,11 @@ public class RepositoryBrowserGem implements Gem
       JScrollPane inlineScroller = new JScrollPane(inlineTree);
       inlineMediator.setScroller(inlineScroller);
       treeSplitter = new JSplitPane(JSplitPane.VERTICAL_SPLIT, outlineScroller, inlineScroller);
-      treeSplitter.setOneTouchExpandable(false);
+      treeSplitter.setOneTouchExpandable(true);
       treeSplitter.setBorder(null);
       propertyPanel = new JPanel(new BorderLayout());
       detailSplitter = new JSplitPane(JSplitPane.HORIZONTAL_SPLIT, treeSplitter, propertyPanel);
-      detailSplitter.setOneTouchExpandable(false);
+      detailSplitter.setOneTouchExpandable(true);
       detailSplitter.setBorder(null);
 
       // set up the listeners
