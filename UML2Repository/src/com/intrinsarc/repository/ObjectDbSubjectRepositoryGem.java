@@ -89,6 +89,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
       GlobalSubjectRepository.ignoreUpdates = true;
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
       start();
+      refreshAll();
 			undoredo.undo();
 			end();
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
@@ -102,6 +103,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
       GlobalSubjectRepository.ignoreUpdates = false;
       start();
+      refreshAll();
 			undoredo.redo();
 			end();
     	EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
@@ -244,7 +246,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
       EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
       GlobalSubjectRepository.ignoreUpdates = false;
       start();
-      pm.evictAll();
+      refreshAll();
       if (!GlobalSubjectRepository.ignoreUpdates)
       	undoredo.startTransaction(redoName, undoName);
     }
