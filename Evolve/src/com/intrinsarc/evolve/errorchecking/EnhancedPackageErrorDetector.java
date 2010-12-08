@@ -69,7 +69,7 @@ public class EnhancedPackageErrorDetector extends StratumErrorDetector
 				if (includeDiagrams && !diagramsChecked.contains(current))
 				{
 					diagramsChecked.add(current);
-					DiagramReference reference = new DiagramReference(current.getUuid());
+					DiagramReference reference = new DiagramReference(current);
 					DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(reference, true);
 					new DiagramErrorDetector(diagram, errors).determineErrors();
 					

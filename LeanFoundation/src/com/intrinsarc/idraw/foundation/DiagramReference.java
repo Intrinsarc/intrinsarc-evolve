@@ -13,14 +13,14 @@ import java.io.*;
 
 public class DiagramReference implements Serializable
 {
-  private String id;
+  private Object id;
 
-  public DiagramReference(String id)
+  public DiagramReference(Object id)
   {
     this.id = id;
   }
 
-  public String getId()
+  public Object getId()
   {
     return id;
   }

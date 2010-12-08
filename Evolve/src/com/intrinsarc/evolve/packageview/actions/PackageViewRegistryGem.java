@@ -111,7 +111,7 @@ public class PackageViewRegistryGem implements Gem
 					view.setFixedPerspective(possibleFixedPerspective);
 			
 			// find the element in the repository
-			DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()), true);
+			DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg), true);
 			view.viewDiagram(diagram, openRegionHint, addToStack);
 			focussedView = view;
       coordinator.changedDiagram(diagram);
@@ -134,7 +134,7 @@ public class PackageViewRegistryGem implements Gem
 		 */
 		public boolean isDiagramEmpty(Package pkg)
 		{
-			DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()), true);
+			DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg), true);
 			return diagram.isEmpty();
 		}
 		

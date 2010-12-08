@@ -557,7 +557,7 @@ public class ApplicationWindow extends SmartJFrame
 			try
 			{
 				final DiagramFacet diagram = registry.retrieveOrMakeDiagram(
-						new DiagramReference(current.getUuid()), false);
+						new DiagramReference(current), false);
 				popup.displayPopup(GARBAGE_ICON, "Garbage collection in progress...",
 						"Diagram updated for package "
 								+ ((Package) diagram.getLinkedObject()).getName(),

@@ -78,7 +78,7 @@ public class GoForwardMenuItem extends UpdatingJMenuItem
 	private Package getDiagramPackage(DiagramReference ref)
 	{
 		// does this package exist
-		Element elem = GlobalSubjectRepository.repository.findElementByUUID(ref.getId());
+		Element elem = (Element) ref.getId();
 		if (elem instanceof Package)
 			return (Package) elem;
 		return null;

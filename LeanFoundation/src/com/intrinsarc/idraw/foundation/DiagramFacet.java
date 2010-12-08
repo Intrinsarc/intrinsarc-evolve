@@ -48,8 +48,8 @@ public interface DiagramFacet extends TransactionManagerFacet
   public FigureFacet possiblyRetrieveFigure(String id);
   
   public void sendChangesToListeners();
-  public void addListener(String id, DiagramListenerFacet listenerFacet);
-  public void removeListener(String id);
+  public void addListener(Object id, DiagramListenerFacet listenerFacet);
+  public void removeListener(Object id);
   public boolean hasListeners();
   public boolean isModified();
   public void resetModified();

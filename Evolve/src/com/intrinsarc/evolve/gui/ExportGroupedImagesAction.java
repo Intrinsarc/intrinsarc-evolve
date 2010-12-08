@@ -78,7 +78,7 @@ public class ExportGroupedImagesAction extends AbstractAction
     numPkgs++;
     
     // handle this package diagram
-    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(current.getUuid()), true);
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(current), true);
     
     // ask each figure in turn to execute the command
     monitor.displayInterimPopup(

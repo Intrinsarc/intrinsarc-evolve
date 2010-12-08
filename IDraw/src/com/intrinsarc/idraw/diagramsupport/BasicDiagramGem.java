@@ -28,7 +28,7 @@ public final class BasicDiagramGem implements Gem
 
   private Object linkedObject;
   private Map<String, FigureFacet> figures;
-  private Map<String, DiagramListenerFacet> listeners = new HashMap<String, DiagramListenerFacet>();
+  private Map<Object, DiagramListenerFacet> listeners = new HashMap<Object, DiagramListenerFacet>();
   private DiagramReference reference;
   private DiagramFacetImpl diagramFacet = new DiagramFacetImpl();
   private List<DiagramChange> changes = new ArrayList<DiagramChange>();
@@ -105,7 +105,7 @@ public final class BasicDiagramGem implements Gem
     this.persistentDiagram = persistentDiagram;
     this.postProcessor = postProcessor;
     this.temporary = temporary;
-    reference = new DiagramReference(persistentDiagram.getDiagramId());
+    reference = new DiagramReference(linkedObject);
     clear();
     initialiseInternals();
   }
@@ -599,7 +599,7 @@ public final class BasicDiagramGem implements Gem
 		/**
 		 * @see com.intrinsarc.idraw.foundation.DiagramFacet#addListener(String, DiagramListenerFacet)
 		 */
-		public void addListener(String id, DiagramListenerFacet listenerFacet)
+		public void addListener(Object id, DiagramListenerFacet listenerFacet)
 		{
 			listeners.put(id, listenerFacet);
 		}
@@ -607,7 +607,7 @@ public final class BasicDiagramGem implements Gem
 		/**
 		 * @see com.intrinsarc.idraw.foundation.DiagramFacet#removeListener(String)
 		 */
-		public void removeListener(String id)
+		public void removeListener(Object id)
 		{
 			listeners.remove(id);
 		}

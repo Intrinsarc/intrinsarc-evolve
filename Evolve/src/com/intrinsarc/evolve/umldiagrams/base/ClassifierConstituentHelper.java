@@ -493,7 +493,7 @@ public abstract class ClassifierConstituentHelper
 	{
 		// get the actual home, which may be a package
 		Package pkg = GlobalSubjectRepository.repository.findOwningPackage((Element) component.getRepositoryObject());
-    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()));
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg));
 
 		// look through all the diagram figures for the port in its home classifier
 		for (FigureFacet figure : diagram.getFigures())
@@ -578,7 +578,7 @@ public abstract class ClassifierConstituentHelper
 			// want to open the diagram for this package
 			Element elem = (Element) tops.get(0).getRepositoryObject();
 			return new Object[] {
-					GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(repos.findOwningPackage(elem).getUuid())),
+					GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(repos.findOwningPackage(elem))),
 					tops.get(0).getRepositoryObject()
 			};
 		}

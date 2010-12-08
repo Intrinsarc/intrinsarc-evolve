@@ -98,7 +98,7 @@ public class BasicDiagramRecreatorGem
     private Package locatePackage(DiagramReference diagramReference)
     {
       // retrieve the package
-      Element element = GlobalSubjectRepository.repository.findNamedElementByUUID(diagramReference.getId());
+      Element element = (Element) diagramReference.getId();
       return element instanceof Package ?
       		(Package) element :
       		(Package) GlobalSubjectRepository.repository.findOwningElement(element, PackageImpl.class);

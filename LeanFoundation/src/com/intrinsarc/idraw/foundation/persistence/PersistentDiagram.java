@@ -11,7 +11,7 @@ import java.util.*;
 public class PersistentDiagram implements Serializable
 {
   private Object linkedObject;
-	private String diagramId;
+	private Object diagramId;
 	private String name;
 	private int lastFigureId;
 	private PersistentProperties properties = new PersistentProperties();
@@ -21,7 +21,7 @@ public class PersistentDiagram implements Serializable
 	{
 	}
 	
-	public PersistentDiagram(Object linkedObject, String diagramId, String name, int lastFigureId)
+	public PersistentDiagram(Object linkedObject, Object diagramId, String name, int lastFigureId)
 	{
     this.linkedObject = linkedObject;
 		this.diagramId = diagramId;
@@ -44,7 +44,7 @@ public class PersistentDiagram implements Serializable
 	 * Returns the diagramId.
 	 * @return String
 	 */
-	public String getDiagramId()
+	public Object getDiagramId()
 	{
 		return diagramId;
 	}

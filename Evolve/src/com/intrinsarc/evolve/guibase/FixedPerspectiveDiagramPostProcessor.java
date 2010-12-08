@@ -73,7 +73,7 @@ public class FixedPerspectiveDiagramPostProcessor implements DiagramPostProcesso
 				return diagram;
 		
 		// otherwise, we need to retrieve it
-		DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()));
+		DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg));
 		diagram.addListener(listenerId, listener);
 		listeningTo.add(diagram);
 		return diagram;

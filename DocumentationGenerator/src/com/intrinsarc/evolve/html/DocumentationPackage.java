@@ -116,7 +116,7 @@ public class DocumentationPackage
     names.add(uniqueName);
     
     // load up the diagram, and find all the child packages which refer to this directly
-    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()), true);
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg), true);
     
     // add any documentation-included package's figure
     List<FigureFacet> childFigures = new ArrayList<FigureFacet>();
@@ -197,7 +197,7 @@ public class DocumentationPackage
   {
     // add any documentation-included package's figure
     List<FigureFacet> childFigures = new ArrayList<FigureFacet>();
-    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg.getUuid()), true);
+    DiagramFacet diagram = GlobalDiagramRegistry.registry.retrieveOrMakeDiagram(new DiagramReference(pkg), true);
     for (FigureFacet figure : diagram.getFigures())
     {
       // only take comments which are at the top level
