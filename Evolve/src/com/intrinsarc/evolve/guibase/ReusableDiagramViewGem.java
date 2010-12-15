@@ -6,6 +6,7 @@ import java.util.List;
 
 import javax.swing.*;
 
+import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 
 import com.intrinsarc.deltaengine.base.*;
@@ -30,6 +31,7 @@ import edu.umd.cs.jazz.util.*;
  */
 public class ReusableDiagramViewGem implements Gem
 {
+	private static int DIAGRAM_CONTENTION_POLL_MS = 1000;
 	private static final ImageIcon GLASSES_ICON = IconLoader.loadIcon("glasses.png");
 	private static final Icon UNMODIFIED_ICON = IconLoader.loadIcon("diagram.png");
 	private static final Icon MODIFIED_ICON = IconLoader.loadIcon("diagram-modified.png");
@@ -57,6 +59,7 @@ public class ReusableDiagramViewGem implements Gem
 	private List<DiagramFigureAdornerFacet> adorners;
 	private SubjectRepositoryListenerFacet repositoryListener = new SubjectRepositoryListenerImpl();
 	private DiagramStack stack = new DiagramStack();
+	private boolean closed;
 
 	public static final Preference DIAGRAM_BACKGROUND = new Preference(
 			"Appearance", "Diagram background", new PersistentProperty(Color.WHITE));
@@ -87,6 +90,34 @@ public class ReusableDiagramViewGem implements Gem
 		this.adorners = adorners;
 		this.fixedPerspective = fixedPerspective;
 		GlobalSubjectRepository.repository.addRepositoryListener(repositoryListener);
+		
+		// if we are in the team version, start monitoring for diagram updates
+		final SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
+		if (repository.isTeam())
+			new Thread(new Runnable()
+			{
+				public void run()
+				{
+					while (!closed)
+					{
+						try
+						{
+							Thread.sleep(DIAGRAM_CONTENTION_POLL_MS);
+						}
+						catch (InterruptedException e)
+						{
+						}
+						SwingUtilities.invokeLater(new Runnable()
+						{
+							public void run()
+							{
+								if (diagram != null && !diagram.isClipboard())
+									refreshDiagramConflictDetails(repository);
+							}
+						});
+					}
+				}			
+			}).start();
 	}
 	
 	private class SubjectRepositoryListenerImpl implements SubjectRepositoryListenerFacet
@@ -139,6 +170,10 @@ public class ReusableDiagramViewGem implements Gem
 			boolean newFrame = false;
 			DiagramFacet oldDiagram = diagram;
 			diagram = newDiagram;
+			
+			J_DiagramHolder holder = ((Package) newDiagram.getLinkedObject()).getJ_diagramHolder();
+			DiagramSaveDetails saveDetails = new DiagramSaveDetails(holder.getSavedBy(), holder.getSaveTime());
+			diagram.setSaveDetails(saveDetails);
 
 			// if we need an internal frame, make one
 			if (internalFrame == null)
@@ -158,6 +193,7 @@ public class ReusableDiagramViewGem implements Gem
 							removeAsDiagramListener();
 						reusableContext.haveClosed(viewFacet);
 						GlobalSubjectRepository.repository.removeRepositoryListener(repositoryListener);
+						closed = true;
 					}
 
 					public void hasFocus()
@@ -471,7 +507,7 @@ public class ReusableDiagramViewGem implements Gem
 				else
 					diagramView.setBackgroundColor(GlobalPreferences.preferences.getRawPreference(DIAGRAM_BACKGROUND).asColor());
 		}
-
+		
 		public String truncate(String name)
 		{
 			int len = name.length();
@@ -479,5 +515,15 @@ public class ReusableDiagramViewGem implements Gem
 				return name;
 			return "..." + name.substring(len - MAX_NAME_SIZE);
 		}
+	}
+	
+	public void refreshDiagramConflictDetails(SubjectRepositoryFacet repository)
+	{
+		// refresh the save details
+		Package pkg = (Package) diagram.getLinkedObject();
+		DiagramSaveDetails current = repository.getDiagramSaveDetails(pkg);
+		DiagramSaveDetails local = diagram.getSaveDetails();
+		if (current != null)
+			reusableContext.setTeamDetails(diagramView, local, current);
 	}
 }

@@ -24,7 +24,6 @@ import com.intrinsarc.easydock.*;
 import com.intrinsarc.easydock.dockingframes.*;
 import com.intrinsarc.evolve.deltaview.*;
 import com.intrinsarc.evolve.errorchecking.*;
-import com.intrinsarc.evolve.guibase.*;
 import com.intrinsarc.evolve.html.*;
 import com.intrinsarc.evolve.importexport.*;
 import com.intrinsarc.evolve.packageview.actions.*;
@@ -35,7 +34,6 @@ import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
 import com.intrinsarc.idraw.utility.*;
 import com.intrinsarc.repository.*;
-import com.intrinsarc.repository.modelmover.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
 import com.intrinsarc.swing.enhanced.*;
@@ -127,16 +125,16 @@ public class ApplicationWindow extends SmartJFrame
 		setFocusTraversalKeys(KeyboardFocusManager.BACKWARD_TRAVERSAL_KEYS, Collections.EMPTY_SET);
 
 		// allow files to be dropped onto the frame -- need to find a way to only have this work for Java1.6+
-//		new FileDropTarget(this,
-//				new FileDropTarget.Listener()
-//				{
-//					public boolean acceptFile(File file)
-//					{
-//						// if this doesn't end an acceptable prefix, complain
-//						openFile(file.toString(), true);
-//						return true;
-//					}
-//				});
+		new FileDropTarget(this,
+				new FileDropTarget.Listener()
+				{
+					public boolean acceptFile(File file)
+					{
+						// if this doesn't end an acceptable prefix, complain
+						openFile(file.toString(), true);
+						return true;
+					}
+				});
 	}
 
 	public IEasyDock getDesktop()
@@ -599,7 +597,7 @@ public class ApplicationWindow extends SmartJFrame
 	{
 		public RefreshAction()
 		{
-			super("Refresh from repository");
+			super("Synchronize diagrams");
 		}
 
 		public void actionPerformed(ActionEvent e)
@@ -613,7 +611,7 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalDiagramRegistry.registry.refreshAllDiagrams();
 			coordinator.clearTransactionHistory();
 			popup.displayPopup(REFRESH_ICON, "Refresh",
-					"Refreshed from database; cleared undo/redo history", ScreenProperties
+					"Synchronized diagrams; cleared undo/redo history", ScreenProperties
 							.getUndoPopupColor(), Color.black, 1500, true, commandManager
 							.getTransactionPosition(), commandManager.getTotalTransactions());
 		}
@@ -1265,8 +1263,8 @@ public class ApplicationWindow extends SmartJFrame
 				String[] info = RepositoryUtility.chooseRemoteDatabase();
 				if (info == null)
 					return;
-
-				RepositoryUtility.useObjectDbRepository(info[0], info[1], getBaseModel());
+				
+				RepositoryUtility.useObjectDbRepository(info[0], info[1], getBaseModel());				
 				applicationWindowCoordinator.switchRepository();
 				name = info[0] + ":" + info[1];
 				recent.addFile(name);
@@ -1832,7 +1830,7 @@ public class ApplicationWindow extends SmartJFrame
 			{
 				JMenuItem refresh = new JMenuItem(new RefreshAction());
 				refresh.setIcon(REFRESH_ICON);
-				GlobalPreferences.registerKeyAction("File", refresh, "F5", "Refresh the model from the repository");
+				GlobalPreferences.registerKeyAction("File", refresh, "F5", "Synchronize diagrams with the repository");
 				entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
 			}
 

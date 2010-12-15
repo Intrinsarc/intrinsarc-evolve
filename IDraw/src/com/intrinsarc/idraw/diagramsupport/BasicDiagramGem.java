@@ -215,6 +215,7 @@ public final class BasicDiagramGem implements Gem
 		private int pos = 0;
 		private boolean inUndoRedo = false;
 		private boolean insideTransaction;
+		private DiagramSaveDetails saveDetails;
 		
 		public void enforceTransactionDepth(int desiredDepth)
 		{
@@ -1002,6 +1003,18 @@ public final class BasicDiagramGem implements Gem
 		public int getNumberOfChanges()
 		{
 			return changes.size();
+		}
+		
+		@Override
+		public DiagramSaveDetails getSaveDetails()
+		{
+			return saveDetails;
+		}
+
+		@Override
+		public void setSaveDetails(DiagramSaveDetails saveDetails)
+		{
+			this.saveDetails = saveDetails;
 		}
 	}
 }

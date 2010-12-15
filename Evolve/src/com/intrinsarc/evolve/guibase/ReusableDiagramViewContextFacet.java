@@ -6,6 +6,7 @@ import org.eclipse.uml2.Package;
 
 import com.intrinsarc.gem.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.foundation.persistence.*;
 
 /**
  *
@@ -24,4 +25,5 @@ public interface ReusableDiagramViewContextFacet extends Facet
 	
 	public void haveClosed(ReusableDiagramViewFacet viewFacet);
 	public void haveFocus(ReusableDiagramViewFacet viewFacet);
+	public void setTeamDetails(DiagramViewFacet diagramView, DiagramSaveDetails us, DiagramSaveDetails actual);
 }

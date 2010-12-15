@@ -21,7 +21,9 @@ import com.intrinsarc.evolve.packageview.actions.*;
 import com.intrinsarc.geometry.*;
 import com.intrinsarc.idraw.diagramsupport.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.idraw.utility.*;
+import com.intrinsarc.repositorybase.*;
 
 import edu.umd.cs.jazz.util.*;
 
@@ -203,6 +205,12 @@ public class ClipboardViewContextGem
     {
     	PackageViewContextGem.setPerspectiveNameName(diagramView, fixedPerspective);
     }
+
+		@Override
+		public void setTeamDetails(DiagramViewFacet diagramView, DiagramSaveDetails us, DiagramSaveDetails actual)
+		{
+			// not used in the clipboard, this is always local
+		}
 	}
 	
 	private void copyToClipboardAsImage(DiagramViewFacet diagramView)

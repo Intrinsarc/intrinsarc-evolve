@@ -72,4 +72,7 @@ public interface DiagramFacet extends TransactionManagerFacet
 	public List<FigureFacet> locateTops(double y, String figureName);
 	public List<FigureFacet> locateLefts(double x, String figureName);
 	public int getNumberOfChanges();
+	
+	public DiagramSaveDetails getSaveDetails();
+	public void setSaveDetails(DiagramSaveDetails saveDetails);
 }

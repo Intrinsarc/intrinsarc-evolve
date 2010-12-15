@@ -220,9 +220,13 @@ public class XMLSubjectRepositoryGem implements Gem
           if (who == null || who.length() == 0 || !keepExistingModificationInfo)
           {
           	PersistentProperty user = GlobalPreferences.preferences.getRawPreference(GlobalSubjectRepository.USER_NAME);
-            holder.setSavedBy(user.asString());        
             SimpleDateFormat formatter = new SimpleDateFormat(CommonRepositoryFunctions.SAVE_DATE_FORMAT);          
-            holder.setSaveTime(formatter.format(new Date()));
+          	String savedBy = user.asString();
+          	String saveTime = formatter.format(new Date());
+            holder.setSavedBy(savedBy);
+            holder.setSaveTime(saveTime);
+            
+            diagram.setSaveDetails(new DiagramSaveDetails(savedBy, saveTime));            
           }
           
           changed++;          
@@ -532,6 +536,20 @@ public class XMLSubjectRepositoryGem implements Gem
 		public boolean isLongRunningTransaction()
 		{
 			return longRunningTransaction;
+		}
+
+		@Override
+		public DiagramSaveDetails getDiagramSaveDetails(Package pkg)
+		{
+			String savedBy = pkg.getJ_diagramHolder().getSavedBy();
+			String saveTime = pkg.getJ_diagramHolder().getSaveTime();			
+			return new DiagramSaveDetails(savedBy, saveTime);
+		}
+
+		@Override
+		public boolean isTeam()
+		{
+			return false;
 		}
   }
   
