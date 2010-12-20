@@ -254,48 +254,43 @@ public class PackageViewContextGem
 	    ZTransformGroup backdrop = new ZTransformGroup();
 	    if (!us.equals(actual))
 	    {
-	    	diagramView.getDiagram().resyncViews();
-	    	
 	    	ZGroup group = new ZGroup();
-	      ZText text = new ZText("Conflict: " + actual.getSavedBy() + ", " + actual.getSaveTime());
-	      ZTransformGroup textGroup = new ZTransformGroup(new ZVisualLeaf(text));
-	      textGroup.setTranslateX(8 + 24);
-	      textGroup.setTranslateY(4);
+	    	boolean modified = diagramView.getDiagram().isModified();
+	    	ZText top = new ZText(modified ? "Conflict" : "Out of date");
+	    	top.setFont(top.getFont().deriveFont(Font.BOLD));
+	      top.setPenPaint(modified ? Color.RED: Color.DARK_GRAY);
+	      top.setTranslateX(8);
+	      ZText text = new ZText("Last saved by: " + actual.getSavedBy() + "\n" + actual.getSaveTime());
+	      text.setPenPaint(Color.DARK_GRAY);
+	      top.setTranslateX(8);
+	      top.setTranslateY(4);
+	      text.setTranslateX(8);
+	      text.setTranslateY(4 + top.getBounds().getHeight());
+	      ZTransformGroup textGroup = new ZTransformGroup(new ZVisualLeaf(top));
+	      textGroup.addChild(new ZVisualLeaf(text));
 	      
-	      ZText dText = new ZText("Conflict: " + actual.getSavedBy() + ", " + actual.getSaveTime());
-	      System.out.println("$$ text = " + dText.getText());
-	      dText.setPenPaint(Color.RED);
-/*	      ImageIcon icon = null;
-	      ZImage image = new ZImage(icon.getImage());
-	      image.setTranslation(8, 4);
-*/	      
-	      double textWidth = textGroup.getBounds().getWidth() + 10;
-	              
-	      UBounds bounds = new UBounds(dText.getBounds()).addToExtent(new UDimension(textWidth + 10 + 24, 0));
-	      double width = bounds.width;
-	      double height = Math.max(bounds.height, textGroup.getBounds().height);
+	      double width = textGroup.getBounds().getWidth() + 10;	              
+	      double height = textGroup.getBounds().height;
 	      
-	      ZCoordList poly = new ZPolyline();
-	      poly.setPenPaint(Color.LIGHT_GRAY);
+	      ZPolygon poly = new ZPolygon();
+      	poly.setPenPaint(Color.LIGHT_GRAY);
+      	poly.setFillPaint(new Color(255, 255, 200));
 	
 	      poly.add(new UPoint(0, 0));
-	      poly.add(new UPoint(width + 4, 0));
-	      poly.add(new UPoint(width + 12, 8));
+	      poly.add(new UPoint(width + 12, 0));
 	      poly.add(new UPoint(width + 12, height + 8));
-	      poly.add(new UPoint(0, height + 8));
-	      poly.setFillPaint(new Color(255, 255, 200));
+	      poly.add(new UPoint(6, height + 8));
+	      poly.add(new UPoint(0, height + 6));
 	      
 	      group.addChild(new ZVisualLeaf(poly));
 	      group.addChild(textGroup);
-//	      group.addChild(new ZVisualLeaf(image));
-	      
 	      backdrop.addChild(group);
 	    }
 
 	    backdrop.translate(diagramView.getCanvas().getWidth() - backdrop.getBounds().width, 0);
 	    ZFadeGroup fade = new ZFadeGroup(backdrop);
 	    fade.setAlpha(0.7);
-	    diagramView.setBackdrop(fade);
+	    diagramView.setOtherBackdrop(fade);
 		}
 	}
 	

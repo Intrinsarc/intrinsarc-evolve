@@ -44,6 +44,7 @@ public class BasicDiagramRecreatorGem
       BasicDiagramGem gem = new BasicDiagramGem(pkg, persistentDiagram, postProcessor, false);
 
       final DiagramFacet diagram = gem.getDiagramFacet();
+      setSavedDetails(diagram, pkg);
       diagrams.put(diagram.getDiagramReference(), diagram);
       gem.completeInitialisationAfterRegistration();      
 
@@ -68,6 +69,7 @@ public class BasicDiagramRecreatorGem
       BasicDiagramGem gem = new BasicDiagramGem(reference, chainedSource, perspective, postProcessor, false);
       gem.getDiagramFacet().setLinkedObject(chainedSource.getLinkedObject());
       final DiagramFacet diagram = gem.getDiagramFacet();
+      setSavedDetails(diagram, (Package) chainedSource.getLinkedObject());
       diagrams.put(diagram.getDiagramReference(), diagram);
       gem.completeInitialisationAfterRegistration();      
 
@@ -80,6 +82,13 @@ public class BasicDiagramRecreatorGem
             } 
           });
       return diagram;
+		}
+		
+		private void setSavedDetails(DiagramFacet diagram, Package pkg)
+		{
+			J_DiagramHolder holder = pkg.getJ_diagramHolder();
+			DiagramSaveDetails saveDetails = new DiagramSaveDetails(holder.getSavedBy(), holder.getSaveTime());
+			diagram.setSaveDetails(saveDetails);
 		}
 
     public PersistentDiagram retrievePersistentDiagram(DiagramReference diagramReference) throws DiagramRecreationException

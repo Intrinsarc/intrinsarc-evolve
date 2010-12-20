@@ -74,6 +74,7 @@ public interface DiagramViewFacet extends Facet
   public void turnSelectionLayerOn( );
   public void turnSelectionLayerOff( );
   public void setBackdrop(ZNode backdrop);
+  public void setOtherBackdrop(ZNode backdrop);
   public void moveManipulatorToNewLayer(ManipulatorFacet manipulator);
   public void moveManipulatorToSelectionLayer(ManipulatorFacet manipulator);
   public void setBackgroundColor(Color background);

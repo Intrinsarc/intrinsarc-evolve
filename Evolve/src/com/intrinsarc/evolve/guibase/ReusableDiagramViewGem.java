@@ -171,10 +171,6 @@ public class ReusableDiagramViewGem implements Gem
 			DiagramFacet oldDiagram = diagram;
 			diagram = newDiagram;
 			
-			J_DiagramHolder holder = ((Package) newDiagram.getLinkedObject()).getJ_diagramHolder();
-			DiagramSaveDetails saveDetails = new DiagramSaveDetails(holder.getSavedBy(), holder.getSaveTime());
-			diagram.setSaveDetails(saveDetails);
-
 			// if we need an internal frame, make one
 			if (internalFrame == null)
 			{
@@ -228,6 +224,7 @@ public class ReusableDiagramViewGem implements Gem
 			// pick up the correct title and modified flag
       diagram.sendChangesToListeners();
 			diagramViewContext.refreshViewAttributes();
+			refreshDiagramConflictDetails(GlobalSubjectRepository.repository);
 		}
 
 		private JPanel makeDiagramView(DiagramFacet diagram)
@@ -524,6 +521,9 @@ public class ReusableDiagramViewGem implements Gem
 		DiagramSaveDetails current = repository.getDiagramSaveDetails(pkg);
 		DiagramSaveDetails local = diagram.getSaveDetails();
 		if (current != null)
+		{
+//			System.out.println("$$ refreshing for diagram: " + pkg.getName() + ", save times = " + local.getSaveTime() + ", other = " + current.getSaveTime());
 			reusableContext.setTeamDetails(diagramView, local, current);
+		}
 	}
 }

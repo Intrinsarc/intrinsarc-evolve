@@ -40,6 +40,7 @@ public final class BasicDiagramViewGem implements Gem
 	private ZGroup adornerLayer; // adornments always go here
 	private ZGroup debugLayer;
 	private ZTransformGroup backdropLayer;
+	private ZTransformGroup otherBackdropLayer;
 	// a layer for displaying elements for debug purposes
 	private ZCamera camera;
 	private ZNode cameraNode;
@@ -206,9 +207,13 @@ public final class BasicDiagramViewGem implements Gem
 		objectLayer.lower();
 		
     pickLayer.removeChild(backdropLayer);
+    pickLayer.removeChild(otherBackdropLayer);
 		backdropLayer = new ZTransformGroup();
+		otherBackdropLayer = new ZTransformGroup();
 		pickLayer.addChild(backdropLayer);
+		pickLayer.addChild(otherBackdropLayer);
 		backdropLayer.lower();
+		otherBackdropLayer.lower();
   }
 
   private void syncWithDiagram(boolean determineAdornments)
@@ -458,6 +463,7 @@ public final class BasicDiagramViewGem implements Gem
 			
 			// make sure the backdrop is in the correct place
 			backdropLayer.setTranslation(panX, panY);
+			otherBackdropLayer.setTranslation(panX, panY);
 	
 			// make sure that the scroll bars show where we are in relation to the current view
 			adjustScrollBars();
@@ -772,6 +778,13 @@ public final class BasicDiagramViewGem implements Gem
       backdropLayer.removeAllChildren();
       if (backdrop != null)
         backdropLayer.addChild(backdrop);
+    }
+
+    public void setOtherBackdrop(ZNode backdrop)
+    {
+      otherBackdropLayer.removeAllChildren();
+      if (backdrop != null)
+        otherBackdropLayer.addChild(backdrop);
     }
 
     public void setBackgroundColor(Color background)
