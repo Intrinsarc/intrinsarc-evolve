@@ -44,7 +44,7 @@ public class BasicDiagramRecreatorGem
       BasicDiagramGem gem = new BasicDiagramGem(pkg, persistentDiagram, postProcessor, false);
 
       final DiagramFacet diagram = gem.getDiagramFacet();
-      setSavedDetails(diagram, pkg);
+      setSaveDetails(diagram);
       diagrams.put(diagram.getDiagramReference(), diagram);
       gem.completeInitialisationAfterRegistration();      
 
@@ -69,7 +69,7 @@ public class BasicDiagramRecreatorGem
       BasicDiagramGem gem = new BasicDiagramGem(reference, chainedSource, perspective, postProcessor, false);
       gem.getDiagramFacet().setLinkedObject(chainedSource.getLinkedObject());
       final DiagramFacet diagram = gem.getDiagramFacet();
-      setSavedDetails(diagram, (Package) chainedSource.getLinkedObject());
+      setSaveDetails(diagram);
       diagrams.put(diagram.getDiagramReference(), diagram);
       gem.completeInitialisationAfterRegistration();      
 
@@ -84,10 +84,14 @@ public class BasicDiagramRecreatorGem
       return diagram;
 		}
 		
-		private void setSavedDetails(DiagramFacet diagram, Package pkg)
+		public void setSaveDetails(DiagramFacet diagram)
 		{
+			Package pkg = (Package) diagram.getLinkedObject();
 			J_DiagramHolder holder = pkg.getJ_diagramHolder();
-			DiagramSaveDetails saveDetails = new DiagramSaveDetails(holder.getSavedBy(), holder.getSaveTime());
+			if (holder == null)
+				return;
+
+			DiagramSaveDetails saveDetails = new DiagramSaveDetails(diagram, holder.getSavedBy(), holder.getSaveTime());
 			diagram.setSaveDetails(saveDetails);
 		}
 

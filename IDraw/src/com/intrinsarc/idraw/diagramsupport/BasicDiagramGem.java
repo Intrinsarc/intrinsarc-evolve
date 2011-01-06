@@ -861,7 +861,6 @@ public final class BasicDiagramGem implements Gem
       // disallow changes to be generated, as we are synching up at the end
       generateChanges = false;
       figures = new HashMap<String, FigureFacet>();
-      modified = true;
 
       persistentDiagram = refreshedPersistentDiagram;
       figureId = source == null ? persistentDiagram.getLastFigureId() : CHAINED_UPPER_FIGURE_ID;
@@ -872,6 +871,8 @@ public final class BasicDiagramGem implements Gem
       
       changes.clear();
       changes.add(new DiagramChange(null, RESYNC));
+      
+      modified = false;
       sendChangesToListeners();
     }
 

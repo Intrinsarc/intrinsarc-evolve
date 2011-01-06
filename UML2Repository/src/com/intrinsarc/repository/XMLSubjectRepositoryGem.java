@@ -226,7 +226,7 @@ public class XMLSubjectRepositoryGem implements Gem
             holder.setSavedBy(savedBy);
             holder.setSaveTime(saveTime);
             
-            diagram.setSaveDetails(new DiagramSaveDetails(savedBy, saveTime));            
+            diagram.setSaveDetails(new DiagramSaveDetails(diagram, savedBy, saveTime));            
           }
           
           changed++;          
@@ -539,11 +539,14 @@ public class XMLSubjectRepositoryGem implements Gem
 		}
 
 		@Override
-		public DiagramSaveDetails getDiagramSaveDetails(Package pkg)
+		public DiagramSaveDetails getDiagramSaveDetails(DiagramFacet diagram)
 		{
+			Package pkg = (Package) diagram.getLinkedObject();
+			if (pkg.getJ_diagramHolder() == null)
+				return null;
 			String savedBy = pkg.getJ_diagramHolder().getSavedBy();
 			String saveTime = pkg.getJ_diagramHolder().getSaveTime();			
-			return new DiagramSaveDetails(savedBy, saveTime);
+			return new DiagramSaveDetails(diagram, savedBy, saveTime);
 		}
 
 		@Override

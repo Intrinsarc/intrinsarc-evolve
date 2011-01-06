@@ -593,30 +593,6 @@ public class ApplicationWindow extends SmartJFrame
 		}
 	};
 
-	class RefreshAction extends AbstractAction
-	{
-		public RefreshAction()
-		{
-			super("Synchronize diagrams");
-		}
-
-		public void actionPerformed(ActionEvent e)
-		{
-			coordinator.startTransaction("", "");
-			EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
-			GlobalSubjectRepository.ignoreUpdates = true;
-			GlobalSubjectRepository.repository.refreshAll();
-			coordinator.commitTransaction();
-			
-			GlobalDiagramRegistry.registry.refreshAllDiagrams();
-			coordinator.clearTransactionHistory();
-			popup.displayPopup(REFRESH_ICON, "Refresh",
-					"Synchronized diagrams; cleared undo/redo history", ScreenProperties
-							.getUndoPopupColor(), Color.black, 1500, true, commandManager
-							.getTransactionPosition(), commandManager.getTotalTransactions());
-		}
-	};
-
 	class ExitAction extends AbstractAction
 	{
 		public ExitAction()
@@ -1828,7 +1804,7 @@ public class ApplicationWindow extends SmartJFrame
 			
 			if (isTeamEdition())
 			{
-				JMenuItem refresh = new JMenuItem(new RefreshAction());
+				JMenuItem refresh = new JMenuItem(new SynchronizeAction(coordinator, commandManager, popup));
 				refresh.setIcon(REFRESH_ICON);
 				GlobalPreferences.registerKeyAction("File", refresh, "F5", "Synchronize diagrams with the repository");
 				entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
@@ -1861,7 +1837,7 @@ public class ApplicationWindow extends SmartJFrame
 
 					public AbstractAction makeRefreshAction()
 					{
-						return new RefreshAction();
+						return new SynchronizeAction(coordinator, commandManager, popup);
 					}
 				}));
 			entries.add(new SmartMenuItemImpl("File", "ImportExport", examineImport));

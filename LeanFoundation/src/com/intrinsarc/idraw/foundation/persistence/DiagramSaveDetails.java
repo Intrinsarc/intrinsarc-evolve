@@ -1,13 +1,17 @@
 package com.intrinsarc.idraw.foundation.persistence;
 
+import com.intrinsarc.idraw.foundation.*;
+
 
 public class DiagramSaveDetails
 {
+	private DiagramFacet diagram;
 	private String savedBy;
 	private String saveTime;
 	
-	public DiagramSaveDetails(String savedBy, String saveTime)
+	public DiagramSaveDetails(DiagramFacet diagram, String savedBy, String saveTime)
 	{
+		this.diagram = diagram;
 		this.savedBy = savedBy;
 		this.saveTime = saveTime;
 	}
@@ -50,5 +54,10 @@ public class DiagramSaveDetails
 	public void setSaveTime(String saveTime)
 	{
 		this.saveTime = saveTime;
+	}
+	
+	public DiagramFacet getDiagram()
+	{
+		return diagram;
 	}
 }

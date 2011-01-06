@@ -197,19 +197,19 @@ public final class BasicDiagramRegistryGem implements Gem
       } while (moreToKill);
     }
     
-    public List<DiagramFacet> refreshAllDiagrams()
+    public List<DiagramFacet> refreshAllDiagrams(List<DiagramFacet> exceptThese)
     {
       List<DiagramFacet> unmodified = new ArrayList<DiagramFacet>();
       for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
       {
         if (!diagram.isClipboard())
         {
-          // if this is modified, we just generate a warning colour for the background
-          if (diagram.isModified())
-          {
-          }
-          else
-          // if it isn't modified, either kill it or resync it
+        	if (exceptThese.contains(diagram))
+        	{
+        		// ignore
+        	}
+        	else
+          // either kill it or resync it
           {
             if (diagram.hasListeners())
             {
@@ -231,6 +231,7 @@ public final class BasicDiagramRegistryGem implements Gem
       try
       {
         diagram.regenerate(recreatorFacet.retrievePersistentDiagram(diagram.getDiagramReference()));
+        recreatorFacet.setSaveDetails(diagram);
       }
       catch (DiagramRecreationException ex)
       {

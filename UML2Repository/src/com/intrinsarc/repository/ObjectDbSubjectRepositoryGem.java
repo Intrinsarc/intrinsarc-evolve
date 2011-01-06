@@ -202,7 +202,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
           	String saveTime = formatter.format(new Date());
             holder.setSavedBy(savedBy);
             holder.setSaveTime(saveTime);            
-            diagram.setSaveDetails(new DiagramSaveDetails(savedBy, saveTime));
+            diagram.setSaveDetails(new DiagramSaveDetails(diagram, savedBy, saveTime));
           }
           
           changed++;          
@@ -468,18 +468,21 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		}
 
 		@Override
-		public DiagramSaveDetails getDiagramSaveDetails(Package pkg)
+		public DiagramSaveDetails getDiagramSaveDetails(DiagramFacet diagram)
 		{
 			if (pm.isClosed())
 				return null;
 
 			start();
+			Package pkg = (Package) diagram.getLinkedObject();
 			pm.evict(pkg);
 			end();
 			
+			if (pkg.getJ_diagramHolder() == null)
+				return null;
 			String savedBy = pkg.getJ_diagramHolder().getSavedBy();
 			String saveTime = pkg.getJ_diagramHolder().getSaveTime();			
-			return new DiagramSaveDetails(savedBy, saveTime);
+			return new DiagramSaveDetails(diagram, savedBy, saveTime);
 		}
 
 		@Override

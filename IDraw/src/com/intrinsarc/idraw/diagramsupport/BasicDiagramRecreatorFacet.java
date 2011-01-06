@@ -22,4 +22,6 @@ public interface BasicDiagramRecreatorFacet extends Facet
   
   public PersistentDiagram retrievePersistentDiagram(
   		DiagramReference diagramReference) throws DiagramRecreationException;
+
+	public void setSaveDetails(DiagramFacet diagram);
 }

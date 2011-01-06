@@ -13,7 +13,7 @@ public interface DiagramRegistryFacet extends Facet
   public DiagramFacet retrieveOrMakeClipboardDiagram(DiagramReference reference);
   
   public FigureFacet retrieveFigure(FigureReference figureReference);
-  public List<DiagramFacet> refreshAllDiagrams();
+  public List<DiagramFacet> refreshAllDiagrams(List<DiagramFacet> exceptThese);
   public void enforceMaxUnmodifiedUnviewedDiagramsLimit();
   
   public void reset();

@@ -90,6 +90,6 @@ public interface SubjectRepositoryFacet extends TransactionManagerFacet
   
   /** return a unique string identifying the model */
 	public String getModelIdentifier();
-	public DiagramSaveDetails getDiagramSaveDetails(Package pkg);
+	public DiagramSaveDetails getDiagramSaveDetails(DiagramFacet diagram);
 	public boolean isTeam();
 }
