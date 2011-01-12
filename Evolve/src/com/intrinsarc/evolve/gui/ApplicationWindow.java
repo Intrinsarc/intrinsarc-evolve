@@ -2,7 +2,28 @@ package com.intrinsarc.evolve.gui;
 
 /**
  * Copyright A. McVeigh 2002
+ * 
+ * to do for team edition:
+ * --- features
+ * 1. show current users
+ * 2. bounce out duplicate or community users
+ * --- bugs
+ * 1. model moving bugs
+ * 2. bug when background conflict thread seems to crash
+ * 3. objectdb checking bug
+ * 4. diagram save after new pkg modified causes null pt problem
+ * 5. startup resizing bugs (?!) + hanging
+ * --- testing
+ * 1. test lots including checking combinations and code gen
+ * 2. test background changes
+ * 
+ * - done
+ * 1. warning of overwriting diagrams on save
+ * 2. restrict garbage collection + import
+ * 3. what about newly created diagrams on 2 nodes?
+ * 4. avoid reverting modified diagrams without conflicts
  */
+
 import java.awt.*;
 import java.awt.event.*;
 import java.io.*;
@@ -12,7 +33,6 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.border.*;
 
-import org.eclipse.emf.common.util.*;
 import org.eclipse.uml2.*;
 import org.eclipse.uml2.Package;
 import org.eclipse.uml2.impl.*;
@@ -1324,11 +1344,33 @@ public class ApplicationWindow extends SmartJFrame
 
 		public void actionPerformed(ActionEvent e)
 		{
-			SaveInformation save = GlobalSubjectRepository.repository
-					.getSaveInformation();
+			SaveInformation save = GlobalSubjectRepository.repository.getSaveInformation();
 
 			if (save.projectNeedsSaving())
 			{
+				// bring up a dialog if there is conflict
+				int conflict = save.getDiagramsInConflict().size();
+				if (conflict != 0)
+				{
+					JButton cancel = new JButton("Cancel");
+					JButton saveAnyway = new JButton("Save anyway");
+					JLabel label = new JLabel("<html><div color='red'>" + conflict + " diagrams are in conflict with the server.</div><p color='black'>Consider synchronizing diagrams first.");
+					JPanel panel = new JPanel();
+					panel.setBorder(new EmptyBorder(6, 6, 6, 6));
+					panel.add(label);
+					int button = coordinator.invokeAsDialog(
+							ERROR_ICON,
+							"Some diagrams are in conflict",
+							panel,
+							new JButton[]{saveAnyway, cancel}, 0, null);
+					if (button == 1)
+					{
+						popup.displayPopup(null, null, new JLabel("Save cancelled"),
+								ScreenProperties.getUndoPopupColor(), Color.black, 1500);
+						return;
+					}
+				}
+				
 				String text = "";
 				if (save.getRepositoryToSave())
 				{
@@ -1348,8 +1390,7 @@ public class ApplicationWindow extends SmartJFrame
 				Cursor current = coordinator.displayWaitCursor();
 				try
 				{
-					String fileName = GlobalSubjectRepository.repository.save(frame,
-							false, getLastVisitedDirectory());
+					String fileName = GlobalSubjectRepository.repository.save(frame, false, getLastVisitedDirectory());
 					if (fileName != null)
 					{
 						if (fileName.length() != 0)
@@ -1802,16 +1843,15 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File", print, "ctrl P", "Print the current diagram");
 			entries.add(new SmartMenuItemImpl("File", "Print", print));
 			
-			if (isTeamEdition())
-			{
-				JMenuItem refresh = new JMenuItem(new SynchronizeAction(coordinator, commandManager, popup));
-				refresh.setIcon(REFRESH_ICON);
-				GlobalPreferences.registerKeyAction("File", refresh, "F5", "Synchronize diagrams with the repository");
-				entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
-			}
+			JMenuItem refresh = new JMenuItem(new SynchronizeAction(coordinator, commandManager, popup));
+			refresh.setEnabled(GlobalSubjectRepository.repository.isTeam());
+			refresh.setIcon(REFRESH_ICON);
+			GlobalPreferences.registerKeyAction("File", refresh, "F5", "Synchronize diagrams with the repository");
+			entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
 
 			JMenuItem collect = new JMenuItem(new GarbageCollectRepositoryAction(true));
 			collect.setIcon(GARBAGE_ICON);
+			collect.setEnabled(!GlobalSubjectRepository.repository.isTeam());
 			GlobalPreferences.registerKeyAction("File", collect, null, "Perform garbage collection on the model");
 			entries.add(new SmartMenuItemImpl("File", "Maintenance", collect));
 
@@ -1840,6 +1880,8 @@ public class ApplicationWindow extends SmartJFrame
 						return new SynchronizeAction(coordinator, commandManager, popup);
 					}
 				}));
+			examineImport.setEnabled(!GlobalSubjectRepository.repository.isTeam());
+
 			entries.add(new SmartMenuItemImpl("File", "ImportExport", examineImport));
 			GlobalPreferences.registerKeyAction("File", examineImport, null, "Inspect and possibly import an external model");
 			JMenuItem exportItem = new UpdatingJMenuItem(new ExportStrataAction(coordinator, popup, frame, monitor))
@@ -2089,34 +2131,33 @@ public class ApplicationWindow extends SmartJFrame
 	public int askAboutSave(String text, boolean force)
 	{
 		// if we need saving, bring up a dialog
-		// if we are a remote client, leave immediately
 		SaveInformation save = GlobalSubjectRepository.repository.getSaveInformation();
 		if (save.projectNeedsSaving() || force)
 		{
 			int diagramsToSave = save.getDiagramsToSave();
+			int conflict = save.getDiagramsInConflict().size();
 
 			// form an appropriate information string
-			String status = "";
-			if (diagramsToSave == 0)
-				status = "(repository has been modified)";
-			else if (diagramsToSave == 1)
+			String status = conflict > 0 ? "<div color='red'>" : "<div>";
+			if (save.getRepositoryToSave())
+				status += "(repository has been modified";
+			else
+				status += "(";
+
+			if (diagramsToSave != 0)
 			{
 				if (save.getRepositoryToSave())
-					status = "(repository and 1 diagram have been modified)";
+					status += ", and ";
 				else
-					status = "(1 diagram has been modified)";
-			} else
-			{
-				if (save.getRepositoryToSave())
-					status = "(repository and " + diagramsToSave
-							+ " diagrams have been modified)";
-				else
-					status = "(" + diagramsToSave + " diagrams have been modified)";
+					status += diagram(diagramsToSave) + " modified";
+				if (conflict > 0)
+					status += ", " + diagram(conflict) + " in conflict";
 			}
+			status += ")";
 
 			int chosen = coordinator.invokeYesNoCancelDialog(
 					text,
-					new JLabel("<html><b>Save modified project?</b><p><p>" + status + "<p><p></html>"));
+					new JLabel("<html><b>Save modified project?</b><p>" + status + "<p><p></html>"));
 
 			// if yes, save the diagram
 			if (chosen == JOptionPane.OK_OPTION)
@@ -2136,6 +2177,11 @@ public class ApplicationWindow extends SmartJFrame
 		}
 
 		return JOptionPane.YES_OPTION;
+	}
+
+	private String diagram(int diagrams)
+	{
+		return "" + diagrams + (diagrams == 1 ? " diagram" : " diagrams");
 	}
 
 	private File getLastVisitedDirectory()
@@ -2288,7 +2334,6 @@ public class ApplicationWindow extends SmartJFrame
 	
 	public static boolean isTeamEdition()
 	{
-		boolean database = false;
 		try
 		{
 			ClassLoader.getSystemClassLoader().loadClass("com.objectdb.jdo.PMImpl");

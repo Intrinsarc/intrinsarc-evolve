@@ -1,6 +1,9 @@
 package com.intrinsarc.repositorybase;
 
 import java.io.*;
+import java.util.*;
+
+import com.intrinsarc.idraw.foundation.persistence.*;
 
 /**
  *
@@ -11,11 +14,13 @@ public class SaveInformation implements Serializable
 {
 	private int diagramsToSave;
 	private boolean repositoryToSave;
+	private List<DiagramSaveDetails> diagramsInConflict;
 	
-	public SaveInformation(boolean repositoryToSave, int diagramsToSave)
+	public SaveInformation(boolean repositoryToSave, int diagramsToSave, List<DiagramSaveDetails> diagramsInConflict)
 	{
 		this.repositoryToSave = repositoryToSave;
 		this.diagramsToSave = diagramsToSave;
+		this.diagramsInConflict = diagramsInConflict;
 	}
 
 	public void setDiagramsToSave(int diagramsToSave)
@@ -41,5 +46,10 @@ public class SaveInformation implements Serializable
 	public boolean projectNeedsSaving()
 	{
 		return repositoryToSave || diagramsToSave > 0;
+	}
+	
+	public List<DiagramSaveDetails> getDiagramsInConflict()
+	{
+		return diagramsInConflict;
 	}
 }

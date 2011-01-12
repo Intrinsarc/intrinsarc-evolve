@@ -45,6 +45,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   private PersistenceManager pm;
   private Model topLevel;
   private UndoRedoStackManager undoredo = new UndoRedoStackManager();
+	private UserDetails currentUser;
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
@@ -223,10 +224,10 @@ public class ObjectDbSubjectRepositoryGem implements Gem
       for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
         if (!diagram.isClipboard() && diagram.isModified())
           diagramsToSave++;
-      return new SaveInformation(false, diagramsToSave);
+      return new SaveInformation(false, diagramsToSave, getDiagramsInConflict()[0]);
     }
 
-    public void addRepositoryListener(SubjectRepositoryListenerFacet listener)
+		public void addRepositoryListener(SubjectRepositoryListenerFacet listener)
     {
       listeners.add(listener);
     }
@@ -489,6 +490,53 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		public boolean isTeam()
 		{
 			return hostName != null;
+		}
+
+		@Override
+		public List<DiagramSaveDetails>[] getDiagramsInConflict()
+		{
+			// get hold of all diagrams with a conflict
+			ArrayList<DiagramSaveDetails> conflicted = new ArrayList<DiagramSaveDetails>();
+			ArrayList<DiagramSaveDetails> modifiedOnly = new ArrayList<DiagramSaveDetails>();
+			List<DiagramSaveDetails> all[] = new List[]{conflicted, modifiedOnly};
+			if (hostName == null)
+				return all;
+			
+			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+			{
+				if (!diagram.isClipboard() && diagram.isModified())
+				{
+					DiagramSaveDetails current = diagram.getSaveDetails();
+					DiagramSaveDetails remote = GlobalSubjectRepository.repository.getDiagramSaveDetails(diagram);
+					if (current != null && remote != null && !current.equals(remote))
+						conflicted.add(remote);
+					else
+						modifiedOnly.add(current);
+				}
+			}
+			return all;
+		}
+
+		@Override
+		public void setCurrentUser(UserDetails user)
+		{
+			// now persist it making sure we overwrite the same serial number
+			// if the serial is "free" then overwrite the 2nd top one if we can
+			start();
+      refreshAll();
+      
+      Collection<UserDetails> users = queryPossiblyUnextentedObjects(UserDetails.class, null, false, false);
+      
+			end();
+		}
+
+		/**
+		 * returns null if the user is valid, otherwise returns the user that has overridden this...
+		 */
+		@Override
+		public UserDetails retrieveOverridingUser()
+		{
+			return null;
 		}
   }
   

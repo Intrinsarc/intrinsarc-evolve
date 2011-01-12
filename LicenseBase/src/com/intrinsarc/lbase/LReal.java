@@ -17,7 +17,7 @@ public class LReal
 	private String user;
 	private String email;
 	private int number;
-	private int serial;
+	private String serial;
 	private String expiry;
 	private Date expiryDate;
 	private String machineId;
@@ -103,9 +103,9 @@ public class LReal
 		number = -1;
 		if (details.get("number") != null)
 			number = Integer.parseInt(details.get("number"));
-		serial = -1;
+		serial = null;
 		if (details.get("serial") != null)
-			serial = Integer.parseInt(details.get("serial"));
+			serial = details.get("serial");
 		expiry = details.get("expiry");
 		features = details.get("features");
 		machineId = details.get("machine-id");
@@ -118,7 +118,7 @@ public class LReal
 		}
 		
 		// get the macs
-		if (serial == -1)
+		if (serial == null)
 		{
 			macs = new HashSet<String>();
 			String actual = LFinder.toHex(LUtils.decode(machineId));
@@ -173,7 +173,7 @@ public class LReal
 		return number;
 	}
 	
-	public int getSerial()
+	public String getSerial()
 	{
 		return serial;
 	}

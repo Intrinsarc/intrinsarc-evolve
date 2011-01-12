@@ -252,7 +252,7 @@ public class PackageViewContextGem
 		public void setTeamDetails(DiagramViewFacet diagramView, DiagramSaveDetails us, DiagramSaveDetails actual)
 		{			
 	    ZTransformGroup backdrop = new ZTransformGroup();
-	    if (!us.equals(actual))
+	    if (us == null && actual != null || !us.equals(actual))
 	    {
 	    	ZGroup group = new ZGroup();
 	    	boolean modified = diagramView.getDiagram().isModified();

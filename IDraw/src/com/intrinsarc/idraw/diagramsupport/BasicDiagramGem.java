@@ -398,22 +398,8 @@ public final class BasicDiagramGem implements Gem
 		
 		public void completeUndoTransaction()
 		{
-/*			UndoRedoStates current = ensureCurrent();
-			int s = current.getSize();
-			formViewUpdate();
-			commitTransaction();
-			int t = current.getSize();
-			if (s != t)
-				println("$$ bad undo, alterations = " + t);
-			pos--;
-*/		}
-		
-/*		private void formViewUpdate()
-		{
-	    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-	      formViewUpdate(pass, false);
 		}
-*/
+		
 		private void handleModify(PersistentFigure p)
 		{
 			FigureFacet f = figures.get(p.getId());
@@ -872,7 +858,7 @@ public final class BasicDiagramGem implements Gem
       changes.clear();
       changes.add(new DiagramChange(null, RESYNC));
       
-      modified = false;
+      setModified(false);
       sendChangesToListeners();
     }
 

@@ -152,7 +152,7 @@ public class LicenseAction extends AbstractAction
 		// if the license is readable, add in the details
 		if (readable)
 		{
-			if (license.getSerial() == -1)
+			if (license.getSerial() == null)
 			{
 				addDetail(details, license, "user", license.getUser(),constraints);
 				addDetail(details, license, "email", license.getEmail(), constraints);

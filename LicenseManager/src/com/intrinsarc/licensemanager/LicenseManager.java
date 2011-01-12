@@ -5,6 +5,7 @@ import java.awt.event.*;
 import java.io.*;
 import java.net.*;
 import java.security.*;
+import java.util.*;
 
 import javax.swing.*;
 import javax.swing.event.*;
@@ -138,7 +139,7 @@ public class LicenseManager extends JFrame
 			}
 			
 			// populate an LDetails
-			int serial = (int)(Math.random() * 10000);
+			String serial = UUID.randomUUID().toString();// "" + (int)(Math.random() * 10000);
 			LDetails lic = new LDetails("email=zzzz\nserial=" + serial + "\nfeatures=base_1.x\nexpiry-days=31\nencrypted=\n");
 			right.removeAll();
 			right.add(new LicenseViewer().makeViewer(

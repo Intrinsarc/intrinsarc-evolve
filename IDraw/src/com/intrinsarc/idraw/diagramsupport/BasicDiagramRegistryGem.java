@@ -65,14 +65,7 @@ public final class BasicDiagramRegistryGem implements Gem
         {
           System.err.println("$$ got a recreation exception when regenerating diagram: " + ex);
         }
-  
-        // make sure that we handles any needed changes to this diagram
-        for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
-          lruDiagram.formViewUpdate(pass, false);
-
-        // make sure this is shown as unmodified
-        if (forceToNotModified)
-          lruDiagram.resetModified();        
+        update(lruDiagram, forceToNotModified);
       }
       
       lruDiagram.setLRUTime(System.currentTimeMillis());    
@@ -232,6 +225,7 @@ public final class BasicDiagramRegistryGem implements Gem
       {
         diagram.regenerate(recreatorFacet.retrievePersistentDiagram(diagram.getDiagramReference()));
         recreatorFacet.setSaveDetails(diagram);
+        update(diagram, true);
       }
       catch (DiagramRecreationException ex)
       {
@@ -244,5 +238,16 @@ public final class BasicDiagramRegistryGem implements Gem
 	{
 		diagram.dispose();
 	  diagrams.remove(diagram.getDiagramReference());
+	}
+	
+	private void update(DiagramFacet diagram, boolean forceToNotModified)
+	{
+    // make sure that we handles any needed changes to this diagram
+    for (ViewUpdatePassEnum pass : ViewUpdatePassEnum.values())
+      diagram.formViewUpdate(pass, false);
+
+    // make sure this is shown as unmodified
+    if (forceToNotModified)
+      diagram.resetModified();		
 	}
 }

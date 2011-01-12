@@ -345,7 +345,7 @@ public class XMLSubjectRepositoryGem implements Gem
       for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
         if (!diagram.isClipboard() && diagram.isModified())
           diagramsToSave++;
-      return new SaveInformation(modified, diagramsToSave);
+      return new SaveInformation(modified, diagramsToSave, getDiagramsInConflict()[0]);
     }
 
     public PersistentDiagram retrievePersistentDiagram(Package pkg)
@@ -553,6 +553,23 @@ public class XMLSubjectRepositoryGem implements Gem
 		public boolean isTeam()
 		{
 			return false;
+		}
+
+		@Override
+		public List<DiagramSaveDetails>[] getDiagramsInConflict()
+		{
+			return new List[]{new ArrayList<DiagramSaveDetails>(), new ArrayList<DiagramSaveDetails>()};
+		}
+
+		@Override
+		public void setCurrentUser(UserDetails user)
+		{
+		}
+
+		@Override
+		public UserDetails retrieveOverridingUser()
+		{
+			return null;
 		}
   }
   

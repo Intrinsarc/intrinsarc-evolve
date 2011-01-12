@@ -91,5 +91,10 @@ public interface SubjectRepositoryFacet extends TransactionManagerFacet
   /** return a unique string identifying the model */
 	public String getModelIdentifier();
 	public DiagramSaveDetails getDiagramSaveDetails(DiagramFacet diagram);
+	/** [0] are modified diagrams in conflict, [1] is modified diagrams not in conflict */
+	public List<DiagramSaveDetails>[] getDiagramsInConflict();
 	public boolean isTeam();
+	
+	public void setCurrentUser(UserDetails user);
+	public UserDetails retrieveOverridingUser();
 }

@@ -6,7 +6,6 @@ import java.util.*;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.border.*;
 import javax.swing.table.*;
 
 import org.eclipse.emf.common.util.*;
@@ -95,57 +94,57 @@ public class SynchronizeAction extends AbstractAction
 
 	public void actionPerformed(ActionEvent e)
 	{
+		SubjectRepositoryFacet repository = GlobalSubjectRepository.repository;
 		// get hold of all diagrams with a conflict
-		List<DiagramSaveDetails> conflicted = new ArrayList<DiagramSaveDetails>();
-		for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+		List<DiagramSaveDetails>[] all = repository.getDiagramsInConflict();
+		List<DiagramSaveDetails> conflicted = all[0];
+		List<DiagramSaveDetails> modifiedOnly = all[1];
+		int size = conflicted.size();
+
+		List<DiagramFacet> preserve = new ArrayList<DiagramFacet>();
+		if (size > 0)
 		{
-			if (!diagram.isClipboard() && diagram.isModified())
+			String[] diagramNames = new String[size];
+			int count = 0;
+			for (DiagramSaveDetails details : conflicted)
 			{
-				DiagramSaveDetails current = diagram.getSaveDetails();
-				DiagramSaveDetails remote = GlobalSubjectRepository.repository.getDiagramSaveDetails(diagram);
-				if (!current.equals(remote))
-					conflicted.add(remote);
+				org.eclipse.uml2.Package pkg = (org.eclipse.uml2.Package) details.getDiagram().getLinkedObject();
+				diagramNames[count++] = repository.getFullyQualifiedName(pkg, "::");
+			}
+			MyTableModel model = new MyTableModel(diagramNames);
+			JTable table = new JTable(model);
+	
+			JScrollPane pane = new JScrollPane(table);
+			int chosen = coordinator.invokeAsDialog(
+					ERROR_ICON,
+					"Review diagrams in conflict",
+					pane,
+					new JButton[]{ new JButton("Synchronize"), new JButton("Cancel") },
+					0,
+					null);
+			// user can cancel
+			if (chosen == 1)
+				return;
+			
+			// determine which diagrams should be preserved
+			count = 0;
+			for (DiagramSaveDetails details : conflicted)
+			{
+				if (!model.getDiscard(count++))
+					preserve.add(details.getDiagram());
 			}
 		}
 
-		int size = conflicted.size();
-		String[] diagramNames = new String[size];
-		int count = 0;
-		for (DiagramSaveDetails details : conflicted)
-		{
-			org.eclipse.uml2.Package pkg = (org.eclipse.uml2.Package) details.getDiagram().getLinkedObject();
-			diagramNames[count++] = GlobalSubjectRepository.repository.getFullyQualifiedName(pkg, "::");
-		}
-		MyTableModel model = new MyTableModel(diagramNames);
-		JTable table = new JTable(model);
-
-		JScrollPane pane = new JScrollPane(table);
-		int chosen = coordinator.invokeAsDialog(
-				ERROR_ICON,
-				"Some diagrams are in conflict: " + size,
-				pane,
-				new JButton[]{ new JButton("Synchronize"), new JButton("Cancel") },
-				0,
-				null);
-		// user can cancel
-		if (chosen == 1)
-			return;
-		
-		// determine which diagrams should be preserved
-		List<DiagramFacet> preserve = new ArrayList<DiagramFacet>();
-		count = 0;
-		for (DiagramSaveDetails details : conflicted)
-		{
-			if (!model.getDiscard(count++))
+		// don't modify anything that is modified locally but not in conflict
+		for (DiagramSaveDetails details : modifiedOnly)
 				preserve.add(details.getDiagram());
-		}
-
+		
+		// refresh the database
 		coordinator.startTransaction("", "");
 		EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
 		GlobalSubjectRepository.ignoreUpdates = true;
-
-		GlobalSubjectRepository.repository.refreshAll();
-		coordinator.commitTransaction();
+		repository.refreshAll();
+		coordinator.commitTransaction(true);
 
 		GlobalDiagramRegistry.registry.refreshAllDiagrams(preserve);
 		coordinator.clearTransactionHistory();

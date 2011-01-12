@@ -520,7 +520,7 @@ public class ReusableDiagramViewGem implements Gem
 		Package pkg = (Package) diagram.getLinkedObject();
 		DiagramSaveDetails current = repository.getDiagramSaveDetails(diagram);
 		DiagramSaveDetails local = diagram.getSaveDetails();
-		if (current != null && local != null)
+		if (current != null)
 		{
 //			System.out.println("$$ refreshing for diagram: " + pkg.getName() + ", save times = " + local.getSaveTime() + ", other = " + current.getSaveTime());
 			reusableContext.setTeamDetails(diagramView, local, current);

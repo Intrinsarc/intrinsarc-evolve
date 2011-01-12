@@ -55,9 +55,9 @@ public class LicenseViewer
 					String serial = get(editor, "serial");
 					String name = null;
 					if (serial != null)
-						name = "serial-" + get(editor, "email") + "-" + get(editor, "serial") + ".license";
+						name = "serial-" + get(editor, "serial") + "-" + get(editor, "email") + ".license";
 					else
-						name = "hwlocked-" + get(editor, "email") + "-" + get(editor, "number") + ".license";
+						name = "hwlocked-" + get(editor, "number") + "-" + get(editor, "email") + ".license";
 					File file = new File(current, name);
 					if (file.exists())
 					{

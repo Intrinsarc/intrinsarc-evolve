@@ -484,6 +484,7 @@ public final class ToolCoordinatorGem implements Gem
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
 			main.undoTransaction();
 			inBackground(
+				false,
 				new Runnable()
 				{
 					public void run()
@@ -505,6 +506,7 @@ public final class ToolCoordinatorGem implements Gem
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
 			main.redoTransaction();
 			inBackground(
+				false,
 				new Runnable()
 				{
 					public void run()
@@ -534,41 +536,43 @@ public final class ToolCoordinatorGem implements Gem
 //			long start = System.currentTimeMillis();
 			clearDeltaEngine();
 			final DiagramFacet main = getCurrentDiagramView().getDiagram();
-			updateDiagramAfterSubjectChanges(main,
-					!fullyCommitCurrentDiagramInForeground);
+			updateDiagramAfterSubjectChanges(main, !fullyCommitCurrentDiagramInForeground);
 			main.checkpointCommitTransaction();
 			repository.commitTransaction();
 //			long end = System.currentTimeMillis();
 //			System.out.println("$$ took " + (end - start) + "ms");
 
 			// possibly update in the background
-			inBackground(new Runnable()
-	    {
-	    	public void run()
-	    	{
-	  			updateDiagramAfterSubjectChanges(main, false);
-	  			main.commitTransaction();
-	  			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
-	  			{
-	  				if (diagram != main)
-	  				{
-	  					if (!fullyCommitCurrentDiagramInForeground)
-	  						updateDiagramAfterSubjectChanges(diagram, false);
-	  					diagram.commitTransaction();					
-	  				}				
-	  			}
-	        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
-	        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
-	    	}
-	    });
+			inBackground(
+				fullyCommitCurrentDiagramInForeground,
+				new Runnable()
+		    {
+		    	public void run()
+		    	{
+		  			updateDiagramAfterSubjectChanges(main, false);
+		  			main.commitTransaction();
+		  			for (DiagramFacet diagram : GlobalDiagramRegistry.registry.getDiagrams())
+		  			{
+		  				if (diagram != main)
+		  				{
+		  					if (!fullyCommitCurrentDiagramInForeground)
+		  						updateDiagramAfterSubjectChanges(diagram, false);
+		  					diagram.commitTransaction();					
+		  				}				
+		  			}
+		        GlobalDiagramRegistry.registry.enforceMaxUnmodifiedUnviewedDiagramsLimit();
+		        enforceTransactionDepth(getIntegerPreference(UNDO_REDO_SIZE));
+		    	}
+		    });
 			waiter.restoreOldCursor();
       paletteFacet.refreshEnabled();
 		}
 	
-		private void inBackground(final Runnable runnable)
+		private void inBackground(boolean forceForeground, final Runnable runnable)
 		{
 			boolean background = GlobalPreferences.preferences.getRawPreference(BasicDiagramGem.BACKGROUND_VIEW_UPDATES).asBoolean();
-			if (!background)
+
+			if (forceForeground || !background)
 				runnable.run();
 			else
 			{
