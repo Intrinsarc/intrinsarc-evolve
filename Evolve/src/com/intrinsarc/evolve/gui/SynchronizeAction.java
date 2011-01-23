@@ -154,4 +154,4 @@ public class SynchronizeAction extends AbstractAction
 				commandManager.getTransactionPosition(),
 				commandManager.getTotalTransactions());
 	}
-};
+}

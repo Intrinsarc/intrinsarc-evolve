@@ -97,4 +97,5 @@ public interface SubjectRepositoryFacet extends TransactionManagerFacet
 	
 	public void setCurrentUser(UserDetails user);
 	public UserDetails retrieveOverridingUser();
+	public Collection<UserDetails> retrieveAllHistoricalUsers();
 }

@@ -17,6 +17,7 @@ package com.intrinsarc.repository;
 import java.io.*;
 import java.text.*;
 import java.util.*;
+import java.util.concurrent.*;
 
 import javax.jdo.*;
 import javax.swing.*;
@@ -46,6 +47,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   private Model topLevel;
   private UndoRedoStackManager undoredo = new UndoRedoStackManager();
 	private UserDetails currentUser;
+	private UserDetails currentUserCopy;
   
   private CommonRepositoryFunctions common = new CommonRepositoryFunctions();
   private SubjectRepositoryFacetImpl subjectFacet = new SubjectRepositoryFacetImpl();
@@ -476,7 +478,7 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 
 			start();
 			Package pkg = (Package) diagram.getLinkedObject();
-			pm.evict(pkg);
+			pm.evict(pkg);			
 			end();
 			
 			if (pkg.getJ_diagramHolder() == null)
@@ -526,7 +528,15 @@ public class ObjectDbSubjectRepositoryGem implements Gem
       refreshAll();
       
       Collection<UserDetails> users = queryPossiblyUnextentedObjects(UserDetails.class, null, false, false);
+      currentUser = XMLSubjectRepositoryGem.findMatchingUser(user, users);
+      if (currentUser == null)
+      {
+      	// otherwise create a new one
+      	currentUser = new UserDetails(user);
+      	pm.makePersistent(currentUser);
+      }
       
+    	currentUserCopy = new UserDetails(user);
 			end();
 		}
 
@@ -536,7 +546,27 @@ public class ObjectDbSubjectRepositoryGem implements Gem
 		@Override
 		public UserDetails retrieveOverridingUser()
 		{
+			start();
+			pm.refresh(currentUser);
+			end();
+			if (!currentUserCopy.equals(currentUser))
+				return currentUserCopy;
+			
 			return null;
+		}
+
+		@Override
+		public Collection<UserDetails> retrieveAllHistoricalUsers()
+		{
+			start();
+      refreshAll();
+      
+      Collection<UserDetails> users = queryPossiblyUnextentedObjects(UserDetails.class, null, false, false);
+      List<UserDetails> all = new ArrayList<UserDetails>();      
+			end();
+			
+			XMLSubjectRepositoryGem.sortUsers(all);
+			return users;
 		}
   }
   
@@ -651,26 +681,31 @@ public class ObjectDbSubjectRepositoryGem implements Gem
   }
 
 
-  private void end()
-  {
-    pm.currentTransaction().commit();
-    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
-  }
-
-  private void middle()
-  {
-    end();
-    start();
-  }
-
+  /** prevents multiple threads working on the same repository by queuing them */
+  private Semaphore sema = new Semaphore(1);
   private void start()
   {
+  	try
+		{
+			sema.acquire();
+		}
+  	catch (InterruptedException e)
+		{
+			e.printStackTrace();
+		}
     EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = true;
     // ODB2B33 sets retain values to true as a default, whereas ODB1 didn't
     pm.currentTransaction().setRetainValues(false);
     // ODB2B33 has optimistic transactions as a default, whereas ODB1 doesn't
     pm.currentTransaction().setOptimistic(true);
     pm.currentTransaction().begin();
+  }
+
+  private void end()
+  {
+    pm.currentTransaction().commit();
+    EMFOptions.CREATE_LISTS_LAZILY_FOR_GET = false;
+		sema.release();
   }
 
   public SubjectRepositoryFacet getSubjectRepositoryFacet()

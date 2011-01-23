@@ -1,0 +1,72 @@
+title:	"Adding Support for Evolution to an ADL"
+		or 	"A Rigorous, Architectural Approach to Extensible Applications"
+subtitle: ("or can we make software extension and evolution as natural as creation?")
+
+--------------------------------------------------------------------------------------
+
+Intro presentation (40 mins)
+
+- introduce problem domain using example system & scenarios from phd
+	
+- requirements x 5 + justifications
+	- not uncommon now; look at netbeans, eclipse, wordpress, firefox - all extensible
+
+- look at options: eclipse plugin model, product lines, version control
+	- full combination checking is manual and error prone
+	
+- explain compositional model briefly in context of radio station example
+	- explain why this was picked - show how this works intra-VM
+	- common with spring (they just don't know it)
+	- introduce strata
+	- encodes many good practices of OO: composition, interface decoupling, no cycles
+	
+- introduce 2 primitives: resemblance and replacement, explain evolution
+	- show how these work
+	
+- assess against the requirements
+
+- intro to evolve
+	- show how deltas are marked, how modification works
+	- how to invoke checking
+	- running from inside tool
+	- export / import of strata?
+
+- future work (behaviour, goals) + commercial toolset
+	- challenges - composition must be taught before compositional evolution
+	- behaviour, goals, reversing dependencies
+	- team version of evolve
+
+	
+----------------------------------------------------------------------------------------
+
+Advanced presentation: Advanced Techniques in Evolve
+- show how resemblance and replacement interact
+	- introduce alloy model and show graphs
+- hyperports
+- patterns in evolve:
+	- state, visitor, singleton
+- tie in to java/impl
+- discuss protocols + goals
+
+-----------------------------------------------------------------------------------------
+
+Tutorial: A Car Rental System (3 hrs)
+
+- show this running, explain it was built with Hibernate and GWT (stress exotic)
+
+Tutorial A:
+	- Getting the system installed and running
+	- Simple car rental example
+
+Tutorial B:
+	- Resemblance and replacement
+	
+Tutorial C:
+	- Factories, hyperports and states
+	
+Tutorial D: Evolve in the real world
+	- importing GWT/beans
+	- creating user interface
+	- creating server
+	- switching in and out real implementations
+	- generating full java code...

@@ -662,6 +662,12 @@ public final class ToolCoordinatorGem implements Gem
 				currentDialog.dispose();
 			currentDialog = null;
 		}
+
+		@Override
+		public void invokeLater(Runnable runnable)
+		{
+			inBackground(false, runnable);
+		}
 	}
 
 	public static void clearDeltaEngine()

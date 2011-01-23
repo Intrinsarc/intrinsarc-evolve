@@ -561,9 +561,11 @@ public class XMLSubjectRepositoryGem implements Gem
 			return new List[]{new ArrayList<DiagramSaveDetails>(), new ArrayList<DiagramSaveDetails>()};
 		}
 
+		private UserDetails currentUser;
 		@Override
 		public void setCurrentUser(UserDetails user)
 		{
+			currentUser = user;
 		}
 
 		@Override
@@ -571,7 +573,71 @@ public class XMLSubjectRepositoryGem implements Gem
 		{
 			return null;
 		}
+
+		@Override
+		public Collection<UserDetails> retrieveAllHistoricalUsers()
+		{
+			List<UserDetails> users = new ArrayList<UserDetails>();
+	    for (TreeIterator treeElement = resource.getAllContents(); treeElement.hasNext();)
+	    {
+	      Object subject = treeElement.next();
+	      if (subject instanceof UserDetails)
+	      	users.add((UserDetails) subject);
+	    }
+	    sortUsers(users);
+	    return users;
+	  }
   }
+	
+	public static UserDetails findMatchingUser(UserDetails user, Collection<UserDetails> users)
+	{
+		List<UserDetails> matching = new ArrayList<UserDetails>();
+    for (UserDetails suser : users)
+    	if (eq(suser.getSerial(), user.getSerial()))
+    		matching.add(suser);
+    
+    // choose the appropriate one to overwrite
+    XMLSubjectRepositoryGem.sortUsers(matching);
+    boolean noSerial = user.getSerial() == null;
+    int index;
+    if (noSerial)
+  		index = 1;
+    else
+    	index = 0;
+
+    // if we can then use the existing user
+    if (index < matching.size())
+    	return matching.get(index);
+    else
+    	return null;
+	}
+
+	private static boolean eq(String serial1, String serial2)
+	{
+		if (serial1 == serial2)
+			return true;
+		if (serial1 == null || serial2 == null)
+			return false;
+		return serial1.equals(serial2);
+	}
+	
+	public static void sortUsers(List<UserDetails> users)
+	{
+		Collections.sort(users, new Comparator<UserDetails>()
+				{
+					@Override
+					public int compare(UserDetails o1, UserDetails o2)
+					{
+						long o1t = o1.getTime();
+						long o2t = o2.getTime();
+						if (o1t > o2t)
+							return -1;
+						if (o2t > o1t)
+							return 1;
+						return 0;
+					}				
+				});
+	}
   
   public static XMLSubjectRepositoryGem openFile(String fileName, boolean initialiseWithFoundation, boolean rememberFileName) throws RepositoryOpeningException
   {

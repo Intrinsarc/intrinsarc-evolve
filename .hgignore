@@ -11,3 +11,8 @@ glob:CarRentalGUI/war/WEB-INF/classes/com/intrinsarc/carrentalgui/CarRentalGUI.g
 syntax: regexp
 ^GUITutorial/BB$
 glob:ODB-Libraries/libs-2.02_1/log/
+
+syntax: regexp
+^CommonResources/objectdb-2\.0\.2_02/odb-bin/db-files$
+syntax: regexp
+^CommonResources/objectdb-2\.0\.2_02/odb-bin/log$

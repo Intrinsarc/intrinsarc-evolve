@@ -76,7 +76,7 @@ public class ReusableDiagramViewGem implements Gem
 				"The background colour of read only diagrams.");
 	}
 
-	public ReusableDiagramViewGem(ToolCoordinatorFacet coordinator,
+	public ReusableDiagramViewGem(final ToolCoordinatorFacet coordinator,
 			List<DiagramFigureAdornerFacet> adorners, IEasyDock desktop,
 			String type, boolean closeable, Color backgroundColor,
 			boolean isUsingTools, Package fixedPerspective)
@@ -107,7 +107,7 @@ public class ReusableDiagramViewGem implements Gem
 						catch (InterruptedException e)
 						{
 						}
-						SwingUtilities.invokeLater(new Runnable()
+						coordinator.invokeLater(new Runnable()
 						{
 							public void run()
 							{

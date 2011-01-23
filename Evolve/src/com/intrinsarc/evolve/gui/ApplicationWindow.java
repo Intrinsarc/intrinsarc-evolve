@@ -22,6 +22,7 @@ package com.intrinsarc.evolve.gui;
  * 2. restrict garbage collection + import
  * 3. what about newly created diagrams on 2 nodes?
  * 4. avoid reverting modified diagrams without conflicts
+ * 5. make a team menu (show users, sync diagrams, 
  */
 
 import java.awt.*;
@@ -52,7 +53,9 @@ import com.intrinsarc.evolve.repositorybrowser.*;
 import com.intrinsarc.evolve.umldiagrams.colors.*;
 import com.intrinsarc.idraw.environment.*;
 import com.intrinsarc.idraw.foundation.*;
+import com.intrinsarc.idraw.foundation.persistence.*;
 import com.intrinsarc.idraw.utility.*;
+import com.intrinsarc.lbase.*;
 import com.intrinsarc.repository.*;
 import com.intrinsarc.repositorybase.*;
 import com.intrinsarc.swing.*;
@@ -1260,7 +1263,9 @@ public class ApplicationWindow extends SmartJFrame
 				if (info == null)
 					return;
 				
-				RepositoryUtility.useObjectDbRepository(info[0], info[1], getBaseModel());				
+				RepositoryUtility.useObjectDbRepository(info[0], info[1], getBaseModel());
+				setCurrentUser();
+
 				applicationWindowCoordinator.switchRepository();
 				name = info[0] + ":" + info[1];
 				recent.addFile(name);
@@ -1843,11 +1848,17 @@ public class ApplicationWindow extends SmartJFrame
 			GlobalPreferences.registerKeyAction("File", print, "ctrl P", "Print the current diagram");
 			entries.add(new SmartMenuItemImpl("File", "Print", print));
 			
-			JMenuItem refresh = new JMenuItem(new SynchronizeAction(coordinator, commandManager, popup));
-			refresh.setEnabled(GlobalSubjectRepository.repository.isTeam());
-			refresh.setIcon(REFRESH_ICON);
-			GlobalPreferences.registerKeyAction("File", refresh, "F5", "Synchronize diagrams with the repository");
-			entries.add(new SmartMenuItemImpl("File", "Maintenance", refresh));
+			if (GlobalSubjectRepository.repository.isTeam())
+			{
+				JMenuItem refresh = new JMenuItem(new SynchronizeAction(coordinator, commandManager, popup));
+				refresh.setEnabled(GlobalSubjectRepository.repository.isTeam());
+				refresh.setIcon(REFRESH_ICON);
+				GlobalPreferences.registerKeyAction("Team", refresh, "F5", "Synchronize diagrams with the repository");
+				entries.add(new SmartMenuItemImpl("Team", "Team", refresh));
+				JMenuItem users = new JMenuItem(new DisplayUsersAction(coordinator));
+				GlobalPreferences.registerKeyAction("Team", users, null, "Display user history");
+				entries.add(new SmartMenuItemImpl("Team", "Team", users));
+			}
 
 			JMenuItem collect = new JMenuItem(new GarbageCollectRepositoryAction(true));
 			collect.setIcon(GARBAGE_ICON);
@@ -2042,6 +2053,8 @@ public class ApplicationWindow extends SmartJFrame
 			smartMenuBar.addSectionOrderingHint("Checking", "Deltas", "c");
 
 			smartMenuBar.addSectionOrderingHint("Backbone", "About", "a");
+
+			smartMenuBar.addSectionOrderingHint("Team", "Team", "a");
 
 			smartMenuBar.addSectionOrderingHint("Help", "About", "a");
 			smartMenuBar.addSectionOrderingHint("Help", "Support", "b");
@@ -2343,6 +2356,20 @@ public class ApplicationWindow extends SmartJFrame
 		{
 			return false;
 		}
+	}
+	
+	private void setCurrentUser()
+	{
+		// set the current user
+		// if we don't have a valid license, complain and go into gpl mode
+		String[] error = new String[1];
+		LReal real = LReal.retrieveLicense(LicenseAction.HW_LOCKED_LICENSES, error);
+		String serial = null;
+		if (error[0] == null)
+			serial = real.getSerial();
+		PersistentProperty user = GlobalPreferences.preferences.getRawPreference(GlobalSubjectRepository.USER_NAME);
 
+
+//		UserDetails currentUser = new UserDetails();
 	}
 }

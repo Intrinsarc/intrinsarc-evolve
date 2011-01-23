@@ -15,6 +15,13 @@ public class UserDetails
 		this.time = time;
 	}
 
+	public UserDetails(UserDetails user)
+	{
+		this.serial = user.serial;
+		this.user = user.user;
+		this.time = user.time;
+	}
+
 	@Override
 	public int hashCode()
 	{
@@ -43,5 +50,20 @@ public class UserDetails
 	public String toString()
 	{
 		return "UserDetails(name=" + user + ", serial=" + serial + ", time=" + new Date(time) + ")";
+	}
+
+	public String getSerial()
+	{
+		return serial;
+	}
+
+	public String getUser()
+	{
+		return user;
+	}
+
+	public long getTime()
+	{
+		return time;
 	}
 }
