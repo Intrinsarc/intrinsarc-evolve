@@ -2866,7 +2866,7 @@ public final class ClassifierNodeGem implements Gem
 
 	private boolean shouldDisplayOnlyIcon()
 	{
-		return hasSubstitutions() ? true : displayOnlyIcon;
+		return /*hasSubstitutions() ? true :*/ displayOnlyIcon;
 	}
 
 	public boolean hasSubstitutions()
