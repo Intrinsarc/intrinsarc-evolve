@@ -1,0 +1,40 @@
+Ideas
+------
+
+8/3/2012 Rails-like website maker for F#
+
+- fit in with websharper
+- nice pageflow model
+- look at Play! ?
+- back end integration with amazon web stack
+
+
+(old) Small language with time management built into state model
+
+- different vesions as 1st class entities
+- look at interaction with modules / components for releases
+- could adapt for evolve
+
+
+8/3/2012 Bittorrent client in F#
+
+- learn deep networking technologies
+- good start for F# programming
+- look at OCaml network thesis
+
+
+8/3/2012 UUID-based text editor
+
+- reusable component
+- defines plugins that can interpret and manipulate text as diagrams
+   + standard form (e.g. png) if plugin not available
+- managed UUIDs silently for refactoring and trackiung
+- summary view of all documents
+
+
+8/3/2012 Vector graphics editor
+
+- based on WPF/F#
+- allows multiple tabs
+- plugins around a component model
+- build direct manipulation layer in F# - allowing interactions to be specified as imperative code / F# workflows?
