@@ -72,8 +72,8 @@ A Formal Description of Backbone
 
 \begin_layout Standard
 In this section we formally describe how components, defined using resemblance
- and replacement, can evolve the existing compositional structure of an
- architecture.
+ and replacement in an extension stratm, can evolve the existing compositional
+ structure of an architecture defined in a base stratum.
 \end_layout
 
 \begin_layout Standard

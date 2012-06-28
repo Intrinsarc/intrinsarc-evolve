@@ -6,7 +6,7 @@
 \begin_preamble
 \parindent 10pt
 
-\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}{MCVEIGH ET AL.: INTRINSIC DEFINITION IN SOFTWARE ARCHITECTURE EVOLUTION}
+\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}{MCVEIGH ET AL.: SOFTWARE ARCHITECTURE EVOLUTION}
 
 \IEEEpubid{0000--0000/00\$00.00 \copyright 2007 IEEE}
 
@@ -3301,6 +3301,300 @@ Branching and merging of evolutionary variants can be explicitly represented
 Developer Workflow in a Distributed Environment
 \end_layout
 
+\begin_layout Standard
+Our approach is designed to support developers extending and evolving a
+ system in a setting where the parties may have limited communication and
+ may not share networks or other resources.
+ For instance, the initial system can be created by one party, and we can
+ export the definition and implementation to other parties who can then
+ evolve it and branch it without affecting the original definitions.
+ We can later merge these branches back into a single model and rectify
+ any structural conflicts using the same constructs used for evolution.
+\end_layout
+
+\begin_layout Standard
+Consider how development and evolution of the LTSA system (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Applicability-to-Mature"
+
+\end_inset
+
+) might have proceeded.
+ Firstly, the original architecture and implementation of the system would
+ have been created by developer X.
+ At this point, X has only the LTSA stratum present in their system, as
+ shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-System-as"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-original.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-System-as"
+
+\end_inset
+
+LTSA System as seen by its creator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Developers Y and Z now wish to separately evolve the system.
+ To facilitate this, X exports the LTSA stratum from their environment and
+ distributes both the exported stratum (.evolve file) and compiled files
+ representing the implementation (jars) to both developers.
+\end_layout
+
+\begin_layout Standard
+Y and Z each create their own extension strata in their separate environments.
+\end_layout
+
+\begin_layout Standard
+Consider that Y has decided to implement the dual window extension.
+ Y will import the LTSA stratum (as read-only because they do not own this)
+ and create the dual window stratum as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-system-as-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-dual.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-system-as"
+
+\end_inset
+
+The system as seen by Y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Z has decided to implement the Ames evolution.
+ Z imports the LTSA stratum (again as read-only) and creates the Ames stratum
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-system-as-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-ames.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-system-as-1"
+
+\end_inset
+
+The system as seen by Z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that Y and Z are free to make any changes to the base architecture
+ as long as the evolutions are contained in the stratum that they own.
+ They cannot directly edit the LTSA stratum as this is owned by X.
+\end_layout
+
+\begin_layout Standard
+Now consider that X wishes to accept both extensions from Y and Z and merge
+ them into a common system.
+ To do this, X imports both the dual window and Ames strata into their original
+ environment.
+ The two imported strata are marked as read-only, as X does not own these.
+ To create the merge, X further creates the combined stratum.
+ Any structural conflics can be rectified in that stratum which X owns.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Merging-the-two"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-merged.png
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Merging-the-two"
+
+\end_inset
+
+Merging the two evolutions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The general principle in a distributed setting is that the import and export
+ of strata allow for sharing and collaboration.
+ We export strata that we own, and import strata that are owned by others.
+ We only directly edit our own strata, but we can express any changes to
+ architectures created by imported strata by creating our own further stratum
+ that depends on the imported ones.
+\end_layout
+
+\begin_layout Standard
+The sharing of artifacts in this disconnected way is made possible by the
+ use and allocation of UUIDs for each element.
+ This guarantees that accidental conflict due to human readable names being
+ the same will not occur.
+\end_layout
+
 \begin_layout Section
 Analysis and Assessment
 \end_layout
@@ -3719,6 +4013,71 @@ l view.
 \end_layout
 
 \begin_layout Subsection
+Architecture Description Languages
+\end_layout
+
+\begin_layout Standard
+It has long been recognised that components form a convenient and powerful
+ unit of software design, composition and reuse [].
+ ADLs build on this foundation to describe the structure of a system as
+ a connected set of components.
+ An important advance was the composite component concept whereby a wiring
+ up of component instances itself forms a new component, thereby enabling
+ a hierarchical approach to system construction [darwin].
+\end_layout
+
+\begin_layout Standard
+Some ADLs permit structural inheritance where a new component is defined
+ in terms of structural changes to a parent [room, patent guy].
+ This is related to the concept of object-oriented inheritance in that it
+ allows changes from a set of parent component to be used to create a new
+ entity.
+ This increases reusability by allowing us to define a new set of components
+ in terms of structural addition or deletion from parents - effectively
+ a limited form of evolution.
+\end_layout
+
+\begin_layout Standard
+However, this only allows us to define new components in terms of older
+ ones - existing components cannot be altered.
+ This poses a dilemma - as we build up our architecture as a set of composite
+ components, which themselves are made up of instances of other composite
+ components and so on, we form a potentially deep compositional hierarchy.
+ Structural inheritance only allows us to adjust the topmost level of any
+ hierarchy as we create a new component.
+ As this hierarchy gets deeper, we are effectively 
+\begin_inset Quotes eld
+\end_inset
+
+burying
+\begin_inset Quotes erd
+\end_inset
+
+ architecture under compositional layers, making evolution of the lower
+ layers difficult to achieve.
+\end_layout
+
+\begin_layout Standard
+As such, ADLs with structural inheritance do not fully support ARCHITECTURAL_ALT
+ER.
+ Depending on whether multiple inheritance and conflict resolution is allowed
+ BRANCH and MERGE_DETECT_CORRECT may not be supported.
+ There is no support for distributed development concepts such as DISTRIBUTED,
+ although CM_AGNOSTIC and MODELING are well catered for.
+\end_layout
+
+\begin_layout Standard
+Evolve's key contribution is to supplement structural inheritance with replaceme
+nt, and to precisely define the way that the two constructs interact.
+ Replacement allows us to globally substitute the definition of a component,
+ and combined with resemblance (structural inheritance) this allows the
+ incremental evolution of any component.
+ Using this we can deeply alter existing compositional hierarchies at any
+ level and resolve any conflicts that occur when branches of the same architectu
+re are merged.
+\end_layout
+
+\begin_layout Subsection
 Architecturally Aware Configuration Management Systems
 \end_layout
 
@@ -4004,21 +4363,124 @@ Conclusions and Further Work
 \end_layout
 
 \begin_layout Standard
-reference MIXJUICE somewhere, and also patent-threatening guy's paper, ROOM
+The evolution of any software system is inevitable as it is adjusted over
+ time to deal with improvements and changes in functionality and requirements.
+ These changes are currently typically captured at the level of textual
+ differences between releases at a granular and non-architectural level
+ in configuration management systems.
+ This leads to a set of challenges and limitations in tying back these changes
+ to an architectural description, particularly in a distributed development
+ setting.
+ We have captured these issues as a set of essential and desirable properties
+ for any architectural approach to the problem.
 \end_layout
 
 \begin_layout Standard
-granular decomposition for evolution associated with goodness of architecture
- c.f.
- legacy systems
+The desirable properties cover the ability to make any changes at an architectur
+al level (ARCHITECTURAL_ALTER, APPROPRIATE_LEVEL) and later combine these
+ changes if the architectures have diverged between independent branches
+ (BRANCH, MERGE_DETECT_CORRECT, EXPANDED).
+ The further desired properties cover the link between architecture and
+ implementation (IMPLEMENTATION_MAPPINGS, NO_SOURCE), the relationship between
+ system modeling and evolution (MODELING, LIVE_BASE) and how we capture
+ change relative to other approaches in a distributed development setting
+ (DISTRIBUTED, CM_AGNOSTIC).
 \end_layout
 
 \begin_layout Standard
-baselining
+Our approach is to supplement a hierarchical ADL with three additional concepts.
+ The first is resemblance, which allows a new component to be defined in
+ terms of structural change to existing components.
+ This leads naturally to the idea of combining related sets of definitions
+ into module structures called stratum, which express dependencies on other
+ strata, allowing us to layer a system and express development ownership
+ of parts of that system.
+ Stratum form the natural unit of sharing in a distributed setting.
 \end_layout
 
 \begin_layout Standard
-behavioural
+Finally, we add the replacement concept to allow global substitution of
+ a component, 
+\emph on
+within
+\emph default
+ the scope of the stratum that the replacement is owned by.
+ Combined with resemblance, this gives us the ability to incrementally evolve
+ any part of the architecture, such that the view of the architecture from
+ existing stratum is not affected.
+ We can therefore capture the gradual evolution of a system in a set of
+ stratum, which themselves can be shared in a distributed development setting.
+ Conflict resolution between merged architectures is handled by the same
+ constructs.
+ In essence, we allow evolution of a system to be packaged up in a stratum
+ which depends on the original system stratum.
+ Evolution and the description of change to a system is packaged up as an
+ additional module.
+\end_layout
+
+\begin_layout Standard
+In applying our approach to a mature system (c.f.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Applicability-to-Mature"
+
+\end_inset
+
+) we found that we could gradually decompose an existing code base into
+ architectural components over time, allowing the evolution to drive the
+ granular decomposition of the architecture.
+ In other words, as the system was evolved the architecture became more
+ explicit and fine-grained leading to a symbiotic relationship between change
+ and architectural explication.
+\end_layout
+
+\begin_layout Standard
+The analysis of existing extensibility approaches showed that extensibility
+ is effectively a limited and constrained form of evolution, which occurs
+ in a distributed development setting of many parties.
+ Therefore, the same concepts which we use to allow architectural evolution
+ can also be applied, leading to an advanced approach to extensible systems.
+ This gives far more flexibility to make changes (ARCHITECTURAL_ALTER) and
+ later combine and rectify any divergence (BRANCH, MERGE_DETECT_CORRECT)
+ than existing approaches such as plugin architectures.
+\end_layout
+
+\begin_layout Standard
+In applying the approach we have found a number of characteristics and limitatio
+ns.
+ In particular, the effort required to evolve a system depends on how finely
+ grained the architectural decomposition is already.
+ If we need to replace a component to adjust a small part of its functionality,
+ and the component is large and monolithic then the architectural change
+ will not be proportionate to the change in functionality required.
+ This is tempered by the previously mentioned positive relationship between
+ evolution and gradual architectural decomposition we found when evolving
+ a mature system.
+\end_layout
+
+\begin_layout Standard
+Further, our approach so far has been purely limited to structural concerns.
+ Clearly, behavioral conflict is still possible in a structurally well-formed
+ system that has been merged from a number of branches.
+ We plan to address this in further work by allowing a behavioral description
+ [fsp] to be attached to the structural definition of each (possibly evolved)
+ component.
+ We will then check the system against a number of goals to ensure that
+ the changes have not affected the behavioral integrity of the system.
+\end_layout
+
+\begin_layout Standard
+We have built a mature toolset around our approach, including a modeling
+ tool Evolve which supports the Backbone ADL.
+ This toolset supports all aspects of the approach allowing the architecture
+ and deltas to be viewed graphically or textually [intrinsarc].
+ A key issue is that components and constituents are identitied by globally
+ unique identifers allowing us to remove the ambiguity involved when trying
+ to reconcile diverged branches with human readable names only.
+ As we have shown, a graphical approach is able to hide the UUIDs, presenting
+ the human readable names for presentation thereby delivering the benefits
+ of both.
 \end_layout
 
 \end_body
