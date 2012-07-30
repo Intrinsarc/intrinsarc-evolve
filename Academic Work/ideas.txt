@@ -11,7 +11,7 @@ Ideas
 
 (old) Small language with time management built into state model
 
-- different vesions as 1st class entities
+- different versions as 1st class entities
 - look at interaction with modules / components for releases
 - could adapt for evolve
 
