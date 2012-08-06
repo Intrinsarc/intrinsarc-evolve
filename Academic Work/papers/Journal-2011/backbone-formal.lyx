@@ -71,24 +71,27 @@ A Formal Description of Backbone
 \end_layout
 
 \begin_layout Standard
-In this section we formally describe how components, defined using resemblance
- and replacement in an extension stratm, can evolve the existing compositional
+In this section we formally describe how components defined using resemblance
+ and replacement in extension strata can evolve the existing compositional
  structure of an architecture defined in a base stratum.
 \end_layout
 
 \begin_layout Standard
-The ability to evolve an existing architecture in a decentralized manner,
- where strata are used to group and organise these component definitions,
- leads naturally to the desire to combine and merge independently developed
- strata into a unified architecture.
- We describe the merging rules, showing that any structural errors can be
- corrected by adding further component definitions.
+In a distributed setting the extension strata may be owned by parties with
+ no knowledge of each other, who have each chosen to evolve the architecture
+ independently.
+ This arrangement leads naturally to the desire to combine and merge these
+ branching strata back into a unified architecture.
+ We describe the branching and merging rules and show that any structural
+ errors can be corrected by adding further component definitions.
 \end_layout
 
 \begin_layout Standard
-As dependencies between strata govern the order of application fo component
- definitions, via the interplay between replacement and resemblance, we
- begin by describing the stratum concep.
+In the following text we collectively refer to components and interfaces
+ as elements.
+ We use the term constituents to refer to the internals of elements (ports,
+ parts, connectors, attributes, operations etc) that can be adjusted using
+ deltas.
 \end_layout
 
 \begin_layout Subsection
@@ -96,10 +99,26 @@ Strata and Strata Dependencies
 \end_layout
 
 \begin_layout Standard
+Dependencies between strata govern the order of application of deltas applied
+ to element definitions, via the interplay between replacement and resemblance.
+ Consequently, an understanding of strata rules is vital begin by describing
+ the stratum concept.
+\end_layout
+
+\begin_layout Standard
 A stratum is a hierarchical module that owns and groups element (component
  and interface) definitions.
- A stratum must explicitly indicate where its elements access elements from
- other strata via explicit dependence relationships.
+ A stratum must explicitly its dependency on other strata.
+ This controls visibility - an element can only 
+\begin_inset Quotes eld
+\end_inset
+
+see
+\begin_inset Quotes erd
+\end_inset
+
+ elements in its owning stratum or stratum which are (possibly transitively)
+ depended upon.
 \end_layout
 
 \begin_layout Description

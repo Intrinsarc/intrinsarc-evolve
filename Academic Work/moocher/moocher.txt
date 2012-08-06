@@ -1,0 +1,24 @@
+
+* want completely uniform syntax
+* each keyword is effectively a builder of sorts
+
+module Top
+
+	class Animal                                  type Animal
+	
+		method Print(a: String, b: Foo)           		Animal implements Organism
+			                                            Animal method Print(a: String, b: Foo)
+			if a != "Hello"
+				Goodbye()
+			else
+				Hello()
+				
+			throw BadException()
+			
+			
+grammar:
+
+
+
+box-builder-name (name + params)
+			
