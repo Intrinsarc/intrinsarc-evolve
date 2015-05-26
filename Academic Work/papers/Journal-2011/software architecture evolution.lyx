@@ -1,5 +1,5 @@
-#LyX 2.0 created this file. For more info see http://www.lyx.org/
-\lyxformat 413
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
 \begin_document
 \begin_header
 \textclass IEEEtran
@@ -24,13 +24,13 @@
 \font_roman default
 \font_sans helvet
 \font_typewriter default
+\font_math auto
 \font_default_family default
 \use_non_tex_fonts false
 \font_sc false
 \font_osf false
 \font_sf_scale 100
 \font_tt_scale 100
-
 \graphics default
 \default_output_format default
 \output_sync 0
@@ -42,15 +42,24 @@
 \use_hyperref false
 \papersize letterpaper
 \use_geometry false
-\use_amsmath 1
-\use_esint 1
-\use_mhchem 1
-\use_mathdots 1
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
 \cite_engine basic
+\cite_engine_type default
+\biblio_style plain
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
 \suppress_date true
+\justification true
 \use_refstyle 1
 \index Index
 \shortcut idx
@@ -221,7 +230,7 @@ status collapsed
 \end_layout
 
 \begin_layout Title
-Software Architecture Evolution
+Making Evolution Intrinsic to Software Architecture
 \end_layout
 
 \begin_layout Section
@@ -282,7 +291,7 @@ In this paper, we explore the alternative in which we regard evolution as
  a concern that is intrinsic to architecture definition such that the structural
  constructs we propose to capture change and extension can be used during
  both initial development and subsequent evolution.
- This intrinsic definition brings with it the requirement to deal with unplanned
+ This intrinsic approach brings with it the requirement to deal with unplanned
  extension, for it is impossible, whichever development process is adopted,
  to foresee all possible future requirements for change and evolution of
  a system.
@@ -290,7 +299,7 @@ In this paper, we explore the alternative in which we regard evolution as
 
 \begin_layout Standard
 Dealing with unplanned extension introduces a difficult dilemma in designing
- constructs to support intrinsic definition.
+ constructs to support the approach.
  We would prefer to have constructs that constrain change in such a way
  that their application always results in structurally well formed and type
  correct systems.
@@ -310,9 +319,9 @@ Dealing with unplanned extension introduces a difficult dilemma in designing
 \end_layout
 
 \begin_layout Standard
-In exploring intrinsic definition, we have considered the requirements of
- distributed design and evolution in which development and extension is
- carried out by different organizations.
+In exploring the intrinsic approach, we have considered the requirements
+ of distributed design and evolution in which development and extension
+ is carried out by different organizations.
  In particular, we are motivated by the following situation which current
  approaches find problematic.
  A development organization produces a software framework product that is
@@ -340,8 +349,8 @@ If software architecture description is regarded only as design documentation,
 
 \begin_layout Standard
 In the following: Section 2 describes the key concepts for the intrinsic
- definition of evolution in software architecture and explains their use
- by mean of a simple example, Section 3 provides a more rigorous definition
+ approach of evolution in software architecture and explains their use by
+ mean of a simple example, Section 3 provides a more rigorous definition
  of the these concepts and shows how they are computed over a dependency
  graph of extensions, Section 4 recounts our experience in using our prototype
  tool Evolve applied to a large case study and evaluates the approach against
@@ -482,7 +491,7 @@ Example
 \end_layout
 
 \begin_layout Standard
-To illustrate the use of these three concepts we use the Singlelane Bridge
+To illustrate the use of these three concepts we use the Single Lane Bridge
  example from [].
  This concurrent system models the access of cars to a single lane bridge.
  Its component architecture can be modeled in Backbone as shown in 
@@ -515,7 +524,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1089,7 +1098,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1737,7 +1746,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1803,7 +1812,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -1994,7 +2003,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2092,7 +2101,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2200,7 +2209,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2266,7 +2275,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2435,7 +2444,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2555,7 +2564,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2619,7 +2628,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2677,7 +2686,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2787,7 +2796,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2907,7 +2916,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -2975,7 +2984,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3037,7 +3046,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3100,7 +3109,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3166,7 +3175,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3236,7 +3245,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3350,7 +3359,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3420,7 +3429,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3479,7 +3488,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3549,7 +3558,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3592,7 +3601,118 @@ The sharing of artifacts in this disconnected way is made possible by the
 \end_layout
 
 \begin_layout Section
-Analysis and Assessment
+Applicability to Nested Statecharts
+\end_layout
+
+\begin_layout Standard
+State machines are a powerful way to explicitly represent the states and
+ possible transitions that a system may go through [].
+ The full set of transitions may be tested, giving an exhaustive overview
+ of the behavior of the system.
+ Statecharts are a visual representation of a state machine, where states
+ are shown typically as rectangles and transitions as lines between them
+ [].
+\end_layout
+
+\begin_layout Standard
+Harel further demonstrated that nested state charts provide the ability
+ to classify system behavior into a hierarchy, allowing the system to be
+ reasoned about at different levels of abstraction [].
+\end_layout
+
+\begin_layout Standard
+At this point, we note the similarity between nested component structure
+ and nested statecharts.
+ By adopting a pattern regarding entry and exit actions, and transition
+ handoff from one state to another, we can translate a statechart into a
+ component architecture.
+ This allows us to apply the same intrinsic approach to statechart evolution.
+\end_layout
+
+\begin_layout Standard
+[details about statechart translation, and a simple example]
+\end_layout
+
+\begin_layout Standard
+Traditionally, state machines are represented using a variant of the state
+ pattern [].
+ 
+\end_layout
+
+\begin_layout Standard
+[explain limitations of the state pattern]
+\end_layout
+
+\begin_layout Section
+Applicability to Framework Development
+\end_layout
+
+\begin_layout Standard
+Frameworks are reusable software systems which are designed to be reused
+ and extended by other parties [].
+ The primary characteristic of a framework is a property known as the Hollywood
+ Principle, or Inversion of Control.
+ This is known colloquially via the expression 
+\begin_inset Quotes eld
+\end_inset
+
+don't call us, we'll call you
+\begin_inset Quotes erd
+\end_inset
+
+ [].
+ In other words, the framework owns the control of the program, and delegates
+ down to the extensions where required.
+\end_layout
+
+\begin_layout Standard
+This approach to development requires that a framework contain a set of
+ pre-planned extension points.
+ It is extremely common when building a system around a framework to find
+ that the system requirements cannot be met using the existing extension
+ points, and it is necessary then to evolve the framework to add new points.
+ This need to feed back to a central architecture typically leads to great
+ delay [] and also pollutes the framework with extension points that may
+ only satisfy a small number of systems.
+\end_layout
+
+\begin_layout Standard
+The intrinsic approach resolves these problems by ...
+\end_layout
+
+\begin_layout Standard
+[explain how intrinsic evolution allows a framework to be evolved locally
+ by a reuser]
+\end_layout
+
+\begin_layout Section
+Applicability to Extensible Systems
+\end_layout
+
+\begin_layout Standard
+An extensible system is an application that is designed to allow third party
+ programmers to create extensions which enhance and adapt its functionality
+ for new requirements.
+ Such an application is typically designed as a black box with extension
+ points and a loading scheme for extensions, which then register themselves
+ with the system.
+\end_layout
+
+\begin_layout Standard
+This has an obvious corrolary with frameworks, in that no system can fully
+ predict the full set of extension points required.
+ As such, a developer writing an extension will often need to request extra
+ extension points, which leads to serious sequencing issues and time delays
+ [].
+\end_layout
+
+\begin_layout Standard
+[explain how intrinsic evolution allows an extensible system to be evolved
+ locally]
+\end_layout
+
+\begin_layout Section
+Analysis and Assessments
 \end_layout
 
 \begin_layout Standard
@@ -3715,7 +3835,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3729,10 +3849,6 @@ Branches and a merge of a base system
 
 \end_inset
 
-
-\end_layout
-
-\begin_layout Plain Layout
 
 \end_layout
 
@@ -3783,7 +3899,29 @@ More complex structural conflicts are detected by checking the rules against
 \end_layout
 
 \begin_layout Subsubsection*
-Property 5: EXPANDED
+Property 5: IMMUTABLE_STRATUM
+\end_layout
+
+\begin_layout Standard
+Once an extension has been formally released into a distributed setting,
+ the definitions within it must be regarded as immutable.
+ Without this property, it would be impossible to know definitively which
+ variant of the extensions and its definitions were correct.
+ Typically, this immutability is denoted by assigning a semantic version
+ number [], indicating a linear progression of evolution.
+\end_layout
+
+\begin_layout Standard
+Evolve supports this property by treating all exported (and subsequently
+ imported) strata as immutable.
+ Evolve does not prescribe a versioning strategy, but instead allows the
+ name to be freeform and hence include a version number.
+ The evolution of an original stratum is indicated by other strata which
+ have dependencies on it, and replace definitions within the original.
+\end_layout
+
+\begin_layout Subsubsection*
+Property 6: EXPANDED
 \end_layout
 
 \begin_layout Standard
@@ -3804,7 +3942,7 @@ Further Desirable Properties
 \end_layout
 
 \begin_layout Subsubsection*
-Property 6: DISTRIBUTED
+Property 7: DISTRIBUTED
 \end_layout
 
 \begin_layout Standard
@@ -3836,7 +3974,7 @@ In the related work section we examine the conceptual overlap between our
 \end_layout
 
 \begin_layout Subsubsection*
-Property 7: CM_AGNOSTIC
+Property 8: CM_AGNOSTIC
 \end_layout
 
 \begin_layout Standard
@@ -3855,7 +3993,7 @@ Evolve places no constraints on the underlying versioning system used -
 \end_layout
 
 \begin_layout Subsubsection*
-Property 8: MODELING
+Property 9: MODELING
 \end_layout
 
 \begin_layout Standard
@@ -3873,7 +4011,7 @@ In Evolve the evolution constructs are tightly integrate into the architectural
 \end_layout
 
 \begin_layout Subsubsection*
-Property 9: LIVE_BASE
+Property 10: TEMPORARY_MUTABILITY
 \end_layout
 
 \begin_layout Standard
@@ -3883,8 +4021,9 @@ In conventional CM systems a base architecture is rendered immutable once
 \end_layout
 
 \begin_layout Standard
-In contrast, a base architecture in Evolve can be modified and changes will
- flow automatically through to any evolutions.
+In contrast, a base architecture in Evolve can be modified until it is formally
+ released and rendered immutable.
+ Changes will flow automatically through to any evolutions.
  This is shown in figure 
 \begin_inset CommandInset ref
 LatexCommand ref
@@ -3918,7 +4057,7 @@ status open
 \end_layout
 
 \begin_layout Plain Layout
-\begin_inset Caption
+\begin_inset Caption Standard
 
 \begin_layout Plain Layout
 \begin_inset CommandInset label
@@ -3941,15 +4080,19 @@ Adding an attribute to a base component
 \end_layout
 
 \begin_layout Standard
-This approach is particularly useful when decomposing an existing base architect
-ure to reveal finer grained structure without violating existing component
- boundaries.
- The evolved systems will automatically pick up the enhanced structure.
- Any introduced errors will be detected via the structural rules.
+This models the concurrent creation of a system or framework and the closely
+ developed first extension of that system.
+ This simultaneous and synergistic development between a framework and its
+ initial client is a vital part of exploring and modeling a reusable system.
+\end_layout
+
+\begin_layout Standard
+The Java dependency management system Maven handles temporary mutability
+ using snapshot dependencies with a suffix of -SNAPSHOT [].
 \end_layout
 
 \begin_layout Subsubsection*
-Property 10: IMPLEMENTATION_MAPPINGS
+Property 11: IMPLEMENTATION_MAPPINGS
 \end_layout
 
 \begin_layout Standard
@@ -3967,7 +4110,7 @@ The mapping from Evolve component to implementation class is a standard
 \end_layout
 
 \begin_layout Subsubsection*
-Property 11: NO_SOURCE
+Property 12: NO_SOURCE
 \end_layout
 
 \begin_layout Standard
@@ -3977,7 +4120,7 @@ tion mappings instead will suffice.
  This approach offers several benefits.
  In the first instance, this allows a level of evolution without being exposed
  to the complexity of the full source code (as per plugin systems).
- Also, the code may not be available for commercial or other reasons.
+ Also, the code may not be available for commercial or licensing reasons.
 \end_layout
 
 \begin_layout Standard
@@ -4119,8 +4262,8 @@ The above reveals a fundamental weakness - by coupling architectural evolution
 \end_layout
 
 \begin_layout Standard
-MAE does not support the LIVE_BASE, IMPLEMENTATION_MAPPINGS or NO_SOURCE
- properties.
+MAE does not support the TEMPORARY_IMMUTABILITY, IMPLEMENTATION_MAPPINGS
+ or NO_SOURCE properties.
 \end_layout
 
 \begin_layout Subsection
@@ -4161,7 +4304,8 @@ Evolve shares a number of concepts with these systems.
  well as a change construct.
  UUIDs are used for identification allowing the export and import between
  repositories.
- Unlike changesets, however, strata are not constrained by rule to be immutable
+ Unlike changesets, however, non-released strata are not constrained by
+ rule to be immutable
 \begin_inset Foot
 status collapsed
 
@@ -4173,7 +4317,7 @@ By convention an imported stratum is marked as read-only, as it is generally
 \end_inset
 
 , and if changes are made to a base stratum they propagate to dependent
- strata as per LIVE_BASE.
+ strata as per TEMPORARY_IMMUTABILITY.
  As such, Mercurial does not support this property.
 \end_layout
 
@@ -4375,12 +4519,12 @@ The evolution of any software system is inevitable as it is adjusted over
 The desirable properties cover the ability to make any changes at an architectur
 al level (ARCHITECTURAL_ALTER, APPROPRIATE_LEVEL) and later combine these
  changes if the architectures have diverged between independent branches
- (BRANCH, MERGE_DETECT_CORRECT, EXPANDED).
+ (BRANCH, MERGE_DETECT_CORRECT, EXPANDED, IMMUTABILITY).
  The further desired properties cover the link between architecture and
  implementation (IMPLEMENTATION_MAPPINGS, NO_SOURCE), the relationship between
- system modeling and evolution (MODELING, LIVE_BASE) and how we capture
- change relative to other approaches in a distributed development setting
- (DISTRIBUTED, CM_AGNOSTIC).
+ system modeling and evolution (MODELING, TEMPORARY_MUTABILITY) and how
+ we capture change relative to other approaches in a distributed development
+ setting (DISTRIBUTED, CM_AGNOSTIC).
 \end_layout
 
 \begin_layout Standard
