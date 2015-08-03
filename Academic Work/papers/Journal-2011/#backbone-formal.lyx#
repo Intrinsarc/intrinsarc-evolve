@@ -183,14 +183,8 @@ A variant of the Bridge system
 \end_layout
 
 \begin_layout Standard
-The formal model is specified in Alloy 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "Jackson2006,Jackson2002"
-
-\end_inset
-
-, which is a relational logic supported by model checking tools.
+The formal model is specified in Alloy [], which is a simple relational
+ logic supported by model checking tools.
  The full specification is presented in the appendix at the end of this
  report.
  Dependencies between strata in an extension architecture govern the order
@@ -212,8 +206,8 @@ Definition
 \emph on
 stratum
 \emph default
- is a hierarchical module that owns and groups elements (component and interface
-) definitions.
+ is a hierarchical module that owns and groups element (component and interface)
+ definitions.
 \end_layout
 
 \begin_layout Standard
@@ -225,25 +219,25 @@ A stratum may depend on a set of other strata and it owns a set of elements.
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 sig Stratum {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   dependson: set Stratum,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   elements: set Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
  }
 \end_layout
@@ -261,7 +255,7 @@ We outlaw circular dependencies between strata, forcing the structure into
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 all s: Stratum | s not in s.^dependson
 \end_layout
 
@@ -285,31 +279,31 @@ EvolvedB
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 pred branch[a, b: Stratum] {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   let alla = a.*dependson, allb = b.*dependson |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     a not in allb and b not in alla and
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       some alla & allb
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -333,37 +327,37 @@ It is represented by the following structure.
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 sig Element {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   home: Stratum,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   resembles: set Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   replaces: lone Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   deltas: lone Deltas
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -392,31 +386,31 @@ As seen below, we disallow having both the initial definition of an element
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 all e: Element |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     let res = e.resembles, rep = e.replaces |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   res.home in e.home.*dependson
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     and rep.home in e.home.^dependson
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     and e not in res 
 \end_layout
 
@@ -459,31 +453,31 @@ We model deltas as shown.
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 sig Deltas {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   owner: Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   add, delete: set Constituent,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   replace: Constituent -> Constituent
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -541,7 +535,7 @@ Consider, for example, that the
 \family typewriter
 MULTISLB
 \family default
- non-expanded resemblance graph is (
+ resemblance graph is (
 \family typewriter
 MULTISLB
 \family default
@@ -799,37 +793,37 @@ Stratum
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 sig Stratum {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   topmost: Element -> Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   eresembles: Element -> Element,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -847,68 +841,68 @@ s
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 all s: Stratum, e: Element {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   let reps = replaces.e & s.elements |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     some reps => s.topmost[e] = reps
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       else
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     e.home = s => s.topmost[e] = e
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       else
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     s.topmost[e] = s.dependson.topmost[e]
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
  
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
 \begin_layout Standard
-The first condition determines whether or not there is a replacement of
- element 
+The first condition determines whether or not there are any replacements
+ of element 
 \family typewriter
 e
 \family default
@@ -950,31 +944,31 @@ eresembles
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 let joint = e.resembles & ee.
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     replaces,rest = e.resembles - joint |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   s.eresembles[e] =
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     e.home.dependson.topmost[joint]
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     + s.topmost[rest]
 \end_layout
 
@@ -1024,31 +1018,31 @@ Stratum
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 sig Stratum {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   ...
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   edeltas: Element -> lone Deltas,
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   full: Element -> Constituent -> Constituent
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -1070,67 +1064,61 @@ edeltas
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 all s: Stratum, e: Element {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   let lower = s.eresembles[e],
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       me = s.edeltas[e]
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     me.add = s.edeltas[lower].add + e.deltas.add
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
-    me.delete = s.edeltas[lower].delete
+\size small
+    me.delete = s.edeltas[lower].delete + e.deltas.delete
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
-      + e.deltas.delete
-\end_layout
-
-\begin_layout LyX-Code
-
-\size footnotesize
+\size small
     me.replace = s.edeltas[lower].replace
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       ++ e.deltas.replace
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
    }
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -1187,64 +1175,60 @@ e
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 all s: Stratum, e: Element {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   let tops = s.topmost[e], me = s.edeltas[tops] |
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     some e.replaces => no s.full[e]
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       else
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
     s.full[e] =
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       { a, b: me.add | a = b }
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       ++ me.replace
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
       - { d: me.delete, allds: Constituent }
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
 \begin_layout Standard
-The field 
-\family typewriter
-full
-\family default
- is actually a relation (
+The field full is actually a relation (
 \family typewriter
 Constituent - > Constituent
 \family default
@@ -1325,19 +1309,19 @@ full
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 pred conflict[perspective: Stratum, e: Element] {
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
   not functional[ perspective.full[e], Element ]
 \end_layout
 
 \begin_layout LyX-Code
 
-\size footnotesize
+\size small
 }
 \end_layout
 
@@ -1367,14 +1351,7 @@ onally incompatible with assumptions made in another branch.
  An expanded variant of the above formal specification detects this by describin
 g the actual component model in terms of parts, ports, connectors and attributes
  rather than generic constituents, and expressing well-formedness rules
- 
-\begin_inset CommandInset citation
-LatexCommand cite
-key "McVeigh2009"
-
-\end_inset
-
-.
+ [].
 \end_layout
 
 \begin_layout Subsubsection
@@ -1388,7 +1365,7 @@ The Java runtime engine implementation of Backbone is based on the expanded
  Of particular interest is the use of UUIDs to represent element and constituent
  identity.
  Concretely, each constituent is allocated a unique identifier, and when
- a constituent replaces this it assumes the UUID of the replaced constituent.
+ a constituent replaces this it assumes the identity of the replaced constituent.
  In the above specification we have relied on direct element identity instead.
 \end_layout
 
@@ -1404,26 +1381,6 @@ The formal specification explains how an extension stratum can affect the
  These rules allow an extension stratum to control the way in which deltas
  of existing elements are applied, allowing it to make any changes to the
  original architecture required to support the extension.
-\end_layout
-
-\begin_layout Standard
-\begin_inset Note Comment
-status open
-
-\begin_layout Plain Layout
-\begin_inset CommandInset bibtex
-LatexCommand bibtex
-bibfiles "/Users/amcveigh/Personal/evolve/Academic Work/read papers/references"
-options "plain"
-
-\end_inset
-
-
-\end_layout
-
-\end_inset
-
-
 \end_layout
 
 \end_body
