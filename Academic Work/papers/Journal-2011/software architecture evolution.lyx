@@ -2,19 +2,17 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass IEEEtran
+\textclass svjour
 \begin_preamble
 \parindent 10pt
 
-\markboth{IEEE TRANSACTIONS ON SOFTWARE ENGINEERING}{MCVEIGH ET AL.: SOFTWARE ARCHITECTURE EVOLUTION}
+\hyphenation{Java-Bean Java-Beans}
 
-\IEEEpubid{0000--0000/00\$00.00 \copyright 2007 IEEE}
+\usepackage{natbib}
 
-\pagenumbering{gobble}
-
- \hyphenation{Java-Bean Java-Beans}
+\AtBeginDocument{\renewcommand\cite{\citep}}
 \end_preamble
-\options compsoc
+\options smallextended
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -38,9 +36,9 @@
 \index_command default
 \float_placement h
 \paperfontsize default
-\spacing other 1.1000000000000001
+\spacing other 1.1
 \use_hyperref false
-\papersize letterpaper
+\papersize default
 \use_geometry false
 \use_package amsmath 1
 \use_package amssymb 1
@@ -54,7 +52,7 @@
 \use_package undertilde 1
 \cite_engine basic
 \cite_engine_type default
-\biblio_style plain
+\biblio_style spbasic
 \use_bibtopic false
 \use_indices false
 \paperorientation portrait
@@ -67,11 +65,11 @@
 \end_index
 \secnumdepth 3
 \tocdepth 3
-\paragraph_separation skip
-\defskip smallskip
+\paragraph_separation indent
+\paragraph_indentation default
 \quotes_language english
 \papercolumns 1
-\papersides 2
+\papersides 1
 \paperpagestyle default
 \tracking_changes false
 \output_changes false
@@ -84,15 +82,68 @@
 
 \begin_layout Standard
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-IEEEcompsoctitleabstractindextext{
+title{Making Evolution Intrinsic to Software Architecture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
 \backslash
-small
+author{A.
+ McVeigh 
+\backslash
+and J.
+ Kramer 
+\backslash
+and J.
+ Magee}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+institute{A.
+ McVeigh, J.
+ Kramer, J.
+ Magee 
+\backslash
+at Imperial College London 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{
+\backslash
+{a.mcveigh, j.kramer, j.magee
+\backslash
+}@imperial.ac.uk}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{Received: date / Accepted: date}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
 \end_layout
 
 \end_inset
@@ -100,13 +151,9 @@ small
 
 \end_layout
 
-\begin_layout Standard
-
-\series bold
-Abstract
-\series default
----Incremental change is intrinsic to both the initial development and subsequen
-t evolution of large, complex software systems.
+\begin_layout Abstract
+Incremental change is intrinsic to both the initial development and subsequent
+ evolution of large, complex software systems.
  We present an approach that captures incremental change in the definition
  of software architecture.
  This provides a rigorous, principled and manageable way of dealing with
@@ -122,115 +169,26 @@ t evolution of large, complex software systems.
  The paper uses Backbone to illustrate basic concepts through simple examples
  and reports our experience in applying it and the associated Evolve tool
  support to legacy code and a larger example.
-\begin_inset Newline newline
-\end_inset
+\end_layout
 
-
+\begin_layout Abstract
 \begin_inset ERT
-status collapsed
+status open
 
 \begin_layout Plain Layout
 
 
 \backslash
-begin{IEEEkeywords}
+keywords{Software Architectures 
+\backslash
+and Components 
+\backslash
+and Design Tools and Techniques}
 \end_layout
 
 \end_inset
 
 
-\end_layout
-
-\begin_layout Standard
-Software Architectures, Design Tools and Techniques
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-end{IEEEkeywords}}
-\backslash
-author{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Andrew McVeigh, Jeff Kramer and Jeff Magee
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-IEEEcompsocitemizethanks{
-\backslash
-IEEEcompsocthanksitem{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-A.
- McVeigh, J.
- Kramer and J.
- Magee are with Imperial College London.
-\end_layout
-
-\begin_layout Standard
-E-mail: {a.mcveigh, j.kramer, j.magee}@imperial.ac.uk
-\end_layout
-
-\begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}}
-\backslash
-thanks{
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Standard
-Manuscript received (insert date of submission if desired).
- Please note that all acknowledgments should be places at the end of the
- paper, before the bibliography.
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-}}
-\end_layout
-
-\end_inset
-
-
-\end_layout
-
-\begin_layout Title
-Making Evolution Intrinsic to Software Architecture
 \end_layout
 
 \begin_layout Section
@@ -238,19 +196,8 @@ Introduction
 \end_layout
 
 \begin_layout Standard
-\begin_inset ERT
-status collapsed
-
-\begin_layout Plain Layout
-
-
-\backslash
-IEEEPARstart{I}{NITIALLY}
-\end_layout
-
-\end_inset
-
- recognized by Boehm in his spiral model of software development 
+Initially recognized by Boehm in his spiral model of software development
+ 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Boehm1988"
@@ -373,7 +320,11 @@ Designing constructs to handle unplanned extension introduces a difficult
 In exploring the intrinsic approach, we have considered the requirements
  of distributed design and evolution in which development and extension
  is carried out by different organizations.
- This type of scenario is typically refered to as extensibility 
+ This type of scenario is typically 
+\lang american
+referred
+\lang english
+ to as extensibility 
 \begin_inset CommandInset citation
 LatexCommand cite
 key "Szyperski2006,Birsan2005"
@@ -492,7 +443,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/core-resemblance.eps
-	width 60col%
+	width 50col%
 
 \end_inset
 
@@ -765,7 +716,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/core-strata.eps
-	width 80col%
+	width 60col%
 
 \end_inset
 
@@ -852,7 +803,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/core-evolution.eps
-	width 80col%
+	width 60col%
 
 \end_inset
 
@@ -908,9 +859,13 @@ status open
 
 \series bold
 \size small
+ 
+\begin_inset Newline newline
+\end_inset
+
 component
 \series default
- Component`
+ Component'
 \begin_inset Newline newline
 \end_inset
 
@@ -927,6 +882,14 @@ resembles
 replaces
 \series default
  Component { ...
+\begin_inset Newline newline
+\end_inset
+
+ 
+\begin_inset Newline newline
+\end_inset
+
+
 \end_layout
 
 \end_inset
@@ -987,7 +950,8 @@ key "McVeigh2011"
 
 .
  This concurrent system models the access of cars to a single lane bridge.
- Its component architecture can be modeled in Backbone as shown in 
+ Its component architecture can be modeled in Backbone as shown in figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:SingleLaneBridge-components"
@@ -1009,7 +973,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/slb-components.eps
-	width 100col%
+	scale 60
 
 \end_inset
 
@@ -1543,7 +1507,14 @@ This architecture represents a system with one red car and one blue car,
  A Car calls enter to gain access to the bridge and calls leave on exit.
  Cars display their movement using the Display component.
  Note that all of the definitions are contained in the SingleLaneBridge
- stratum that appears in Figure 3.
+ stratum that appears in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SingleLaneBridge-components"
+
+\end_inset
+
+.
  Car, Controller and Display are leaf components with an implementaion defined
  by Java classes.
  SLB is a composite component that contains parts made from these components
@@ -1557,7 +1528,8 @@ Using Resemblance
 \begin_layout Standard
 Now suppose that another developer wishes to evolve this system to accommodate
  multiple red and blue cars moving in opposite directions.
- This developer creates the stratum with the components shown in 
+ This developer creates the stratum with the components shown in figure
+ 
 \begin_inset CommandInset ref
 LatexCommand ref
 reference "fig:MultiCarBridge-components"
@@ -1583,7 +1555,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/mlb-components.eps
-	width 100col%
+	scale 60
 
 \end_inset
 
@@ -2222,6 +2194,7 @@ reference "fig:MultiCarBridge-strata-dependency"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -2231,7 +2204,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/multicar-stratum.eps
-	width 50col%
+	width 40col%
 
 \end_inset
 
@@ -2297,7 +2270,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/fair-controller.eps
-	width 50col%
+	width 35col%
 
 \end_inset
 
@@ -2352,6 +2325,10 @@ status open
 
 \series bold
 \size small
+ 
+\begin_inset Newline newline
+\end_inset
+
 stratum
 \series default
  Fair_Bridge
@@ -2443,6 +2420,14 @@ resembles
 }
 \end_layout
 
+\begin_layout LyX-Code
+ 
+\begin_inset Newline newline
+\end_inset
+
+
+\end_layout
+
 \end_inset
 
 
@@ -2479,6 +2464,7 @@ reference "fig:FairMultiLaneBridge-strata-depen"
 
 \begin_layout Standard
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -2488,7 +2474,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/all-strata.eps
-	width 87col%
+	width 70col%
 
 \end_inset
 
@@ -2577,6 +2563,7 @@ reference "fig:Alternative-dependency-graph"
  If we were to write out the Backbone text again, it would now show a dependency
  on FairBridge rather than SingleLaneBridge for MultiCarBridge.
 \begin_inset Float figure
+placement h
 wide false
 sideways false
 status open
@@ -2586,7 +2573,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/alternative-graph.eps
-	width 80col%
+	width 70col%
 
 \end_inset
 
@@ -2694,7 +2681,7 @@ status open
 \begin_inset Graphics
 	filename drawings/stack.png
 	lyxscale 50
-	width 100col%
+	width 60col%
 
 \end_inset
 
@@ -2757,8 +2744,8 @@ Evolve Graphical Modeling Environment
 
 \begin_layout Standard
 \begin_inset Float figure
-placement t
-wide true
+placement h
+wide false
 sideways false
 status open
 
@@ -2767,7 +2754,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/deltas.png
-	width 80page%
+	width 50page%
 
 \end_inset
 
@@ -2977,7 +2964,7 @@ key "Hoy2002"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
+placement h
 wide false
 sideways false
 status open
@@ -3120,7 +3107,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/ltsa-strata.eps
-	width 80col%
+	width 70col%
 
 \end_inset
 
@@ -3184,7 +3171,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/ltsa-initial-hierarchy.png
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -3242,7 +3229,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/top-level.eps
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -3359,7 +3346,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/ltsa-compose-ltsa.eps
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -3668,7 +3655,7 @@ reference "fig:Combining-the-evolutions"
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
+placement h
 wide false
 sideways false
 status open
@@ -3678,7 +3665,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/ltsa-stratum-extensions.eps
-	width 80col%
+	width 60col%
 
 \end_inset
 
@@ -3714,7 +3701,7 @@ Combining the evolutions using a further stratum
 
 \begin_layout Standard
 \begin_inset Float figure
-placement H
+placement h
 wide false
 sideways false
 status open
@@ -3724,7 +3711,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/expanded.eps
-	width 60col%
+	width 45col%
 
 \end_inset
 
@@ -3756,10 +3743,10 @@ The expanded LTSA resemblance graph
 
 \begin_layout Standard
 \begin_inset Float figure
-placement t
-wide true
+placement th
+wide false
 sideways false
-status collapsed
+status open
 
 \begin_layout Plain Layout
 \noindent
@@ -3767,7 +3754,7 @@ status collapsed
 \begin_inset Graphics
 	filename drawings/ltsa-compositions.png
 	lyxscale 50
-	width 75page%
+	width 50page%
 
 \end_inset
 
@@ -3964,7 +3951,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename phd-images/oo-state-advanced.eps
-	width 100col%
+	width 70col%
 
 \end_inset
 
@@ -4162,7 +4149,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename phd-images/stereo-fullstate-advanced.eps
-	width 75col%
+	width 65col%
 
 \end_inset
 
@@ -4219,7 +4206,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename phd-images/added-cue-state-advanced.eps
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -4566,7 +4553,7 @@ key "Chatley2003,Chatley2004"
 \end_layout
 
 \begin_layout Standard
-This has an obvious corrolary with frameworks, in that no system can fully
+This has an obvious corollary with frameworks, in that no system can fully
  predict the full set of extension points required.
  As such, a developer writing an extension will often need to request extra
  extension points from the base application developers, which leads to serious
@@ -4666,7 +4653,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/plugins.eps
-	width 40col%
+	width 30col%
 
 \end_inset
 
@@ -4749,7 +4736,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/wf-original.png
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -4819,7 +4806,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/wf-dual.png
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -4878,7 +4865,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/wf-ames.png
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -4948,7 +4935,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename drawings/wf-merged.png
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -5003,7 +4990,7 @@ Analysis and Assessment
 \end_layout
 
 \begin_layout Standard
-In this section we distil a set of interesting properties for an architectural
+In this section we distill a set of interesting properties for an architectural
  approach to evolution and evaluate Evolve against these.
  In the next section we use these properties to assess related work against
  the same criteria.
@@ -5048,8 +5035,8 @@ on.
 \begin_layout Standard
 This level of expressiveness clearly allows invalid systems to be created.
  We supplement this freedom with a comprehensive set of checks which determine
- the structural well-formedness of a system.
- No behavioural checking is currently done - this is considered in future
+ the structural wellformedness of a system.
+ No behavioral checking is currently done - this is considered in future
  work.
 \end_layout
 
@@ -5114,7 +5101,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/branching.eps
-	width 80col%
+	width 60col%
 
 \end_inset
 
@@ -5360,7 +5347,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/live-base.eps
-	width 70col%
+	width 50col%
 
 \end_inset
 
@@ -5474,7 +5461,7 @@ Architecture Description Languages
 \end_layout
 
 \begin_layout Standard
-It has long been recognised that components form a convenient and powerful
+It has long been recognized that components form a convenient and powerful
  unit of software design, composition and reuse 
 \begin_inset CommandInset citation
 LatexCommand cite
@@ -5690,7 +5677,7 @@ However, plugins are not hierarchical meaning that if the source code is
 
 \begin_layout Standard
 Furthermore, although the model ensures that much structural conflict is
- avoided, it is not possible to detect conflicts between plugin combionations
+ avoided, it is not possible to detect conflicts between plugin combinations
  in any automated way.
 \end_layout
 
@@ -5788,7 +5775,7 @@ key "Ichisugi2002,Ichisugi2002a"
 \end_layout
 
 \begin_layout Standard
-Because it utilises the Java class model rather than component structures,
+Because it utilizes the Java class model rather than component structures,
  MixJuice is not fully compliant with a hierarchical architectural approach.
  Some changes cannot be expressed, and merge conflicts which cannot be corrected
  via method override can not be resolved.
@@ -6016,8 +6003,8 @@ key "McVeigh2015,McVeigh2011"
 \end_inset
 
 .
- A key issue is that components and constituents are identitied by globally
- unique identifers allowing us to remove the ambiguity involved when trying
+ A key issue is that components and constituents are identified by globally
+ unique identifiers allowing us to remove the ambiguity involved when trying
  to reconcile diverged branches with human readable names only.
  As we have shown, a graphical approach is able to hide the UUIDs, presenting
  the human readable names for presentation thereby delivering the benefits
@@ -6814,8 +6801,8 @@ run show for 8 but
 \begin_layout Standard
 \begin_inset CommandInset bibtex
 LatexCommand bibtex
-bibfiles "/Users/amcveigh/Personal/evolve/Academic Work/read papers/references"
-options "plain"
+bibfiles "/Users/andrew/Personal/Repositories/evolve/Academic Work/read papers/references"
+options "spbasic"
 
 \end_inset
 

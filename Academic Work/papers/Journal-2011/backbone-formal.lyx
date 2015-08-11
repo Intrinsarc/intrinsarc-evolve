@@ -2,7 +2,8 @@
 \lyxformat 474
 \begin_document
 \begin_header
-\textclass IEEEtran
+\textclass svjour
+\options smallcondensed
 \use_default_options true
 \maintain_unincluded_children false
 \language english
@@ -148,7 +149,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/formal-merged.eps
-	width 100col%
+	width 80col%
 
 \end_inset
 
@@ -608,7 +609,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/formal-expanded.eps
-	width 70col%
+	width 60col%
 
 \end_inset
 
@@ -717,7 +718,7 @@ status open
 \align center
 \begin_inset Graphics
 	filename images/formal-corrected.eps
-	width 70col%
+	width 60col%
 
 \end_inset
 

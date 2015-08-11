@@ -1,0 +1,6783 @@
+#LyX 2.1 created this file. For more info see http://www.lyx.org/
+\lyxformat 474
+\begin_document
+\begin_header
+\textclass svjour
+\begin_preamble
+\parindent 10pt
+
+\hyphenation{Java-Bean Java-Beans}
+
+\bibliographystyle{alpha-abbrev}
+\end_preamble
+\options smallextended
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman default
+\font_sans helvet
+\font_typewriter default
+\font_math auto
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100
+\font_tt_scale 100
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement h
+\paperfontsize default
+\spacing other 1.1
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style spbasic
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date true
+\justification true
+\use_refstyle 1
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\quotes_language english
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Standard
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+title{Making Evolution Intrinsic to Software Architecture}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+author{A.
+ McVeigh 
+\backslash
+and J.
+ Kramer 
+\backslash
+and J.
+ Magee}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+institute{A.
+ McVeigh, J.
+ Kramer, J.
+ Magee 
+\backslash
+at Imperial College London 
+\backslash
+
+\backslash
+
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+email{
+\backslash
+{a.mcveigh, j.kramer, j.magee
+\backslash
+}@imperial.ac.uk}}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+date{Received: date / Accepted: date}
+\end_layout
+
+\begin_layout Plain Layout
+
+
+\backslash
+maketitle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Abstract
+Incremental change is intrinsic to both the initial development and subsequent
+ evolution of large, complex software systems.
+ We present an approach that captures incremental change in the definition
+ of software architecture.
+ This provides a rigorous, principled and manageable way of dealing with
+ unplanned change and extension.
+ Furthermore, it facilitates decentralized evolution in which software is
+ extended and evolved by multiple independent developers.
+ The approach is model-driven in that the architecture description is used
+ to directly construct both initial implementations and extensions to these
+ implementations.
+ We have implemented this approach in a software tool, Evolve, using Backbone
+ - an architectural description language (ADL) which has both a textual
+ and a UML2 based graphical representation.
+ The paper uses Backbone to illustrate basic concepts through simple examples
+ and reports our experience in applying it and the associated Evolve tool
+ support to legacy code and a larger example.
+\end_layout
+
+\begin_layout Abstract
+\begin_inset ERT
+status open
+
+\begin_layout Plain Layout
+
+
+\backslash
+keywords{Software Architectures 
+\backslash
+and Components 
+\backslash
+and Design Tools and Techniques}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Introduction
+\end_layout
+
+\begin_layout Standard
+Initially recognized by Boehm in his spiral model of software development
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Boehm1988"
+
+\end_inset
+
+ and more recently in agile development methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Beck2001"
+
+\end_inset
+
+, iterative and incremental software development is fundamental to the delivery
+ of complex software intensive systems.
+ As early as 1976, Belady and Lehman 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Belady1976"
+
+\end_inset
+
+ recognized that to retain their usefulness, complex software systems are
+ subject to continuous incremental change throughout their lifetime.
+ In 1991, Lehman refined this observation and noted that systems are subject
+ to incremental growth due to the need to add functionality to maintain
+ user satisfaction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Lehman1991"
+
+\end_inset
+
+.
+ In summary, incremental change and extension can be regarded as intrinsic
+ to both the initial development and subsequent evolution of complex software
+ systems.
+\end_layout
+
+\begin_layout Standard
+To deal with the increasing complexity of software systems, the Software
+ Engineering community has focused on dealing with systems at a level of
+ abstraction, known as software architecture 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Allen1994,Magee1995"
+
+\end_inset
+
+.
+ The software architecture of a system deals with multiple views of a system
+ including both its functional and non-functional aspects.
+ The central view is the structural one in which a system is viewed as a
+ set of components that interact via connectors.
+ Control of complexity is achieved by hierarchical structure in which a
+ component can be composed from subcomponents with the leaf components of
+ the hierarchy representing code modules.
+ A number of Architectural Description Languages (ADL) have been proposed
+ by the research community 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic2000"
+
+\end_inset
+
+, and some of these have found their way into commercial practice 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic1994a,Ommering2002"
+
+\end_inset
+
+.
+ While software architecture is seen as an appropriate level for system
+ redesign and restructuring to permit change 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1996,Medvidovic1996"
+
+\end_inset
+
+, the proposed ADLs do not deal directly with evolution, considering it
+ to be an extrinsic concern dealt with by tools and processes external to
+ those concerned with architecture definition.
+\end_layout
+
+\begin_layout Standard
+In this paper, we explore the alternative in which we regard evolution as
+ a concern that is intrinsic to architecture definition, such that the structura
+l constructs we propose to capture change and extension can be used during
+ both initial development and subsequent evolution.
+ This intrinsic approach brings with it the requirement to deal with unplanned
+ extension, for it is impossible, whichever development process is adopted,
+ to foresee all possible future requirements for change and evolution of
+ a system.
+\end_layout
+
+\begin_layout Standard
+Designing constructs to handle unplanned extension introduces a difficult
+ dilemma.
+ We would prefer to have constructs that constrain change in such a way
+ that their application always results in structurally well formed and type
+ correct systems.
+ However, such an approach inevitably means that only a subclass of all
+ possible valid change to a system is permitted.
+ This is clearly incompatible with dealing with unplanned extension since
+ we cannot predict the change that will be necessary.
+ As a result, we have chosen constructs that do permit changes that result
+ in invalid systems; however, we have ensured that these constructs are
+ used in an environment that comprehensively detects structural and type
+ errors.
+ In other words, we combine the freedom to perform incorrect changes with
+ the ability to detect these errors so that we have sufficient expressiveness
+ to deal with unplanned changes.
+ We permit change to be destructive – deleting elements of an architecture
+ – in addition to being constructive – adding elements to an architecture.
+\end_layout
+
+\begin_layout Standard
+In exploring the intrinsic approach, we have considered the requirements
+ of distributed design and evolution in which development and extension
+ is carried out by different organizations.
+ This type of scenario is typically refered to as extensibility 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Szyperski2006,Birsan2005"
+
+\end_inset
+
+.
+ In particular, we are motivated by the following situation which current
+ approaches find problematic.
+ A development organization produces a software framework product that is
+ used by other organizations to build applications.
+ In meeting their local development requirements, these organizations may
+ need to modify and extend the framework to support their applications.
+ The original framework will evolve over time and the organizations that
+ use it need to apply their local changes to the framework before using
+ the evolved framework for their applications.
+ In addition, a third party may wish to use applications from more than
+ one extenders of the framework and thus need to merge changes from both
+ these organizations and the original framework provider.
+ We examine the impact of intrinsic definition on extensibility of this
+ form.
+\end_layout
+
+\begin_layout Standard
+If software architecture description is regarded only as design documentation,
+ a major problem arises in keeping this documentation in step with the software
+ implementation as a system evolves.
+ We adopt a model driven engineering approach in that architecture definition
+ is not just a documentation artifact but is a precise model used to directly
+ construct both initial implementations and extensions to these implementations.
+\end_layout
+
+\begin_layout Standard
+In the following: Section 2 describes the key concepts for the intrinsic
+ approach of evolution in software architecture and explains their use by
+ mean of a simple example, Section 3 provides a more rigorous definition
+ of the these concepts and shows how they are computed over a dependency
+ graph of extensions, Section 4 recounts our experience in using our prototype
+ tool Evolve applied to a large case study and evaluates the approach against
+ the requirements for distributed evolution.
+ Section 5 examines the case study in more detail focusing in particular
+ on different views of the architecture.
+ Section 6 looks at the wider applicability of the approach to other areas
+ including nested statecharts and user interface development.
+ Section 7 then considers the developer workflow in a distributed and possibly
+ disconnected setting.
+ Section 8 assesses the work and extracts a set of desirable properties
+ for evolution and extension in a distributed setting.
+ Section 9 discusses related work and finally Section 10 presents some conclusio
+ns and directions for future work that build on the approach.
+\end_layout
+
+\begin_layout Section
+Defining Change
+\end_layout
+
+\begin_layout Standard
+We first describe and motivate the key concepts we use to define change
+ in software architecture.
+ Specifically, these constructs provide the facility to remake a composition
+ hierarchy.
+ We demonstrate this in a simple example described using our description
+ language Backbone in which the constructs have been implemented.
+ It has both a graphical form based on UML2 component diagrams and a textual
+ form.
+ The textual form is simply a more readable version of an XML representation
+ used to store and exchange Backbone definitions.
+\end_layout
+
+\begin_layout Subsection
+Key Concepts
+\end_layout
+
+\begin_layout Subsubsection*
+Resemblance
+\end_layout
+
+\begin_layout Standard
+Resemblance defines a new component in terms of the difference in structure
+ from one or more existing hierarchically structured components.
+ It is the delta, consisting of the set of additions, deletions and replacements
+ of the constituents of these components, that is applied to arrive at the
+ new definition.
+ These constituents are: parts – instances of subcomponents, ports – instances
+ of interfaces, connectors – bindings between ports, and attributes – component
+ parameters.
+\end_layout
+
+\begin_layout Standard
+Resemblance is effectively a superset of structural inheritance, allowing
+ deletions as well as additions and overrides / replacements.
+ Deletions are consistent with the view that a system evolution may require
+ significant changes, including removing inherited functionality.
+\end_layout
+
+\begin_layout Standard
+We use the graphical form shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Resemblance-between-two"
+
+\end_inset
+
+ to denote resemblance.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/core-resemblance.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Resemblance-between-two"
+
+\end_inset
+
+Resemblance between two composite components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The deltas are move obvious in the textual description below.
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+component
+\series default
+ Component {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+attributes
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        attribute1;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+ports
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        port1;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+parts
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        part1: Subcomponent;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+connectors
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        conn1 joins port@part to port1;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\begin_inset Newline newline
+\end_inset
+
+
+\series bold
+
+\begin_inset Newline newline
+\end_inset
+
+component
+\series default
+ ResemblingComponent
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+     
+\series bold
+resembles
+\series default
+ Component {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+attributes
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        addedAttribute;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+replace-parts
+\series default
+:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        part1 
+\series bold
+becomes
+\series default
+ part1: Other
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+Resemblance is a many to one relation to permit the merging of multiple
+ component definitions that may have arisen due to, for example, distributed
+ development.
+ It might be of concern that if a sufficiently radical delta is applied
+ to a component then the new definition will bear little or no resemblance,
+ in the general sense, to the component definitions from which it is derived.
+ However, this is of more philosophical than practical import as the primary
+ intent of resemblance to record change or evolution and we can find many
+ examples in both engineering and nature where things evolve dramatically
+ from their original form.
+\end_layout
+
+\begin_layout Standard
+Resemblance may also be applied to interfaces in which case the modified
+ constituents are operations.
+ If a resemblance delta consists only of additions then when applied to
+ an interface, it defines a proper subtype.
+ The type inference and checking algorithm we have implemented in our prototype
+ tool Evolve takes full cognizance of this.
+\end_layout
+
+\begin_layout Subsubsection*
+Stratum
+\end_layout
+
+\begin_layout Standard
+A stratum is a module that holds the definitions relating to an initial
+ (base) software architecture expressed as a composite component, or definitions
+ relating to an evolution (extension) of that architecture.
+ Each stratum records its dependent strata needed to assemble a system,
+ and the builder uses the current stratum and the transitive closure of
+ all strata that this stratum depends on.
+ The computation of resemblance in the context of the stratum dependency
+ graph is addressed in the next section.
+\end_layout
+
+\begin_layout Standard
+In addition to being a unit of architectural definition and extension, the
+ stratum is the unit of sharing and ownership.
+ Each stratum is owned by a single party that has modification rights to
+ it.
+ We can therefore use strata to model the ownership structure of an architecture
+ and map this onto a community of base and extension developers.
+ Our development tool Evolve and the Backbone runtime environment support
+ the import and export of strata for distributing extensions and subsets
+ of an architecture.
+\end_layout
+
+\begin_layout Standard
+A stratum is also a unit of deployment in that its compiled version together
+ with associated component code can be sent to an end user to extend their
+ system in a similar fashion to Eclipse Plugins 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma2003,Chatley2003"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Two-strata,-packing"
+
+\end_inset
+
+ shows the graphical form, where two strata package up the previously mentioned
+ resemblance relationship.
+ Note that we are showing components as their iconical form, rather than
+ as fully expanded with all their constituents.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/core-strata.eps
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Two-strata,-packing"
+
+\end_inset
+
+Two strata, packaging up a base architecture and an extension
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Replacement
+\end_layout
+
+\begin_layout Standard
+Replacement globally substitutes the definition of one component for another,
+ making sure that any use relations that referred to the original definition
+ will now refer to the replacement.
+\end_layout
+
+\begin_layout Standard
+When we combine replacement and resemblance, we get evolution which permits
+ the incremental evolution of a component definition without having to change
+ the composite component definitions that use the original component.
+ We similarly combine the graphical notations of resemblance and replacement
+ to show that 
+\family typewriter
+Component`
+\family default
+ incrementally modifies 
+\family typewriter
+Component
+\family default
+ and replaces it, in the context of stratum 
+\family typewriter
+ExtensionStratum
+\family default
+.
+\end_layout
+
+\begin_layout Standard
+We show the graphical form in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Resemblance-and-Replacement"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/core-evolution.eps
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Resemblance-and-Replacement"
+
+\end_inset
+
+Resemblance and Replacement combine to allow evolution
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Textually, the separation of resemblance and replacement is clear.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+component
+\series default
+ Component`
+\begin_inset Newline newline
+\end_inset
+
+     
+\series bold
+resembles
+\series default
+ Component
+\begin_inset Newline newline
+\end_inset
+
+     
+\series bold
+replaces
+\series default
+ Component { ...
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+It is of course possible to resemble a different component from the one
+ being replaced, but it is usual for there to be at least an indirect resemblanc
+e relationship in that case.
+\end_layout
+
+\begin_layout Standard
+Components and interfaces in the Backbone ADL are given globally unique
+ identifiers to permit the correct unambiguous application of replacement.
+ Replacement is the key to managing change in composite hierarchical definitions
+ since it permits substitution of component definitions at one level of
+ the composition hierarchy without necessarily affecting higher layers.
+\end_layout
+
+\begin_layout Standard
+It should be noted that although evolution permits constituents to be deleted
+ in forming a new definition from existing defintions, this is not destructive
+ editing in the usual sense since the existing definition is preserved and
+ the deletion simply recorded in a delta in a different stratum.
+ Our approach preserves definitions and at no point overwrites old definitions
+ with new ones.
+ We do not remove the base definition but simply record the delta definition
+ in the extension stratum.
+ Even retirement is modeled in this non-destructive way - if we do not want
+ a component definition to be available for use in an extension, we simply
+ replace it with an evolution that sets its retirement status to true.
+\end_layout
+
+\begin_layout Standard
+As a strata is a unit of architectural definition and ownership, it does
+ not make sense to have both a component and its replacement in the same
+ stratum.
+ If the owner wished to evolve that component, they could do it by simply
+ modifying the definition, which they own.
+ The same is not true of resemblance though - a stratum may package both
+ a component and components which resemble it.
+\end_layout
+
+\begin_layout Subsection
+Example
+\end_layout
+
+\begin_layout Standard
+To illustrate the use of these three concepts we use the Single Lane Bridge
+ example from 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2011"
+
+\end_inset
+
+.
+ This concurrent system models the access of cars to a single lane bridge.
+ Its component architecture can be modeled in Backbone as shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SingleLaneBridge-components"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/slb-components.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:SingleLaneBridge-components"
+
+\end_inset
+
+SingleLaneBridge components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The textual architecture description that corresponds to this component
+ diagram is listed below:
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+stratum
+\series default
+ Single_Lane_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  
+\series bold
+depends-on
+\series default
+ backbone
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+interface
+\series default
+ I_access
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.I_access
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+operations:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        enter; leave;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+interface
+\series default
+ I_move
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.I_move
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+operations:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        move;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ Controller
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.Controller
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        red 
+\series bold
+provides
+\series default
+ I_access,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        blue 
+\series bold
+provides
+\series default
+ I_access;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ Car
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.Car
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        carNo: int = 0;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        move 
+\series bold
+requires
+\series default
+ I_move,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        bridge 
+\series bold
+requires
+\series default
+ I_access;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ Display
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.Display
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        maxCar: int = 1;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        redmove 
+\series bold
+provides
+\series default
+ I_move,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        bluemove 
+\series bold
+provides
+\series default
+ I_move,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        run 
+\series bold
+provides
+\series default
+ IRun;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ SLB
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        run 
+\series bold
+provides
+\series default
+ IRun;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+parts:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        b0: Car,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        c: Controller,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        r0: Car,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        d: Display;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+connectors:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        bb 
+\series bold
+joins
+\series default
+ blue@c 
+\series bold
+to
+\series default
+ bridge@b0,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        br 
+\series bold
+joins
+\series default
+ bridge@r0 
+\series bold
+to
+\series default
+ red@c,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        vr 
+\series bold
+joins
+\series default
+ move@r0 
+\series bold
+to
+\series default
+ redmove@d,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        vb 
+\series bold
+joins
+\series default
+ move@b0 
+\series bold
+to
+\series default
+ bluemove@d,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        r 
+\series bold
+delegates-from
+\series default
+ run 
+\series bold
+to
+\series default
+ run@d;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\end_layout
+
+\begin_layout Standard
+This architecture represents a system with one red car and one blue car,
+ moving in opposite directions, competing for access to the bridge.
+ Access control is implemented by the Controller component, which provides
+ two I_access interfaces.
+ A Car calls enter to gain access to the bridge and calls leave on exit.
+ Cars display their movement using the Display component.
+ Note that all of the definitions are contained in the SingleLaneBridge
+ stratum that appears in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:SingleLaneBridge-components"
+
+\end_inset
+
+.
+ Car, Controller and Display are leaf components with an implementaion defined
+ by Java classes.
+ SLB is a composite component that contains parts made from these components
+ interconnected by connectors to form the system.
+\end_layout
+
+\begin_layout Subsubsection*
+Using Resemblance
+\end_layout
+
+\begin_layout Standard
+Now suppose that another developer wishes to evolve this system to accommodate
+ multiple red and blue cars moving in opposite directions.
+ This developer creates the stratum with the components shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MultiCarBridge-components"
+
+\end_inset
+
+.
+ The developer defines three new components: CarFactory dynamically creates
+ a Car component when it receives an invocation on its creator port, CarCreator
+ is a leaf component that calls its create port maxCar times, and finally,
+ the composite component MultiCar creates nCars Car components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/mlb-components.eps
+	scale 60
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MultiCarBridge-components"
+
+\end_inset
+
+MultiCarBridge components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Note Note
+status open
+
+\begin_layout Plain Layout
+Figure 2 – MultiCarBridge components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The MULTSLB composite component is defined as a resemblance of the SLB component
+ from the SingleLaneBridge stratum.
+ Graphically, resemblance is depicted as a solid arrow pointing to an icon
+ representing the component from which the resemblance is derived.
+ Although graphically MULTSLB is depicted with all its component parts and
+ connectors, in fact as shown in the Backbone listing below, it is defined
+ by a delta that simply adds the nCar attribute and replaces the parts of
+ type Car with parts of type MultiCar.
+ In addition, it replaces the instance of Display with an instance of the
+ same component type but with a different attribute value.
+ The new definition is formed graphically by editing the previous definition
+ that the Evolve tool displays when the resemblance relation is established.
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+stratum
+\series default
+ Multi_Car_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  
+\series bold
+depends-on
+\series default
+ Single_Lane_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ CarFactory is-factory
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+       
+\series bold
+resembles
+\series default
+ FactoryBase
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          carId: int;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          bridge,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          move;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+parts:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          c: Single_Lane_Bridge::Car
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+               
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+                 carNo = carId;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+connectors:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          b 
+\series bold
+delegates-from
+\series default
+ move 
+\series bold
+to
+\series default
+ move@c,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          m 
+\series bold
+delegates-from
+\series default
+ bridge 
+\series bold
+to
+\series default
+ bridge@c;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ CarCreator
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+implementation-class
+\series default
+ bridge.CarCreator
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        maxCar: int;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        create requires ICreate;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ MultiCar
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        nCars: int;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+     
+\series bold
+ ports:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        bridge,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        move;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+parts:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        cc: CarCreator
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            maxCar = nCars,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        cf: CarFactory
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            carId = 0;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+     
+\series bold
+ connectors:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        c 
+\series bold
+joins
+\series default
+ create@cc 
+\series bold
+to
+\series default
+ creator@cf,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        b 
+\series bold
+delegates-from
+\series default
+ bridge 
+\series bold
+to
+\series default
+ bridge@cf,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        m 
+\series bold
+delegates-from
+\series default
+ move 
+\series bold
+to
+\series default
+ move@cf;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    
+\series bold
+component
+\series default
+ MULTISLB
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+resembles
+\series default
+ Single_Lane_Bridge::SLB
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+attributes:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        nCar: int = 4;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+      
+\series bold
+replace-parts:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        r0 
+\series bold
+becomes
+\series default
+ red: MultiCar
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            nCars = nCar
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+port-remaps:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            move 
+\series bold
+maps-onto
+\series default
+ xxx
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            bridge 
+\series bold
+maps-onto
+\series default
+ xxx,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        b0 
+\series bold
+becomes
+\series default
+ blue: MultiCar
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            nCars = nCar
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+port-remaps:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            move 
+\series bold
+maps-onto
+\series default
+ xxx
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            bridge 
+\series bold
+maps-onto
+\series default
+ xxx,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+        d 
+\series bold
+becomes
+\series default
+ d: Single_Lane_Bridge::Display
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+          
+\series bold
+slots:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+            maxCar = nCar;
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\end_layout
+
+\begin_layout Standard
+To produce this extension permitting multiple cars, some new program source
+ code must be written to implement the CarCreator component, however, there
+ is no requirement to access or modify any of the source code relating to
+ the base SingleLaneBridge stratum.
+ Access to the architecture description is sufficient to permit extension.
+ Note that resemblance is also used to define CarFactory, which extends
+ FactoryBase provided by the underlying backbone stratum.
+ The stratum dependency graph for the extension is shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:MultiCarBridge-strata-dependency"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/multicar-stratum.eps
+	width 40col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:MultiCarBridge-strata-dependency"
+
+\end_inset
+
+MultiCarBridge strata dependency graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Using Replacement
+\end_layout
+
+\begin_layout Standard
+The single lane bridge Controller component works well until the number
+ of cars increases to the point that a stream of cars, either red of blue,
+ continuously occupies the bridge denying access to cars moving in the other
+ direction.
+ In other words, the Controller component is safe but not fair.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FairBridge-replacement-controlle"
+
+\end_inset
+
+ shows how a revised Controller that does implement fairness is introduced.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/fair-controller.eps
+	width 35col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:FairBridge-replacement-controlle"
+
+\end_inset
+
+FairBridge replacement controller
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The listing below shows the Backbone textual represenation of the evolved
+ controller.
+\end_layout
+
+\begin_layout Standard
+
+\size small
+\begin_inset Box Frameless
+position "t"
+hor_pos "c"
+has_inner_box 1
+inner_pos "t"
+use_parbox 0
+use_makebox 0
+width "100col%"
+special "none"
+height "1in"
+height_special "totalheight"
+status open
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+stratum
+\series default
+ Fair_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+ 
+\series bold
+depends-on
+\series default
+ Single_Lane_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+ 
+\series bold
+component 
+\series default
+Controller
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  
+\series bold
+implementation-class
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    bridge.FairController
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  
+\series bold
+resembles
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    Single_Lane_Bridge::Controller
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+ 
+\series bold
+ replaces
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+    Single_Lane_Bridge::Controller
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Replacement is so often combined with resemblance that we use a single graphical
+ symbol (combined solid and fishbone arrow) to indicate this combination
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FairBridge-replacement-controlle"
+
+\end_inset
+
+.
+ The diagram and text show that we are replacing Controller with a component
+ that resembles it exactly with the exception of the implementation class
+ that we have changed.
+ We can now combine this fair bridge controller with the MultiCarBridge
+ stratum as shown in Figure 5.
+ The stratum FairMultiCarBridge represents a system that permits multiple
+ cars and has a fair controller.
+ The stratum contains no definitions of components or deltas; it simply
+ indicates its dependences as shown in the Backbone text below Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FairMultiLaneBridge-strata-depen"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/all-strata.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:FairMultiLaneBridge-strata-depen"
+
+\end_inset
+
+FairMultiLaneBridge strata dependency graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout LyX-Code
+
+\series bold
+\size small
+stratum
+\series default
+ Fair_Multi_Lane_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+  
+\series bold
+depends-on 
+\series default
+Multi_Car_Bridge, Fair_Bridge
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size small
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:FairMultiLaneBridge-strata-depen"
+
+\end_inset
+
+ illustrates how strata are merged.
+ This can of course lead to conflicts in definitions, which we discuss in
+ the next section.
+ In the case of the example, a more plausible scenario would be for the
+ original base developer, or a third party, to export this new stratum to
+ the multi-car developer who could import it as shown in Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Alternative-dependency-graph"
+
+\end_inset
+
+.
+ If we were to write out the Backbone text again, it would now show a dependency
+ on FairBridge rather than SingleLaneBridge for MultiCarBridge.
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/alternative-graph.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Alternative-dependency-graph"
+
+\end_inset
+
+Alternative dependency graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset include
+LatexCommand input
+filename "backbone-formal.lyx"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Intrinsic Definition in Practice
+\end_layout
+
+\begin_layout Standard
+Proposers of a new approach to software architecture description have the
+ responsibility to demonstrate that it can be put into industrial practice.
+ In this section, we discuss three significant barriers to doing so and
+ outline how they are addressed.
+ They are: tool support, compatibility with existing libraries and toolkits,
+ and application to existing legacy software.
+ The first two issues are addressed in this section, and the applicability
+ to legacy and mature software is addressed in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Applicability-to-Mature"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Subsection
+Tool Support
+\end_layout
+
+\begin_layout Standard
+The Backbone ADL is supported by a graphical modeling tool Evolve, and a
+ runtime environment which instantiates and interconnects components from
+ a Backbone description.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-DeltaEngine-is"
+
+\end_inset
+
+ is an overview of the elements that make up the modeling tool and runtime
+ environment.
+ The DeltaEngine layer implements the algorithm described in the previous
+ section and is used in both the modeling tool to build graphical representation
+s of composite components from delta definitions and also in the runtime
+ environment to instantiate components from these same definitions.
+ In addition to this interpreted runtime the modeling tool can optionally
+ compile a “flat” description of the model as a builder class.
+ In this case, no runtime environment is required.
+ It should be noted that even the interpreted runtime environment incurs
+ no overhead during execution of a system; it is only active at startup
+ time when it directs instantiation and interconnection.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/stack.png
+	lyxscale 50
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-DeltaEngine-is"
+
+\end_inset
+
+Common layers between environments
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection
+The DeltaEngine and Structural Rules Layers
+\end_layout
+
+\begin_layout Standard
+The DeltaEngine layer is a library which implements the extended resemblance
+ algorithm described in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:A-Formal-Description"
+
+\end_inset
+
+ allowing deltas to be applied in the correct order to fully realise each
+ component.
+ Once the deltas are applied, the Structural rules layer can be used to
+ determine if the system is structurally well-formed using 100+ rules 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2009"
+
+\end_inset
+
+.
+ Any errors are catalogued against the elements responsible.
+\end_layout
+
+\begin_layout Subsubsection
+Evolve Graphical Modeling Environment
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/deltas.png
+	width 50page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolve-showing-deltas"
+
+\end_inset
+
+Evolve showing deltas
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Evolve uses standard UML2 component diagrams.
+ We do however apply both restrictions and extensions to this notation in
+ order to better match up to our component model.
+ We implement the restrictions as rules and the extensions as stereotypes
+ as per the UML2 philosophy.
+ As an example consider that UML2 allows part multiplicity.
+ Evolve does not allow this feature, instead requiring the use of factory
+ components for multiple instantiation: this requires restriction preventing
+ the use of multiplicity and an extension to allow factory components to
+ be denoted by a stereotype.
+ In total, however, the number of mismatches between the two component models
+ is quite small reflecting the historical lineage of both Backbone and the
+ UML2 component model in the models that have preceded them 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Garlan1997,Selic1994a,Magee1995"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+It has been noted that a design tool must support both top-down and bottom-up
+ approaches in order to match up with the creative design processes involved
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Taylor2010"
+
+\end_inset
+
+.
+ Evolve naturally supports bottom-up composition by virtue of the compositional
+ model chosen.
+ To better support top-down design we incorporate placeholder components
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Medvidovic1999"
+
+\end_inset
+
+ which are components which are not yet fully elaborated, allowing the designer
+ to terminate top-down decomposition at an arbitrary point rather than just
+ at leaf components.
+ Placeholders may have all the features of a normal component, but may not
+ be instantiated directly.
+ Any component can be marked as a placeholder.
+\end_layout
+
+\begin_layout Standard
+Because resemblance and replacement can be used to substitute placeholder
+ components and parts, placeholders can participate fully in the design
+ process.
+ For instance it is common in Evolve to have a placeholder at the base of
+ a resemblance hierarchy, effectively acting as a template for the more
+ refined components that derive from it.
+\end_layout
+
+\begin_layout Standard
+Although Backbone requires that components are described in terms of deltas,
+ Evolve always shows the full structure even as it records deltas for any
+ changes.
+ As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolve-showing-deltas"
+
+\end_inset
+
+ Evolve can overlay the deltas graphically on the expanded structures.
+\end_layout
+
+\begin_layout Subsubsection
+Runtime
+\end_layout
+
+\begin_layout Standard
+The runtime inteprets the textual form emitted from Evolve - it is effectively
+ an interpreter for the Backbone structural domain specific language 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2006"
+
+\end_inset
+
+ at the heart of the system.
+ It shares the DeltaEngine and rules layers with Evolve, guaranteeing consistenc
+y between the two environments.
+ Instead of using the engine to display graphical forms, the runtime uses
+ the engine to apply the deltas to form fully realised components, which
+ have links back to the actual implementation class via the implementation-class
+ annotations.
+ It then flattens the hierarchy and uses reflection to instantiate and connect
+ up the instances in conformance to the architecture.
+ At that point control can be handed off to the leaf component presenting
+ the IRun interface which represents the starting point of the program.
+\end_layout
+
+\begin_layout Standard
+Alternatively Evolve can emit code for a builder class representing the
+ flattened structure of the system - this requires no runtime and has all
+ facilities available including factory instantiation.
+ This mode is particularly useful in supported but constrained environments
+ such as the Google Web Toolkit 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GWT,GWT-Apps"
+
+\end_inset
+
+ which do not support full reflection and other advanced virtual machine
+ features.
+\end_layout
+
+\begin_layout Standard
+Although nothing prevents support for other languages, currently the runtime
+ is targeted to the Java language and the Java virtual machine.
+ Reflection is used extensively in the implementation of the runtime, but
+ as noted previously this only adds overhead in the direct construction
+ of component instances.
+ If a builder class is emitted instead of using the runtime, then there
+ is no overhead compared to a conventional Java program.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Compatibility-with-Existing"
+
+\end_inset
+
+Compatibility with Existing Libraries
+\end_layout
+
+\begin_layout Standard
+Java has a lightweight component model called JavaBeans 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Network2006,O'Neill1998"
+
+\end_inset
+
+ which uses a set of lexical conventions to allow setting and getting of
+ properties on classes.
+ Evolve allows bean libraries to be imported and translated into full Backbone
+ leaf components by considering any implemented interfaces of a bean to
+ be provided interfaces on a port called 
+\family typewriter
+main
+\family default
+, and any settable properties that are interfaces to be required interfaces.
+ In this way existing Java libraries are fully compatible with the Evolve
+ approach, and can be connected up into composite components.
+ This is in contrast with the conventional JavaBeans wiring approach which
+ is oriented explicitly around events and hence required interfaces only.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Imported-Swing-components"
+
+\end_inset
+
+ shows a number of well-known Swing 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hoy2002"
+
+\end_inset
+
+ components that have been imported into Evolve for use in an application.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/swing.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Imported-Swing-components"
+
+\end_inset
+
+Imported Swing components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Applicability-to-Mature"
+
+\end_inset
+
+Applicability to Mature and Legacy Systems
+\end_layout
+
+\begin_layout Standard
+To evaluate the applicability of the approach to existing software, we chose
+ to introduce our component model into the LTSA system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+ which was created by two of the authors previously for analysing the properties
+ of concurrent programs.
+ Our intention was to model the evolution of this mature system and to gain
+ insights into the way that evolution and architectural explication interact.
+\end_layout
+
+\begin_layout Standard
+The original codebase is around 16k physical lines of code from over 200
+ classes.
+ It consists of a graphical front end along with an automata-based engine
+ which can analyze the properties of finite state process expressions using
+ model checking.
+\end_layout
+
+\begin_layout Standard
+LTSA has evolved into several variants over years, reflecting its relatively
+ wide use in academia and industry and the somewhat decentralized nature
+ of its development.
+ We chose to concentrate on the original system, the NASA-AMES evolution
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Giannakopoulou2003"
+
+\end_inset
+
+, and a separate evolution created for the exercise called DualWindow.
+ Furthermore, we wished to model the merged AMES and DualWindow systems.
+\end_layout
+
+\begin_layout Subsection
+An Initial View of the Architecture
+\end_layout
+
+\begin_layout Standard
+We performed a first pass at forming a shallow and coarse-grained compositional
+ structure for the original LTSA application, reflecting that it is not
+ feasible to restructure a mature application in one step.
+ The intention was to demonstrate that the approach can be applied with
+ relatively small effort initially, with benefits accruing as the system
+ is incrementally decomposed further into smaller components over time.
+\end_layout
+
+\begin_layout Standard
+We started by spending some time understanding the LTSA code - for this
+ we used the primary author who was not familiar with the existing system.
+ After this a strata graph was formed and handful of top-level candidate
+ classes were identified for turning into components.
+\end_layout
+
+\begin_layout Standard
+We refactored these classes into JavaBeans and imported them into Evolve.
+ Finally, a top-level composite called LTSA was created which wired these
+ together allowing the system to execute inside the Evolve environment.
+ This work took two person-days of effort in total.
+\end_layout
+
+\begin_layout Standard
+The strata graph for the system is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-strata-for"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-strata.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-strata-for"
+
+\end_inset
+
+The strata for the LTSA application
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+As the architecture was now visible as components, further decomposition
+ was straight forward.
+ After spending another day of modest refactoring the refined compositional
+ hierarchy in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-decompositions"
+
+\end_inset
+
+ (B) was produced.
+ Note that the original decomposition (A) was a subset of this refinement
+ - decomposing involves exposing further parts of the architecture.
+ At this point many of the features of the graphical interface were exposed
+ as components.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/ltsa-initial-hierarchy.png
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-decompositions"
+
+\end_inset
+
+LTSA decompositions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The top level LTSA component and the HPWindow component which managed other
+ windows looked as in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Top-level-LTSA"
+
+\end_inset
+
+ at this point.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/top-level.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Top-level-LTSA"
+
+\end_inset
+
+Top level LTSA components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A somewhat expected, but key finding was that the best candidate classes
+ for turning into components were those which already implemented interfaces
+ (provides) and were decoupled from other classes via interfaces also (requires).
+ This 
+\begin_inset Quotes eld
+\end_inset
+
+interface-centric
+\begin_inset Quotes erd
+\end_inset
+
+ programming technique has become prominent in object-oriented languages
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Fowler2004"
+
+\end_inset
+
+].
+ Turning LTSA classes into Evolve components simply involved adopting this
+ modern style more forcefully.
+\end_layout
+
+\begin_layout Subsection
+Architectural Views
+\end_layout
+
+\begin_layout Standard
+As the architectectural exploration continued we realized that compositional
+ hierarchy was not enough to control the complexity of the diagrams produced.
+ Separate architectural views of the same component shown from different
+ 
+\begin_inset Quotes eld
+\end_inset
+
+angles
+\begin_inset Quotes erd
+\end_inset
+
+ was required and we added this feature to Evolve.
+\end_layout
+
+\begin_layout Standard
+For instance, figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Top-level-LTSA"
+
+\end_inset
+
+ clearly does not show all of the components at the first level of decomposition.
+ It instead shows only the parts which are relevant to window control.
+ The dots in the lower right corner of the LTSA component indicate that
+ artifacts have been elided.
+\end_layout
+
+\begin_layout Standard
+Consider another view of the same component in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Parsing-view-of"
+
+\end_inset
+
+, showing how the LTS compose action is constructed.
+ Note that these views are all of the same component but eliding and showing
+ different parts, attributes and connectors.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-compose-ltsa.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Parsing-view-of"
+
+\end_inset
+
+Compose action view of LTSA
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In our architecture description we used twelve views of the LTSA component,
+ reflecting the different possible graphical windows, actions and checks.
+\end_layout
+
+\begin_layout Subsection
+Modeling the Evolutions
+\end_layout
+
+\begin_layout Subsubsection*
+The Ames
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+The Ames variant originated from the NASA Ames Research Centre
+\end_layout
+
+\end_inset
+
+ Variant
+\end_layout
+
+\begin_layout Standard
+This evolution adds extra safety checks to the base system: the first checks
+ for safety whilst producting multiple counterexamples, and the second checks
+ for safety but ignores deadlock.
+ This system was produced by researchers copying and modifying the source
+ code of the original LTSA aplication, leading to disparate codebases.
+\end_layout
+
+\begin_layout Standard
+To express this application as a direct evolution we first compared the
+ two codebases using textual comparison tools, eventually reducing the core
+ difference in logic down to changes in the Analyser class and several others.
+\end_layout
+
+\begin_layout Standard
+The changes to the Analyser represented a modest proportion of the class'
+ overall implementation.
+ To effect the evolved components on top of the original architecture using
+ our concepts we had to replace the entire Analyser with the Ames variant
+ reflecting the current level of decomposition.
+ An alternative would have been to continue decomposing the class into finer-gra
+ined components until it reached the granularity required to allow the changes
+ at the correct level of abstraction.
+\end_layout
+
+\begin_layout Standard
+This represents another key insight: a hierarchically decomposed system
+ with fine granularity allows component replacement (and hence evolution)
+ at the appropriate abstraction level.
+ Architectural explication and evolution are aligned as further decomposition
+ for understanding and explication presents greater opportunities to align
+ any evolution with the size of the changes required.
+\end_layout
+
+\begin_layout Standard
+We actually chose to take a different approach - instead of direct replacement,
+ we instead used a component variant of the decorator pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+ to add the extra checks.
+ We evolved the component and wrapped the former version (renamed to ExtendedAna
+lyser) as per figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-wrapped-Analyser"
+
+\end_inset
+
+.
+ This is an alternative to coarse-level replacement, allowing features to
+ be added and existing features masked or intercepted.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-ames-analyser.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-wrapped-Analyser"
+
+\end_inset
+
+The wrapped Analyser component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+The DualWindow Variant
+\end_layout
+
+\begin_layout Standard
+The intention of this variant was to allow both the alphabet window and
+ the transitions window to be present on the screen simultaneously, thereby
+ improving the usability of the tool.
+ To do this we created the DualWindow stratum with the DualWindowcomposite
+ which provided the same interface IWindow as the original screen but combined
+ the two.
+ We further created a factory component to allow this to be instantiated
+ in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-DualWindow-component"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-dual-window.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-DualWindow-component"
+
+\end_inset
+
+The DualWindow component and factory
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Inside the DualWindow stratum, we then evolved the LTSA top-level component
+ and replaced the AlphabetWindowFactory part with a DualWindowFactory one.
+ We also replaced the HPWindow part with an instance of the same type but
+ with amended properties.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-LTSA-to"
+
+\end_inset
+
+.
+ The Backbone text underneath describes the deltas.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-dualwindow-evolution.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-LTSA-to"
+
+\end_inset
+
+Evolving LTSA to support dual windows
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Merging the Evolutions
+\end_layout
+
+\begin_layout Standard
+To merge the evolved architectures we created another (empty) stratum called
+ combined which depends on the two variant strata (figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Combining-the-evolutions"
+
+\end_inset
+
+).
+ 
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/ltsa-stratum-extensions.eps
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Combining-the-evolutions"
+
+\end_inset
+
+Combining the evolutions using a further stratum
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/expanded.eps
+	width 45col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-expanded-LTSA"
+
+\end_inset
+
+The expanded LTSA resemblance graph
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement th
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/ltsa-compositions.png
+	lyxscale 50
+	width 50page%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Compositional-history-of"
+
+\end_inset
+
+Compositional history of the LTSA evolutions and merge
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+According to the rules described earlier this strata arrangement leads to
+ a rewriting of the resemblance relations to incorporate the independent
+ evolutions in a unified graph.
+ The expanded resemblance graph of the LTSA component from the perspective
+ of the combined stratum is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-expanded-LTSA"
+
+\end_inset
+
+.
+ We can see that the independent evolutions result in independent branches
+ of the graph and that the combining stratum joins them back again.
+ This happens automatically - if a combining stratum does not declare an
+ evolution then the net effect of the rules is as if a default implicit
+ evolution is created to ensure a merge.
+\end_layout
+
+\begin_layout Standard
+In this case a full error check revealed there were no conflicts requiring
+ resolution, and the two variants were able to be combined and run together
+ successfully.
+ If conflicts had actually occurred these could have been rectified by explicitl
+y evolving the LTSA component in the combined stratum and adjusting or replacing
+ the erroneous constituents using deltas.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Compositional-history-of"
+
+\end_inset
+
+ shows the compositional history of the LTSA evolutions.
+ The depth and breadth of composition changed over time reflecting the deepening
+ explication of the architecture and the evolution of the components in
+ each of the variants.
+\end_layout
+
+\begin_layout Subsection
+Conclusion
+\end_layout
+
+\begin_layout Standard
+Incorporating the Evolve approach into a mature application involves initially
+ decomposing the architecture down to a sufficient level of granularity
+ to enable the evolutionary variants to be expressed via component replacements.
+ This relies on refactoring the architecture to turn identified candidate
+ classes into components with both provided and required interfaces.
+ This accords well with best practice object-oriented design which uses
+ interfaces heavily for decoupling.
+\end_layout
+
+\begin_layout Standard
+Decomposing the architecture into finer-grained components and allowing
+ evolution to be clearly expressed align neatly - these cooperating forces
+ lead to a system with an explicit architecture which can be evolved with
+ commensurate effort related to the size of the change required.
+\end_layout
+
+\begin_layout Standard
+Branching and merging of evolutionary variants can be explicitly represented
+ using strata.
+ The branches and joins of the resultant expanded resemblance graphs reflect
+ the strata dependencies.
+ Further, the same constructs allowing evolution allow any merge conflicts
+ to be rectified regardless of the level of the conflict in the compositional
+ hierarchy.
+\end_layout
+
+\begin_layout Section
+Wider Applicability of the Intrinsic Approach
+\end_layout
+
+\begin_layout Standard
+The intrinsic approach is applicable to any system that is expressed naturally
+ via a compositional hierarchy, where evolutionary forces over time lead
+ to a decomposition at a fine-grained level so that replacement can operate
+ at the desired level of abstraction.
+ In applying our approach, we found a number of candidates that satisfied
+ these requirements: nested statecharts, user interface construction, component-
+based framework development and extensible, plugin-based systems.
+\end_layout
+
+\begin_layout Subsection
+Nested Statecharts
+\end_layout
+
+\begin_layout Standard
+State machines are a powerful way to explicitly represent the states and
+ possible transitions that a system may go through 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Mencl2004"
+
+\end_inset
+
+.
+ The full set of transitions are fully explicated, giving an exhaustive,
+ testable overview of the behavior of the system.
+\end_layout
+
+\begin_layout Standard
+Statecharts are a visual representation of a state machine, where states
+ are shown typically as rectangles and transitions as lines between them
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Harel1987"
+
+\end_inset
+
+.
+ Harel further demonstrated that nested state charts provide the ability
+ to classify complex system behavior into a hierarchy, allowing the system
+ to be reasoned about at different levels of abstraction.
+\end_layout
+
+\begin_layout Standard
+To explore our approach applied to this domain, we modeled a fader for an
+ audio control desk on a commercial radio broadcast system the authors previousl
+y worked on.
+ A fader has audio control of a single device such as a CD player, and can
+ start, pause and stop it and control where the output is heard.
+\end_layout
+
+\begin_layout Subsubsection
+Modeling Statecharts Using Design Patterns
+\end_layout
+
+\begin_layout Standard
+State machines in object-oriented systems are usually represented using
+ a variant of the state pattern 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+.
+ For instance, a fader would be modeled as per the class diagram in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Modeling-states-using"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename phd-images/oo-state-advanced.eps
+	width 70col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Modeling-states-using"
+
+\end_inset
+
+Modeling states using design patterns
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that transitions are not explicit and are instead represented as programmin
+g logic within each state.
+ Via the pattern guidelines, this means that every state contains a hardcoded
+ reference to the state classes which it transitions to, reducing our ability
+ to add, delete or modify states and transitions without having to replace
+ a large number of them.
+ For instance, the transition between the OFF and ON state is encoded in
+ the 
+\family typewriter
+OffState
+\family default
+ class as:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+if (onTransition) {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  context.setState(new OnState());
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  ...
+\end_layout
+
+\begin_layout Standard
+In audio it is typical to move from the OFF state, to a CUE state where
+ the audio is played directly only to the presenter, then to the ON state
+ where the audio is broadcast.
+ However, to do this we would have to add 
+\family typewriter
+CueState
+\family default
+ and also replace 
+\family typewriter
+OffState
+\family default
+ which hardcodes the existing transition.
+ Furthermore, the set of possible events are hardcoded inside the 
+\family typewriter
+DeviceStateMachine
+\family default
+, meaning we would have to also modify this to add a cure event.
+\end_layout
+
+\begin_layout Standard
+This hardcoding of transitions inside each state limits the extensibility
+ of the state machine when coded in this paradigm.
+ 
+\end_layout
+
+\begin_layout Subsubsection
+Modeling Statecharts Using the Intrinsic Approach
+\end_layout
+
+\begin_layout Standard
+To apply the intrinsic approach, we initially noted the similarity between
+ nested component structure and nested statecharts, and between connectors
+ and transitions.
+ By adopting a pattern regarding entry and exit actions, and transition
+ handoff from one state to another, we could translate states into components
+ and and transitions into connector between ports.
+ This allowed us to apply the intrinsic approach to statechart evolution.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Modeling-a-state"
+
+\end_inset
+
+ shows the results of modeling the states via components, giving rise to
+ a dispatcher component that mediated the ownership of the current state
+ between the three concrete states.
+ The transitions were modeled as connectors between states, and ports acted
+ as guards.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename phd-images/component-fullstate-advanced.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Modeling-a-state"
+
+\end_inset
+
+Modeling a state machine via components
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The 
+\family typewriter
+DeviceStateDispatcher
+\family default
+ component was generic, reusable code and could be inserted via rule, allowing
+ us to omit it from the visual presentation.
+ We further finessed the appearance so that it more closely resembled that
+ of a traditional statechart, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adjusting-the-appearance"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename phd-images/stereo-fullstate-advanced.eps
+	width 65col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adjusting-the-appearance"
+
+\end_inset
+
+Adjusting the appearance
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+We then evolved the statechart component to add a CUE state, allowing audio
+ to be previewed on an off-air audio bus.
+ This used resemblance and replacement to add the additional state component
+ and adjust several connectors, but required no further changes or replacements.
+ Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-to-add"
+
+\end_inset
+
+ shows the final chart.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename phd-images/added-cue-state-advanced.eps
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Evolving-to-add"
+
+\end_inset
+
+Evolving to add the CUE state
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+By making the transitions explicit and not hardcoded into the states themselves,
+ the system is more understandable and more extensible.
+\end_layout
+
+\begin_layout Subsection
+User Interface Construction
+\end_layout
+
+\begin_layout Standard
+User interfaces are often constructed in a component-oriented way, where
+ connections between user interface components (aka 
+\begin_inset Quotes eld
+\end_inset
+
+widgets
+\begin_inset Quotes erd
+\end_inset
+
+) are created using builders and visual tools.
+ The JavaBeans specification was created with these builders and visual
+ construction in mind - through the use of lexical conventions for 
+\begin_inset Quotes eld
+\end_inset
+
+getters
+\begin_inset Quotes erd
+\end_inset
+
+ and 
+\begin_inset Quotes eld
+\end_inset
+
+setters
+\begin_inset Quotes erd
+\end_inset
+
+ and reflection, instances of these widgets can be manipulated visually
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "O'Neill1998,Network2006"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+To support this paradigm, we implemented an importing facility into our
+ Evolve case tool, to allow beans to be represented as Backbone components
+ (c.f.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Compatibility-with-Existing"
+
+\end_inset
+
+).
+ We imported the Swing library 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hoy2002"
+
+\end_inset
+
+ in its entirety.
+ In this model, connectors represent the getting and setting of bean references
+ from Swing components.
+\end_layout
+
+\begin_layout Standard
+As shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Evolving-LTSA-to"
+
+\end_inset
+
+, we were able to successfully model and evolve a complex Swing-based UI
+ system.
+\end_layout
+
+\begin_layout Standard
+For another project, we needed to model the Google Web Toolkit system (GWT)
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "GWT,GWT-Apps"
+
+\end_inset
+
+ for constructing Web applications.
+ This also uses a variant of the JavaBeans model, but translates the Java
+ code into Javascript in order to run the application in a browser.
+\end_layout
+
+\begin_layout Standard
+Figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-graphical-widget"
+
+\end_inset
+
+ shows a widget for adding a car in a car rental application.
+ This widget was part of a larger application which was evolved to add various
+ features using the intrinsic approach, without particular restrictions
+ due to the more limited runtime environment or unusual translation requirements.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename phd-images/add-car.eps
+	width 100col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:A-graphical-widget"
+
+\end_inset
+
+A graphical widget from a GWT application
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The runtime environment for GWT is Javascript and there are limited reflection
+ capabilities available to a translated Java application.
+ As such, reflection could not be used to instantiate the system.
+ To deal with this, we wrote a short addition to the Evolve toolset which
+ generated a Java program for the flattened representation of the compositional
+ hierarchy, which directly made the calls required to instantiate the system.
+\end_layout
+
+\begin_layout Standard
+For instance, part of this generated code looked as follows:
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+HorizontalPanel h1 = new HorizontalPanel();
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+Label l1 = new Label();
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+l1.setText(
+\begin_inset Quotes eld
+\end_inset
+
+Add new car:
+\begin_inset Quotes erd
+\end_inset
+
+);
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+h1.add(l1);
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+...
+\end_layout
+
+\begin_layout Standard
+Using this approach, Backbone can run in environments with extremely constrained
+ capabilities.
+\end_layout
+
+\begin_layout Subsection
+Component-based Framework Development
+\end_layout
+
+\begin_layout Standard
+Frameworks are reusable software systems which are designed to be reused
+ and extended by other parties 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Froehlich1997,Fayad1997"
+
+\end_inset
+
+.
+ The primary characteristic of a framework is a property known as the Hollywood
+ Principle, or Inversion of Control 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma1995"
+
+\end_inset
+
+.
+ This is known colloquially via the expression 
+\begin_inset Quotes eld
+\end_inset
+
+don't call us, we'll call you
+\begin_inset Quotes erd
+\end_inset
+
+.
+ In other words, the framework owns the control of the program, and delegates
+ down to the extensions where required.
+\end_layout
+
+\begin_layout Standard
+This approach to development requires that a framework contain a set of
+ pre-planned extension points.
+ It is extremely common when building a system around a framework to find
+ that the system requirements cannot be met using the existing extension
+ points, and it is necessary then to evolve the framework to add new points.
+ This need to feed back to a central architecture typically leads to great
+ delay 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bosch2000"
+
+\end_inset
+
+ and also pollutes the framework with extension points that may only satisfy
+ a small number of systems.
+\end_layout
+
+\begin_layout Standard
+The intrinsic approach resolves these problems by placing the ability to
+ adjust and extend the framework (and hence extension points) in the hands
+ of the users of the framework (extension developers), not just in the hands
+ of the original creators.
+ The intrinsic approach holds alterations as deltas, allowing these changes
+ to be fed back to the creators for future inclusion if needed, without
+ holding up the extension developers.
+ Further, the alterations do not need to be fed back to the creators if
+ they are not sufficiently general, and can simply be maintain by extension
+ developers.
+ In this way, the core framework does not get polluted with every required
+ extension point.
+\end_layout
+
+\begin_layout Standard
+Another problem faced by users of a framework is that they might make changes
+ locally to the framework, but then need to reapply those changes when the
+ creators publish a new version.
+ In the intrinsic approach, any changes made by an extension developer would
+ be held as deltas, allowing them to simply repoint their strata dependencies
+ at the new framework version and have the changes automatically applied.
+\end_layout
+
+\begin_layout Subsection
+Plugin Systems
+\end_layout
+
+\begin_layout Standard
+Many extensible systems allow third party programmers to create and install
+ plugins which enhance and adapt the application's functionality for new
+ requirements.
+ Such an application is typically designed as a black box with extension
+ points and a loading scheme for plugins, which then register themselves
+ with the system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Chatley2003,Chatley2004"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+This has an obvious corrolary with frameworks, in that no system can fully
+ predict the full set of extension points required.
+ As such, a developer writing an extension will often need to request extra
+ extension points from the base application developers, which leads to serious
+ sequencing issues and time delays 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Bosch2000"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Some plugin systems are structured fully out of plugins to resolve this
+ dilemma.
+ For instance, the Eclipse integrated development environment is composed
+ completely of semantically versioned plugins, allowing any plugin to be
+ replaced 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Consortium2006,Delap2006"
+
+\end_inset
+
+.
+ 
+\end_layout
+
+\begin_layout Standard
+However, even this more complete model has a problem - plugins are both
+ the unit of deployment and the unit of replacement.
+ Combined with the fact that plugins are non-hierarchical, this creates
+ a number of problems, which we will now elaborate on.
+\end_layout
+
+\begin_layout Standard
+For instance, consider that to make their plugin E, a plugin developer requires
+ an additional extension point in a large, core plugin C which is owned
+ by the creators of the application.
+ The change is relatively small, but results in a new version of C, say
+ v1.0.1, which must then be released to anyone who wants to use plugin E.
+ However, because C is not owned by the plugin developer, it will be necessarily
+ overwritten by any updates from the base developers.
+ In other words, because the only unit of change is a plugin, which is also
+ the unit of ownership, even a small change can result in a large amount
+ of work and an infeasible developer workflow and deployment situation.
+ This situation is made greatly worse by the fact that for ease of management,
+ a plugin is typically coarse-grained and encompasses a large amount of
+ functionality.
+\end_layout
+
+\begin_layout Standard
+The intrinsic approach addresses these problems by having separate entities
+ for each concept.
+ A stratum is the unit of ownership, a component or interface is the element
+ of change, and replacement and resemblance allow a stratum owned by an
+ extension developer to own changes to a component from a stratum owned
+ by the base developers.
+\end_layout
+
+\begin_layout Standard
+To map the above plugin dilemma onto the intrinsic approach, consider that
+ the extension developer would have a stratum SE, which contained their
+ plugin E represented as one or more components.
+ The base developer would have a stratum SC which contained their plugin
+ C represented as components also.
+ In this case, C is a composite which is made up of other parts including
+ an instance of CSub.
+\end_layout
+
+\begin_layout Standard
+To make the change to add the required extension point, the stratum SE would
+ then contain an evolution of the components in SC to introduce the required
+ extension points, at the appropriate level in the compositional hierarchy.
+ The SC stratum does not have to change, allowing new versions of C to be
+ used without affecting E.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Addressing-the-plugin"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/plugins.eps
+	width 30col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Addressing-the-plugin"
+
+\end_inset
+
+Addressing the plugin dilemma
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Developer Workflow in a Distributed Environment
+\end_layout
+
+\begin_layout Standard
+Our approach is designed to support developers extending and evolving a
+ system in a setting where (in the worst case) the parties may have limited
+ communication and may not share networks or other resources.
+ For instance, the initial system can be created by one party, who can then
+ export the definition and implementation to other parties who can evolve
+ it and branch it without affecting the original definitions.
+ We can later merge these branches back into a single model and rectify
+ any structural conflicts using the same constructs available for evolution.
+\end_layout
+
+\begin_layout Standard
+Consider how development and evolution of the LTSA system (section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Applicability-to-Mature"
+
+\end_inset
+
+) might have proceeded.
+ Firstly, the original architecture and implementation of the system would
+ have been created by developer X.
+ At this point, X has only the LTSA stratum present in their system, as
+ shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:LTSA-System-as"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-original.png
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:LTSA-System-as"
+
+\end_inset
+
+LTSA System as seen by its creator
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Developers Y and Z now wish to separately evolve the system.
+ To facilitate this, X exports the LTSA stratum from their environment and
+ distributes both the exported stratum (.evolve file) and compiled files
+ representing the implementation (jars) to both developers.
+\end_layout
+
+\begin_layout Standard
+Y and Z each create their own extension strata in their separate environments.
+\end_layout
+
+\begin_layout Standard
+Consider that Y has decided to implement the dual window extension.
+ Y will import the LTSA stratum (as read-only because they do not own this)
+ and create the dual window stratum as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-system-as-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-dual.png
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-system-as"
+
+\end_inset
+
+The system as seen by Y
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Z has decided to implement the Ames evolution.
+ Z imports the LTSA stratum (again as read-only) and creates the Ames stratum
+ as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-system-as-1"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-ames.png
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-system-as-1"
+
+\end_inset
+
+The system as seen by Z
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Note that Y and Z are free to make any changes to the base architecture
+ as long as the evolutions are contained in the stratum that they own.
+ They cannot directly edit the LTSA stratum as this is owned by X.
+\end_layout
+
+\begin_layout Standard
+Now consider that X wishes to accept both extensions from Y and Z and merge
+ them into a common architecture.
+ To do this, X imports both the dual window and Ames strata (and associated
+ implementation jars) into their original environment.
+ The two imported strata are marked as read-only, as X does not own these.
+ To create the merge, X further creates the combined stratum.
+ Any structural conflicts can be rectified in that stratum which X owns.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Merging-the-two"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename drawings/wf-merged.png
+	width 80col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Merging-the-two"
+
+\end_inset
+
+Merging the two evolutions
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The general principle in a distributed setting is that the import and export
+ of strata allow for sharing and collaboration.
+ We export strata that we own, and import strata that are owned by others.
+ We only directly edit our own strata, but we can express any changes to
+ architectures created by imported strata by creating our own further stratum
+ that depends on the imported ones.
+\end_layout
+
+\begin_layout Standard
+The sharing of artifacts in this disconnected way is made possible by the
+ use and allocation of UUIDs for each element.
+ This guarantees that accidental conflict due to human readable names being
+ the same will not occur.
+\end_layout
+
+\begin_layout Section
+Analysis and Assessment
+\end_layout
+
+\begin_layout Standard
+In this section we distil a set of interesting properties for an architectural
+ approach to evolution and evaluate Evolve against these.
+ In the next section we use these properties to assess related work against
+ the same criteria.
+\end_layout
+
+\begin_layout Subsection
+\begin_inset CommandInset label
+LatexCommand label
+name "sub:Essential-Properties-of"
+
+\end_inset
+
+Properties for an Architectural Approach to Evolution
+\end_layout
+
+\begin_layout Subsubsection*
+Unconstrained architectural alterations
+\end_layout
+
+\begin_layout Standard
+An approach should allow the architecture of a system to be altered in (possibly
+) unplanned ways to accommodate new features and requirements.
+ The unit of change should be architectural (component, interfaces, constituents
+) and there should be no arbitrary constraints on what type of features
+ can be added or removed.
+ It should also be possible to switch between the base system or the evolved
+ system as desired - an evolution should not affect or destructively edit
+ the base architecture.
+\end_layout
+
+\begin_layout Standard
+Evolve supports this property via deltas against components and interfaces.
+ Components can be evolved by adding, replacing or deleting at the level
+ of attribute, connector, part or implementation class mappings.
+ Interfaces can be evolved at the level of operation or implementation realizati
+on.
+ This does not affect the base architecture - the evolution is instead recorded
+ as a set of deltas in a stratum which depends on the base stratum, allowing
+ the architect to switch between the base and evolved system.
+\end_layout
+
+\begin_layout Standard
+This level of expressiveness clearly allows invalid systems to be created.
+ We supplement this freedom with a comprehensive set of checks which determine
+ the structural well-formedness of a system.
+ No behavioural checking is currently done - this is considered in future
+ work.
+\end_layout
+
+\begin_layout Subsubsection*
+Alterations at the correct level of abstraction
+\end_layout
+
+\begin_layout Standard
+The architecture should be able to be evolved at the appropriate abstraction
+ level.
+ Further the level of change required should be commensurate with the actual
+ change in functionality.
+ Sometimes coarse-grained replacement is required when making large-scale
+ changes, at other times fine-grained adjustment is all that is needed.
+\end_layout
+
+\begin_layout Standard
+A hierarchical component model like the one used by Evolve meets the above
+ property nicely.
+ It neatly resolves the conflict between coarse and fine-grained components
+ by allowing larger components to be built up from instances of smaller
+ ones.
+ If a hierarchical model is not used, for instance in plugin systems, then
+ it can be difficult to evolve the architecture at the correct level of
+ abstraction.
+\end_layout
+
+\begin_layout Subsubsection*
+Branching the architecture
+\end_layout
+
+\begin_layout Standard
+It should be possible to create independent branches of a system, reflecting
+ that work may proceed in parallel even within the same organization.
+\end_layout
+
+\begin_layout Standard
+Evolve supports this property via the stratum concept which allows a set
+ of changes to be grouped, and dependencies to be explicitly indicated.
+ Two strata that have no visibility of each other via transitive dependencies,
+ but nevertheless share common strata in their dependency graph, are independent
+ branches of the same underlying system.
+ An example of this is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Branches-and-a"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/branching.eps
+	width 60col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Branches-and-a"
+
+\end_inset
+
+Branches and a merge of a base system
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsubsection*
+Merging and conflict resolution
+\end_layout
+
+\begin_layout Standard
+It should be possible to merge branches back into a single architecture,
+ where any inconsistencies or conflicts are detected and can be corrected
+ architecturally at the appropriate level of abstraction.
+\end_layout
+
+\begin_layout Standard
+We support this via a single stratum which depends on two or more branch
+ strata, as shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Branches-and-a"
+
+\end_inset
+
+.
+ Under the rules of section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:A-Formal-Description"
+
+\end_inset
+
+, separate evolutions of a component in branches will result in an expanded
+ resemblance graph which is similarly branched.
+ Simple conflicts are detected where the same constituent has been deleted
+ or replaced separately in each branch, requiring a further evolution in
+ the merge stratum to choose one of the outcomes as preferred.
+\end_layout
+
+\begin_layout Standard
+More complex structural conflicts are detected by checking the rules against
+ the merged architecture.
+ Any violation of the rules can be dealt with via another evolution, at
+ the desired level in the composition hierarchy.
+\end_layout
+
+\begin_layout Subsubsection*
+Immutable, released system
+\end_layout
+
+\begin_layout Standard
+Once an extension has been formally released into a distributed setting,
+ the definitions within it must be regarded as immutable.
+ Without this property, it would be impossible to know definitively which
+ variant of the extensions and its definitions were correct.
+ Typically, this immutability is denoted by assigning a semantic version
+ number 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Raemaekers2014"
+
+\end_inset
+
+, indicating a linear progression of evolution.
+\end_layout
+
+\begin_layout Standard
+Evolve supports this property by treating all exported (and subsequently
+ imported) strata as immutable.
+ Evolve does not prescribe a versioning strategy, but instead allows strata
+ names to be freeform and hence include a version number.
+ The evolution of an original stratum is indicated by other strata which
+ have dependencies on it, and replace definitions within the original.
+\end_layout
+
+\begin_layout Subsubsection*
+Expanded representation
+\end_layout
+
+\begin_layout Standard
+It should be possible to work with the expanded system at all times regardless
+ of any evolutions being specified via deltas.
+\end_layout
+
+\begin_layout Standard
+Evolve supports this by showing the expanded version of each component,
+ and recording deltas in the underlying repository.
+ This also reveals a potential limitation of the approach - deltas are recorded
+ on deltas as subsequent evolutions accrue.
+ We plan to address this in further work via the baselining concept.
+\end_layout
+
+\begin_layout Subsubsection*
+Distributed and disconnected
+\end_layout
+
+\begin_layout Standard
+A modern trend of configuration management (CM) systems is to allow for
+ distributed and disconnected operation, where parties do not have to share
+ access to the same underlying repository in order to evolve a system 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Milewski1997"
+
+\end_inset
+
+.
+ Each developer holds a full history of the repository, and unique identifiers
+ (UUIDs) assigned to changesets ensure guaranteed merge order.
+ This is in contrast to centralized CM systems that expect that all parties
+ will have access to the single, central repository for any operations.
+ An example of the distributed approach for source code control is Mercurial
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "O'Sullivan2009"
+
+\end_inset
+
+, and an example of the centralized approach is Subversion 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Pilato2008"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Evolve facilitates a distributed mode of working by assigning a UUID to
+ each stratum guaranteeing that exporting from one repository into another
+ will preserve the dependency structure.
+ Furthermore, each component, interface and constituent are also allocated
+ a UUID to ensure that textual naming conflicts in branches do not present
+ a problem.
+ A stratum, its dependencies and its contents can therefore be copied safely
+ between repositories in a distributed setting.
+\end_layout
+
+\begin_layout Standard
+In the related work section we examine the conceptual overlap between our
+ approach and that of the Mercurial distributed CM system.
+\end_layout
+
+\begin_layout Subsubsection*
+CM system agnostic
+\end_layout
+
+\begin_layout Standard
+It is not feasible to tie industrial developers to a bespoke or niche CM
+ system - any approach to architectural evolution must work in sympathy
+ with well supported, commonly used CM systems and best practices.
+\end_layout
+
+\begin_layout Standard
+Evolve places no constraints on the underlying versioning system used -
+ architectural configurations may be version controlled in the same manner
+ as source code.
+ This allows the approach to be used to express different axes of evolution,
+ such as product lines, within a single source base that is also versioned
+ textually.
+\end_layout
+
+\begin_layout Subsubsection*
+Modeling as a first class activity
+\end_layout
+
+\begin_layout Standard
+The features allowing evolution should be more than a change control adjunct
+ to the architectural modeling facilities offered.
+ The concepts rather should be completely integral to the architectural
+ approach, allowing these to be used when designing and modeling a system
+ also.
+\end_layout
+
+\begin_layout Standard
+In Evolve the evolution constructs are tightly integrate into the architectural
+ definition language itself with resemblance / inheritance (normally a design
+ concept) closely related to evolution (normally a CM concept).
+\end_layout
+
+\begin_layout Subsubsection*
+Concurrent creation and extension
+\end_layout
+
+\begin_layout Standard
+In conventional CM systems a base architecture is rendered immutable once
+ a branch or evolution has been created from it.
+ The base is in essence frozen in time.
+\end_layout
+
+\begin_layout Standard
+In contrast, a base architecture in Evolve can be modified until it is formally
+ released and rendered immutable.
+ Changes will flow automatically through to any evolutions.
+ This is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Adding-an-attribute"
+
+\end_inset
+
+(a) where initially the base component X has no attributes and therefore
+ evolved component E has none also.
+ In (b) we adjust the base component and note that the change automatically
+ propagates.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+placement h
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\noindent
+\align center
+\begin_inset Graphics
+	filename images/live-base.eps
+	width 50col%
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Adding-an-attribute"
+
+\end_inset
+
+Adding an attribute to a base component
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This models the concurrent creation of a system or framework and the closely
+ developed first extension of that system.
+ This simultaneous and synergistic development between a framework and its
+ initial client is a vital part of exploring and modeling a reusable system.
+\end_layout
+
+\begin_layout Standard
+The Java dependency management system Maven handles temporary mutability
+ using snapshot dependencies with a suffix of -SNAPSHOT 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Varanasi2014,Raemaekers2014"
+
+\end_inset
+
+].
+\end_layout
+
+\begin_layout Subsubsection*
+Implementation mappings
+\end_layout
+
+\begin_layout Standard
+As the architecture evolves we also may wish to adjust and create mappings
+ to implementation constructs.
+ Any approach should therefore also handle these mappings.
+\end_layout
+
+\begin_layout Standard
+The mapping from Evolve component to implementation class is a standard
+ constituent of each leaf component and hence can be evolved as part of
+ the same approach.
+ This allows the mappings to be controlled and evolved in a consistent way
+ with the rest of the architecture.
+\end_layout
+
+\begin_layout Subsubsection*
+Works without source code
+\end_layout
+
+\begin_layout Standard
+Following on from this, the source code of a system should not necessarily
+ be required to evolve that system - in many situations adjusting the implementa
+tion mappings instead will suffice.
+ This approach offers several benefits.
+ In the first instance, this allows a level of evolution without being exposed
+ to the complexity of the full source code (as per plugin systems).
+ Also, the code may not be available for commercial or licensing reasons.
+\end_layout
+
+\begin_layout Standard
+In Evolve, if the architectural description of a system is available then
+ adjusting the architectural definitions and implementation mappings is
+ sufficient to achieve any required evolution.
+ The work required to achieve this may vary depending on the granularity
+ of the components being replaced.
+\end_layout
+
+\begin_layout Section
+Related Work
+\end_layout
+
+\begin_layout Standard
+We discuss related work from a number of separate directions.
+ Firstly, we observe that Evolve overlaps with other architectural approaches
+ to CM.
+ This neatly leads to a comparison of our approach with textual, distributed
+ CM systems.
+\end_layout
+
+\begin_layout Standard
+We then compare Evolve to extensible systems which provide a limited form
+ of evolution in order to allow new features to be added to a base platform
+ without destroying the original architecture.
+ Finally we compare and contrast our approach to an aspect-oriented architectura
+l view.
+\end_layout
+
+\begin_layout Subsection
+Architecture Description Languages
+\end_layout
+
+\begin_layout Standard
+It has long been recognised that components form a convenient and powerful
+ unit of software design, composition and reuse 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McIlroy1968"
+
+\end_inset
+
+.
+ ADLs build on this foundation to describe the structure of a system as
+ a connected set of components.
+ An important advance was the composite component concept whereby a wiring
+ up of component instances itself forms a new component, thereby enabling
+ a hierarchical approach to system construction 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Kramer2000"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Some ADLs permit structural inheritance where a new component is defined
+ in terms of structural changes to a parent 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Selic1994,Selic1994a,Barros1996"
+
+\end_inset
+
+.
+ This is related to the concept of object-oriented inheritance in that it
+ allows changes from a set of parent component to be used to create a new
+ entity.
+ This increases reusability by allowing us to define a new set of components
+ in terms of structural addition or deletion from parents - effectively
+ a limited form of evolution.
+\end_layout
+
+\begin_layout Standard
+However, this only allows us to define new components in terms of older
+ ones - existing components cannot be altered.
+ This poses a dilemma - as we build up our architecture as a set of composite
+ components, which themselves are made up of instances of other composite
+ components and so on, we form a potentially deep compositional hierarchy.
+ Structural inheritance only allows us to adjust the topmost level of any
+ hierarchy as we create a new component.
+ As this hierarchy gets deeper, we are effectively 
+\begin_inset Quotes eld
+\end_inset
+
+burying
+\begin_inset Quotes erd
+\end_inset
+
+ architecture under compositional layers, making evolution of the lower
+ layers difficult to achieve.
+\end_layout
+
+\begin_layout Standard
+As such, ADLs with structural inheritance do not fully support unconstrained
+ architectural change.
+ Depending on whether multiple inheritance and conflict resolution is allowed,
+ correcting defects after merging branches may not be supported.
+ There is no intrinsic support for distributed and disconnected development
+ concepts.
+\end_layout
+
+\begin_layout Standard
+Evolve's key contribution is to supplement structural inheritance with replaceme
+nt, and to precisely define the way that the two constructs interact.
+ Replacement allows us to globally substitute the definition of a component,
+ and combined with resemblance (structural inheritance) this allows the
+ incremental evolution of any component.
+ Using this we can deeply alter existing compositional hierarchies at any
+ level and resolve any conflicts that occur when branches of the same architectu
+re are merged.
+\end_layout
+
+\begin_layout Subsection
+Architecturally Aware Configuration Management Systems
+\end_layout
+
+\begin_layout Standard
+MAE 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Roshandel2004,Hoek2001"
+
+\end_inset
+
+ is a powerful, centralized CM system that works with architectural deltas
+ rather than textual deltas.
+ This permits the explicit evolution and merging of architectural configurations
+ at the level of architectural concepts, thereby satisfying many of the
+ properties outlined in section 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sub:Essential-Properties-of"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+MAE is already a version control system, hence it cannot easily be used
+ with conventional CM systems
+\end_layout
+
+\begin_layout Subsection
+Distributed Configuration Management Systems
+\end_layout
+
+\begin_layout Standard
+Distributed textual CM systems allow each developer to have a full or partial
+ copy of the repository on their machine, allowing for operation even if
+ not connected to a designated 
+\begin_inset Quotes eld
+\end_inset
+
+central
+\begin_inset Quotes erd
+\end_inset
+
+ repository.
+ A commit is represented as an atomic change set, which has zero, one or
+ two possible parents.
+ A newly created changeset starting from scratch has no parent, a linear
+ evolution of a base has one change set, and a merge has two change sets.
+ Mercurial is a well known example of this approach 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "O'Sullivan2009"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Each changeset is identified by a UUID and the parent/child dependency relations
+hip is represented by UUID pairs.
+ This allows changesets to be exported from one repository into another,
+ guaranteeing that dependency order will be preserved.
+\end_layout
+
+\begin_layout Standard
+Evolve shares a number of concepts with these systems.
+ A stratum is conceptually related to a changeset, though the deltas are
+ architectural rather than textual.
+ Also, a stratum may have many parents reflecting that it is a design as
+ well as a change construct.
+ UUIDs are used for identification allowing the export and import between
+ repositories.
+ Unlike changesets, however, non-released strata are not constrained by
+ rule to be immutable
+\begin_inset Foot
+status collapsed
+
+\begin_layout Plain Layout
+By convention an imported stratum is marked as read-only, as it is generally
+ not owned by the importer.
+\end_layout
+
+\end_inset
+
+, and if changes are made to a base stratum they propagate to dependent
+ strata as per TEMPORARY_IMMUTABILITY.
+ As such, Mercurial does not support this property.
+\end_layout
+
+\begin_layout Standard
+Textual CM systems also violate many other of the required and desired propertie
+s for an architectural approach because they work with text deltas rather
+ than architectural deltas.
+\end_layout
+
+\begin_layout Subsection
+Extensibility Architectures
+\end_layout
+
+\begin_layout Standard
+Eclipse uses a plugin-based architecture to allow the system to be extended
+ for additional features 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Gamma2003,Delap2006"
+
+\end_inset
+
+.
+ Each plugin has a version number where the minor digits are used to represent
+ evolution which does not break existing interfaces, and the major digits
+ represent breaking change.
+ Plugins also declare dependencies on other plugins.
+ Through introducing new versions of plugins, an evolved system can be produced
+ with any extensions required.
+ In this way, plugins act like change sets in a CM system or strata in Evolve,
+ and are similar to modules.
+\end_layout
+
+\begin_layout Standard
+However, plugins are not hierarchical meaning that if the source code is
+ not available and the plugin must be replaced for evolution then even a
+ small required change can result in significant work.
+ This highlights an architectural limitation of the approach - plugins form
+ both the unit of ownership and the unit of replacement.
+ This makes architectural change at the correct level of abstraction difficult.
+ It also makes evolution difficult without source code.
+\end_layout
+
+\begin_layout Standard
+Furthermore, although the model ensures that much structural conflict is
+ avoided, it is not possible to detect conflicts between plugin combionations
+ in any automated way.
+\end_layout
+
+\begin_layout Subsection
+Product Lines
+\end_layout
+
+\begin_layout Standard
+Easel 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Hendrickson2007"
+
+\end_inset
+
+ is a product-line architectural approach that builds on the ArchStudio
+ toolset 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Dashofy2007"
+
+\end_inset
+
+.
+ Although it is not a CM system per se, it is related in that it allows
+ change sets to be applied against an architecture expressed as components
+ and connectors.
+ Change sets can be associated to features, and these can be combined to
+ form variants in the product line.
+ UUIDs are used to identify change sets and individual architectural entities.
+\end_layout
+
+\begin_layout Standard
+As such, Easel is conceptually similar to the Evolve approach with a number
+ of similar features.
+ It supports many of the required and desired properties.
+ It differs, however, from our approach in that it does not unify modeling
+ concepts (structural inheritance) with evolution, leading to a less powerful
+ merging approach.
+ Easel change sets are not hierarchical, which means it is not always possible
+ to make the change at the appropriate level of abstraction.
+ The delta primitives are ADD and DELETE and not REPLACE, causing unnecessary
+ loss of identity when replacement is required and leading to extraneous
+ merge issues.
+\end_layout
+
+\begin_layout Standard
+AHEAD is a compositional approach to product lines 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Batory2006,Batory2003a"
+
+\end_inset
+
+.
+ It introduces constants, which are analogous to a baseline architecture,
+ and functions which refine constants and can be concatenated to form an
+ equation.
+ The order of concatenation is important as some forms of refinement involve
+ overriding parts of other artifacts.
+ 
+\end_layout
+
+\begin_layout Standard
+Mapped onto Java, a constant is a set of class definitions, and a function
+ contains both class definitions and refinements of classes consisting of
+ field and method additions and method overrides.
+\end_layout
+
+\begin_layout Standard
+Although AHEAD deals with classes typically rather than architectural constructs
+, it can be applied to components via the adoption of conventions.
+ It is possible, however, to introduce functions that when combined cause
+ conflict with no possible resolution other than revisiting the functions
+ and rewriting the equation.
+\end_layout
+
+\begin_layout Subsection
+Difference-Based Modules
+\end_layout
+
+\begin_layout Standard
+MixJuice adds a module system to Java, where modules describe the difference
+ between the base and evolved application 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ichisugi2002,Ichisugi2002a"
+
+\end_inset
+
+.
+ Modules can override classes in the base, allowing unplanned changes to
+ be catered for.
+ In this sense they are similar to Mercurial change sets or Evolve strata.
+\end_layout
+
+\begin_layout Standard
+Because it utilises the Java class model rather than component structures,
+ MixJuice is not fully compliant with a hierarchical architectural approach.
+ Some changes cannot be expressed, and merge conflicts which cannot be corrected
+ via method override can not be resolved.
+\end_layout
+
+\begin_layout Subsection
+Architectural Aspects
+\end_layout
+
+\begin_layout Standard
+Aspects have been proposed as a way to evolve an architecture.
+ TranSAT allows architectural concerns to be specified as aspects 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Barais2004"
+
+\end_inset
+
+.
+ These aspects are 
+\begin_inset Quotes eld
+\end_inset
+
+woven
+\begin_inset Quotes erd
+\end_inset
+
+ into a base architecture to evolve it allowing additional, possibly cross-cutti
+ng features to be added in a modular way.
+\end_layout
+
+\begin_layout Standard
+Each aspect can modify the underlying architectural structure of the base
+ using a small language where join points are specified declaratively as
+ a set of structural and behavioral matches.
+ The set of remaking instructions are similar to those specified in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1996"
+
+\end_inset
+
+, and via removal an aspect can remove as well as add functionality.
+\end_layout
+
+\begin_layout Standard
+Like other aspect approaches, this system suffers from a relatively weaker
+ secondary axis (aspects) that is separate from the primary axis (base architect
+ure).
+ Further, aspects do not always combine well and resultant conflicts cannot
+ always be rectified 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Ossher2001"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+Evolution in Evolve can be used in place of aspects in most situations.
+ A stratum can weave additional concerns into a base architecture by placing
+ parts between existing connected parts in base components.
+ We must, however, explicitly quantify the join points, as opposed to using
+ the lexical quantification mechanisms of conventional aspect-orientation
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Filman2000"
+
+\end_inset
+
+.
+ As described in the e language, which uses related evolution primitives
+ to allow verification scripts to be evolved, this forms a perfectly workable
+ aspect substitute 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Vax2007"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Conclusions-and-Further"
+
+\end_inset
+
+Conclusions and Further Work
+\end_layout
+
+\begin_layout Standard
+The incremental evolution of any software system is inevitable as it is
+ adjusted over time to deal with improvements and changes in functionality
+ and requirements.
+ These changes are currently typically captured at the level of textual
+ differences between releases at a granular and non-architectural level
+ in configuration management systems.
+ This leads to a set of challenges and limitations in tying back these changes
+ to an architectural description, particularly in a distributed development
+ setting.
+ We have captured these issues as a set of interesting properties of an
+ architectural approach to the problem.
+\end_layout
+
+\begin_layout Standard
+These properties cover the ability to make any changes at an architectural
+ level, and later combine these changes if the architectures have diverged
+ between independent branches.
+ They cover the link between architecture and implementation, the relationship
+ between system modeling and evolution and how we capture change relative
+ to other approaches in a distributed development setting.
+\end_layout
+
+\begin_layout Standard
+Our contribution is address evolution in the above context by supplementing
+ a hierarchical ADL with three additional concepts.
+ The first is 
+\emph on
+resemblance
+\emph default
+, which is a form of structural inheritance that allows new components to
+ be defined in terms of structural change to existing components.
+ This leads naturally to the idea of combining related sets of definitions
+ into module structures called 
+\emph on
+stratum
+\emph default
+, which express dependencies on other strata, allowing us to layer a system
+ and express development ownership of parts of that system.
+ Stratum form the natural unit of sharing in a distributed setting.
+\end_layout
+
+\begin_layout Standard
+Finally, we add the 
+\emph on
+replacement
+\emph default
+ concept to allow global substitution of a component, within the scope of
+ the stratum that the replacing component is owned by.
+ Combined with resemblance, this gives us the ability to incrementally evolve
+ any part of the architecture, such that the view of the architecture from
+ existing stratum is not affected.
+ We can therefore capture the gradual evolution of a system in a set of
+ stratum, which themselves can be shared in a distributed development setting.
+ Conflict resolution between merged architectures is handled by the same
+ constructs.
+ In essence, we allow evolution of a system to be packaged up in a stratum
+ which depends on the original system stratum.
+ The description of change to a system is packaged up as an additional stratum.
+\end_layout
+
+\begin_layout Standard
+In applying our approach to a mature system (c.f.
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "sec:Applicability-to-Mature"
+
+\end_inset
+
+) we found that we could gradually decompose an existing code base into
+ architectural components over time, allowing the evolution to drive the
+ granular decomposition of the architecture.
+ In other words, as the system was evolved the architecture became more
+ explicit and fine-grained leading to a symbiotic relationship between change
+ and architectural explication.
+\end_layout
+
+\begin_layout Standard
+The analysis of existing extensibility approaches showed that extensibility
+ is effectively a limited and constrained form of evolution, which occurs
+ in a distributed development setting of many parties.
+ Therefore, the same concepts which we use to allow architectural evolution
+ can also be applied, leading to an advanced approach to extensible systems.
+ This gives far more flexibility to make changes and later combine and rectify
+ any divergence than existing approaches such as plugin architectures.
+\end_layout
+
+\begin_layout Standard
+In applying the approach we have found a number of characteristics and limitatio
+ns.
+ In particular, the effort required to evolve a system depends on how finely
+ grained the architectural decomposition is already.
+ If we need to replace a component to adjust a small part of its functionality,
+ and the component is large and monolithic then the architectural change
+ will not be proportionate to the change in functionality required.
+ This is tempered by the previously mentioned positive relationship between
+ evolution and gradual architectural decomposition we found when evolving
+ a mature system.
+\end_layout
+
+\begin_layout Standard
+Further, our approach so far has been purely limited to structural concerns.
+ Clearly, behavioral conflict is still possible in a structurally well-formed
+ system that has been merged from a number of branches.
+ We plan to address this in further work by allowing a behavioral description
+ 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "Magee1999"
+
+\end_inset
+
+ to be attached to the structural definition of each (possibly evolved)
+ component.
+ We will then check the system against a number of goals to ensure that
+ the changes have not affected the behavioral integrity of the system.
+\end_layout
+
+\begin_layout Standard
+We have built a mature toolset around our approach, including a modeling
+ tool Evolve which supports the Backbone ADL.
+ This toolset supports all aspects of the approach allowing the architecture
+ and deltas to be viewed graphically or textually 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "McVeigh2015,McVeigh2011"
+
+\end_inset
+
+.
+ A key issue is that components and constituents are identitied by globally
+ unique identifers allowing us to remove the ambiguity involved when trying
+ to reconcile diverged branches with human readable names only.
+ As we have shown, a graphical approach is able to hide the UUIDs, presenting
+ the human readable names for presentation thereby delivering the benefits
+ of both.
+\end_layout
+
+\begin_layout Section*
+Appendix
+\end_layout
+
+\begin_layout Standard
+Formal Specification
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+open util/relation
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+fact Facts {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  // no strata cycles
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  all s: Stratum | s not in s.^dependson
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  // visibility
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  all e: Element |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    let res = e.resembles, rep = e.replaces |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      res.home in e.home.*dependson and
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      rep.home in e.home.^dependson and e not in res
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  all s: Stratum, e: Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    e.home not in s.*dependson => {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      // not necessary, but makes debugging easier
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      no s.eresembles[e] and no s.edeltas[e]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      and no s.full[e]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    else
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      // topmost
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      let reps = replaces.e & s.elements |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        some reps => s.topmost[e] = reps
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          else
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        e.home = s => s.topmost[e] = e
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          else
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        s.topmost[e] = s.dependson.topmost[e]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      // expanded resembles
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      let joint = e.resembles & e.replaces,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        rest = e.resembles - joint |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          s.eresembles[e] =
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+            e.home.dependson.topmost[joint]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+            + s.topmost[rest]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      // application of deltas
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      let lower = s.eresembles[e],
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        me = s.edeltas[e]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        me.add = s.edeltas[lower].add + e.deltas.add
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        me.delete = s.edeltas[lower].delete
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          + e.deltas.delete
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        me.replace = s.edeltas[lower].replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          ++ e.deltas.replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      // final structure
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      let tops = s.topmost[e], me = s.edeltas[tops] |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        some e.replaces => no s.full[e]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          else
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        s.full[e] =
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          { a, b: me.add | a = b }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          ++ me.replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          - { d: me.delete, allds: Constituent }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+pred branch[a, b: Stratum] {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  let alla = a.*dependson, allb = b.*dependson |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    a not in allb and b not in alla
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    and some alla & allb
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+pred conflict[perspective: Stratum, e: Element] {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  not functional[ perspective.full[e], Element ]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+sig Stratum {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  name: lone String,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  dependson: set Stratum,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  elements: set Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  topmost: Element -> Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  eresembles: Element -> Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  edeltas: Element -> lone Deltas,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  full: Element -> Constituent -> Constituent
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+{ elements = home.this }
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+sig Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  name: lone String,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  home: Stratum,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  resembles: set Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  replaces: lone Element,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  deltas: lone Deltas
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  let others = Element.@deltas - deltas |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    no deltas.add & others.add and
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    no deltas.replace[Constituent]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    & others.replace[Constituent]
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+sig Deltas
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+{
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  add, delete: set Constituent,
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  replace: Constituent -> Constituent
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+sig Constituent { name: lone String, parent: Deltas }
+\end_layout
+
+\begin_layout Standard
+To generate the example from figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:A-variant-of"
+
+\end_inset
+
+, we used the following test case.
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+pred show() {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+  some disj b, x, y, z, m: Stratum {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    no b.dependson
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    x.dependson = b and y.dependson = b
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    z.dependson = b
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    m.dependson = x + y + z
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    x.name = "MultiLaneBridge"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    b.name = "SingleLangeBridge"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    y.name = "EvolvedA" and m.name = "Merged"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    z.name = "EvolvedB"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+    some disj eb, ex, ey, ez: Element {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      eb.name = "SLB"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ex.name = "MULTISLB"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ey.name = "SLBa’"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ez.name = "SLBb’"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      eb.home = b and ex.home = x
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ey.home = y and ez.home = z
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      no ex.replaces and ex.resembles = eb
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ey.replaces = eb and ey.resembles = eb
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      ez.replaces = eb and ez.resembles = eb
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      no eb.(replaces + resembles)
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      some c1, c2, c3, c4, c5: Constituent {
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        c1.name = "c1" and c2.name = "c2"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        c3.name = "c3" and c4.name = "c4"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        c5.name = "c5"
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        let db = eb.deltas |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          db.add = c1 + c2 and no db.delete
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          and no db.replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        let dx = ex.deltas |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          dx.add = c4 and no dx.delete
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          and no dx.replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        let dy = ey.deltas |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          no dy.add and dy.delete = c2
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          and dy.replace = c1 -> c3
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+        let dz = ez.deltas |
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          dz.add = c5 and no dz.delete
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+          and no dz.replace
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+      }}}}
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+run show for 8 but
+\end_layout
+
+\begin_layout LyX-Code
+
+\size footnotesize
+5 Stratum, 4 Element, 25 Deltas, 5 Constituent
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+bibfiles "/Users/andrew/Personal/Repositories/evolve/Academic Work/read papers/references"
+options "spbasic"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
